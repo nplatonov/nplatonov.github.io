@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Polar Bear Researches is IEE RAS</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="MarMam25_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="MarMam25_files/reveal.js-3.3.0.1/css/theme/serif.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="MarMam25_files/htmlwidgets-1.3/htmlwidgets.js"></script>
+    <script src="MarMam25_files/pymjs-1.3.2/pym.v1.js"></script>
+    <script src="MarMam25_files/widgetframe-binding-0.3.1/widgetframe.js"></script>
+    <script src="MarMam25_files/plotly-binding-4.8.0/plotly.js"></script>
+    <script src="MarMam25_files/typedarray-0.1/typedarray.min.js"></script>
+    <script src="MarMam25_files/jquery-1.11.3/jquery.min.js"></script>
+    <link href="MarMam25_files/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+    <script src="MarMam25_files/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+    <link href="MarMam25_files/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="MarMam25_files/plotly-main-1.39.2/plotly-latest.min.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title"><div class="line-block">Polar Bear Researches<br />
+in IEE RAS</div></h1>
+    <h2 class="author"><div class="line-block"><strong>Nikita Platonov</strong><br />
+Ilia Mordvintsev  Evgeny Ivanov  Sergey Naidenko  Sofia Rozenfeld  Viatcheslav Rozhnov<br />
+<br />
+<em>A. N. Severtsov Institute of Ecology and Evolution</em><br />
+<em>Russian Academy of Sciences, Moscow (IEE RAS)</em><br />
+<br />
+</div></h2>
+    <h3 class="date"><div class="line-block">25<sup>th</sup> Meeting of the <strong>«Marine Mammals»</strong> Working Group<br />
+Sankt-Petersburg, 26 October 2018</div></h3>
+</section>
+
+<section><section id="area-v-activities" class="title-slide slide level1" data-background="#888"><h1>Area V activities</h1></section><h6 id="area-v-activities-1" class="slideheader">Area V activities</h6><section id="iee-ras-participation" class="slide level2 scale90" data-transition="slide-in slide-out">
+<h2>IEE RAS participation</h2>
+<h3 id="activity-02.05-7106">Activity 02.05-7106</h3>
+<p><em>Wildlife Health and Disease</em> (IEE RAS; Wildlife Conservation Society)</p>
+<p><span class="scale100"><strong>Purpose</strong>: Cooperate in the study, prevention, and treatment of wildlife diseases of microbial, parasitic and chemical origin common to both countries</span></p>
+<h3 id="activity-02.05-7105">Activity 02.05-7105</h3>
+<p><em>Application of Contemporary Technology in Ecological Studies of Large Mammals</em> (IEE RAS, USGS)</p>
+<p><span class="scale100"><strong>Purpose</strong>: Develop joint methods to collect and process remotely-sensed microwave and optical data, integrate analyses of satellite data from telemetry and environmental remote sensing, and create database structures and models for ecological studies of large mammals in Arctic environments.</span></p>
+</section><section id="sided-cooperation" class="slide level2 scale130" data-transition="slide-in slide-out">
+<h2>Sided cooperation</h2>
+<h3 id="activity-02.05-61">Activity 02.05-61</h3>
+<p><em>Marine Mammals</em></p>
+<h3 id="activity-02.05-1103">Activity 02.05-1103</h3>
+<p><em>Study and Conservation of Polar Bears</em> (FWS, MMM-7; MNRE)</p>
+<p><span class="scale50">MMM-7: Marine Mammals Management, FWS, Alaska</span> <br/> <span class="scale50">MNRE: Russian Ministry of Natural Resources and Environment</span></p>
+</section></section>
+<section><section id="accomplishment" class="title-slide slide level1" data-background="#888"><h1>Accomplishment</h1></section><h6 id="accomplishment-1" class="slideheader">Accomplishment</h6><section id="polar-bear-diseases" class="slide level2 scale75" data-transition="slide-in fade-out">
+<h2>Polar bear diseases</h2>
+<p><img src="MarMam25_assets/naidenko.png" width="647" style="display: block; margin: auto;" /> Serum prevalence of polar bears in region of Franz Josef Land (blue) in comparison to eastern Arctic (red) for pathogens: influenza A, canine distemper virus, <em>Trichinella spiralis</em>, <em>Rickettsia)</em> (from left to right). Extended from <span class="citation" data-cites="Naidenko2013">Naidenko <em>et al.</em> (<a href="#/ref-Naidenko2013">2013</a>)</span>.</p>
+<p>Get more: X<sup>th</sup> Internation Conference «Marine Mammals of Holarctic» 2018; Arkhangelsk, Wednesday, 31 October, Hall no.2, 16:30, <strong>Sergey Naidenko</strong>.</p>
+</section><section id="isotopic-composition-for-polar-bears" class="slide level2" data-transition="slide-in fade-out">
+<h2>Isotopic composition for polar bears</h2>
+<p>Aim: to reveal the role of terrestrial food sources in the diet of polar bears spending ice-free period on land of the Frans Josef Land archipelago <span class="citation" data-cites="Ivanov2018en">(Ivanov <em>et al.</em>, <a href="#/ref-Ivanov2018en">2018</a>)</span>.</p>
+<p>Comparison with published results <span class="citation" data-cites="Polischuk2001 Bentzen2007 CardonaMarek2009">(Bentzen <em>et al.</em>, <a href="#/ref-Bentzen2007">2007</a>; Cardona-Marek <em>et al.</em>, <a href="#/ref-CardonaMarek2009">2009</a>; Polischuk <em>et al.</em>, <a href="#/ref-Polischuk2001">2001</a>)</span>.</p>
+<p>Get more: X<sup>th</sup> International Conference «Marine Mammals of Holarctic» 2018; Arkhangelsk, Thursday, 01 November, Hall no.2, 18:00, <strong>Evgeny Ivanov</strong>.</p>
+</section><section id="isotopic-composition-for-polar-bears-1" class="slide level2" data-transition="fade-in fade-out">
+<h2>Isotopic composition for polar bears</h2>
+<p><img src="MarMam25_assets/isotopic1.png" width="540" style="display: block; margin: auto;" /></p>
+<p>The isotopic composition of blood from polar bears captured on Franz Josef Land and on Taimyr in the ice-free (August-November) and in the ice (April-May) periods. Each point corresponds to one specimen.</p>
+</section><section id="isotopic-composition-for-polar-bears-2" class="slide level2" data-transition="fade-in slide-out">
+<h2>Isotopic composition for polar bears</h2>
+<p><img src="MarMam25_assets/isotopic2.png" width="624" style="display: block; margin: auto;" /></p>
+<p>The isotopic composition of the blood of polar bears in comparison with literature data. The results of individual measurements or the mean values for the entire sample are presented. M±SD, n = 2-47.</p>
+</section><section id="polar-bear-survey-using-ultralight-aviation" class="slide level2" data-transition="slide-in fade-out">
+<h2>Polar bear survey using ultralight aviation</h2>
+<p>Occurrence and density of polar bears and their food in the zone of fast ice, on the coast and the islands of the Kara Sea for assessing the state of the population under conditions of climate change and anthropogenic load.</p>
+<p>Ultralight Sterkh-1S aircraft</p>
+<p>Works were supported by “Rosneft” Oil Company.</p>
+<p>Get more: X<sup>th</sup> International Conference «Marine Mammals of Holarctic» 2018; Arkhangelsk, Thursday, 01 November, Hall no.2, 11:45, <strong>Ilia Mordvintsev</strong>.</p>
+</section><section id="polar-bear-survey-using-ultralight-aviation-1" class="slide level2" data-transition="fade-in fade-out">
+<h2>Polar bear survey using ultralight aviation</h2>
+<p><img src="MarMam25_assets/Ph_per_050km.png" width="969" style="display: block; margin: auto;" /> Seal density (individuals per 50 km of route), sea ice concentration and registration of polar bear activity by 9 days of flight (6035 km) during May 2018.</p>
+</section><section id="polar-bear-survey-using-ultralight-aviation-2" class="slide level2" data-transition="fade-in fade-out">
+<h2>Polar bear survey using ultralight aviation</h2>
+<p><img src="MarMam25_assets/by_dates_bear.png" width="878" style="display: block; margin: auto;" /></p>
+<p><img data-src="./MarMam25_assets/by_dates_bear.gif" /></p>
+</section><section id="polar-bear-survey-using-ultralight-aviation-3" class="slide level2" data-transition="fade-in fade-out">
+<h2>Polar bear survey using ultralight aviation</h2>
+<p><img src="MarMam25_assets/hist_seal1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>Density of seals occurrence per 50 km of route.</p>
+</section><section id="polar-bear-survey-using-ultralight-aviation-4" class="slide level2" data-transition="fade-in fade-out">
+<h2>Polar bear survey using ultralight aviation</h2>
+<p><img src="MarMam25_assets/hist_bear_seal.png" width="620" style="display: block; margin: auto;" /></p>
+<p>Density of seals occurrence per 50 km of route at the points of registration of polar bear activity.</p>
+<!--
+
+
+
+
+Sea ice concentration at the points of registration of polar bear activity.
+
+
+
+
+
+Terrestrial elevation or ocean depth at the points of registration of polar bear activity.
+
+
+
+
+
+Distance to coastline from the points of registration of polar bear activity.
+
+
+
+
+
+# Distance to sea ice edge from the points of registration of polar bear activity.
+-->
+</section><section id="snow-melt-onset-dates-over-sea-ice" class="slide level2" data-transition="slide-in fade-out">
+<h2>Snow melt onset dates over sea ice</h2>
+<div id="htmlwidget-baef67c994c14422d4a0" style="width:100%;height:600px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-baef67c994c14422d4a0">{"x":{"url":"MarMam25_files/figure-revealjs//widgets/widget_63025e86952.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<p><span class="scale70">Method MDSDA <span class="citation" data-cites="Belchansky2004_RSE">(Belchansky <em>et al.</em>, <a href="#/ref-Belchansky2004_RSE">2004</a>)</span></span></p>
+</section><section id="snow-melt-onset-dates-over-sea-ice-1" class="slide level2" data-transition="fade-in slide-out">
+<h2>Snow melt onset dates over sea ice</h2>
+<div id="htmlwidget-e443986e77d2fcfa997c" style="width:900px;height:600px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e443986e77d2fcfa997c">{"x":{"visdat":{"6304f8674d5":["function () ","plotlyVisDat"]},"cur_data":"6304f8674d5","attrs":{"6304f8674d5":{"x":[1988,1988.345,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"y":[155.535929531761,146.894626620618,146.825498377369,146.719959074698,146.614419772027,146.508880469356,146.403341166685,146.297801864014,146.192262561344,146.086723258673,145.981183956002,145.875644653331,145.77010535066,145.66456604799,145.559026745319,145.453487442648,145.347948139977,145.242408837306,145.136869534635,145.031330231965,144.925790929294,144.820251626623,144.714712323952,144.609173021281,144.50363371861,144.39809441594,144.292555113269,144.187015810598,144.081476507927,143.975937205256,143.870397902585,143.764858599915],"name":"piecewise","mode":"lines","type":"scatter","text":["04 Jun","27 May","26 May","26 May","26 May","26 May","26 May","26 May","26 May","26 May","26 May","26 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","24 May","24 May","24 May","24 May","24 May","24 May","24 May","24 May","24 May","23 May","23 May"],"hoverinfo":"x+y+text","color":["#C07231"],"inherit":true},"6304f8674d5.1":{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2001.5,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2018.5],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"y":[148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,null,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,null],"name":"change points","connectgaps":false,"mode":"lines","type":"scatter","text":["28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May",null,"23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May",null],"hoverinfo":"x+y+text","color":["#770A4F"],"inherit":true},"6304f8674d5.2":{"x":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"ymin":[144.278659256191,144.301887118823,144.321399382381,144.336575204523,144.346668382648,144.350781858654,144.347839461063,144.336556996774,144.31541711731,144.282655891089,144.236273544274,144.174086127788,144.093835736218,143.993369161447,143.87087397412,143.725129541155,143.555703935087,143.363029083382,143.14832561912,142.913405971657,142.66042334911,142.391635656893,142.109226844081,141.815196684513,141.511309109768,141.199081468327,140.879797953289,140.55453473613,140.224188874956,139.889506572365,139.551108670701],"ymax":[151.699941922267,151.361544020603,151.026861718012,150.696515856838,150.37125263968,150.051969124641,149.7397414832,149.435853908456,149.141823748887,148.859414936075,148.590627243858,148.337644621311,148.102724973848,147.888021509586,147.695346657881,147.525921051813,147.380176618848,147.257681431521,147.15721485675,147.07696446518,147.014777048694,146.968394701879,146.935633475658,146.914493596194,146.903211131905,146.900268734314,146.90438221032,146.914475388446,146.929651210587,146.949163474145,146.972391336777],"type":"scatter","mode":"lines","hoveron":"points","fill":"toself","color":["#4682B41F"],"name":"slope error","inherit":true},"6304f8674d5.3":{"x":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"y":[147.989300589229,147.831715569713,147.674130550197,147.51654553068,147.358960511164,147.201375491648,147.043790472131,146.886205452615,146.728620433099,146.571035413582,146.413450394066,146.25586537455,146.098280355033,145.940695335517,145.783110316,145.625525296484,145.467940276968,145.310355257451,145.152770237935,144.995185218419,144.837600198902,144.680015179386,144.52243015987,144.364845140353,144.207260120837,144.049675101321,143.892090081804,143.734505062288,143.576920042772,143.419335023255,143.261750003739],"type":"scatter","mode":"lines","name":"linear slope","color":["#4682B4"],"text":["28 May","27 May","27 May","27 May","27 May","27 May","27 May","27 May","26 May","26 May","26 May","26 May","26 May","26 May","25 May","25 May","25 May","25 May","25 May","25 May","24 May","24 May","24 May","24 May","24 May","24 May","24 May","23 May","23 May","23 May","23 May"],"hoverinfo":"x+y+text","inherit":true},"6304f8674d5.4":{"x":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"ymin":[143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677],"ymax":[147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291],"type":"scatter","mode":"lines","hoveron":"points","fill":"toself","color":["#2D8A561F"],"name":"mean error","inherit":true},"6304f8674d5.5":{"x":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"y":[145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484],"type":"scatter","mode":"lines","name":"mean","color":["#2D8A56"],"text":["25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May"],"hoverinfo":"text+y","inherit":true},"6304f8674d5.6":{"x":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"y":{},"type":"scatter","mode":"markers","name":"value","color":["black"],"text":["04 Jun","23 May","20 May","25 May","31 May","25 May","07 Jun","24 May","16 May","26 May","24 May","01 Jun","05 Jun","02 Jun","20 May","22 May","22 May","20 May","24 May","22 May","25 May","18 May","27 May","22 May","26 May","29 May","22 May","24 May","19 May","24 May","26 May"],"hoverinfo":"x+y+text","inherit":true}},"layout":{"width":900,"height":600,"margin":{"b":40,"l":60,"t":25,"r":10},"font":{"size":18},"xaxis":{"domain":[0,1],"automargin":true,"title":""},"yaxis":{"domain":[0,1],"automargin":true,"title":"DOY"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"data":[{"x":[1988,1988.345,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[155.535929531761,146.894626620618,146.825498377369,146.719959074698,146.614419772027,146.508880469356,146.403341166685,146.297801864014,146.192262561344,146.086723258673,145.981183956002,145.875644653331,145.77010535066,145.66456604799,145.559026745319,145.453487442648,145.347948139977,145.242408837306,145.136869534635,145.031330231965,144.925790929294,144.820251626623,144.714712323952,144.609173021281,144.50363371861,144.39809441594,144.292555113269,144.187015810598,144.081476507927,143.975937205256,143.870397902585,143.764858599915],"name":"piecewise","mode":"lines","type":"scatter","text":["04 Jun","27 May","26 May","26 May","26 May","26 May","26 May","26 May","26 May","26 May","26 May","26 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","24 May","24 May","24 May","24 May","24 May","24 May","24 May","24 May","24 May","23 May","23 May"],"hoverinfo":["x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text"],"marker":{"color":"rgba(192,114,49,1)","line":{"color":"rgba(192,114,49,1)"}},"textfont":{"color":"rgba(192,114,49,1)"},"error_y":{"color":"rgba(192,114,49,1)"},"error_x":{"color":"rgba(192,114,49,1)"},"line":{"color":"rgba(192,114,49,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,null,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,148.145771243129,null,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541,143.550028634541],"name":"change points","connectgaps":false,"mode":"lines","type":"scatter","text":["28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May","28 May",null,"23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May","23 May"],"hoverinfo":["x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text",null,"x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text"],"marker":{"color":"rgba(119,10,79,1)","line":{"color":"rgba(119,10,79,1)"}},"textfont":{"color":"rgba(119,10,79,1)"},"error_y":{"color":"rgba(119,10,79,1)"},"error_x":{"color":"rgba(119,10,79,1)"},"line":{"color":"rgba(119,10,79,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(70,130,180,0.0608)","x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2018,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988],"type":"scatter","mode":"lines","hoveron":"points","fill":"toself","name":"slope error","y":[144.278659256191,144.301887118823,144.321399382381,144.336575204523,144.346668382648,144.350781858654,144.347839461063,144.336556996774,144.31541711731,144.282655891089,144.236273544274,144.174086127788,144.093835736218,143.993369161447,143.87087397412,143.725129541155,143.555703935087,143.363029083382,143.14832561912,142.913405971657,142.66042334911,142.391635656893,142.109226844081,141.815196684513,141.511309109768,141.199081468327,140.879797953289,140.55453473613,140.224188874956,139.889506572365,139.551108670701,139.551108670701,146.972391336777,146.949163474145,146.929651210587,146.914475388446,146.90438221032,146.900268734314,146.903211131905,146.914493596194,146.935633475658,146.968394701879,147.014777048694,147.07696446518,147.15721485675,147.257681431521,147.380176618848,147.525921051813,147.695346657881,147.888021509586,148.102724973848,148.337644621311,148.590627243858,148.859414936075,149.141823748887,149.435853908456,149.7397414832,150.051969124641,150.37125263968,150.696515856838,151.026861718012,151.361544020603,151.699941922267],"marker":{"color":"rgba(70,130,180,0.1216)","line":{"color":"rgba(70,130,180,0.1216)"}},"textfont":{"color":"rgba(70,130,180,0.1216)"},"error_y":{"color":"rgba(70,130,180,0.1216)"},"error_x":{"color":"rgba(70,130,180,0.1216)"},"line":{"color":"rgba(70,130,180,0.1216)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[147.989300589229,147.831715569713,147.674130550197,147.51654553068,147.358960511164,147.201375491648,147.043790472131,146.886205452615,146.728620433099,146.571035413582,146.413450394066,146.25586537455,146.098280355033,145.940695335517,145.783110316,145.625525296484,145.467940276968,145.310355257451,145.152770237935,144.995185218419,144.837600198902,144.680015179386,144.52243015987,144.364845140353,144.207260120837,144.049675101321,143.892090081804,143.734505062288,143.576920042772,143.419335023255,143.261750003739],"type":"scatter","mode":"lines","name":"linear slope","text":["28 May","27 May","27 May","27 May","27 May","27 May","27 May","27 May","26 May","26 May","26 May","26 May","26 May","26 May","25 May","25 May","25 May","25 May","25 May","25 May","24 May","24 May","24 May","24 May","24 May","24 May","24 May","23 May","23 May","23 May","23 May"],"hoverinfo":["x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text"],"marker":{"color":"rgba(70,130,180,1)","line":{"color":"rgba(70,130,180,1)"}},"textfont":{"color":"rgba(70,130,180,1)"},"error_y":{"color":"rgba(70,130,180,1)"},"error_x":{"color":"rgba(70,130,180,1)"},"line":{"color":"rgba(70,130,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(45,138,86,0.0608)","x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2018,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988],"type":"scatter","mode":"lines","hoveron":"points","fill":"toself","name":"mean error","y":[143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,143.687166783677,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291,147.563883809291],"marker":{"color":"rgba(45,138,86,0.1216)","line":{"color":"rgba(45,138,86,0.1216)"}},"textfont":{"color":"rgba(45,138,86,0.1216)"},"error_y":{"color":"rgba(45,138,86,0.1216)"},"error_x":{"color":"rgba(45,138,86,0.1216)"},"line":{"color":"rgba(45,138,86,0.1216)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484,145.625525296484],"type":"scatter","mode":"lines","name":"mean","text":["25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May","25 May"],"hoverinfo":["text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y"],"marker":{"color":"rgba(45,138,86,1)","line":{"color":"rgba(45,138,86,1)"}},"textfont":{"color":"rgba(45,138,86,1)"},"error_y":{"color":"rgba(45,138,86,1)"},"error_x":{"color":"rgba(45,138,86,1)"},"line":{"color":"rgba(45,138,86,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[155.535929531757,143.299026425591,140.391747797867,145.590171534539,150.992118683357,145.846546128883,158.113120074177,144.820584144645,136.634677793231,146.011590171535,144.849327770051,152.274918868799,156.21140472879,153.46963375058,140.646267964766,142.705146036161,142.574408901252,139.993045897079,144.121001390821,142.541492814094,145.874826147427,138.658785350023,147.846082522021,142.414000927214,146.651831247102,149.413537320352,142.41956420955,144.056096430227,139.259156235512,144.309689383403,146.865554010199],"type":"scatter","mode":"markers","name":"value","text":["04 Jun","23 May","20 May","25 May","31 May","25 May","07 Jun","24 May","16 May","26 May","24 May","01 Jun","05 Jun","02 Jun","20 May","22 May","22 May","20 May","24 May","22 May","25 May","18 May","27 May","22 May","26 May","29 May","22 May","24 May","19 May","24 May","26 May"],"hoverinfo":["x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text"],"marker":{"color":"rgba(0,0,0,1)","line":{"color":"rgba(0,0,0,1)"}},"textfont":{"color":"rgba(0,0,0,1)"},"error_y":{"color":"rgba(0,0,0,1)"},"error_x":{"color":"rgba(0,0,0,1)"},"line":{"color":"rgba(0,0,0,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+</section><section id="sea-ice-disappearance-dates" class="slide level2" data-transition="slide-in fade-out">
+<h2>Sea ice disappearance dates</h2>
+<div id="htmlwidget-a9b4f01675b822dfb174" style="width:100%;height:600px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a9b4f01675b822dfb174">{"x":{"url":"MarMam25_files/figure-revealjs//widgets/widget_630307c1176.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+</section><section id="sea-ice-disappearance-dates-1" class="slide level2" data-transition="fade-in slide-out">
+<h2>Sea ice disappearance dates</h2>
+<div id="htmlwidget-d7a8549cea0a0da843b7" style="width:900px;height:600px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d7a8549cea0a0da843b7">{"x":{"visdat":{"6304dae56d5":["function () ","plotlyVisDat"]},"cur_data":"6304dae56d5","attrs":{"6304dae56d5":{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2013.005,2014,2015,2016,2017,2018],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"y":[187.30800013844,187.090189916102,186.872379693765,186.654569471427,186.43675924909,186.218949026752,186.001138804415,185.783328582077,185.56551835974,185.347708137402,185.129897915065,184.912087692727,184.69427747039,184.476467248052,184.258657025714,184.040846803377,183.823036581039,183.605226358702,183.387416136364,183.169605914027,182.951795691689,182.733985469352,182.516175247014,182.298365024677,182.080554802339,181.862744580002,181.86165552889,178.337275599284,174.79518521777,171.253094836256,167.711004454743,164.168914073228],"name":"piecewise","mode":"lines","type":"scatter","text":["06 Jul","06 Jul","05 Jul","05 Jul","05 Jul","05 Jul","05 Jul","04 Jul","04 Jul","04 Jul","04 Jul","04 Jul","03 Jul","03 Jul","03 Jul","03 Jul","02 Jul","02 Jul","02 Jul","02 Jul","02 Jul","01 Jul","01 Jul","01 Jul","01 Jul","30 Jun","30 Jun","27 Jun","23 Jun","20 Jun","16 Jun","13 Jun"],"hoverinfo":"x+y+text","color":["#C07231"],"inherit":true},"6304dae56d5.1":{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2001.5,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2018.5],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"y":[187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,null,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,null],"name":"change points","connectgaps":false,"mode":"lines","type":"scatter","text":["06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul",null,"27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun",null],"hoverinfo":"x+y+text","color":["#770A4F"],"inherit":true},"6304dae56d5.2":{"x":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"ymin":[183.965788544097,183.758766255497,183.545884474055,183.326164132548,183.098428470862,182.861262830033,182.612970089638,182.351525079542,182.074534944011,181.779217966216,181.462420506526,181.120698481302,180.7504911779,180.348402991113,179.911575723214,179.438084438098,178.927247986956,178.379747518597,177.797507969126,177.183387536271,176.540781825236,175.873251548668,175.184240790205,174.476903189478,173.754020463317,173.017985467454,172.270823372025,171.514231297453,170.749623902702,169.978177947886,169.200872500227],"ymax":[195.669137533388,194.89183208573,194.120386130914,193.355778736163,192.599186661591,191.852024566162,191.115989570299,190.393106844137,189.68576924341,188.996758484948,188.32922820838,187.686622497345,187.07250206449,186.490262515019,185.94276204666,185.431925595518,184.958434310402,184.521607042503,184.119518855716,183.749311552313,183.40758952709,183.0907920674,182.795475089605,182.518484954074,182.257039943978,182.008747203583,181.771581562753,181.543845901068,181.324125559561,181.111243778119,180.90422148952],"type":"scatter","mode":"lines","hoveron":"points","fill":"toself","color":["#4682B41F"],"name":"slope error","inherit":true},"6304dae56d5.3":{"x":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"y":[189.817463038742,189.325299170614,188.833135302485,188.340971434356,187.848807566227,187.356643698098,186.864479829969,186.37231596184,185.880152093711,185.387988225582,184.895824357453,184.403660489324,183.911496621195,183.419332753066,182.927168884937,182.435005016808,181.942841148679,181.45067728055,180.958513412421,180.466349544292,179.974185676163,179.482021808034,178.989857939905,178.497694071776,178.005530203647,177.513366335518,177.021202467389,176.52903859926,176.036874731131,175.544710863002,175.052546994873],"type":"scatter","mode":"lines","name":"linear slope","color":["#4682B4"],"text":["08 Jul","08 Jul","07 Jul","07 Jul","06 Jul","06 Jul","05 Jul","05 Jul","05 Jul","04 Jul","04 Jul","03 Jul","03 Jul","02 Jul","02 Jul","01 Jul","01 Jul","30 Jun","30 Jun","29 Jun","29 Jun","28 Jun","28 Jun","27 Jun","27 Jun","26 Jun","26 Jun","25 Jun","25 Jun","24 Jun","24 Jun"],"hoverinfo":"x+y+text","inherit":true},"6304dae56d5.4":{"x":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"ymin":[179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353],"ymax":[185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263],"type":"scatter","mode":"lines","hoveron":"points","fill":"toself","color":["#2D8A561F"],"name":"mean error","inherit":true},"6304dae56d5.5":{"x":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"y":[182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808],"type":"scatter","mode":"lines","name":"mean","color":["#2D8A56"],"text":["01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul"],"hoverinfo":"text+y","inherit":true},"6304dae56d5.6":{"x":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"y":{},"type":"scatter","mode":"markers","name":"value","color":["black"],"text":["10 Jul","04 Jul","01 Jul","07 Jul","01 Jul","28 Jun","03 Jul","13 Jul","02 Jul","28 Jun","12 Jul","14 Jul","15 Jul","05 Jul","28 Jun","24 Jun","02 Jul","27 Jun","13 Jul","17 Jun","07 Jul","25 Jun","03 Jul","19 Jun","12 Jul","05 Jul","28 Jun","17 Jun","30 Jun","07 Jun","16 Jun"],"hoverinfo":"x+y+text","inherit":true}},"layout":{"width":900,"height":600,"margin":{"b":40,"l":60,"t":25,"r":10},"font":{"size":18},"xaxis":{"domain":[0,1],"automargin":true,"title":""},"yaxis":{"domain":[0,1],"automargin":true,"title":"DOY"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"data":[{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2013.005,2014,2015,2016,2017,2018],"y":[187.30800013844,187.090189916102,186.872379693765,186.654569471427,186.43675924909,186.218949026752,186.001138804415,185.783328582077,185.56551835974,185.347708137402,185.129897915065,184.912087692727,184.69427747039,184.476467248052,184.258657025714,184.040846803377,183.823036581039,183.605226358702,183.387416136364,183.169605914027,182.951795691689,182.733985469352,182.516175247014,182.298365024677,182.080554802339,181.862744580002,181.86165552889,178.337275599284,174.79518521777,171.253094836256,167.711004454743,164.168914073228],"name":"piecewise","mode":"lines","type":"scatter","text":["06 Jul","06 Jul","05 Jul","05 Jul","05 Jul","05 Jul","05 Jul","04 Jul","04 Jul","04 Jul","04 Jul","04 Jul","03 Jul","03 Jul","03 Jul","03 Jul","02 Jul","02 Jul","02 Jul","02 Jul","02 Jul","01 Jul","01 Jul","01 Jul","01 Jul","30 Jun","30 Jun","27 Jun","23 Jun","20 Jun","16 Jun","13 Jun"],"hoverinfo":["x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text"],"marker":{"color":"rgba(192,114,49,1)","line":{"color":"rgba(192,114,49,1)"}},"textfont":{"color":"rgba(192,114,49,1)"},"error_y":{"color":"rgba(192,114,49,1)"},"error_x":{"color":"rgba(192,114,49,1)"},"line":{"color":"rgba(192,114,49,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,null,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,187.324575325657,null,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579,178.408300056579],"name":"change points","connectgaps":false,"mode":"lines","type":"scatter","text":["06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul","06 Jul",null,"27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun","27 Jun"],"hoverinfo":["x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text",null,"x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text"],"marker":{"color":"rgba(119,10,79,1)","line":{"color":"rgba(119,10,79,1)"}},"textfont":{"color":"rgba(119,10,79,1)"},"error_y":{"color":"rgba(119,10,79,1)"},"error_x":{"color":"rgba(119,10,79,1)"},"line":{"color":"rgba(119,10,79,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(70,130,180,0.0608)","x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2018,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988],"type":"scatter","mode":"lines","hoveron":"points","fill":"toself","name":"slope error","y":[183.965788544097,183.758766255497,183.545884474055,183.326164132548,183.098428470862,182.861262830033,182.612970089638,182.351525079542,182.074534944011,181.779217966216,181.462420506526,181.120698481302,180.7504911779,180.348402991113,179.911575723214,179.438084438098,178.927247986956,178.379747518597,177.797507969126,177.183387536271,176.540781825236,175.873251548668,175.184240790205,174.476903189478,173.754020463317,173.017985467454,172.270823372025,171.514231297453,170.749623902702,169.978177947886,169.200872500227,169.200872500227,180.90422148952,181.111243778119,181.324125559561,181.543845901068,181.771581562753,182.008747203583,182.257039943978,182.518484954074,182.795475089605,183.0907920674,183.40758952709,183.749311552313,184.119518855716,184.521607042503,184.958434310402,185.431925595518,185.94276204666,186.490262515019,187.07250206449,187.686622497345,188.32922820838,188.996758484948,189.68576924341,190.393106844137,191.115989570299,191.852024566162,192.599186661591,193.355778736163,194.120386130914,194.89183208573,195.669137533388],"marker":{"color":"rgba(70,130,180,0.1216)","line":{"color":"rgba(70,130,180,0.1216)"}},"textfont":{"color":"rgba(70,130,180,0.1216)"},"error_y":{"color":"rgba(70,130,180,0.1216)"},"error_x":{"color":"rgba(70,130,180,0.1216)"},"line":{"color":"rgba(70,130,180,0.1216)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[189.817463038742,189.325299170614,188.833135302485,188.340971434356,187.848807566227,187.356643698098,186.864479829969,186.37231596184,185.880152093711,185.387988225582,184.895824357453,184.403660489324,183.911496621195,183.419332753066,182.927168884937,182.435005016808,181.942841148679,181.45067728055,180.958513412421,180.466349544292,179.974185676163,179.482021808034,178.989857939905,178.497694071776,178.005530203647,177.513366335518,177.021202467389,176.52903859926,176.036874731131,175.544710863002,175.052546994873],"type":"scatter","mode":"lines","name":"linear slope","text":["08 Jul","08 Jul","07 Jul","07 Jul","06 Jul","06 Jul","05 Jul","05 Jul","05 Jul","04 Jul","04 Jul","03 Jul","03 Jul","02 Jul","02 Jul","01 Jul","01 Jul","30 Jun","30 Jun","29 Jun","29 Jun","28 Jun","28 Jun","27 Jun","27 Jun","26 Jun","26 Jun","25 Jun","25 Jun","24 Jun","24 Jun"],"hoverinfo":["x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text"],"marker":{"color":"rgba(70,130,180,1)","line":{"color":"rgba(70,130,180,1)"}},"textfont":{"color":"rgba(70,130,180,1)"},"error_y":{"color":"rgba(70,130,180,1)"},"error_x":{"color":"rgba(70,130,180,1)"},"line":{"color":"rgba(70,130,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(45,138,86,0.0608)","x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2018,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988],"type":"scatter","mode":"lines","hoveron":"points","fill":"toself","name":"mean error","y":[179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,179.065855106353,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263,185.804154927263],"marker":{"color":"rgba(45,138,86,0.1216)","line":{"color":"rgba(45,138,86,0.1216)"}},"textfont":{"color":"rgba(45,138,86,0.1216)"},"error_y":{"color":"rgba(45,138,86,0.1216)"},"error_x":{"color":"rgba(45,138,86,0.1216)"},"line":{"color":"rgba(45,138,86,0.1216)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808,182.435005016808],"type":"scatter","mode":"lines","name":"mean","text":["01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul","01 Jul"],"hoverinfo":["text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y","text+y"],"marker":{"color":"rgba(45,138,86,1)","line":{"color":"rgba(45,138,86,1)"}},"textfont":{"color":"rgba(45,138,86,1)"},"error_y":{"color":"rgba(45,138,86,1)"},"error_x":{"color":"rgba(45,138,86,1)"},"line":{"color":"rgba(45,138,86,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[190.948896631823,185.672492401216,181.926524614254,188.246250986582,182.599005799503,179.552863436123,184.070238095238,194.853898561696,183.356687898089,179.797256097561,193.548623853211,195.201687116564,195.955737704918,186.813891362422,179.053597650514,175.635829662261,183.017621145374,178.041850220264,194.458883994126,168.179882525698,188.862701908957,176.616740088106,183.90234948605,170.283406754772,193.006607929515,186.579295154185,179.013215859031,168.787077826725,180.943465491924,158.839941262849,167.718634001485],"type":"scatter","mode":"markers","name":"value","text":["10 Jul","04 Jul","01 Jul","07 Jul","01 Jul","28 Jun","03 Jul","13 Jul","02 Jul","28 Jun","12 Jul","14 Jul","15 Jul","05 Jul","28 Jun","24 Jun","02 Jul","27 Jun","13 Jul","17 Jun","07 Jul","25 Jun","03 Jul","19 Jun","12 Jul","05 Jul","28 Jun","17 Jun","30 Jun","07 Jun","16 Jun"],"hoverinfo":["x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text","x+y+text"],"marker":{"color":"rgba(0,0,0,1)","line":{"color":"rgba(0,0,0,1)"}},"textfont":{"color":"rgba(0,0,0,1)"},"error_y":{"color":"rgba(0,0,0,1)"},"error_x":{"color":"rgba(0,0,0,1)"},"line":{"color":"rgba(0,0,0,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+</section></section>
+<section><section id="ongoing" class="title-slide slide level1" data-background="#888"><h1>Ongoing</h1></section><h6 id="ongoing-1" class="slideheader">Ongoing</h6><section id="polar-bear-demography" class="slide level2" data-transition="slide-in fade-out">
+<h2>Polar bear demography</h2>
+<p>Service for evaluation of polar bear demographic parameters.</p>
+<p>Principal feature: history of population structure with explicit mother-cub relations.</p>
+<p>Hosted on <a href="https://github.com/nplatonov/demography" class="uri">https://github.com/nplatonov/demography</a> (standalone and shiny apps).</p>
+<p>Get more: on X<sup>th</sup> International Conference «Marine Mammals of Holarctic» 2018; Arkhangelsk, Tuesday, 30 October, Hall no.2, 14:30, <strong>Nikita Platonov</strong>.</p>
+</section><section id="polar-bear-demography-1" class="slide level2" data-transition="fade-in fade-out">
+<h2>Polar bear demography</h2>
+<h3 id="selected-scenario-in-example">Selected scenario in example:</h3>
+<ul>
+<li><p>COY litter size: 1.63.</p></li>
+<li><p>Cub fractions (1C, 2C, 3C) simulation: 0.371, 0.625, 0.003.</p></li>
+<li><p>Mortality of dependent COY: 0.27</p></li>
+<li><p>Mortality of adult (<em>in the green</em>): 0.095</p></li>
+<li><p>Maximal age: 36</p></li>
+<li><p>Birth success: 0.65</p></li>
+<li><p>Fraction of broken families with yearlings: 0.6</p></li>
+</ul>
+</section><section id="polar-bear-demography-2" class="slide level2" data-transition="fade-in fade-out">
+<h2>Polar bear demography</h2>
+<h3 id="growth-rate">Growth rate</h3>
+<p><img src="MarMam25_assets/simulation-p5.png" width="768" style="display: block; margin: auto;" /></p>
+</section><section id="polar-bear-demography-3" class="slide level2" data-transition="fade-in fade-out">
+<h2>Polar bear demography</h2>
+<h3 id="population-peer-structure">Population peer structure</h3>
+<p><img src="MarMam25_assets/simulation-p6.png" width="768" style="display: block; margin: auto;" /></p>
+</section><section id="polar-bear-demography-4" class="slide level2" data-transition="fade-in fade-out">
+<h2>Polar bear demography</h2>
+<h3 id="cubs-during-lifespan">Cubs during lifespan</h3>
+<p><img src="MarMam25_assets/simulation-p3.png" width="768" style="display: block; margin: auto;" /></p>
+</section><section id="polar-bear-demography-5" class="slide level2" data-transition="fade-in fade-out">
+<h2>Polar bear demography</h2>
+<h3 id="survival-of-different-age-groups">Survival of different age groups</h3>
+<p><img src="MarMam25_assets/simulation-p9.png" width="768" style="display: block; margin: auto;" /></p>
+</section><section id="polar-bear-demography-6" class="slide level2" data-transition="fade-in fade-out">
+<h2>Polar bear demography</h2>
+<h3 id="dens-during-lifespan">Dens during lifespan</h3>
+<p><img src="MarMam25_assets/simulation-p2.png" width="768" style="display: block; margin: auto;" /></p>
+</section><section id="polar-bear-demography-7" class="slide level2" data-transition="fade-in fade-out">
+<h2>Polar bear demography</h2>
+<h3 id="survived-cubs-during-lifespan">Survived cubs during lifespan</h3>
+<p><img src="MarMam25_assets/simulation-p4.png" width="768" style="display: block; margin: auto;" /></p>
+</section><section id="polar-bear-demography-8" class="slide level2" data-transition="fade-in fade-out">
+<h2>Polar bear demography</h2>
+<h3 id="interbirth-interval">Interbirth interval</h3>
+<p><img src="MarMam25_assets/simulation-p1.png" width="768" style="display: block; margin: auto;" /></p>
+</section><section id="polar-bear-demography-9" class="slide level2" data-transition="fade-in fade-out">
+<h2>Polar bear demography</h2>
+<h3 id="age-specific-litter-size">Age-specific litter size</h3>
+<p><img src="MarMam25_assets/simulation-p8.png" width="768" style="display: block; margin: auto;" /></p>
+</section></section>
+<section><section id="section" class="title-slide slide level1 scale0" data-background="FALSE"><h1> </h1></section><h6 id="section-1" class="slideheader"> </h6><section id="thank-you" class="slide level2 scale130" data-transition="slide-in slide-out">
+<h2>Thank you</h2>
+</section><section id="references" class="slide level2 scale70" data-transition="slide-in slide-out">
+<h2>References</h2>
+<style>
+   .reveal h1,
+   .reveal h2,
+   .reveal h3,
+   .reveal h4,
+   .reveal h5,
+   .reveal h6 {
+      text-transform: none; /* none uppercase lowercase capitalize */
+   }
+   .reveal .references {
+      font-size: 80%  !important;
+      text-align: left;
+   }
+   .reveal section.slide > h2 { font-size: 1.6em !important;}
+   .reveal section.slide > h3 { font-size: 1.2em !important;}
+   .reveal h1 { font-size: 1.4em;}
+   .reveal h2 { font-size: 1.2em;}
+   .reveal h3 { font-size: 1.1em;}
+   .reveal h4 { font-size: 1em;}
+   .reveal .subtitle {}
+   .reveal .title { font-size: 2.0em}
+   .reveal .proposal { font-size: 0.57em}
+   .reveal .author {
+      font-size: 0.85em;
+      padding: 0.8em 1.2em 0.8em 1.2em;
+      }
+   .reveal .date { font-size: 0.8em;}
+   .reveal section.slide>h1 { font-size: 3.4em; color: white;margin-top: 0%;}
+   .reveal section.slide>h2 { font-size: 1.4em; padding-bottom: 5px;}
+   .reveal h2 {
+      margin: -6pt 0 0 0;
+   }
+   .reveal .slideheader {
+      color: #888;
+      font-size: 0.6em;
+      text-align: right;
+      margin: -30pt 0 0 0;
+   }
+   .reveal .slide {
+     /*
+      color: orange;
+      background: white;
+      background-color: white;
+     */
+      text-align:left;
+   }
+   .reveal .progress {
+      height: 7px;
+      margin-top: 1px;
+   }
+   .reveal .controls {
+      right: 0px;
+      bottom: 0px;
+   }
+   .reveal .center {text-align: center;}
+   .reveal .controls .enabled {opacity: 0.1;}
+   .reveal .thankyou {font-size: 2.0em;}
+   .reveal .scale200 {font-size: 200%}
+   .reveal .scale180 {font-size: 180%}
+   .reveal .scale160 {font-size: 160%}
+   .reveal .scale150 {font-size: 150%}
+   .reveal .scale140 {font-size: 140%}
+   .reveal .scale130 {font-size: 130%}
+   .reveal .scale120 {font-size: 120%}
+   .reveal .scale110 {font-size: 110%}
+   .reveal .scale100 {font-size: 100%}
+   .reveal .scale95 {font-size: 95%}
+   .reveal .scale90 {font-size: 90%}
+   .reveal .scale85 {font-size: 85%}
+   .reveal .scale80 {font-size: 80%}
+   .reveal .scale75 {font-size: 75%}
+   .reveal .scale70 {font-size: 70%}
+   .reveal .scale65 {font-size: 65%}
+   .reveal .scale60 {font-size: 60%; line-height: 0.9em;}
+   .reveal .scale58 {font-size: 58%;}
+   .reveal .scale55 {font-size: 55%}
+   .reveal .scale50 {font-size: 50%}
+   .reveal .scale55 {font-size: 55%}
+   .reveal .scale50 {font-size: 50%}
+   .reveal .scale45 {font-size: 45%}
+   .reveal .scale40 {font-size: 40%}
+   .reveal .scale35 {font-size: 35%}
+   .reveal .scale30 {font-size: 30%}
+   .reveal .scale0 {font-size: 0%}
+
+   .reveal p {
+      line-height: 1.2em;
+      margin: 0.5em 0;
+    }
+   .reveal p.caption {font-size: 90%; margin: 0 0 0 4px;}
+
+   .reveal .greyB {color: #BBB}
+   .reveal .greyA {color: #AAA}
+   .reveal .grey9 {color: #999}
+   .reveal .grey8 {color: #888}
+   .reveal .grey7 {color: #777}
+   .reveal .grey6 {color: #666}
+   .reveal .grey5 {color: #555}
+   .reveal .grey4 {color: #444}
+   .reveal .grey2 {color: #333}
+   .reveal .redA {color: #a00}
+   .reveal .greenA {color: #0A0}
+   .reveal .blueA {color: #00A}
+
+   .reveal .space00 {}
+   .reveal .space05 {margin: 0.25em 0 0.25em 0; display: block}
+   .reveal .space09 {margin: 0.45em 0 0.45em 0; display: block}
+   .reveal .space10 {margin: 0.50em 0 0.50em 0; display: block}
+   .reveal .space15 {margin: 0.75em 0 0.75em 0; display: block}
+   .reveal .space20 {margin: 1.0em 0 1.0em 0; display: block}
+   .reveal .space30 {margin: 1.5em 0 1.5em 0; display: block}
+   .reveal .space40 {margin: 2.0em 0 2.0em 0; display: block}
+   .reveal .space50 {margin: 2.5em 0 2.5em 0; display: block}
+   .reveal .space60 {margin: 3.0em 0 3.0em 0; display: block}
+   .reveal .space70 {margin: 3.5em 0 3.5em 0; display: block}
+   .reveal .space80 {margin: 4.0em 0 4.0em 0; display: block}
+
+   .reveal .line05 {line-height: 0.5;}
+   .reveal .line09 {line-height: 0.9;}
+   .reveal .line10 {line-height: 1.0;}
+   .reveal .line15 {line-height: 1.5;}
+   .reveal .line20 {line-height: 2.0;}
+   .reveal .line30 {line-height: 3.0;}
+   .reveal .line40 {line-height: 4.0;}
+   .reveal .line50 {line-height: 5.0;}
+   .reveal .line60 {line-height: 6.0;}
+   .reveal .line70 {line-height: 7.0;}
+   .reveal .line80 {line-height: 8.0;}
+   
+   #left {
+     left:-8.33%;
+     text-align: left;
+     float: left;
+     width:50%;
+     z-index:-10;
+   }
+   #right {
+     left:31.25%;
+     top: 75px;
+     float: right;
+     text-align: right;
+     z-index:-10;
+     width:50%;
+   }
+   .reveal section img {
+      margin: 0;
+      padding: 0;
+      background: rgba(255, 255, 255, 0.12);
+      border: 0px solid #000;
+      box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.07); }
+   }
+   .reveal table td { /* DOESNT WORK */
+      border-width: 3px;
+      padding-left: 5px;
+      padding-right: 5px;
+      border-style: solid;
+      border-color: red;
+   }
+   .reveal .linebreak {
+      display: block;
+   }
+   .reveal iframe {
+      max-width: 100%;
+      max-height: 100%;
+   }
+   @media print {
+      zzzh6 {
+         margin-bottom: 2pt;
+      }
+   }
+   .print-pdf .reveal .slideheader {
+      font-size: 0;
+      color: #FFFFFF !important;
+      visibility: visible !important;
+      margin-bottom: -2pt;
+   }
+   .reveal * {
+      font-family: "Segoe UI", sans-serif !important;
+   }
+   .print-pdf .reveal * {
+      font-family: "Georgia", serif !important;
+   }
+   .print-pdf .reveal iframe {display: none !important;}
+   .print-pdf .reveal .dontprint {display: none !important;}
+</style>
+<div id="refs" class="references">
+<div id="ref-Belchansky2004_RSE">
+<p>Belchansky GI, Douglas DC, Mordvintsev IN, Platonov NG. 2004. Estimating the time of melt onset, melt duration and freeze onset over Arctic sea-ice area using active and passive microwave data. <em>Remote Sensing of Environment</em>, 92(1): 21–39. doi:<a href="https://doi.org/10.1016/j.rse.2004.05.001">10.1016/j.rse.2004.05.001</a>. </p>
+</div>
+<div id="ref-Bentzen2007">
+<p>Bentzen T, Follmann E, Amstrup S, York G, Wooller M, O’Hara T. 2007. Variation in winter diet of southern beaufort sea polar bears inferred from stable isotope analysis. <em>Canadian Journal of Zoology</em>, 85(5): 596–608. Canadian Science Publishing. doi:<a href="https://doi.org/10.1139/z07-036">10.1139/z07-036</a>. </p>
+</div>
+<div id="ref-CardonaMarek2009">
+<p>Cardona-Marek T, Knott KK, Meyer BE, O TM. 2009. Mercury concentrations in southern beaufort sea polar bears: Variation based on stable isotopes of carbon and nitrogen. <em>Environmental Toxicology and Chemistry</em>, 28(7): 1416. Wiley. doi:<a href="https://doi.org/10.1897/08-557.1">10.1897/08-557.1</a>. </p>
+</div>
+<div id="ref-Ivanov2018en">
+<p>Ivanov EA, Mordvintsev IN, Platonov NG, Naidenko SV, Tiunov AV, Rozhnov VV. 2018. Isotopic composition of blood of polar bears (<em>Ursus maritimus</em>) of the Kara-Barents Sea population. <em>Doklady Biological Sciences</em>, 480(1): 93–96. Pleiades Publishing Ltd. doi:<a href="https://doi.org/10.1134/s0012496618030055">10.1134/s0012496618030055</a>. </p>
+</div>
+<div id="ref-Naidenko2013">
+<p>Naidenko SV, Ivanov EA, Mordvintsev IN, Platonov NG, Ershov RV, Rozhnov VV. 2013. Seropositivity for different pathogens in polar bears (<em>Ursus maritimus</em>) from Barents Sea islands. <em>Biology Bulletin</em>, 40(9): 779–782. Pleiades Publishing Ltd. doi:<a href="https://doi.org/10.1134/s1062359013090082">10.1134/s1062359013090082</a>. </p>
+</div>
+<div id="ref-Polischuk2001">
+<p>Polischuk SC, Hobson KA, Ramsay MA. 2001. Use of stable-carbon and -nitrogen isotopes to assess weaning and fasting in female polar bears and their cubs. <em>Canadian Journal of Zoology</em>, 79(3): 499–511. Canadian Science Publishing. doi:<a href="https://doi.org/10.1139/z01-007">10.1139/z01-007</a>. </p>
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script src="MarMam25_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="MarMam25_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'slide', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+        height: 720,
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

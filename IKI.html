@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>program</title>
+
+
+
+
+
+
+<style type="text/css">
+p.abstract{
+text-align: center;
+font-weight: normal;
+color: #333;
+font-size: 0%;
+}
+div.abstract{
+margin: auto;
+width: 75%;
+font-size: 90% !important;
+color: #444;
+padding: 1em 0 1em 0;
+}
+body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 790px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+color: #222;
+
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+text-align: left;
+font-weight: none;
+font-style: none;
+}
+#header {
+text-align: left;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px ;
+
+border: 1px solid #ddd;
+border-radius: 5px;
+background-color: #f9f9f9;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 2px;
+margin-bottom: 2px;
+}
+#TOC ul ul {
+margin-left: -2.2em;
+}
+#TOC li {
+line-height: 1.2; 
+}
+table {
+margin: 1em auto;
+border-width: 0px; 
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 0px; 
+border-color: #DDDDDD;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px; 
+border-style: inset;
+border-color: #DDDDDD;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead { 
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+
+}
+blockquote {
+padding:0.2em 0.6em;
+margin: 0px 0px 2px 0px;
+border-left:4px solid #eee;
+}
+hr {
+border-style: solid;
+border: 0;
+border-top: 1px solid #eee;
+margin: 18px 0;
+}
+br {
+line-height: -1.5em !important;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+margin-left: -1.7em;
+}
+ul {
+list-style-type: circle solid;
+}
+ul ul {
+list-style-type: circle;
+}
+ul ul ul ul {
+list-style-type: '&#x2023; ';
+}
+ul ul ul {
+list-style-type: '• ';
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: transparent;
+border-radius: 3px;
+border-color: #00000010;
+color: inherit;
+white-space: pre-wrap; 
+}
+pre {
+ 
+
+border: 1px solid #eee;
+border-radius: 5px;
+margin: 5px 0px 10px 0px;
+padding: 5px;
+font-size: 85%;
+line-height: 110%;
+}
+code:not([class]) { 
+background-color: #F7F7F7 !important; 
+padding: 0;
+}
+pre.r {
+
+background-color: #F7F7F7 !important;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 100%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+pre:not([class]) > code {
+
+color: inherit !important; 
+background-color: transparent ! important;
+}
+.sourceCode {
+border-radius: 5px;
+border: 0px;
+background-color: #F7F7F7 !important;
+
+border-color: #b0d1eb;
+}
+div.figure {
+text-align: center;
+}
+img {
+text-align: center;
+background-color: #FFFFFF;
+padding: 2px;
+
+
+max-width: 100%; 
+height: auto !important;
+max-height: 8in;
+width: none !important;
+
+display: block;
+margin-left: auto;
+margin-right: auto;
+
+}
+
+
+
+h1, h2, h3, h4 {
+text-align: left;
+font-weight: normal;
+color: #1D6D8C !important; 
+border-color: blue;
+border-left: 0px solid #f3f3f3;
+border-radius: 0.3em !important; 
+padding: 3px 8px 3px 8px;
+}
+h1 {
+margin: 30px 0px 0px 0px;
+font-size: 180%;
+padding-left: 24px;
+background-color: #428BCA00; 
+}
+.title { 
+margin-top: -18px;
+padding-top: -18px;
+}
+.zzzsubtitle { 
+margin-bottom: 12px;
+}
+h2 {
+margin: 24px 0px 0px 0px;
+padding-left: 12px;
+font-size: 145%;
+background-color: #428BCA00; 
+}
+h3 {
+margin: 18px 0px 0px 0px;
+padding-left: 0px;
+font-size: 125%;
+background-color: #428BCA00; 
+}
+h4 {
+margin: 12px 0px 0px 0px;
+padding-left: 0px;
+font-size: 112%;
+background-color: #428BCA00; 
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+font-weight: bold;
+}
+a {
+color: #084999;
+text-decoration: none;
+}
+a:hover {
+color: #084999; text-decoration: underline; }
+a:visited {
+color: #5067b9; }
+a:visited:hover {
+color: #6377bb; }
+a[href^="zzzhttp:"] {
+text-decoration: underline; }
+a[href^="zzzhttps:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #aaa; font-style: normal; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code span.co { color: #aaa; font-style: normal; } 
+.underline {
+text-decoration: underline;
+}
+.centered {
+text-align: justify;
+}
+.citation:hover {
+color: #008000;
+}
+
+h4.author {
+font-size: 110% !important;
+color: #000080;
+}
+h4.date {
+color: #555;
+font-size: 95% !important;
+}
+address.author_afil{
+margin-top: 0px;
+font-size: 90% !important;
+
+
+font-style:normal;
+text-indent:2em;
+}
+.bibliography {
+col: #f0f;
+}
+.references {
+font-size: 90% !important;
+padding-left: 0.85em;
+text-indent:-0.85em;
+}
+.caption {
+font-size: 90%;
+color: #666;
+}
+html {
+background: #eee;
+margin: -20pt 0 -20px 0;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+<div id="------" class="section level1">
+<h1>«Современные проблемы дистанционного зондирования земли из космоса»</h1>
+<div id="-" class="section level2">
+<h2>12 ноября, понедельник</h2>
+<table>
+<colgroup>
+<col width="9%"></col>
+<col width="9%"></col>
+<col width="27%"></col>
+<col width="54%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>место</th>
+<th>время</th>
+<th>авторы</th>
+<th>доклад</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>шк</td>
+<td>11:25–12:05</td>
+<td>Кубряков А. А., Станичный С. В., Калинин Е. И., Лишаев П. Н., Юровская М. В.</td>
+<td>Применение лагранжевых методов для исследования динамических процессов и транспорта примеси в океане</td>
+</tr>
+<tr class="even">
+<td>кз</td>
+<td>15:20–15:50</td>
+<td>Хайлов М. Н., Заичко В. А.</td>
+<td>Направления и пути развития Российской системы ДЗЗ из космоса в современных условиях (развитие орбитальной группировки и наземной инфраструктуры)</td>
+</tr>
+<tr class="odd">
+<td>кз</td>
+<td>15:50–16:20</td>
+<td>Асмус В. В., Загребаев В. А., Кровотынцев В. А., Милехин О. Е., Рублев А. Н., Соловьев В. И., Успенский А. Б., Успенский С. А.</td>
+<td>Использование космических систем наблюдения Земли для решениязадач гидрометеорологии и мониторинга окружающей среды</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="-" class="section level2">
+<h2>13 ноября, вторник</h2>
+<table>
+<colgroup>
+<col width="9%"></col>
+<col width="9%"></col>
+<col width="27%"></col>
+<col width="54%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>место</th>
+<th>время</th>
+<th>авторы</th>
+<th>доклад</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>E КЗ</td>
+<td>09:30–09:50</td>
+<td>Ивонин Д. В., Иванов А. Ю.</td>
+<td>Анализ кросс-поляризационного сигнала РСА Radarsat-2 в районах разливов нефти</td>
+</tr>
+<tr class="even">
+<td>E КЗ</td>
+<td>10:10–10:30</td>
+<td>Моисеева Н. А., Чурилова Т. Я., Ефимова Т. В.</td>
+<td>Зависимость интенсивности флуоресценции от концентрации хлорофилла а в период стратификации вод в Черном море</td>
+</tr>
+<tr class="odd">
+<td>С 200</td>
+<td>10:10–10:30</td>
+<td>Барсуков И. А., Болдырев В. В., Гаврилов М. И., Григорьев П. В., Гришунин С. А., Егоров А. Н., Ильгасов П. А., Кислаев А. Г., Панцов В. Ю., Пивоваров А. Б., Полетков М. А., Стрельников Н. И., Стрельцов А. М., Черный И. В., Чернявский Г. М., Яковлев В. В.</td>
+<td>СВЧ-радиометр МТВЗА-ГЯ спутника «Метеор-М» № 2-2: подготовка к запуску и летным испытаниям</td>
+</tr>
+<tr class="even">
+<td>E КЗ</td>
+<td>10:30–10:50</td>
+<td>Кубряков А. А., Станичный С. В., Кубрякова Е. А.</td>
+<td>Изменчивость концентрации хлорофилла А на поверхности и в толще вод Черного моря по спутниковым измерениям и данным буев Био-Арго</td>
+</tr>
+<tr class="odd">
+<td>E КЗ</td>
+<td>11:30–11:50</td>
+<td>Глуховец Д. И., Шеберстов С. В.</td>
+<td>Применение данных спутникового сканера цвета OLCI для исследования биооптических характеристик Баренцева и Чёрного морей</td>
+</tr>
+<tr class="even">
+<td>C 200</td>
+<td>11:30–11:50</td>
+<td>Калинников В. В., Тертышников А. В.</td>
+<td>Результаты экспериментов по сравнению оценок интегрального содержания водяного пара в атмосфере над Байконуром по данным ГНСС с данными NCEP/NCAR и ERA-Interim и данными с КА MODIS TERRA</td>
+</tr>
+<tr class="odd">
+<td>G</td>
+<td>11:40–12:00</td>
+<td><em>архангелогородцы</em> Полякова Е. В., Кутинов Ю. Г., Минеев А. Л., Чистова З. Б.</td>
+<td>Исследование карста Архангельской области на основе цифровой модели рельефа</td>
+</tr>
+<tr class="even">
+<td>E КЗ</td>
+<td>12:30–12:50</td>
+<td>Станичный С. В., Кубряков А. А., Федоров С. В., Медведева А. В., Юровская М. В., Хайбрахманов Т. С., Лебедев Н. Е., Станичная Р. Р.</td>
+<td>Использование отражённой компоненты солнечного излучения для оценки характеристик поверхностного слоя моря</td>
+</tr>
+<tr class="odd">
+<td>B 310</td>
+<td>14:00–14:20</td>
+<td>Балашова Е. А., Заболотских Е. В.</td>
+<td>Автоматическая классификация льда по данным РСА с использованием сверточной нейронной сети</td>
+</tr>
+<tr class="even">
+<td>D ЦО</td>
+<td>14:10–14:30</td>
+<td>Шарков Е. А., Раев М. Д., Тихонов В. В., Комарова Н. Ю.</td>
+<td>Прогностические модели Северной полярной шапки за период 1992–2040 гг. по данным спутниковой микроволновой радиометрии на основе алгоритма NASA Team 2</td>
+</tr>
+<tr class="odd">
+<td>B 310</td>
+<td>14:20–14:40</td>
+<td>Смирнов В. Г., Бычкова И. А., Михальцева С. В.</td>
+<td>Оценка толщины морских льдов по спутниковым ИК-изображениям</td>
+</tr>
+<tr class="even">
+<td>D ЦО</td>
+<td>14:30–14:50</td>
+<td>Бышев В. И., Анисимов М. В., Серых И. В., Сидорова А. Н., Скляров В. Е.</td>
+<td>Океанический фактор фазовой мультидекадной изменчивости современного климата</td>
+</tr>
+<tr class="odd">
+<td>B 310</td>
+<td>14:40–15:00</td>
+<td>Захваткина Н. Ю., Бычкова И. А., Смирнов В. Г.</td>
+<td>Опреде ление характеристик ледяного покрова с использованием спутниковой информации и данных сети контактных наблюдений</td>
+</tr>
+<tr class="even">
+<td>D ЦО</td>
+<td>14:50–15:10</td>
+<td>Иванов В. В., Варенцов М. И., Матвеева Т. А., Репина И. А.(4,1), Хавина Е. М., Артамонов А. Ю.</td>
+<td>Влияние турбулентного теплообмена между океаном и атмосферой в осенний сезон на состояние арктического морского льда</td>
+</tr>
+</tbody>
+</table>
+<div class="section level3">
+<h3>Постеры</h3>
+<table>
+<colgroup>
+<col width="7%"></col>
+<col width="30%"></col>
+<col width="61%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>стенд</th>
+<th>авторы</th>
+<th>тема</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>B7</td>
+<td>Бурцев М. А., Балашов И. В., Лупян Е. А., Кашницкий А. В., Прошин А. А.</td>
+<td>Современные требования к информационным средам, обеспечивающим создание и поддержку систем дистанционного мониторинга</td>
+</tr>
+<tr class="even">
+<td>D39</td>
+<td>Титкова Т. Б., Виноградова В. В.</td>
+<td>Даты установления и схода снежного покрова по спутниковым данным на территории России в XXI веке</td>
+</tr>
+<tr class="odd">
+<td>D44</td>
+<td>Федоров Г. А., Миронова Н. С., Паршина Л. Н., Лосев В. М., Бухаров В. М.</td>
+<td>Анализ аномальных снегопадов в зимний период 2018 года на ЕТР по картам спутникового диагноза</td>
+</tr>
+<tr class="even">
+<td>I10</td>
+<td>Никифоров О. В., Петрукович А. А., Уваров И. А.</td>
+<td>Информационная система «Аврора-Арктика». Задачи и перспективы развития</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="-" class="section level2">
+<h2>14 ноября, среда</h2>
+<table>
+<colgroup>
+<col width="9%"></col>
+<col width="9%"></col>
+<col width="27%"></col>
+<col width="54%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>место</th>
+<th>время</th>
+<th>авторы</th>
+<th>доклад</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>E КЗ</td>
+<td>09:10–09:30</td>
+<td>Кортикова К. Г., Муртазин А. Ф., Кудрявцев В. Н.</td>
+<td>Особенности радиолокационного рассеяния ледяного покрова в Арктике по данным спутникового скаттерометра ASCAT</td>
+</tr>
+<tr class="even">
+<td>E КЗ</td>
+<td>09:30–09:50</td>
+<td>Бордонский Г. С., Гурулев А. А., Орлов А. О., Цыренжапов С. В.</td>
+<td>Фаза коэффициента отражения от поверхностного льда в условиях переменных температур</td>
+</tr>
+<tr class="odd">
+<td>D ЦО</td>
+<td>09:30–09:50</td>
+<td>Ефременко А. Н., Караваев Д. М., Коваленко Г. В., Моисеева Н. О., Черный В. В.</td>
+<td>Методические вопросы повышения эффективности метеорологического обеспечения авиаперевозок в арктическом регионе с использованием данных дистанционного зондирования атмосферы</td>
+</tr>
+<tr class="even">
+<td>F 344</td>
+<td>09:30–09:50</td>
+<td><em>Елсаков В. В.</em></td>
+<td>Динамика растительного покрова оленьих пастбищ Северного Тимана по материалам спутниковых съемок</td>
+</tr>
+<tr class="odd">
+<td>K 200</td>
+<td>09:50–10:10</td>
+<td>Шарков Е. А.</td>
+<td>Эволюция Северной полярной шапки и модели глобального потепления в контексте научных задач КЭ «Конвергенция»</td>
+</tr>
+<tr class="even">
+<td>A 202</td>
+<td>09:50–10:10</td>
+<td>Балтер Б. М., Егоров В. В., Котцов В. А., Фаминская М. В.</td>
+<td>Распознавание категорий наземных объектов на основе корреляционных портретов: применение в модели рассеяния атмосферных загрязнений</td>
+</tr>
+<tr class="odd">
+<td>E КЗ</td>
+<td>10:10–10:30</td>
+<td>Заболотских Е. В., Балашова Е. А.</td>
+<td>Новый метод оценки сплоченности морского льда по данным измерений AMSR2 на частоте 89 ГГц</td>
+</tr>
+<tr class="even">
+<td>A 202</td>
+<td>10:10–10:30</td>
+<td>Андреев А. И., Холодов Е. И., Шамилова Ю. А.</td>
+<td>Применение сверточной нейронной сети для детектирования облачности и снега по данным многоканального спутникового устройства МСУ-МРКА «Метеор-М» № 2</td>
+</tr>
+<tr class="odd">
+<td>F 344</td>
+<td>10:10–10:30</td>
+<td>Родионова Н. В.</td>
+<td>Использование радарных данных Sentinel-1B для идентификации талых/мерзлых почв в районе Салехарда и Тикси в 2017–2018 годах</td>
+</tr>
+<tr class="even">
+<td>E КЗ</td>
+<td>10:30–10:50</td>
+<td>Алексанина М. Г., Липов И. М.</td>
+<td>Верификация алгоритма определения зон сжатия ледяного покрова моря по спутниковым данным на примере банки Кашеварова</td>
+</tr>
+<tr class="odd">
+<td>D ЦО</td>
+<td>10:30–10:50</td>
+<td>Хворостовский К. С., Ярусов К. И., Заболотских Е. В.</td>
+<td>Тестирование модели эволюции полярных циклонов с использованием спутниковых данных</td>
+</tr>
+<tr class="even">
+<td>A 202</td>
+<td>10:30–10:50</td>
+<td>Астафуров В. Г., Скороходов А. В., Курьянович К. В., Мусиенко О. П.</td>
+<td>Классификация изображений облачности при наличии снежного покрова по спутниковым данным MODIS</td>
+</tr>
+<tr class="odd">
+<td>A 202</td>
+<td>10:50–11:10</td>
+<td>Колбудаев П. А., Плотников Д. Е., Барталев С. А.</td>
+<td>Метод выявления облачности на монохроматических изображениях МСУ-100М («Метеор-М» № 2) на основе пространственного</td>
+</tr>
+<tr class="even">
+<td>D ЦО</td>
+<td>11:30–11:50</td>
+<td><em>^Из Дубны^</em> Енукова Е. А., Локощенко М. А.</td>
+<td>Острова холода в Москве по спутниковым данным анализа и границ объектов земной поверхности</td>
+</tr>
+<tr class="odd">
+<td>E КЗ</td>
+<td>12:10–12:30</td>
+<td>Юровская М. В., Кудрявцев В. Н., Станичный С. В., Шапрон Б.</td>
+<td>Использование последовательных оптических изображений морской поверхности для оценки характеристик волнения и течений</td>
+</tr>
+<tr class="even">
+<td>A 202</td>
+<td>12:10–12:30</td>
+<td>Михайлюкова П. Г., Петраков Д. А., Тутубалина О. В., Усубалиев Р. А.</td>
+<td>Анализ альбедо снежно-ледового покрова по космическим снимкам Sentinel-2 MSI</td>
+</tr>
+<tr class="odd">
+<td>A 202</td>
+<td>15:40–16:00</td>
+<td>Достовалов М. Ю.</td>
+<td>Анализ проблем обработки данных космического радиолокационного мониторинга земной поверхности</td>
+</tr>
+<tr class="even">
+<td>A 202</td>
+<td>16:20–16:40</td>
+<td>Романов А. Н., Хвостов И. В., Уланов П. Н., Тихонов В. В., Боярский Д. А., Шарков Е. А., Печкин А. С., Железова Е. В.</td>
+<td>Оценка гидролого-климатических изменений в Арктике по данным спутникового микроволнового зондирования акваторий окраинных морей Северного Ледовитого океана и прилегающей тундры</td>
+</tr>
+</tbody>
+</table>
+<div id="-1" class="section level3">
+<h3>Постеры</h3>
+<table>
+<colgroup>
+<col width="7%"></col>
+<col width="30%"></col>
+<col width="61%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>стенд</th>
+<th>авторы</th>
+<th>тема</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A23</td>
+<td>Суслин В. В., Чурилова Т. Я., Слабакова В. Х., Моисеева Н. А., Ефимова Т. В., Пряхина С. Ф.</td>
+<td>Коррекция профиля концентрации хлорофилла-<em>а</em> в Чёрном море: измерения <em>in situ</em> и измерения с био-арго буев</td>
+</tr>
+<tr class="even">
+<td>E15</td>
+<td>Ивонин Д. В., Телегин В. А.</td>
+<td>Корректировка «радиояркостного» метода по зыби для определения высоты ветрового волнения с помощью навигационной РЛС Х-диапазона в Таманском заливе</td>
+</tr>
+<tr class="odd">
+<td>E16</td>
+<td>Ивонин Д. В., Телегин В. А., Мысленков С. А., Гарбацевич В. А.</td>
+<td>Особенности использования навигационной РЛС Х-диапазона в условиях Таманского залива для определение высоты ветрового волнения</td>
+</tr>
+<tr class="even">
+<td>E17-K</td>
+<td>Игнатьева Е. С., Волков В. А., Ионов В. В.</td>
+<td>Тенденции изменения ледовых условий в Печорском море в период 1979–2017 гг.</td>
+</tr>
+<tr class="odd">
+<td>E18</td>
+<td>Караев В. Ю., Рябкова М. С., Панфилова М. А., Титченко Ю. А., Мешков Е. М.</td>
+<td>Свойства доплеровского спектра радиолокационного СВЧ-сигнала, отраженного морской поверхностью при малых углах падения</td>
+</tr>
+<tr class="even">
+<td>E19-K</td>
+<td>Каралли П. Г., Глуховец Д. И.</td>
+<td>Восстановление первичных оптических характеристик по спектрам яркости выходящего из воды излучения в Баренцевом и Карском морях по судовым и спутниковым данным</td>
+</tr>
+<tr class="odd">
+<td>E21</td>
+<td>Копелевич О. В., Салинг И. В., Буренков В. И., Вазюля С. В., Глуховец Д. И., Шеберстов С. В.</td>
+<td>Атлас биооптических характеристик морей, омывающих берега России, по данным спутниковых сканеров цвета 1998–2017 гг.</td>
+</tr>
+<tr class="even">
+<td>E23</td>
+<td>Лебедев С. А., Богоутдинов Ш. Р., Соловьев Д. М., Клюев П. В.</td>
+<td>Идентификация ледового покрова на акватории Белого моря по данным спутниковой альтиметрии и радиометрии</td>
+</tr>
+<tr class="odd">
+<td>E36-K</td>
+<td>Панфилова М. А., Шиков А. П., Понур К. А., Виноградов И. Д., Рябкова М. С., Караев В. Ю.</td>
+<td>Картографирование ледяного покрова по данным двухчастотного дождевого радиолокатора на примере Охотского моря</td>
+</tr>
+<tr class="even">
+<td>E47</td>
+<td>Титов В. И., Баханов В. В., Демакова А. А., Репина И. А.</td>
+<td>Дистанционное зондирование приповерхностных слоев океана</td>
+</tr>
+<tr class="odd">
+<td>E49</td>
+<td>Тихонов В. В., Раев М. Д., Хвостов И. В., Боярский Д. А., Романов А. Н., Шарков Е. А., Комарова Н. Ю.</td>
+<td>Динамика сезонной зависимости яркостной температуры ледового щита Антарктиды по данным SSMIS и MIRAS</td>
+</tr>
+<tr class="even">
+<td>E50</td>
+<td>Федоренко А. В.</td>
+<td>Крупномасштабные вихри в ледовом покрове Арктики</td>
+</tr>
+<tr class="odd">
+<td>E55 Щевьев В. А.</td>
+<td>Вихри или волны наблюдаются в океане и морях? Можно ли отличить из космоса?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="-" class="section level2">
+<h2>15 ноября, четверг</h2>
+<table>
+<colgroup>
+<col width="9%"></col>
+<col width="9%"></col>
+<col width="27%"></col>
+<col width="54%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>место</th>
+<th>время</th>
+<th>авторы</th>
+<th>доклад</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>E КЗ</td>
+<td>10:50–11:10</td>
+<td>Гинзбург А. И., Костяной А. Г.</td>
+<td>Тенденции изменений гидрометеорологических параметров Каспийского моря в современный период (1990-е – 2017 гг.)</td>
+</tr>
+<tr class="even">
+<td>A 202</td>
+<td>11:30–11:50</td>
+<td>Борисова Д., Петков Д., Димитров В., Горанова М.</td>
+<td>Тематическая спектральная библиотека из данных дистанционного зондирования</td>
+</tr>
+<tr class="odd">
+<td>A 202</td>
+<td>12:10–12:30</td>
+<td>Рылов С. А.</td>
+<td>Спектрально-текстурная классификация с частичным обучением для обработки спутниковых изображений высокого разрешения</td>
+</tr>
+<tr class="even">
+<td>пл КЗ</td>
+<td>16:35–17:00</td>
+<td>Лаврова О. Ю., Лупян Е. А., Митягина М. И., Уваров И. А.</td>
+<td>Информационная система “See The Sea”: текущие возможности и перспективы развития (Институт космических исследований РАН)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="-" class="section level2">
+<h2>16 ноября, пятница</h2>
+<table>
+<thead>
+<tr class="header">
+<th>место</th>
+<th>время</th>
+<th>авторы</th>
+<th>доклад</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
