@@ -99,16 +99,15 @@ table:not(.dataTable) {
  /* border-width: 1px;*/
 }
 table th {
-  border-width: 1px; /* 2px */
-  border-color: #999;
- /* padding: 5px;*/
+  border-width: 0px; /* 2px */
+ /* border-color: #999;*/
   padding: 0.2em 0.35em; /* 2px 5px */
-  border-style: solid;
+ /* border-style: solid; */
   font-weight: 600; /* normal bold 900 */
 }
 table td {
   border-width: 1px; /* 1px */
-  border-style: inset;
+  border-style: solid;
   border-color: #f1f1f1;
   line-height: 1.2;
   padding: 0.2em 0.35em; /* 2px 5px */
@@ -117,8 +116,23 @@ table, table th, table td {
   border-left-style: none;
   border-right-style: none;
 }
+table.table tbody tr:first-of-type { /* patch for kableExtra's `fixed_thead` */
+  border-top: 12px solid #999 !important;
+}
+/*
 table th {
   border-top-style: none;
+  border-bottom-style: none;
+}
+*/
+table tbody tr:last-of-type td {
+  border-bottom: 1px solid #ddd !important;
+}
+table thead tr:first-of-type {
+  border-top: 1px solid #ddd !important;
+}
+table tbody tr:first-of-type td {
+  border-top: 1px solid #bbb !important;
 }
 table thead { /* table thead, table tr.even */
   background-color: transpapert; /* #f7f7f7 */
@@ -268,7 +282,7 @@ pre {
  /* background-color: #00f7f7; */
   border: 1px solid #eee;
   border-radius: 5px;
-  margin: 5px 0px 10px 0px;
+  margin: 2px 0px 2px 0px;
   padding: 5px;
   font-size: 91% !important;
   line-height: 115%; /* 110% */
@@ -314,14 +328,14 @@ pre:not([class]) > code {
  /* color: orange !important;*/
   border-color: #b0d1eb;
 }
-.ZZZsourceCode + pre {
-   margin-top: 0em;
+.sourceCode + pre {
+   margin-top: -0.85em;
 }
 .ZZZsourceCode + pre + pre {
    margin-top: 0em;
 }
-div.figure {
- /* padding-top: 0.8em;*/
+.figure {
+  padding-top: 0.3em;
   text-align: center;
 }
 img {
@@ -348,9 +362,16 @@ img {
   filter: none;
   box-shadow: 0 0 15px 0 #eee; /* #eee */
 }
+br~a > img {
+   display: block;
+}
+img[alt] {
+   display: block;
+}
 embed {
   max-width: 100%;
   height: auto !important;
+  border: 1px dashed #acf;
 }
 .html-widget {
   margin: auto;
@@ -359,6 +380,11 @@ embed {
   border: 1px dashed #eee;
  /* height: auto !important;*/
 }
+/*
+.js-plotly-plot {
+   border: 2px solid red;
+}
+*/
 img.centeredfigure {
    display: block;
    margin-bottom: 1em !important;
@@ -373,6 +399,7 @@ zzzimg:only-of-type {
 }
 .img {
   height: auto !important;
+  border: 5px solid red !important;
 }
 .leaflet img {
   box-shadow: none;
@@ -382,6 +409,15 @@ img:hover {
   filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
  /* opacity: 0.75;*/
   box-shadow: none;
+}
+p > a > img:not(.inline) { /* like "inline" */
+   margin-top: 0.2em;
+  /* border: 1px solid red; */
+}
+/* 10pt 95% */ /* 95% - incorrect width adjustment */
+.Zmath { 
+   font-size: 95%; 
+   margin-right: 0.2% !important;
 }
 .emoji, .inline:not(.math) {
    height: 1.2em !important; 
@@ -609,6 +645,9 @@ code span.co { color: #aaa; font-style: normal; } /* Comment */
    text-decoration: underline;
 }
 .centered {
+  text-align: center !important;
+}
+.justify {
   text-align: justify;
 }
 .zzzcitation:hover {
@@ -675,10 +714,10 @@ h4.* {
 .email {
   content: "X"
 }
-*/
 .email:before {
    content: ' \1F582 ';
 }
+*/
 .references {
    font-size: 90% !important;
    padding-left: 1.05em;
@@ -706,9 +745,17 @@ h5 + .references:before, h4 + .references:before, h3 + .references:before, h2 + 
    font-size: 90% !important;
   /* color: #000 !important;*/ /* #666 figure */
 }
-p .zzzcaption, p a + .caption, p img + .caption,
-p > a:first-of-type > img:not(.inline):last-of-type,
-img:not(.inline):only-of-type~p {
+caption { /* tables */
+   text-align: left;
+  /* display: revert;*/
+}
+.caption { /* figures */
+   text-align: left;
+   margin: 0.3em 2em 0.8em 2em;
+   display: block;
+}
+p:only-of-type > img
+{
    display: block;
    text-align: center;
   /* border: 5px red solid;*/
@@ -757,7 +804,22 @@ br + .math.display {
 }
 .shiny-frame {
     height: 690px;
-}   
+}
+.zzzplotly {
+   width: 50vw !important;
+   height: 75vw !important;
+}
+.screen-reader-text::before {
+   content: ' / ';
+}
+.screen-reader-text::after {
+   content: ': ';
+}
+@media only screen and (max-width: 640px) {
+   .plotly {
+      max-height: 70vw;
+   }
+}
 /*
 @media only screen and (min-width: 400px) {
    zzzimg {
@@ -782,6 +844,9 @@ br + .math.display {
    .noprint, .decoration {
        display: none !important;
    }
+   html {
+      background: inherit;
+   }
    @page {
       margin: 2cm 2cm 2cm 2cm;
       counter-increment: page;
@@ -799,8 +864,16 @@ br + .math.display {
    }
    pre, code {
      font-family: 'Courier New', monospace;
-     font-size: 10pt !important;
      color: initial !important; /*initial !important;*/
+   }
+   pre {
+     font-size: 75% !important; /* 10pt */
+   }
+   pre > code {
+     font-size: 100% !important;
+   }
+   pre:not([class]) > code {
+     font-size: 100% !important;
    }
    pre, code, pre code, code pre {
       overflow: hidden; /* 20190628 -scroll+hidden */ /* visible hidden scroll auto */ /* visible */
@@ -808,15 +881,7 @@ br + .math.display {
    }
    td > div > pre > code, td > pre > code {
       white-space: pre-wrap; /* pre */
-   }
-   body, article {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-   }
-   html {
-      background: inherit;
-      margin: 0; 
+      font-size: 36pt !important;
    }
    p, .abstract, ul li, ol li {
       margin: 0;
@@ -824,8 +889,18 @@ br + .math.display {
       orphans: 3 !important; /*  the minimum number of lines in a block container that must be left at the bottom of a page */
       widows: 3 !important; /* minimum number of lines in a block container that must be left at the top of a page */
    }
-   p {
+   p:not(:only-of-type) {
       text-indent: 1.25cm;
+   }
+   p:only-of-type {
+      text-indent: 0cm;
+   }
+   div[id^="ref-"] > p { /* references */
+      text-indent: -0.75cm;
+      padding-left: 0.75cm;
+   }
+   h1~p, h2~p, h3~p, h4~p, h5~p, h6~p {
+      text-indent: 1.25cm !important;
    }
    widows, orphans {
       p: 3;
@@ -893,8 +968,9 @@ br + .math.display {
       page-break-inside: avoid;
    }
    .html-widget {
-      opacity: 0.5;
+      opacity: 1.0;
       page-break-inside: avoid;
+      border: 0px;
    }
    img.centeredfigure {
       display: inline-block;
@@ -906,9 +982,19 @@ br + .math.display {
       page-break-inside: avoid;
       display: inline-block !important;
    }
-   p > a > img:not(.inline), p > img:not(.inline) {
+   p > a > img:not(.inline),
+  /* p > img:first-of-type:not(.inline)*/
+   {
       text-indent: 0 !important;
-      margin-left: -0.85cm !important;
+      margin-left: -2.85cm !important;
+      max-width: 13cm;
+      border: 5px solid blue;
+   }
+   img[width],img[alt] {
+      margin-left: -1.25cm;
+      max-width: 17cm;
+      text-align: center;
+      display: block;
    }
    h1 {
       font-size: 19pt;
@@ -965,6 +1051,10 @@ br + .math.display {
       color: inherit !important;
    }
    .caption {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      margin-bottom: 0.8em;
+      text-indent: 0;
       page-break-before: avoid;
    }
    footer {
@@ -1006,7 +1096,9 @@ br + .math.display {
   */
    .reader-credits {
       background: none;
-      margin-left: -2.9em;
+      margin-left: -0.5cm;
+      margin-top: 1em;
+      margin-bottom: 1em;
    }
    li > .math {
       margin-left: 0px;
@@ -1052,7 +1144,7 @@ br + .math.display {
    a[role="doc-biblioref"]:after,
    a[class="email"]:after,
    .references a[href^="http"]:after,
-   .footnotes a[href^="http"]:after,
+  /* .footnotes a[href^="http"]:after,*/
    .footnotes a[href^="mailto"]:after,
    a[class="footnote-ref"]:after,
    a[href^="#fig:"]:after,
@@ -1087,22 +1179,29 @@ br + .math.display {
       margin-top: 0em;
       margin-bottom: 0em;
    }
+   ul, ul ul, ul ul ul, ul ul ul ul {
+      list-style-type:	'\2013  ';
+   }
    table {
-      border-style: inset;
+      border-style: solid;
       border-color: transparent;
    }
    table thead, table tbody {
-      font-size: 85% !important; /* 85% 90%*/
+      font-size: 94% !important; /* 85% 90%*/
    }
    table th {
       line-height: 1.15;
       font-weight: bold;
       background: white !important;
       page-break-after: avoid;
+      border-style: none;
    }
    table td {
       border-width: 0pt; /* 1px */
       border-color: transparent; /* #FEFEFE */
+   }
+   table.table tbody tr:first-of-type { /* patch for kableExtra's `fixed_thead` */
+      border-top-style: none !important;
    }
    blockquote {
       padding-top: 0.25em;
@@ -1162,6 +1261,9 @@ br + .math.display {
       }
    }
    @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge */
+      table thead, table tbody {
+         font-size: 85% !important;
+      }
      /*
       a, a:visited {
          color: #084999;
