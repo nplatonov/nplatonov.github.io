@@ -412,6 +412,8 @@ img:hover {
 }
 p > a > img:not(.inline) { /* like "inline" */
    margin-top: 0.2em;
+   margin-right: 0.6em;
+   float: left;
   /* border: 1px solid red; */
 }
 /* 10pt 95% */ /* 95% - incorrect width adjustment */
@@ -652,6 +654,9 @@ code span.co { color: #aaa; font-style: normal; } /* Comment */
 }
 .zzzcitation:hover {
    color: #008000;
+}
+strong {
+  font-weight: 600; /* normal bold */
 }
 /*
 .citation {
@@ -982,13 +987,12 @@ br + .math.display {
       page-break-inside: avoid;
       display: inline-block !important;
    }
-   p > a > img:not(.inline),
+   p > a > img:not(.inline)
   /* p > img:first-of-type:not(.inline)*/
    {
       text-indent: 0 !important;
-      margin-left: -2.85cm !important;
-      max-width: 13cm;
-      border: 5px solid blue;
+      margin-left: 0cm !important;
+      max-width: 17cm;
    }
    img[width],img[alt] {
       margin-left: -1.25cm;
@@ -1132,7 +1136,7 @@ br + .math.display {
   */
    a:after {
       text-decoration: underline dotted #F0F0F0;
-      content: ' ' attr(href);
+      content: '\2009' attr(href) '\2009';
       position: relative;
       font-weight: normal;
       font-style: normal;
@@ -1187,7 +1191,7 @@ br + .math.display {
       border-color: transparent;
    }
    table thead, table tbody {
-      font-size: 94% !important; /* 85% 90%*/
+      font-size: 85% !important; /* 85% 90%*/
    }
    table th {
       line-height: 1.15;
