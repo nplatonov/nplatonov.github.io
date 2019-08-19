@@ -67,8 +67,8 @@ body {
   font-style: normal;
 }
 #TOC .toctitle {
-  font-weight: bold;
-  font-size: 15px;
+  font-weight: 600;
+  font-size: 15pt;
   margin-left: 5px;
 }
 
@@ -149,7 +149,20 @@ tbody tr:hover {
 table:not(.dataTable) {
   padding: 0 259px !important;
 }
-
+.dataTable tbody th, .dataTable tbody td {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+}
+.dataTable thead th {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  font-weight: 600 !important;
+}
+.datatable_paginate, .paginate_button {
+  padding: 1px 4px 1px 4px !important;
+}
 p {
   margin: 0.75em 0;
  /*
@@ -220,7 +233,7 @@ dl dd {
   margin-left: 13px;
 }
 dl dt {
-  font-weight: bold;
+  font-weight: 600;
 }
 ul, ol {
   margin: 0.7em 0em 0.7em -1em; /* +top -right bottom +left */
@@ -352,7 +365,7 @@ img {
   max-width: 100%; /* 8in 100% 320px*/
   height: auto !important; /* USE IT */
  /* max-height: 8in; */ /* USE IT 8in */
- /* width: !important;*/ /* none auto */
+ /* width: auto !important;*/ /* none auto */
  /**/
   display: inline-block; /* 'inline-block'(selected), 'block; (alt) */
   margin-left: auto;
@@ -369,16 +382,31 @@ img[alt] {
    display: block;
 }
 embed {
-  max-width: 100%;
-  height: auto !important;
-  border: 1px dashed #acf;
+   max-width: 100%;
+   height: auto !important;
+   border: 1px dashed #acf;
 }
-.html-widget {
-  margin: auto;
-  margin-bottom: 0.75em;
-  max-width: 100%;
-  border: 1px dashed #eee;
- /* height: auto !important;*/
+.html-widget:not(.datatables) {
+   margin: auto;
+   margin-bottom: 0.75em;
+  /* max-width: 100%;*/
+   max-width: 614px !important;
+  /* max-height: 460px !important;*/
+   max-height: auto !important;
+  /* height: auto !important;*/
+   border: 1px dashed #eee;
+  /* border: 1px solid magenta; */
+}
+iframe {
+   border: 1px dashed #eee;
+}
+.leaflet {
+   width: 614px !important;
+   height: 460px !important;
+}
+.plotly {
+   width: 614px !important;
+   height: 460px !important;
 }
 /*
 .js-plotly-plot {
@@ -410,9 +438,10 @@ img:hover {
  /* opacity: 0.75;*/
   box-shadow: none;
 }
-p > a > img:not(.inline) { /* like "inline" */
+Zp > a > img:not(.inline), Zp > img:not(.inline) { /* like "inline" */
    margin-top: 0.2em;
    margin-right: 0.6em;
+   max-width: 480px;
    float: left;
   /* border: 1px solid red; */
 }
@@ -600,7 +629,7 @@ h5 {
 h6 {
   border-bottom: 1px solid #ccc;
   font-size: 105%;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 a {
@@ -628,7 +657,7 @@ a[href^="zzzhttps:"] {
 /* Class described in https://benjeffrey.com/posts/pandoc-syntax-highlighting-css
    Colours from https://gist.github.com/robsimmons/1172277 */
 
-code > span.kw { color: #555; font-weight: bold; } /* Keyword */
+code > span.kw { color: #555; font-weight: 600; } /* Keyword */
 code > span.dt { color: #902000; } /* DataType */
 code > span.dv { color: #40a070; } /* DecVal (decimal values) */
 code > span.bn { color: #d14; } /* BaseN */
@@ -638,7 +667,7 @@ code > span.st { color: #d14; } /* String */
 code > span.co { color: #aaa; font-style: normal; } /* Comment */
 code > span.ot { color: #007020; } /* OtherToken */
 code > span.al { color: #ff0000; font-weight: bold; } /* AlertToken */
-code > span.fu { color: #900; font-weight: bold; } /* Function calls */ 
+code > span.fu { color: #900; font-weight: 600; } /* Function calls */ 
 code > span.er { color: #a61717; background-color: #e3d2d2; } /* ErrorTok */
 
 code span.co { color: #aaa; font-style: normal; } /* Comment */
@@ -821,9 +850,18 @@ br + .math.display {
    content: ': ';
 }
 @media only screen and (max-width: 640px) {
-   .plotly {
-      max-height: 70vw;
+   .leaflet, .plotly, .highchart, .rbokeh {
+      width: 92vw !important;
+      height: 70vw !important;
+     /* border: 1px solid gold;*/
    }
+  /*
+   .Zplotly, .Zhighchart, .html-widget, .svg-container {
+      Zmax-width: 94vw;
+      max-height: 70vw;
+      border: 1px dash magenta;
+   }
+  */
 }
 /*
 @media only screen and (min-width: 400px) {
@@ -845,6 +883,12 @@ br + .math.display {
        display: none !important;
    }
 }
+/*
+@media only print {
+   .html-widget {
+      border: 3px solid magenta !important;
+   }
+*/
 @media print {
    .noprint, .decoration {
        display: none !important;
@@ -895,7 +939,7 @@ br + .math.display {
       widows: 3 !important; /* minimum number of lines in a block container that must be left at the top of a page */
    }
    p:not(:only-of-type) {
-      text-indent: 1.25cm;
+      text-indent: 1.25cm; /* 1.25cm */
    }
    p:only-of-type {
       text-indent: 0cm;
@@ -905,7 +949,7 @@ br + .math.display {
       padding-left: 0.75cm;
    }
    h1~p, h2~p, h3~p, h4~p, h5~p, h6~p {
-      text-indent: 1.25cm !important;
+      text-indent: 1.25cm !important; /* 1.25cm */
    }
    widows, orphans {
       p: 3;
@@ -955,6 +999,7 @@ br + .math.display {
    }
    img {
       box-shadow: none;
+      margin-left: -1.25cm;
      /* margin-right: 1.25cm;*/
       max-width: 16cm;
       height: auto;
@@ -987,18 +1032,27 @@ br + .math.display {
       page-break-inside: avoid;
       display: inline-block !important;
    }
-   p > a > img:not(.inline)
+   p > a > img:not(.inline),p > img:not(.inline)
   /* p > img:first-of-type:not(.inline)*/
    {
       text-indent: 0 !important;
-      margin-left: 0cm !important;
-      max-width: 17cm;
+      margin-left: -1.25cm !important;
+      max-width: 16.5cm;
    }
    img[width],img[alt] {
-      margin-left: -1.25cm;
-      max-width: 17cm;
+      margin-left: -1.25cm; /* -1.25cm; 0cm for .figure*/
+      max-width: 16.5cm;
       text-align: center;
       display: block;
+   }
+   .leaflet img[width],.leaflet img[alt] {
+      margin-left: 0;
+   }
+   .figure img[width],.figure img[alt] {
+      margin-left: 0;
+   }
+   .leaflet-control-zoom, .leaflet-control-layers, .leaflet-bar, .highcharts-button, .bk-toolbar-wrapper {
+      display: none;
    }
    h1 {
       font-size: 19pt;
@@ -1195,7 +1249,7 @@ br + .math.display {
    }
    table th {
       line-height: 1.15;
-      font-weight: bold;
+      font-weight: 600;
       background: white !important;
       page-break-after: avoid;
       border-style: none;
@@ -1242,6 +1296,16 @@ br + .math.display {
       border: 3px solid blue;
      */
    }
+   .plotly .modebar-btn {
+      display: none;
+   }
+   .dataTables_length, .dataTables_filter, .dataTables_paginate {
+      display: none;
+   }
+   .dataTables_info {
+      margin-top: -0.2cm;
+      font-size: 67%;
+   }
    .table150 thead, .table150 tbody {font-size: 150% !important;}
    .table95 thead, .table95 tbody {font-size: 95% !important;}
    .table90 thead, .table90 tbody {font-size: 90% !important;}
@@ -1249,6 +1313,10 @@ br + .math.display {
    .table80 thead, .table80 tbody {font-size: 80% !important;}
    .table75 thead, .table75 tbody {font-size: 75% !important;}
    .table70 thead, .table70 tbody {font-size: 70% !important;}
+   .table65 thead, .table65 tbody {font-size: 65% !important;}
+   .table60 thead, .table60 tbody {font-size: 60% !important;}
+   .table55 thead, .table55 tbody {font-size: 55% !important;}
+   .table50 thead, .table50 tbody {font-size: 50% !important;}
 }
 /* https://stackoverflow.com/questions/47575563/conditional-css-rule-targeting-firefox-quantum */
 @media print {
