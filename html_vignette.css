@@ -93,7 +93,7 @@ table {
   border-style: solid; /* decoration; 'outset' */
   border-collapse: collapse;
 }
-table:not(.dataTable) {
+table:not(.ZdataTable) {
   min-width: 40%;
   font-size: 95%;
  /* border-width: 1px;*/
@@ -118,6 +118,14 @@ table, table th, table td {
 }
 table.table tbody tr:first-of-type { /* patch for kableExtra's `fixed_thead` */
   border-top: 12px solid #999 !important;
+}
+table {
+  display: block;
+  border: none;
+  overflow-x: auto;
+  white-space: pre-line;    /* Wrap long lines: nowrap normal pre pre-warp pre-line */
+  word-wrap: normal;
+  word-break: normal;
 }
 /*
 table th {
@@ -146,7 +154,7 @@ tbody td:hover {
 tbody tr:hover {
   background-color: #b0d1eb30;
 }
-table:not(.dataTable) {
+Ztable:not(.dataTable) {
   padding: 0 259px !important;
 }
 .dataTable tbody th, .dataTable tbody td {
@@ -161,7 +169,21 @@ table:not(.dataTable) {
   font-weight: 600 !important;
 }
 .datatable_paginate, .paginate_button {
-  padding: 1px 4px 1px 4px !important;
+   font-size: 80%;
+   padding: 1px 4px 1px 4px !important;
+   color: red !important;
+}
+.dataTables_length, .dataTables_filter, .dataTables_info {
+   font-size: 80%;
+   color: #aaa !important;
+}
+.dataTables_filter input,.dataTables_length select {
+   font-size: 90%;
+   border: 1px solid #ccc;
+   color: #aaa;
+}
+.dataTable caption {
+   caption-side: top-outside;
 }
 p {
   margin: 0.75em 0;
@@ -395,18 +417,28 @@ embed {
    max-height: auto !important;
   /* height: auto !important;*/
    border: 1px dashed #eee;
-  /* border: 1px solid magenta; */
 }
 iframe {
-   border: 1px dashed #eee;
+   border: 1px dashed #eee; /* #eee */
 }
+/* it works
+.plot-container {
+   border: 3px dashed lightgreen; 
+}
+*/
 .leaflet {
    width: 614px !important;
-   height: 460px !important;
+   height: 400px !important;
 }
-.plotly {
+.plotly:not(.mapboxgl-map) {
    width: 614px !important;
-   height: 460px !important;
+   height: 400px !important;
+}
+.mapboxgl-map {
+   left: 0px !important;
+   top: 0px !important;
+   width: 614px !important;
+   height: 400px !important;
 }
 /*
 .js-plotly-plot {
@@ -444,6 +476,9 @@ Zp > a > img:not(.inline), Zp > img:not(.inline) { /* like "inline" */
    max-width: 480px;
    float: left;
   /* border: 1px solid red; */
+}
+Zp img:only-of-type {
+   border: 1px solid red;
 }
 /* 10pt 95% */ /* 95% - incorrect width adjustment */
 .Zmath { 
@@ -563,11 +598,17 @@ div.uppercase > h1 {
    padding-left: 218px;
 }
 .author > em > .institute {
-   font-size: 85%;
+   font-size: 81%;
 }
 .author > .institute {
-   font-size: 85%;
+   margin-left: 0.3em;
+   font-size: 81%;
    font-style: italic;
+   position: relative;
+   top: -0.2em;
+}
+.author > .Zinstitute:before {
+   content: ', ';
 }
 /*
 .zzzdate > * > .icon:before {
@@ -704,6 +745,9 @@ h4.date {
    font-size: 75% !important;
    padding-bottom: 1em;
 }
+.author_afil + br + h4.date {
+   padding-top: 1.5em;
+}
 address.author_afil, address.author_email {
    margin-top: 0px;
   /* margin-bottom: -24px;*/
@@ -715,6 +759,12 @@ address.author_afil, address.author_email {
   /* text-indent:2em;*/
    padding-left: 3em;
    border: 0;
+}
+address.author_afil {
+   margin-bottom: -2.5em;
+}
+Zaddress.author_afil:last-of-type {
+   margin-bottom: unset;
 }
 h4.author + p, h4.date + p, .reader-credits+p {
    padding-top: 0.6em;
@@ -1032,9 +1082,10 @@ br + .math.display {
       page-break-inside: avoid;
       display: inline-block !important;
    }
-   p > a > img:not(.inline),p > img:not(.inline)
+   p > a > img:not(.inline), p > img:not(.inline)
   /* p > img:first-of-type:not(.inline)*/
    {
+      float: none !important;
       text-indent: 0 !important;
       margin-left: -1.25cm !important;
       max-width: 16.5cm;
@@ -1051,8 +1102,12 @@ br + .math.display {
    .figure img[width],.figure img[alt] {
       margin-left: 0;
    }
-   .leaflet-control-zoom, .leaflet-control-layers, .leaflet-bar, .highcharts-button, .bk-toolbar-wrapper {
-      display: none;
+   .leaflet-control-zoom,
+   .leaflet-control-layers,
+   .leaflet-bar,
+   .highcharts-button,
+   .bk-toolbar-wrapper {
+      display: none !important;
    }
    h1 {
       font-size: 19pt;
@@ -1241,6 +1296,7 @@ br + .math.display {
       list-style-type:	'\2013  ';
    }
    table {
+      overflow-x: unset;
       border-style: solid;
       border-color: transparent;
    }
