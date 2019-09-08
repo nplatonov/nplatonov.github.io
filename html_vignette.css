@@ -45,7 +45,6 @@ body {
   font-style: normal; /* normal italic oblique */
   word-wrap: break-word;
 }
-
 #header {
   text-align: left;
 }
@@ -86,6 +85,10 @@ body {
   margin-top: 1px;
   margin-bottom: 1px;
 }
+
+#TOC li a[href^="#ZZZsection"] {
+   display: none;
+}
 table {
   margin: 1em auto;
   border-width: 1px; /* 1px */
@@ -120,12 +123,15 @@ table.table tbody tr:first-of-type { /* patch for kableExtra's `fixed_thead` */
   border-top: 12px solid #999 !important;
 }
 table {
-  display: block;
+  display: table;
   border: none;
   overflow-x: auto;
-  white-space: pre-line;    /* Wrap long lines: nowrap normal pre pre-warp pre-line */
+ /* white-space: pre-line;*/ /*fail for kable(format="html")*/  /* Wrap long lines: nowrap normal pre pre-warp pre-line */
   word-wrap: normal;
   word-break: normal;
+}
+table.scroll {
+  display: block;
 }
 /*
 table th {
@@ -286,7 +292,7 @@ dl dt {
     font-weight: 600;
 }
 dl dd {
-    margin: 0.2em 0em 0.2em 1em;
+    margin: 0em 0em 0.6em 1em;
 }
 pre, code {
   font-size: 100% !important; /* 105% */
@@ -315,7 +321,7 @@ pre {
 pre {
  /* border-color: red;*/ /* works here */
  /* background-color: #00f7f7; */
-  border: 1px solid #eee;
+  border: 1px solid #f3f3f3;
   border-radius: 5px;
   margin: 2px 0px 2px 0px;
   padding: 5px;
@@ -336,6 +342,7 @@ code:hover {
 pre:not([class]):hover {
  /* background-color: #08499910 !important;*/
   color: inherit !important; /* #084999; text-decoration: */
+  border: 1px solid #eee;
 }
 
 pre.r  {
@@ -824,16 +831,17 @@ h5 + .references:before, h4 + .references:before, h3 + .references:before, h2 + 
 }
 */
 .caption, caption {
-   margin-top: 0pt; /* -2pt*/
-   margin-bottom: 8pt;
    font-size: 90% !important;
   /* color: #000 !important;*/ /* #666 figure */
 }
 caption { /* tables */
+   margin-top: 0pt; /* -2pt*/
+   margin-bottom: 0.3em;
    text-align: left;
   /* display: revert;*/
 }
 .caption { /* figures */
+  /* margin-bottom: 8pt; */
    text-align: left;
    margin: 0.3em 2em 0.8em 2em;
    display: block;
@@ -898,6 +906,43 @@ br + .math.display {
 }
 .screen-reader-text::after {
    content: ': ';
+}
+.pdflink {
+   display: none;
+}
+.note, .note {
+   font-size: 92%;
+   margin-top: 0.6em;
+   margin-bottom: 0.2em;
+}
+div.note, div.comment {
+   margin-left: 0.8em;
+   margin-right: 0.8em;
+   padding-left: 0.5em;
+   padding-right: 0.5em;
+   border: 1px solid #d5f0ff;
+   border-left: 7px solid #d5f0ff;
+   border-radius: 5px;
+}
+span.note, span.comment {
+   color: #666;
+}
+span.note::before, span.comment::before {
+   content: '('
+}
+span.note::after, span.comment::after {
+   content: ')'
+}
+.comment p {
+   margin-top: 0.2em;
+   margin-bottom: 0.4em;
+}
+.adopted {
+   position: relative;
+   font-weight: normal;
+   font-style: normal;
+   top: -0.4em;
+   font-size: 80%;
 }
 @media only screen and (max-width: 640px) {
    .leaflet, .plotly, .highchart, .rbokeh {
@@ -1088,6 +1133,7 @@ br + .math.display {
       float: none !important;
       text-indent: 0 !important;
       margin-left: -1.25cm !important;
+      margin-top: 0.2em !important;
       max-width: 16.5cm;
    }
    img[width],img[alt] {

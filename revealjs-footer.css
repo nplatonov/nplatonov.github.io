@@ -1,3 +1,6 @@
+.reveal body {
+   background-color: yellow !important;
+}
 .reveal h1,
 .reveal h2,
 .reveal h3,
@@ -10,8 +13,8 @@
    font-size: 80%  !important;
    text-align: left;
 }
-.reveal section.slide > h2 { font-size: 1.6em !important;}
-.reveal section.slide > h3 { font-size: 1.2em !important;}
+.reveal section.slide > h2 { font-size: 1.6em !important; line-height: 1em; margin-bottom: 8px;}
+.reveal section.slide > h3 { font-size: 1.35em !important; line-height: 1em; margin-bottom: 8px;}
 .reveal h1 { font-size: 1.4em;}
 .reveal h2 { font-size: 1.2em;}
 .reveal h3 { font-size: 1.1em;}
@@ -24,10 +27,18 @@
    padding: 0.8em 1.2em 0.8em 1.2em;
    }
 .reveal .date { font-size: 0.8em;}
-.reveal section.slide>h1 { font-size: 3.4em; color: white;margin-top: 0%;}
-.reveal section.slide>h2 { font-size: 1.4em; padding-bottom: 5px;}
+.reveal section.slide > h1 {
+   font-size: 3.4em;
+  /* color: white; */
+  /* text-shadow: 0.05em 0.05em 0.06em #000;*/
+   margin-top: -55px;
+}
+.reveal section.slide.has-dark-background > h1 {
+   color: #e0e0d0;
+}
+.reveal section.slide > h2 { font-size: 1.4em; padding-bottom: 5px; margin-top: -35px;}
 .reveal h2 {
-   margin: -6pt 0 0 0;
+   margin: -0.6em 0 0 0;
 }
 .reveal .slideheader {
    color: #888;
@@ -94,10 +105,19 @@
    line-height: 1.2em;
    margin: 0.5em 0;
 }
-.reveal .level1 p {
-   color: #fff;
+.Zreveal .level1.has-dark-background p {
+   color: #F0F1EB;
+}
+.reveal .level1.has-dark-background {
+   color: #F0F1EB;
+  /* background: #888; */
+  /* background-color: #888; */
+}
+.reveal .level1.has-dark-background p a {
+   color: #D3E4FF;
 }
 .reveal p.caption {font-size: 90%; margin: 0 0 0 4px;}
+.reveal caption {font-size: 90%; margin: 0 0 0.2em 0;}
 
 .reveal .greyB {color: #BBB}
 .reveal .greyA {color: #AAA}
@@ -155,11 +175,19 @@
 .reveal section img {
    margin: 0;
    padding: 0;
-   background: rgba(255, 255, 255, 0.12);
    border: 0px solid #000;
-   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.07); }
+   background: rgba(255, 255, 255, 0.1);
 }
-.reveal table td { /* DOESNT WORK */
+.reveal section img:not(.inline) {
+   background: rgba(255, 255, 255, 0.3);
+   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.07); /* 0.07 */
+} 
+.reveal img.inline {
+   margin: 0.1em;
+   padding: 0.1em;
+   margin-bottom: -0.2em;
+}
+.Zreveal table td { /* DOESNT WORK */
    border-width: 3px;
    padding-left: 5px;
    padding-right: 5px;
@@ -190,5 +218,51 @@
 .print-pdf .reveal * {
    font-family: "Georgia", serif !important;
 }
+.print-pdf .reveal .slides {
+   background-color: #F0F1EB;
+}
 .print-pdf .reveal iframe {display: none !important;}
 .print-pdf .reveal .dontprint {display: none !important;}
+
+.print-pdf .reveal section.slide > h1, .print-pdf .reveal section.slide > h2 {
+   margin-top: 0;
+}
+
+.reveal .pdflink {
+   color: #00000010;
+}
+.print-pdf .reveal .pdflink {
+   display: none;
+}
+.reveal .comment, .reveal .note {
+   display: none;
+}
+.reveal .figure {
+   text-align: center;
+}
+.reveal sup {font-size: 80%;}
+
+.reveal .adopted {
+   position: relative;
+   font-weight: normal;
+   font-style: normal;
+   top: -0.4em;
+   font-size: 80%;
+}
+.reveal .inline {
+   height: 1.2em !important; 
+   margin-bottom: -3px;
+}
+.reveal ul+h3 {
+   margin-top: 0.5em;
+}
+
+.reveal ul {
+   margin-top: -0.5em;
+}
+.reveal .shadow {
+   color: magenta;
+}
+.reveal .darkheader {
+   color: #F0F1EB; text-shadow: 5px 5px 14px #000;
+}
