@@ -477,7 +477,7 @@ img:hover {
  /* opacity: 0.75;*/
   box-shadow: none;
 }
-Zp > a > img:not(.inline), Zp > img:not(.inline) { /* like "inline" */
+p > a > img:not(.inline), p > img:not(.inline) { /* like "inline" */
    margin-top: 0.2em;
    margin-right: 0.6em;
    max-width: 480px;
@@ -944,6 +944,9 @@ span.note::after, span.comment::after {
    top: -0.4em;
    font-size: 80%;
 }
+.plotly .modebar-btn {
+   opacity: 0.3;
+}
 @media only screen and (max-width: 640px) {
    .leaflet, .plotly, .highchart, .rbokeh {
       width: 92vw !important;
@@ -1136,11 +1139,14 @@ span.note::after, span.comment::after {
       margin-top: 0.2em !important;
       max-width: 16.5cm;
    }
-   img[width],img[alt] {
+   img[width], img[alt] {
       margin-left: -1.25cm; /* -1.25cm; 0cm for .figure*/
       max-width: 16.5cm;
       text-align: center;
       display: block;
+   }
+   img.inline {
+      margin-left: 0cm;
    }
    .leaflet img[width],.leaflet img[alt] {
       margin-left: 0;
