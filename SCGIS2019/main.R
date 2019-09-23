@@ -1,12 +1,25 @@
 #' ---
-#' output1: revealjs::revealjs_presentation
-#' toc: true
+#' output:
+#'    revealjs::revealjs_presentation: default
+#'    html_document:
+#'       toc: true
+#'    rmdformats::readthedown:
+#'       toc: true
+#'       self_contained: true
+#'       thumbnails: true
+#'       lightbox: true
+#'       gallery: false
+#'       highlight: tango
+#'    prettydoc::html_pretty:
+#'       toc: true
+#'       self_contained: true
+#'       theme: tactile
 #' pagetitle: R и пространственные данные
 #' title: |
 #'  |
 #'  | Возможности R для работы с пространственными данными
 #'  |
-#' subtitle: 
+#' subtitle: |
 #'  |
 #'  | Мастер-класс на IV Конференции сообщества природоохранных ГИС в России
 #'  | Национальный парк «Валдайский», 05 октября 2019 г.
@@ -20,8 +33,12 @@
 #' ---
 #'
 #+ include=FALSE
-# knitr::opts_chunk$set(comment="##",collapse=FALSE)
+knitr::opts_chunk$set(comment="##",collapse=FALSE)
 options(width=80)
+if (!exists("h1"))
+   h1 <- function(hdr,...) paste("#",hdr)
+if (!exists("h2"))
+   h2 <- function(hdr,...) paste("##",hdr)
 #'
 #' `r h1("Планирование (до&nbsp;27&nbsp;сентября)",ref="intro",opt=".middle")`
 #'
@@ -54,6 +71,17 @@ options(width=80)
 #+
 pi
 #' 
+#' `r h2("Начало работы",ref="openR")`
+#'
+#' Зафиксируем генератор псевдослучайных чисел на определенную последовательность
+#+
+set.seed(352)
+sample(10)
+#' Зададим кодировку
+#+ eval=FALSE
+if (.Platform$OS.type=="windows")
+   Sys.setlocale("LC_CTYPE","Russian")
+#'
 #' `r h2("Установка необходимых пакетов",entry="first",ref="contribute1")`
 #+
 pkgList <- c("rgdal","sf","raster","leaflet","mapview","mapedit","knitr"
@@ -67,29 +95,40 @@ whoisready <- sapply(pkgList,function(pkg) {
 })
 #' `r h2("Установка необходимых пакетов",entry="next",ref="contribute2")`
 #'
-#' Если отображается `TRUE` для всех пакетов, то подготовка к занятию осуществлена успешно.
 #+
 whoisready
+#'
+#' Если отображается `TRUE` для всех пакетов, то подготовка к занятию осуществлена успешно.
+#+
 c('Всё готово?'=all(whoisready))
 #'
 #' Если где-то выскочило `FALSE` (например, для пакета "foo"), то можно попробовать его установить заново функцией `install.packages("foo")`.
 #'
-#' `r h1("Занятие (05&nbsp;октября)",opt=".middle",ref="openday")`
+#' `r h2("Установка дополнительного программного обеспечения",ref="pandoc",opt=".scale90")`
 #'
+#' Pandoc необходим для создания воспроизводимого результата. Этот шаг опциональный, и может быть пропущен, но в этом случае на занятии будет пропущен раздел по [публикации результатов](#report).
+#'
+#' [Ссылка](https://pandoc.org/installing.html) на страницу для скачивания. Для пользователей Windows достаточно перейти к [скачиванию актуального релиза](https://github.com/jgm/pandoc/releases/latest), и выбрать либо установщик (`*.msi`), либо архив (`*.zip`). Запомнить путь, куда произведена установка и где находится файл `pandoc.exe` и добавить этот путь в переменную окружения `%PATH%`, например: WindowsKey+Q, ввести "Переменные среды/Environment Variables", попасть в окошко "Свойства Системы/System Properties", нажать на кнопку "Переменные среды/Environment Variables" и отредактировать пользовательскую или системну переменную PATH, добавив путь к `pandoc.exe`.
+#'
+#' Чтобы проверить, правильно ли установлен Pandoc:
+#+
+rmarkdown::pandoc_available()
+#'
+#' `r h1("Занятие (05&nbsp;октября)",opt=".middle",ref="openday")`
 #'
 #' `r h2("Пример",ref="volcano1",entry="first")`
 #'
 #' Пример пространственных данных в базовом R -- `data(volcano)`.
 
-#+ out.height=500, out.width=700
+#+
 image(volcano)
 #'
 #' `r h2("Пример",ref="volcano2",entry="last")`
 #'
 #' Это вулкан Maunga Whau (Mt Eden).
 
-#+ 
-ursa::glance("Mount Eden",place="park",dpi=85)
+#+ out.width="40%"
+ursa::glance("Mount Eden",place="park")
 #'
 #'
 #' `r h2("Как узнать об R поближе")`
@@ -101,6 +140,8 @@ ursa::glance("Mount Eden",place="park",dpi=85)
 #' + [Stackoverflow](https://stackoverflow.com/feeds/tag/r) с тегом #R.
 #' 
 #' + [Stackexchange](https://gis.stackexchange.com/questions) о ГИС, в т.ч. с использованием R.
+#'
+#' + Packages' vignettes -- обобщенное знакомство с пакетом. Обычно содержат воспроизводимый код.
 #'
 #'
 #' `r h2("Импорт пространственных данных")`
@@ -130,8 +171,29 @@ ursa::glance("Mount Eden",place="park",dpi=85)
 #'
 #'
 #'
-#' `r h2("Воспроизводимые вычисления и публикация результата")`
+#' `r h2("Воспроизводимые вычисления и публикация результата",ref="report")`
 #'
+#' Ниже приведены три фрагмента кода, которые не были выполнены при составлении программы занятия. Их предлагается выполнить самостоятельно.
+#' 
+#' Содержимое занятия на 100% взято из файла `main.R`. Загрузим его, переименовав:
+#+ eval=F
+rfile <- "lesson.R"
+download.file("https://nplatonov.github.io/SCGIS2019/main.R","lesson.R")
+#' На основе этого файла создадим markdown-документ:
+#+ eval=FALSE
+mdfile <- knitr::spin("lesson.R",knit=FALSE)
+mdfile
 #'
+#' Затем из markdown-документа сформируем html-документ:
+#+ eval=FALSE
+if (rmarkdown::pandoc_available()) {
+   htmlfile <- rmarkdown::render(mdfile,output_format="html_document")
+   print(basename(htmlfile))
+}
+#' Полученный html-документ можно открыть в браузере.
+#+ eval=FALSE
+if ((rmarkdown::pandoc_available())&&(file.exists(htmlfile))) 
+   browseURL(basename(htmlfile))
+#' И можно скопировать на флешку на память:))
 #'
-#' `r h1("Удачи!",ref="thankyou",opt=".middle")`
+#' `r h1("Успехов!",ref="thankyou",opt=".middle")`
