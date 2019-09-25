@@ -22,12 +22,13 @@
    font-size: 80%  !important;
    text-align: left;
 }
-.reveal h1 { font-size: 1.4em;}
-.reveal h2 { font-size: 1.2em;}
-.reveal h3 { font-size: 1.1em; padding-top: 0.4em;}
-.reveal h4 { font-size: 1em;}
-.reveal .subtitle {}
-.reveal .title { font-size: 2.0em; line-height: 1em;}
+.reveal h1 { font-size: 2.2em;}
+.reveal h2 { font-size: 1.6em;}
+.reveal h3 { font-size: 1.25em}
+.reveal h2+h3 {margin-top: -0.1em;}
+.reveal h4 { font-size: 1.1em;}
+.reveal .title { font-size: 2.0em; line-height: 1.0em;}
+.reveal .subtitle {font-size: 1.0em; line-height: 1.0em; padding-top: 2.4em;}
 .reveal .proposal { font-size: 0.57em}
 .reveal .author {
    font-size: 1.10em;
@@ -99,7 +100,8 @@
    bottom: 0px;
 }
 .reveal .center {text-align: center;}
-.reveal .controls .enabled {opacity: 0.1;}
+.reveal .controls .enabled {opacity: 0.03;}
+.reveal .controls .enabled:hover {opacity: 0.2;}
 .reveal .thankyou {font-size: 2.0em;}
 .reveal .scale200 {font-size: 200%}
 .reveal .scale180 {font-size: 180%}
@@ -144,6 +146,10 @@
 .reveal .scale52 {font-size: 52%}
 .reveal .scale51 {font-size: 51%}
 .reveal .scale50 {font-size: 50%}
+.reveal .scale49 {font-size: 49%}
+.reveal .scale48 {font-size: 48%}
+.reveal .scale47 {font-size: 47%}
+.reveal .scale46 {font-size: 46%}
 .reveal .scale45 {font-size: 45%}
 .reveal .scale40 {font-size: 40%}
 .reveal .scale35 {font-size: 35%}
@@ -206,26 +212,28 @@
 .reveal .line70 {line-height: 7.0;}
 .reveal .line80 {line-height: 8.0;}
 
-#left20, #left30, #left40, #left50, #left60, #left70, #left80 {
+.left20, .left30, .left40, .left50, .left60, .left70, .left80 {
   left:-8.33%;
   text-align: left;
   float: left;
   z-index: -10;
+  padding-right: 4em;
 }
-#right20, #right30, #right40, #right50, #right60, #right70, #right80 {
+.right20, .right30, .right40, .right50, .right60, .right70, .right80 {
   left:31.25%;
   top: 75px;
-  float: right;
-  text-align: right;
+  float: left;
+  text-align: left;
   z-index: -10;
 }
-#left20, #right20 {width: 20%}
-#left30, #right30 {width: 30%}
-#left40, #right40 {width: 40%}
-#left50, #right50 {width: 50%}
-#left60, #right60 {width: 60%}
-#left70, #right70 {width: 70%}
-#left80, #right80 {width: 80%}
+.left20, .right20 {width: 19.5%}
+.left30, .right30 {width: 29.5%}
+.left40, .right40 {width: 39.5%}
+.left50, .right50 {width: 49.5%}
+.left60, .right60 {width: 59.5%}
+.left70, .right70 {width: 69.5%}
+.left80, .right80 {width: 79.5%}
+
 .reveal section img {
    margin: 0;
    padding: 0;
@@ -236,6 +244,9 @@
    background: rgba(255, 255, 255, 0.3);
    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.07); /* 0.07 */
 } 
+.reveal section img.leaflet-tile {
+   box-shadow: none;
+}
 .reveal img.inline {
    margin: 0.1em;
    padding: 0.1em;
@@ -274,11 +285,74 @@
    visibility: visible !important;
    margin-bottom: -2pt;
 }
-.reveal * {
+.print-pdf .reveal h1, .print-pdf .reveal h2, .print-pdf .reveal h3,
+.print-pdf .reveal h4, .print-pdf .reveal h5, .print-pdf .reveal h6,
+.print-pdf .reveal .slide {
+   font-family: "Georgia", serif !important;
+}
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6,
+.reveal .slide {
    font-family: "Segoe UI", sans-serif !important;
 }
-.print-pdf .reveal * {
-   font-family: "Georgia", serif !important;
+.reveal code {
+   font-family: Consolas, "DejaVu Sans Mono", Monaco, "Courier New", monospace !important;
+}
+.reveal pre > code {
+   font-size: 125%;
+}
+.reveal pre:not([class]) > code {
+   color: #888;
+   margin-top: -0.2em;
+   margin-bottom: 0.5em;
+}
+
+.reveal pre.height700 code {max-height: 700px;} 
+.reveal pre.height650 code {max-height: 650px;} 
+.reveal pre.height600 code {max-height: 600px;} 
+.reveal pre.height550 code {max-height: 550px;} 
+.reveal pre.height500 code {max-height: 500px;} 
+.reveal pre.height475 code {max-height: 475px;} 
+.reveal pre.height450 code {max-height: 450px;} 
+.reveal pre.height425 code {max-height: 425px;} 
+/* .reveal pre code {max-height: 400px;}  */ /* default */
+.reveal pre.height380 code {max-height: 380px;} 
+.reveal pre.height360 code {max-height: 360px;} 
+.reveal pre.height340 code {max-height: 340px;} 
+.reveal pre.height320 code {max-height: 320px;} 
+.reveal pre.height300 code {max-height: 300px;} 
+
+.reveal pre[class^="height"] > code {
+   color: #888;
+   margin-top: -0.2em;
+   margin-bottom: 0.5em;
+}
+.reveal div.sourceCode {
+   margin-top: -0.2em;
+   margin-bottom: -0em;
+}
+.reveal div.sourceCode:hover {
+   background-color: white;
+   color: #aaa;
+}
+.reveal div.sourceCode:hover::after {
+   font-size: 60%;
+   content: 'copy&paste';
+   position: fixed;
+   display: inline;
+   position: fixed;
+   right: 0em;
+   opacity: 0.2;
+   padding: 0.3em;
+   margin-top: -2.3em;
+   margin-right: 0.4em;
+   background-color: gold;
+   color: black;
+}
+.reveal pre {
+   width: 99%;
+   margin: 0.4em auto;
+   line-height: 1.2em;
+   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
 }
 .print-pdf .reveal .slides {
   /* background-color: #F0F1EB;*/
@@ -370,11 +444,40 @@
 .print-pdf .reveal .slides {
    font-size: 90%;
 }
-.reveal .middle {
+.reveal .middle,
+.reveal section:not(.level1):not(.level2):not(.stack) {
   display: flex !important;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   min-height: 75vh;
+}
+.reveal .html-widget:not(.datatables) {
+   margin: auto;
+  /* margin-bottom: 0.75em;*/
+   max-width: 99%;
+  /* max-width: 614px;*/ /* !important;*/
+   max-height: 670px !important;
+  /* max-height: auto !important;*/
+  /* height: auto !important;*/
+   border: 1px dashed #eee;
+}
+.reveal .leaflet-control-container {
+   font-size: 80% !important;
+}
+.reveal .leaflet-control-scale-line {
+   font-size: 160% !important;
+}
+.reveal .leaflet-control-layer-selector {
+   font-size: 300%;
+}
+.reveal .leaflet-tile img {
+   box-shadow: none !important;
+}
+.reveal .leaflet-control-layers, .reveal .legend.leaflet-control {
+   text-align: left;
+}
+.reveal .leaflet-popup-content, .reveal .leaflet-tooltip {
+   font-size: 80% !important;
 }

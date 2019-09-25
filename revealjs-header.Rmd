@@ -1,0 +1,86 @@
+```{r setup, echo=FALSE, include=FALSE}
+filetype <- knitr::opts_knit$get("rmarkdown.pandoc.to")[1] ## "revealjs" "html"
+rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
+#knitr::opts_chunk$set(collapse=FALSE,prompt=FALSE,comment=""
+#                     ,cache=TRUE
+#                     ,echo=FALSE,fig.align="center"
+#                     )
+'h1' <- function(lab,ref="",background="",subtitle=TRUE,opt="") {
+   subtitle <- FALSE
+   if (!nchar(background))
+      background <- paste0(ursa::cubehelix(1,dark=61,light=61,hue=1.5),"B0")
+   if ((!nchar(ref))&&(length(grep("[А-Яа-я]",lab))>=0)) {
+      ref <- basename(tempfile(pattern="",fileext=""))
+      ref <- paste0("ref",substr(ref,nchar(ref)-3L,nchar(ref)))
+   }
+   res <- paste0("# ",lab," {#",ref)
+   if (nchar(background)) {
+      if (!length(grep("^http",background)))
+         res <- paste0(res," data-background-color=",background)
+      else
+         res <- paste0(res," data-background-image=",background)
+     # res <- paste0(res," style=\"background:transparent;\"")
+   }
+   if (nchar(opt))
+      res <- paste0(res," ",opt)
+   res <- paste0(res,"}")
+   ##~ res2 <- paste0("<section id=",dQuote(ref)
+                ##~ ," class=",dQuote("title-slide slide level1")
+                ##~ ," data-background=",dQuote(background),">"
+                ##~ ,"<h1>",lab,"</h1></section>")
+   if ((filetype %in% "revealjs")&&(subtitle)) {
+      res <- paste0(res,"\n###### ",lab," {.slideheader}")
+      ##~ res2 <- paste0(res2,"<h6 class=",dQuote("slideheader"),">",lab,"</h6>")
+   }
+   ##~ res2 <- paste0(res2,"</section>")
+  # res <- res2
+   res
+}
+'h2' <- function(lab,entry=c("default","first","next","last"),ref=""
+                ,background="",opt="",force=FALSE) {
+   mode <- match.arg(entry)
+   if ((filetype %in% c("html"))&&(!force)&&(mode %in% c("next","last")))
+      return("")
+   transition <- switch(mode
+                       ,'first'="slide-in fade-out"
+                       ,'next'="fade-in fade-out"
+                       ,'last'="fade-in slide-out"
+                       ,"slide-in slide-out")
+   ##~ res <- paste0("## ",lab," {data-transition=",dQuote(transition)," ",opt
+               ##~ # ,ifelse(nchar(lab),"",".dontprint")
+                ##~ ,"}")
+   if ((!nchar(ref))&&(length(grep("[А-Яа-я]",lab))>=0)) {
+      ref <- basename(tempfile(pattern="",fileext=""))
+      ref <- paste0("ref",substr(ref,nchar(ref)-3L,nchar(ref)))
+   }
+   res <- paste0("## ",lab," {#",ref)
+   res <- paste0(res," data-transition=",dQuote(transition))
+   if (nchar(background)) {
+     # if (!length(grep("^http",background)))
+      res <- paste0(res," data-background=",background)
+   }
+   if (nchar(opt))
+      res <- paste0(res," ",opt)
+   res <- paste0(res,"}")
+   res
+}
+'h3' <- function(lab,entry=c("default","first","next","last"),ref=""
+                ,opt="",force=FALSE) {
+   mode <- match.arg(entry)
+   if ((filetype %in% c("html"))&&(!force)&&(mode %in% c("next","last")))
+      return("")
+   if ((!nchar(ref))&&(length(grep("[А-Яа-я]",lab))>=0)) {
+      ref <- basename(tempfile(pattern="",fileext=""))
+      ref <- paste0("ref",substr(ref,nchar(ref)-3L,nchar(ref)))
+   }
+   res <- paste0("### ",lab," {#",ref)
+   if (nchar(opt))
+      res <- paste0(res," ",opt)
+   res <- paste0(res,"}")
+   res
+}
+```
+
+```{r, include=FALSE, eval=FALSE}
+print(c(filetype=filetype,rendertype=rendertype))
+```
