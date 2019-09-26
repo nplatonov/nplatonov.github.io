@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
  
 options(width=80)
 if (!exists("h1"))
@@ -131,9 +130,15 @@ class(a10)
 (shpname <- system.file("vectors","scot_BNG.shp",package="rgdal"))
 file.exists(shpname)
  
+(tifname <- system.file("pictures/cea.tif",package="rgdal"))
+file.exists(tifname)
+ 
 ursa::session_grid(NULL)
 ursa::glance(shpname,coast=FALSE,field="(NAME|AFF)",blank="white"
             ,legend=list("left","right"),dpi=88)
+ 
+ursa::session_grid(NULL)
+ursa::glance(tifname,coast=FALSE,pal.from=0,pal=c("black","white"),dpi=96)
  
 rgdal::ogrInfo(shpname)
  
@@ -148,6 +153,33 @@ slotNames(b.sp)
 b.sf <- sf::st_read(shpname)
  
 str(b.sf)
+ 
+d1 <- rgdal::readGDAL(tifname)
+ 
+str(d1)
+ 
+summary(d1@data[[1]])
+ 
+md <- rgdal::GDALinfo(tifname)
+mdname <- names(md)
+attributes(md) <- NULL
+names(md) <- mdname
+md
+ 
+dset <- methods::new("GDALReadOnlyDataset",tifname)
+d2 <- rgdal::getRasterData(dset,offset=c(0,0),region.dim=md[c("rows","columns")])
+str(d2)
+summary(c(d2))
+ 
+(d3 <- raster::brick(tifname))
+ 
+ 
+v3 <- d3[] ## 'd3[]' то же, что и 'raster::getValues(d3)'
+c(d3=object.size(d3),v3=object.size(v3))
+ 
+str(v3)
+ 
+summary(c(v3))
  
 head(slot(b.sp,"data"))
  
@@ -213,7 +245,8 @@ str(tr)
 tr <- sf::st_sf(step=seq(n),segment=segment,geometry=tr)
 str(tr)
  
-ursa::glance(tr,style="mapnik",legend=list("left",list("bottom",2)),dpi=96)
+ursa::session_grid(NULL)
+ursa::glance(tr,style="mapnik",legend=list("left",list("bottom",2)),las=1,dpi=96)
  
 plot(tr)
  
@@ -226,7 +259,7 @@ require(ggplot2)
  
 ggplot()+geom_sf(data=b.sf,aes(fill=AFF))+coord_sf(crs=sf::st_crs(3857))
  
-mapview::mapview(b.sf) ## Не отобразится в R Jupyter Notebook.
+mapview::mapview(b.sf) ## Не отобразится в Jupyter R Notebook.
  
 require(leaflet)
  
@@ -254,7 +287,53 @@ m <- m %>%
    addLegend("bottomright",pal=fpal,values=b$category,opacity=0.6
             ,title="AFF")
  
-m ## Не отобразится в R Jupyter Notebook.
+m ## Не отобразится в Jupyter R Notebook.
+ 
+pt <- loc
+sp::coordinates(pt) <- ~x+y
+sp::proj4string(pt) <- sp::proj4string(pt0)
+pt <- sp::spTransform(pt,"+init=epsg:4326")
+fileout1 <- "afterTrain.geojson"
+rgdal::writeOGR(pt,fileout1,gsub("\\..+","",basename(fileout1)),driver="GeoJSON"
+                 ,overwrite_layer=TRUE,morphToESRI=FALSE)
+ 
+dir(pattern=paste0(gsub("\\..+","",basename(fileout1),".*")))
+ 
+ursa::glance(fileout1,style="mapnik",las=1,size=200,dpi=99)
+ 
+b.sf <- b.sf[,c("NAME","COUNT")]
+b.sf$'категория' <- b$category
+b.sf <- sf::st_transform(b.sf,3857)
+fileout2 <- "scotland.sqlite"
+sf::st_write(b.sf,dsn=fileout2,layer=gsub("\\..+","",basename(fileout2))
+            ,driver="SQLite",layer_options=c("LAUNDER=NO"),quiet=TRUE
+            ,delete_layer=file.exists(fileout2),delete_dsn=file.exists(fileout2))
+ 
+dir(pattern=paste0(gsub("\\..+","",basename(fileout2),".*")))
+ 
+ursa::glance(fileout2,style="mapnik",las=1,dpi=90,size=200)
+ 
+ 
+fileout3 <- "track.shp"
+sf::st_write(tr,dsn=fileout3,layer=gsub("\\..+","",basename(fileout2))
+            ,driver="ESRI Shapefile",quiet=TRUE
+            ,delete_layer=file.exists(fileout3),delete_dsn=file.exists(fileout3))
+ 
+dir(pattern=paste0(gsub("\\..+","",basename(fileout3),".*")))
+ 
+ursa::glance(fileout3,style="mapnik",las=1,dpi=90,size=200)
+ 
+track <- sf::st_linestring(cbind(loc$x,loc$y))
+track <- sf::st_sf(data.frame(desc="walk"
+                  ,sf::st_sfc(track,crs=sp::proj4string(pt0))))
+paint <- mapview::viewExtent(track,alpha=0.01) %>% mapedit::editMap("track")
+result <- NULL
+if (!is.null(paint$finished)) {
+   result <- paint$finished
+   mapview::mapview(result)
+   ursa::session_grid(NULL)
+   ursa::glance(result,style="mapnik")
+}
  
 sfile <- "main.R"
 rfile <- "lesson.R"
@@ -277,3 +356,7 @@ if (rmarkdown::pandoc_available()) {
  
 if ((rmarkdown::pandoc_available())&&(file.exists(htmlfile))) 
    browseURL(basename(htmlfile))
+ 
+file.remove(dir(pattern=paste0(gsub("\\..+","",basename(fileout1),".*"))))
+ 
+file.remove(dir(pattern=paste0(gsub("\\..+","",basename(fileout2),".*"))))

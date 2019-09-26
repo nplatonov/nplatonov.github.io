@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #' ---
 #' output1:
 #'    revealjs::revealjs_presentation: default
@@ -58,13 +57,13 @@ if (!exists("h3"))
 #'
 #' `r h2("Операционные системы пользователя",ref="os")`
 #'
-#' Не для всех операционных систем есть скомпилированные модули (ядро R, пакеты). В таком случае модули компилируются, и на это уходит какое-то время. Поэтому если ОС не OS Windows, то этот этап нужно пройти заранее.
+#' Не для всех операционных систем есть скомпилированные модули (ядро R, библиотеки). В таком случае модули компилируются, и на это уходит какое-то время. Поэтому если ОС не OS Windows, то этот этап нужно пройти заранее.
 #'
 #' `r h2("Установка базового R",ref="base")`
 #'
 #' Установить или обновить R, например, [отсюда](https://cran.rstudio.com/). Актуальная версия 3.6.1. Не ниже версии 3.0.
 #'
-#' `r h2("Установка необходимых пакетов",entry="first",ref="contribute1")`
+#' `r h2("Установка необходимых библиотек",entry="first",ref="contribute1")`
 #'
 #+ require, class.source="height450"
 pkgList <- c("rgdal","sf","raster","ggplot2","leaflet","mapview","mapedit"
@@ -81,16 +80,16 @@ whoisready <- sapply(pkgList,function(pkg) {
    requireNamespace(pkg)
 })
 #'
-#' `r h2("Установка необходимых пакетов",entry="next",ref="contribute2")`
+#' `r h2("Установка необходимых библиотек",entry="next",ref="contribute2")`
 #'
 #+ ok
 whoisready
 #'
-#' Если отображается `TRUE` для всех пакетов, то подготовка к занятию осуществлена успешно.
+#' Если отображается `TRUE` для всех библиотек, то подготовка к занятию осуществлена успешно.
 #+ allok
 c('Everything is ready?'=all(whoisready))
 #'
-#' Если где-то выскочило `FALSE` (например, для пакета "foo"), то можно попробовать его установить заново функцией `install.packages("foo")`.
+#' Если где-то выскочило `FALSE` (например, для библиотеки "foo"), то можно попробовать его установить заново функцией `install.packages("foo")`.
 #'
 #' `r h2("Установка дополнительного программного обеспечения",ref="extended1",entry="first")`
 #'
@@ -122,7 +121,7 @@ rmarkdown::pandoc_available()
 #' Команда | Описание
 #' ---|---
 #' `conda install jupyter` | установка Jupyter Notebook
-#' `conda install -c r r-recommended r-irkernel` | Установка R, базовых пакетов и пакета для использования R в Jupyter Notebook
+#' `conda install -c r r-recommended r-irkernel` | Установка R, базовых библиотек и библиотеки для использования R в Jupyter Notebook
 #' `conda install -c conda-forge jupytext` | Установка преобразователя кода R в формат Jupyter Notebook
 #'
 #' :::scale73
@@ -306,15 +305,15 @@ str(a10)
 class(a10)
 #'
 #'
-#' `r h2("Импорт пространственных данных",ref="import1",entry="first")`
+#' `r h2("Манипуляции с файлами пространственных данных",ref="connection",entry="default")`
 #'
 #' Векторные данные
 #'
 #' :::scale120
-#' Пакет | Формат | Импорт | Описание 
+#' Библиотека | Формат | Импорт | Экспорт 
 #' -----|------|-----|---
-#' `sp` | [GDAL vector drivers](https://gdal.org/drivers/vector/index.html) |**`rgdal`**`::readOGR()` | 
-#' `sf` | [GDAL vector drivers](https://gdal.org/drivers/vector/index.html) | `st_read()` | [URL](https://r-spatial.github.io/sf/)
+#' `sp` | [GDAL vector drivers](https://gdal.org/drivers/vector/index.html) | **`rgdal`**`::readOGR()` | **`rgdal`**`::writeOGR()`
+#' [`sf`](https://r-spatial.github.io/sf/) | [GDAL vector drivers](https://gdal.org/drivers/vector/index.html) | `st_read()` | `st_write()`
 #' <!--[`gdalUtuls`](https://cran.rstudio.com/web/packages/gdalUtils/)^*факультативно*^ | [GDAL vector drivers](https://gdal.org/drivers/vector/index.html) | | оболочка системного GDAL -->
 #' :::
 #'
@@ -322,31 +321,58 @@ class(a10)
 #' Растровые данные
 #'
 #' :::scale120
-#' Пакет | Формат | Импорт | Описание
+#' Библиотека | Формат | Импорт | Экспорт
 #' ---|----|--------|----
-#' `sp` | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) |а**`rgdal`**`::readGDAL()` | 
-#' `raster` | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `raster()`, `brick()`, `stack()` | 
-#' [`ncdf4`](https://cran.rstudio.com/web/packages/ncdf4/)^*факультативно*^ | [NetCDF](https://gdal.org/drivers/raster/netcdf.html) | nc_open() | 
-#' `ursa`| [ENVI](https://gdal.org/drivers/raster/envi.html) | `read_envi()` | 
+#' `sp` | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | **`rgdal`**`::readGDAL()` | **`rgdal`**`::writeGDAL()`
+#' `raster` | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `raster()`, `brick()`, `stack()` | `writeRaster()`
+#' [`ncdf4`](https://cran.rstudio.com/web/packages/ncdf4/) | [NetCDF](https://gdal.org/drivers/raster/netcdf.html) | `nc_open()` | `nc_create()`
+#' `ursa`| [ENVI](https://gdal.org/drivers/raster/envi.html) | `read_envi()` | `write_envi()`
 #' :::
 #'
-#' `r h2("Импорт пространственных данных",ref="import2",entry="next")`
+#' `r h2("Особенности форматов данных",ref="formats",entry="default")`
 #'
-#' `r h3("Пример данных")`
-#+ sysfile
+#' ### Растровые данные
+#'
+#' + Для хранения многослойные растров используется BSQ/BIL/BIP чередование слоев/строк/пикелей. Самый неэффективный - это BIP. При пространственно-временном анализе можно выбрать BIL, для большинства случаев - BSQ.
+#' + Целочисленный GeoTIFF быстро пишется и читается при использовании функций из библиотеки `rgdal`
+#'
+#' ### Векторные данные
+#'
+#' + Хорошую скорость чтения и записи демонстрирует формат "SQLite" при использовании библиотеки `sf`.
+#'
+#' + "GeoJSON" не очень быстрый.
+#'
+#' + При записи использовать опции, предусмотренные для выбранного формата данных
+#'
+#' + При записи "ESRI Shapefile" обращать внимания на *.prj, так как у QGIS и ESRI-продуктов разные восприятия файлов проекций.
+#'
+#' `r h2("Импорт пространственных данных",ref="import1",entry="first")`
+#'
+#' `r h3("Пример данных",ref="systemfiles")`
+#+ shpfile
 (shpname <- system.file("vectors","scot_BNG.shp",package="rgdal"))
 file.exists(shpname)
 #'
-#' `r h2("Импорт пространственных данных",ref="import3",entry="next")`
+#+ tiffile
+(tifname <- system.file("pictures/cea.tif",package="rgdal"))
+file.exists(tifname)
+#'
+#' `r h2("Импорт пространственных данных",ref="import2",entry="next")`
 #'
 #+ scotBNG
 ursa::session_grid(NULL)
 ursa::glance(shpname,coast=FALSE,field="(NAME|AFF)",blank="white"
             ,legend=list("left","right"),dpi=88)
 #'
+#' `r h2("Импорт пространственных данных",ref="import3",entry="next")`
+#'
+#+ cea
+ursa::session_grid(NULL)
+ursa::glance(tifname,coast=FALSE,pal.from=0,pal=c("black","white"),dpi=96)
+#'
 #' `r h2("Импорт пространственных данных",ref="import4",entry="next")`
 #'
-#' `r h3("Векторные данные -- <code>rgdal</code>",entry="first")`
+#' `r h3("Векторные данные -- <code>rgdal/sp</code>",entry="first")`
 #'
 #+ ogrinfo
 rgdal::ogrInfo(shpname)
@@ -355,7 +381,7 @@ b.sp <- rgdal::readOGR(shpname)
 #'
 #' `r h2("Импорт пространственных данных",ref="import5",entry="next")`
 #'
-#' `r h3("Векторные данные -- <code>rgdal</code>",entry="next")`
+#' `r h3("Векторные данные -- <code>rgdal/sp</code>",entry="next")`
 #'
 #+ sp, class.output="height380"
 str(head(b.sp,2))
@@ -371,12 +397,66 @@ slotNames(b.sp)
 #+ stread
 b.sf <- sf::st_read(shpname)
 #'
-#' `r h2("Импорт пространственных данных",ref="import7",entry="last")`
+#' `r h2("Импорт пространственных данных",ref="import7",entry="next")`
 #'
 #' `r h3("Векторные данные -- <code>sf</code>",entry="last")`
 #'
 #+ strsf, class.output="height550"
 str(b.sf)
+#'
+#' `r h2("Импорт пространственных данных",ref="import8",entry="next")`
+#'
+#' `r h3("Растровые данные -- <code>rgdal/sp</code>",ref="rgdal1",entry="first")`
+#'
+#' Получение данных напрямую
+#'
+#' :::scale90
+#+ readgdal
+d1 <- rgdal::readGDAL(tifname)
+#+ strd1
+str(d1)
+#+ summaryd1
+summary(d1@data[[1]])
+#' :::
+#'
+#'
+#' `r h2("Импорт пространственных данных",ref="import9",entry="next")`
+#'
+#' `r h3("Растровые данные -- <code>rgdal/sp</code>",ref="rgdal2",entry="last")`
+#'
+#' Получение данных более гибким способом
+#'
+#' ::: scale89
+#+ gdalinfo
+md <- rgdal::GDALinfo(tifname)
+mdname <- names(md)
+attributes(md) <- NULL
+names(md) <- mdname
+md
+#+ getrasterdata
+dset <- methods::new("GDALReadOnlyDataset",tifname)
+d2 <- rgdal::getRasterData(dset,offset=c(0,0),region.dim=md[c("rows","columns")])
+str(d2)
+summary(c(d2))
+#' :::
+#'
+#' `r h2("Импорт пространственных данных",ref="import10",entry="next")`
+#'
+#' `r h3("Растровые данные -- <code>raster</code>",ref="raster1",entry="first")`
+#'
+#' :::scale88
+#+ raster
+(d3 <- raster::brick(tifname))
+#+ sized3
+
+#+ sizev3
+v3 <- d3[] ## 'd3[]' то же, что и 'raster::getValues(d3)'
+c(d3=object.size(d3),v3=object.size(v3))
+#+ strv3
+str(v3)
+#+ summaryv3
+summary(c(v3))
+#' :::
 #'
 #' `r h2("Характеристики пространственных данных",ref="extract1",entry="first")`
 #'
@@ -517,11 +597,12 @@ str(tr)
 #' `r h2("Статическая визуализация",ref="plot1",entry="first")`
 #'
 #+ route
-ursa::glance(tr,style="mapnik",legend=list("left",list("bottom",2)),dpi=96)
+ursa::session_grid(NULL)
+ursa::glance(tr,style="mapnik",legend=list("left",list("bottom",2)),las=1,dpi=96)
 #'
 #' `r h2("Статическая визуализация",ref="plot2",entry="next")`
 #'
-#' Графическое отображение переопределенной под класс объекта функцией `plot()` средствами пакетов `sp`^(факультативно)^ и `sf` развито слабо...
+#' Графическое отображение переопределенной под класс объекта функцией `plot()` средствами библиотеки `sp`^(факультативно)^ и `sf` развито слабо...
 #+ trplot, out.width="80%"
 plot(tr)
 #'
@@ -538,7 +619,7 @@ plot(sf::st_geometry(b.sf),col=sf::sf.colors(12,categorical=TRUE)
 #'
 #' `r h2("Статическая визуализация",ref="plot5",entry="next")`
 #'
-#' ... Поэтому используются возможности других пакетов.
+#' ... Поэтому используются возможности других библиотек.
 #+ ggplot
 require(ggplot2)
 #+ geomsf, out.width="85%"
@@ -547,7 +628,7 @@ ggplot()+geom_sf(data=b.sf,aes(fill=AFF))+coord_sf(crs=sf::st_crs(3857))
 #'
 #' `r h2("Интерактивная визуализация",ref="mapview",entry="first")`
 #+ mapview
-mapview::mapview(b.sf) ## Не отобразится в R Jupyter Notebook.
+mapview::mapview(b.sf) ## Не отобразится в Jupyter R Notebook.
 #'
 #' `r h2("Интерактивная визуализация",ref="leaflet1",entry="next")`
 #+ leaflet
@@ -579,16 +660,74 @@ m <- m %>%
 #'
 #' `r h2("Интерактивная визуализация",ref="leaflet2",entry="next")`
 #+ leadletwidget
-m ## Не отобразится в R Jupyter Notebook.
-#'
+m ## Не отобразится в Jupyter R Notebook.
 #'
 #' `r ## h2("Обработка векторных данных")`
 #'
 #'
 #'
-#' `r ## h2("Экспорт пространственных данных")`
+#' `r h2("Экспорт пространственных данных",ref="export1",entry="first")`
 #'
+#+ writeogr
+pt <- loc
+sp::coordinates(pt) <- ~x+y
+sp::proj4string(pt) <- sp::proj4string(pt0)
+pt <- sp::spTransform(pt,"+init=epsg:4326")
+fileout1 <- "afterTrain.geojson"
+rgdal::writeOGR(pt,fileout1,gsub("\\..+","",basename(fileout1)),driver="GeoJSON"
+                 ,overwrite_layer=TRUE,morphToESRI=FALSE)
 #'
+#' Проверим, появился ли файл:
+#+ ptexists
+dir(pattern=paste0(gsub("\\..+","",basename(fileout1),".*")))
+#+ glancept
+ursa::glance(fileout1,style="mapnik",las=1,size=200,dpi=99)
+#'
+#' `r h2("Экспорт пространственных данных",ref="export2",entry="next")`
+#'
+#+ stwrite
+b.sf <- b.sf[,c("NAME","COUNT")]
+b.sf$'категория' <- b$category
+b.sf <- sf::st_transform(b.sf,3857)
+fileout2 <- "scotland.sqlite"
+sf::st_write(b.sf,dsn=fileout2,layer=gsub("\\..+","",basename(fileout2))
+            ,driver="SQLite",layer_options=c("LAUNDER=NO"),quiet=TRUE
+            ,delete_layer=file.exists(fileout2),delete_dsn=file.exists(fileout2))
+#+ scotexists
+dir(pattern=paste0(gsub("\\..+","",basename(fileout2),".*")))
+#'
+#+ glancescot
+ursa::glance(fileout2,style="mapnik",las=1,dpi=90,size=200)
+#+
+#' `r h2("Экспорт пространственных данных",ref="export3",entry="last")`
+#'
+#+ track
+fileout3 <- "track.shp"
+sf::st_write(tr,dsn=fileout3,layer=gsub("\\..+","",basename(fileout2))
+            ,driver="ESRI Shapefile",quiet=TRUE
+            ,delete_layer=file.exists(fileout3),delete_dsn=file.exists(fileout3))
+#+ trackexists
+dir(pattern=paste0(gsub("\\..+","",basename(fileout3),".*")))
+#'
+#+ glancetrack
+ursa::glance(fileout3,style="mapnik",las=1,dpi=90,size=200)
+#'
+#' `r h2("Рисование",ref="mapedit")`
+#'
+#' Этот раздел предлагается пройти самостоятельно
+#'
+#+ mapedit, eval=F
+track <- sf::st_linestring(cbind(loc$x,loc$y))
+track <- sf::st_sf(data.frame(desc="walk"
+                  ,sf::st_sfc(track,crs=sp::proj4string(pt0))))
+paint <- mapview::viewExtent(track,alpha=0.01) %>% mapedit::editMap("track")
+result <- NULL
+if (!is.null(paint$finished)) {
+   result <- paint$finished
+   mapview::mapview(result)
+   ursa::session_grid(NULL)
+   ursa::glance(result,style="mapnik")
+}
 #'
 #' `r h2("Воспроизводимые вычисления и публикация результата",ref="report1",entry="first")`
 #'
@@ -628,7 +767,7 @@ if ((rmarkdown::pandoc_available())&&(file.exists(htmlfile)))
 #'
 #' `r h1("Успехов!",ref="thankyou",opt=".middle")`
 #'
-#' `r h2("Дополнительная информация",ref="extra",opt=".scale50")`
+#' `r h2("Дополнительная информация",ref="extra",opt=".scale65")`
 #'
 #' :::left70
 #'
@@ -638,11 +777,13 @@ if ((rmarkdown::pandoc_available())&&(file.exists(htmlfile)))
 #'
 #' + R's [Spatial](https://cran.rstudio.com/web/views/Spatial.html) and [SpatioTemporal](https://cran.rstudio.com/web/views/SpatioTemporal.html) Task Views 
 #'
+#' + [R-Spatial](https://www.r-spatial.org/) -- веб-сайт и блог для интересующихся использованием R для анализа пространственных и пространственно-временных данных
+#'
 #' + [Stackoverflow](https://stackoverflow.com/feeds/tag/r) с тегом #R.
 #'
 #' + [Stackexchange](https://gis.stackexchange.com/questions) о ГИС, в т.ч. с использованием R.
 #'
-#' + Package's vignettes -- обобщенное знакомство с пакетом. Обычно содержат воспроизводимый код.
+#' + Package's vignettes -- обобщенное знакомство с библиотекой. Обычно содержат воспроизводимый код.
 #'
 #' :::
 #' :::right30
@@ -657,4 +798,12 @@ if ((rmarkdown::pandoc_available())&&(file.exists(htmlfile)))
 #' животных фауны России](http://www.sevin-expedition.ru)
 #'
 #' - [Программа изучения белого медведя в Российской Арктике](http://bear.sevin-expedition.ru)
+#' 
+#' :::{class="scale52" style="margin-top: 10em !important;"}
+#' Данные после занятия остались на диске. Если не нужны, выполнить следующее: 
+#+ clear1, eval=F
+file.remove(dir(pattern=paste0(gsub("\\..+","",basename(fileout1),".*"))))
+#+ clear2, eval=F
+file.remove(dir(pattern=paste0(gsub("\\..+","",basename(fileout2),".*"))))
+#' :::
 #' :::
