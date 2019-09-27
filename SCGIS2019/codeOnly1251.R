@@ -37,7 +37,7 @@ sample(10)
 if (.Platform$OS.type=="windows")
    Sys.setlocale("LC_CTYPE","Russian")
  
-print(c('Р—РґРµСЃСЊ РєРёСЂРёР»Р»РёС†Р°?'="Р”Р°!"),quote=FALSE)
+print(c('Здесь кириллица?'="Да!"),quote=FALSE)
  
 image(volcano)
  
@@ -175,7 +175,7 @@ summary(c(d2))
 (d3 <- raster::brick(tifname))
  
  
-v3 <- d3[] ## 'd3[]' С‚Рѕ Р¶Рµ, С‡С‚Рѕ Рё 'raster::getValues(d3)'
+v3 <- d3[] ## 'd3[]' то же, что и 'raster::getValues(d3)'
 c(d3=object.size(d3),v3=object.size(v3))
  
 str(v3)
@@ -188,7 +188,7 @@ head(sf::st_set_geometry(b.sf,NULL))
  
 g.sp <- sp::geometry(b.sp)
  
-g.sp ## РќРµ РїРѕРєР°Р·Р°РЅРѕ: РјРЅРѕРіРѕ СЃС‚СЂРѕРє
+g.sp ## Не показано: много строк
  
 str(head(g.sp,2))
  
@@ -260,7 +260,7 @@ require(ggplot2)
  
 ggplot()+geom_sf(data=b.sf,aes(fill=AFF))+coord_sf(crs=sf::st_crs(3857))
  
-mapview::mapview(b.sf) ## РќРµ РѕС‚РѕР±СЂР°Р·РёС‚СЃСЏ РІ Jupyter R Notebook.
+mapview::mapview(b.sf) ## Не отобразится в Jupyter R Notebook.
  
 require(leaflet)
  
@@ -274,7 +274,7 @@ m <- m %>%
    addPolygons(data=b,fillColor=~fpal(category),fillOpacity=0.5
               ,weight=1.6,color=~fpal(category),opacity=0.75
               ,label=~paste0("AFF: ",AFF," (",NAME,")")
-              ,popup=~sprintf("РќР°РїСЂРёРјРµСЂ, РїРѕР»Рµ COUNT, СЂР°РІРЅРѕРµ %.1f",COUNT)
+              ,popup=~sprintf("Например, поле COUNT, равное %.1f",COUNT)
               ) %>%
    addMeasure("topright",primaryLengthUnit="meters"
              ,primaryAreaUnit="sqmeters") %>%
@@ -288,7 +288,7 @@ m <- m %>%
    addLegend("bottomright",pal=fpal,values=b$category,opacity=0.6
             ,title="AFF")
  
-m ## РќРµ РѕС‚РѕР±СЂР°Р·РёС‚СЃСЏ РІ Jupyter R Notebook.
+m ## Не отобразится в Jupyter R Notebook.
  
 pt <- loc
 sp::coordinates(pt) <- ~x+y
@@ -303,7 +303,7 @@ dir(pattern=paste0(gsub("\\..+","",basename(fileout1),".*")))
 try(ursa::glance(fileout1,style="mapnik",las=1,size=200,dpi=99))
  
 b.sf <- b.sf[,c("NAME","COUNT")]
-b.sf$'РєР°С‚РµРіРѕСЂРёСЏ' <- b$category
+b.sf$'категория' <- b$category
 b.sf <- sf::st_transform(b.sf,3857)
 fileout2 <- "scotland.sqlite"
 sf::st_write(b.sf,dsn=fileout2,layer=gsub("\\..+","",basename(fileout2))

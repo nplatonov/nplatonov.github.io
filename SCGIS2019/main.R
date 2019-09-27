@@ -1,17 +1,6 @@
 #' ---
 #' output1:
 #'    revealjs::revealjs_presentation: default
-#'    rmdformats::readthedown:
-#'       toc: yes
-#'       self_contained: yes
-#'       thumbnails: yes
-#'       lightbox: yes
-#'       gallery: no
-#'       highlight: tango
-#'    prettydoc::html_pretty:
-#'       toc: yes
-#'       self_contained: yes
-#'       theme: tactile
 #' toc: true
 #' pagetitle: R и пространственные данные
 #' title: |
@@ -125,9 +114,9 @@ rmarkdown::pandoc_available()
 #' `conda install -c conda-forge jupytext` | Установка преобразователя кода R в формат Jupyter Notebook
 #'
 #' :::scale73
-#' Предварительно скачайте [`main.R`](./main.R) или только код [`codeOnly.R`](./codeOnly.R), если будете использовать на занятии Jupyter Notebook. 
-#'
-#' Предупреждение: описательный текст (markdown) местами не отформатирован, в частности, не будут отображаться таблицы.
+#' Предварительно скачайте [`main.R`](./main.R) или только код [`codeOnly.R`](./codeOnly.R), если будете использовать на занятии Jupyter Notebook. Если будет проблема с кодировкой, возьмите 
+#'[`codeOnly1251.R`](./codeOnly1251.R)
+#' Предупреждение: описательный текст (markdown) местами не отформатирован, в частности, не будут отображаться таблицы; также не будут отображаться html-виджеты.
 #'
 #' :::
 #'
@@ -156,7 +145,7 @@ getwd()
 set.seed(353)
 sample(10)
 #' :::
-#' Зададим кодировку
+#' Зададим кодировку [(Для скриптов может не сработать)]{.scale70}
 #'
 #+ locale, results="hide"
 if (.Platform$OS.type=="windows")
@@ -178,7 +167,7 @@ image(volcano)
 #' Это вулкан Maunga Whau (Mt Eden).
 #'
 #+ volcano
-ursa::glance("Mount Eden",place="park",dpi=80)
+try(ursa::glance("Mount Eden",place="park",dpi=80))
 #'
 #' `r h2("Типы данных",ref="typeof1",entry="first")`
 #'
@@ -329,14 +318,14 @@ class(a10)
 #' `ursa`| [ENVI](https://gdal.org/drivers/raster/envi.html) | `read_envi()` | `write_envi()`
 #' :::
 #'
-#' `r h2("Особенности форматов данных",ref="formats",entry="default")`
+#' `r h2("Особенности форматов данных",ref="formats1",entry="first")`
 #'
-#' ### Растровые данные
+#' `r h3("Растровые данные")`
 #'
 #' + Для хранения многослойные растров используется BSQ/BIL/BIP чередование слоев/строк/пикелей. Самый неэффективный - это BIP. При пространственно-временном анализе можно выбрать BIL, для большинства случаев - BSQ.
 #' + Целочисленный GeoTIFF быстро пишется и читается при использовании функций из библиотеки `rgdal`
 #'
-#' ### Векторные данные
+#' `r h3("Векторные данные")`
 #'
 #' + Хорошую скорость чтения и записи демонстрирует формат "SQLite" при использовании библиотеки `sf`.
 #'
@@ -346,9 +335,25 @@ class(a10)
 #'
 #' + При записи "ESRI Shapefile" обращать внимания на *.prj, так как у QGIS и ESRI-продуктов разные восприятия файлов проекций.
 #'
+#' `r h2("Особенности форматов данных",ref="formats2",entry="last")`
+#'
+#' `r h3("<code>sf</code> или <code>sp</code>?")`
+#'
+#' + В пользу [`sf`]{.scale110} больше аргументов:
+#'
+#'    + удобнее, активно развивается, поддерживается
+#+
+#'    + в `sf` объекты класса S3, в `sp` объекты класса S4 (строже, но медленнее)
+#'
+#'    + Эффективность с геометрией POINT выше у `sp` из-за представления атрибутивной таблицы и геометрии в одной таблице.
+#'
+#'    + Ряд библиотек завязаны на формат данных `sp`, например [`adehabitatHR`](https://cran.rstudio.com/web/packages/adehabitatHR/).
+#'
+#'    + есть `sf::as_Spatial()` для преобразования в объекты `sp`.
+#'
 #' `r h2("Импорт пространственных данных",ref="import1",entry="first")`
 #'
-#' `r h3("Пример данных",ref="systemfiles")`
+#' `r h3("Используемые данные для примера",ref="systemfiles")`
 #+ shpfile
 (shpname <- system.file("vectors","scot_BNG.shp",package="rgdal"))
 file.exists(shpname)
@@ -681,7 +686,7 @@ rgdal::writeOGR(pt,fileout1,gsub("\\..+","",basename(fileout1)),driver="GeoJSON"
 #+ ptexists
 dir(pattern=paste0(gsub("\\..+","",basename(fileout1),".*")))
 #+ glancept
-ursa::glance(fileout1,style="mapnik",las=1,size=200,dpi=99)
+try(ursa::glance(fileout1,style="mapnik",las=1,size=200,dpi=99))
 #'
 #' `r h2("Экспорт пространственных данных",ref="export2",entry="next")`
 #'
@@ -697,7 +702,7 @@ sf::st_write(b.sf,dsn=fileout2,layer=gsub("\\..+","",basename(fileout2))
 dir(pattern=paste0(gsub("\\..+","",basename(fileout2),".*")))
 #'
 #+ glancescot
-ursa::glance(fileout2,style="mapnik",las=1,dpi=90,size=200)
+try(ursa::glance(fileout2,style="mapnik",las=1,dpi=90,size=200))
 #+
 #' `r h2("Экспорт пространственных данных",ref="export3",entry="last")`
 #'
@@ -710,13 +715,13 @@ sf::st_write(tr,dsn=fileout3,layer=gsub("\\..+","",basename(fileout2))
 dir(pattern=paste0(gsub("\\..+","",basename(fileout3),".*")))
 #'
 #+ glancetrack
-ursa::glance(fileout3,style="mapnik",las=1,dpi=90,size=200)
+try(ursa::glance(fileout3,style="mapnik",las=1,dpi=90,size=200))
 #'
 #' `r h2("Рисование",ref="mapedit")`
 #'
 #' Этот раздел предлагается пройти самостоятельно
 #'
-#+ mapedit, eval=F
+#+ mapedit, eval=rmarkdown::default_output_format(knitr::current_input())$name=="html_document"
 track <- sf::st_linestring(cbind(loc$x,loc$y))
 track <- sf::st_sf(data.frame(desc="walk"
                   ,sf::st_sfc(track,crs=sp::proj4string(pt0))))
@@ -801,9 +806,9 @@ if ((rmarkdown::pandoc_available())&&(file.exists(htmlfile)))
 #' 
 #' :::{class="scale52" style="margin-top: 10em !important;"}
 #' Данные после занятия остались на диске. Если не нужны, выполнить следующее: 
-#+ clear1, eval=F
+#+ clear, eval=F
 file.remove(dir(pattern=paste0(gsub("\\..+","",basename(fileout1),".*"))))
-#+ clear2, eval=F
 file.remove(dir(pattern=paste0(gsub("\\..+","",basename(fileout2),".*"))))
+file.remove(dir(pattern=paste0(gsub("\\..+","",basename(fileout3),".*"))))
 #' :::
 #' :::
