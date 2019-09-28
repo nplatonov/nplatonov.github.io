@@ -1,7 +1,7 @@
 #' ---
-#' output1:
-#'    revealjs::revealjs_presentation: default
+#' output:
 #'    html_document: default
+#'    revealjs::revealjs_presentation: default
 #' toc: true
 #' pagetitle: R и пространственные данные
 #' title: |
