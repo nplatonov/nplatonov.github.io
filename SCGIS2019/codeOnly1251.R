@@ -34,22 +34,10 @@ getwd()
 set.seed(353)
 sample(10)
  
-if (.Platform$OS.type=="windows")
-   Sys.setlocale("LC_CTYPE","Russian")
- 
 print(c('Здесь кириллица?'="Да!"),quote=FALSE)
  
-image(volcano)
- 
-try(ursa::glance("Mount Eden",place="park",dpi=80))
- 
-class(volcano)
- 
-dim(volcano)
- 
-str(volcano)
- 
-volcano[1:6,1:12]
+if (.Platform$OS.type=="windows")
+   Sys.setlocale("LC_CTYPE","Russian")
  
 (a1 <- seq(7))
  
@@ -109,6 +97,12 @@ length(a7)
  
 sapply(a7,length)
  
+(a11 <- matrix(sample(seq(24)),ncol=4,nrow=3))
+ 
+dim(a11)
+ 
+str(a11)
+ 
 (a8 <- array(sample(24),dim=c(3,4,2)))
  
 str(a8)
@@ -126,6 +120,27 @@ class(a9)
 str(a10)
  
 class(a10)
+n <- 60
+seqx <- seq(20,40,by=5)
+seqy <- seq(55,65,by=2)
+x <- sort(runif(n,min=min(seqx),max=max(seqx)))
+y <- sort(runif(n,min=min(seqy),max=max(seqy)))
+ 
+plot(x,y,type="n",asp=NA,axes=FALSE,xlab="",ylab="")
+lines(x,y,lwd=4,col="black")
+lines(x,y,lwd=3,col="orange")
+box()
+axis(1,at=seqx,lab=paste0(seqx,"°E"),lwd=0,lwd.ticks=1,las=1)
+axis(2,at=seqy,lab=paste0(seqy,"°N"),lwd=0,lwd.ticks=1,las=1)
+ 
+e <- sf::st_sfc(sf::st_linestring(cbind(x,y)),crs=4326)
+ursa::session_grid(NULL)
+ursa::glance(e,blank="white",coast.fill="#00000010",height=320,dpi=66
+            ,col="black",plot.lwd=5)
+ 
+image(volcano)
+ 
+try(ursa::glance("Mount Eden",place="park",dpi=83))
  
  
 (shpname <- system.file("vectors","scot_BNG.shp",package="rgdal"))
@@ -247,7 +262,8 @@ tr <- sf::st_sf(step=seq(n),segment=segment,geometry=tr)
 str(tr)
  
 ursa::session_grid(NULL)
-ursa::glance(tr,style="mapnik",legend=list("left",list("bottom",2)),las=1,dpi=96)
+ursa::glance(tr,style="mapnik"
+            ,layout=c(1,2),legend=list("left",list("bottom",2)),las=1,dpi=96)
  
 plot(tr)
  

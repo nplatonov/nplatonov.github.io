@@ -1,6 +1,7 @@
 #' ---
 #' output1:
 #'    revealjs::revealjs_presentation: default
+#'    html_document: default
 #' toc: true
 #' pagetitle: R и пространственные данные
 #' title: |
@@ -89,7 +90,7 @@ c('Everything is ready?'=all(whoisready))
 #'
 #' [Ссылка](https://pandoc.org/installing.html) на страницу для скачивания. Для пользователей Windows достаточно перейти к [скачиванию актуального релиза](https://github.com/jgm/pandoc/releases/latest), и выбрать либо установщик (`*.msi`), либо архив (`*.zip`). Запомнить путь, куда произведена установка и где находится файл `pandoc.exe` и добавить этот путь в переменную окружения `%PATH%`, например: WindowsKey+Q, ввести "Переменные среды/Environment Variables", попасть в окошко "Свойства Системы/System Properties", нажать на кнопку "Переменные среды/Environment Variables" и отредактировать пользовательскую или системную переменную PATH, добавив путь к `pandoc.exe`.
 #'
-#' Чтобы проверить, правильно ли установлен Pandoc:
+#' Чтобы проверить правильно ли установлен Pandoc, в новой R-сессии:
 #' :::
 #+ pandoc
 rmarkdown::pandoc_available()
@@ -106,6 +107,7 @@ rmarkdown::pandoc_available()
 #' 2. Запустить `conda` (На Windows попробовать WinKey+Q и начать вводить "Anaconda")
 #'
 #' 3. Последовательно выполнить команды (в среде Conda, не в среде R):
+#'
 #' :::
 #' Команда | Описание
 #' ---|---
@@ -131,61 +133,64 @@ rmarkdown::pandoc_available()
 #+ pi
 pi
 #'
-#' `r h2("Начало работы",ref="openR",opt=".scale97")`
+#' `r h2("Начало работы",ref="openR1",entry="first")`
 #'
 #' Текущий путь, где мы находимся. Здесь появятся файлы, созданные в процессе занятия.
 #+ getwd
 getwd()
 #' Его можно поменять через меню RGui/RStudio или с помощью `setwd()`.
 #'
-#' :::scale80
 #' Зафиксируем генератор псевдослучайных чисел на определенную последовательность
 #'
 #+ seed
 set.seed(353)
 sample(10)
+#'
+#' `r h2("Начало работы",ref="openR2",entry="last")`
+#'
+#' Команда для проверки кириллицы:
+#+ russian, echo=TRUE
+print(c('Здесь кириллица?'="Да!"),quote=FALSE)
+#'
+#' Если вывод не читаемый, то возможные пути решения:
+#'
+#' ::: scale80
+#' 1. Задать кириллицу для символьной локали:
 #' :::
-#' Зададим кодировку [(Для скриптов может не сработать)]{.scale70}
 #'
 #+ locale, results="hide"
 if (.Platform$OS.type=="windows")
    Sys.setlocale("LC_CTYPE","Russian")
-#+ russian, echo=TRUE
-print(c('Здесь кириллица?'="Да!"),quote=FALSE)
+#'
+#' ::: scale80
+#' 2. Если скрипты подключаются через `source()`, то можно настроить запуск R через конфигурационные файлы. Например, скачать [.Rprofile](./.Rprofile), разместить в рабочей директории, перегрузить R. Файл имеет следующую структуру:
+#' :::
+#'
+#'     local({
+#'        options(encoding="UTF-8")
+#'        Sys.setlocale("LC_CTYPE","Russian")
+#'      })
+#'
+#' ::: scale80
+#' 3. Если скрипт `bar.R` с кириллицей в кодировке UTF-8 запускается из командной строки, то использовать следующие параметры запуска.
+#' :::
+#'      R --encoding UTF-8 -f bar.R
 #'
 #' `r h1("Занятие (05&nbsp;октября)",opt=".middle",ref="openday")`
 #'
-#' `r h2("Пример",ref="volcano1",entry="first")`
+#' `r h2("R как ГИС?",ref="gis")`
 #'
-#' Пример пространственных данных в базовом R -- `data(volcano)`.
+#' + R устроен так, что можно реализовать сложные структуры данных, со средствами их инспектирования, что вполне применимо для пространственных данных и их метаданных
 #'
-#+ imgvolcano
-image(volcano)
+#' + В R есть инструменты для анализа данных
 #'
-#' `r h2("Пример",ref="volcano2",entry="last")`
+#' + В R есть инструменты для визуализации
 #'
-#' Это вулкан Maunga Whau (Mt Eden).
+#' + *Как особенность развития до текущего момента*: воспроизводимость реализована лучше интерактивности
 #'
-#+ volcano
-try(ursa::glance("Mount Eden",place="park",dpi=80))
+#' + В R уже многое сделано по манипуляции с пространственными данными: пользователю не обязательно быть разработчиком
 #'
-#' `r h2("Типы данных",ref="typeof1",entry="first")`
-#'
-#' `r h3("Матрицы")`
-#'
-#' Представление растровых данных в виде матрицы (как с `volcano`):
-#+ classvolcano
-class(volcano)
-#+ dimvolcano
-dim(volcano)
-#'
-#' Структура данных 
-#+ strvolcano
-str(volcano)
-#+ printvolcano
-volcano[1:6,1:12]
-#'
-#' `r h2("Типы данных",ref="typeof2",entry="next")`
+#' `r h2("Структуры данных",ref="typeof2",entry="first")`
 #'
 #' `r h3("Числа и имена значений")`
 #+ a1
@@ -199,7 +204,7 @@ a2
 #+ stra2
 str(a2)
 #'
-#' `r h2("Типы данных",ref="typeof3",entry="next")`
+#' `r h2("Структуры данных",ref="typeof3",entry="next")`
 #'
 #' `r h3("Целые числа, числа с плавающей точкой")`
 #+ stra2int
@@ -211,7 +216,7 @@ typeof(a2+0L)
 #+ typeofa2num
 typeof(a2+0)
 #'
-#' `r h2("Типы данных",ref="typeof4",entry="next")`
+#' `r h2("Структуры данных",ref="typeof4",entry="next")`
 #'
 #' `r h3("Логические значения, строки")`
 #+ a3
@@ -227,7 +232,7 @@ class(a4)
 #+ stra4
 str(a4)
 #'
-#' `r h2("Типы данных",ref="typeof5",entry="next")`
+#' `r h2("Структуры данных",ref="typeof5",entry="next")`
 #'
 #' `r h3("Списки одинаковой длины")`
 #+ a5
@@ -241,7 +246,7 @@ length(a5)
 #+ a5length
 sapply(a5,length)
 #'
-#' `r h2("Типы данных",ref="typeof6",entry="next")`
+#' `r h2("Структуры данных",ref="typeof6",entry="next")`
 #'
 #' `r h3("Таблицы")`
 #+ a6
@@ -253,7 +258,7 @@ class(a6)
 #+ dima6
 dim(a6)
 #'
-#' `r h2("Типы данных",ref="typeof7",entry="next")`
+#' `r h2("Структуры данных",ref="typeof7",entry="next")`
 #'
 #' `r h3("Списки различной длины")`
 #+ a7
@@ -267,7 +272,21 @@ length(a7)
 #+ a7length
 sapply(a7,length)
 #'
-#' `r h2("Типы данных",ref="typeof8",entry="next")`
+#' `r h2("Структуры данных",ref="typeof1",entry="next")`
+#'
+#' `r h3("Матрицы")`
+#'
+#+ a11
+(a11 <- matrix(sample(seq(24)),ncol=4,nrow=3))
+#' Размерность массива
+#+ dima11
+dim(a11)
+#'
+#' Структура данных массива
+#+ stra11
+str(a11)
+#'
+#' `r h2("Структуры данных",ref="typeof8",entry="next")`
 #'
 #' `r h3("Массивы")`
 #+ a8
@@ -277,7 +296,7 @@ str(a8)
 #+ classa8
 class(a8)
 #'
-#' `r h2("Типы данных",ref="typeof9",entry="last")`
+#' `r h2("Структуры данных",ref="typeof9",entry="last")`
 #'
 #' `r h3("Факторы")`
 #+ a9
@@ -294,6 +313,72 @@ str(a10)
 class(a10)
 #'
 #'
+#' `r h2("Визуализация данных",ref="visual1",entry="first")`
+#'
+#' :::scale93
+#' Базовые средства R для визуализации (библиотека `graphics`) пространственных данных:
+#'
+#' + `points()` -- отображение точек (геометрия POINT)
+#'
+#' + `lines()`, `segments()`, `contour()` -- отображение линий (геометрия LINESTRING)
+#'
+#' + `polygon()`, `polypath()` -- отображение полигонов (геометрия POLYGON)
+#'
+#' + `image()`, `rasterImage()` -- растровые изображения
+#'
+#' + `text()`, `legend()` -- аннотациии
+#' 
+#' + `axis()`, `mtext()` -- рамочное оформление
+#' :::
+#'
+#' `r h3("Пример путешествия мимо/через Спб",ref="spb1",entry="first",opt=".scale93")`
+#'
+n <- 60
+seqx <- seq(20,40,by=5)
+seqy <- seq(55,65,by=2)
+x <- sort(runif(n,min=min(seqx),max=max(seqx)))
+y <- sort(runif(n,min=min(seqy),max=max(seqy)))
+#'
+#' `r h2("Визуализация данных",ref="visual2",entry="next")`
+#'
+#' `r h3("Пример путешествия мимо/через Спб",ref="spb2",entry="next")`
+#'
+#+ spb1, fig.width=6, fig.height=4, out.height="450px",out.width="600px"
+plot(x,y,type="n",asp=NA,axes=FALSE,xlab="",ylab="")
+lines(x,y,lwd=4,col="black")
+lines(x,y,lwd=3,col="orange")
+box()
+axis(1,at=seqx,lab=paste0(seqx,"°E"),lwd=0,lwd.ticks=1,las=1)
+axis(2,at=seqy,lab=paste0(seqy,"°N"),lwd=0,lwd.ticks=1,las=1)
+#'
+#' `r h2("Визуализация данных",ref="visual3",entry="next")`
+#'
+#' `r h3("Пример путешествия мимо/через Спб",ref="spb3",entry="next")`
+#'
+#+ spb2
+e <- sf::st_sfc(sf::st_linestring(cbind(x,y)),crs=4326)
+ursa::session_grid(NULL)
+ursa::glance(e,blank="white",coast.fill="#00000010",height=320,dpi=66
+            ,col="black",plot.lwd=5)
+#'
+
+#' `r h2("Визуализация данных",ref="visual4",entry="next")`
+#'
+#' `r h3("<code>data(volcano)</code>",ref="volcano1",entry="first")`
+#'
+#+ imgvolcano
+image(volcano)
+#'
+#' `r h2("Визуализация данных",ref="visual5",entry="last")`
+#'
+#' `r h3("<code>data(volcano)</code>",ref="volcano2",entry="next")`
+#'
+#' Это вулкан Maunga Whau (Mt Eden).
+#'
+#+ glancevolcano
+try(ursa::glance("Mount Eden",place="park",dpi=83))
+
+
 #' `r h2("Манипуляции с файлами пространственных данных",ref="connection",entry="default")`
 #'
 #' Векторные данные
@@ -603,7 +688,8 @@ str(tr)
 #'
 #+ route
 ursa::session_grid(NULL)
-ursa::glance(tr,style="mapnik",legend=list("left",list("bottom",2)),las=1,dpi=96)
+ursa::glance(tr,style="mapnik"
+            ,layout=c(1,2),legend=list("left",list("bottom",2)),las=1,dpi=96)
 #'
 #' `r h2("Статическая визуализация",ref="plot2",entry="next")`
 #'
@@ -795,7 +881,7 @@ if ((rmarkdown::pandoc_available())&&(file.exists(htmlfile)))
 #'
 #' `r h3("Ведущий",ref="affiliation",opt=".slide")`
 #'
-#' - Платонов Никита Геннадьевич [&#x2709;](mailto:nikita.platonov@gmail.com) <a href='https://orcid.org/0000-0001-7196-7882'><img src='https://orcid.org/sites/default/files/images/orcid_32x32.png' style='box-shadow: none; max-height:20px;' alt='ORCID' class='inline'></a>
+#' - Платонов Никита Геннадьевич [&#x2709;](mailto:platonov@sevin.ru) <a href='https://orcid.org/0000-0001-7196-7882'><img src='https://orcid.org/sites/default/files/images/orcid_32x32.png' style='box-shadow: none; max-height:20px;' alt='ORCID' class='inline'></a>
 #'
 #' - [ИПЭЭ РАН](http://www.sev-in.ru) [-- 85 лет в 2019 г. &#127874;]{.scale80}
 #'
