@@ -6,6 +6,7 @@ if (!exists("h2"))
    h2 <- function(hdr,...) paste("##",hdr)
 if (!exists("h3"))
    h3 <- function(hdr,...) paste("###",hdr)
+baseURL <- ifelse(F,".","https://nplatonov.github.io/SCGIS2019")
  
 pkgList <- c("rgdal","sf","raster","ggplot2","leaflet","mapview","mapedit"
             ,"knitr","rmarkdown","jpeg","png","ursa")

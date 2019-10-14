@@ -1,7 +1,7 @@
 #' ---
 #' output:
-#'    html_document: default
 #'    revealjs::revealjs_presentation: default
+#'    html_document: default
 #' toc: true
 #' pagetitle: R и пространственные данные
 #' title: |
@@ -17,7 +17,7 @@
 #'  |
 #'  | Никита Платонов (ИПЭЭ РАН)
 #'  |
-#' date: "`r paste('Обновлено:',format(Sys.time(),'%Y-%m-%d %H:%M'))`"
+#' date: "`r paste('Обновлено:',format(Sys.time(),'%Y-%m-%d %H:%M'),'<br>','[pdf-версия](?print-pdf){.scale80 .pdflink .noprint}')`"
 #' abstract: Для желающих сделать первые шаги в освоении R демонстрация основ работы с интерфейсом командной строки в R, позволяющей создавать скрипты и получать воспроизводимые результаты. Узнаете, как пространственные векторные и растровые данные могут попасть в R и как они выглядят в R. Попробуете сделать обработку, анализ и визуализацию пространственных данных.
 #' ---
 
@@ -30,6 +30,7 @@ if (!exists("h2"))
    h2 <- function(hdr,...) paste("##",hdr)
 if (!exists("h3"))
    h3 <- function(hdr,...) paste("###",hdr)
+baseURL <- ifelse(F,".","https://nplatonov.github.io/SCGIS2019")
 #'
 #' `r h1("Планирование (до&nbsp;27&nbsp;сентября)",ref="intro",opt=".middle")`
 #'
@@ -116,8 +117,8 @@ rmarkdown::pandoc_available()
 #' `conda install -c conda-forge jupytext` | Установка преобразователя кода R в формат Jupyter Notebook
 #'
 #' :::scale73
-#' Предварительно скачайте [`main.R`](./main.R) или только код [`codeOnly.R`](./codeOnly.R), если будете использовать на занятии Jupyter Notebook. Если будет проблема с кодировкой, возьмите 
-#'[`codeOnly1251.R`](./codeOnly1251.R)
+#' Предварительно скачайте [`main.R`](`r baseURL`/main.R) или только код [`codeOnly.R`](`r baseURL`/codeOnly.R), если будете использовать на занятии Jupyter Notebook. Если проблема с кодировкой остается, попробуйте взять 
+#' [`codeOnly1251.R`](`r baseURL`/codeOnly1251.R)
 #' Предупреждение: описательный текст (markdown) местами не отформатирован, в частности, не будут отображаться таблицы; также не будут отображаться html-виджеты.
 #'
 #' :::
@@ -163,7 +164,7 @@ if (.Platform$OS.type=="windows")
    Sys.setlocale("LC_CTYPE","Russian")
 #'
 #' ::: scale80
-#' 2. Если скрипты подключаются через `source()`, то можно настроить запуск R через конфигурационные файлы. Например, скачать [.Rprofile](./.Rprofile), разместить в рабочей директории, перегрузить R. Файл имеет следующую структуру:
+#' 2. Если скрипты подключаются через `source()`, то можно настроить запуск R через конфигурационные файлы. Например, скачать [.Rprofile](`r baseURL`/.Rprofile), разместить в рабочей директории, перегрузить R. Файл имеет следующую структуру:
 #' :::
 #'
 #'     local({
@@ -860,7 +861,7 @@ if ((rmarkdown::pandoc_available())&&(file.exists(htmlfile)))
 #'
 #' `r h2("Дополнительная информация",ref="extra",opt=".scale65")`
 #'
-#' :::left70
+#' :::left60
 #'
 #' `r h3("Как узнать об R поглубже",ref="deeplearn")`
 #'
@@ -877,7 +878,7 @@ if ((rmarkdown::pandoc_available())&&(file.exists(htmlfile)))
 #' + Package's vignettes -- обобщенное знакомство с библиотекой. Обычно содержат воспроизводимый код.
 #'
 #' :::
-#' :::right30
+#' :::right40
 #'
 #' `r h3("Ведущий",ref="affiliation",opt=".slide")`
 #'
@@ -890,7 +891,7 @@ if ((rmarkdown::pandoc_available())&&(file.exists(htmlfile)))
 #'
 #' - [Программа изучения белого медведя в Российской Арктике](http://bear.sevin-expedition.ru)
 #' 
-#' :::{class="scale52" style="margin-top: 10em !important;"}
+#' :::{class="scale65" style="margin-top: 10em !important;"}
 #' Данные после занятия остались на диске. Если не нужны, выполнить следующее: 
 #+ clear, eval=F
 file.remove(dir(pattern=paste0(gsub("\\..+","",basename(fileout1),".*"))))
