@@ -66,7 +66,7 @@
   </locale>
   <macro name="author">
     <names variable="author">
-      <name delimiter-precedes-last="never" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+      <name delimiter-precedes-last="never" initialize-with="" name-as-sort-order="all" sort-separator=" "/>
       <label form="short" strip-periods="true" prefix=" (" suffix=")"/>
       <substitute>
         <names variable="editor"/>
@@ -125,16 +125,16 @@
       <if type="thesis">
         <group delimiter=", ">
           <text variable="genre"/>
-          <text variable="publisher"/>
           <text variable="publisher-place"/>
+          <text variable="publisher"/>
         </group>
       </if>
       <else>
         <group delimiter=". ">
           <text variable="genre"/>
           <group delimiter=": ">
-            <text variable="publisher"/>
             <text variable="publisher-place"/>
+            <text variable="publisher" suffix="."/>
           </group>
         </group>
       </else>
@@ -154,10 +154,25 @@
     </choose>
   </macro>
   <macro name="pages">
-    <group>
-      <label variable="page" form="short" suffix=". "/>
-      <text variable="page"/>
-    </group>
+    <choose>
+      <if type="article-journal article-magazine article-newspaper review review-book" match="any">
+        <text variable="page" prefix=":"/>
+      </if>
+      <else-if type="book" match="any">
+        <text variable="number-of-pages" prefix=" "/>
+        <choose>
+          <if is-numeric="number-of-pages">
+            <label variable="number-of-pages" form="short" prefix=" " plural="never"/>
+          </if>
+        </choose>
+      </else-if>
+      <else>
+        <group prefix=" " delimiter=" ">
+          <label variable="page" form="short" plural="never"/>
+          <text variable="page"/>
+        </group>
+      </else>
+    </choose>
   </macro>
   <macro name="date-access-num">
     <date variable="accessed" prefix="" suffix="">
@@ -182,8 +197,17 @@
   <macro name="note">
     <text variable="note" prefix="" suffix="." />
   </macro>
+  <macro name="DOI_keep">
+    <text variable="DOI" prefix=" doi:" suffix=". " />
+  </macro>
+  <macro name="ISBN_keep">
+    <text variable="ISBN" prefix=" isbn:" suffix=". " />
+  </macro>
   <macro name="DOI">
-    <text variable="DOI" prefix="doi:" suffix=". " />
+    <text variable="DOI" prefix=" " suffix=". " />
+  </macro>
+  <macro name="ISBN">
+    <text variable="ISBN" prefix=" " suffix=". " />
   </macro>
   <macro name="event">
     <choose>
@@ -239,7 +263,7 @@
   </macro>
   <macro name="locators">
     <choose>
-      <if type="article-journal article-magazine" match="any">
+      <if type="article-journal article-magazine paper-conference" match="any">
         <group prefix=" " delimiter=": ">
           <group>
             <text variable="volume"/>
@@ -269,7 +293,7 @@
   <macro name="access">
     <choose>
       <if match="any" variable="DOI">
-        <text variable="DOI" prefix="doi:" suffix=". " />
+        <text macro="DOI"/>
       </if>
       <else-if match="any" variable="URL">
         <text variable="URL" prefix=" " suffix=""/>
@@ -282,7 +306,7 @@
     </choose>
     <choose>
       <if type="book chapter paper-conference" match="any">
-        <text variable="ISBN" prefix=" ISBN: " suffix=". "/>
+        <text macro="ISBN"/>
       </if>
     </choose>
   </macro>
@@ -312,9 +336,10 @@
           <group delimiter=" " prefix=" ">
             <text macro="title" suffix="."/>
             <text macro="edition"/>
-            <text macro="editor"/>
+            <text macro="editor" suffix=". " />
           </group>
           <text macro="publisher" prefix=" " suffix=". "/>
+          <text macro="pages" suffix=". "/>
         </if>
         <else-if type="chapter paper-conference entry-encyclopedia entry-dictionary" match="any">
           <text macro="title" prefix=" " suffix="."/>
@@ -326,6 +351,7 @@
             <group delimiter=", ">
               <text macro="publisher"/>
 	      <text variable="chapter-number" prefix="Ch." suffix=""/>
+              <text variable="volume" prefix="Vol. " suffix="" />
               <text macro="pages" suffix=". "/>
             </group>
           </group>

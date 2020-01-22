@@ -14,7 +14,7 @@ div.abstract{
   width: 75%;
   font-size: 90%  !important;
   color: #444;
-  padding: 1em 0 1em 0;
+  padding: 1em 0 0.01em 0;
 }
 .abstract > .line-block > br {
    margin-bottom: 0.25em;
@@ -39,7 +39,7 @@ body {
   padding-bottom: 0.01em;
   color: #222;
  /* Verdana, Tahoma и Segoe UI (никакого Arial и Calibri!) */  /* "Georgia", "Garamond" */
-  font-family: "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Verdana, sans-serif;
+  font-family: "zzzLato", "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Verdana, sans-serif;
  /* font-family: sans-serif;*/
   font-size: 11pt;
   line-height: 1.30;
@@ -47,11 +47,11 @@ body {
   font-weight: normal; /* normal bold */
   font-style: normal; /* normal italic oblique */
   word-wrap: break-word;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 1px 6px rgba(0,0,0,0.23)
 }
 #header {
   text-align: left;
 }
-
 #TOC {
   clear: both;
   margin: 12px 0 10px 10px;
@@ -59,7 +59,6 @@ body {
  /* width: 600px;*/
   border: 1px solid #ddd;
   border-radius: 5px;
-
   background-color: #f9f9f9;
   font-size: 13px;
   line-height: 1.30;
@@ -88,10 +87,66 @@ body {
   margin-top: 1px;
   margin-bottom: 1px;
 }
+#TOC li > ul > li > ul > li {
+  margin-top: 0px;
+  margin-bottom: -2px;
+}
+#TOC li > ul > li > ul > li:first-child {
+  margin-top: -2px;
+}
+#TOC li > ul > li > ul > li:last-child {
+  margin-bottom: -3px;
+}
 
 #TOC li a[href^="#ZZZsection"] {
    display: none;
 }
+/* collapse -- begin */
+@media only screen and (min-width: 930px) {
+   #TOC {
+      display: block;
+      position: fixed;
+      left: 0em;
+      top: 0em;
+      opacity: 0.6;
+      width: 12pt;
+      height: 22pt;
+      font-size: 0pt;
+      color: transparent;
+   }
+   #TOC:before {
+      color: #444;
+      font-size: 16pt;
+      content: '\1F5CF';
+   }
+   #TOC:hover:before {
+      content: '';
+   }
+   #TOC:hover {
+      font-size: 13px;
+      color: unset;
+      width: unset;
+      max-width: 400px;
+      height: unset;
+      opacity: 1.0;
+   }
+   /* collapse -- end */
+}
+/*
+#TOC {
+   position: fixed;
+   top: 0%;
+   left: 10%;
+   max-width: 100px;
+   margin-top: 30px;
+   margin-bottom: 30px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   text-shadow: 0 1px 0 #fff;
+   background-color: #f7f5fa;
+   border-radius: 5px;
+}
+*/
 table {
   margin: 1em auto;
   border-width: 1px; /* 1px */
@@ -133,7 +188,7 @@ table {
   word-wrap: normal;
   word-break: normal;
 }
-table.scroll {
+table.scroll, table[scroll] {
   display: block;
 }
 /*
@@ -163,6 +218,11 @@ tbody td:hover {
 tbody tr:hover {
   background-color: #b0d1eb30;
 }
+/*
+table td code {
+   font-size: 91% !important;
+}
+*/
 Ztable:not(.dataTable) {
   padding: 0 259px !important;
 }
@@ -223,16 +283,16 @@ blockquote::before {
     content: open-quote;
     font-size: 200%;
     position: absolute;
-    left: 0.0em; /* 1:0.0em 2:0.5em */
-    top: -0.5em; /* 1:-0.25em 2:-0.0em */
+    left: 0.0em; /# 1:0.0em 2:0.5em #/
+    top: -0.5em; /# 1:-0.25em 2:-0.0em #/
 }
 blockquote::after {
     color: #bbb;
     content: close-quote;
     font-size: 200%;
     position: absolute;
-    right: 0.0em; /* 1:0.0em 2:0.5em */
-    bottom: -0.85em; /* 1:-0.55em 2:-0.5em */
+    right: 0.0em; /# 1:0.0em 2:0.5em #/
+    bottom: -0.85em; /# 1:-0.55em 2:-0.5em #/
 }
 */
 /*
@@ -279,8 +339,7 @@ ul ul ul {
   list-style-type: '• ';
 }
 ul ul ul ul {
-  list-style-type: '\2023 ';  /* '<U+2023> '; */
-  
+  list-style-type: '\2023  ';  /* '<U+2023> '; */
 }
 ul ul {
   margin-bottom: 0;
@@ -428,7 +487,7 @@ embed {
   /* height: auto !important;*/
    border: 1px dashed #eee;
 }
-iframe {
+.figure iframe {
    border: 1px dashed #eee; /* #eee */
 }
 /* it works
@@ -473,6 +532,7 @@ zzzimg:only-of-type {
 }
 .leaflet img {
   box-shadow: none;
+  background-color: unset;
 }
 .leaflet .leaflet-control-layers, .legend.leaflet-control {
    text-align: left;
@@ -685,6 +745,9 @@ h6 {
   font-size: 105%;
   font-weight: 600;
 }
+h1:only-child {
+  margin-bottom: 0.4em;
+}
 
 a {
   color: #084999;
@@ -725,6 +788,7 @@ code > span.fu { color: #900; font-weight: 600; } /* Function calls */
 code > span.er { color: #a61717; background-color: #e3d2d2; } /* ErrorTok */
 
 code span.co { color: #aaa; font-style: normal; } /* Comment */
+code span.kw { font-weight: 600; } /* Keyword */
 
 .underline {
    text-decoration: underline;
@@ -735,8 +799,11 @@ code span.co { color: #aaa; font-style: normal; } /* Comment */
 .justify {
   text-align: justify;
 }
-.zzzcitation:hover {
-   color: #008000;
+.citation {
+   color: #282;
+}
+.citation:hover {
+   color: unset;
 }
 strong {
   font-weight: 600; /* normal bold */
@@ -892,7 +959,7 @@ sup, sub {
    font-size: 71%;
    margin-left: 0.15em;
 }
-.dontprint {display: none;}
+.dontprint, .onlyreveal {display: none;}
 .crayon* {
   color: orange !important;
 }
@@ -943,7 +1010,8 @@ span.note::after, span.comment::after {
    margin-top: 0.2em;
    margin-bottom: 0.4em;
 }
-.adopted {
+.adopted { /* :after */
+  /* content: 'Origin/Источник'*/
    position: relative;
    font-weight: normal;
    font-style: normal;
@@ -953,11 +1021,27 @@ span.note::after, span.comment::after {
 .plotly .modebar-btn {
    opacity: 0.3;
 }
+.indent {padding-left:1em;}
+.indent1, .tab1 {padding-left:1em;}
+.indent2, .tab2 {padding-left:2em;}
+.indent3, .tab3 {padding-left:3em;}
+.indent4, .tab4 {padding-left:4em;}
+.indent5, .tab5 {padding-left:5em;}
+@media only screen and (max-width: 790px) {
+   table {
+     display: block;
+   }
+}
 @media only screen and (max-width: 640px) {
    .leaflet, .plotly, .highchart, .rbokeh {
       width: 100% !important; /* 92vw 100% */
       height: 70vw !important;
      /* border: 5px solid gold;*/
+   }
+   .figure iframe {
+     /* max-width: 190vw;*/
+      width: 100% !important;
+      max-height: 100vw !important;
    }
   /*
    .Zplotly, .Zhighchart, .html-widget, .svg-container {
@@ -982,9 +1066,12 @@ span.note::after, span.comment::after {
        display: none;
    }
 }
-@media only screen and (max-width: 1190px) {
-   .decoration {
+@media only screen and (max-width: 930px) {
+   .decoration, #zzzTOC {
        display: none !important;
+   }
+   #zzzTOC {
+      position: absolute;
    }
 }
 /*
@@ -1010,10 +1097,11 @@ span.note::after, span.comment::after {
    }
    body {
       max-width: 9999px;
-      font-family: "Georgia", "Times New Roman", Times, serif;
+      font-family: "Georgia", "Cambria", "Times New Roman", Times, serif;
       font-size: 12pt; 
-      line-height: 1.60;
+      line-height: 1.50;
       color: initial !important;
+      box-shadow: none;
    }
    pre, code {
      font-family: 'Courier New', monospace;
@@ -1065,6 +1153,11 @@ span.note::after, span.comment::after {
       font-variant: normal;
       padding-bottom: 0.2em;
    }
+  /*
+   h2 + p {
+      page-break-before: avoid !important;
+   }
+  */
    .references {
       padding-left: 0cm !important;
       text-indent: 0cm !important;
@@ -1141,9 +1234,9 @@ span.note::after, span.comment::after {
    {
       float: none !important;
       text-indent: 0 !important;
-      margin-left: -1.25cm !important;
+      margin-left: 0cm !important; /* -1.25cm 0cm */
       margin-top: 0.2em !important;
-      max-width: 16.5cm;
+      max-width: 14.5cm; /* 16.5cm 15.25cm */
    }
    img[width], img[alt] {
       margin-left: -1.25cm; /* -1.25cm; 0cm for .figure*/
@@ -1168,13 +1261,13 @@ span.note::after, span.comment::after {
       display: none !important;
    }
    h1 {
-      font-size: 19pt;
+      font-size: 20pt;
    }
    h2 {
-      font-size: 17pt;
+      font-size: 18pt;
    }
    h3 {
-      font-size: 15pt;
+      font-size: 16pt;
    }
    h4 {
       font-size: 14pt;
@@ -1183,6 +1276,7 @@ span.note::after, span.comment::after {
       font-size: 13pt;
    }
    h1.title { /* expanded h1 */
+      font-size: 24pt;
       margin-top: 0em;
    }
    h3.subtitle { /* expanded h2 */
@@ -1274,6 +1368,9 @@ span.note::after, span.comment::after {
    li > .math {
       margin-left: 0px;
    }
+   .math {
+      padding-top: 2px !important;
+   }
    nav, aside {
       display: none;
    }
@@ -1315,6 +1412,7 @@ span.note::after, span.comment::after {
    a[role="doc-biblioref"]:after,
    a[class="email"]:after,
    .references a[href^="http"]:after,
+   .references a[href^="ftp"]:after,
   /* .footnotes a[href^="http"]:after,*/
    .footnotes a[href^="mailto"]:after,
    a[class="footnote-ref"]:after,
@@ -1323,7 +1421,7 @@ span.note::after, span.comment::after {
    a[href^="#"]:after, /* uncomment for release */
    #TOC a[href^="http"]:after {
       text-decoration: none;
-      content: ' ' attr(title);
+      content: '' attr(title);
    }
    a[role="button"]:after,
    .leaflet-control a:after {
@@ -1396,7 +1494,7 @@ span.note::after, span.comment::after {
       right: -0.1em;
       bottom: -0.6em;
    }
-   .footnotes {
+   .footnotes, .adopted {
       font-size: 75% !important;
    }
    .zzzplotly, {
@@ -1434,15 +1532,15 @@ span.note::after, span.comment::after {
 }
 /* https://stackoverflow.com/questions/47575563/conditional-css-rule-targeting-firefox-quantum */
 @media print {
-   @supports (-moz-appearance:none) or (-ms-ime-align: auto) { /* Firefox or Edge */
+   @supports (-moz-appearance: none) or (-ms-ime-align: auto) { /* Firefox or Edge */
       .footnote-back {
          display: none;
       }
       #TOC {
          display: none;  /* put '[]{.pagebreak}' instead */
       }
-      a, a:visited {
-        color: inherit;
+      a, a:visited { /* a:not[code] */
+        color: inherit !important;
         text-decoration: underline dotted #909090;
       }
    }

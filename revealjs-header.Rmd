@@ -1,12 +1,15 @@
 ```{r setup, echo=FALSE, include=FALSE}
 filetype <- knitr::opts_knit$get("rmarkdown.pandoc.to")[1] ## "revealjs" "html"
+isRevealjs <- filetype %in% "revealjs"
 # rendertyoe <- rmarkdown::default_output_format(knitr::current_input())$name
 rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
 #knitr::opts_chunk$set(collapse=FALSE,prompt=FALSE,comment=""
 #                     ,cache=TRUE
 #                     ,echo=FALSE,fig.align="center"
 #                     )
-'h1' <- function(lab,ref="",background="",subtitle=TRUE,opt="") {
+'h1' <- function(lab,ref="",center=FALSE,background="",subtitle=TRUE,opt="",eval=TRUE) {
+   if (!eval)
+      return("")
    subtitle <- FALSE
    if (!nchar(background))
       background <- paste0(ursa::cubehelix(1,dark=61,light=61,hue=1.5),"B0")
@@ -14,7 +17,7 @@ rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
       ref <- basename(tempfile(pattern="",fileext=""))
       ref <- paste0("ref",substr(ref,nchar(ref)-3L,nchar(ref)))
    }
-   res <- paste0("# ",lab," {#",ref)
+   res <- paste0("# ",lab," {",ifelse(center,".center "," "),"#",ref)
    if (nchar(background)) {
       if (!length(grep("^http",background)))
          res <- paste0(res," data-background-color=",background)
@@ -22,6 +25,8 @@ rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
          res <- paste0(res," data-background-image=",background)
      # res <- paste0(res," style=\"background:transparent;\"")
    }
+   if (T)
+      res <- paste0(res," data-background-video=https://nplatonov.github.io/transition-dong.mp3")
    if (nchar(opt))
       res <- paste0(res," ",opt)
    res <- paste0(res,"}")
@@ -38,8 +43,33 @@ rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
    res
 }
 'h2' <- function(lab,entry=c("default","first","next","last"),ref=""
-                ,background="",opt="",force=FALSE) {
+                ,center=F,background="",opt="",force=FALSE,eval=TRUE) {
+   if (!eval)
+      return("")
    mode <- match.arg(entry)
+   if (missing(lab)) {
+      lab <- getOption("ongoingH2label")
+      if (mode %in% c("default"))
+         mode <- "next"
+      if (!nchar(ref))
+         ref <- getOption("ongoingH2ref")
+      if (is.null(ref))
+         ref <- ""
+      else {
+         patt <- "(.*\\D)(\\d+)$"
+         n <- gsub(patt,"\\2",ref)
+         if (n==ref)
+            n <- 2L
+         else
+            n <- as.integer(n)+1L
+         ref <- paste0(gsub(patt,"\\1",ref),n)
+      }
+   }
+   else {
+      options(ongoingH2label=lab)
+     # if (mode %in% c("default"))
+     #    mode <- "first"
+   }
    if ((filetype %in% c("html"))&&(!force)&&(mode %in% c("next","last")))
       return("")
    transition <- switch(mode
@@ -54,12 +84,15 @@ rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
       ref <- basename(tempfile(pattern="",fileext=""))
       ref <- paste0("ref",substr(ref,nchar(ref)-3L,nchar(ref)))
    }
-   res <- paste0("## ",lab," {#",ref)
+   options(ongoingH2ref=ref)
+   res <- paste0("## ",lab," {",ifelse(center,".center","")," #",ref)
    res <- paste0(res," data-transition=",dQuote(transition))
    if (nchar(background)) {
      # if (!length(grep("^http",background)))
       res <- paste0(res," data-background=",background)
    }
+   if (T)
+      res <- paste0(res," data-background-video=https://nplatonov.github.io/transition-ding.mp3")
    if (nchar(opt))
       res <- paste0(res," ",opt)
    res <- paste0(res,"}")

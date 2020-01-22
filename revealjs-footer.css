@@ -27,40 +27,51 @@
 .reveal h3 { font-size: 1.25em}
 .reveal h2+h3 {margin-top: -0.1em;}
 .reveal h4 { font-size: 1.1em;}
-.reveal .title { font-size: 2.0em; line-height: 1.0em;}
-.reveal .subtitle {font-size: 1.0em; line-height: 1.0em; padding-top: 2.4em;}
+.reveal .title { font-size: 2.0em; line-height: 1.1;}
+.reveal .subtitle {font-size: 1.5em; line-height: 1.1; padding-top: 0.4em;}
+.reveal .title, .reveal .subtitle { text-transform: none;}
 .reveal .proposal { font-size: 0.57em}
 .reveal .author {
-   font-size: 1.10em;
+   font-size: 1.2em;
+   line-height: 0.9 !important;
    padding: 0.8em 1.2em 0.8em 1.2em;
 }
-.reveal .institute {
-   font-size: 0.9em;
+.reveal .author * .affiliation, .reveal .author > .affiliation {
+   font-size: 0.75em;
+   line-height: 0.9 !important;
 }
 .reveal .date {
    font-size: 0.75em;
 }
 .reveal section.slide > h1 {
-   font-size: 3.2em;
+   font-size: 2.4em;
    line-height: 1em;
    padding-bottom: 0.1em;
   /* color: white; */
   /* text-shadow: 0.05em 0.05em 0.06em #000;*/
    margin-top: -40px;
+   text-shadow: 2px 2px 4px #444;
+}
+.reveal section.slide.center > h1 {
+   font-size: 3.2em;
+   text-shadow: none;
 }
 .reveal section.slide > h2 {
    font-size: 1.6em !important;
    line-height: 1em;
    margin-bottom: 0.3em;
+   color: #7B5A85;
+   text-shadow: 1px 1px 3px #aaa;
   /*
    margin-left: -0.8em;	
    margin-right: -0.8em;
   */
 }
 .reveal section.slide > h3 {
-   font-size: 1.35em !important;
+   font-size: 1.3em !important;
    line-height: 1em;
    margin-bottom: 0.3em;
+   text-shadow: 1px 1px 2px #aaa;
 }
 .reveal section.slide.has-dark-background > h1 {
    color: #e0e0d0;
@@ -104,7 +115,9 @@
 .reveal .controls .enabled:hover {opacity: 0.2;}
 .reveal .thankyou {font-size: 2.0em;}
 .reveal .scale200 {font-size: 200%;}
+.reveal .scale190 {font-size: 190%;}
 .reveal .scale180 {font-size: 180%;}
+.reveal .scale170 {font-size: 170%;}
 .reveal .scale160 {font-size: 160%;}
 .reveal .scale150 {font-size: 150%;}
 .reveal .scale140 {font-size: 140%;}
@@ -142,7 +155,15 @@
 .reveal .scale72 {font-size: 72%;}
 .reveal .scale71 {font-size: 71%;}
 .reveal .scale70 {font-size: 70%;}
+.reveal .scale69 {font-size: 69%;}
+.reveal .scale68 {font-size: 68%;}
+.reveal .scale67 {font-size: 67%;}
+.reveal .scale66 {font-size: 66%;}
 .reveal .scale65 {font-size: 65%;}
+.reveal .scale64 {font-size: 64%;}
+.reveal .scale63 {font-size: 63%;}
+.reveal .scale62 {font-size: 62%;}
+.reveal .scale61 {font-size: 61%;}
 .reveal .scale60 {font-size: 60%;} /*line-height: 0.9em;}*/
 .reveal .scale59 {font-size: 59%;}
 .reveal .scale58 {font-size: 58%;}
@@ -220,30 +241,44 @@
 .reveal .line70 {line-height: 7.0;}
 .reveal .line80 {line-height: 8.0;}
 
-.left20, .left30, .left40, .left50, .left60, .left70, .left80 {
-  left:-8.33%;
+.reveal .left20,
+.reveal .left30,
+.reveal .left40,
+.reveal .left50,
+.reveal .left60,
+.reveal .left70,
+.reveal .left80 {
+  display: block;
+  left: -3.33%; /* -8.33% */
   text-align: left;
   float: left;
   z-index: -10;
-  padding-right: 4em;
+  padding-right: 0.5em;
 }
-.right20, .right30, .right40, .right50, .right60, .right70, .right80 {
-  left:31.25%;
-  top: 75px;
+.reveal .right20,
+.reveal .right30,
+.reveal .right40,
+.reveal .right50,
+.reveal .right60,
+.reveal .right70,
+.reveal .right80 {
+  left: 1.25%; /* 31.25% */
+ /* top: 75px;*/
   float: left;
   text-align: left;
   z-index: -10;
+  padding-left: 0.5em;
 }
-.left20, .right20 {width: 19.5%}
-.left30, .right30 {width: 29.5%}
-.left40, .right40 {width: 39.5%}
-.left50, .right50 {width: 49.5%}
-.left60, .right60 {width: 59.5%}
-.left70, .right70 {width: 69.5%}
-.left80, .right80 {width: 79.5%}
+.reveal .left20, .reveal .right20 {width: 18%}
+.reveal .left30, .reveal .right30 {width: 28%}
+.reveal .left40, .reveal .right40 {width: 38%}
+.reveal .left50, .reveal .right50 {width: 48%}
+.reveal .left60, .reveal .right60 {width: 58%}
+.reveal .left70, .reveal .right70 {width: 68%}
+.reveal .left80, .reveal .right80 {width: 78%}
 
 .reveal section img {
-   margin: 0;
+   margin: 0.3em 0;
    padding: 0;
    border: 0px solid #000;
    background: rgba(255, 255, 255, 0.1);
@@ -255,10 +290,15 @@
 .reveal section img.leaflet-tile {
    box-shadow: none;
 }
-.reveal img.inline {
+.reveal section img.inline {
    margin: 0.1em;
    padding: 0.1em;
    margin-bottom: -0.2em;
+   background-color: transparent;
+   box-shadow: none;
+}
+.reveal section img.inline:hover {
+   background-color: transparent;
 }
 .Zreveal table td { /* DOESNT WORK */
    border-width: 3px;
@@ -283,7 +323,7 @@
       margin-bottom: 2pt;
    }
    html, body {
-      width: 167mm;
+      width: 167mm; /* 167mm */
       height: 297mm;
    }
 }
@@ -298,6 +338,11 @@
 .print-pdf .reveal .slide {
    font-family: "Georgia", serif !important;
 }
+/*
+.print-pdf .reveal .title {
+   margin-top: -10cm !important;
+}
+*/
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6,
 .reveal .slide {
    font-family: "Segoe UI", sans-serif !important;
@@ -378,7 +423,9 @@
 .print-pdf .reveal .slide-backgrond .stack {
 }
 */
+/*
 .print-pdf .reveal iframe {display: none !important;}
+*/
 .print-pdf .reveal .dontprint {display: none !important;}
 
 .print-pdf .reveal section.slide > h1, .print-pdf .reveal section.slide > h2 {
@@ -391,7 +438,7 @@
 .print-pdf .reveal .pdflink {
    display: none;
 }
-.reveal .comment, .reveal .note {
+.reveal .comment, .reveal .note, .reveal .onlyhtml {
    display: none;
 }
 .reveal .figure {
@@ -410,7 +457,7 @@
    height: 1.2em !important; 
    margin-bottom: -3px;
 }
-.reveal Zul+h3 {
+.reveal ul+h3 {
    margin-top: 0.5em;
 }
 
@@ -422,7 +469,7 @@
    border: 1px solid magenta;
   */
 }
-.reveal ul ul{
+.reveal ul ul {
    margin-top: -0.2em;
    margin-bottom: -0.2em;
 }
@@ -471,6 +518,10 @@
   /* height: auto !important;*/
    border: 1px dashed #eee;
 }
+.print-pdf .reveal .html-widget:not(.datatables) {
+   margin-left: -0.3cm;
+}
+
 .reveal .leaflet-control-container {
    font-size: 80% !important;
 }
@@ -489,3 +540,10 @@
 .reveal .leaflet-popup-content, .reveal .leaflet-tooltip {
    font-size: 80% !important;
 }
+.reveal sup, .reveal sub {font-size: 70%;}
+.reveal .indent {padding-left:1em;}
+.reveal .indent1, .reveal .tab1 {padding-left:1em;}
+.reveal .indent2, .reveal .tab2 {padding-left:2em;}
+.reveal .indent3, .reveal .tab3 {padding-left:3em;}
+.reveal .indent4, .reveal .tab4 {padding-left:4em;}
+.reveal .indent5, .reveal .tab5 {padding-left:5em;}
