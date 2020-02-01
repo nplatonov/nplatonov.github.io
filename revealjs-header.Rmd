@@ -1,5 +1,6 @@
 ```{r setup, echo=FALSE, include=FALSE}
 filetype <- knitr::opts_knit$get("rmarkdown.pandoc.to")[1] ## "revealjs" "html"
+sound <- T
 isRevealjs <- filetype %in% "revealjs"
 # rendertyoe <- rmarkdown::default_output_format(knitr::current_input())$name
 rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
@@ -19,13 +20,13 @@ rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
    }
    res <- paste0("# ",lab," {",ifelse(center,".center "," "),"#",ref)
    if (nchar(background)) {
-      if (!length(grep("^http",background)))
+      if (!length(grep("(^(http|file)|\\.(jpg|png|gif)$)",background)))
          res <- paste0(res," data-background-color=",background)
       else
          res <- paste0(res," data-background-image=",background)
      # res <- paste0(res," style=\"background:transparent;\"")
    }
-   if (T)
+   if (sound)
       res <- paste0(res," data-background-video=https://nplatonov.github.io/transition-dong.mp3")
    if (nchar(opt))
       res <- paste0(res," ",opt)
@@ -91,7 +92,7 @@ rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
      # if (!length(grep("^http",background)))
       res <- paste0(res," data-background=",background)
    }
-   if (T)
+   if (sound)
       res <- paste0(res," data-background-video=https://nplatonov.github.io/transition-ding.mp3")
    if (nchar(opt))
       res <- paste0(res," ",opt)

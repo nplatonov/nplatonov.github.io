@@ -30,7 +30,7 @@ html {
 }
 body {
   background-color: #fff;
-  margin: 1em auto;
+  margin: 1em auto 1em auto;
   max-width: 790px;
   overflow: auto; /* visible auto */
   padding-left: 1em;
@@ -102,7 +102,24 @@ body {
    display: none;
 }
 /* collapse -- begin */
-@media only screen and (min-width: 930px) {
+@media only screen and (min-width: 1360px) {
+   .zzztitle,.zzzsubtitle {
+      max-width: 17.5vw;
+      display: block;
+      position: fixed;
+      left: 0em;
+   }
+   #TOC {
+      display: block;
+      position: fixed;
+      left: 0em;
+      top: 0em;
+      font-size: 13px;
+      max-width: 17.6vw;
+      height: unset;
+   }
+}
+@media only screen and (min-width: 930px) and (max-width: 1360px) {
    #TOC {
       display: block;
       position: fixed;
@@ -261,7 +278,7 @@ p {
   border-radius: 3px;
  */
 }
-blockquote {
+blockquote, .blockquote {
    padding-left: 0.5em;
    padding-right: 0.5em;
    margin: 0px 0px 0px 0px;
@@ -316,16 +333,6 @@ hr {
   border-width: 1px;
   border-bottom: none;
 }
-dl {
-  margin-left: 0;
-}
-dl dd {
-  margin-bottom: 13px;
-  margin-left: 13px;
-}
-dl dt {
-  font-weight: 600;
-}
 ul, ol {
   margin: 0.7em 0em 0.7em -1em; /* +top -right bottom +left */
 }
@@ -352,9 +359,13 @@ dl {
 }
 dl dt {
     font-weight: 600;
+    margin-bottom: 0.1em;
 }
 dl dd {
-    margin: 0em 0em 0.6em 1em;
+    margin: 0em 0em 0.2em 1em;
+}
+dl > dd:first-child {
+    color: red !important;
 }
 pre, code {
   font-size: 100% !important; /* 105% */
@@ -568,7 +579,7 @@ Zp img:only-of-type {
 
  /* border-bottom: 6px solid #fafafa;*/
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, .definition {
   text-align: left;
   font-weight: normal;
   font-variant: normal; /* normal|small-caps|initial|inherit; */
@@ -715,7 +726,7 @@ h2 {
   line-height: 1.10 !important;
 }
 
-h3 {
+h3, .definition {
   margin: 18px 0px 0px 0px;
  /* padding-left: 10px;*/
   border-width: 0 5px 0 0;
@@ -959,7 +970,7 @@ sup, sub {
    font-size: 71%;
    margin-left: 0.15em;
 }
-.dontprint, .onlyreveal {display: none;}
+.dontprint, .onlyreveal, .revealonly, .hidden {display: none;}
 .crayon* {
   color: orange !important;
 }
@@ -983,10 +994,10 @@ br + .math.display {
 .pdflink {
    display: none;
 }
-.note, .note {
+.note, .comment {
    font-size: 92%;
    margin-top: 0.6em;
-   margin-bottom: 0.2em;
+   margin-bottom: 0.6em;
 }
 div.note, div.comment {
    margin-left: 0.8em;
@@ -996,6 +1007,9 @@ div.note, div.comment {
    border: 1px solid #d5f0ff;
    border-left: 7px solid #d5f0ff;
    border-radius: 5px;
+}
+figure + .note {
+   color: red !important;
 }
 span.note, span.comment {
    color: #666;
@@ -1027,6 +1041,26 @@ span.note::after, span.comment::after {
 .indent3, .tab3 {padding-left:3em;}
 .indent4, .tab4 {padding-left:4em;}
 .indent5, .tab5 {padding-left:5em;}
+.tooltip {
+ /* position: relative; */
+ /* display: inline-block; */
+  border-bottom: 1px dotted #666;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #444b;
+  color: #fff;
+  text-align: center;
+  padding: 3px 0;
+  font-size: 85%;
+  border-radius: 3px;
+  position: absolute;
+  z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 @media only screen and (max-width: 790px) {
    table {
      display: block;
@@ -1140,13 +1174,13 @@ span.note::after, span.comment::after {
       text-indent: -0.75cm;
       padding-left: 0.75cm;
    }
-   h1~p, h2~p, h3~p, h4~p, h5~p, h6~p {
+   h1~p, h2~p, h3~p, h4~p, h5~p, h6~p, .definition~p {
       text-indent: 1.25cm !important; /* 1.25cm */
    }
    widows, orphans {
       p: 3;
    }
-   h1, h2, h3, h4, h5 {
+   h1, h2, h3, h4, h5, .definition {
       color: inherit;
       font-weight: normal;
       page-break-after: avoid;
@@ -1266,7 +1300,7 @@ span.note::after, span.comment::after {
    h2 {
       font-size: 18pt;
    }
-   h3 {
+   h3, .definition {
       font-size: 16pt;
    }
    h4 {
@@ -1473,24 +1507,24 @@ span.note::after, span.comment::after {
    table.table tbody tr:first-of-type { /* patch for kableExtra's `fixed_thead` */
       border-top-style: none !important;
    }
-   blockquote {
+   blockquote, .blockquote {
       padding-top: 0.25em;
       padding-bottom: 0.25em;
       margin-left:  0.45em !important;
       margin-right: 0.45em !important;
    }
-   blockquote > p {
+   blockquote > p, .blockquote > p {
       text-indent: 0;
       padding-top: 0.1em;
       padding-bottom: 0.1em;
       font-size: 95%;
       text-indent: 0.8em; /*first line only*/
    }
-   blockquote::before {
+   blockquote::before, .blockquote::before {
       left: -0.1em;
       top: -0.25em;
    }
-   blockquote::after {
+   blockquote::after, .blockquote::after {
       right: -0.1em;
       bottom: -0.6em;
    }
@@ -1529,6 +1563,15 @@ span.note::after, span.comment::after {
    .table60 thead, .table60 tbody {font-size: 60% !important;}
    .table55 thead, .table55 tbody {font-size: 55% !important;}
    .table50 thead, .table50 tbody {font-size: 50% !important;}
+   .tooltip .tooltiptext {
+      visibility: visible;
+      position: absolute;
+      width: unset;
+      margin: -0.6em 0 0 0;
+      text-align: left;
+      border: none;
+      padding: unset;
+   }
 }
 /* https://stackoverflow.com/questions/47575563/conditional-css-rule-targeting-firefox-quantum */
 @media print {
