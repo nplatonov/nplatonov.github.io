@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Photo minutes</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="minutes_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="minutes_files/reveal.js-3.3.0.1/css/theme/serif.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="file:\\\C:\platt\R\style\revealjs-footer.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level2">
+
+<!--
+
+
+
+
+
+
+--->
+</section>
+<section id="section" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0005.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-1" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0005.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-2" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0004.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-3" class="title-slide slide level1" data-background-image="minutes/IMG-20200131-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-4" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0008.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-5" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-6" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0009.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-7" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0009.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-8" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0007.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-9" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0007.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-10" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0007.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-11" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0009.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-12" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-13" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-14" class="title-slide slide level1" data-background-image="minutes/IMG-20200131-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-15" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0003.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-16" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0010.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-17" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0005.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-18" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0001.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-19" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0005.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-20" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-21" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-22" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-23" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0009.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-24" class="title-slide slide level1" data-background-image="minutes/IMG-20200131-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-25" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0010.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-26" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0011.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-27" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0008.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-28" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0009.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-29" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0008.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-30" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-31" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0007.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-32" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-33" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0011.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-34" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0005.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-35" class="title-slide slide level1" data-background-image="minutes/IMG-20200131-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-36" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0008.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-37" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-38" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0003.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-39" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0009.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-40" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0005.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-41" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-42" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0010.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-43" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0001.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-44" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-45" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0000.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-46" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-47" class="title-slide slide level1" data-background-image="minutes/IMG-20200131-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-48" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0009.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-49" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0005.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-50" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0005.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-51" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0010.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-52" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0000.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-53" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0007.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-54" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0000.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-55" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0008.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-56" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-57" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0008.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-58" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0001.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-59" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0003.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-60" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0004.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-61" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0011.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-62" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0008.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-63" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-64" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0009.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-65" class="title-slide slide level1" data-background-image="minutes/IMG-20200131-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-66" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0000.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-67" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0009.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-68" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0004.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-69" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0001.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-70" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0007.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-71" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0011.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-72" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0005.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-73" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-74" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0011.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-75" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0007.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-76" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0008.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-77" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0005.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-78" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0008.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-79" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0011.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-80" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-81" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0007.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-82" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0010.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-83" class="title-slide slide level1" data-background-image="minutes/IMG-20200131-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-84" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0008.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-85" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-86" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-87" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-88" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-89" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0007.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-90" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0011.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-91" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0002.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-92" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0006.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-93" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0001.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-94" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0010.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-95" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0008.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-96" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0010.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-97" class="title-slide slide level1" data-background-image="minutes/IMG-20200202-WA0005.jpg" data-background-size="contain"><h1></h1></section>
+<section id="section-98" class="title-slide slide level1" data-background-image="minutes/IMG-20200201-WA0007.jpg" data-background-size="contain"><h1></h1></section>
+    </div>
+  </div>
+
+  <script src="minutes_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="minutes_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display the page number of the current slide
+        slideNumber: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Loop the presentation
+        loop: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 6000,
+        // Enable slide navigation via mouse wheel
+        mouseWheel: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1052,
+        height: 744,
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'minutes_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: 'minutes_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
