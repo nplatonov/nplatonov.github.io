@@ -134,7 +134,7 @@
           <text variable="genre"/>
           <group delimiter=": ">
             <text variable="publisher-place"/>
-            <text variable="publisher" suffix="."/>
+            <text variable="publisher" suffix=""/>
           </group>
         </group>
       </else>
@@ -310,6 +310,9 @@
       </if>
     </choose>
   </macro>
+  <macro name="series-title">
+    <text variable="collection-title" font-style="italic" prefix="(" suffix=")"/>
+  </macro>
   <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year">
     <sort>
       <key macro="author"/>
@@ -346,7 +349,10 @@
           <group prefix=" " delimiter=" ">
             <text term="in" text-case="capitalize-first" suffix=":"/>
             <text macro="editor"/>
-            <text variable="container-title" font-style="italic" suffix="."/>
+            <group suffix="." delimiter=" ">
+               <text variable="container-title" font-style="italic" suffix=""/>
+               <text macro="series-title"/>
+            </group>
             <text variable="event" suffix="."/>
             <group delimiter=", ">
               <text macro="publisher"/>
