@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Отчетная сессия</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="./index-Feb14_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="./index-Feb14_files/reveal.js-3.3.0.1/css/theme/serif.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="https:\\nplatonov.github.io\revealjs-footer.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="index-Feb14_files/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+    <script src="index-Feb14_files/plotly-binding-4.9.1/plotly.js"></script>
+    <script src="index-Feb14_files/typedarray-0.1/typedarray.min.js"></script>
+    <script src="index-Feb14_files/jquery-1.11.3/jquery.min.js"></script>
+    <link href="index-Feb14_files/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+    <script src="index-Feb14_files/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+    <link href="index-Feb14_files/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="index-Feb14_files/plotly-main-1.49.4/plotly-latest.min.js"></script>
+</head>
+<body>
+<p class="decoration" style="display:block; position:fixed; left:0.5em; bottom:0em; opacity: 0.2;">
+<img class="sevinlogo" style="height: 80px !important" src="http://sev-in.ru/sites/default/files/Логотип_1.ico"/>
+</p>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title"><div class="line-block">Характеристики местообитаний морских млекопитающих Арктики по ДДЗ<br />
+</div></h1>
+  <h1 class="subtitle">на примере Чукотского моря</h1>
+    <h2 class="author"><div class="line-block"><br />
+<br />
+Платонов Н. Г.  Мордвинцев И. Н.<br />
+<br />
+<span class="affiliation">Кабинет методов ДЗЗ в экологии, ИПЭЭ РАН</span><br />
+</div></h2>
+    <h3 class="date"><div class="line-block"><br />
+Отчетная сессия ИПЭЭ РАН<br />
+Москва, <span class="onlyreveal">&#x2661;</span> 14 февраля 2020 г.<br />
+<span class="scale80"><a href="?print-pdf" class="pdflink noprint">pdf version</a></span><br />
+<span class="noprint"><audio data-autoplay src="http://radio.4duk.ru/4duk64.mp3"></audio></span></div></h3>
+</section>
+
+<section><section id="urgency" class="title-slide slide level1 center" data-background-color="#671F6BB0" data-background-video="https://nplatonov.github.io/transition-dong.mp3"><h1>Актуальность и применение</h1></section><section id="actuality" class="slide level2" data-transition="slide-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2></h2>
+<p>Приоритет оценок:</p>
+<ul>
+<li><p><span class="indent1">Размер популяции</span></p></li>
+<li><p><span class="indent2">пространственное изобилие популяции</span></p></li>
+<li><p><span class="indent3">распространение вида</span></p></li>
+</ul>
+<p>Методы:</p>
+<ul>
+<li><p>выборочные исследования</p></li>
+<li><p>Ресурсы среды</p></li>
+</ul>
+<p>Применение:</p>
+<ul>
+<li><p>Количественные оценки</p></li>
+<li><p>Количественные оценки качественной характеристики</p></li>
+<li><p>Качественные оценки</p></li>
+</ul>
+</section></section>
+<section><section id="methods" class="title-slide slide level1 center" data-background-color="#125B0FB0" data-background-video="https://nplatonov.github.io/transition-dong.mp3"><h1>Методы</h1></section><section id="params" class="slide level2 scale82" data-transition="slide-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Параметры окружающей среды</h2>
+<ul>
+<li><p>Постоянные во времени</p>
+<ul>
+<li><p>Глубина моря, высота над уровнем моря</p></li>
+<li><p>Удаление от береговой линии</p></li>
+</ul></li>
+<li><p>Изменяющиеся во времени</p>
+<ul>
+<li><p>Морской лед Арктики</p>
+<ul>
+<li><p>Фенология</p>
+<ul>
+<li><p>Сроки начала таяния поверхности льда</p></li>
+<li><p>Сроки ледотаяния и ледообразования</p></li>
+</ul></li>
+<li><p>Пространственное распределение</p>
+<ul>
+<li><p>Интервалы концентрации льда: зона маргинальных льдов (<em>общ.</em>, 15-80%), сплоченный лед (размножение тюленей, 70-90%)</p></li>
+<li><p>Кромка льда</p></li>
+<li><p>Полыньи</p></li>
+<li><p>Припайный лед</p></li>
+<li><p>Многолетний лед, в т.ч., возраст льда</p></li>
+</ul></li>
+</ul></li>
+<li><p>Океанографические параметры (начальные звенья пищевой цепочки)</p></li>
+<li><p>Атмосферные параметры (климат, поведение)</p></li>
+</ul></li>
+</ul>
+</section><section id="ref4ad9" class="slide level2 scale80" data-transition="slide-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Модельный регион: пацификация и атлантификация</h2>
+<div class="figure">
+<img src="resources/pisareva.png" alt="Циркуляция вод Чукотского моря [[@Pisareva2018, Figure 1]]{.adopted}" width="771" />
+<p class="caption">
+Циркуляция вод Чукотского моря <span class="adopted"><span class="citation" data-cites="Pisareva2018">(Pisareva, 2018, Figure 1)</span></span>
+</p>
+</div>
+</section><section id="design" class="slide level2" data-transition="slide-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Фенокарты ледотаяния: построение</h2>
+<div class="figure">
+<img src="resources/sid2019.gif" alt="Временной ряд пояса маргинального льда" height="580px" />
+<p class="caption centered">
+Временной ряд пояса маргинального льда
+</p>
+</div>
+</section><section id="design2" class="slide level2" data-transition="fade-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Фенокарты ледотаяния: построение</h2>
+<div class="figure">
+<img src="resources/functions_2panel_mockup.png" alt="Аппроксимация временного ряда концентрации льда монотонными функциями" width="2709" />
+<p class="caption centered">
+Аппроксимация временного ряда концентрации льда монотонными функциями
+</p>
+</div>
+<div class="note">
+<p>Use an argument (date) when monotonous function intersects sia ice concentration 15% constant value.</p>
+</div>
+</section><section id="design3" class="slide level2" data-transition="fade-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Фенокарты ледотаяния: построение</h2>
+<div class="figure">
+<img src="resources/sid2019a.png" alt="Одна карта пространственного распределения вместе серии карт" width="961" />
+<p class="caption centered">
+Одна карта пространственного распределения вместе серии карт
+</p>
+</div>
+<div class="note">
+<p>One map instead of map series, but only ice extent by sea ice concentration level 15% is figured.</p>
+</div>
+</section><section id="design4" class="slide level2" data-transition="fade-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Фенокарты ледотаяния: построение</h2>
+<div class="figure">
+<img src="resources/sid2019b.png" alt="Построение изохрон" width="1041" />
+<p class="caption centered">
+Построение изохрон
+</p>
+</div>
+<div class="note">
+<p>Isochromes are better for visual analysis of phenology rate. Higher density of isochrones means slow rate of retreat or advance. Slow rate of sea ice retreat doesn’t force high locomotion near ice edge.</p>
+<p>Smoothing of input phenology maps is desirable.</p>
+</div>
+</section><section id="design5" class="slide level2" data-transition="fade-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Фенокарты ледотаяния: построение</h2>
+<div class="figure">
+<img src="resources/sid2019c.png" alt="Расстояние между изолиниями за фиксированный интервал времени" width="1041" />
+<p class="caption centered">
+Расстояние между изолиниями за фиксированный интервал времени
+</p>
+</div>
+<div class="note">
+<p>Slope/elevation GIS tools are used to generate rate maps with distinguish that day/meter not meter/meter relation is used to calculate slope.</p>
+</div>
+</section><section id="design6" class="slide level2" data-transition="fade-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Фенокарты ледотаяния: построение</h2>
+<div class="figure">
+<img src="resources/sid2019d.png" alt="Скорость и направление ледотаяния" width="1041" />
+<p class="caption centered">
+Скорость и направление ледотаяния
+</p>
+</div>
+<div class="note">
+<p>Arrows are normal to isochrones.</p>
+</div>
+</section><section id="lavielle" class="slide level2" data-transition="slide-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Тенденция и сегментанция</h2>
+<div class="figure">
+<img src="index-Feb14_figs/unnamed-chunk-3-1.svg" alt="Пример на фиктивном наборе данных" width="576" />
+<p class="caption centered">
+Пример на фиктивном наборе данных
+</p>
+</div>
+<p><span style="color: dodgerblue;">Тенденция</span>: линейная регрессия.</p>
+<p><span style="color: forestgreen;">Сегментация</span>: Непараметрическая сегментация временного ряда с использованием метода штрафной контрастной функции <span class="citation" data-cites="Lavielle1999">(Lavielle, 1999)</span>. Оптимальное число сегментов <span class="citation" data-cites="Lavielle2005">(Lavielle, 2005)</span>.</p>
+<div class="note">
+<p><em>Тенденция</em> для выявления темпа изменений. <em>Сегментация</em> для выявления смены климатических эпох (сдвига).</p>
+<p>Выбор оптимального числа сегментов автоматическим <span class="citation" data-cites="Lavielle2005">(Lavielle, 2005)</span> или по графику изменения контрастной функции.</p>
+</div>
+</section></section>
+<section><section id="results" class="title-slide slide level1 center" data-background-color="#114A71B0" data-background-video="https://nplatonov.github.io/transition-dong.mp3"><h1>Результаты</h1></section><section id="onset" class="slide level2" data-transition="slide-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Сроки начала таяния поверхности льда</h2>
+<div class="figure">
+<div id="htmlwidget-de2306589dd29a98c32c" style="width:1344px;height:580px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-de2306589dd29a98c32c">{"x":{"visdat":{"20dc21662bd4":["function () ","plotlyVisDat"]},"cur_data":"20dc21662bd4","attrs":{"20dc21662bd4":{"x":{},"y":{},"mode":"lines+markers","name":"NSIDC","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"20dc21662bd4.1":{"x":{},"y":{},"mode":"lines+markers","name":"PMW Early Melt","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true},"20dc21662bd4.2":{"x":{},"y":{},"mode":"lines+markers","name":"PMW Melt","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true},"20dc21662bd4.3":{"x":{},"y":{},"mode":"lines+markers","name":"AHRA","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true},"20dc21662bd4.4":{"x":{},"y":{},"mode":"lines+markers","name":"MDSDA","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true},"20dc21662bd4.5":{"x":{},"y":{},"mode":"lines+markers","name":"Tentative","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"","tickfont":{"size":24},"titlefont":{"size":24}},"yaxis":{"domain":[0,1],"automargin":true,"title":"Onset DOY","tickfont":{"size":24},"titlefont":{"size":24}},"legend":{"font":{"size":22}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019],"y":[146.683913043478,125.873854212134,118.161501527717,137.427324312527,132.279790484505,136.577040593627,141.788302051506,131.928852029681,118.195984286338,129.166739415103,131.543867306853,142.754692274116,139.969445656918,138.034482758621,118.309471846355,126.563509384548,121.674814491488,115.096464426015,133.478393714535,129.96639022261,124.904408555216,114.98559580969,132.815364469664,125.30423395897,130.11610650371,120.778699257966,120.123090353557,123.748144914884,121.320384111742,124.631165429943,129.209515495417,109.491924923614],"mode":"lines+markers","name":"NSIDC","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[144.778952934955,150.489898989899,136.908207867897,147.425563909774,149.549364613881,150.728018757327,143.145588235294,145.094318181818,148.651077246453,150.172943508424,136.548148148148,129.034415899176,138.0491962981,138.292195121951,141.597333333333,142.213284898806,129.367855398144,133.153846153846,141.042105263158,140.830745341615,145.248604769153,147.676196395277,148.163656884876,132.644611528822,133.380545163014,140.646986469865,138.211995863495,140.209314495029,138.722556390977,135.74745186863,132.121227364185,144.604153940134,139.357744994731,148.545380875203,146.197068403909,129.106229143493,144.760117302053,139.932957393484,145.845208845209,149.290870488323],"mode":"lines+markers","name":"PMW Early Melt","type":"scatter","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[160.004807692308,162.194749403341,154.866379310345,160.342720763723,161.470841300191,159.24795377949,157.516252390057,154.482527525132,163.874760994264,163.866245136187,152.951550387597,151.535406698565,160.030071599045,156.542283803153,155.540345821326,153.126014319809,144.910697230181,147.451254826255,148.680892337536,155.337506018296,155.25584725537,159.588038277512,156.988888888889,149.490776699029,150.896684286401,154.210628019324,151.97170263789,153.122546673049,157.857696030978,152.586289549377,145.479655337482,153.647199617042,150.441050119332,148.93031026253,159.895823331733,147.958313136209,153.415552253591,151.607775590551,154.944360902256,161.906202723147],"mode":"lines+markers","name":"PMW Melt","type":"scatter","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"line":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017],"y":[140.945584725537,145.859188544153,137.120286396181,140.28830548926,149.061097852029,150.592168099331,151.276372315036,148.267780429594,152.880190930788,147.436276849642,126.292601431981,116.412887828162,136.421957040573,130.616229116945,134.349880668258,139.858233890215,128.702625298329,113.621957040573,125.998090692124,128.110262529833,138.583770883055,135.757040572792,134.377331420373,115.035322195704,120.645962732919,116.689260143198,109.49785202864,127.576133651551,124.11646778043,114.407159904535,114.622911694511,133.152267303103,122.652817574021,128.389976133652,118.676849642005,121.128878281623,123.178520286396,120.132219570406,125.498806682578],"mode":"lines+markers","name":"AHRA","type":"scatter","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"line":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019],"y":[154.609200968523,143.350121065375,141.236803874092,146.003389830508,149.897820823245,146.145762711864,158.34818401937,143.70411622276,134.889104116223,146.354479418886,145.231476997579,151.886682808717,156.638740920097,153.915738498789,140.754479418886,142.751089588378,141.701694915254,139.917191283293,143.296852300242,142.834382566586,145.174818401937,138.712348668281,148.449394673123,142.717675544794,146.458111380145,148.889588377724,140.598547215496,143.078450363196,139.177239709443,144.273123486683,148.639709443099,130.602327837051],"mode":"lines+markers","name":"MDSDA","type":"scatter","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"line":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019],"y":[142.543593631539,142.652777777778,142.805363321799,144.895498392283,142.570749108205,139.542274052478,136.031914893617,136.016813450761,139.794137695978,138.872751499001,146.389546351085,149.656956303365,149.684210526316,137.345868381989,139.123329907503,147.054890219561,145.922799794133,138.657554671968,144.46855345912,144.086869695457,140.482606565409,146.1465,144.220881427072,145.269794721408,144.471111111111,140.34708612687,139.313800657174,137.758811681772,143.857456140351,151.847174163783,130.155987394958],"mode":"lines+markers","name":"Tentative","type":"scatter","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"line":{"color":"rgba(140,86,75,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Методы оценки сроков таяния: PMW <span class="citation" data-cites="Markus_PMW_data Markus2009_PMW">(Markus and Miller, 2019; Markus <em>et al.</em>, 2009)</span>, NSIDC <span class="citation" data-cites="AHRA_v4">(Anderson <em>et al.</em>, 2019)</span>, AHRA <span class="citation" data-cites="DrobotAnderson2001_AHRA">(Drobot and Anderson, 2001)</span> reproduction <span class="citation" data-cites="Belchansky2004_RSE">(Belchansky <em>et al.</em>, 2004)</span>, MDSDA <span class="citation" data-cites="Belchansky2004_RSE">(Belchansky <em>et al.</em>, 2004)</span>, “Tentative” (Platonov 2007, <em>неопублик.</em>)
+</p>
+</div>
+<div class="onlyhtml">
+<h2 id="onset2" data-transition="fade-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">Сроки начала таяния поверхности льда</h2>
+<div class="figure">
+<img src="resources/ahra_0.png" alt="Метод AHRA [@DrobotAnderson2001_AHRA] с центра данных NSIDC [@AHRA_v4]" width="830" />
+<p class="caption">
+Метод AHRA <span class="citation" data-cites="DrobotAnderson2001_AHRA">(Drobot and Anderson, 2001)</span> с центра данных NSIDC <span class="citation" data-cites="AHRA_v4">(Anderson <em>et al.</em>, 2019)</span>
+</p>
+</div>
+<div class="note">
+<table>
+<caption>Linear slope: -0.4±0.18 d yr<sup>-1</sup> (S=0.98)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Period</th>
+<th style="text-align: right;">Length</th>
+<th style="text-align: right;">Mean, DOY</th>
+<th style="text-align: right;">St.dev, days</th>
+<th style="text-align: left;">Julian</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1988-2001</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">131.18</td>
+<td style="text-align: right;">9.01</td>
+<td style="text-align: left;">May11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2002-2009</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">117.82</td>
+<td style="text-align: right;">5.89</td>
+<td style="text-align: left;">Apr28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2010-2017</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">124.10</td>
+<td style="text-align: right;">4.77</td>
+<td style="text-align: left;">May04</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section><section id="onset3" class="slide level2" data-transition="fade-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Сроки начала таяния поверхности льда</h2>
+<div class="figure">
+<img src="resources/nsidc_0.png" alt="Воспроизведение [@Belchansky2004_RSE] метода AHRA [@DrobotAnderson2001_AHRA] по актуализированным данным " width="855" />
+<p class="caption">
+Воспроизведение <span class="citation" data-cites="Belchansky2004_RSE">(Belchansky <em>et al.</em>, 2004)</span> метода AHRA <span class="citation" data-cites="DrobotAnderson2001_AHRA">(Drobot and Anderson, 2001)</span> по актуализированным данным
+</p>
+</div>
+<div class="note">
+<table>
+<caption>Linear slope: -0.5±0.15 d yr<sup>-1</sup> (S=0.996)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Period</th>
+<th style="text-align: right;">Length</th>
+<th style="text-align: right;">Mean, DOY</th>
+<th style="text-align: right;">St.dev, days</th>
+<th style="text-align: left;">Julian</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1988-2001</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">133.61</td>
+<td style="text-align: right;">8.66</td>
+<td style="text-align: left;">May14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2002-2019</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">123.47</td>
+<td style="text-align: right;">6.48</td>
+<td style="text-align: left;">May03</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section><section id="onset4" class="slide level2" data-transition="fade-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Сроки начала таяния поверхности льда</h2>
+<div class="figure">
+<img src="resources/mdsda1_0.png" alt="Сроки поверхностного таяния по методу MDSDA [@Belchansky2004_RSE] без адаптивной пространственной фильтрации" width="830" />
+<p class="caption">
+Сроки поверхностного таяния по методу MDSDA <span class="citation" data-cites="Belchansky2004_RSE">(Belchansky <em>et al.</em>, 2004)</span> без адаптивной пространственной фильтрации
+</p>
+</div>
+<div class="note">
+<table>
+<caption>Linear slope: -0.2±0.11 d yr<sup>-1</sup> (S=0.95)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Period</th>
+<th style="text-align: right;">Length</th>
+<th style="text-align: right;">Mean, DOY</th>
+<th style="text-align: right;">St.dev, days</th>
+<th style="text-align: left;">Julian</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1988-2001</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">148.02</td>
+<td style="text-align: right;">6.53</td>
+<td style="text-align: left;">May28</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2002-2019</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">142.67</td>
+<td style="text-align: right;">4.35</td>
+<td style="text-align: left;">May23</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!--
+## Сроки начала таяния поверхности льда { #onset5 data-transition="fade-in fade-out" data-background-video=https://nplatonov.github.io/transition-ding.mp3}
+
+<div class="figure">
+<img src="resources/mdsda2_0.png" alt="MDSDA [@Belchansky2004_RSE] snow melt onset with adaptive smoothing" width="846" />
+<p class="caption centered">MDSDA [@Belchansky2004_RSE] snow melt onset with adaptive smoothing</p>
+</div>
+-->
+</section><section id="onset6" class="slide level2" data-transition="fade-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Сроки начала таяния поверхности льда</h2>
+<div class="figure">
+<img src="resources/tentative1_0.png" alt="Сроки поверхностного таяния по &amp;#171;Tentative&amp;#187; алгоритму (Platonov 2007, *неопублик.*)" width="830" />
+<p class="caption centered">
+Сроки поверхностного таяния по «Tentative» алгоритму (Platonov 2007, <em>неопублик.</em>)
+</p>
+</div>
+<div class="note">
+<table>
+<caption>Linear slope: -0.2±0.09 d yr<sup>-1</sup> (S=0.96)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Period</th>
+<th style="text-align: right;">Length</th>
+<th style="text-align: right;">Mean, DOY</th>
+<th style="text-align: right;">St.dev, days</th>
+<th style="text-align: left;">Julian</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1989-2013</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">144.29</td>
+<td style="text-align: right;">3.65</td>
+<td style="text-align: left;">May24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2014-2019</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">139.55</td>
+<td style="text-align: right;">7.24</td>
+<td style="text-align: left;">May20</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section><section id="retreat" class="slide level2" data-transition="slide-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Ледотаяние: сроки</h2>
+<div class="figure">
+<img src="resources/v43sid_0.png" alt="Сроки ледотаяния по данным концентрации льда NASA Team по данным SSM/I и SSMIS" width="830" />
+<p class="caption centered">
+Сроки ледотаяния по данным концентрации льда NASA Team по данным SSM/I и SSMIS
+</p>
+</div>
+<div class="note">
+<table>
+<caption>Linear slope: -0.8±0.17 d yr<sup>-1</sup> (S&gt;0.999)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Period</th>
+<th style="text-align: right;">Length</th>
+<th style="text-align: right;">Mean, DOY</th>
+<th style="text-align: right;">St.dev, days</th>
+<th style="text-align: left;">Julian</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1988-2001</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">176.96</td>
+<td style="text-align: right;">7.47</td>
+<td style="text-align: left;">Jun26</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2002-2014</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">168.24</td>
+<td style="text-align: right;">7.44</td>
+<td style="text-align: left;">Jun17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2015-2019</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">152.16</td>
+<td style="text-align: right;">9.00</td>
+<td style="text-align: left;">Jun01</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section><section id="sid" class="slide level2" data-transition="fade-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Ледотаяние: скорость движения кромки</h2>
+<div class="figure">
+<img src="resources/rate-last-sid.png" alt="Скорость движения кромки льда при ледотаянии для сезонов 2016-2019&amp;nbsp;гг." width="945" />
+<p class="caption centered">
+Скорость движения кромки льда при ледотаянии для сезонов 2016-2019 гг.
+</p>
+</div>
+</section><section id="sid2" class="slide level2" data-transition="fade-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Ледотаяние: скорость движения кромки</h2>
+<div class="figure">
+<img src="resources/rate-stat-sid.png" alt="Среднемноголетнее значение, изменчивость, линейный тренд и статистическая значимость тренда скорости движения кромки льда при ледотаянии для периода 2003-2019 гг." width="970" />
+<p class="caption">
+Среднемноголетнее значение, изменчивость, линейный тренд и статистическая значимость тренда скорости движения кромки льда при ледотаянии для периода 2003-2019 гг.
+</p>
+</div>
+</section></section>
+<section><section id="fun" class="title-slide slide level1 dontprint" data-background-image="file:///D:/RAS/2020/MMWG/resources/polar_bear_summer_2-final-2.jpg" data-background-video="https://nplatonov.github.io/transition-dong.mp3"><h1></h1><div class="grabbed60">
+<div class="onlyreveal">
+<p>Art by Josh. <em>Probable rights violation</em>. Adopted from <a href="https://polarbearscience.com/2019/07/12/10-fallacies-about-arctic-sea-ice-polar-bear-survival-teachers-parents-take-note/">Polar Bear Science</a>.</p>
+</div>
+</div></section><section id="advance" class="slide level2 scale91" data-transition="slide-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Ледообразование: сроки</h2>
+<div class="figure">
+<img src="resources/v43sia_0.png" alt="Сроки ледообразования по данным концентрации льда NASA Team по данным SSM/I и SSMIS" width="829" />
+<p class="caption centered">
+Сроки ледообразования по данным концентрации льда NASA Team по данным SSM/I и SSMIS
+</p>
+</div>
+<div class="note">
+<table>
+<caption>Linear slope: 0.9±0.15 d yr<sup>-1</sup> (S&gt;0.999)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Period</th>
+<th style="text-align: right;">Length</th>
+<th style="text-align: right;">Mean, DOY</th>
+<th style="text-align: right;">St.dev, days</th>
+<th style="text-align: left;">Julian</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1988-2001</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">306.06</td>
+<td style="text-align: right;">8.35</td>
+<td style="text-align: left;">Nov02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2002-2013</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">317.10</td>
+<td style="text-align: right;">5.89</td>
+<td style="text-align: left;">Nov13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2014-2019</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">330.14</td>
+<td style="text-align: right;">5.56</td>
+<td style="text-align: left;">Nov26</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section><section id="sia" class="slide level2 scale91" data-transition="fade-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Ледообразование: скорость движения кромки</h2>
+<div class="figure">
+<img src="resources/rate-stat-sia.png" alt="Среднемноголетнее значение, изменчивость, линейный тренд и статистическая значимость тренда скорости движения кромки льда при ледообразовании для периода 2004-2019 гг." width="958" />
+<p class="caption">
+Среднемноголетнее значение, изменчивость, линейный тренд и статистическая значимость тренда скорости движения кромки льда при ледообразовании для периода 2004-2019 гг.
+</p>
+</div>
+</section><section id="ref9803" class="slide level2 scale91" data-transition="slide-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Продолжительность сезона отсутствия льда</h2>
+<div class="figure">
+<img src="resources/v43ow_0.png" alt="Продолжительность сезона отсутствия льда на основании данных по срокам ледообразования и ледотаяния. Контуром показана изохрона 180 дней [@Gormezano2015]." width="787" />
+<p class="caption">
+Продолжительность сезона отсутствия льда на основании данных по срокам ледообразования и ледотаяния. Контуром показана изохрона 180 дней <span class="citation" data-cites="Gormezano2015">(Gormezano and Rockwell, 2015)</span>.
+</p>
+</div>
+</section><section id="ref49e6" class="slide level2 scale91" data-transition="slide-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Продолжительность сезона присутствия льда</h2>
+<div class="figure">
+<img src="resources/v43ice_0.png" alt="Продолжительность сезона присутствия льда на основании данных по срокам ледообразования и ледотаяния. Контуром показана изохрона 180 дней [@Gormezano2015]." width="788" />
+<p class="caption">
+Продолжительность сезона присутствия льда на основании данных по срокам ледообразования и ледотаяния. Контуром показана изохрона 180 дней <span class="citation" data-cites="Gormezano2015">(Gormezano and Rockwell, 2015)</span>.
+</p>
+</div>
+</section><section id="edge" class="slide level2" data-transition="slide-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Индекс близости к кромке льда</h2>
+<div class="figure">
+<img src="resources/figHeatmap-2019-edge08nt.png" alt="Распределение кромки льда и &lt;a href=#edge_design&gt;пространственной близости к ней&lt;/a&gt; по отношению к ландшафтным характеристикам в августе 2019 г." width="1183" />
+<p class="caption">
+Распределение кромки льда и <a href=#edge_design>пространственной близости к ней</a> по отношению к ландшафтным характеристикам в августе 2019 г.
+</p>
+</div>
+</section><section id="edge2" class="slide level2" data-transition="fade-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Индекс близости к кромке льда</h2>
+<div class="figure">
+<img src="resources/figHeatmap-2018-edge08nt.png" alt="Распределение кромки льда и &lt;a href=#edge_design&gt;пространственной близости к ней&lt;/a&gt; по отношению к ландшафтным характеристикам в августе 2018 г." width="1183" />
+<p class="caption">
+Распределение кромки льда и <a href=#edge_design>пространственной близости к ней</a> по отношению к ландшафтным характеристикам в августе 2018 г.
+</p>
+</div>
+</section><section id="edge3" class="slide level2" data-transition="fade-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Индекс близости к кромке льда</h2>
+<div class="figure">
+<img src="resources/figHeatmap-2017-edge08nt.png" alt="Распределение кромки льда и &lt;a href=#edge_design&gt;пространственной близости к ней&lt;/a&gt; по отношению к ландшафтным характеристикам в августе 2017 г." width="1183" />
+<p class="caption">
+Распределение кромки льда и <a href=#edge_design>пространственной близости к ней</a> по отношению к ландшафтным характеристикам в августе 2017 г.
+</p>
+</div>
+</section><section id="edge4" class="slide level2" data-transition="fade-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Индекс близости к кромке льда</h2>
+<div class="figure">
+<img src="resources/figHeatmap-2001-edge08nt.png" alt="Распределение кромки льда и &lt;a href=#edge_design&gt;пространственной близости к ней&lt;/a&gt; по отношению к ландшафтным характеристикам в августе 2001 г." width="1183" />
+<p class="caption">
+Распределение кромки льда и <a href=#edge_design>пространственной близости к ней</a> по отношению к ландшафтным характеристикам в августе 2001 г.
+</p>
+</div>
+<div class="note">
+<p>August 2001 (Fig @ref(fig:edge2001)) is cited for contrast with present situation</p>
+</div>
+</section><section id="edge5" class="slide level2" data-transition="fade-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Индекс близости к кромке льда</h2>
+<div class="figure">
+<img src="resources/figTimeseries-08nt.png" alt="Временные ряды распространения кромки льда (*верх*), ее удаление от берега (*сред.*) и ее прохождения по глубинам (*нижн.*) для августа" width="960" />
+<p class="caption">
+Временные ряды распространения кромки льда (<em>верх</em>), ее удаление от берега (<em>сред.</em>) и ее прохождения по глубинам (<em>нижн.</em>) для августа
+</p>
+</div>
+<div class="note">
+<p>Longterm change of sea ice edge proximity is +0.26±0.060 yr<sup>-1</sup> (S&gt;0.999). Higher value is due to 1) presence of sea ice edge in this season and 2) curvature of edge line. In 2019 ice edge proximity was low due to early ice retreat.</p>
+<table>
+<caption>Segmentation of sea ice edge proximity by similarity/distinction in mean</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Period</th>
+<th style="text-align: right;">Length</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">St.dev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1979-2001</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">13.9</td>
+<td style="text-align: right;">3.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2002-2019</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">20.5</td>
+<td style="text-align: right;">5.2</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Segmentation of sea ice edge proximity by similarity/distinction in variance</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Period</th>
+<th style="text-align: right;">Length</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">St.dev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1979-2007</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">14.9</td>
+<td style="text-align: right;">4.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2008-2019</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">21.4</td>
+<td style="text-align: right;">5.8</td>
+</tr>
+</tbody>
+</table>
+<p>Distance to land at the ice edge locations changes +7.4±0.9 km yr<sup>-1</sup> (S&gt;0.999). Maximal value 554 km was in 2019. Qualitatively, rate of increasing became higher at the end of 1990s (Fig @ref(fig:ts08), middle panel, green ‘loess’ line). During 2007-2019 (13 years) there are 9 leading maximals, all are greater than 300 km. There is 0 occurrence(s) of mean distance less than 300 km during 1979-2006.</p>
+<table>
+<caption>Segmentation of ice edge length to land by similarity/distinction in mean</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Period</th>
+<th style="text-align: right;">Length</th>
+<th style="text-align: right;">Mean, km</th>
+<th style="text-align: right;">St.dev, km</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1979-2006</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">157</td>
+<td style="text-align: right;">47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2007-2019</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">349</td>
+<td style="text-align: right;">93</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Segmentation of ice edge length to land by similarity/distinction in variance</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Period</th>
+<th style="text-align: right;">Length</th>
+<th style="text-align: right;">Mean, km</th>
+<th style="text-align: right;">St.dev, km</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1979-2006</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">157</td>
+<td style="text-align: right;">47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2007-2019</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">349</td>
+<td style="text-align: right;">93</td>
+</tr>
+</tbody>
+</table>
+<p>Bathymetry at the ice edge locations changes +29.0±4.4 m yr<sup>-1</sup> (S&gt;0.999) inside of region. Maximal value 1966 m was in 2007.</p>
+<table>
+<caption>Segmentation of ice edge length to land by similarity/distinction in mean</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Period</th>
+<th style="text-align: right;">Length</th>
+<th style="text-align: right;">Mean, m</th>
+<th style="text-align: right;">St.dev, m</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1979-2001</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">313</td>
+<td style="text-align: right;">248</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2002-2019</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">1001</td>
+<td style="text-align: right;">421</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Segmentation of ice edge length to land by similarity/distinction in variance</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Period</th>
+<th style="text-align: right;">Length</th>
+<th style="text-align: right;">Mean, m</th>
+<th style="text-align: right;">St.dev, m</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1979-2006</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">385</td>
+<td style="text-align: right;">304</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2007-2019</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1110</td>
+<td style="text-align: right;">408</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section><section id="fastice" class="slide level2" data-transition="slide-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Вероятность припайного льда</h2>
+<div class="figure">
+<img src="resources/icechart-fastice.png" alt="Вероятность присутствия припайного льда в течение сезона 01 марта - 31 мая по данным еженедельных ледовых карт [@AARI_ru]" width="1012" />
+<p class="caption">
+Вероятность присутствия припайного льда в течение сезона 01 марта - 31 мая по данным еженедельных ледовых карт <span class="citation" data-cites="AARI_ru">(ААНИИ, 2018)</span>
+</p>
+</div>
+</section><section id="polynya" class="slide level2" data-transition="slide-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Вероятность полыней</h2>
+<div class="figure">
+<img src="resources/icechart-polynya.png" alt="Вероятность присутствия полыней в течение сезона 01 марта - 31 мая по данным еженедельных ледовых карт [@AARI_ru]" width="1012" />
+<p class="caption">
+Вероятность присутствия полыней в течение сезона 01 марта - 31 мая по данным еженедельных ледовых карт <span class="citation" data-cites="AARI_ru">(ААНИИ, 2018)</span>
+</p>
+</div>
+</section><section id="oldice" class="slide level2" data-transition="slide-in fade-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Вероятность многолетнего льда</h2>
+<div class="figure">
+<img src="resources/icechart-oldIce04.png" alt="Вероятность присутствия многолетнего льда в течение сезона 01 марта - 31 мая по данным еженедельных ледовых карт [@AARI_ru]" width="1002" />
+<p class="caption">
+Вероятность присутствия многолетнего льда в течение сезона 01 марта - 31 мая по данным еженедельных ледовых карт <span class="citation" data-cites="AARI_ru">(ААНИИ, 2018)</span>
+</p>
+</div>
+</section><section id="oldice2" class="slide level2" data-transition="fade-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Вероятность многолетнего льда</h2>
+<div class="figure">
+<img src="resources/icechart-oldIce12.png" alt="Вероятность присутствия многолетнего льда в течение сезона 01 ноября - 31 января по данным еженедельных ледовых карт [@AARI_ru]. *Год соответствует ноябрю.*" width="1005" />
+<p class="caption">
+Вероятность присутствия многолетнего льда в течение сезона 01 ноября - 31 января по данным еженедельных ледовых карт <span class="citation" data-cites="AARI_ru">(ААНИИ, 2018)</span>. <em>Год соответствует ноябрю.</em>
+</p>
+</div>
+</section></section>
+<section id="conclusion" class="title-slide slide level1 center" data-background-color="#005C41B0" data-background-video="https://nplatonov.github.io/transition-dong.mp3"><h1>Резюмируя…</h1><ul>
+<li><p>Для сроков весеннего таяния льда в регионе отмечается климатический свдиг с 2002 г.</p></li>
+<li><p>При значительном удалении от берега летней кромки льда скорость движения кромки льда изменяется назначительно из-за болеее раннего ледотаяния и позднего ледообразования</p></li>
+<li><p>Скорость движения кромки льда при ледотаянии ниже скорости движения кромки льда при ледообразовании.</p></li>
+<li><p>В 2019 г. зафиксированы рекордно ранние сроки начала поверхностного таяния льда</p></li>
+</ul></section>
+<section><section id="thankyou" class="title-slide slide level1 center" data-background-color="#075E1FB0" data-background-video="https://nplatonov.github.io/transition-dong.mp3"><h1>В завершение…</h1><div class="onlyreveal">
+<div class="zzznonincremental">
+<ul>
+<li><p>Тренды арктических запросов Google</p>
+<div class="figure">
+<img src="resources/gt%20Arctic%20Sea%20Ice.png" alt="[]{style=&quot;display: none;&quot;}" width="443" />
+<p class="caption centered">
+<span style="display: none;"></span>
+</p>
+</div>
+<div class="figure">
+<img src="resources/gt%20Polar%20Bear.png" alt="[]{style=&quot;display: none;&quot;}" width="443" />
+<p class="caption centered">
+<span style="display: none;"></span>
+</p>
+</div></li>
+</ul>
+</div>
+</div></section><section id="supplement" class="slide level2 scale70" data-transition="slide-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2>Дополнительная информация</h2>
+<h3 id="speaker">Докладчик</h3>
+<ul>
+<li>Платонов Н.Г. <a href="mailto:nikita.platonov@gmail.com">&#x2709;</a> <a href="https://orcid.org/0000-0001-7196-7882"><img data-src="https://cran.rstudio.com/web/orcid.svg" class="inline" /></a></li>
+</ul>
+<h3 id="affiliation">Представитель</h3>
+<ul>
+<li><p>Институт проблем экологии и эволюции им. А.Н.Северцова Российской академии наук (ИПЭЭ РАН)</p></li>
+<li><p>Кабинет методов дистанционного зондирования Земли и тематического дешифрирования в экологии ИПЭЭ РАН</p></li>
+<li><p>Постоянно действующая экспедиция РАН</p></li>
+<li><p>Программа изучения белого медведя в Россйской Арктике</p></li>
+<li><p>Группа специалистов по белому медведю МСОП</p></li>
+</ul>
+<h3 id="colleagues">Коллеги ИПЭЭ РАН</h3>
+<ul>
+<li><p>Мордвинцев И. Н. (кабинет методов ДЗЗ в экологии)</p></li>
+<li><p>Иванов Е. А., Найденко С. В., Рожнов В. В. (лаборатория поведенческой экологии)</p></li>
+</ul>
+<h3 id="acknowledgement">Поддержка</h3>
+<ul>
+<li><p>РФФИ 17-04-02049 A</p></li>
+<li><p>РГО «Исчезающие виды»</p></li>
+<li><p>Президиум РАН I.2.55.П</p></li>
+</ul>
+</section><section id="ref5463" class="slide level2" data-transition="slide-in slide-out" data-background-video="https://nplatonov.github.io/transition-ding.mp3">
+<h2></h2>
+<style>
+.reveal .references {font-size: 55% !important;}
+</style>
+<div id="refs" class="references" role="doc-bibliography">
+<div id="ref-AHRA_v4">
+<p>Anderson M, Drobot S, Bliss AC. 2019. <em>Snow Melt Onset Over Arctic Sea Ice from SMMR and SSM/I-SSMIS Brightness Temperatures, Version 4</em>. Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center. <a href="https://doi.org/10.5067/A9YK15H5EBHK">10.5067/A9YK15H5EBHK</a>. </p>
+</div>
+<div id="ref-Belchansky2004_RSE">
+<p>Belchansky GI, Douglas DC, Mordvintsev IN, Platonov NG. 2004. Estimating the time of melt onset, melt duration and freeze onset over Arctic sea-ice area using active and passive microwave data. <em>Remote Sensing of Environment</em>, 92(1): 21–39. <a href="https://doi.org/10.1016/j.rse.2004.05.001">10.1016/j.rse.2004.05.001</a>. </p>
+</div>
+<div id="ref-DrobotAnderson2001_AHRA">
+<p>Drobot SD, Anderson MR. 2001. An improved method for determining snowmelt onset dates over Arctic sea ice using scanning multichannel microwave radiometer and Special Sensor Microwave/Imager data. <em>J Geophys Res</em>, 106: 24, 033–24, 049. <a href="https://doi.org/10.1029/2000JD000171">10.1029/2000JD000171</a>. </p>
+</div>
+<div id="ref-Gormezano2015">
+<p>Gormezano LJ, Rockwell RF. 2015. The energetic value of land-based foods in western Hudson bay and their potential to alleviate energy deficits of starving adult male polar bears. In: Dias J. M. (Ed) <em>PLOS ONE</em>, 10(6): e0128520. Public Library of Science (PLoS). <a href="https://doi.org/10.1371/journal.pone.0128520">10.1371/journal.pone.0128520</a>. </p>
+</div>
+<div id="ref-Lavielle1999">
+<p>Lavielle M. 1999. Detection of multiple changes in a sequence of dependent variables. <em>Stochastic Processes and their Applications</em>, 83(1): 79–102. <a href="https://doi.org/10.1016/S0304-4149(99)00023-X">10.1016/S0304-4149(99)00023-X</a>. </p>
+</div>
+<div id="ref-Lavielle2005">
+<p>Lavielle M. 2005. <em>Using penalized contrasts for the change-point problem</em>. Institut national de recherche en informatique et en automatique. </p>
+</div>
+<div id="ref-Markus_PMW_data">
+<p>Markus T, Miller J. 2019 (06 December). <em>Arctic sea ice melt</em>. NASA Goddard Space Flight Center’s Cryospheric Sciences Laboratory. <a href="https://earth.gsfc.nasa.gov/cryo/data/arctic-sea-ice-melt">https://earth.gsfc.nasa.gov/cryo/data/arctic-sea-ice-melt</a> (accessed 06 January 2020).</p>
+</div>
+<div id="ref-Markus2009_PMW">
+<p>Markus T, Stroeve JC, Miller J. 2009. Recent changes in Arctic sea ice melt onset, freezeup, and melt season length. <em>Journal of Geophysical Research: Oceans</em>, 114(C12). American Geophysical Union (AGU). C12024. <a href="https://doi.org/10.1029/2009JC005436">10.1029/2009JC005436</a>. </p>
+</div>
+<div id="ref-Pisareva2018">
+<p>Pisareva MN. 2018. An overview of the recent research on the Chukchi sea water masses and their circulation. <em>Russian Journal of Earth Sciences</em>, 18(4): 1–13. Geophysical Center of the Russian Academy of Sciences. <a href="https://doi.org/10.2205/2018es000631">10.2205/2018es000631</a>. </p>
+</div>
+<div id="ref-AARI_ru">
+<p>ААНИИ. 2018. Обзорные ледовые карты Северного Ледовитого океана ЕСИМО. Центр "Север", Арктический и Антарктический научно-исследовательский институт, С-Петербург. <a href="http://www.aari.ru/odata/_d0015.php?lang=0">http://www.aari.ru/odata/_d0015.php?lang=0</a> (accessed 23 November 2018).</p>
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script src="./index-Feb14_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="./index-Feb14_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display the page number of the current slide
+        slideNumber: false,
+        // Push each slide change to the browser history
+        history: false,
+        // Vertical centering of slides
+        center: false,
+        // Enable slide navigation via mouse wheel
+        mouseWheel: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'slide', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1052,
+        height: 744,
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: './index-Feb14_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: './index-Feb14_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
