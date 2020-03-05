@@ -195,7 +195,10 @@ table, table th, table td {
   border-right-style: none;
 }
 table.table tbody tr:first-of-type { /* patch for kableExtra's `fixed_thead` */
-  border-top: 12px solid #999 !important;
+ /* border-top: 2px solid #bbb !important;*/
+}
+table.table tbody tr:last-of-type { /* patch for kableExtra's `fixed_thead` */
+ /* border-top: none !important;*/
 }
 table {
   display: table;
@@ -660,13 +663,14 @@ div.uppercase > h1 {
   margin-left: 0;
 }
 .subtitle { /* expanded h2 */
+  font-size: 130%;
   color: inherit;
   margin-left: 0;
   border: 0;
   font-style: normal; /* normal italic oblique */
  /* margin-bottom: 12px;*/
 }
-.title, .subtitle { /* .date .author */
+.zzztitle, .zzzsubtitle { /* .date .author */
   text-align: center;
 }
 .title + .subtitle {
@@ -869,6 +873,9 @@ h4.* {
 .bibliography {
    col: #f0f;
 }
+.organization {
+   font-size: 80%;
+}
 .affiliation {
    font-size: 80%;
    position: relative;
@@ -921,6 +928,8 @@ h5 + .references:before, h4 + .references:before, h3 + .references:before, h2 + 
 caption { /* tables */
    margin-top: 0pt; /* -2pt*/
    margin-bottom: 0.3em;
+  /* margin-left: -1em; */
+  /* margin-right: -1em; */
    text-align: left;
   /* display: revert;*/
 }

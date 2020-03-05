@@ -8,10 +8,11 @@ rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
 #                     ,cache=TRUE
 #                     ,echo=FALSE,fig.align="center"
 #                     )
-'h1' <- function(lab,ref="",center=FALSE,background="",subtitle=TRUE,opt="",eval=TRUE) {
+'h1' <- function(lab,ref="",center=FALSE,background="",subtitle=FALSE,opt="",radio=F
+                ,eval=TRUE) {
    if (!eval)
       return("")
-   subtitle <- FALSE
+  # subtitle <- FALSE
    if (!nchar(background))
       background <- paste0(ursa::cubehelix(1,dark=61,light=61,hue=1.5),"B0")
    if ((!nchar(ref))&&(length(grep("[А-Яа-я]",lab))>=0)) {
@@ -20,14 +21,21 @@ rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
    }
    res <- paste0("# ",lab," {",ifelse(center,".center "," "),"#",ref)
    if (nchar(background)) {
+     # background <- normalizePath(background,winslash="/")
+     # if (length(grep("^[a-z]\\:",background,ignore.case=TRUE)))
+     #    background <- paste0("file:///",background)
       if (!length(grep("(^(http|file)|\\.(jpg|png|gif)$)",background)))
          res <- paste0(res," data-background-color=",background)
       else
          res <- paste0(res," data-background-image=",background)
      # res <- paste0(res," style=\"background:transparent;\"")
    }
-   if (sound)
-      res <- paste0(res," data-background-video=https://nplatonov.github.io/transition-dong.mp3")
+   if (sound) {
+      if (radio)
+         res <- paste0(res," data-background-video=http://radio.4duk.ru/4duk64.mp3")
+      else
+         res <- paste0(res," data-background-video=https://nplatonov.github.io/transition-dong.mp3")
+   }
    if (nchar(opt))
       res <- paste0(res," ",opt)
    res <- paste0(res,"}")
@@ -36,11 +44,12 @@ rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
                 ##~ ," data-background=",dQuote(background),">"
                 ##~ ,"<h1>",lab,"</h1></section>")
    if ((filetype %in% "revealjs")&&(subtitle)) {
-      res <- paste0(res,"\n###### ",lab," {.slideheader}")
+     # res <- paste0(res,"\n\n###### ",lab," {.slideheader}\n\n")
+      res <- paste0("\n\n###### ",lab," {.slideheader}\n\n",res)
       ##~ res2 <- paste0(res2,"<h6 class=",dQuote("slideheader"),">",lab,"</h6>")
    }
    ##~ res2 <- paste0(res2,"</section>")
-  # res <- res2
+   ##~ res <- res2
    res
 }
 'h2' <- function(lab,entry=c("default","first","next","last"),ref=""
@@ -94,6 +103,8 @@ rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
    }
    if (sound)
       res <- paste0(res," data-background-video=https://nplatonov.github.io/transition-ding.mp3")
+   if (mode %in% c("default","first"))
+      res <- paste0(res," class=\"putheader\"")
    if (nchar(opt))
       res <- paste0(res," ",opt)
    res <- paste0(res,"}")
@@ -112,6 +123,21 @@ rendertype <- rmarkdown::all_output_formats(knitr::current_input())[1]
    if (nchar(opt))
       res <- paste0(res," ",opt)
    res <- paste0(res,"}")
+   res
+}
+'references' <- function(label="",scale=NA,inline=T) {
+   res <- character()
+   if (F & !isRevealjs)
+      return(res)
+   if (!inline) {
+      ref <- basename(tempfile(pattern="",fileext=""))
+      ref <- paste0("ref",substr(ref,nchar(ref)-3L,nchar(ref)))
+      res <- paste0(res,"## {#",ref,"}\n")
+   }
+   res <- paste0(res,":::{class=\"references\" id=\"refs\"")
+   if (!is.na(scale))
+      res <- paste0(res," style=\"font-size:",scale,"% !important;\"")
+   res <- paste0(res,"}\n:::")
    res
 }
 ```

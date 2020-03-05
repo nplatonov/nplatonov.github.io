@@ -125,16 +125,16 @@
       <if type="thesis">
         <group delimiter=", ">
           <text variable="genre"/>
-          <text variable="publisher-place"/>
           <text variable="publisher"/>
+          <text variable="publisher-place"/>
         </group>
       </if>
       <else>
         <group delimiter=". ">
           <text variable="genre"/>
-          <group delimiter=": ">
-            <text variable="publisher-place"/>
+          <group delimiter=", ">
             <text variable="publisher" suffix=""/>
+            <text variable="publisher-place"/>
           </group>
         </group>
       </else>
