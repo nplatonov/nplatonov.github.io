@@ -23,7 +23,7 @@ body {
 .reveal h3 { font-size: 1.25em}
 .reveal h2+h3 {margin-top: -0.1em;}
 .reveal h4 { font-size: 1.1em;}
-.reveal .title { font-size: 2.0em; line-height: 1.1;}
+.reveal .title {font-size: 2.0em;line-height: 1.1;}
 .reveal .subtitle {font-size: 1.5em; line-height: 1.1; padding-top: 0.4em;}
 .reveal .title, .reveal .subtitle { text-transform: none;}
 .reveal .proposal { font-size: 0.57em}
@@ -51,17 +51,40 @@ body {
 .reveal .date {
    font-size: 0.75em;
 }
+.reveal .zzzdate:after {
+   content: 'AZ';
+   display: block;
+   position: fixed:
+   top: 1em;
+   left: 1em;
+}
 .reveal section.slide > h1 {
    font-size: 2.4em;
    line-height: 1em;
    padding-bottom: 0.1em;
   /* color: white; */
   /* text-shadow: 0.05em 0.05em 0.06em #000;*/
-   margin-top: -40px;
+   margin-top: -30px;
+}
+.reveal section.zzzslide h1:only-child {
+   font-size: 3.2em;
+   text-shadow: none;
+   text-align: center;
+    position: absolute;
+    top:  10vh;
+    left: 10vh;
+    transform: translate(-10vh,-10vh);
 }
 .reveal section.slide.center > h1 {
    font-size: 3.2em;
    text-shadow: none;
+   margin-top: unset;
+}
+.reveal section.slide:not(.has-dark-background) > h1 {
+   color: #7B5A85;
+}
+.reveal section.slide.center:not(.has-dark-background) > h1 {
+   text-shadow: 0px 0px 15px #FFFFFF
 }
 .reveal section.slide > h2 {
    font-size: 1.6em !important;
@@ -103,11 +126,16 @@ body {
    top:-2em;
    opacity: 0.25;
    font-size: 0.6em;
-   color: #777;
-   border-bottom: 1px solid #777;
+   color: #888;
+   border-bottom: 1px solid #888;
    padding: 0 0 0.02em 5em;
 }
+/*
 .reveal.slide.has-dark-background .slideheader {
+   display: none;
+}
+*/
+.reveal.slide section.stack[data-previous-indexv="0"] .slideheader {
    display: none;
 }
 .reveal .slide {
@@ -204,6 +232,7 @@ body {
 .reveal p {
    line-height: 1.1em;
    margin: 0.5em 0;
+  /* font-size: 42px;*/
 }
 .Zreveal .level1.has-dark-background p {
    color: #F0F1EB;
@@ -328,8 +357,8 @@ body {
 }
 .reveal .title:hover, .reveal .title:focus,
 .reveal .subtitle:hover,
-.reveal .author:hover,
-.reveal .date:hover,
+.reveal .zzzauthor:hover,
+.reveal .zzzdate:hover,
 .reveal section.slide h1:hover {
   /*
    transition: transform 0.2s;
@@ -574,8 +603,9 @@ body {
   min-height: 100%;
 }
 .reveal .html-widget:not(.datatables) {
-   margin: auto;
-  /* margin-bottom: 0.75em;*/
+  /* margin: auto;*/
+  /* margin-bottom: 0.3em;*/
+   margin: 0.3em 0;
    max-width: 99%;
   /* max-width: 614px;*/ /* !important;*/
    max-height: 670px !important;
@@ -622,8 +652,14 @@ body {
    font-size: 80% !important;
    padding-left: 1.05em;
    text-indent:-1.05em;
-   margin: 1.9em 0 0 0; 
+   border: 0;
+   margin: 0 0 1.6em 0;
+}
+.reveal p + .references {
+   margin: 1.6em 0 0 0; 
    border-top: 1px solid #ddd;
+  /*
+  */
 }
 .reveal h3 + .references {
    border: 0;
@@ -632,10 +668,94 @@ body {
 .reveal dt {
    font-weight: 600;
 }
-.reveal .sevinlogo {
-   transition: transform .2s; /* Animation */
+.decoration {
+   display: block;
+   position: fixed;
+   left: 0.2em;
+   bottom: -0.2em;
 }
-.reveal .sevinlogo:hover {
-   transform: scale(1.35);
-   opacity: 1.0;
+.sevinlogo2 {
+   display: block;
+   position: fixed;
+   left: 0.2em;
+   bottom: 0.6em;
+   height: 10vh;
+   opacity: 0.2;
+   transition: transform 1.5s;
+}
+.sevinlogo:hover, .decoration:hover {
+   transition: transform .5s; 
+   transform: scale(3.2) translate(3vh,-3vh);
+   opacity: 1;
+}
+.reveal devel section:not(.slide) {
+   background-image: url("http://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico") no-repeat 0 0;
+   background-position: 0% 0%;
+   background-repeat: no-repeat;
+   background-size: auto 2em;
+}
+.sevindecor {
+   display: block;
+   position: fixed;
+   left: 0.2em;
+   bottom: 0.6em;
+   height: 10vh;
+   width: 100px;
+   heitgh: 80px;
+   background-color: orange;
+}
+.reveal .playback {
+   left: unset;
+   right: 10px;
+   bottom: 15px;
+   opacity: 0.05;
+}
+.zzz-print-pdf .reveal .stack { /* how to unset 'data-background-video'? */
+   all: initial;
+}
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) {
+   background-color: #FFFFFF50;
+}
+.reveal section.has-dark-background.slide[data-background-image^="https://picsum.photos"]:not(.picsum) {
+   background-color: #00000050;
+}
+.reveal > .backgrounds .slide-background-failed {
+   filter: brightness(50%);
+}
+.print0-pdf .reveal .slides > section.present {
+   z-index: unset;
+}
+.reveal .backgrounds .slide-background[data-background-hash*="https://picsum.photos"]::before {
+   content: '\1F301' ' ' 'Lorem Picsum';
+   font-size: 12px;
+   background-color: #00000030;
+   padding: 3px;
+   text-shadow: 0px 0px 3px #000;
+   color: #FFFFFFA0;
+   position: fixed;
+   top: unset;
+   bottom: 7px;
+   right: 1px;
+}
+.reveal .date {
+   margin-left: 12%;
+   margin-right: 12%;
+  /* border: 1px solid red;*/
+}
+.reveal .organization.logo::after, .reveal .sevinlogo::after {
+   position: fixed;
+   bottom: 0px;
+   left: 0px;
+   display: inline-block;
+   width: 150px;
+   height: 160px;
+   content: "";
+   background: url("http://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico") no-repeat 0 0;
+   background-size: 90%;
+}
+.reveal .leaflet-pane img {
+  background-color: unset !important;
+  box-shadow: unset !important;
+  margin: unset;
+
 }

@@ -39,7 +39,7 @@ body {
   padding-bottom: 0.01em;
   color: #222;
  /* Verdana, Tahoma и Segoe UI (никакого Arial и Calibri!) */  /* "Georgia", "Garamond" */
-  font-family: "zzzLato", "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Verdana, sans-serif;
+  font-family: "Segoe UI", "Roboto", "Lato", "Open Sans", "Helvetica Neue", Helvetica, Verdana, sans-serif;
  /* font-family: sans-serif;*/
   font-size: 11pt;
   line-height: 1.30;
@@ -501,8 +501,14 @@ embed {
   /* height: auto !important;*/
    border: 1px dashed #eee;
 }
-.figure iframe {
+.figure iframe, iframe {
    border: 1px dashed #eee; /* #eee */
+}
+iframe {
+   margin: 0 auto 0 auto !important;
+   padding-left: 0;
+   padding-right: 0;
+   width: 614px;
 }
 /* it works
 .plot-container {
@@ -1075,6 +1081,12 @@ span.note::after, span.comment::after {
      display: block;
    }
 }
+@media only screen and (max-width: 840px) {
+   iframe {
+      width: 100% !important;
+      max-height: 100vw !important;
+   }
+}
 @media only screen and (max-width: 640px) {
    .leaflet, .plotly, .highchart, .rbokeh {
       width: 100% !important; /* 92vw 100% */
@@ -1289,6 +1301,10 @@ span.note::after, span.comment::after {
    }
    img.inline {
       margin-left: 0cm;
+   }
+   img.inline.orcid {
+      white-space: pre !important;
+      content: 'yyy\Azzz' !important;
    }
    .leaflet img[width],.leaflet img[alt] {
       margin-left: 0;
@@ -1581,6 +1597,7 @@ span.note::after, span.comment::after {
       border: none;
       padding: unset;
    }
+   .sevinlogo {display: none !important;}
 }
 /* https://stackoverflow.com/questions/47575563/conditional-css-rule-targeting-firefox-quantum */
 @media print {
