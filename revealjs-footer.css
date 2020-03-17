@@ -66,6 +66,20 @@ body {
   /* text-shadow: 0.05em 0.05em 0.06em #000;*/
    margin-top: -30px;
 }
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h1 {
+   margin-top: unset;
+   text-shadow: 0.05em 0.05em 0.06em white;
+}
+.reveal section.has-dark-background.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h1 {
+   text-shadow: 0px 3px 9px #00000090,
+                3px 0px 9px #00000090,
+                0px -3px 9px #00000090,
+                -3px 0px 9px #00000090,
+                -3px -3px 9px #00000090,
+                -3px 3px 9px #00000090,
+                3px -3px 9px #00000090,
+                3px 3px 9px #00000090;
+}
 .reveal section.zzzslide h1:only-child {
    font-size: 3.2em;
    text-shadow: none;
@@ -717,7 +731,11 @@ body {
    background-color: #FFFFFF50;
 }
 .reveal section.has-dark-background.slide[data-background-image^="https://picsum.photos"]:not(.picsum) {
-   background-color: #00000050;
+   background-color: unset; /*#00000050;*/
+}
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center) {
+   background-color: #FFFFFFA0;
+   text-shadow: 2px 2px 3px white;
 }
 .reveal > .backgrounds .slide-background-failed {
    filter: brightness(50%);
@@ -731,7 +749,7 @@ body {
    background-color: #00000030;
    padding: 3px;
    text-shadow: 0px 0px 3px #000;
-   color: #FFFFFFA0;
+   color: #FFFFFF60;
    position: fixed;
    top: unset;
    bottom: 7px;
@@ -758,4 +776,7 @@ body {
   box-shadow: unset !important;
   margin: unset;
 
+}
+reveal .legendtext {
+    font-size: 30px !important;
 }
