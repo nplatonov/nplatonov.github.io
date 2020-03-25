@@ -64,11 +64,29 @@ body {
    padding-bottom: 0.1em;
   /* color: white; */
   /* text-shadow: 0.05em 0.05em 0.06em #000;*/
-   margin-top: -30px;
+  /* margin-top: -30px;*/ /* -23px */
 }
+.reveal .title, .reveal .subtitle, .reveal .author, .reveal .date {
+   text-shadow: 0px 2px 3px #FFFFFF,
+                2px 0px 3px #FFFFFF,
+                0px -2px 3px #FFFFFF,
+                -2px 0px 3px #FFFFFF,
+                -2px -2px 3px #FFFFFF,
+                -2px 2px 3px #FFFFFF,
+                2px -2px 3px #FFFFFF,
+                2px 2px 3px #FFFFFF;
+} 
 .reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h1 {
-   margin-top: unset;
-   text-shadow: 0.05em 0.05em 0.06em white;
+  /* margin-top: unset; */  /* -23px */
+  /* text-shadow: 0.05em 0.05em 0.06em black;*/
+   text-shadow: 0px 3px 9px #FFFFFF90,
+                3px 0px 9px #FFFFFF90,
+                0px -3px 9px #FFFFFF90,
+                -3px 0px 9px #FFFFFF90,
+                -3px -3px 9px #FFFFFF90,
+                -3px 3px 9px #FFFFFF90,
+                3px -3px 9px #FFFFFF90,
+                3px 3px 9px #FFFFFF90;
 }
 .reveal section.has-dark-background.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h1 {
    text-shadow: 0px 3px 9px #00000090,
@@ -80,6 +98,38 @@ body {
                 3px -3px 9px #00000090,
                 3px 3px 9px #00000090;
 }
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h2,
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h3 {
+   text-shadow: 0px 3px 3px #FFFFFFE0,
+                3px 0px 3px #FFFFFFE0,
+                0px -3px 3px #FFFFFFE0,
+                -3px 0px 3px #FFFFFFE0,
+                -3px -3px 3px #FFFFFFE0,
+                -3px 3px 3px #FFFFFFE0,
+                3px -3px 3px #FFFFFFE0,
+                3px 3px 3px #FFFFFFE0;
+}
+.reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum) > h2 {
+   color: unset !important;
+   text-shadow: 0px 3px 3px #000000E0,
+                3px 0px 3px #000000E0,
+                0px -3px 3px #000000E0,
+                -3px 0px 3px #000000E0,
+                -3px -3px 3px #000000E0,
+                -3px 3px 3px #000000E0,
+                3px -3px 3px #000000E0,
+                3px 3px 3px #000000E0;
+}
+.reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum) {
+   text-shadow: 0px 2px 2px #000000E0,
+                2px 0px 2px #000000E0,
+                0px -2px 2px #000000E0,
+                -2px 0px 2px #000000E0,
+                -2px -2px 2px #000000E0,
+                -2px 2px 3px #000000E0,
+                2px -2px 2px #000000E0,
+                2px 2px 2px #000000E0;
+}
 .reveal section.zzzslide h1:only-child {
    font-size: 3.2em;
    text-shadow: none;
@@ -89,27 +139,38 @@ body {
     left: 10vh;
     transform: translate(-10vh,-10vh);
 }
-.reveal section.slide.center > h1 {
+.reveal section.slide.center > h1, .reveal section.slide h1:last-child {
    font-size: 3.2em;
    text-shadow: none;
    margin-top: unset;
 }
-.reveal section.slide:not(.has-dark-background) > h1 {
-   color: #7B5A85;
+/*
+.reveal section.slide h1:last-child:empty {
+   border: 3px solid red !important;
 }
+*/
+.reveal section.slide:not(.has-dark-background) > h1 {
+   color: #0063b1; /*#7B5A85*/
+}
+/*
 .reveal section.slide.center:not(.has-dark-background) > h1 {
    text-shadow: 0px 0px 15px #FFFFFF
 }
+*/
 .reveal section.slide > h2 {
    font-size: 1.6em !important;
    line-height: 1em;
    margin-bottom: 0.3em;
-   color: #7B5A85;
+   color: #0063B1; /* #7B5A85; */
    text-shadow: 1px 1px 3px #aaa;
   /*
    margin-left: -0.8em;	
    margin-right: -0.8em;
   */
+}
+.reveal section.slide.has-dark-background.level2 > h2 {
+   color: white !important;
+   text-shadow: 1px 1px 3px #333;
 }
 .reveal section.slide > h3 {
    font-size: 1.3em !important;
@@ -121,11 +182,17 @@ body {
    text-shadow: 2px 2px 4px #444;
    color: #e0e0d0;
 }
-.reveal section.slide > h2 { font-size: 1.4em; padding-bottom: 5px; margin-top: -23px;}
-.reveal h2 {
-   margin: -0.6em 0 0 0;
+.reveal section.slide > h2 {
+   font-size: 1.4em;
+   padding-bottom: 5px;
+  /* margin: -23px 0 0 0 ;*/
 }
-.reveal .slideheader2 {
+/*
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) {
+   margin-top: unset;
+}
+*/
+.reveal .slideheader1 {
    display: none;
    color: #888;
    font-size: 0.6em;
@@ -136,13 +203,45 @@ body {
    text-align: right;
    display: block;
    position: fixed;
-   right:-0.5em;
-   top:-2em;
-   opacity: 0.25;
-   font-size: 0.6em;
-   color: #888;
+   right: -0.5em;
+   top: -44px;
+   opacity: 0.45;
+   font-size: 17px;
+   color: black;
+   text-shadow:
+      -2px 2px 0px white,
+      -2px -2px 0px white,
+      -2px 0px 0px white,
+      0px -2px 0px white,
+      0px 2px 0px white,
+      2px 0px 0px white,
+      2px 2px 0px white; 
    border-bottom: 1px solid #888;
-   padding: 0 0 0.02em 5em;
+   transition: all 1.3s ease;
+   padding: 0 0 0.01em 5em;
+}
+.reveal .slideheader3 {
+   opacity: 0.05;
+   font-size: 2.6em;
+  /* color: #888;*/
+  /* 
+   border-radius: 23px;
+   height: 46px;
+   line-height: 46px;
+  */
+  /* padding: 0 20px 0 60px;*/
+   position: fixed;
+   left: 22px;
+   top: -6px;
+  /* bottom: 9px; */
+  /* right: 50%;*/
+  /* margin-right: -677px;*/
+  /*
+   transition: all 0.3s ease;
+   -webkit-transform: translate(-90px, -50%) rotate(-90deg);
+  */
+   transform: translate(-56px, -50%) rotate(-90deg);
+  /* cursor: pointer;*/
 }
 /*
 .reveal.slide.has-dark-background .slideheader {
@@ -251,12 +350,17 @@ body {
 .Zreveal .level1.has-dark-background p {
    color: #F0F1EB;
 }
-.reveal .level1.has-dark-background {
+.reveal .level1.has-dark-background,
+.reveal .level2.has-dark-background {
    color: #F0F1EB;
   /* background: #888; */
   /* background-color: #888; */
 }
-.reveal .level1.has-dark-background p a {
+.reveal section.has-dark-background[] {
+   border: 3px solid green;
+}
+.reveal .level1.has-dark-background p a,
+.reveal .level2.has-dark-background p a {
    color: #D3E4FF;
 }
 .reveal p.caption {font-size: 90%; margin: 0 0 0 4px;}
@@ -340,10 +444,14 @@ body {
 .reveal .left80, .reveal .right80 {width: 78%}
 
 .reveal section img {
-   margin: 0.3em 0;
+   margin: 0.3em 0em 0.3em 0em;
    padding: 0;
-   border: 0px solid #000;
+   border: unset;
+  /* border: 0px solid #000;*/
    background: rgba(255, 255, 255, 0.1);
+}
+.reveal section .figure > img {
+   margin: 0;
 }
 .reveal section img:not(.inline) {
    background: rgba(255, 255, 255, 0.3);
@@ -366,7 +474,7 @@ body {
   /* transition: transform .2s;*/ /* Animation */
    transition: all 0.6s ease-in-out;
 }
-.reveal section img:hover {
+.zzzreveal section img:hover {
    transform: scale(1.35);
 }
 .reveal .title:hover, .reveal .title:focus,
@@ -534,7 +642,10 @@ body {
 /*
 .print-pdf .reveal iframe {display: none !important;}
 */
-.print-pdf .reveal .dontprint {display: none !important;}
+.print-pdf .reveal .dontprint,
+.print-pdf .reveal .sevinlogo {
+   display: none !important;
+}
 
 .print-pdf .reveal section.slide > h1, .print-pdf .reveal section.slide > h2 {
    margin-top: 0;
@@ -614,7 +725,12 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: 100%;
+  min-height: 106%;
+  margin-top: -2%; /* -23px */
+  margin-bottom: -2%;
+}
+.reveal.picsum section:not(.level1):not(.level2):not(.stack) {
+  background-color: #FFFFFF90;
 }
 .reveal .html-widget:not(.datatables) {
   /* margin: auto;*/
@@ -727,15 +843,55 @@ body {
 .zzz-print-pdf .reveal .stack { /* how to unset 'data-background-video'? */
    all: initial;
 }
-.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) {
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center) {
    background-color: #FFFFFF50;
+
 }
 .reveal section.has-dark-background.slide[data-background-image^="https://picsum.photos"]:not(.picsum) {
    background-color: unset; /*#00000050;*/
 }
 .reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center) {
-   background-color: #FFFFFFA0;
-   text-shadow: 2px 2px 3px white;
+   background-color: #FFFFFF90;
+  /* text-shadow: 2px 2px 3px white;*/
+   text-shadow: 0px 2px 1px white,
+                2px 0px 1px white,
+                0px -2px 1px white,
+                -2px 0px 1px white,
+                -2px -2px 1px white,
+                -2px 2px 1px white,
+                2px -2px 1px white,
+                2px 2px 1px white;
+}
+.reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum):not(.center) {
+   background-color: #00000060;
+   color: #eee;
+  /* text-shadow: 2px 2px 3px white;*/
+   text-shadow: 0px 2px 1px black,
+                2px 0px 1px black,
+                0px -2px 1px black,
+                -2px 0px 1px black,
+                -2px -2px 1px black,
+                -2px 2px 1px black,
+                2px -2px 1px black,
+                2px 2px 1px black;
+}
+.reveal section.slide {
+   margin-left: -0.3em !important;
+   padding-left: 0.3em !important;
+   padding-right: 0.3em !important;
+  /* padding-top: 0em !important;*/
+  /* dev
+   background-color: yellow;
+   text-align: justify;
+  */
+}
+.reveal section.slide.level1,
+.reveal section.slide.level2 {
+   margin-top: -23px;
+   padding-bottom: 8px !important;
+}
+.reveal section.slide.has-dark-background.level2 {
+   color: white;
 }
 .reveal > .backgrounds .slide-background-failed {
    filter: brightness(50%);
@@ -772,11 +928,23 @@ body {
    background-size: 90%;
 }
 .reveal .leaflet-pane img {
-  background-color: unset !important;
-  box-shadow: unset !important;
-  margin: unset;
+   background-color: unset !important;
+   box-shadow: unset !important;
+   margin: unset;
 
 }
-reveal .legendtext {
-    font-size: 30px !important;
+.reveal .legendtext {
+   font-size: 30px !important;
+}
+.reveal section[zzzid="thnx"] {
+   text-align: right;
+   border: 3px solid blue;
+}
+.reveal .backgrounds .invert {
+   background-color: #383382B0 !important;
+}
+.reveal.picsum .backgrounds .slide-background.present:not(.slide):not(.stack) {
+   background-image: url("https://picsum.photos/1052/744");
+   opacity: 0.5;
+  /* filter: brightness(120%); */
 }
