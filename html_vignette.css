@@ -1086,6 +1086,11 @@ span.note::after, span.comment::after {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+.article {
+   column-count: 2;
+   text-align: justify;
+}
+
 @media only screen and (max-width: 790px) {
    table {
      display: block;
@@ -1139,6 +1144,12 @@ span.note::after, span.comment::after {
    }
    #zzzTOC {
       position: absolute;
+   }
+}
+@media only screen and (max-width: 680px) {
+   .article  {
+       column-count: unset;
+       text-align: unset;
    }
 }
 /*
@@ -1610,6 +1621,9 @@ span.note::after, span.comment::after {
       padding: unset;
    }
    .sevinlogo {display: none !important;}
+   .article {
+     /* font-size: 85%;*/
+   }
 }
 /* https://stackoverflow.com/questions/47575563/conditional-css-rule-targeting-firefox-quantum */
 @media print {

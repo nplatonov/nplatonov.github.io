@@ -1,5 +1,10 @@
 body {
    background-color: #F0F1EB5F !important;
+  /*
+   background-image: url("http://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico");
+   background-repeat: no-repeat;
+   background-position: 20px 20px;
+  */
 }
 /*
 .reveal p {
@@ -76,7 +81,8 @@ body {
                 2px -2px 3px #FFFFFF,
                 2px 2px 3px #FFFFFF;
 } 
-.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h1 {
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h1,
+.reveal section.slide.parallax:not(.picsum) > h1 {
   /* margin-top: unset; */  /* -23px */
   /* text-shadow: 0.05em 0.05em 0.06em black;*/
    text-shadow: 0px 3px 9px #FFFFFF90,
@@ -88,7 +94,8 @@ body {
                 3px -3px 9px #FFFFFF90,
                 3px 3px 9px #FFFFFF90;
 }
-.reveal section.has-dark-background.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h1 {
+.reveal section.has-dark-background.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h1,
+.reveal section.has-dark-background.slide.parallax:not(.picsum) > h1 {
    text-shadow: 0px 3px 9px #00000090,
                 3px 0px 9px #00000090,
                 0px -3px 9px #00000090,
@@ -516,6 +523,16 @@ body {
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+.reveal table {
+   margin-top: 0.2em;
+   margin-bottom: 0.2em;
+}
+.reveal section:not(.invert) table {
+   background-color: #FFFFFF60;
+}
+.reveal section.invert table {
+   background-color: #000000A0;
+}
 .Zreveal table td { /* DOESNT WORK */
    border-width: 3px;
    padding-left: 5px;
@@ -729,7 +746,8 @@ body {
   margin-top: -2%; /* -23px */
   margin-bottom: -2%;
 }
-.reveal.picsum section:not(.level1):not(.level2):not(.stack) {
+.reveal.picsum section:not(.level1):not(.level2):not(.stack),
+.reveal.parallax section:not(.level1):not(.level2):not(.stack) {
   background-color: #FFFFFF90;
 }
 .reveal .html-widget:not(.datatables) {
@@ -843,14 +861,16 @@ body {
 .zzz-print-pdf .reveal .stack { /* how to unset 'data-background-video'? */
    all: initial;
 }
-.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center) {
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center),
+.reveal section.slide.parallax:not(.picsum):not(.center) {
    background-color: #FFFFFF50;
-
 }
-.reveal section.has-dark-background.slide[data-background-image^="https://picsum.photos"]:not(.picsum) {
+.reveal section.has-dark-background.slide[data-background-image^="https://picsum.photos"]:not(.picsum),
+.reveal section.has-dark-background.slide.parallax:not(.picsum) {
    background-color: unset; /*#00000050;*/
 }
-.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center) {
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center),
+.reveal section.slide.parallax:not(.picsum):not(.center) {
    background-color: #FFFFFF90;
   /* text-shadow: 2px 2px 3px white;*/
    text-shadow: 0px 2px 1px white,
@@ -862,7 +882,8 @@ body {
                 2px -2px 1px white,
                 2px 2px 1px white;
 }
-.reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum):not(.center) {
+.reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum):not(.center),
+.reveal section.slide.parallax.has-dark-background:not(.picsum):not(.center) {
    background-color: #00000060;
    color: #eee;
   /* text-shadow: 2px 2px 3px white;*/
@@ -899,13 +920,22 @@ body {
 .print0-pdf .reveal .slides > section.present {
    z-index: unset;
 }
+.reveal.has-parallax-background .backgrounds[style*="https://picsum.photos"]::before,
 .reveal .backgrounds .slide-background[data-background-hash*="https://picsum.photos"]::before {
    content: '\1F301' ' ' 'Lorem Picsum';
    font-size: 12px;
-   background-color: #00000030;
+  /* background-color: #00000030; */
    padding: 3px;
-   text-shadow: 0px 0px 3px #000;
-   color: #FFFFFF60;
+   text-shadow: 1px 0px 1px #000000F0,
+                1px 1px 1px #000000F0,
+                0px 1px 1px #000000F0,
+                -1px 0px 1px #000000F0,
+                0px -1px 1px #000000F0,
+               -1px -1px 1px #000000F0,
+                1px -1px 1px #000000F0,
+                -1px 1px 1px #000000F0;
+   color: #FFFFFFF0;
+   opacity: 0.1;
    position: fixed;
    top: unset;
    bottom: 7px;
@@ -940,11 +970,21 @@ body {
    text-align: right;
    border: 3px solid blue;
 }
-.reveal .backgrounds .invert {
+.reveal .backgrounds .slide-background.invert:not(.picsum):not(.parallax) {
    background-color: #383382B0 !important;
+}
+.reveal .backgrounds .slide-background.invert.picsum,
+.reveal .backgrounds .slide-background.invert.parallax {
+   background-color: #00000001 !important;
 }
 .reveal.picsum .backgrounds .slide-background.present:not(.slide):not(.stack) {
    background-image: url("https://picsum.photos/1052/744");
    opacity: 0.5;
   /* filter: brightness(120%); */
+}
+.print-pdf .reveal .slide-background {
+   display: none !important;
+}
+.print-pdf .reveal section.slide.center {
+ /* min-height: 752px !important;*/
 }
