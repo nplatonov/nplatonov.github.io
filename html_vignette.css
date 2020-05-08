@@ -100,6 +100,9 @@ body {
 #TOC li a[href^="#zzzsection"] {
   /* display: none;*/
 }
+#zzzTOC li a:empty {
+   display: none;
+}
 /* collapse -- begin */
 @media only screen and (min-width: 1360px) {
    .zzztitle,.zzzsubtitle {
@@ -175,6 +178,9 @@ table:not(.ZdataTable) {
   font-size: 95%;
  /* border-width: 1px;*/
 }
+table.narrow, table[narrow] {
+  min-width: revert;
+}
 table th {
   border-width: 0px; /* 2px */
  /* border-color: #999;*/
@@ -182,10 +188,8 @@ table th {
  /* border-style: solid; */
   font-weight: 600; /* normal bold 900 */
 }
-table td {
-  border-width: 1px; /* 1px */
-  border-style: solid;
-  border-color: #f1f1f1;
+table td { /*:not([style])*/
+  border: 1px solid #f1f1f1; /* 1px */
   line-height: 1.2;
   padding: 0.2em 0.35em; /* 2px 5px */
 }
@@ -208,7 +212,8 @@ table {
   word-break: normal;
 }
 table.scroll, table[scroll] {
-  display: block;
+  display: table;
+  width: 100% !important;
 }
 /*
 table th {
@@ -255,6 +260,10 @@ Ztable:not(.dataTable) {
   padding-top: 4px !important;
   padding-bottom: 4px !important;
   font-weight: 600 !important;
+}
+.dataTables_scrollBody .dataTable thead th {
+  padding-top: unset !important;
+  padding-bottom: unset !important;
 }
 .datatable_paginate, .paginate_button {
    font-size: 80%;
@@ -455,6 +464,9 @@ pre:not([class]) > code {
   padding-top: 0.3em;
   text-align: center;
 }
+.figure .datatables {
+  text-align: left !important;
+}
 img {
   text-align: center;
   background-color: #FFFFFF;
@@ -494,12 +506,17 @@ embed {
    margin: auto;
    margin-bottom: 0.75em;
   /* max-width: 100%;*/
-   max-width: 614px; /* !important;*/
+   max-width: 790px; /* 614px !important;*/
   /* max-height: 460px !important;*/
    max-height: auto !important;
   /* height: auto !important;*/
-   border: 1px dashed #eee;
+   border: 1px dashed #eee; /* 1px solid orange*/
 }
+.html-widget.gauge {
+   height: unset !important;
+  /* margin-bottom: -0.8em;*/
+}
+
 iframe {
    margin: 0 auto 0 auto !important;
    padding-left: 0;
@@ -513,11 +530,15 @@ iframe:not([class]) {
 .figure iframe:not(.html-widget) { /* ,iframe */
    border: 1px dashed #eee;
 }
+.figure .html-widget iframe {
+   border: unset;
+}
 /* it works
 .plot-container {
    border: 3px dashed lightgreen; 
 }
 */
+/*
 .leaflet {
    width: 614px !important;
    height: 400px !important;
@@ -526,6 +547,7 @@ iframe:not([class]) {
    width: 614px;
    height: 400px;
 }
+*/	
 .gl-container > .mapboxgl-map {
    left: 0px !important;
    top: 0px !important;
@@ -654,8 +676,14 @@ h1:hover::before, h2:hover::before, h3:hover::before, h4:hover::before, h5:hover
 }
 /**/
 
+.level1 {
+  margin: 0px 0px 0px 0px;
+}
+.level1 + .level1 { /* :not(:first-of-type) */
+  margin: 24px 0px 0px 0px;
+}
 h1 {
-  margin: 30px 0px 0px 0px;
+  margin: 0px 0px 4px 0px;
   font-size: 180%;
   border-width: 0 12px 0 0;
  /* padding-left: 30px;*/
@@ -1090,29 +1118,115 @@ span.note::after, span.comment::after {
    column-count: 2;
    text-align: justify;
 }
-
-@media only screen and (max-width: 790px) {
-   table {
-     display: block;
-   }
+.multirow {
+   display: table; 
+   margin: 0em auto 0em auto;
 }
-@media only screen and (max-width: 840px) {
+.multicol {
+   float: left;
+   width: revert;
+   z-index: -10;
+   padding-left: 0.1em;
+   padding-right: 0.1em;
+}
+.multirow:after {
+   content: ' ';
+   display: table;
+   clear: both;
+}
+*[href^="https://www.000webhost.com/"] {
+   display: none;
+}
+.value-box .value {
+   font-size: 28px;
+   font-weight: 600;
+   margin: 0 0 -4px 0;
+   white-space: nowrap;
+   padding: 0;
+}
+.value-box .caption {
+   font-size: 11pt !important;
+  /* align: left;*/
+   margin: 4px 0px 4px 0px; /* top: -4px */
+}
+.value-box > .inner {
+   padding: 1px 8px 1px 8px;
+}
+.value-box {
+   color: #eee;
+}
+.value-box.bg-primary {
+   background-color: rgba(39, 128, 227, 0.7);
+}
+.value-box.bg-info {
+   background-color: rgba(39, 227, 128, 0.7);
+}
+.value-box {
+   border-radius: 8px;
+   position: relative;
+   display: inline-block;
+   margin-left: 4px;
+   margin-right: 4px;
+   margin-bottom: 8px;
+   margin-top: 8px;
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.value-box .icon i {
+   position: absolute;
+   top: 4px;
+   right: 4px;
+   font-size: 32px;
+   color: rgba(0, 0, 0, 0.06);
+}
+.value-output {
+}
+.value-output::first-letter {
+   color: red;
+}
+.value-output::before {
+   content: attr(data-caption) ': ';
+}
+/*
+.value-output::before::first-letter {
+   color: red !important;
+}
+*/
+.value-output::after {
+   content: '.'
+}
+
+@media only screen and (max-width: 856px) {
+   html {background: inherit;}
+   body {box-shadow: none;}
    iframe {
       width: 100% !important;
       max-height: 100vw !important;
    }
 }
-@media only screen and (max-width: 640px) {
-   .leaflet, .plotly, .highchart, .rbokeh, {
-      width: 100% !important; /* 92vw 100% */
-      height: 70vw !important;
-     /* border: 5px solid gold;*/
+@media only screen and (max-width: 790px) {
+   .zzztable {
+     display: block;
    }
-   .figure iframe {
+}
+@media only screen and (max-width: 680px) {
+   .html-widget, .plot-container {
+       width: 100% !important; /* 92vw 100% */
+       height: 70vw !important;
+   }
+   .zzzleaflet, .html-widget .plotly, .gauge, .zzzhighchart, .zzzrbokeh, {
+       display: none !important;
+       width: 90% !important; /* 92vw 100% */
+       height: 70vw !important;
+       border: 3px solid red !important;
+   }
+   .figure { /* '.figure iframe' deprecated */
      /* max-width: 190vw;*/
       width: 100% !important;
-      max-height: 100vw !important;
+     /* max-height: 100vw !important; */ /* see `.figure img` */
       border: 1px dash magenta;
+   }
+   .figure img {
+      max-height: 100vw !important;
    }
   /*
    .Zplotly, .Zhighchart, .html-widget, .svg-container {
@@ -1122,6 +1236,28 @@ span.note::after, span.comment::after {
       border: 1px dash magenta;
    }
   */
+   table:not([narrow]):not(.narrow) {
+     display: table;
+     width: 100%;
+   }
+   .multirow {
+      display:block;
+      height: revert !important;
+      width: revert !important;
+   }
+   .multicol {
+      float: none;
+      padding-left: revert;
+      padding-right: revert;
+   }
+   .multicol:not([narrow]):not(.narrow) {
+      width: 100% !important;
+   }
+   .value-box {
+      display: block;
+      width: revert !important;
+      height: revert !important;
+   }
 }
 /*
 @media only screen and (min-width: 400px) {
@@ -1166,7 +1302,10 @@ span.note::after, span.comment::after {
       background: inherit;
    }
    @page {
-      margin: 2cm 2cm 2cm 2cm;
+     /*
+      margin: 1.845cm 1.845cm 1.845cm 1.845cm;
+     */
+      margin: 1.845cm 1.5cm 1.845cm 1.5cm; /* TODO: widget width 614->??? */
       counter-increment: page;
       counter-reset: page 1;
       @top-right {
@@ -1174,6 +1313,7 @@ span.note::after, span.comment::after {
       }
    }
    body {
+      background-color: lightyellow;
       max-width: 9999px;
       font-family: "Georgia", "Cambria", "Times New Roman", Times, serif;
       font-size: 12pt; 
@@ -1292,11 +1432,6 @@ span.note::after, span.comment::after {
       display: block;
       page-break-inside: avoid;
    }
-   .html-widget {
-      opacity: 1.0;
-      page-break-inside: avoid;
-      border: 0px;
-   }
    img.centeredfigure {
       display: inline-block;
       max-width: 15.3cm;
@@ -1310,7 +1445,7 @@ span.note::after, span.comment::after {
    p > a > img:not(.inline), p > img:not(.inline)
   /* p > img:first-of-type:not(.inline)*/
    {
-      float: none !important;
+     /* float: none !important; */
       text-indent: 0 !important;
       margin-left: 0cm !important; /* -1.25cm 0cm */
       margin-top: 0.2em !important;
@@ -1339,6 +1474,7 @@ span.note::after, span.comment::after {
    .leaflet-control-layers,
    .leaflet-bar,
    .highcharts-button,
+   .lnlt,
    .bk-toolbar-wrapper {
       display: none !important;
    }
@@ -1579,15 +1715,16 @@ span.note::after, span.comment::after {
    .footnotes, .adopted {
       font-size: 75% !important;
    }
-   .zzzplotly, {
+   .zzzplotly {
       max-width: 13cm;
       height: auto;
    }
    .html-widget {
      /*
+      border: 3px solid blue !important;
+      width: 11cm !important;
       max-width: 17cm;
       height: auto;
-      border: 3px solid blue;
      */
    }
    .plotly .modebar-btn {
@@ -1623,6 +1760,16 @@ span.note::after, span.comment::after {
    .sevinlogo {display: none !important;}
    .article {
      /* font-size: 85%;*/
+   }
+   .value-box p.value, .value-box p.caption {
+      text-indent: 0cm;
+   }
+   .value-box .caption {
+      font-size: 85% !important;
+   }
+   .value-box {
+      margin-top: 0.4em;
+      margin-bottom: 0.8em;
    }
 }
 /* https://stackoverflow.com/questions/47575563/conditional-css-rule-targeting-firefox-quantum */

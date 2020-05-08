@@ -1,0 +1,1003 @@
+body {
+   background-color: #F0F1EB5F !important;
+  /*
+   background-image: url("http://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico");
+   background-repeat: no-repeat;
+   background-position: 20px 20px;
+  */
+}
+/*
+.reveal p {
+   border: 1px solid red;
+   margin-left: -48px !important;
+   margin-right: -48px !important;
+}
+*/
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  text-transform: none; /* none uppercase lowercase capitalize */
+  word-wrap: normal;
+  word-break: normal;
+}
+.reveal h1 { font-size: 2.2em;}
+.reveal h2 { font-size: 1.6em;}
+.reveal h3 { font-size: 1.25em}
+.reveal h2+h3 {margin-top: -0.1em;}
+.reveal h4 { font-size: 1.1em;}
+.reveal .title {font-size: 2.0em;line-height: 1.1;}
+.reveal .subtitle {font-size: 1.5em; line-height: 1.1; padding-top: 0.4em;}
+.reveal .title, .reveal .subtitle { text-transform: none;}
+.reveal .proposal { font-size: 0.57em}
+.reveal .author {
+   font-size: 1.2em;
+  /* line-height: 1.9 !important;*/
+   padding: 0.4em 1.2em 0.4em 1.2em;
+}
+.reveal .author:first-of-type {
+   padding-top: 1.8em;
+}
+.reveal .author:last-of-type {
+   padding-bottom: 1.8em;
+}
+.reveal .affiliation::before {
+   content: "\A\A0" attr(text);
+   white-space: pre;
+}
+.reveal .author * .organization {
+   font-size: 0.75em;
+}
+.reveal .author * .affiliation, .reveal .author > .affiliation {
+   font-size: 0.75em;
+}
+.reveal .date {
+   font-size: 0.75em;
+}
+.reveal .zzzdate:after {
+   content: 'AZ';
+   display: block;
+   position: fixed:
+   top: 1em;
+   left: 1em;
+}
+.reveal section.slide > h1 {
+   font-size: 2.4em;
+   line-height: 1em;
+   padding-bottom: 0.1em;
+  /* color: white; */
+  /* text-shadow: 0.05em 0.05em 0.06em #000;*/
+  /* margin-top: -30px;*/ /* -23px */
+}
+.reveal .title, .reveal .subtitle, .reveal .author, .reveal .date {
+   text-shadow: 0px 2px 3px #FFFFFF,
+                2px 0px 3px #FFFFFF,
+                0px -2px 3px #FFFFFF,
+                -2px 0px 3px #FFFFFF,
+                -2px -2px 3px #FFFFFF,
+                -2px 2px 3px #FFFFFF,
+                2px -2px 3px #FFFFFF,
+                2px 2px 3px #FFFFFF;
+} 
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h1,
+.reveal section.slide.parallax:not(.picsum) > h1 {
+  /* margin-top: unset; */  /* -23px */
+  /* text-shadow: 0.05em 0.05em 0.06em black;*/
+   text-shadow: 0px 3px 9px #FFFFFF90,
+                3px 0px 9px #FFFFFF90,
+                0px -3px 9px #FFFFFF90,
+                -3px 0px 9px #FFFFFF90,
+                -3px -3px 9px #FFFFFF90,
+                -3px 3px 9px #FFFFFF90,
+                3px -3px 9px #FFFFFF90,
+                3px 3px 9px #FFFFFF90;
+}
+.reveal section.has-dark-background.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h1,
+.reveal section.has-dark-background.slide.parallax:not(.picsum) > h1 {
+   text-shadow: 0px 3px 9px #00000090,
+                3px 0px 9px #00000090,
+                0px -3px 9px #00000090,
+                -3px 0px 9px #00000090,
+                -3px -3px 9px #00000090,
+                -3px 3px 9px #00000090,
+                3px -3px 9px #00000090,
+                3px 3px 9px #00000090;
+}
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h2,
+.reveal section.slide.parallax:not(.picsum) > h2,
+.reveal section.slide.parallax:not(.picsum) > h3,
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h3 {
+   text-shadow: 0px 3px 3px #FFFFFFE0,
+                3px 0px 3px #FFFFFFE0,
+                0px -3px 3px #FFFFFFE0,
+                -3px 0px 3px #FFFFFFE0,
+                -3px -3px 3px #FFFFFFE0,
+                -3px 3px 3px #FFFFFFE0,
+                3px -3px 3px #FFFFFFE0,
+                3px 3px 3px #FFFFFFE0;
+}
+.reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum) > h2,
+.reveal section.has-dark-background.slide.parallax:not(.picsum) > h2 {
+   color: unset !important;
+   text-shadow: 0px 3px 3px #000000E0,
+                3px 0px 3px #000000E0,
+                0px -3px 3px #000000E0,
+                -3px 0px 3px #000000E0,
+                -3px -3px 3px #000000E0,
+                -3px 3px 3px #000000E0,
+                3px -3px 3px #000000E0,
+                3px 3px 3px #000000E0;
+}
+.reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum) {
+   text-shadow: 0px 2px 2px #000000E0,
+                2px 0px 2px #000000E0,
+                0px -2px 2px #000000E0,
+                -2px 0px 2px #000000E0,
+                -2px -2px 2px #000000E0,
+                -2px 2px 3px #000000E0,
+                2px -2px 2px #000000E0,
+                2px 2px 2px #000000E0;
+}
+.reveal section.zzzslide h1:only-child {
+   font-size: 3.2em;
+   text-shadow: none;
+   text-align: center;
+    position: absolute;
+    top:  10vh;
+    left: 10vh;
+    transform: translate(-10vh,-10vh);
+}
+.reveal section.slide.center > h1, .reveal section.slide h1:last-child {
+   font-size: 3.2em;
+   text-shadow: none;
+   margin-top: unset;
+}
+/*
+.reveal section.slide h1:last-child:empty {
+   border: 3px solid red !important;
+}
+*/
+.reveal section.slide:not(.has-dark-background) > h1 {
+   color: #0063b1; /*#7B5A85*/
+}
+/*
+.reveal section.slide.center:not(.has-dark-background) > h1 {
+   text-shadow: 0px 0px 15px #FFFFFF
+}
+*/
+.reveal section.slide > h2 {
+   font-size: 1.6em !important;
+   line-height: 1em;
+   margin-bottom: 0.3em;
+   color: #0063B1; /* #7B5A85; */
+   text-shadow: 1px 1px 3px #aaa;
+  /*
+   margin-left: -0.8em;	
+   margin-right: -0.8em;
+  */
+}
+.reveal section.slide.has-dark-background.level2 > h2 {
+   color: white !important;
+   text-shadow: 1px 1px 3px #333;
+}
+.reveal section.slide > h3 {
+   font-size: 1.3em !important;
+   line-height: 1em;
+   margin-bottom: 0.3em;
+   text-shadow: 1px 1px 2px #aaa;
+}
+.reveal section.slide.has-dark-background > h1 {
+   text-shadow: 2px 2px 4px #444;
+   color: #e0e0d0;
+}
+.reveal section.slide > h2 {
+   font-size: 1.4em;
+   padding-bottom: 5px;
+  /* margin: -23px 0 0 0 ;*/
+}
+/*
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) {
+   margin-top: unset;
+}
+*/
+.reveal .slideheader1 {
+   display: none;
+   color: #888;
+   font-size: 0.6em;
+   text-align: right;
+   margin: -30pt 0 0 0;
+}
+.reveal .slideheader {
+   text-align: right;
+   display: block;
+   position: fixed;
+   right: -0.5em;
+   top: -44px;
+   opacity: 0.45;
+   font-size: 17px;
+   color: black;
+   text-shadow:
+      -2px 2px 0px white,
+      -2px -2px 0px white,
+      -2px 0px 0px white,
+      0px -2px 0px white,
+      0px 2px 0px white,
+      2px 0px 0px white,
+      2px 2px 0px white; 
+   border-bottom: 1px solid #888;
+   transition: all 1.3s ease;
+   padding: 0 0 0.01em 5em;
+}
+.reveal .slideheader3 {
+   opacity: 0.05;
+   font-size: 2.6em;
+  /* color: #888;*/
+  /* 
+   border-radius: 23px;
+   height: 46px;
+   line-height: 46px;
+  */
+  /* padding: 0 20px 0 60px;*/
+   position: fixed;
+   left: 22px;
+   top: -6px;
+  /* bottom: 9px; */
+  /* right: 50%;*/
+  /* margin-right: -677px;*/
+  /*
+   transition: all 0.3s ease;
+   -webkit-transform: translate(-90px, -50%) rotate(-90deg);
+  */
+   transform: translate(-56px, -50%) rotate(-90deg);
+  /* cursor: pointer;*/
+}
+/*
+.reveal.slide.has-dark-background .slideheader {
+   display: none;
+}
+*/
+.reveal.slide section.stack[data-previous-indexv="0"] .slideheader {
+   display: none;
+}
+.reveal .slide {
+  /*
+   color: orange;
+   background: white;
+   background-color: white;
+  */
+   text-align:left;
+}
+.reveal .progress {
+   height: 7px;
+   margin-top: 1px;
+}
+.reveal .controls {
+   right: 0px;
+   bottom: 0px;
+}
+.reveal .center {text-align: center;}
+.reveal .controls .enabled {opacity: 0.03;}
+.reveal .controls .enabled:hover {opacity: 0.2;}
+.reveal .thankyou {font-size: 2.0em;}
+.reveal .scale200 {font-size: 200%;}
+.reveal .scale190 {font-size: 190%;}
+.reveal .scale180 {font-size: 180%;}
+.reveal .scale170 {font-size: 170%;}
+.reveal .scale160 {font-size: 160%;}
+.reveal .scale150 {font-size: 150%;}
+.reveal .scale140 {font-size: 140%;}
+.reveal .scale130 {font-size: 130%;}
+.reveal .scale120 {font-size: 120%;}
+.reveal .scale110 {font-size: 110%;}
+.reveal .scale100 {font-size: 100%;}
+.reveal .scale99 {font-size: 99%;}
+.reveal .scale98 {font-size: 98%;}
+.reveal .scale97 {font-size: 97%;}
+.reveal .scale96 {font-size: 96%;}
+.reveal .scale95 {font-size: 95%;}
+.reveal .scale94 {font-size: 94%;}
+.reveal .scale93 {font-size: 93%;}
+.reveal .scale92 {font-size: 92%;}
+.reveal .scale91 {font-size: 91%;}
+.reveal .scale90 {font-size: 90%;}
+.reveal .scale89 {font-size: 89%;}
+.reveal .scale88 {font-size: 88%;}
+.reveal .scale87 {font-size: 87%;}
+.reveal .scale86 {font-size: 86%;}
+.reveal .scale85 {font-size: 85%;}
+.reveal .scale84 {font-size: 84%;}
+.reveal .scale83 {font-size: 83%;}
+.reveal .scale82 {font-size: 82%;}
+.reveal .scale81 {font-size: 81%;}
+.reveal .scale80 {font-size: 80%;}
+.reveal .scale79 {font-size: 79%;}
+.reveal .scale78 {font-size: 78%;}
+.reveal .scale77 {font-size: 77%;}
+.reveal .scale76 {font-size: 76%;}
+.reveal .scale75 {font-size: 75%;}
+.reveal .scale74 {font-size: 74%;}
+.reveal .scale73 {font-size: 73%;}
+.reveal .scale72 {font-size: 72%;}
+.reveal .scale71 {font-size: 71%;}
+.reveal .scale70 {font-size: 70%;}
+.reveal .scale69 {font-size: 69%;}
+.reveal .scale68 {font-size: 68%;}
+.reveal .scale67 {font-size: 67%;}
+.reveal .scale66 {font-size: 66%;}
+.reveal .scale65 {font-size: 65%;}
+.reveal .scale64 {font-size: 64%;}
+.reveal .scale63 {font-size: 63%;}
+.reveal .scale62 {font-size: 62%;}
+.reveal .scale61 {font-size: 61%;}
+.reveal .scale60 {font-size: 60%;} /*line-height: 0.9em;}*/
+.reveal .scale59 {font-size: 59%;}
+.reveal .scale58 {font-size: 58%;}
+.reveal .scale57 {font-size: 57%;}
+.reveal .scale56 {font-size: 56%;}
+.reveal .scale55 {font-size: 55%;}
+.reveal .scale54 {font-size: 54%;}
+.reveal .scale53 {font-size: 53%;}
+.reveal .scale52 {font-size: 52%;}
+.reveal .scale51 {font-size: 51%;}
+.reveal .scale50 {font-size: 50%;}
+.reveal .scale49 {font-size: 49%;}
+.reveal .scale48 {font-size: 48%;}
+.reveal .scale47 {font-size: 47%;}
+.reveal .scale46 {font-size: 46%;}
+.reveal .scale45 {font-size: 45%;}
+.reveal .scale40 {font-size: 40%;}
+.reveal .scale35 {font-size: 35%;}
+.reveal .scale30 {font-size: 30%;}
+.reveal .scale0 {font-size: 0%;}
+
+.reveal p {
+   line-height: 1.1em;
+   margin: 0.5em 0;
+  /* font-size: 42px;*/
+}
+.Zreveal .level1.has-dark-background p {
+   color: #F0F1EB;
+}
+.reveal .level1.has-dark-background,
+.reveal .level2.has-dark-background {
+   color: #F0F1EB;
+  /* background: #888; */
+  /* background-color: #888; */
+}
+.reveal section.has-dark-background[] {
+   border: 3px solid green;
+}
+.reveal .level1.has-dark-background p a,
+.reveal .level2.has-dark-background p a {
+   color: #D3E4FF;
+}
+.reveal p.caption {font-size: 90%; margin: 0 0 0 4px;}
+.reveal caption {font-size: 90%; margin: 0 0 0.2em 0;}
+
+.reveal .greyB {color: #BBB}
+.reveal .greyA {color: #AAA}
+.reveal .grey9 {color: #999}
+.reveal .grey8 {color: #888}
+.reveal .grey7 {color: #777}
+.reveal .grey6 {color: #666}
+.reveal .grey5 {color: #555}
+.reveal .grey4 {color: #444}
+.reveal .grey2 {color: #333}
+.reveal .redA {color: #a00}
+.reveal .greenA {color: #0A0}
+.reveal .blueA {color: #00A}
+
+.reveal .space00 {}
+.reveal .space05 {margin: 0.25em 0 0.25em 0; display: block}
+.reveal .space09 {margin: 0.45em 0 0.45em 0; display: block}
+.reveal .space10 {margin: 0.50em 0 0.50em 0; display: block}
+.reveal .space15 {margin: 0.75em 0 0.75em 0; display: block}
+.reveal .space20 {margin: 1.0em 0 1.0em 0; display: block}
+.reveal .space30 {margin: 1.5em 0 1.5em 0; display: block}
+.reveal .space40 {margin: 2.0em 0 2.0em 0; display: block}
+.reveal .space50 {margin: 2.5em 0 2.5em 0; display: block}
+.reveal .space60 {margin: 3.0em 0 3.0em 0; display: block}
+.reveal .space70 {margin: 3.5em 0 3.5em 0; display: block}
+.reveal .space80 {margin: 4.0em 0 4.0em 0; display: block}
+
+.reveal .line05 {line-height: 0.5;}
+.reveal .line09 {line-height: 0.9;}
+.reveal .line10 {line-height: 1.0;}
+.reveal .line15 {line-height: 1.5;}
+.reveal .line20 {line-height: 2.0;}
+.reveal .line30 {line-height: 3.0;}
+.reveal .line40 {line-height: 4.0;}
+.reveal .line50 {line-height: 5.0;}
+.reveal .line60 {line-height: 6.0;}
+.reveal .line70 {line-height: 7.0;}
+.reveal .line80 {line-height: 8.0;}
+
+.reveal .left,
+.reveal .left20,
+.reveal .left30,
+.reveal .left40,
+.reveal .left50,
+.reveal .left60,
+.reveal .left70,
+.reveal .left80 {
+  display: block;
+  left: -3.33%; /* -8.33% */
+  text-align: left;
+  float: left;
+  z-index: -10;
+  padding-right: 0.5em;
+}
+.reveal .right,
+.reveal .right20,
+.reveal .right30,
+.reveal .right40,
+.reveal .right50,
+.reveal .right60,
+.reveal .right70,
+.reveal .right80 {
+  left: 1.25%; /* 31.25% */
+ /* top: 75px;*/
+  float: left;
+  text-align: left;
+  z-index: -10;
+  padding-left: 0.5em;
+}
+.reveal .left20, .reveal .right20 {width: 18%}
+.reveal .left30, .reveal .right30 {width: 28%}
+.reveal .left40, .reveal .right40 {width: 38%}
+.reveal .left50, .reveal .right50 {width: 48%}
+.reveal .left, .reveal .right {width: 48%}
+.reveal .left60, .reveal .right60 {width: 58%}
+.reveal .left70, .reveal .right70 {width: 68%}
+.reveal .left80, .reveal .right80 {width: 78%}
+
+.reveal section img {
+   margin: 0.3em 0em 0.3em 0em;
+   padding: 0;
+   border: unset;
+  /* border: 0px solid #000;*/
+   background: rgba(255, 255, 255, 0.1);
+}
+.reveal section .figure > img {
+   margin: 0;
+}
+.reveal section img:not(.inline) {
+   background: rgba(255, 255, 255, 0.3);
+   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.07); /* 0.07 */
+} 
+.reveal section img.leaflet-tile {
+   box-shadow: none;
+}
+.reveal section img.inline {
+   margin: 0.1em;
+   padding: 0.1em;
+   margin-bottom: -0.2em;
+   background-color: transparent;
+   box-shadow: none;
+}
+.reveal section img.inline:hover {
+   background-color: transparent;
+}
+.reveal section img {
+  /* transition: transform .2s;*/ /* Animation */
+   transition: all 0.6s ease-in-out;
+}
+.zzzreveal section img:hover {
+   transform: scale(1.35);
+}
+.reveal .title:hover, .reveal .title:focus,
+.reveal .subtitle:hover,
+.reveal .zzzauthor:hover,
+.reveal .zzzdate:hover,
+.reveal section.slide h1:hover {
+  /*
+   transition: transform 0.2s;
+   transform: scale(1.2);
+   animation-name: example;
+   animation-duration: 4s;
+  */
+   animation: shake 0.5s; 
+}
+.reveal .title,
+.reveal .subtitle,
+.reveal .author,
+.reveal .date,
+.reveal section.slide h1 {
+   transition: transform 0.2s ease-in-out;
+} 
+@keyframes example {
+  0%   {color: red;}
+  25%  {color: yellow;}
+  50%  {color: blue;}
+  100% {color: green;}
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.reveal table {
+   margin-top: 0.2em;
+   margin-bottom: 0.2em;
+}
+.reveal section:not(.invert) table {
+   background-color: #FFFFFF60;
+}
+.reveal section.invert table {
+   background-color: #000000A0;
+}
+.Zreveal table td { /* DOESNT WORK */
+   border-width: 3px;
+   padding-left: 5px;
+   padding-right: 5px;
+   border-style: solid;
+   border-color: red;
+}
+.reveal .linebreak {
+   display: block;
+}
+.reveal iframe {
+   max-width: 100%;
+   max-height: 100%;
+}
+.reveal @page {
+  size: A4;
+  margin: 0;
+}
+.reveal @media print {
+   zzzh6 {
+      margin-bottom: 2pt;
+   }
+   html, body {
+      width: 167mm; /* 167mm */
+      height: 297mm;
+   }
+}
+.print-pdf .reveal .slideheader {
+   font-size: 0;
+   color: #FFFFFF !important;
+   visibility: visible !important;
+   margin-bottom: -2pt;
+}
+.print-pdf .reveal h1, .print-pdf .reveal h2, .print-pdf .reveal h3,
+.print-pdf .reveal h4, .print-pdf .reveal h5, .print-pdf .reveal h6,
+.print-pdf .reveal .slide {
+   font-family: "Georgia", serif !important;
+}
+/*
+.print-pdf .reveal .title {
+   margin-top: -10cm !important;
+}
+*/
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6,
+.reveal .slide {
+   font-family: "Segoe UI", sans-serif !important;
+}
+.reveal code {
+   font-family: Consolas, "DejaVu Sans Mono", Monaco, "Courier New", monospace !important;
+}
+.reveal pre > code {
+   font-size: 125%;
+}
+.reveal pre:not([class]) > code {
+   color: #888;
+   margin-top: -0.2em;
+   margin-bottom: 0.5em;
+}
+
+.reveal pre.height700 code {max-height: 700px;} 
+.reveal pre.height650 code {max-height: 650px;} 
+.reveal pre.height600 code {max-height: 600px;} 
+.reveal pre.height550 code {max-height: 550px;} 
+.reveal pre.height500 code {max-height: 500px;} 
+.reveal pre.height475 code {max-height: 475px;} 
+.reveal pre.height450 code {max-height: 450px;} 
+.reveal pre.height425 code {max-height: 425px;} 
+/* .reveal pre code {max-height: 400px;}  */ /* default */
+.reveal pre.height380 code {max-height: 380px;} 
+.reveal pre.height360 code {max-height: 360px;} 
+.reveal pre.height340 code {max-height: 340px;} 
+.reveal pre.height320 code {max-height: 320px;} 
+.reveal pre.height300 code {max-height: 300px;} 
+
+.reveal pre[class^="height"] > code {
+   color: #888;
+   margin-top: -0.2em;
+   margin-bottom: 0.5em;
+}
+.reveal div.sourceCode {
+   margin-top: -0.2em;
+   margin-bottom: -0em;
+}
+.reveal div.sourceCode:hover {
+   background-color: white;
+   color: #aaa;
+}
+.reveal div.sourceCode:hover::after {
+   font-size: 60%;
+   content: 'copy&paste';
+   position: fixed;
+   display: inline;
+   position: fixed;
+   right: 0em;
+   opacity: 0.2;
+   padding: 0.3em;
+   margin-top: -2.3em;
+   margin-right: 0.4em;
+   background-color: gold;
+   color: black;
+}
+.reveal pre {
+   width: 99%;
+   margin: 0.4em auto;
+   line-height: 1.2em;
+   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+}
+.print-pdf .reveal .slides {
+  /* background-color: #F0F1EB;*/
+}
+.print-pdf .reveal .slide .level1 {
+  /*
+   margin-top: -1vh !important;
+   width: 1276px !important;
+   height: 880px !important;
+  */
+   left: -52px !important;
+   top: -35px !important;
+}
+/*
+.print-pdf .reveal .slide-backgrond .stack {
+}
+*/
+/*
+.print-pdf .reveal iframe {display: none !important;}
+*/
+.print-pdf .reveal .dontprint,
+.print-pdf .reveal .sevinlogo {
+   display: none !important;
+}
+
+.print-pdf .reveal section.slide > h1, .print-pdf .reveal section.slide > h2 {
+   margin-top: 0;
+}
+
+.reveal .pdflink {
+   color: #00000010;
+}
+.print-pdf .reveal .pdflink {
+   display: none;
+}
+.reveal .comment, .reveal .note, .reveal .onlyhtml, .reveal .hidden {
+   display: none;
+}
+.reveal .figure {
+   text-align: center;
+}
+.reveal sup {font-size: 80%;}
+
+.reveal .adopted {
+   position: relative;
+   font-weight: normal;
+   font-style: normal;
+   top: -0.4em;
+   font-size: 80%;
+}
+.reveal .inline {
+   height: 1.2em !important; 
+   margin-bottom: -3px;
+}
+.reveal ul+h3 {
+   margin-top: 0.5em;
+}
+
+.reveal ul {
+   margin-top: -0.5em;
+   margin-bottom: -0.25em;
+  /*
+   margin-left: 0em;
+   border: 1px solid magenta;
+  */
+}
+.reveal ul ul {
+   margin-top: -0.2em;
+   margin-bottom: -0.2em;
+}
+.reveal ul {
+  list-style-type: circle solid;
+}
+.reveal ul ul {
+  list-style-type: circle;
+}
+.reveal ul ul ul {
+  list-style-type: '• ';
+}
+.reveal .shadow {
+   color: magenta;
+}
+.reveal .darkheader {
+   color: #F0F1EB; text-shadow: 5px 5px 14px #000;
+}
+.Zreveal .slides > section > section {
+}
+.Zreveal .slides > section.present {
+   background-color: gold;
+}
+.reveal .slides {
+   padding-right: 80px;
+}
+.print-pdf .reveal .slides {
+   font-size: 90%;
+}
+.reveal .middle,
+.reveal section:not(.level1):not(.level2):not(.stack) {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 106%;
+  margin-top: -2%; /* -23px */
+  margin-bottom: -2%;
+}
+.reveal.picsum section:not(.level1):not(.level2):not(.stack),
+.reveal.parallax section:not(.level1):not(.level2):not(.stack) {
+  background-color: #FFFFFF90;
+}
+.reveal .html-widget:not(.datatables) {
+  /* margin: auto;*/
+  /* margin-bottom: 0.3em;*/
+   margin: 0.3em 0;
+   max-width: 99%;
+  /* max-width: 614px;*/ /* !important;*/
+   max-height: 670px !important;
+  /* max-height: auto !important;*/
+  /* height: auto !important;*/
+   border: 1px dashed #eee;
+}
+.print-pdf .reveal .html-widget:not(.datatables) {
+   margin-left: -0.3cm;
+}
+
+.reveal .leaflet-control-container {
+   font-size: 80% !important;
+}
+.reveal .leaflet-control-scale-line {
+   font-size: 160% !important;
+}
+.reveal .leaflet-control-layer-selector {
+   font-size: 300%;
+}
+.reveal .leaflet-tile img {
+   box-shadow: none !important;
+}
+.reveal .leaflet-control-layers, .reveal .legend.leaflet-control {
+   text-align: left;
+}
+.reveal .leaflet-popup-content, .reveal .leaflet-tooltip {
+   font-size: 80% !important;
+}
+.reveal sup, .reveal sub {font-size: 70%;}
+.reveal .indent {padding-left:1em;}
+.reveal .indent1, .reveal .tab1 {padding-left:1em;}
+.reveal .indent2, .reveal .tab2 {padding-left:2em;}
+.reveal .indent3, .reveal .tab3 {padding-left:3em;}
+.reveal .indent4, .reveal .tab4 {padding-left:4em;}
+.reveal .indent5, .reveal .tab5 {padding-left:5em;}
+.reveal .grabbed60 {
+   font-size: 60%;
+   padding-top: 34em;
+   text-shadow: 3px 3px 3px #fff;
+}
+.reveal .references {
+   text-align: left;
+   font-size: 80% !important;
+   padding-left: 1.05em;
+   text-indent:-1.05em;
+   border: 0;
+   margin: 0 0 1.6em 0;
+}
+.reveal p + .references {
+   margin: 1.6em 0 0 0; 
+   border-top: 1px solid #ddd;
+  /*
+  */
+}
+.reveal h3 + .references {
+   border: 0;
+   margin: 0;
+}
+.reveal dt {
+   font-weight: 600;
+}
+.decoration {
+   display: block;
+   position: fixed;
+   left: 0.2em;
+   bottom: -0.2em;
+}
+.sevinlogo2 {
+   display: block;
+   position: fixed;
+   left: 0.2em;
+   bottom: 0.6em;
+   height: 10vh;
+   opacity: 0.2;
+   transition: transform 1.5s;
+}
+.sevinlogo:hover, .decoration:hover {
+   transition: transform .5s; 
+   transform: scale(3.2) translate(3vh,-3vh);
+   opacity: 1;
+}
+.reveal devel section:not(.slide) {
+   background-image: url("http://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico") no-repeat 0 0;
+   background-position: 0% 0%;
+   background-repeat: no-repeat;
+   background-size: auto 2em;
+}
+.sevindecor {
+   display: block;
+   position: fixed;
+   left: 0.2em;
+   bottom: 0.6em;
+   height: 10vh;
+   width: 100px;
+   heitgh: 80px;
+   background-color: orange;
+}
+.reveal .playback {
+   left: unset;
+   right: 10px;
+   bottom: 15px;
+   opacity: 0.05;
+}
+.zzz-print-pdf .reveal .stack { /* how to unset 'data-background-video'? */
+   all: initial;
+}
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center),
+.reveal section.slide.parallax:not(.picsum):not(.center) {
+   background-color: #FFFFFF50;
+}
+.reveal section.has-dark-background.slide[data-background-image^="https://picsum.photos"]:not(.picsum),
+.reveal section.has-dark-background.slide.parallax:not(.picsum) {
+   background-color: unset; /*#00000050;*/
+}
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center),
+.reveal section.slide.parallax:not(.picsum):not(.center),
+.reveal section.slide:not(.invert):not(.picsum):not(.center) {
+   background-color: #FFFFFF90;
+  /* text-shadow: 2px 2px 3px white;*/
+   text-shadow: 0px 2px 1px white,
+                2px 0px 1px white,
+                0px -2px 1px white,
+                -2px 0px 1px white,
+                -2px -2px 1px white,
+                -2px 2px 1px white,
+                2px -2px 1px white,
+                2px 2px 1px white;
+}
+.reveal section.slide:not(.invert):not(.picsum):not(.center) .html-widget {
+   text-shadow: 0 0 0 transparent;
+}
+.reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum):not(.center),
+.reveal section.slide.parallax.has-dark-background:not(.picsum):not(.center),
+.reveal section.slide.invert:not(.picsum):not(.center) {
+   background-color: #00000060;
+   color: #eee;
+  /* text-shadow: 2px 2px 3px white;*/
+   text-shadow: 0px 2px 1px black,
+                2px 0px 1px black,
+                0px -2px 1px black,
+                -2px 0px 1px black,
+                -2px -2px 1px black,
+                -2px 2px 1px black,
+                2px -2px 1px black,
+                2px 2px 1px black;
+}
+.reveal section.slide {
+   margin-left: -0.3em !important;
+   padding-left: 0.3em !important;
+   padding-right: 0.3em !important;
+  /* padding-top: 0em !important;*/
+  /* dev
+   background-color: yellow;
+   text-align: justify;
+  */
+}
+.reveal section.slide.level1,
+.reveal section.slide.level2 {
+   margin-top: -23px;
+   padding-bottom: 8px !important;
+}
+.reveal section.slide.has-dark-background.level2 {
+   color: white;
+}
+.reveal > .backgrounds .slide-background-failed {
+   filter: brightness(50%);
+}
+.print0-pdf .reveal .slides > section.present {
+   z-index: unset;
+}
+.reveal.has-parallax-background .backgrounds[style*="https://picsum.photos"]::before,
+.reveal .backgrounds .slide-background[data-background-hash*="https://picsum.photos"]::before {
+   content: '\1F301' ' ' 'Lorem Picsum';
+   font-size: 12px;
+  /* background-color: #00000030; */
+   padding: 3px;
+   text-shadow: 1px 0px 1px #000000F0,
+                1px 1px 1px #000000F0,
+                0px 1px 1px #000000F0,
+                -1px 0px 1px #000000F0,
+                0px -1px 1px #000000F0,
+               -1px -1px 1px #000000F0,
+                1px -1px 1px #000000F0,
+                -1px 1px 1px #000000F0;
+   color: #FFFFFFF0;
+   opacity: 0.1;
+   position: fixed;
+   top: unset;
+   bottom: 7px;
+   right: 1px;
+}
+.reveal .date {
+   margin-left: 12%;
+   margin-right: 12%;
+  /* border: 1px solid red;*/
+}
+.reveal .organization.logo::after, .reveal .sevinlogo::after {
+   position: fixed;
+   bottom: 0px;
+   left: 0px;
+   display: inline-block;
+   width: 150px;
+   height: 160px;
+   content: "";
+   background: url("http://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico") no-repeat 0 0;
+   background-size: 90%;
+}
+.reveal .leaflet-pane img {
+   background-color: unset !important;
+   box-shadow: unset !important;
+   margin: unset;
+
+}
+.reveal .legendtext {
+   font-size: 30px !important;
+}
+.reveal section[zzzid="thnx"] {
+   text-align: right;
+   border: 3px solid blue;
+}
+.reveal .backgrounds .slide-background.invert:not(.picsum):not(.parallax) {
+   background-color: #383382B0 !important;
+}
+.reveal .backgrounds .slide-background.invert.picsum,
+.reveal .backgrounds .slide-background.invert.parallax {
+   background-color: #00000001 !important;
+}
+/*
+.reveal.has-parallax-background .backgrounds {
+   background-color: #203040A0 !important;
+}
+*/
+.reveal.picsum .backgrounds .slide-background.present:not(.slide):not(.stack) {
+   background-image: url("https://picsum.photos/1052/744");
+   opacity: 0.5;
+  /* filter: brightness(120%); */
+}
+.print-pdf .reveal .slide-background {
+   display: none !important;
+}
+.print-pdf .reveal section.slide.center {
+ /* min-height: 752px !important;*/
+}
