@@ -50,22 +50,55 @@
 
 
 <style>
-      .column {
-        float: left;
-        width: 50%;
-      }
-      .row:after {
-         content: ';
-         display: table;
-         clear: both;
-      }
       #TOC img {display: none;}
       .html-widget.gauge {margin-bottom: -0.8em !important;}
+      @font-face {
+        font-family: 'Roboto Condensed';
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://fonts.gstatic.com/s/robotocondensed/v18/ieVl2ZhZI2eCN5jzbjEETS9weq8-19K7DQ.woff2) format('woff2');
+      }
+      @font-face {
+         font-family: 'wwf';
+         src: url(https://nplatonov.github.io/chicory/wwf.ttf) format('truetype');
+      }
+      body {
+         font-family: 'Roboto Condensed', 'Segoe UI', sans-serif;
+      }
+      h1 {
+         font-family: wwf, 'Roboto Condensed', 'Segoe UI', sans-serif;
+         color: black;
+         text-transform: uppercase;
+      }
+      .wwf {
+         font-family: wwf;
+         font-size: 105%;
+      }
+      .logo {
+         float:left;
+         width:80px;
+         margin:0.4em 0.4em 0.4em 0.4em;
+      }
+      .region {
+         float: right;
+         margin: 12px 0px 0px 12px;
+         color: black;
+         opacity: 0.09;
+         font-size: 70px;
+         font-family: wwf;
+      }
+      .region::before {
+         text-align: right;
+         line-height: 0.01;
+         font-size: 35px;
+         display: block;
+         content: 'PAC';
+      }
       @media print {
          @page {margin: 0cm;}
          body {
             background-color: white;
-            font-family: sans-serif;
+            font-family: 'Roboto Condensed', 'Segoe UI', sans-serif;
             font-size: 11pt; 
             line-height: 1.20;
             text-align: center;
@@ -75,10 +108,11 @@
          p + .figure {margin-top: 1cm;}
       }
    </style>
-<div id="region-81" class="section level1">
-<h1><img src="https://wwf.ru/assets/img/logo.jpg" style="float:left; width:80px; margin:0.4em 0.4em 0.4em 0.4em;" /> Region 81</h1>
-<p>“ArcNet” scenario 33 achievement for region 81.</p>
-<p>Use <a href="https://wwfrussia.shinyapps.io/platini/?branch=pampan/4.2.1&amp;region=81">Accenter</a> for advanced mode.</p>
+<p><img src="https://wwf.ru/assets/img/logo.jpg" class="logo" /></p>
+<p><span class="region">81</span></p>
+<div id="arcnet-priority-area-for-conservation-81" class="section level1">
+<h1>ArcNet Priority Area for Conservation 81</h1>
+<p>Use Accenter to see <a href="https://wwfrussia.shinyapps.io/platini/?branch=pampan/4.2.1&amp;region=81">more details</a> and to make your <a href="https://wwfrussia.shinyapps.io/platini/?branch=pampan/4.2">own research</a> on <span class="wwf">ArcNet</span> Priority Area for Conservations (PACs).</p>
 <div class="figure">
 <img src="region81.png" alt="[]{style=&quot;display: none;&quot;}" width="1032" />
 <p class="caption centered">
@@ -88,29 +122,29 @@
 <div class="multirow">
 <div class="multicol" style="width:220px">
 <div class="figure">
-<div id="htmlwidget-67ab63f8213fe4324002" style="width:210px;height:412.8px;" class="gauge html-widget"></div>
-<script type="application/json" data-for="htmlwidget-67ab63f8213fe4324002">{"x":{"value":0.88,"min":0,"max":100,"customSectors":[{"lo":0,"hi":100,"color":"success"}],"symbol":"%","label":"of total regions area","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7c0fe51e59efd334bfef" style="width:210px;height:310px;" class="gauge html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7c0fe51e59efd334bfef">{"x":{"value":0.88,"min":0,"max":100,"customSectors":[{"lo":0,"hi":100,"color":"success"}],"symbol":"%","label":"of Aggregated\nPACs Area","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
 <p class="caption centered">
 <span style="display: none;"></span>
 </p>
 </div>
 <div class="figure">
-<div id="htmlwidget-da6c528204abcf307d26" style="width:210px;height:412.8px;" class="gauge html-widget"></div>
-<script type="application/json" data-for="htmlwidget-da6c528204abcf307d26">{"x":{"value":14.6,"min":0,"max":100,"customSectors":[{"lo":0,"hi":100,"color":"success"}],"symbol":"%","label":"of max regions area","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5c2a5e3235b65e39dce5" style="width:210px;height:310px;" class="gauge html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5c2a5e3235b65e39dce5">{"x":{"value":14.6,"min":0,"max":100,"customSectors":[{"lo":0,"hi":100,"color":"success"}],"symbol":"%","label":"of Area\nof the Largest PAC","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
 <p class="caption centered">
 <span style="display: none;"></span>
 </p>
 </div>
 <div class="figure">
-<div id="htmlwidget-da3753118c974ac6eaa2" style="width:210px;height:412.8px;" class="gauge html-widget"></div>
-<script type="application/json" data-for="htmlwidget-da3753118c974ac6eaa2">{"x":{"value":51.9,"min":0,"max":100,"customSectors":[{"lo":33.3,"hi":100,"color":"success"},{"lo":10,"hi":33.2,"color":"warning"},{"lo":0,"hi":9.9,"color":"danger"}],"symbol":"%","label":"Protected Areas","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3e433da29ef6c86b531a" style="width:210px;height:310px;" class="gauge html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3e433da29ef6c86b531a">{"x":{"value":51.9,"min":0,"max":100,"customSectors":[{"lo":33.3,"hi":100,"color":"success"},{"lo":10,"hi":33.2,"color":"warning"},{"lo":0,"hi":9.9,"color":"danger"}],"symbol":"%","label":"Existing Protected\nAreas coverage","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
 <p class="caption centered">
 <span style="display: none;"></span>
 </p>
 </div>
 <div class="figure">
-<div id="htmlwidget-ddb37702d51dcadaf604" style="width:210px;height:412.8px;" class="gauge html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ddb37702d51dcadaf604">{"x":{"value":21,"min":0,"max":796,"customSectors":[{"lo":80,"hi":796,"color":"success"},{"lo":40,"hi":79,"color":"warning"},{"lo":0,"hi":39,"color":"danger"}],"symbol":"","label":"CFs","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b90eb5f2e6a7ff761c11" style="width:210px;height:310px;" class="gauge html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b90eb5f2e6a7ff761c11">{"x":{"value":8,"min":0,"max":796,"customSectors":[{"lo":80,"hi":796,"color":"success"},{"lo":40,"hi":79,"color":"warning"},{"lo":0,"hi":39,"color":"danger"}],"symbol":"","label":"Number of CFs","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
 <p class="caption centered">
 <span style="display: none;"></span>
 </p>
@@ -118,21 +152,21 @@
 </div>
 <div class="multicol" style="width:420px">
 <div class="figure">
-<div id="htmlwidget-bf0b52544f1239a951e0" style="width:420px;height:260px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bf0b52544f1239a951e0">{"x":{"visdat":{"132c743f1018":["function () ","plotlyVisDat"]},"cur_data":"132c743f1018","attrs":{"132c743f1018":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(246,78,139,0.9)"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"132c743f1018.1":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(246,78,139,0.7)"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"132c743f1018.2":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(246,78,139,0.1)"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"margin":{"b":0,"l":0,"t":0,"r":0},"annotations":[{"text":"0 %","xref":"xref","yref":"yref","x":0.140744680851064,"y":"Walruses","showarrow":false,"xanchor":"right"},{"text":"3.2 %","xref":"xref","yref":"yref","x":0.140744680851064,"y":"Pinnipeds","showarrow":false,"xanchor":"right"},{"text":"1.2 %","xref":"xref","yref":"yref","x":0.140744680851064,"y":"Sea ice","showarrow":false,"xanchor":"right"},{"text":"9.6 %","xref":"xref","yref":"yref","x":0.140744680851064,"y":"Fishes","showarrow":false,"xanchor":"right"},{"text":"1.8 %","xref":"xref","yref":"yref","x":0.140744680851064,"y":"Cetaceans","showarrow":false,"xanchor":"right"},{"text":"3.8 %","xref":"xref","yref":"yref","x":0.140744680851064,"y":"Birds","showarrow":false,"xanchor":"right"},{"text":"0.8 %","xref":"xref","yref":"yref","x":0.140744680851064,"y":"Benthos","showarrow":false,"xanchor":"right"},{"text":"0 %","xref":"xref","yref":"yref","x":0.140744680851064,"y":"Coastal","showarrow":false,"xanchor":"right"},{"text":"2.6 %","xref":"xref","yref":"yref","x":0.140744680851064,"y":"Polar bears","showarrow":false,"xanchor":"right"}],"xaxis":{"domain":[0,1],"automargin":true,"title":"Thematic group diversity","showticklabels":false,"showgrid":false,"showline":false,"zeroline":false,"align":"left"},"yaxis":{"domain":[0,1],"automargin":true,"title":"","type":"category","categoryorder":"array","categoryarray":["Benthos","Birds","Cetaceans","Coastal","Fishes","Pinnipeds","Polar bears","Sea ice","Walruses"]},"barmode":"stack","showlegend":false,"hovermode":"closest"},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0,0,0,0,0,0,0,0,0],"y":["Walruses","Pinnipeds","Sea ice","Fishes","Cetaceans","Birds","Benthos","Coastal","Polar bears"],"orientation":"h","marker":{"color":"rgba(246,78,139,0.9)","line":{"color":"rgba(31,119,180,1)"}},"type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,0.0317460317460317,0.0121951219512195,0.0957446808510638,0.0175438596491228,0.0384615384615385,0.00790513833992095,0,0.0263157894736842],"y":["Walruses","Pinnipeds","Sea ice","Fishes","Cetaceans","Birds","Benthos","Coastal","Polar bears"],"orientation":"h","marker":{"color":"rgba(246,78,139,0.7)","line":{"color":"rgba(255,127,14,1)"}},"type":"bar","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0.1,0.0682539682539683,0.0878048780487805,0.00425531914893618,0.0824561403508772,0.0615384615384615,0.0920948616600791,0.1,0.0736842105263158],"y":["Walruses","Pinnipeds","Sea ice","Fishes","Cetaceans","Birds","Benthos","Coastal","Polar bears"],"orientation":"h","marker":{"color":"rgba(246,78,139,0.1)","line":{"color":"rgba(44,160,44,1)"}},"type":"bar","error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2d57d422998d65a6343b" style="width:420px;height:260px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2d57d422998d65a6343b">{"x":{"visdat":{"c2842461aba":["function () ","plotlyVisDat"]},"cur_data":"c2842461aba","attrs":{"c2842461aba":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(246,78,139,0.9)"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"c2842461aba.1":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(246,78,139,0.7)"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"c2842461aba.2":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(246,78,139,0.1)"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"margin":{"b":0,"l":0,"t":0,"r":0},"annotations":[{"text":"0 %","xref":"xref","yref":"yref","x":0.0312765957446808,"y":"Walruses","showarrow":false,"xanchor":"right"},{"text":"1.6 %","xref":"xref","yref":"yref","x":0.0312765957446808,"y":"Pinnipeds","showarrow":false,"xanchor":"right"},{"text":"0 %","xref":"xref","yref":"yref","x":0.0312765957446808,"y":"Sea ice","showarrow":false,"xanchor":"right"},{"text":"2.1 %","xref":"xref","yref":"yref","x":0.0312765957446808,"y":"Fishes","showarrow":false,"xanchor":"right"},{"text":"0.9 %","xref":"xref","yref":"yref","x":0.0312765957446808,"y":"Cetaceans","showarrow":false,"xanchor":"right"},{"text":"1.9 %","xref":"xref","yref":"yref","x":0.0312765957446808,"y":"Birds","showarrow":false,"xanchor":"right"},{"text":"0.8 %","xref":"xref","yref":"yref","x":0.0312765957446808,"y":"Benthos","showarrow":false,"xanchor":"right"},{"text":"0 %","xref":"xref","yref":"yref","x":0.0312765957446808,"y":"Coastal","showarrow":false,"xanchor":"right"},{"text":"0 %","xref":"xref","yref":"yref","x":0.0312765957446808,"y":"Polar bears","showarrow":false,"xanchor":"right"}],"xaxis":{"domain":[0,1],"automargin":true,"title":"Thematic group diversity<br />(% of the total number of CFs in a group)","showticklabels":false,"showgrid":false,"showline":false,"zeroline":false,"align":"left"},"yaxis":{"domain":[0,1],"automargin":true,"title":"","type":"category","categoryorder":"array","categoryarray":["Benthos","Birds","Cetaceans","Coastal","Fishes","Pinnipeds","Polar bears","Sea ice","Walruses"]},"barmode":"stack","showlegend":false,"hovermode":"closest"},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0,0,0,0,0,0,0,0,0],"y":["Walruses","Pinnipeds","Sea ice","Fishes","Cetaceans","Birds","Benthos","Coastal","Polar bears"],"orientation":"h","marker":{"color":"rgba(246,78,139,0.9)","line":{"color":"rgba(31,119,180,1)"}},"type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,0.0158730158730159,0,0.0212765957446809,0.0087719298245614,0.0192307692307692,0.00790513833992095,0,0],"y":["Walruses","Pinnipeds","Sea ice","Fishes","Cetaceans","Birds","Benthos","Coastal","Polar bears"],"orientation":"h","marker":{"color":"rgba(246,78,139,0.7)","line":{"color":"rgba(255,127,14,1)"}},"type":"bar","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0.1,0.0841269841269841,0.1,0.0787234042553192,0.0912280701754386,0.0807692307692308,0.0920948616600791,0.1,0.1],"y":["Walruses","Pinnipeds","Sea ice","Fishes","Cetaceans","Birds","Benthos","Coastal","Polar bears"],"orientation":"h","marker":{"color":"rgba(246,78,139,0.1)","line":{"color":"rgba(44,160,44,1)"}},"type":"bar","error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption centered">
 <span style="display: none;"></span>
 </p>
 </div>
 <div class="multirow" style="width:420px">
 <div class="multicol">
-<div class="value-box" style="background-color:#5D6BFFA0;opacity:0.7;width:196px;height:82px">
+<div class="value-box" style="background-color:#6AAF00A0;opacity:0.7;width:196px;height:82px">
 <div class="inner">
 <p class="value">
 0
 </p>
 <p class="caption left">
-CFs inside of Region completely
+CFs entirely within the PAC area
 </p>
 <div class="icon">
 <p><i class="fa fa-battery-full"></i></p>
@@ -141,13 +175,13 @@ CFs inside of Region completely
 </div>
 </div>
 <div class="multicol">
-<div class="value-box" style="background-color:#00E035A0;opacity:0.7;width:196px;height:82px">
+<div class="value-box" style="background-color:#8756FFA0;opacity:0.7;width:196px;height:82px">
 <div class="inner">
 <p class="value">
 0
 </p>
 <p class="caption left">
-CFs inside of Region at quarter
+CFs with a quarter of their amount within the PAC area
 </p>
 <div class="icon">
 <p><i class="fa fa-battery-quarter"></i></p>
@@ -156,13 +190,13 @@ CFs inside of Region at quarter
 </div>
 </div>
 <div class="multicol">
-<div class="value-box" style="background-color:#00C1E2A0;opacity:0.7;width:196px;height:82px">
+<div class="value-box" style="background-color:#FF5400A0;opacity:0.7;width:196px;height:82px">
 <div class="inner">
 <p class="value">
 2
 </p>
 <p class="caption left">
-Complete-targets achievement by Region
+CFs with their targets achieved in the PAC
 </p>
 <div class="icon">
 <p><i class="fa fa-star"></i></p>
@@ -171,13 +205,13 @@ Complete-targets achievement by Region
 </div>
 </div>
 <div class="multicol">
-<div class="value-box" style="background-color:#FF4D00A0;opacity:0.7;width:196px;height:82px">
+<div class="value-box" style="background-color:#00DF2BA0;opacity:0.7;width:196px;height:82px">
 <div class="inner">
 <p class="value">
 2
 </p>
 <p class="caption left">
-Half-targets achievement by Region
+CFs with at least half of their target achieved in the PAC
 </p>
 <div class="icon">
 <p><i class="fa fa-star-half-alt"></i></p>
@@ -199,13 +233,16 @@ CF
 Name
 </th>
 <th style="text-align:right;">
-Target Achie­ve­ment for Region
+Repre­sen­ta­tion of selec­tion
 </th>
 <th style="text-align:right;">
-Pro­por­tion of Target Achie­ve­ment in Region
+Conser­va­tion Target
 </th>
 <th style="text-align:right;">
-Amount Pro­por­tion in Region
+Share of the Target Achie­ve­ment for the ArcNet
+</th>
+<th style="text-align:right;">
+PAC’s Contri­bu­tion to the Target Achie­ve­ment
 </th>
 </tr>
 </thead>
@@ -218,13 +255,16 @@ Amount Pro­por­tion in Region
 III.4.2. Baffinian - Labrador slope
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 100.00%">194.3%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 100.00%">19.8%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">36.6%</span>
+9.8%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 100.00%">19.8%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">531.0%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 100.00%">36.6%</span>
 </td>
 </tr>
 <tr>
@@ -235,13 +275,16 @@ III.4.2. Baffinian - Labrador slope
 Fin whale summer feeding areas in the Northwest Atlantic
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 47.82%">47.8%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 70.24%">13.9%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 69.20%">25.3%</span>
+26.4%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 70.24%">13.9%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">188.9%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 69.20%">25.3%</span>
 </td>
 </tr>
 <tr>
@@ -252,13 +295,16 @@ Fin whale summer feeding areas in the Northwest Atlantic
 Fish zoogeography, Deepsea Atlantic Region, North-Atlantic Abyssal Province (11A -Scandian, 11B - Central-Arctic and 11C - Baffin Deep-sea Districts )
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 100.00%">202.7%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 58.75%">11.6%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 98.27%">36.0%</span>
+5.3%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 58.75%">11.6%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">563.7%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 98.27%">36.0%</span>
 </td>
 </tr>
 <tr>
@@ -269,13 +315,16 @@ Fish zoogeography, Deepsea Atlantic Region, North-Atlantic Abyssal Province (11A
 Hooded seal wheling areas in the Front region
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 10.31%">10.3%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 30.72%">6.1%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 27.83%">10.2%</span>
+38.4%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 30.72%">6.1%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">101.2%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 27.83%">10.2%</span>
 </td>
 </tr>
 <tr>
@@ -286,13 +335,16 @@ Hooded seal wheling areas in the Front region
 Feeding/migration area of the Atlantic salmon (Salmo salar) American populations (F27)
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 31.27%">31.3%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 20.48%">4.1%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 27.47%">10.1%</span>
+12.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 20.48%">4.1%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">311.1%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 27.47%">10.1%</span>
 </td>
 </tr>
 <tr>
@@ -303,13 +355,16 @@ Feeding/migration area of the Atlantic salmon (Salmo salar) American populations
 III.2.1.4. Ungava -Labradoran shelf
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 41.14%">41.1%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 13.29%">2.6%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 15.12%">5.5%</span>
+4.6%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 13.29%">2.6%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">743.7%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 15.12%">5.5%</span>
 </td>
 </tr>
 <tr>
@@ -320,13 +375,16 @@ III.2.1.4. Ungava -Labradoran shelf
 Common murre (Uria aalge aalge) wintering grounds
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 13.02%">13.0%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 12.80%">2.5%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 19.05%">7.0%</span>
+18.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 12.80%">2.5%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">186.9%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 19.05%">7.0%</span>
 </td>
 </tr>
 <tr>
@@ -337,234 +395,16 @@ Common murre (Uria aalge aalge) wintering grounds
 Black-legged kittiwake (Rissa tridactyla tridactyla) wintering grounds
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 6.04%">6.0%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 10.68%">2.1%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 16.50%">6.0%</span>
+32.4%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 10.68%">2.1%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4049
-</td>
-<td style="text-align:left;">
-Range of the Haddock (Melanogrammus aeglefinus) (F 42)
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">100.0%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 21.61%">21.6%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 9.41%">3.4%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 7.36%">1.5%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-3023
-</td>
-<td style="text-align:left;">
-Marginal Ice Zone distribution in April in the Labrador Sea LME
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 8.50%">8.5%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 6.81%">2.5%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 6.99%">1.4%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4045
-</td>
-<td style="text-align:left;">
-Feeding/migration area of the Pink Salmon (Oncorhynchus gorbuscha), native distribution (F23)
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 17.32%">17.3%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 7.72%">2.8%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 5.67%">1.1%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4059
-</td>
-<td style="text-align:left;">
-Range of the Greenland Halibut (Reinhardtius hippoglossoides) (F 49)
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 34.33%">34.3%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 7.89%">2.9%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 5.62%">1.1%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-5038
-</td>
-<td style="text-align:left;">
-Blue whale summer feeding areas in the Northwest Atlantic
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 2.50%">2.5%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 4.34%">1.6%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 5.41%">1.1%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-6083
-</td>
-<td style="text-align:left;">
-Thick-billed murre (Uria lomvia lomvia) wintering grounds
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 3.92%">3.9%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 7.52%">2.8%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 5.13%">1.0%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4003
-</td>
-<td style="text-align:left;">
-Range of the Atlantic Capelin (Mallotus villosus) (F10)
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 30.79%">30.8%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 7.11%">2.6%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 5.04%">1.0%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4017
-</td>
-<td style="text-align:left;">
-Feeding/ migration area of the Greenland Shark (Somniosus microcephalus) (F1)
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 4.00%">4.0%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 6.40%">2.3%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 4.72%">0.9%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-6023
-</td>
-<td style="text-align:left;">
-Atlantic puffin (Fratercula arctica naumanni) wintering grounds
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 2.66%">2.7%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 5.90%">2.2%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 3.23%">0.6%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-2019
-</td>
-<td style="text-align:left;">
-Harbour seal range in the North Atlantic region
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 4.50%">4.5%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 1.87%">0.7%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 2.09%">0.4%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4046
-</td>
-<td style="text-align:left;">
-Range of the Thorny Skate (Amblyraja radiata) (F 3)
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 4.64%">4.6%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 2.37%">0.9%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 2.06%">0.4%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4056
-</td>
-<td style="text-align:left;">
-Distribution of the American Plaice (Hippoglossoides platessoides) (F 47), European populations
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 6.91%">6.9%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 1.20%">0.4%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 1.61%">0.3%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-9005
-</td>
-<td style="text-align:left;">
-polar bear of the DS (Davis Strait) subpopulation distribution
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 0.00%">0.0%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 0.00%">0.0%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 0.00%">0.0%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 16.50%">6.0%</span>
 </td>
 </tr>
 </tbody>

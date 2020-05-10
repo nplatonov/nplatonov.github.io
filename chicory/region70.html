@@ -50,22 +50,55 @@
 
 
 <style>
-      .column {
-        float: left;
-        width: 50%;
-      }
-      .row:after {
-         content: ';
-         display: table;
-         clear: both;
-      }
       #TOC img {display: none;}
       .html-widget.gauge {margin-bottom: -0.8em !important;}
+      @font-face {
+        font-family: 'Roboto Condensed';
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://fonts.gstatic.com/s/robotocondensed/v18/ieVl2ZhZI2eCN5jzbjEETS9weq8-19K7DQ.woff2) format('woff2');
+      }
+      @font-face {
+         font-family: 'wwf';
+         src: url(https://nplatonov.github.io/chicory/wwf.ttf) format('truetype');
+      }
+      body {
+         font-family: 'Roboto Condensed', 'Segoe UI', sans-serif;
+      }
+      h1 {
+         font-family: wwf, 'Roboto Condensed', 'Segoe UI', sans-serif;
+         color: black;
+         text-transform: uppercase;
+      }
+      .wwf {
+         font-family: wwf;
+         font-size: 105%;
+      }
+      .logo {
+         float:left;
+         width:80px;
+         margin:0.4em 0.4em 0.4em 0.4em;
+      }
+      .region {
+         float: right;
+         margin: 12px 0px 0px 12px;
+         color: black;
+         opacity: 0.09;
+         font-size: 70px;
+         font-family: wwf;
+      }
+      .region::before {
+         text-align: right;
+         line-height: 0.01;
+         font-size: 35px;
+         display: block;
+         content: 'PAC';
+      }
       @media print {
          @page {margin: 0cm;}
          body {
             background-color: white;
-            font-family: sans-serif;
+            font-family: 'Roboto Condensed', 'Segoe UI', sans-serif;
             font-size: 11pt; 
             line-height: 1.20;
             text-align: center;
@@ -75,10 +108,11 @@
          p + .figure {margin-top: 1cm;}
       }
    </style>
-<div id="region-70" class="section level1">
-<h1><img src="https://wwf.ru/assets/img/logo.jpg" style="float:left; width:80px; margin:0.4em 0.4em 0.4em 0.4em;" /> Region 70</h1>
-<p>“ArcNet” scenario 33 achievement for region 70.</p>
-<p>Use <a href="https://wwfrussia.shinyapps.io/platini/?branch=pampan/4.2.1&amp;region=70">Accenter</a> for advanced mode.</p>
+<p><img src="https://wwf.ru/assets/img/logo.jpg" class="logo" /></p>
+<p><span class="region">70</span></p>
+<div id="arcnet-priority-area-for-conservation-70" class="section level1">
+<h1>ArcNet Priority Area for Conservation 70</h1>
+<p>Use Accenter to see <a href="https://wwfrussia.shinyapps.io/platini/?branch=pampan/4.2.1&amp;region=70">more details</a> and to make your <a href="https://wwfrussia.shinyapps.io/platini/?branch=pampan/4.2">own research</a> on <span class="wwf">ArcNet</span> Priority Area for Conservations (PACs).</p>
 <div class="figure">
 <img src="region70.png" alt="[]{style=&quot;display: none;&quot;}" width="1032" />
 <p class="caption centered">
@@ -88,29 +122,29 @@
 <div class="multirow">
 <div class="multicol" style="width:220px">
 <div class="figure">
-<div id="htmlwidget-e45eb6a1ba0fca960aa8" style="width:210px;height:412.8px;" class="gauge html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e45eb6a1ba0fca960aa8">{"x":{"value":1.31,"min":0,"max":100,"customSectors":[{"lo":0,"hi":100,"color":"success"}],"symbol":"%","label":"of total regions area","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-bce7286b4f204feef44e" style="width:210px;height:310px;" class="gauge html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bce7286b4f204feef44e">{"x":{"value":1.31,"min":0,"max":100,"customSectors":[{"lo":0,"hi":100,"color":"success"}],"symbol":"%","label":"of Aggregated\nPACs Area","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
 <p class="caption centered">
 <span style="display: none;"></span>
 </p>
 </div>
 <div class="figure">
-<div id="htmlwidget-a186ef304206d11f13ed" style="width:210px;height:412.8px;" class="gauge html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a186ef304206d11f13ed">{"x":{"value":21.6,"min":0,"max":100,"customSectors":[{"lo":0,"hi":100,"color":"success"}],"symbol":"%","label":"of max regions area","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0607dc2618825b11c35a" style="width:210px;height:310px;" class="gauge html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0607dc2618825b11c35a">{"x":{"value":21.6,"min":0,"max":100,"customSectors":[{"lo":0,"hi":100,"color":"success"}],"symbol":"%","label":"of Area\nof the Largest PAC","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
 <p class="caption centered">
 <span style="display: none;"></span>
 </p>
 </div>
 <div class="figure">
-<div id="htmlwidget-2ef3b94ae2ab2b224a08" style="width:210px;height:412.8px;" class="gauge html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2ef3b94ae2ab2b224a08">{"x":{"value":24,"min":0,"max":100,"customSectors":[{"lo":33.3,"hi":100,"color":"success"},{"lo":10,"hi":33.2,"color":"warning"},{"lo":0,"hi":9.9,"color":"danger"}],"symbol":"%","label":"Protected Areas","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-58ad5a73db280a7d9263" style="width:210px;height:310px;" class="gauge html-widget"></div>
+<script type="application/json" data-for="htmlwidget-58ad5a73db280a7d9263">{"x":{"value":24,"min":0,"max":100,"customSectors":[{"lo":33.3,"hi":100,"color":"success"},{"lo":10,"hi":33.2,"color":"warning"},{"lo":0,"hi":9.9,"color":"danger"}],"symbol":"%","label":"Existing Protected\nAreas coverage","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
 <p class="caption centered">
 <span style="display: none;"></span>
 </p>
 </div>
 <div class="figure">
-<div id="htmlwidget-5b68ebb466425d599b2a" style="width:210px;height:412.8px;" class="gauge html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5b68ebb466425d599b2a">{"x":{"value":35,"min":0,"max":796,"customSectors":[{"lo":80,"hi":796,"color":"success"},{"lo":40,"hi":79,"color":"warning"},{"lo":0,"hi":39,"color":"danger"}],"symbol":"","label":"CFs","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-50ab62cbb650af035b69" style="width:210px;height:310px;" class="gauge html-widget"></div>
+<script type="application/json" data-for="htmlwidget-50ab62cbb650af035b69">{"x":{"value":22,"min":0,"max":796,"customSectors":[{"lo":80,"hi":796,"color":"success"},{"lo":40,"hi":79,"color":"warning"},{"lo":0,"hi":39,"color":"danger"}],"symbol":"","label":"Number of CFs","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
 <p class="caption centered">
 <span style="display: none;"></span>
 </p>
@@ -118,21 +152,21 @@
 </div>
 <div class="multicol" style="width:420px">
 <div class="figure">
-<div id="htmlwidget-8ee68f4c8d21f9e9c1c1" style="width:420px;height:260px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8ee68f4c8d21f9e9c1c1">{"x":{"visdat":{"22d45441c15":["function () ","plotlyVisDat"]},"cur_data":"22d45441c15","attrs":{"22d45441c15":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(246,78,139,0.9)"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"22d45441c15.1":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(246,78,139,0.7)"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"22d45441c15.2":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(246,78,139,0.1)"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"margin":{"b":0,"l":0,"t":0,"r":0},"annotations":[{"text":"10.5 %","xref":"xref","yref":"yref","x":0.172021276595745,"y":"Walruses","showarrow":false,"xanchor":"right"},{"text":"4.8 %","xref":"xref","yref":"yref","x":0.172021276595745,"y":"Pinnipeds","showarrow":false,"xanchor":"right"},{"text":"3.7 %","xref":"xref","yref":"yref","x":0.172021276595745,"y":"Sea ice","showarrow":false,"xanchor":"right"},{"text":"11.7 %","xref":"xref","yref":"yref","x":0.172021276595745,"y":"Fishes","showarrow":false,"xanchor":"right"},{"text":"4.4 %","xref":"xref","yref":"yref","x":0.172021276595745,"y":"Cetaceans","showarrow":false,"xanchor":"right"},{"text":"2.9 %","xref":"xref","yref":"yref","x":0.172021276595745,"y":"Birds","showarrow":false,"xanchor":"right"},{"text":"1.2 %","xref":"xref","yref":"yref","x":0.172021276595745,"y":"Benthos","showarrow":false,"xanchor":"right"},{"text":"10.3 %","xref":"xref","yref":"yref","x":0.172021276595745,"y":"Coastal","showarrow":false,"xanchor":"right"},{"text":"5.3 %","xref":"xref","yref":"yref","x":0.172021276595745,"y":"Polar bears","showarrow":false,"xanchor":"right"}],"xaxis":{"domain":[0,1],"automargin":true,"title":"Thematic group diversity","showticklabels":false,"showgrid":false,"showline":false,"zeroline":false,"align":"left"},"yaxis":{"domain":[0,1],"automargin":true,"title":"","type":"category","categoryorder":"array","categoryarray":["Benthos","Birds","Cetaceans","Coastal","Fishes","Pinnipeds","Polar bears","Sea ice","Walruses"]},"barmode":"stack","showlegend":false,"hovermode":"closest"},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0.105263157894737,0,0,0.117021276595745,0,0,0,0.103448275862069,0],"y":["Walruses","Pinnipeds","Sea ice","Fishes","Cetaceans","Birds","Benthos","Coastal","Polar bears"],"orientation":"h","marker":{"color":"rgba(246,78,139,0.9)","line":{"color":"rgba(31,119,180,1)"}},"type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,0.0476190476190476,0.0365853658536585,0,0.043859649122807,0.0288461538461538,0.0118577075098814,0,0.0526315789473684],"y":["Walruses","Pinnipeds","Sea ice","Fishes","Cetaceans","Birds","Benthos","Coastal","Polar bears"],"orientation":"h","marker":{"color":"rgba(246,78,139,0.7)","line":{"color":"rgba(255,127,14,1)"}},"type":"bar","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,0.0523809523809524,0.0634146341463415,0,0.056140350877193,0.0711538461538462,0.0881422924901186,0,0.0473684210526316],"y":["Walruses","Pinnipeds","Sea ice","Fishes","Cetaceans","Birds","Benthos","Coastal","Polar bears"],"orientation":"h","marker":{"color":"rgba(246,78,139,0.1)","line":{"color":"rgba(44,160,44,1)"}},"type":"bar","error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6c9c8615e76dc66168cf" style="width:420px;height:260px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6c9c8615e76dc66168cf">{"x":{"visdat":{"2a8853154426":["function () ","plotlyVisDat"]},"cur_data":"2a8853154426","attrs":{"2a8853154426":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(246,78,139,0.9)"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"2a8853154426.1":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(246,78,139,0.7)"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"2a8853154426.2":{"x":{},"y":{},"orientation":"h","marker":{"color":"rgba(246,78,139,0.1)"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"margin":{"b":0,"l":0,"t":0,"r":0},"annotations":[{"text":"0 %","xref":"xref","yref":"yref","x":0.101379310344828,"y":"Walruses","showarrow":false,"xanchor":"right"},{"text":"4.8 %","xref":"xref","yref":"yref","x":0.101379310344828,"y":"Pinnipeds","showarrow":false,"xanchor":"right"},{"text":"2.4 %","xref":"xref","yref":"yref","x":0.101379310344828,"y":"Sea ice","showarrow":false,"xanchor":"right"},{"text":"5.3 %","xref":"xref","yref":"yref","x":0.101379310344828,"y":"Fishes","showarrow":false,"xanchor":"right"},{"text":"3.5 %","xref":"xref","yref":"yref","x":0.101379310344828,"y":"Cetaceans","showarrow":false,"xanchor":"right"},{"text":"1 %","xref":"xref","yref":"yref","x":0.101379310344828,"y":"Birds","showarrow":false,"xanchor":"right"},{"text":"1.2 %","xref":"xref","yref":"yref","x":0.101379310344828,"y":"Benthos","showarrow":false,"xanchor":"right"},{"text":"6.9 %","xref":"xref","yref":"yref","x":0.101379310344828,"y":"Coastal","showarrow":false,"xanchor":"right"},{"text":"5.3 %","xref":"xref","yref":"yref","x":0.101379310344828,"y":"Polar bears","showarrow":false,"xanchor":"right"}],"xaxis":{"domain":[0,1],"automargin":true,"title":"Thematic group diversity<br />(% of the total number of CFs in a group)","showticklabels":false,"showgrid":false,"showline":false,"zeroline":false,"align":"left"},"yaxis":{"domain":[0,1],"automargin":true,"title":"","type":"category","categoryorder":"array","categoryarray":["Benthos","Birds","Cetaceans","Coastal","Fishes","Pinnipeds","Polar bears","Sea ice","Walruses"]},"barmode":"stack","showlegend":false,"hovermode":"closest"},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0,0,0,0,0,0,0,0,0],"y":["Walruses","Pinnipeds","Sea ice","Fishes","Cetaceans","Birds","Benthos","Coastal","Polar bears"],"orientation":"h","marker":{"color":"rgba(246,78,139,0.9)","line":{"color":"rgba(31,119,180,1)"}},"type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0,0.0476190476190476,0.024390243902439,0.0531914893617021,0.0350877192982456,0.00961538461538462,0.0118577075098814,0.0689655172413793,0.0526315789473684],"y":["Walruses","Pinnipeds","Sea ice","Fishes","Cetaceans","Birds","Benthos","Coastal","Polar bears"],"orientation":"h","marker":{"color":"rgba(246,78,139,0.7)","line":{"color":"rgba(255,127,14,1)"}},"type":"bar","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0.1,0.0523809523809524,0.075609756097561,0.0468085106382979,0.0649122807017544,0.0903846153846154,0.0881422924901186,0.0310344827586207,0.0473684210526316],"y":["Walruses","Pinnipeds","Sea ice","Fishes","Cetaceans","Birds","Benthos","Coastal","Polar bears"],"orientation":"h","marker":{"color":"rgba(246,78,139,0.1)","line":{"color":"rgba(44,160,44,1)"}},"type":"bar","error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption centered">
 <span style="display: none;"></span>
 </p>
 </div>
 <div class="multirow" style="width:420px">
 <div class="multicol">
-<div class="value-box" style="background-color:#7BA600A0;opacity:0.7;width:196px;height:82px">
+<div class="value-box" style="background-color:#00DE1DA0;opacity:0.7;width:196px;height:82px">
 <div class="inner">
 <p class="value">
 0
 </p>
 <p class="caption left">
-CFs inside of Region completely
+CFs entirely within the PAC area
 </p>
 <div class="icon">
 <p><i class="fa fa-battery-full"></i></p>
@@ -141,13 +175,13 @@ CFs inside of Region completely
 </div>
 </div>
 <div class="multicol">
-<div class="value-box" style="background-color:#00B7F7A0;opacity:0.7;width:196px;height:82px">
+<div class="value-box" style="background-color:#258BFFA0;opacity:0.7;width:196px;height:82px">
 <div class="inner">
 <p class="value">
 7
 </p>
 <p class="caption left">
-CFs inside of Region at quarter
+CFs with a quarter of their amount within the PAC area
 </p>
 <div class="icon">
 <p><i class="fa fa-battery-quarter"></i></p>
@@ -156,13 +190,13 @@ CFs inside of Region at quarter
 </div>
 </div>
 <div class="multicol">
-<div class="value-box" style="background-color:#6169FFA0;opacity:0.7;width:196px;height:82px">
+<div class="value-box" style="background-color:#00DA87A0;opacity:0.7;width:196px;height:82px">
 <div class="inner">
 <p class="value">
 4
 </p>
 <p class="caption left">
-Complete-targets achievement by Region
+CFs with their targets achieved in the PAC
 </p>
 <div class="icon">
 <p><i class="fa fa-star"></i></p>
@@ -171,13 +205,13 @@ Complete-targets achievement by Region
 </div>
 </div>
 <div class="multicol">
-<div class="value-box" style="background-color:#FF21EAA0;opacity:0.7;width:196px;height:82px">
+<div class="value-box" style="background-color:#1B91FFA0;opacity:0.7;width:196px;height:82px">
 <div class="inner">
 <p class="value">
 9
 </p>
 <p class="caption left">
-Half-targets achievement by Region
+CFs with at least half of their target achieved in the PAC
 </p>
 <div class="icon">
 <p><i class="fa fa-star-half-alt"></i></p>
@@ -199,13 +233,16 @@ CF
 Name
 </th>
 <th style="text-align:right;">
-Target Achie­ve­ment for Region
+Repre­sen­ta­tion of selec­tion
 </th>
 <th style="text-align:right;">
-Pro­por­tion of Target Achie­ve­ment in Region
+Conser­va­tion Target
 </th>
 <th style="text-align:right;">
-Amount Pro­por­tion in Region
+Share of the Target Achie­ve­ment for the ArcNet
+</th>
+<th style="text-align:right;">
+PAC’s Contri­bu­tion to the Target Achie­ve­ment
 </th>
 </tr>
 </thead>
@@ -218,13 +255,16 @@ Amount Pro­por­tion in Region
 Beluga of the James Bay summer core distribution
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 93.94%">93.9%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 100.00%">68.2%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">90.1%</span>
+72.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 100.00%">68.2%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">104.3%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 100.00%">90.1%</span>
 </td>
 </tr>
 <tr>
@@ -235,13 +275,16 @@ Beluga of the James Bay summer core distribution
 polar bear denning areas of SH (Southern Hudson Bay) subpopulation
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 100.00%">100.4%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 98.39%">67.1%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 95.09%">85.7%</span>
+64.8%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 98.39%">67.1%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">117.1%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 95.09%">85.7%</span>
 </td>
 </tr>
 <tr>
@@ -252,13 +295,16 @@ polar bear denning areas of SH (Southern Hudson Bay) subpopulation
 Beluga of the James Bay winter distribution
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 98.20%">98.2%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 75.81%">51.7%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 95.89%">86.4%</span>
+48.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 75.81%">51.7%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">113.6%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 95.89%">86.4%</span>
 </td>
 </tr>
 <tr>
@@ -269,13 +315,16 @@ Beluga of the James Bay winter distribution
 Beluga of the James Bay summer distribution
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 91.99%">92.0%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 73.35%">50.0%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 99.65%">89.8%</span>
+48.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 73.35%">50.0%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">102.4%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 99.65%">89.8%</span>
 </td>
 </tr>
 <tr>
@@ -286,13 +335,16 @@ Beluga of the James Bay summer distribution
 Common eider (Somateria mollissima sedentari) Hudson Bay breeding&amp;moulting grounds
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 49.07%">49.1%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 43.94%">30.0%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 53.86%">48.5%</span>
+55.2%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 43.94%">30.0%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">101.1%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 53.86%">48.5%</span>
 </td>
 </tr>
 <tr>
@@ -303,13 +355,16 @@ Common eider (Somateria mollissima sedentari) Hudson Bay breeding&amp;moulting g
 polynya Hudson E
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 100.00%">173.4%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 41.48%">28.3%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 85.11%">76.7%</span>
+12.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 41.48%">28.3%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">226.0%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 85.11%">76.7%</span>
 </td>
 </tr>
 <tr>
@@ -320,13 +375,16 @@ polynya Hudson E
 James Bay enclave
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 100.00%">119.0%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 36.92%">25.2%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 44.98%">40.5%</span>
+18.9%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 36.92%">25.2%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">293.6%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 44.98%">40.5%</span>
 </td>
 </tr>
 <tr>
@@ -337,13 +395,16 @@ James Bay enclave
 polar bear of the SH (Southern Hudson Bay) subpopulation distribution
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 69.33%">69.3%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 34.89%">23.8%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 65.38%">58.9%</span>
+32.4%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 34.89%">23.8%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">117.7%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 65.38%">58.9%</span>
 </td>
 </tr>
 <tr>
@@ -354,13 +415,16 @@ polar bear of the SH (Southern Hudson Bay) subpopulation distribution
 IV.2.1. shallow James Bay
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 100.00%">331.3%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 33.16%">22.6%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 43.59%">39.3%</span>
+6.1%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 33.16%">22.6%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">843.3%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 43.59%">39.3%</span>
 </td>
 </tr>
 <tr>
@@ -371,13 +435,16 @@ IV.2.1. shallow James Bay
 intertidal zone of the Hudson Bay LME
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 36.59%">36.6%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 24.40%">16.6%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 35.15%">31.7%</span>
+28.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 24.40%">16.6%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">115.5%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 35.15%">31.7%</span>
 </td>
 </tr>
 <tr>
@@ -388,13 +455,16 @@ intertidal zone of the Hudson Bay LME
 Beluga of the Western Hudson Bay summer distribution
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 27.19%">27.2%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 22.20%">15.1%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 29.37%">26.5%</span>
+48.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 22.20%">15.1%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">102.7%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 29.37%">26.5%</span>
 </td>
 </tr>
 <tr>
@@ -405,13 +475,16 @@ Beluga of the Western Hudson Bay summer distribution
 Salt marshes of the Hudson Bay LME
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 41.71%">41.7%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 21.04%">14.3%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 32.89%">29.6%</span>
+30.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 21.04%">14.3%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">140.8%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 32.89%">29.6%</span>
 </td>
 </tr>
 <tr>
@@ -422,13 +495,16 @@ Salt marshes of the Hudson Bay LME
 Feeding/nursery area of the Cisco (Coregonus artedi) (F 13)
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 29.34%">29.3%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 15.56%">10.6%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 22.84%">20.6%</span>
+32.4%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 15.56%">10.6%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">142.5%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 22.84%">20.6%</span>
 </td>
 </tr>
 <tr>
@@ -439,13 +515,16 @@ Feeding/nursery area of the Cisco (Coregonus artedi) (F 13)
 Feeding area of the Brook Trout (Salvelinus fontinalis) (F 29)
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 51.88%">51.9%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 12.68%">8.6%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 23.86%">21.5%</span>
+14.4%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 12.68%">8.6%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">241.3%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 23.86%">21.5%</span>
 </td>
 </tr>
 <tr>
@@ -456,13 +535,16 @@ Feeding area of the Brook Trout (Salvelinus fontinalis) (F 29)
 Bearded seal whelping areas in the Hudson Bay
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 18.32%">18.3%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 7.21%">4.9%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 20.31%">18.3%</span>
+24.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 7.21%">4.9%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">100.1%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 20.31%">18.3%</span>
 </td>
 </tr>
 <tr>
@@ -473,13 +555,16 @@ Bearded seal whelping areas in the Hudson Bay
 Feeding area of the Lake whitefish (Coregonus clupeaformis) (F 16)
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 10.91%">10.9%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 7.13%">4.9%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 11.47%">10.3%</span>
+38.4%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 7.13%">4.9%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">105.6%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 11.47%">10.3%</span>
 </td>
 </tr>
 <tr>
@@ -490,13 +575,16 @@ Feeding area of the Lake whitefish (Coregonus clupeaformis) (F 16)
 Fish zoogeography, Arctic Region, High-Arctic Shelf Province, Hudson District
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 43.97%">44.0%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 6.49%">4.4%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 17.49%">15.8%</span>
+9.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 6.49%">4.4%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">279.0%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 17.49%">15.8%</span>
 </td>
 </tr>
 <tr>
@@ -507,13 +595,16 @@ Fish zoogeography, Arctic Region, High-Arctic Shelf Province, Hudson District
 Ringed seal whelping areas in the Hudson Bay area
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 16.36%">16.4%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 6.44%">4.4%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 17.02%">15.3%</span>
+24.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 6.44%">4.4%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">106.7%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 17.02%">15.3%</span>
 </td>
 </tr>
 <tr>
@@ -524,13 +615,16 @@ Ringed seal whelping areas in the Hudson Bay area
 Marginal Ice Zone distribution in July in the Hudson Bay LME
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 15.09%">15.1%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 5.92%">4.0%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 11.74%">10.6%</span>
+24.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 5.92%">4.0%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">142.7%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 11.74%">10.6%</span>
 </td>
 </tr>
 <tr>
@@ -541,13 +635,16 @@ Marginal Ice Zone distribution in July in the Hudson Bay LME
 Harbour seal range in the North Atlantic region
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 42.55%">42.6%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 4.19%">2.9%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 7.18%">6.5%</span>
+6.0%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 4.19%">2.9%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">657.9%</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 7.18%">6.5%</span>
 </td>
 </tr>
 <tr>
@@ -558,30 +655,16 @@ Harbour seal range in the North Atlantic region
 Feeding area of the Lake trout (Salvelinus namaycush) (F32)
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 13.46%">13.5%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 3.98%">2.7%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 6.04%">5.4%</span>
+14.4%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 3.98%">2.7%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-3022
-</td>
-<td style="text-align:left;">
-Marginal Ice Zone distribution in April in the Hudson Bay LME
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">247.5%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 16.07%">16.1%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 4.24%">3.8%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 3.45%">2.3%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 6.04%">5.4%</span>
 </td>
 </tr>
 <tr>
@@ -592,217 +675,16 @@ Marginal Ice Zone distribution in April in the Hudson Bay LME
 Hudson Bay enclave
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 18.78%">18.8%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 2.83%">1.9%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 13.13%">11.8%</span>
+9.2%
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 2.83%">1.9%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-8020
-</td>
-<td style="text-align:left;">
-Hudson Bay estuaries
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 100.00%">158.8%</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 2.72%">2.7%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 2.72%">2.4%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 2.81%">1.9%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4048
-</td>
-<td style="text-align:left;">
-Feeding/nursery area of the ogac (Gadus ogac ) (F 41)
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 14.03%">14.0%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 3.88%">3.5%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 2.66%">1.8%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-1011
-</td>
-<td style="text-align:left;">
-Atlantic Walrus haulouts in Nunavut and West Greenland
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 1.64%">1.6%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 1.82%">1.6%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 2.31%">1.6%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4053
-</td>
-<td style="text-align:left;">
-Range of the Fourhorn Sculpin (Myoxocephalus quadricornis) (F 45), Euro-Asian populations
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 31.27%">31.3%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 2.07%">1.9%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 1.63%">1.1%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-6083
-</td>
-<td style="text-align:left;">
-Thick-billed murre (Uria lomvia lomvia) wintering grounds
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 4.10%">4.1%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 3.20%">2.9%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 1.61%">1.1%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4003
-</td>
-<td style="text-align:left;">
-Range of the Atlantic Capelin (Mallotus villosus) (F10)
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 32.21%">32.2%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 3.02%">2.7%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 1.58%">1.1%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-1002
-</td>
-<td style="text-align:left;">
-Atlantic Walrus Summer Distribution in Canada
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 2.70%">2.7%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 2.04%">1.8%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 1.39%">0.9%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4029
-</td>
-<td style="text-align:left;">
-Feeding area of the Arctic charr (Salvelinus alpinus), anadromous populations (F28)
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 2.24%">2.2%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 2.16%">1.9%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 1.29%">0.9%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-5112
-</td>
-<td style="text-align:left;">
-Arctic Cetaceans (beluga, bowhead, narwhal) winter habitats as predicterd by MIZ
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 1.54%">1.5%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 1.40%">1.3%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 1.01%">0.7%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4041
-</td>
-<td style="text-align:left;">
-Range of the Polar Cod (Boreogadus saida) (F35)
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 2.73%">2.7%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 1.15%">1.0%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 0.54%">0.4%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-6015
-</td>
-<td style="text-align:left;">
-Black guillemot (Cepphus grylle mandti) breeding grounds
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 2.40%">2.4%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 0.57%">0.5%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 0.42%">0.3%</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-4017
-</td>
-<td style="text-align:left;">
-Feeding/ migration area of the Greenland Shark (Somniosus microcephalus) (F1)
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lavender; width: 0.08%">0.1%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: bisque; width: 0.05%">0.0%</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 0.04%">0.0%</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: palegreen; width: 13.13%">11.8%</span>
 </td>
 </tr>
 </tbody>
