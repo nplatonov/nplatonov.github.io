@@ -1212,7 +1212,15 @@ span.note::after, span.comment::after {
      display: block;
    }
 }
+@media only screen and (min-width: 680.000001px) and (max-width: 9999px) {
+   .mobile {
+      display: none;
+   }
+}
 @media only screen and (max-width: 680px) {
+   .no-mobile {
+      display: none;
+   }
    .html-widget, .plot-container {
        width: 100% !important; /* 92vw 100% */
        height: 70vw !important;
@@ -1225,12 +1233,13 @@ span.note::after, span.comment::after {
    }
    .figure { /* '.figure iframe' deprecated */
      /* max-width: 190vw;*/
-      width: 100% !important;
+      width: auto !important;
      /* max-height: 100vw !important; */ /* see `.figure img` */
-      border: 1px dash magenta;
+     .* border: 1px dashed magenta !important;*/
    }
    .figure img {
-      max-height: 100vw !important;
+      max-height: 92vh !important;
+      width: auto !important
    }
   /*
    .Zplotly, .Zhighchart, .html-widget, .svg-container {
@@ -1302,7 +1311,7 @@ span.note::after, span.comment::after {
    }
 */
 @media print {
-   .noprint, .decoration {
+   .noprint, .decoration, .mobile {
        display: none !important;
    }
    html {
