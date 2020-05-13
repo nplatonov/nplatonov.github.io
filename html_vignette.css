@@ -247,6 +247,12 @@ table td code {
    font-size: 91% !important;
 }
 */
+.d3heatmap-tip table tbody tr:last-of-type td,
+.d3heatmap-tip table tbody tr:first-of-type td,
+.d3heatmap-tip table td {
+   border: none !important;
+}
+
 Ztable:not(.dataTable) {
   padding: 0 259px !important;
 }
@@ -511,6 +517,12 @@ embed {
    max-height: auto !important;
   /* height: auto !important;*/
    border: 1px dashed #eee; /* 1px solid orange*/
+}
+.html-widget.highchart,
+.html-widget.apexcharter
+{
+   max-width: 646.08px; /* 614px !important;*/ /* (fig.width=6.73)*(dpi=96)=646.08 */
+  /* max-height: 600px !important; */
 }
 .html-widget.gauge {
    height: unset !important;
@@ -1329,7 +1341,8 @@ span.note::after, span.comment::after {
       }
    }
    body {
-      background-color: lightyellow;
+      background-color: #FFFFF0;
+     /* border: 1px solid orange;*/
       max-width: 9999px;
       font-family: "Georgia", "Cambria", "Times New Roman", Times, serif;
       font-size: 12pt; 
