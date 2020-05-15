@@ -1,4 +1,4 @@
-*/                   7
+/*
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&subset=latin,cyrillic);
 */
 p.abstract { /* 'Abstract' name */
@@ -247,6 +247,18 @@ table td code {
    font-size: 91% !important;
 }
 */
+table.no-border tbody tr:last-of-type td,
+table[no-border] tbody tr:last-of-type td {
+   border-bottom: none !important;
+}
+table.no-border tbody tr:first-of-type td,
+table[no-border] tbody tr:first-of-type td {
+   border-top: none !important;
+}
+table.no-border td,
+table[no-border] td {
+   border: none;
+}
 .d3heatmap-tip table tbody tr:last-of-type td,
 .d3heatmap-tip table tbody tr:first-of-type td,
 .d3heatmap-tip table td {
