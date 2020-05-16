@@ -168,9 +168,7 @@ body {
 */
 table {
   margin: 1em auto;
-  border-width: 1px; /* 1px */
-  border-color: #ddd;
-  border-style: solid; /* decoration; 'outset' */
+  /* border-width: 1px #ddd solid; */
   border-collapse: collapse;
 }
 table:not(.ZdataTable) {
@@ -189,13 +187,8 @@ table th {
   font-weight: 600; /* normal bold 900 */
 }
 table td { /*:not([style])*/
-  border: 1px solid #f1f1f1; /* 1px */
   line-height: 1.2;
   padding: 0.2em 0.35em; /* 2px 5px */
-}
-table, table th, table td {
-  border-left-style: none;
-  border-right-style: none;
 }
 table.table tbody tr:first-of-type { /* patch for kableExtra's `fixed_thead` */
  /* border-top: 2px solid #bbb !important;*/
@@ -221,32 +214,44 @@ table th {
   border-bottom-style: none;
 }
 */
-table tbody tr:last-of-type td {
-  border-bottom: 1px solid #ddd !important;
-}
-table thead tr:first-of-type {
-  border-top: 1px solid #ddd !important;
-}
-table tbody tr:first-of-type td {
-  border-top: 1px solid #bbb !important;
-}
 table thead { /* table thead, table tr.even */
   background-color: transpapert; /* #f7f7f7 */
 }
 thead th:hover {
-  background-color: #b0d1eb30;
+  background-color: #b0d1eb17;
 }
 tbody td:hover {
   background-color: #b0d1eb20;
 }
 tbody tr:hover {
-  background-color: #b0d1eb30;
+  background-color: #b0d1eb10;
 }
 /*
 table td code {
    font-size: 91% !important;
 }
 */
+table, table th, table td {
+  border-left-style: none;
+  border-right-style: none;
+}
+table[bordered] td,
+table.bordered { 
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+table[bordered] tbody tr:last-of-type td,
+table.bordered tbody tr:last-of-type td {
+  border-bottom: 1px solid #ddd !important;
+}
+table[bordered] thead tr:first-of-type,
+table.bordered thead tr:first-of-type {
+  border-top: 1px solid #ddd !important;
+}
+table[bordered] tbody tr:first-of-type td,
+table.bordered tbody tr:first-of-type td {
+  border-top: 1px solid #bbb !important;
+}
 table.no-border tbody tr:last-of-type td,
 table[no-border] tbody tr:last-of-type td {
    border-bottom: none !important;
