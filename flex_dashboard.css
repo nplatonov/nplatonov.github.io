@@ -3,7 +3,7 @@
 }
 body {
   /* font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;*/
-   font-size: 14px;
+   font-size: 13px;
    line-height: 1.3;
 }
 table {
@@ -40,4 +40,186 @@ table {
 }
 .navbar-logo img {
    height: 41px;
+   margin-top: 1px;
+   margin-left: 2px;
+}
+.chart-notes:empty { /* need to recognize whitespace here */
+   background-color: yellow !important;
+}
+@media zscreen {
+   .html-widget {
+      max-width: 600px !important;
+   }
+}
+@media only screen and (max-width: 710px) and (min-width: 700px) { /* 670 */
+   html {
+      background-color: #FFFFA0;
+   }
+   body {
+      background-color: #FFFFE0;
+   }
+   .dashboard-page-wrapper:before {
+      content: 'Appropriate scale for print';
+      color: #0001;
+      text-shadow: 2px 2px #FFF2;
+      padding-left: 0.5em;
+      position: fixed;
+      font-size: 36pt;
+      top: 48px;
+      left: 0px;
+      z-index: 999; 
+   }
+}
+@media screen { /* dev template --> move to '@media print' */
+   .image-container zzz {
+      opacity: 0.5;
+      border: 4px solid cyan;
+   }
+}
+@media print {
+   .image-container {
+      page-break-inside: avoid !important;
+   }
+   .image-container img {
+      opacity: 1;
+      border: 1px dashed #00A6;
+      transform: scale(0.96);
+      zmargin-top: -15px;
+      zwidth: auto;
+      zheight: 100%;
+   }
+   .pagebreak { /* []{.pagebreak} */
+      page-break-before: always !important;
+   }
+   .tab-pane {
+     /* border: 1px solid green;*/
+      display: block !important;
+   }
+   .navbar {
+      position: absolute !important;
+      top: 0px;
+      display: block !important;
+      border-bottom: 1px solid red;
+   }
+   .navbar-left, .navbar-right {
+      display: none;
+   }
+   .leaflet-control-attribution a {
+      text-shadow: 2px 2px 2px #FFF !important;
+   }
+   .leaflet-control-attribution {
+      margin-bottom: 0.1cm !important;
+   }
+   body {
+      background-color: #FFFFF5 !important;
+      border: #AFAF90 1px dashed;
+     /* width: 680px; */
+   }
+   .level3.no-mobile {
+      display: none !important;
+   }
+   .section.level2 {
+     /* display: block;*/
+     /* border: 3px solid yellow;*/
+   }
+   .section.level3 {
+     /* display: block;*/
+      border: 2px solid orange;
+     /* page-break-inside: avoid !important; */
+   }
+   .tab-content>.dashboard-page-wrapper.active {
+      display: block;
+   }
+   .dashboard-page-wrapper {
+      display: block;
+   }
+   .dashboard-row, .dashboard-column {
+      display: block;
+     /* border: 3px solid red;*/
+   }
+   .dashboard-row-orientation, .dashboard-column-orientation {
+      display: block; 
+   }
+   .chart-wrapper:not(.chart-wrapper-flex) {
+      display: block; /* table */
+      border: 1px solid cyan;
+     /* page-break-inside: avoid !important;*/
+   }
+   .chart-stage {
+     /* border: 1px red solid;*/
+     /* page-break-inside: avoid; */
+     /* position: sticky;*/
+   }
+   .chart-wrapper.chart-wrapper-flex.page-break {
+      page-break-before: always !important;
+   }
+   .chart-wrapper.chart-wrapper-flex {
+      display: -webkit-box; /* inherit inline-flex inherit -webkit-box */
+      border: 1px solid magenta;
+     /* height: 3px !important;*/
+      page-break-inside: avoid !important;
+   }
+   .chart-wrapper.chart-wrapper-flex.no-mobile {
+      display: none;
+   }
+   .chart-shim {
+      position: initial !important; /* absolute(ok for leaflet, but no-page break) initial inherit */
+     /* page-break-inside: avoid !important; */
+   }
+   .zzztable {
+      display: table !important;
+   }
+  /*
+   .zzzhtml-widget {
+      transition: transform .5s; 
+      width: 640px !important
+      transform: scalex(0.3);
+   }
+   .zzzchart-stage .html-widget {
+      border: 1px solid green;
+   }
+  */
+   .chart-stage .html-widget:not(.gauge):not(.leaflet),
+   .chart-stage .html-widget-zzzstatic-bound:not(.gauge):not(.leaflet) {
+      zwidth: 640px !important;
+      zheight: 480px !important;
+   }
+   .chart-stage .html-widget.leaflet {
+     /* max-width: 90vw !important; */
+     /* height: 401px !important; */
+   }
+   .chart-stage .leaflet.html-widget-static-bound {
+      position: absolute !important;
+      transform: scale(1); /* 0.97 */
+     /* 
+      margin-top: 0px;
+      margin-top: -8px;
+     */
+   }
+   .leaflet-control-zoom,
+   .leaflet-control-layers,
+   .leaflet-bar,
+   .leaflet-dummy-element {
+      display: none;
+   }
+   .html-widget {
+      transform: scale(1.05);
+   }
+   .zzzhtml-widget, zzzimg {
+     /* display: block;*/
+      page-break-inside: avoid !important;
+   }
+   a:after {
+      text-decoration: underline dotted #F0F0F0;
+      content: '\2009' attr(href) '\2009';
+      position: relative;
+      font-weight: normal;
+      font-style: normal;
+      top: -0.4em;
+      font-size: 70%;
+      color: #A0A0A0 !important;
+   }
+   .section.level3.chart-wrapper-flex {
+      page-break-inside: avoid !important;
+   }
 }
