@@ -1371,7 +1371,7 @@ span.note::after, span.comment::after {
    }
    body {
       background-color: #FFFFF5;
-      border: 1px dashed #AFAF9F;
+     /* border: 1px dashed #AFAF9F;*/
       max-width: 9999px;
       font-family: "Georgia", "Cambria", "Times New Roman", Times, serif;
       font-size: 12pt; 
@@ -1857,6 +1857,25 @@ span.note::after, span.comment::after {
       a:after {
         /* text-decoration: none;*/
          content: '' !important; /* try without 'important' */
+      }
+   }
+   @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge --headless*/
+      @page {margin: 0.5cm;}
+      body {
+         background-color: white;
+         font-family: 'Segoe UI', sans-serif;
+         font-size: 12pt;
+         line-height: 1.25;
+         text-align: center;
+      }
+      p, h1~p, h2~p, h3~p, h4~p {text-indent: 0cm !important;}
+      p {margin-top: 0.3cm; margin-bottom: 0.3cm;}
+      .zfigure {
+         text-align: right;
+      }
+      img {
+         max-width: 18.2cm !important;
+         text-align: center !important;
       }
    }
 }
