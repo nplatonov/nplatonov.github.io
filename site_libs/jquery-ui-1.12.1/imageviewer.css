@@ -1,0 +1,101 @@
+.widgetcontainer {
+  width: 100%;
+  /*border: 1px solid cyan;*/ }
+  .widgetcontainer .row {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 5px;
+    text-align: left; }
+    .widgetcontainer .row rowend {
+      width: 100%;
+      flex-grow: 100;
+      flex-shrink: 0; }
+  .widgetcontainer #image {
+    border: 1px solid red;
+    display: inline-block;
+    /*margin-left: 5px;*/
+    margin-right: 5px;
+    cursor: crosshair;
+    flex-grow: 0;
+    flex-shrink: 0;
+    z-index: 1; }
+  .widgetcontainer svg path {
+    fill: none; }
+  .widgetcontainer svg g text {
+    font-size: 9pt;
+    fill: black; }
+  .widgetcontainer svg g.axis g.tick {
+    color: black; }
+    .widgetcontainer svg g.axis g.tick line {
+      stroke: #000; }
+  .widgetcontainer svg g.axis path {
+    stroke: #000; }
+  .widgetcontainer svg g.grid line {
+    stroke: #888; }
+  .widgetcontainer svg rect.selection.dragging {
+    fill: rgba(0, 255, 0, 0.4); }
+  .widgetcontainer #barchartX {
+    /*border: 1px solid red;*/
+    flex-grow: 0;
+    flex-shrink: 0;
+    transform: rotate(-90deg);
+    transform-origin: 100% 0%;
+    position: relative;
+    left: -572px; }
+  .widgetcontainer #barchartY {
+    /*border: 1px solid red;*/
+    display: block;
+    margin-left: 88px;
+    /*margin-left: 5px;*/ }
+  .widgetcontainer #intensityChart {
+    transform: rotate(-90deg);
+    transform-origin: 100% 0%;
+    /*position: relative;*/
+    margin-left: -480px; }
+  .widgetcontainer #sliders {
+    display: table-cell;
+    height: auto;
+    width: 80px; }
+  .widgetcontainer div.slider {
+    display: inline-block;
+    height: 100%;
+    width: 38px; }
+  .widgetcontainer div.slider .ui-slider-handle {
+    /*width: 45px;*/
+    width: 36px;
+    left: 0px;
+    z-index: 6;
+    text-align: center; }
+  .widgetcontainer div.slider::after {
+    position: absolute;
+    transform: rotate(-90deg);
+    top: 80%;
+    left: -15px;
+    z-index: 5; }
+  .widgetcontainer div.slider.brightness::after {
+    content: "Brightness"; }
+  .widgetcontainer div.slider.contrast::after {
+    content: "Contrast"; }
+  .widgetcontainer div.text {
+    display: inline-block;
+    width: 10px; }
+  .widgetcontainer #outputValues {
+    width: 128px;
+    height: 128px;
+    /*border: 1px solid black;*/
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: table;
+    /*margin-left: 133px;*/ }
+    .widgetcontainer #outputValues ul {
+      display: table-row; }
+      .widgetcontainer #outputValues ul li {
+        display: table-cell;
+        text-align: right;
+        padding-right: 5px; }
+      .widgetcontainer #outputValues ul input {
+        display: table-cell;
+        height: 24px;
+        font-size: 14px; }
+
+/*# sourceMappingURL=imageviewer.css.map */
