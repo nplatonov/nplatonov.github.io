@@ -1207,6 +1207,12 @@ span.note::after, span.comment::after {
 .value-box {
    color: #eee;
 }
+.value-box .value {
+   text-shadow: 1px 1px 2px #0009;
+}
+.value-box .caption {
+   text-shadow: 1px 1px 1px #000A;
+}
 .value-box.bg-primary {
    background-color: rgba(39, 128, 227, 0.7);
 }
@@ -1415,18 +1421,19 @@ p+.container-fluid {
       color: initial !important;
       box-shadow: none;
    }
+  /* https://s3.ap-south-1.amazonaws.com/floweraura-blog-img/saveEnvironment-2019/02.jpg */
    body::after {
-      content: 'Please consider the environment before printing';
-      color: #0000000A !important;
-      text-shadow: 3px 3px #FFF2;
+      content: 'Think "SAVE PAPER, SAVE THE PLANET" before you print';
+      color: #00000004 !important;
+      text-shadow: 3px 3px 1px #FFFFFF04;
       padding-left: 0.5em;
       position: fixed;
       font-size: 48pt;
-      bottom: 9cm;
+      bottom: 12cm;
       left: 0px;
       z-index: 999; 
      /* top: 0px;*/
-      transform: rotate(-60deg);
+      transform: rotate(-70deg);
    }
    pre, code {
      font-family: 'Courier New', monospace;
@@ -1881,6 +1888,7 @@ p+.container-fluid {
       font-size: 85% !important;
    }
    .value-box {
+      display: block;
       margin-top: 0.4em;
       margin-bottom: 0.8em;
    }
