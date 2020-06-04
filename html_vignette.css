@@ -383,7 +383,7 @@ ul, ol {
   margin: 0.7em 0em 0.7em -1em; /* +top -right bottom +left */
 }
 ul {
-  list-style-type: circle solid;
+  list-style-type: disc;
 }
 ul ul {
   list-style-type: circle;
@@ -399,6 +399,10 @@ ul ul {
 }
 ul li:last-of-type, ol li:last-of-type {
   margin-bottom: 0.2em;
+}
+ul.task-list {
+  list-style-type: none;
+  margin-left: -2.7em;
 }
 dl {
     margin: 0em 0em 0em 0.75em;
@@ -562,6 +566,10 @@ embed {
    margin-top: -15px;
    margin-bottom: -30px;
 }
+.figure.widget {
+   max-width: 646.08px;
+   margin: 0em auto 0em auto;
+}
 iframe {
    margin: 0 auto 0 auto !important;
    padding-left: 0;
@@ -624,7 +632,8 @@ zzzimg:only-of-type {
   box-shadow: none;
   background-color: unset;
 }
-.leaflet .leaflet-control-layers, .legend.leaflet-control {
+.leaflet .leaflet-control-layers, .legend.leaflet-control,
+.leaflet-control-attribution, .leaflet .lnlt {
    text-align: left;
 }
 img:hover {
@@ -727,6 +736,9 @@ h1:hover::before, h2:hover::before, h3:hover::before, h4:hover::before, h5:hover
 .level1 + .level1 { /* :not(:first-of-type) */
   margin: 24px 0px 0px 0px;
 }
+.level2 {
+  margin: 0px 0px 0px 0px;
+}
 h1 {
   margin: 0px 0px 4px 0px;
   font-size: 180%;
@@ -805,7 +817,7 @@ h3.subtitle > em, h4.author > em, h4.date > em {
 }
 
 h2 {
-  margin: 24px 0px 0px 0px;
+  margin: 6px 0px 6px 0px;
   border-width: 0 8px 0 0;
  /* padding-left: 20px;*/
   font-size: 145%;
@@ -948,7 +960,7 @@ Zaddress.author_afil:last-of-type {
 h4.author + p, h4.date + p, .reader-credits+p {
    padding-top: 0.6em;
 }
-h4.author + .section, h4.date + .section, .TOC + section, .reader-credits + .section {
+h4.author + .zzzsection, h4.date + .zzzsection, .TOC + section, .reader-credits + .section {
    margin-top: -16px;
 }
 h4.* {
@@ -1069,7 +1081,10 @@ sup, sub {
    margin-left: 0.15em;
 }
 .dontprint, .onlyreveal, .revealonly, .hidden {display: none;}
-.onlydashboard > h3, .onlydashboard > h2, .onlydashboard > h1 {display: none;}
+.onlydashboard > h3, .onlydashboard > h2, .onlydashboard > h1,
+.no-title > h3, .no-title > h2, .no-title > h1 {
+   display: none;
+}
 .crayon* {
   color: orange !important;
 }
@@ -1456,6 +1471,9 @@ p+.container-fluid {
       white-space: pre-wrap; /* pre */
       font-size: 36pt !important;
    }
+   code:not([class]) { /* inline monospace */
+      background-color: inherit !important;
+   }
    p, .abstract, ul li, ol li {
       margin: 0;
       text-align: justify;
@@ -1587,6 +1605,8 @@ p+.container-fluid {
    .leaflet-control-zoom,
    .leaflet-control-layers,
    .leaflet-bar,
+   .leaflet-control-minimap,
+   .leaflet-control-measure,
    .highcharts-button,
    .lnlt,
    .bk-toolbar-wrapper {

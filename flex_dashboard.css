@@ -8,6 +8,7 @@ body {
 }
 table {
    font-size: 12px;
+  /* width: auto !important;*/
 }
 .navbar-brand, .navbar, .chart-title {
    font-weight: var(--font-weight);
@@ -18,25 +19,32 @@ table {
 }
 .navbar-brand {
 }
+.navbar-inverse .navbar-toggle .icon-bar { /* menu compact burger */
+   background-color: #AAA;
+}
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+   color: #888; /* #DDD */
+}
 .navbar-inverse {
-   background-color: #888;
+   background-color: #F4F4F4; /* #888 */
 }
 .navbar-inverse .navbar-nav > :not(.active) > a {
-   color: #BBB;
-}
-.navbar-inverse .navbar-nav > .active > a {
-   color: #FFF;
+   color: #BBB; /* #BBB */
 }
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > :not(.active) > a:hover {
    background-color: unset;
-   color: #DDD;
+   color: #888; /* #DDD */
 }
 .navbar-inverse .navbar-nav > a,
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:focus {
-   color: #FFF;
+   color: #222; /* #FFF */
    background-color: unset;
+   border-bottom: 3px solid #6662;
+}
+.navbar-inverse .navbar-brand {
+   color: #222;
 }
 .navbar-logo img {
    height: 41px;
@@ -47,7 +55,7 @@ table {
    background-color: yellow !important;
 }
 .table {
-   margin-bottom: initial;
+   margin: 0.5em auto;
 }
 .chart-wrapper-flex[data-height^=auto] {
    flex: 0 1 auto !important;
@@ -61,7 +69,39 @@ table {
 .plotly .modebar-btn {
    opacity: 0.2;
 }
-
+.chart-wrapper[data-width=auto] .chart-stage.bootstrap-table .table,
+.chart-wrapper.narrow           .chart-stage.bootstrap-table .table {
+   width: auto;
+}
+.dashboard-column[data-header]:not(.no-title)::before {
+  /*
+   border: 0.5px solid #ddd;
+   background-color: white;
+   border-radius: 3px;
+   margin-left: 2px;
+   margin-right: 8px;
+   margin-bottom: 8px;
+  */
+   content: attr(data-header);
+   padding-left: 0.6em;
+   padding-bottom: 0.2em;
+   color: #444;
+   font-size: 115%;
+}
+.dashboard-row[data-header]:not(.no-title)::before {
+   content: attr(data-header);
+   transform: rotate(180deg);
+   writing-mode: vertical-lr;
+   text-orientation: mixed;
+   margin-bottom: 8px;
+   margin-top: 4px;
+   margin-left: -8px;
+   direction: rtl;
+}
+.section.sidebar {
+   top: 54px;
+   background-color: transparent;
+}
 @media zscreen {
    .html-widget {
       max-width: 600px !important;
@@ -124,13 +164,13 @@ table {
    .section.level1 {
       border: 0.5px solid #04f8;
       border-radius: 4px;
-      zmargin: 6px auto;
+      margin: 6px auto; /* subject for cancel */
    }
    .section.level1::before {
       content: attr(data-header);
       display: block;
-      padding: 0.2em 0em 0.1em 0.4em !important;
-      font-size: 115%;
+      padding: 0.2em 0em 0.2em 0.4em !important;
+      font-size: 140%;
       color: #444 !important;
    }
    .zzzdashboard-page-wrapper::before {
@@ -178,6 +218,7 @@ table {
       background-color: #FFFFF5 !important;
       border: #AFAF90 1px dashed;
       width: 715px;
+      height: initial;
    }
    .level3.no-mobile {
       display: none !important;
@@ -213,6 +254,12 @@ table {
       border: 1px solid cyan;
      /* page-break-inside: avoid !important;*/
      /* text-align: left; */
+   }
+   .chart-wrapper.page-break:not(.chart-wrapper-flex) {
+      page-break-inside: always !important;
+   }
+   .chart-wrapper:not(.page-break):not(.chart-wrapper-flex) {
+      page-break-inside: avoid !important;
    }
    .chart-stage {
      /* border: 1px red solid;*/
@@ -250,11 +297,21 @@ table {
       border: 1px solid green;
    }
   */
-   .chart-stage .html-widget:not(.gauge),
+  /*
+   .chart-stage .html-widget:not(.gauge) {
+      height: 900px !important;
+   }
+  */
+   .chart-stage .html-widget:not(.gauge):not([style*="heightzzz"]),
    .zzzchart-stage .html-widget-zzzstatic-bound:not(.gauge):not(.leaflet) {
      /* width: 100% !important;*/
       height: min(60vw,60vh,403.8px) !important;
    }
+  /*
+   .chart-stage .html-widget[style*="height"] {
+      border: 8px solid magenta !important;
+   }
+  */
    .chart-stage .html-widget.zzzleaflet {
      /* max-width: 90vw !important; */
    }
@@ -282,6 +339,21 @@ table {
    }
    .chart-wrapper.chart-wrapper-flex.no-mobile {
       border: 5px solid orange;
+   }
+  /*
+   .dashboard-column[data-header]:not(.no-title)::before {
+      color: #444;
+      zmargin-left: 0.6em;
+   }
+  */
+   .dashboard-column[data-header]:not(.no-title) > .chart-wrapper:first-of-type,
+   .dashboard-row[data-header]:not(.no-title) > .chart-wrapper:first-of-type {
+      margin-top: 0.2em;
+   }
+   .dashboard-row[data-header]:not(.no-title)::before {
+      writing-mode: initial;
+      text-orientation: initial;
+      margin-left: 0.6em;
    }
 }
 @media print {

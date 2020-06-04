@@ -555,14 +555,24 @@ body {
   margin: 0;
 }
 .reveal @media print {
-   zzzh6 {
+   .zzzh6 {
       margin-bottom: 2pt;
    }
    html, body {
-      width: 167mm; /* 167mm */
+      width: 210mm; /* 167mm */
       height: 297mm;
    }
+  /*
+   * {
+      transform: scale(0.25) !important;
+   }
+  */
 }
+/*
+.print-pdf .reveal body {
+   background-color: red !important;
+}
+*/
 .print-pdf .reveal .slideheader {
    font-size: 0;
    color: #FFFFFF !important;
@@ -572,7 +582,7 @@ body {
 .print-pdf .reveal h1, .print-pdf .reveal h2, .print-pdf .reveal h3,
 .print-pdf .reveal h4, .print-pdf .reveal h5, .print-pdf .reveal h6,
 .print-pdf .reveal .slide {
-   font-family: "Georgia", serif !important;
+  /* font-family: "Georgia", serif !important;*/
 }
 /*
 .print-pdf .reveal .title {
@@ -736,7 +746,7 @@ body {
    padding-right: 80px;
 }
 .print-pdf .reveal .slides {
-   font-size: 90%;
+   font-size: 87%;
 }
 .reveal .middle,
 .reveal section:not(.level1):not(.level2):not(.stack) {
@@ -995,7 +1005,7 @@ body {
    opacity: 0.5;
   /* filter: brightness(120%); */
 }
-.print-pdf .reveal .slide-background {
+.print-pdf .reveal .backgrounds .slide-background {
    display: none !important;
 }
 .print-pdf .reveal section.slide.center {
