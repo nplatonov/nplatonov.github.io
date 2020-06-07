@@ -1,10 +1,12 @@
 :root {
   --font-weight: 400;
+  --panel-background: #F7F7F7
 }
 body {
   /* font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;*/
    font-size: 13px;
    line-height: 1.3;
+   background: var(--panel-background);
 }
 table {
    font-size: 12px;
@@ -26,22 +28,24 @@ table {
    color: #888; /* #DDD */
 }
 .navbar-inverse {
-   background-color: #F4F4F4; /* #888 */
+   background-color: #EAEAEA; /* #888 */
 }
 .navbar-inverse .navbar-nav > :not(.active) > a {
-   color: #BBB; /* #BBB */
+   color: #999; /* #BBB */
 }
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > :not(.active) > a:hover {
-   background-color: unset;
-   color: #888; /* #DDD */
+  /* background-color: var(--panel-background);*/
+  background-color: #F0F0F0;
+   color: #555; /* #DDD */
 }
 .navbar-inverse .navbar-nav > a,
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:focus {
    color: #222; /* #FFF */
-   background-color: unset;
-   border-bottom: 3px solid #6662;
+   background-color: var(--panel-background); /* option #1 */
+  /* background-color: unset; */ /* option #2 */
+  /* border-bottom: 3px solid #6662; */ /* option #2 */
 }
 .navbar-inverse .navbar-brand {
    color: #222;
@@ -50,6 +54,20 @@ table {
    height: 41px;
    margin-top: 1px;
    margin-left: 2px;
+}
+.storyboard-nav .sbframelist ul li:not(.active) {
+   background-color: #F8F8F8;
+   color: #999;
+}
+.storyboard-nav .sbframelist ul li.active {
+   background-color: #FFF;
+   color: #444;
+}
+.storyboard-nav .sbframelist ul li {
+   overflow: auto;
+   white-space: normal;    /* Wrap long lines: nowrap normal pre pre-warp pre-line */
+   word-wrap: normal;
+   word-break: normal;
 }
 .chart-notes:empty { /* need to recognize whitespace here */
    background-color: yellow !important;
@@ -73,7 +91,7 @@ table {
 .chart-wrapper.narrow           .chart-stage.bootstrap-table .table {
    width: auto;
 }
-.dashboard-column[data-header]:not(.no-title)::before {
+.dashboard-column[data-header]:not(.no-title):not([empty-header])::before {
   /*
    border: 0.5px solid #ddd;
    background-color: white;
@@ -88,7 +106,7 @@ table {
    color: #444;
    font-size: 115%;
 }
-.dashboard-row[data-header]:not(.no-title)::before {
+.dashboard-row[data-header]:not(.no-title):not([empty-header])::before {
    content: attr(data-header);
    transform: rotate(180deg);
    writing-mode: vertical-lr;
@@ -355,6 +373,44 @@ table {
       text-orientation: initial;
       margin-left: 0.6em;
    }
+   .sbframe:not(.active) {
+      display: initial;
+   }
+   .sbframe.active {
+      display: initial;
+   }
+   .sbframe-commentary {
+      width: initial;
+   }
+   .sbframe[data-header]:not(.no-title):not([empty-header])::before {
+      content: attr(data-header);
+      font-size: 115%;
+      padding-left: 0.5em;
+      padding-bottom: 0.5em !important;
+      display: block;
+   }
+   .storyboard-nav {
+      display: none;
+   }
+   .chart-stage p {
+      margin-bottom: 0em;
+      margin-top: 0em ;
+   }
+   .flowing-content-container:not(.sbframe-commentary) {
+      padding-top: initial;
+      padding-bottom: initial;
+   }
+   .chart-shim:not(.floating-content-shim) p {
+      margin-bottom: 0.4em;
+      margin-top: 0.4em;
+   }
+   .sbframe-commentary p {
+      margin-bottom: 0em !important;
+   }
+   .sbframe.section.level3 {
+      border: none;
+   }
+   .
 }
 @media print {
    .image-container {
