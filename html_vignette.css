@@ -1303,6 +1303,9 @@ div[style*="display:inline;width:99%;float:left;border-style:solid;border-color:
 div[style*="display:inline;width:99%;float:left;border-style:solid;border-color:#BEBEBE;border-width:1px 1px 1px 1px;"] > .html-widget {
    max-width: var(--page-width);
 }
+body > div.html-widget:first-of-type {
+   margin-top: 0.8em;
+}
 @media only screen and (max-width: 856px) {
    html {background: inherit;}
    body {box-shadow: none;}
@@ -1935,6 +1938,9 @@ div[style*="display:inline;width:99%;float:left;border-style:solid;border-color:
       content: '';
    }
    .container-fluid {
+      margin-top: initial;
+   }
+   body > div.html-widget:first-of-type {
       margin-top: initial;
    }
 }

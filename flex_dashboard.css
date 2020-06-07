@@ -69,11 +69,17 @@ table {
    word-wrap: normal;
    word-break: normal;
 }
+.chart-notes {
+   background-color: #00000004 !important;
+}
 .chart-notes:empty { /* need to recognize whitespace here */
    background-color: yellow !important;
 }
 .table {
    margin: 0.5em auto;
+}
+.chart-wrapper {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03), 0 1px 4px rgba(0,0,0,0.08)
 }
 .chart-wrapper-flex[data-height^=auto] {
    flex: 0 1 auto !important;
@@ -103,6 +109,7 @@ table {
    content: attr(data-header);
    padding-left: 0.6em;
    padding-bottom: 0.2em;
+   margin-top: -0.4em;
    color: #444;
    font-size: 115%;
 }
@@ -112,7 +119,7 @@ table {
    writing-mode: vertical-lr;
    text-orientation: mixed;
    margin-bottom: 8px;
-   margin-top: 4px;
+   margin-top: 8px;
    margin-left: -8px;
    direction: rtl;
 }
@@ -238,6 +245,9 @@ table {
       width: 715px;
       height: initial;
    }
+   .chart-wrapper {
+     box-shadow: none;
+   }
    .level3.no-mobile {
       display: none !important;
    }
@@ -301,6 +311,9 @@ table {
       position: static; /* leaflet: 'absolute' (no-page break), initial, inherit */
      /* page-break-inside: avoid !important; */
       zmax-height: 412px;
+   }
+   .chart-notes {
+      background-color: initial !important;
    }
    .zzztable {
       display: table !important;
@@ -388,6 +401,11 @@ table {
       padding-left: 0.5em;
       padding-bottom: 0.5em !important;
       display: block;
+   }
+   .dashboard-row[data-header]:not(.no-title):not([empty-header])::before {
+      content: attr(data-header);
+      writing-mode: initial;
+      margin-left: 8px;
    }
    .storyboard-nav {
       display: none;
