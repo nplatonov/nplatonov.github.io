@@ -14,11 +14,11 @@ if (T) {
       a <- readLines(fname)
       ind <- grep("220px",a)
       if (length(ind)) {
-        # print(a[ind])
+         print(a[ind])
          a[ind] <- gsub("220px","210px",a[ind])
         # print(a[ind])
       }
-      writeLines(a,fname)
+     # writeLines(a,fname)
      # gsub("(<|>|/|title|ArcNet PAC|\\s+)","",a[ind])
    }))
 }
