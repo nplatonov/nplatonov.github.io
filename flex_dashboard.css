@@ -83,6 +83,7 @@ table {
 }
 .chart-wrapper-flex[data-height^=auto] {
    flex: 0 1 auto !important;
+   height: initial !important;
 }
 .chart-wrapper-flex[data-height^=auto] .chart-stage {
    padding: initial !important;
@@ -126,6 +127,18 @@ table {
 .section.sidebar {
    top: 54px;
    background-color: transparent;
+}
+.vertical-layout-scroll .chart-wrapper-flex .chart-stage-flex .chart-shim {
+  /* border: 5px solid red; */
+   height: inherit;
+   padding: 5px !important;
+}
+.chart-wrapper-flex[data-height^="auto"] .chart-shim {
+  /* border: 5px solid blue !important; */
+   position: initial;
+}
+.chart-wrapper-flex[data-height^="auto"] .chart-shim pre {
+   margin: 5px;
 }
 @media zscreen {
    .html-widget {
