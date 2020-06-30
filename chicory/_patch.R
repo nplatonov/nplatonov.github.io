@@ -8,7 +8,7 @@ if (F) {
    }))
    print(sort(as.integer(res)))
 }
-if (T) {
+if (F) {
    res <- unname(sapply(sample(list1),function(fname) {
       message(fname)
       a <- readLines(fname)
