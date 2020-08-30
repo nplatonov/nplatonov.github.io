@@ -188,6 +188,11 @@ body {
    margin-bottom: 0.3em;
    text-shadow: 1px 1px 2px #aaa;
 }
+.reveal section.slide.has-dark-background > h3 {
+   color: #eee;
+   text-shadow: 1px 1px 2px #444;
+}
+
 .reveal section.slide.has-dark-background > h1 {
    text-shadow: 2px 2px 4px #444;
    color: #e0e0d0;
@@ -884,7 +889,7 @@ body {
 }
 .reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center),
 .reveal section.slide.parallax:not(.picsum):not(.center),
-.reveal section.slide:not(.invert):not(.picsum):not(.center) {
+.reveal section.slide[data-background-image]:not(.invert):not(.picsum):not(.center) {
    background-color: #FFFFFF90;
   /* text-shadow: 2px 2px 3px white;*/
    text-shadow: 0px 2px 1px white,
@@ -901,7 +906,7 @@ body {
 }
 .reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum):not(.center),
 .reveal section.slide.parallax.has-dark-background:not(.picsum):not(.center),
-.reveal section.slide.invert:not(.picsum):not(.center) {
+.reveal section.slide[data-background-image].invert:not(.picsum):not(.center) {
    background-color: #00000060;
    color: #eee;
   /* text-shadow: 2px 2px 3px white;*/
