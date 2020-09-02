@@ -82,6 +82,7 @@ body {
                 2px 2px 3px #FFFFFF;
 } 
 .reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h1,
+.reveal section.slide[data-background-image]:not(.picsum) > h1,
 .reveal section.slide.parallax:not(.picsum) > h1 {
   /* margin-top: unset; */  /* -23px */
   /* text-shadow: 0.05em 0.05em 0.06em black;*/
@@ -95,6 +96,7 @@ body {
                 3px 3px 9px #FFFFFF90;
 }
 .reveal section.has-dark-background.slide[data-background-image^="https://picsum.photos"]:not(.picsum) > h1,
+.reveal section.has-dark-background.slide[data-background-image]:not(.picsum) > h1,
 .reveal section.has-dark-background.slide.parallax:not(.picsum) > h1 {
    text-shadow: 0px 3px 9px #00000090,
                 3px 0px 9px #00000090,
@@ -120,6 +122,7 @@ body {
                 3px 3px 3px #FFFFFFE0;
 }
 .reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum) > h2,
+.reveal section.slide[data-background-image].has-dark-background:not(.picsum) > h2,
 .reveal section.has-dark-background.slide.parallax:not(.picsum) > h2 {
    color: unset !important;
    text-shadow: 0px 3px 3px #000000E0,
@@ -894,7 +897,7 @@ body {
 .reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center),
 .reveal section.slide.parallax:not(.picsum):not(.center),
 .reveal section.slide.background,
-.reveal section.slide[data-background-image]:not(.invert):not(.picsum):not(.center) {
+.reveal section.slide[data-background-image]:not(.invert):not(.has-dark-background):not(.picsum):not(.center) {
    background-color: #FFFFFF90;
   /* text-shadow: 2px 2px 3px white;*/
    text-shadow: 0px 2px 1px white,
@@ -912,6 +915,7 @@ body {
 .reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum):not(.center),
 .reveal section.slide.parallax.has-dark-background:not(.picsum):not(.center),
 .reveal section.slide.has-dark-background.background,
+.reveal section.slide[data-background-image].has-dark-background:not(.picsum):not(.center),
 .reveal section.slide[data-background-image].invert:not(.picsum):not(.center) {
    background-color: #00000060;
    color: #eee;
