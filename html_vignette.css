@@ -347,6 +347,9 @@ p {
   border-radius: 3px;
  */
 }
+h3 + p, h2 + p, h2 + div p {
+   margin-top: 0.4em;
+}
 blockquote, .blockquote {
    padding-left: 0.5em;
    padding-right: 0.5em;
@@ -709,6 +712,9 @@ h1, h2, h3, h4, h5, .definition {
 h2+h3, .section .section {
    margin-top: 0.4em !important;
 }
+.section.level2 .section.level3 {
+   margin-top: -0.7em !important;
+}
 /*
 h1:hover, h2:hover, h3:hover, h4:hover {
    border-color: #1D6D8C40;
@@ -757,13 +763,16 @@ h1:hover::before, h2:hover::before, h3:hover::before, h4:hover::before, h5:hover
   margin: 0px 0px 0px 0px;
 }
 .level1 + .level1, .title + .level1 { /* :not(:first-of-type) */
-  margin: 24px 0px 0px 0px;
+  margin: 21px 0px 0px 0px;
+}
+#TOC+.level1, .date+.level1, .author+.level1 {
+  margin-top: 1.2em !important;
 }
 .level2 {
   margin: 0px 0px 0px 0px;
 }
 h1 {
-  margin: 0px 0px 4px 0px;
+  margin: 0px 0px 10px 0px;
   font-size: 180%;
   border-width: 0 12px 0 0;
  /* padding-left: 30px;*/

@@ -134,7 +134,8 @@ body {
                 3px -3px 3px #000000E0,
                 3px 3px 3px #000000E0;
 }
-.reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum) {
+.reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum),
+.reveal section.slide[data-background-image].has-dark-background:not(.picsum) {
    text-shadow: 0px 2px 2px #000000E0,
                 2px 0px 2px #000000E0,
                 0px -2px 2px #000000E0,
@@ -153,7 +154,10 @@ body {
     left: 10vh;
     transform: translate(-10vh,-10vh);
 }
-.reveal section.slide.center > h1, .reveal section.slide h1:last-child {
+.reveal section.slide.center > h1,
+.reveal section.slide.bottom > h1,
+.reveal section.slide.top > h1,
+.reveal section.slide h1:last-child {
    font-size: 3.2em;
    text-shadow: none;
    margin-top: unset;
@@ -286,7 +290,7 @@ body {
    right: 0px;
    bottom: 10px;
 }
-.reveal .center {text-align: center;}
+.reveal .center, .reveal .bottom, .reveal .top {text-align: center;}
 .reveal .controls .enabled {opacity: 0.03;}
 .reveal .controls .enabled:hover {opacity: 0.2;}
 .reveal .thankyou {font-size: 2.0em;}
@@ -599,6 +603,7 @@ body {
 }
 */
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6,
+.reveal .footnotes,
 .reveal .slide {
    font-family: "Segoe UI", sans-serif !important;
 }
@@ -697,7 +702,7 @@ body {
    display: none;
 }
 .reveal .comment, .reveal .note, .reveal .onlyhtml, .reveal .hidden {
-   display: none;
+   display: none !important;
 }
 .reveal .figure {
    text-align: center;
@@ -817,6 +822,17 @@ body {
    padding-top: 34em;
    text-shadow: 3px 3px 3px #fff;
 }
+.grabbed {
+   zdisplay: block;
+   position: absolute;
+   right: 3em;
+   top: 90vh;
+   zbottom: -200%;
+   zopacity: 0.45;
+   font-size: 17px !important;
+   ztransform: rotate(-90deg);
+   ztransform-origin: 0% -10%;
+}
 .reveal .references {
    text-align: left;
    font-size: 80% !important;
@@ -886,19 +902,17 @@ body {
 .zzz-print-pdf .reveal .stack { /* how to unset 'data-background-video'? */
    all: initial;
 }
-.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center),
-.reveal section.slide.parallax:not(.picsum):not(.center) {
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center):not(.bottom):not(.top),
+.reveal section.slide.parallax:not(.picsum):not(.center):not(.bottom):not(.top) {
    background-color: #FFFFFF50;
 }
 .reveal section.has-dark-background.slide[data-background-image^="https://picsum.photos"]:not(.picsum),
 .reveal section.has-dark-background.slide.parallax:not(.picsum) {
    background-color: unset; /*#00000050;*/
 }
-.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center),
-.reveal section.slide.parallax:not(.picsum):not(.center),
-.reveal section.slide.background,
-.reveal section.slide[data-background-image]:not(.invert):not(.has-dark-background):not(.picsum):not(.center) {
-   background-color: #FFFFFF90;
+.reveal section.slide[data-background-image^="https://picsum.photos"]:not(.picsum):not(.center):not(.bottom):not(.top),
+.reveal section.slide.parallax:not(.picsum):not(.center):not(.bottom):not(.top),
+.reveal section.slide[data-background-image]:not(.invert):not(.has-dark-background):not(.picsum):not(.center):not(.bottom):not(.top) {
   /* text-shadow: 2px 2px 3px white;*/
    text-shadow: 0px 2px 1px white,
                 2px 0px 1px white,
@@ -909,15 +923,16 @@ body {
                 2px -2px 1px white,
                 2px 2px 1px white;
 }
-.reveal section.slide:not(.invert):not(.picsum):not(.center) .html-widget {
+.reveal section.slide.background, .reveal .slide > .zzzbackground {
+   background-color: #FFFFFF90;
+}
+.reveal section.slide:not(.invert):not(.picsum):not(.center):not(.bottom):not(.top) .html-widget {
    text-shadow: 0 0 0 transparent;
 }
-.reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum):not(.center),
-.reveal section.slide.parallax.has-dark-background:not(.picsum):not(.center),
-.reveal section.slide.has-dark-background.background,
-.reveal section.slide[data-background-image].has-dark-background:not(.picsum):not(.center),
-.reveal section.slide[data-background-image].invert:not(.picsum):not(.center) {
-   background-color: #00000060;
+.reveal section.slide[data-background-image^="https://picsum.photos"].has-dark-background:not(.picsum):not(.center):not(.bottom):not(.top),
+.reveal section.slide.parallax.has-dark-background:not(.picsum):not(.center):not(.bottom):not(.top),
+.reveal section.slide[data-background-image].has-dark-background:not(.picsum):not(.center):not(.bottom):not(.top),
+.reveal section.slide[data-background-image].invert:not(.picsum):not(.center):not(.bottom):not(.top) {
    color: #eee;
   /* text-shadow: 2px 2px 3px white;*/
    text-shadow: 0px 2px 1px black,
@@ -928,6 +943,9 @@ body {
                 -2px 2px 1px black,
                 2px -2px 1px black,
                 2px 2px 1px black;
+}
+.reveal section.slide.has-dark-background.background {
+   background-color: #00000060;
 }
 .reveal section.slide {
    margin-left: -0.3em !important;
@@ -941,7 +959,7 @@ body {
 }
 .reveal section.slide.level1,
 .reveal section.slide.level2 {
-   margin-top: -23px;
+   margin-top: -20px;
    padding-bottom: 8px !important;
 }
 .reveal section.slide.has-dark-background.level2 {
@@ -1026,4 +1044,17 @@ body {
 .print-pdf .reveal section.slide.center {
  /* min-height: 752px !important;*/
 }
-
+.reveal section.footnotes {
+   justify-content: end !important;
+   font-size: 60%;
+}
+.reveal section.bottom {
+   display: flex !important;
+   justify-content: end !important;
+   align-items: center;
+   text-align: center;
+}
+.reveal section[data-background-image] {
+   transition:
+   border: 3px solid red;
+}
