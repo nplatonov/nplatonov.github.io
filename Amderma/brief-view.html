@@ -16,6 +16,12 @@
 <title>LA-8 «Белый медведь»</title>
 
 <script src="https://nplatonov.github.io/site_libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="https://nplatonov.github.io/site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="https://nplatonov.github.io/site_libs/raphael-2.1.4/raphael-2.1.4.min.js"></script>
+<link href="https://nplatonov.github.io/site_libs/justgage-1.2.2.1/justgage.css" rel="stylesheet" />
+<script src="https://nplatonov.github.io/site_libs/justgage-1.2.2.1/justgage.js"></script>
+<script src="https://nplatonov.github.io/site_libs/gauge-binding-0.5.2/gauge.js"></script>
+<script src="https://nplatonov.github.io/site_libs/jquery-1.11.3/jquery.min.js"></script>
 
 
 
@@ -34,9 +40,9 @@
 
 
 <h1 class="title toc-ignore">Применение LA-8 для авиаучета белого медведя в Арктике</h1>
-<h3 class="subtitle">Выводы и предложения по экспедиции «Хозяин Арктики» (2020 г.)</h3>
+<h3 class="subtitle">Итоги и предложения по результатам экспедиции «Хозяин Арктики» (2020 г.)</h3>
 <h4 class="author">Никита Платонов, ИПЭЭ РАН</h4>
-<h4 class="date">2020-09-15 00:58</h4>
+<h4 class="date">2020-09-15 08:36</h4>
 
 
 <div id="TOC">
@@ -75,15 +81,22 @@
 <li><a href="#межведомственное-сотрудничество">Межведомственное сотрудничество</a></li>
 </ul></li>
 <li style="display: none;"><a href="#section-9"></a></li>
+<li style="display: none;"><a href="#section-10"></a></li>
 </ul>
 </div>
 
+<style>
+   .title, .subtitle, .author, .date {text-align: center !important;}
+   .affiliation::before {display: none !important;}
+</style>
 <div id="section" class="section level1" data-autoslide="20000">
 <h1 data-autoslide="20000"></h1>
-<div class="scale120">
 <p>Представлена краткая аналитическая записка по результатам работы экспедиции «Хозяин Арктики»: тестовые учеты белого медведя, морских млекопитающих, загрязнений в границах территории арктической зоны РФ.</p>
-</div>
 <p>Учеты позиционируются как комплексные, так как охватывают одновременно несколько объектов исследований из живой (ластоногие, белухи) и неживой (загрязнения) природы. Однако приоритетным считается оценка распределения и численности белого медведя, и под это исследование планируется регион работ и сроки их проведения. Фиксация остальных объектов осуществляется <em>попутными наблюдениями</em>. Несмотря на такое определение, учёт ластоногих важен для оценки связности звеньев пищевой цепочки белого медведя, а белухи могут выступать индикатором биопродуктивности.</p>
+<!--
+:::{id="refs"}
+:::
+-->
 </div>
 <div id="белый-медведь" class="section level1 center invert header" data-background-image="assets/map-all-populations.jpg" data-autoslide="5000">
 <h1 class="center invert header" data-background-image="assets/map-all-populations.jpg" data-autoslide="5000">Белый медведь</h1>
@@ -120,10 +133,15 @@
 <div class="onlyreveal scale30 comment">
 <p>Программа изучения белого медведя Российской Арктики (<em>здесь - с <a href="http://bear.sevin-expedition.ru/about/">сокращениями</a></em>) реализуется как самостоятельный проект в рамках Постоянно действующей экспедиции РАН по изучению животных Красной книги Российской Федерации и других особо важных животных фауны России, созданной и включенной в состав ИПЭЭ РАН на основании Распоряжения Президиума Российской Академии Наук от 29 февраля 2008 г. № 12300-128.</p>
 </div>
+<!--
+
+# «Хозяин Арктики» 2020 г. {.header .top data-background-image="assets/project.webp" data-background-size="75%" data-background-position="50% 90%" data-autoslide="3000"}
+
+-->
 </div>
 </div>
-<div id="хозяин-арктики-2020-г." class="section level1 header top" data-background-image="assets/project.webp" data-background-size="75%" data-background-position="50% 90%" data-autoslide="3000">
-<h1 class="header top" data-background-image="assets/project.webp" data-background-size="75%" data-background-position="50% 90%" data-autoslide="3000">«Хозяин Арктики» 2020 г.</h1>
+<div id="хозяин-арктики-2020-г." class="section level1 invert header center" data-background-image="assets/go_left2.jpg" zzzdata-background-size="75%" data-background-position="50% 80%" data-autoslide="3000">
+<h1 class="invert header center" data-background-image="assets/go_left2.jpg" zzzdata-background-size="75%" data-background-position="50% 80%" data-autoslide="3000">«Хозяин Арктики» 2020 г.</h1>
 <!--
 
 Тестовые полеты на LA-8 с использованием бортового инструментального комплекса для решения задачи пространственного размещения белого медведя и других морских млекопитающих, а также загрязнений.
@@ -185,9 +203,11 @@
 </ul>
 </div>
 </div>
-<div id="регистрация-моржей" class="section level2 background" data-background-image="assets/walrus-known.jpg" data-background-size="90%" data-background-position="center" data-autoslide="6000">
-<h2 class="background" data-background-image="assets/walrus-known.jpg" data-background-size="90%" data-background-position="center" data-autoslide="6000">Регистрация моржей</h2>
-<p>Осуществлены пролёты над одиннадцатью известными лежбищами. Кроме о. Матвеев, животных на них не оказалось. В работах других исследовательских групп в те же сроки в том же регионе также отражается малое число моржей.</p>
+<div id="регистрация-моржей" class="section level2" data-background-image="assets/walrus-known.jpg" data-background-size="88%" data-background-position="50% 90%" data-autoslide="6000">
+<h2 data-background-image="assets/walrus-known.jpg" data-background-size="88%" data-background-position="50% 90%" data-autoslide="6000">Регистрация моржей</h2>
+<div class="left80 background">
+<p>Осуществлены пролёты над девятью известными лежбищами. Кроме о. Матвеев, животных на них не оказалось. В работах других исследовательских групп в те же сроки в том же регионе также отражается малое число моржей.</p>
+</div>
 </div>
 <div id="section-4" class="section level2" data-background-image="assets/Webarka.jpg" data-autoslide="6000">
 <h2 data-background-image="assets/Webarka.jpg" data-autoslide="6000"></h2>
@@ -236,7 +256,7 @@
 <li><p>Дополнительные датчики работоспособности каждого элемента комплекса</p></li>
 <li><p>Обеспечение автономного (не менее 1.5ч при передаче данных) питания без использования бортовой сети.</p></li>
 <li><p>USB-кабели внутри корпуса самолета для передачи данных с инструментального комплекса на бортовой компьютер.</p></li>
-<li><p>Необходимость обеспечения прицельного фото (открытые блистеры, плоские блистеры, дистанционного управления компактной внешней камерой, <em>др.</em>).</p></li>
+<li><p>Необходимость обеспечения прицельного фото (открытые блистеры, плоские блистеры, дистанционное управление компактной внешней камерой, <em>др.</em>).</p></li>
 </ul>
 </div>
 </div>
@@ -246,6 +266,15 @@
 <div id="section-7" class="section level2" data-autoslide="18000">
 <h2 data-autoslide="18000"></h2>
 <p>Три базовых аэродрома - Амдерма, о. Диксон, о. Средний. Задействие второго самолета для переброски людей и груза между базовыми аэродромами. При радиусе покрытия в 450 км покрывается 87 % акватории, приходящейся на МСОП субпопуляцию Карского моря.</p>
+<div class="onlyreveal">
+<div class="figure">
+<div id="htmlwidget-2ae34da6d3414e904316" style="width:646.08px;height:412.8px;" class="gauge html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2ae34da6d3414e904316">{"x":{"value":87,"min":0,"max":100,"customSectors":[{"lo":0,"hi":100,"color":"success"}],"symbol":"%","label":"","humanFriendly":true,"humanFriendlyDecimal":1,"href":null},"evals":[],"jsHooks":[]}</script>
+<p class="caption centered">
+<span style="display: none;"></span>
+</p>
+</div>
+</div>
 <p>Проведение площадных учетов надо льдами различных типов с частичным захватом суши регулярными галсами с целью оценки численности белого медведя.</p>
 <div class="onlyhtml">
 <div class="figure">
@@ -266,14 +295,14 @@
 <p>Как минимум две экспедиционные группы:</p>
 <ul>
 <li><p>Базирование на судне, курсирующем вдоль кромки льда. Вертолет либо БПЛА с возможностью посадки на палубу судна. Регулярные галсы вглубь ледовых полей. Если кромка льда уйдет далеко, а норвежское судно пустят в наши воды, то исполнителем может быть норвежская сторона.</p></li>
-<li><p>Сплошной учет Земли Франца Иосифа (базирование на Нагурском) и Новой Земли (базирование в Рогачево). Возможный исполнитель – «Хозяин Арктики».</p></li>
+<li><p>Сплошной учет Земли Франца Иосифа (базирование на Нагурском) и Новой Земли (базирование в Рогачёво). Возможный исполнитель – «Хозяин Арктики».</p></li>
 </ul>
 <p>Даже при радиусе покрытия в 550 км мыс Желания остается труднодоступной точкой.</p>
 </div>
 </div>
 </div>
-<div id="росприроднадзор-обратная-связь" class="section level1 header invert top" data-background-image="assets/Radionova.jpg" data-autoslide="3000" data-background-position="50% 5%">
-<h1 class="header invert top" data-background-image="assets/Radionova.jpg" data-autoslide="3000" data-background-position="50% 5%">Росприроднадзор – обратная связь</h1>
+<div id="росприроднадзор-обратная-связь" class="section level1 header invert top" data-background-image="assets/feedback2.webp" data-autoslide="3000" data-background-position="50% 10%">
+<h1 class="header invert top" data-background-image="assets/feedback2.webp" data-autoslide="3000" data-background-position="50% 10%">Росприроднадзор – обратная связь</h1>
 <div id="разрешительные-документы" class="section level2" data-autoslide="12000">
 <h2 data-autoslide="12000">Разрешительные документы</h2>
 <p>Наиболее эффективно комплексное изучение белого медведя – не только с помощью авиаучетов, но и посредством отловов, для которых необходимо положительное решение по “Выдаче разрешений на добывание объектов животного и растительного мира, внесенных в Красную книгу Российской Федерации”. При существующих принципах организации работ посредством пересылки документов обычной почтой возникают значительные задержки. Также затруднено получение информации о готовности решения (готово или не готово), например, очень сложно дозвониться по указанным для контакта номерам телефонов. Всё это грозит срывам работ.</p>
@@ -307,21 +336,23 @@
 </div>
 <div id="section-9" class="section level1" data-autoslide="29000">
 <h1 data-autoslide="29000"></h1>
-<div class="acknowledgement scale65">
+<div class="acknowledgement scale60">
 <hr />
 <p>Источники медиаматериалов:</p>
 <ul>
 <li><p>сайт <a href="http://pbsg.npolar.no">Группы специалистов по белому медведю</a> МСОП</p></li>
 <li><p>группа <a href="https://www.facebook.com/102851788140966/">«Хозяин Арктики»</a> в Facebook</p></li>
 <li><p>сайт проекта <a href="https://arcticbears.ru">«Хозяин Арктики»</a></p></li>
+<li><p>сайт Международного фонда <a href="https://cleanseas.ru">«Чистые моря»</a></p></li>
 <li><p>инструментальный комплекс LA-8 (фотокамера, тепловизор)</p></li>
 <li><p>фотографии бортнаблюдателей</p></li>
 </ul>
 <hr />
-<p>Организатор: Международный фонд «Чистые моря»</p>
-<p>Исполнительная поддержка: Роспотребнадзор</p>
-<p>Финансовая поддержка: АНО “Центр «Арктические инициативы»”</p>
-<p>Информационная поддержка: РИА «Новости», «the Arctic», «1<sup>st </sup>MI», «Новые известия», «Арктика24»</p>
+<p>Организаторы Проекта: Росприроднадзор, АНО “Центр «Арктические инициативы»”,Международный фонд «Чистые моря»</p>
+<p>Главные информационные партнёры Проекта: РИА «Новости», «the Arctic»</p>
+<p>Информационные партнёры Проекта: «1<sup>st </sup>MI», «Новые известия», «Арктика24»</p>
+<hr />
+<p>Организатор экспедиции: Международный фонд «Чистые моря»</p>
 <p>Воздушный помощник: «АэроВолга»</p>
 <p>Научная группа:</p>
 <ul>
@@ -331,6 +362,15 @@
 <li><p>Ангелина Гнеденко, ВНИИ Экологии - бортнаблюдатель, камеральная обработка</p></li>
 <li><p>Никита Платонов, ИПЭЭ РАН - бортнаблюдатель, старший по группе</p></li>
 </ul>
+</div>
+</div>
+<div id="section-10" class="section level1" data-visibility="uncounted" data-background-image="assets/DSC_5319.jpg" data-autoslide="5000" data-state="footer">
+<h1 data-visibility="uncounted" data-background-image="assets/DSC_5319.jpg" data-autoslide="5000" data-state="footer"></h1>
+<div id="refs">
+
+</div>
+<div class="onlyreveal attribution">
+<p>Желаем Проекту дальнейших успехов!</p>
 </div>
 </div>
 <div class="footnotes">
