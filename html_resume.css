@@ -24,6 +24,7 @@
 }
 [data-id="main"] {
    padding: 0.0cm 0.5cm 0.0cm 0.0cm;
+   font-size: 8.6pt;
 }
 .aside {
    padding: 0cm 0.5cm;
@@ -38,6 +39,9 @@
    margin-top: 0.1cm;
    margin-bottom: 0.1cm;
 }
+h2 + .aside {
+   margin-top: -1.3cm;
+}
 .level1.aside {
    font-size: 70%;
   /* color: red; */ /* devel */
@@ -47,7 +51,7 @@
 }
 #title, .details {
    font-size: 100%;
-   line-height: 1.3;
+   line-height: 1.2;
 }
 /*
 .aside ul li {
@@ -89,14 +93,21 @@
 .details h3, .aside h3, .aside h4 {
    font-weight: 400;
 }
+.aside h3 + div > h4 {
+   margin-top: 0.3em;
+}
 .main-block:not(.concise) .simple .details div {
    margin-top: 0.3em;
 }
 .details .place {
    margin-top: 0.15em;
 }
+[data-id="title"] {
+   margin-bottom: 0em;
+}
 [data-id="title"] h1 {
    line-height: 1.25;
+   font-size: 20pt;
 }
 [data-id="main"] ul {
    margin-top: 0em;
@@ -133,4 +144,7 @@ hr {
   /* margin: 8pt 8pt 8pt 8pt;*/
    padding-left: 0.5em;
    padding-bottom: 1.8em;
+}
+.hide {
+   display: none;
 }
