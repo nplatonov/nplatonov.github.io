@@ -1,0 +1,107 @@
+.pagedjs_page {
+    --pagedjs-pagebox-width: 210mm;
+    --pagedjs-pagebox-height: 297mm;
+    --pagedjs-margin-top: 15mm;
+    --pagedjs-margin-right: 15mm;
+    --pagedjs-margin-left: 25mm;
+    --pagedjs-margin-bottom: 15mm;
+}
+body {
+   line-height: 1.4;
+   font-size: 12pt;
+   font-family: Georgia, "Trebuchet MS";
+}
+p, .abstract, ul li, ol li {
+   orphans: 3 !important; /*  the minimum number of lines in a block container that must be left at the bottom of a page */
+   widows: 3 !important; /* minimum number of lines in a block container that must be left at the top of a page */
+}
+widows, orphans {
+   p: 3;
+}
+p {
+   line-height: 1.4;
+   margin-top: 0.3em;
+   margin-bottom: 0.3em;
+}
+p:not(:only-of-type) {
+  /* color: darkgreen; */ /* devel */
+   text-indent: 1.25cm; /* 1.25cm */
+}
+p:only-of-type {
+   text-indent: 0cm;
+  /* color: brown; */ /* devel */
+}
+h1~p, h2~p, h3~p, h4~p, h5~p, h6~p, .definition~p {
+   text-indent: 1.25cm !important; /* 1.25cm */
+   /* color: magenta !important; */ /* devel */
+}
+p.caption {
+   text-indent: unset !important;
+}
+.level2 > p, .level3 > p, .level4 > p {
+   text-indent: 1.25cm !important;
+   /* color: orange !important; */ /* devel */
+}
+p[data-split-from] {
+   text-indent: 0cm !important;
+   /* color: cyan !important; */ /* devel */
+}
+h3, h4 {
+   font-style: normal;
+   font-weight: 600;
+}
+.titlepage-header {
+   line-height: 1.2;
+  /* color: red; */ /* devel */
+   text-align:center;
+   text-indent:0;
+   position:absolute;
+   left:0;
+   right:0;
+   top:0;
+}
+.titlepage-footer {
+  /* color: blue; */ /* devel */
+   text-align:center;
+   text-indent:0;
+   position:absolute;
+   left:0;
+   right:0;
+   bottom:0;
+}
+.zzzprincipal::before {
+   content: 'Ответственный исполнитель: '
+}
+.zzztitlep, .zzzdepartment {
+   display: none;
+}
+.title-page .title {
+   margin-top: 3em;
+   margin-bottom: 3em;
+}
+.signpage .title {
+   margin-top: 1em;
+   margin-bottom: 1em;
+}
+.title-page .subtitle {
+   margin-top: 2em;
+   margin-bottom: 4em;
+}
+[data-id="refs"] div > p {
+   padding-left: 0cm !important;
+   text-indent: 1cm !important;
+}
+.adopted { /* :after */
+  /* content: 'Origin/Источник'*/
+   position: relative;
+   font-weight: normal;
+   font-style: normal;
+   top: -0.4em;
+   font-size: 80%;
+}
+
+@media dummyprint {
+   * {
+      border: 1px solid #00f2;
+   }
+}
