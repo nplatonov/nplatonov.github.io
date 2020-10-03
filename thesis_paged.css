@@ -4,7 +4,7 @@
     --pagedjs-margin-top: 15mm;
     --pagedjs-margin-right: 15mm;
     --pagedjs-margin-left: 25mm;
-    --pagedjs-margin-bottom: 15mm;
+    --pagedjs-margin-bottom: 25mm;
 }
 body {
    line-height: 1.4;
@@ -14,11 +14,12 @@ body {
 p, .abstract, ul li, ol li {
    orphans: 3 !important; /*  the minimum number of lines in a block container that must be left at the bottom of a page */
    widows: 3 !important; /* minimum number of lines in a block container that must be left at the top of a page */
+   break-inside: avoid;
 }
 widows, orphans {
    p: 3;
 }
-p {
+p, ul {
    line-height: 1.4;
    margin-top: 0.3em;
    margin-bottom: 0.3em;
@@ -35,8 +36,20 @@ h1~p, h2~p, h3~p, h4~p, h5~p, h6~p, .definition~p {
    text-indent: 1.25cm !important; /* 1.25cm */
    /* color: magenta !important; */ /* devel */
 }
-p.caption {
-   text-indent: unset !important;
+.figure p.caption {
+   text-indent: -1cm;
+   font-size: 90%;
+}
+table caption {
+   text-indent: -1cm;
+   font-size: 112%;
+}
+table {
+   margin-top: 1.4em;
+}
+table td {
+   padding-left: 0.4em;
+   padding-right: 0.4em;
 }
 .level2 > p, .level3 > p, .level4 > p {
    text-indent: 1.25cm !important;
@@ -46,6 +59,7 @@ p[data-split-from] {
    text-indent: 0cm !important;
    /* color: cyan !important; */ /* devel */
 }
+ul {}
 h3, h4 {
    font-style: normal;
    font-weight: 600;
@@ -53,9 +67,9 @@ h3, h4 {
 .titlepage-header {
    line-height: 1.2;
   /* color: red; */ /* devel */
-   text-align:center;
-   text-indent:0;
-   position:absolute;
+   text-align: center;
+   text-indent: 0;
+   position: initial;
    left:0;
    right:0;
    top:0;
@@ -68,6 +82,10 @@ h3, h4 {
    left:0;
    right:0;
    bottom:0;
+}
+.titlepage-updated {
+   margin-top: 1em;
+   color: #aaa;
 }
 .zzzprincipal::before {
    content: 'Ответственный исполнитель: '
@@ -99,7 +117,80 @@ h3, h4 {
    top: -0.4em;
    font-size: 80%;
 }
-
+.pagedjs_margin-content {
+   color: #888;
+   font-size: 80%;
+}
+.pagedown-linenumbers-container {
+   color: wheat;
+}
+.front-cover {
+   display: block;
+   position: absolute;
+   top: unset;
+   bottom: 3em;
+   opacity: 1;
+   width: 100%;
+   text-align: center;
+}
+.back-cover {
+   display: block;
+   width: 100%;
+   text-align: center;
+}
+.front-cover img {
+   margin-right: 3cm;
+   margin-left: 3cm;
+   max-height: 8cm;
+}
+.front-cover p, .back-cover p {
+   text-indent: 0cm;
+}
+.front-cover .figure .caption, .back-cover .figure .caption {
+   font-size: 80%;
+   color: #aaa;
+   margin-top: -0.2em;
+}
+.front-cover .figure .caption::before, .back-cover .figure .caption::before {
+   content: 'Изображение: ';
+}
+.front-page {
+   padding-top: 0em;
+}
+.front-cover + .running-h1-title + .running-h2-title + .front-page {
+   padding-top: 1.3em;
+}
+#TOC .chapter-ref + ul {
+   margin-top: 0.08em;
+   margin-bottom: 0.04em;
+}
+.references:not([data-previous-break-after]) {
+  /* margin-top: 1em; */
+   break-before: always;
+}
+.references:not([data-previous-break-after]):before {
+   content: 'Автоиспользуемые источники';
+   font-size: 110%;
+}
+h5 + .zreferences:before,
+h4 + .zreferences:before,
+h3 + .zreferences:before,
+h2 + .zreferences:before,
+h1 + .zreferences:before,
+.zreferences[data-previous-break-after] {
+   border: 1px solid red;
+   content: '';
+   margin-top: unset;
+   break-before: unset;
+}
+.last_pagedjs_page:not(.pagedjs_named_page) { /*not(.pagedjs_named_page)*/
+   border: 1px solid red;
+   background: red;
+   display: none !important;
+}
+h4 {
+   break-after: avoid;
+}
 @media dummyprint {
    * {
       border: 1px solid #00f2;
