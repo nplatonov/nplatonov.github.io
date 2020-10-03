@@ -188,11 +188,16 @@ h1 + .zreferences:before,
    background: red;
    display: none !important;
 }
-h4 {
-   break-after: avoid;
+.figure {
+   text-align: center;
 }
 @media dummyprint {
    * {
       border: 1px solid #00f2;
+   }
+}
+@media only dummyscreen and (max-width: 690px) {
+   * {
+     all: unset;
    }
 }
