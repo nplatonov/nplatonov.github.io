@@ -177,17 +177,22 @@ sup, sub {
    text-align: center;
 }
 .front-cover img {
-   margin-right: 3cm;
-   margin-left: 3cm;
+   margin-right: 0cm;
+   margin-left: 0cm;
    max-height: 8cm;
 }
 .front-cover p, .back-cover p {
    text-indent: 0cm;
 }
 .front-cover .figure .caption, .back-cover .figure .caption {
-   font-size: 80%;
-   color: #aaa;
-   margin-top: -0.2em;
+   font-size: 70%;
+   color: #ddd;
+   transform: rotate(180deg);
+   writing-mode: vertical-lr;
+   position: absolute;
+   bottom: -8em;
+  /* left: -7em;*/
+   right: -5em;
 }
 .front-cover .figure .caption::before, .back-cover .figure .caption::before {
    content: 'Изображение: ';
@@ -219,14 +224,14 @@ table.sign-table td {
    padding-top: 0.4em;
    padding-bottom: 0.4em;
 }
-table.sign-table tbody tr:last-of-type {
-  border-bottom: 1px solid transparent;
+table.sign-table tbody tr:last-of-type td {
+   border-bottom: 1px solid transparent;
 }
 table.sign-table thead tr:first-of-type {
-  border-top: 1px solid blue !important;
+   border-top: 1px solid transparent;
 }
-table.sign-table tbody tr:first-of-type {
-  border-top: 1px solid transparent;
+table.sign-table tbody tr:first-of-type td {
+   border-top: 1px solid transparent;
 }
 
 #TOC .chapter-ref + ul {
