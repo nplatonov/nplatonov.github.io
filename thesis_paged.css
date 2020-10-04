@@ -37,19 +37,38 @@ h1~p, h2~p, h3~p, h4~p, h5~p, h6~p, .definition~p {
    /* color: magenta !important; */ /* devel */
 }
 .figure p.caption {
-   text-indent: -1cm;
+  /* text-indent: -1cm;*/
    font-size: 90%;
+   text-align: left;
 }
 table caption {
    text-indent: -1cm;
-   font-size: 112%;
+  /* font-size: 112%;*/
 }
 table {
    margin-top: 1.4em;
+   margin-bottom: 0.8em;
+   font-size: 90%;
 }
 table td {
    padding-left: 0.4em;
    padding-right: 0.4em;
+}
+table th {
+   border-bottom: none;
+   font-weight: 600;
+}
+table tbody tr:last-of-type td {
+   border-bottom: 1px solid #ddd;
+}
+table thead tr:first-of-type {
+   border-top: 1px solid #ddd;
+}
+table tbody tr:first-of-type td {
+   border-top: 1px solid #bbb;
+}
+table tbody {
+   line-height: 1.4;
 }
 .level2 > p, .level3 > p, .level4 > p {
    text-indent: 1.25cm !important;
@@ -253,6 +272,25 @@ h1 + .zreferences:before,
 }
 .pagedjs_margin-bottom .pagedjs_margin-bottom-left .pagedjs_margin-content::before {
    content: var(--pagedjs-string-h2-text);
+}
+a, a:visited { /* a:not[code] */
+   color: #084999;
+   text-decoration: none;
+ /* text-decoration: underline dotted #909090;*/
+}
+#TOC a, .lof a, .lot a {
+   color: initial;
+}
+.footnote {
+   font-size: small !important;
+}
+.footnote sup::after {
+   content: ' ';
+}
+.footnote-break {
+   width: 7cm;
+   border-bottom: none;
+   border-top: 1px solid #bbb;
 }
 @media dummyprint {
    * {
