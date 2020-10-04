@@ -28,11 +28,15 @@ p:not(:only-of-type) {
   /* color: darkgreen; */ /* devel */
    text-indent: 1.25cm; /* 1.25cm */
 }
+.figure + p {
+  /* color: darkgreen; */ /* devel */
+   text-indent: 1.25cm; /* 1.25cm */
+}
 p:only-of-type {
    text-indent: 0cm;
   /* color: brown; */ /* devel */
 }
-h1~p, h2~p, h3~p, h4~p, h5~p, h6~p, .definition~p {
+h1~p, h2~p, h3~p, h4~p, h5~p, h6~p, .definition~p, .figure~p {
    text-indent: 1.25cm !important; /* 1.25cm */
    /* color: magenta !important; */ /* devel */
 }
@@ -40,6 +44,7 @@ h1~p, h2~p, h3~p, h4~p, h5~p, h6~p, .definition~p {
   /* text-indent: -1cm;*/
    font-size: 90%;
    text-align: left;
+   margin-bottom: 0.8em;
 }
 table caption {
    text-indent: -1cm;
@@ -111,6 +116,11 @@ h3, h4 {
    right: 0em;
    bottom: -4em;
 }
+/*
+.titlepage-updated::after {
+   content: ' Число страниц: ' var(--pagedjs-page-count);
+}
+*/
 .zzzprincipal::before {
    content: 'Ответственный исполнитель: '
 }
@@ -160,7 +170,7 @@ sup, sub {
    font-size: 80%;
 }
 .pagedown-linenumbers-container {
-   color: wheat;
+   color: mediumturquoise; /* wheat */
 }
 .front-cover {
    display: block;
@@ -243,7 +253,7 @@ table.sign-table tbody tr:first-of-type td {
    break-before: always;
 }
 .references:not([data-previous-break-after]):before {
-   content: 'Автоиспользуемые источники';
+   content: 'Цитируемые источники';
    font-size: 110%;
 }
 h5 + .zreferences:before,
@@ -296,6 +306,12 @@ a, a:visited { /* a:not[code] */
    width: 7cm;
    border-bottom: none;
    border-top: 1px solid #bbb;
+}
+abbr::after {
+   content: ' (' attr(title) ')';
+}
+dl dd::first-letter {
+   text-transform: capitalize;
 }
 @media dummyprint {
    * {
