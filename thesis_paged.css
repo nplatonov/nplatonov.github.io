@@ -347,7 +347,7 @@ h1 + .zreferences:before,
    content: var(--pagedjs-string-h2-text);
 }
 a, a:visited { /* a:not[code] */
-   color: #084999;
+  /* color: #084999; */
    text-decoration: none;
  /* text-decoration: underline dotted #909090;*/
 }
@@ -379,6 +379,7 @@ dl dd::first-letter {
 }
 @media print {
    @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge */
+      color: #084999;
       .sign-cell img {display: none;}
       .author.principal img {display: none;}
 }
