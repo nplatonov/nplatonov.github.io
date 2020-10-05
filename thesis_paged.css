@@ -159,7 +159,7 @@ h3, h4 {
 .title-page .author {
    text-align: left;
 }
-.author::first-letter, .signature::first-letter {
+.author::first-letter, .signature::first-letter, .sign-duty::first-letter {
    text-transform: capitalize;
 }
 [data-id="refs"] div > p {
@@ -226,12 +226,12 @@ sup, sub {
 .front-cover + .running-h1-title + .running-h2-title + .front-page {
    padding-top: 1.3em;
 }
-table.sign-table {
+table.sign-table, table.title-table {
    text-align: left;
    line-height: 1.2;
    font-size: 100%;
 }
-table.sign-table tr {
+table.sign-table tr, table.title-table tr  {
    height: 1.8cm;
 }
 table.zzzsign-table td.sign-cell {
@@ -242,18 +242,27 @@ table.zzzsign-table td.sign-cell {
 table.sign-table td.sign-cell::after {
    content: "__________";
 }
+table.title-table td.sign-cell::after {
+   content: "_______________";
+   display: block;
+   position: relative;
+   top: -1em;
+}
 table.sign-table td {
    min-height: 2cm;
    padding-top: 0.4em;
    padding-bottom: 0.4em;
 }
-table.sign-table tbody tr:last-of-type td {
+table.sign-table tbody tr:last-of-type td,
+table.title-table tbody tr:last-of-type td {
    border-bottom: 1px solid transparent;
 }
-table.sign-table thead tr:first-of-type {
+table.sign-table thead tr:first-of-type,
+table.title-table thead tr:first-of-type {
    border-top: 1px solid transparent;
 }
-table.sign-table tbody tr:first-of-type td {
+table.sign-table tbody tr:first-of-type td,
+table.title-table tbody tr:first-of-type td {
    border-top: 1px solid transparent;
 }
 table.sign-table td.sign-cell {
