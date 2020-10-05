@@ -40,6 +40,19 @@ h1~p, h2~p, h3~p, h4~p, h5~p, h6~p, .definition~p, .figure~p {
    text-indent: 1.25cm !important; /* 1.25cm */
    /* color: magenta !important; */ /* devel */
 }
+.section > p { /* , table.sign-table td , .section > ul:not([data-split-original]) { */
+   text-align: justify;
+}
+/*
+ul[data-split-original] {
+   text-align: justify;
+   border: 1px solid blue;
+}
+ul[data-split-original] > li {
+   text-align: inherit;
+   border: 1px solid green;
+}
+*/
 .figure p.caption {
   /* text-indent: -1cm;*/
    font-size: 90%;
@@ -335,6 +348,16 @@ abbr::after {
 }
 dl dd::first-letter {
    text-transform: capitalize;
+}
+.acknowledge {
+   line-height: 1.4;
+}
+.acknowledge img {
+   padding: 1em 2em 2em 2em;
+}
+@media print {
+   @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge */
+      .sign-cell img {display: none;}
 }
 @media dummyprint {
    * {
