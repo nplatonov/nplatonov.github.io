@@ -153,8 +153,8 @@ h3, h4 {
    margin-bottom: 1em;
 }
 .title-page .subtitle {
-   margin-top: 2em;
-   margin-bottom: 4em;
+   margin-top: 1.6em;
+   margin-bottom: 0em;
 }
 .title-page .author {
    text-align: left;
@@ -226,12 +226,15 @@ sup, sub {
 .front-cover + .running-h1-title + .running-h2-title + .front-page {
    padding-top: 1.3em;
 }
-table.sign-table, table.title-table {
+table.sign-table {
    text-align: left;
    line-height: 1.2;
    font-size: 100%;
 }
-table.sign-table tr, table.title-table tr  {
+.signpage table.sign-table {
+   font-size: 100%;
+}
+table.sign-table tr {
    height: 1.8cm;
 }
 table.zzzsign-table td.sign-cell {
@@ -239,30 +242,37 @@ table.zzzsign-table td.sign-cell {
    width: 4cm;
    border-bottom: 1px solid red;
 }
+table.sign-table td.sign.cell {
+   box-sizing: border-box;
+   display: inline;
+   float: none;
+   line-height: 22.4px;
+   position: static;
+}
 table.sign-table td.sign-cell::after {
    content: "__________";
+   display: flex;
 }
 table.title-table td.sign-cell::after {
    content: "_______________";
+  /*
    display: block;
    position: relative;
    top: -1em;
+  */
 }
 table.sign-table td {
    min-height: 2cm;
    padding-top: 0.4em;
    padding-bottom: 0.4em;
 }
-table.sign-table tbody tr:last-of-type td,
-table.title-table tbody tr:last-of-type td {
+table.sign-table tbody tr:last-of-type td {
    border-bottom: 1px solid transparent;
 }
-table.sign-table thead tr:first-of-type,
-table.title-table thead tr:first-of-type {
+table.sign-table thead tr:first-of-type {
    border-top: 1px solid transparent;
 }
-table.sign-table tbody tr:first-of-type td,
-table.title-table tbody tr:first-of-type td {
+table.sign-table tbody tr:first-of-type td {
    border-top: 1px solid transparent;
 }
 table.sign-table td.sign-cell {
@@ -270,7 +280,7 @@ table.sign-table td.sign-cell {
    padding: 0em 0em 0em 0em;
   /* vertical-align: bottom;*/
 }
-table.sign-table td.sign-name {
+table.zzzsign-table td.sign-name {
    padding-left: 0em;
 }
 td.sign-cell > img {
@@ -287,7 +297,10 @@ td.sign-cell > img {
    */
 }
 img.title-sign {
-   max-height: 2cm;   
+   max-height: 22cm;   
+}
+table.sign-table tr {
+   vertical-align: bottom;
 }
 #TOC .chapter-ref + ul {
    margin-top: 0.08em;
