@@ -207,18 +207,42 @@ sup, sub {
 .front-cover p, .back-cover p {
    text-indent: 0cm;
 }
-.front-cover .figure .caption, .back-cover .figure .caption {
+.zzzfront-cover .figure .caption, .zzzback-cover .figure .caption {
    font-size: 70%;
    color: #ddd;
    transform: rotate(180deg);
    writing-mode: vertical-lr;
    position: absolute;
-   bottom: -8em;
+   bottom: -5em; /* -8em */
   /* left: -7em;*/
-   right: -5em;
+   right: -5em; /* -5em */
+}
+.front-cover .figure .caption, .back-cover .figure .caption {
+   text-shadow: 1px 0px 1px #000000F0,
+                1px 1px 1px #000000F0,
+                0px 1px 1px #000000F0,
+                -1px 0px 1px #000000F0,
+                0px -1px 1px #000000F0,
+               -1px -1px 1px #000000F0,
+                1px -1px 1px #000000F0,
+                -1px 1px 1px #000000F0;
+   color: #FFFFFFF0;
+   display: block;
+   text-align: center;
+   margin-top: -1.91em;
+   text-indent: 0em;
+   opacity: 0.4;
 }
 .front-cover .figure .caption::before, .back-cover .figure .caption::before {
    content: 'Изображение: ';
+}
+.front-cover .figure .caption:hover, .back-cover .figure .caption:hover {
+   opacity: 1.0;
+}
+.zzzfront-cover .figure .caption::before, .zzzback-cover .figure .caption::before {
+   font-size: 200%;
+   content: '\1F301';
+   text-shadow: none;
 }
 .front-page {
    padding-top: 0em;
@@ -347,8 +371,10 @@ h1 + .zreferences:before,
    content: var(--pagedjs-string-h2-text);
 }
 a, a:visited { /* a:not[code] */
-  /* color: #084999; */
-   text-decoration: underline dotted #909090;
+   color: #084999;
+   text-decoration: none;
+  /* color: initial; */
+  /* text-decoration: underline dotted #909090; */
 }
 #TOC a, .lof a, .lot a {
    color: initial;
@@ -376,22 +402,41 @@ dl dd::first-letter {
 .acknowledge img {
    padding: 1em 2em 2em 2em;
 }
+@media screen {
+   .asteric {
+      border: 1px solid #00f2;
+   }
+   a, a:visited { /* a:not[code] */
+      color: #084999 !important;
+      text-decoration: none;
+   }
+   .sign-cell img {display: none;}
+   .author.principal img {display: none;}
+}
+
+@media zzzprint {
+   * {
+      border: 1px solid #0f02;
+   }
+}
+@media only dummyscreen and (max-width: 690px) {
+   * {
+     all: unset;
+   }
+}
 @media print {
-   @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge */
+   @supports (-moz-appearance: none) or (-ms-ime-align: auto) { /* Unlike Chromium */
+      a, a:visited { /* a:not[code] */
+         color: initial;
+       /* text-decoration: underline dotted #909090; */
+      }
+   }
+   @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* like Chromium */
       a, a:visited { /* a:not[code] */
          color: #084999;
          text-decoration: none;
       }
       .sign-cell img {display: none;}
       .author.principal img {display: none;}
-}
-@media dummyprint {
-   * {
-      border: 1px solid #00f2;
-   }
-}
-@media only dummyscreen and (max-width: 690px) {
-   * {
-     all: unset;
    }
 }
