@@ -140,6 +140,9 @@ h3, h4 {
 .zzztitlep, .zzzdepartment {
    display: none;
 }
+.title-page .department {
+   margin-bottom: 0.3em;
+}
 .title-page .institute {
    margin-top: 1em;
    text-indent: 0cm;
@@ -158,6 +161,12 @@ h3, h4 {
 }
 .title-page .author {
    text-align: left;
+}
+.title-page h2.author {
+   margin-top: 1em;
+}
+.title-page h2.author:first-of-type {
+   margin-top: 3em;
 }
 .author::first-letter, .signature::first-letter, .sign-duty::first-letter {
    text-transform: capitalize;
@@ -202,7 +211,7 @@ sup, sub {
 .front-cover img {
    margin-right: 0cm;
    margin-left: 0cm;
-   max-height: 8cm;
+   max-height: 6cm;
 }
 .front-cover p, .back-cover p {
    text-indent: 0cm;
@@ -232,9 +241,10 @@ sup, sub {
    margin-top: -1.91em;
    text-indent: 0em;
    opacity: 0.4;
+   font-size: 80%;
 }
 .front-cover .figure .caption::before, .back-cover .figure .caption::before {
-   content: 'Изображение: ';
+   content: 'Иллюстрация: ';
 }
 .front-cover .figure .caption:hover, .back-cover .figure .caption:hover {
    opacity: 1.0;
@@ -388,7 +398,11 @@ a, a:visited { /* a:not[code] */
 .footnote-break {
    width: 7cm;
    border-bottom: none;
+   margin-top: 0.6em !important; /* be careful for reducing page footer*/
    border-top: 1px solid #bbb;
+}
+abbr {
+   text-decoration: none;
 }
 abbr::after {
    content: ' (' attr(title) ')';
@@ -402,6 +416,13 @@ dl dd::first-letter {
 .acknowledge img {
    padding: 1em 2em 2em 2em;
 }
+.footnotes hr {
+   margin-bottom: -0.7em;
+}
+.footnotes hr::before {
+  /* content: 'Контекстные примечания:';*/
+   font-size: 110%;
+}
 @media only screen {
    .asteric {
       border: 1px solid #00f2;
@@ -412,6 +433,12 @@ dl dd::first-letter {
    }
    .sign-cell img {display: none;}
    .author.principal img {display: none;}
+   abbr {
+      text-decoration: underline dotted !important;
+   }
+   abbr::after {
+      content: none;
+   }
 }
 
 @media zzzprint {

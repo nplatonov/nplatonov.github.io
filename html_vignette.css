@@ -111,7 +111,7 @@ body {
 #zzzTOC li a:empty {
    display: none;
 }
-abbr::after {
+skip.abbr::after {
    content: ' (' attr(title) ')';
 }
 
@@ -981,7 +981,10 @@ h4.date {
    padding-bottom: 1em;
 }
 .author_afil + br + h4.date {
-   padding-top: 1.5em;
+  /* padding-top: 1.5em;*/
+}
+address.author_afil:last-of-type {
+   padding-bottom: 1.5em;
 }
 address.author_afil, address.author_email {
    margin-top: 0px;
