@@ -1,3 +1,7 @@
+:root {
+  --link-color: #084999;
+}
+
 .pagedjs_page {
     --pagedjs-pagebox-width: 210mm;
     --pagedjs-pagebox-height: 297mm;
@@ -381,7 +385,7 @@ h1 + .zreferences:before,
    content: var(--pagedjs-string-h2-text);
 }
 a, a:visited { /* a:not[code] */
-   color: #084999;
+   color: var(--link-color);
    text-decoration: none;
   /* color: initial; */
   /* text-decoration: underline dotted #909090; */
@@ -428,7 +432,7 @@ dl dd::first-letter {
       border: 1px solid #00f2;
    }
    a, a:visited { /* a:not[code] */
-      color: #084999 !important;
+      color: var(--link-color) !important;
       text-decoration: none;
    }
    .sign-cell img {display: none;}
@@ -462,6 +466,9 @@ dl dd::first-letter {
       }
    }
    @supports (not (-moz-appearance: none)) and (not (-ms-ime-align: auto)) { /* like Chromium */
+      #TOC a, #TOC a:visited, #LOT a, #LOT a:visited, #LOF a, #LOF a:visited {
+         color: var(--link-color);
+      }
      /*
       a, a:visited {
          color: #084999;
