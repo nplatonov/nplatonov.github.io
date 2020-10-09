@@ -191,8 +191,8 @@ sup, sub {
    color: #888;
    font-size: 80%;
 }
-.skip .pagedown-linenumbers-container {
-   color: red; /*mediumturquoise*/ /* wheat */
+.pagedown-linenumbers-container {
+   color: transparent; /*mediumturquoise*/ /* wheat */
 }
 .front-cover {
    display: block;
@@ -440,7 +440,7 @@ dl dd::first-letter {
       content: none;
    }
    .pagedown-linenumbers-container {
-      color: mediumturquoise; /* wheat */
+      color: #0002;  /* mediumturquoise  wheat */
    }
 }
 
@@ -455,9 +455,6 @@ dl dd::first-letter {
    }
 }
 @media print {
-   .pagedown-linenumbers-container {
-      color: yellow;
-   }
    @supports (-moz-appearance: none) or (-ms-ime-align: auto) { /* Unlike Chromium */
       a, a:visited { /* a:not[code] */
          color: initial;
