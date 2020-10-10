@@ -111,10 +111,6 @@ body {
 #zzzTOC li a:empty {
    display: none;
 }
-skip.abbr::after {
-   content: ' (' attr(title) ')';
-}
-
 /* collapse -- begin */
 @media only screen and (min-width: 1360px) {
    .zzztitle,.zzzsubtitle {
@@ -1866,6 +1862,12 @@ body > div.html-widget:first-of-type {
    .pagebreak,.page-break { /* []{.pagebreak} */
       page-break-inside: avoid;
       page-break-after: always;
+   }
+   abbr {
+      text-decoration: none;
+   }
+   abbr::after {
+      content: ' (' attr(title) ')';
    }
   /*
    h1 {
