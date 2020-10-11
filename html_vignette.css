@@ -556,8 +556,14 @@ img {
   filter: none;
   box-shadow: 0 0 15px 0 #eee; /* #eee */
 }
+/*
 br~a > img, p > img {
    display: block;
+   margin-top: 0.3em;
+}
+*/
+p.centered-image {
+   text-align: center;
 }
 img[zzzaltzzz] {
    display: block;
@@ -1616,9 +1622,12 @@ body > div.html-widget:first-of-type {
       max-width: 16cm;
       height: auto;
    }
+   p.centered-image {
+      text-indent: 0cm !important;
+   }
    img {
       box-shadow: none;
-      margin-left: -1.25cm;
+     /* margin-left: -1.25cm;*/
       margin-bottom: 0.2cm;
      /* margin-right: 1.25cm;*/
       max-width: 16cm;
@@ -1741,8 +1750,8 @@ body > div.html-widget:first-of-type {
       color: inherit !important;
    }
    .caption {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
+      margin-left: 2cm !important;
+      margin-right: 2cm !important;
       margin-bottom: 0.8em;
       text-indent: 0;
       page-break-before: avoid;
