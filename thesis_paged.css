@@ -14,14 +14,18 @@
     --pagedjs-margin-bottom: 25mm;
 }
 body {
-   line-height: 2.4;
+   line-height: 1.4;
    font-size: 12pt;
    font-family: "Georgia", "Times New Roman", serif; /* "Trebuchet MS" "Cambria" */
 }
 p, .abstract, ul li, ol li, table {
    orphans: 3 !important; /*  the minimum number of lines in a block container that must be left at the bottom of a page */
    widows: 3 !important; /* minimum number of lines in a block container that must be left at the top of a page */
-   break-inside: avoid;
+  /* break-inside: avoid;*/
+}
+.toc { /* dont work */
+   break-inside: avoid !important;
+   page-break-inside: avoid !important;
 }
 widows, orphans {
    p: 3;
@@ -119,6 +123,7 @@ h3, h4 {
    top:0;
 }
 .titlepage-footer {
+   line-height: 1.2;
   /* color: blue; */ /* devel */
    text-align:center;
    text-indent:0;
