@@ -23,7 +23,9 @@ p, .abstract, ul li, ol li, table {
    widows: 3 !important; /* minimum number of lines in a block container that must be left at the top of a page */
    break-inside: avoid;
 }
-.toc { /* dont work */
+.toc li { /* dont work */
+   break-before: auto !important;
+   page-break-before: auto !important;
    break-inside: auto !important;
    page-break-inside: auto !important;
 }
