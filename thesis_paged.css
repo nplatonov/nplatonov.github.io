@@ -23,11 +23,9 @@ p, .abstract, ul li, ol li, table {
    widows: 3 !important; /* minimum number of lines in a block container that must be left at the top of a page */
    break-inside: avoid;
 }
-.toc li { /* dont work */
+.toc li {
    break-before: auto !important;
-   page-break-before: auto !important;
    break-inside: auto !important;
-   page-break-inside: auto !important;
 }
 widows, orphans {
    p: 3;
@@ -167,7 +165,8 @@ h3, h4 {
 }
 .signpage .title {
    margin-top: 1em;
-   margin-bottom: 1em;
+   margin-bottom: 3em;
+   text-align: center;
 }
 .title-page .subtitle {
    margin-top: 1.6em;
@@ -278,6 +277,8 @@ table.sign-table {
    text-align: left;
    line-height: 1.2;
    font-size: 100%;
+  /* background-color: #FF02; */
+   width: 100%;
 }
 .signpage table.sign-table {
    font-size: 100%;
@@ -384,6 +385,9 @@ h1 + .zreferences:before,
 .toc a, .lot a, .lof a {
    padding-right: 0.9em; /* default 0.33em */
 }
+.lof li.hidden {
+   display: none;
+}
 .zzzpagedjs_margin-top,
 .pagedjs_margin-top-center {
    background-color: yellow;
@@ -427,8 +431,11 @@ dl dd::first-letter {
 .acknowledge {
    line-height: 1.4;
 }
+.acknowledge br {
+   margin-bottom: 1em;
+}
 .acknowledge img {
-   padding: 1em 2em 2em 2em;
+   padding: 0em 2em 1em 2em;
 }
 .footnotes hr {
    margin-bottom: -0.7em;
@@ -440,6 +447,13 @@ dl dd::first-letter {
 p.centered-image {
    text-align: center;
    text-indent: 0 !important;
+}
+.sign-date {
+   text-align: right;
+   margin-top: 1em;
+}
+.sign-date::before {
+   content: '«            »  _____________                 г.';
 }
 @media only screen {
    .asteric {

@@ -126,7 +126,8 @@ body {
       top: 0em;
       font-size: 13px;
       max-width: 17.6vw;
-      height: unset;
+      height: 94%;
+      overflow-y: auto; 
    }
 }
 @media only screen and (min-width: 930px) and (max-width: 1360px) {
@@ -153,9 +154,10 @@ body {
       font-size: 13px;
       color: unset;
       width: unset;
-      max-width: 400px;
-      height: unset;
+      max-width: 640px;
+      height: 94%;
       opacity: 1.0;
+      overflow-y: scroll;
    }
    /* collapse -- end */
 }
@@ -1089,6 +1091,9 @@ caption { /* tables */
    margin: 0.3em 2em 0.8em 2em;
    display: block;
 }
+.caption.hidden {
+   display: none;
+}
 p:only-of-type > img
 {
    display: block;
@@ -1573,6 +1578,7 @@ body > div.html-widget:first-of-type {
    }
    h1+p, h2+p, h3+p, h4+p {
       page-break-before: avoid;
+      page-break-inside: avoid;
    }
    h1, h2, h3, h4, h5, .definition {
       color: inherit;
