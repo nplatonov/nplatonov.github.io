@@ -65,7 +65,7 @@
     beforeParsed(content) {
       const abbreviations = content.querySelectorAll('abbr');
       if(abbreviations.length === 0) return;
-      const loaTitle = 'List of Abbreviations';
+      const loaTitle = 'Список сокращений';
       const loaId = 'LOA';
       const tocList = content.querySelector('.toc ul');
       let listOfAbbreviations = document.createElement('div');

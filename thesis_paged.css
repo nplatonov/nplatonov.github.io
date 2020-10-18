@@ -2,6 +2,18 @@
 /*
 #TOC li {line-height: 2.1;}
 */
+
+/* subject to infinite paging -- begin */
+h1 + .level2:empty, h2 + .level3:empty, h3 + .level4:empty, h4 + .level5:empty { /* 'h2+.level3', 'h2~.level3' - all OK  */
+   break-before: avoid;
+   break-inside: avoid;
+   border: 25px solid #f9f9f9;
+}
+h2 + .level3:empty:after {
+   content: 'manual pagebreak is desired';
+}
+/* subject to infinite paging -- end */
+
 :root {
   --link-color: #084999;
 }
@@ -454,9 +466,6 @@ p.centered-image {
 }
 .sign-date::before {
    content: '«            »  _____________                 г.';
-}
-h1 + .level2, h2 + .level3 {
-   break-inside: avoid;
 }
 @media only screen {
    .asteric {
