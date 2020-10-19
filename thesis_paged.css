@@ -82,8 +82,11 @@ ul[data-split-original] > li {
    text-align: left;
    margin-bottom: 0.8em;
 }
-table caption {
-   text-indent: -1cm;
+table > caption {
+   text-align: left;
+   padding-left: 1cm;
+   padding-right: 1cm;
+   text-indent: 0cm;
   /* font-size: 112%;*/
 }
 table {
@@ -467,6 +470,25 @@ p.centered-image {
 .sign-date::before {
    content: '«            »  _____________                 г.';
 }
+.title-page .title {
+   font-size: 18pt;
+}
+.title-page .subtitle {
+   font-size: 16pt;
+}
+.title-page .author {
+   font-size: 13pt;
+}
+.cover-image {
+   margin-top: 1em;
+}
+.cover-image img {
+   max-height: 8cm;
+}
+.pagedjs_first_page > .pagedjs_sheet > .pagedjs_pagebox > .pagedjs_area > .pagedjs_page_content .copyright-detailed {
+   display: none;
+}
+.front-page 
 @media only screen {
    .asteric {
       border: 1px solid #00f2;
