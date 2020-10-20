@@ -84,8 +84,8 @@ ul[data-split-original] > li {
 }
 table > caption {
    text-align: left;
-   padding-left: 1cm;
-   padding-right: 1cm;
+   padding-left: 0cm;
+   padding-right: 0cm;
    text-indent: 0cm;
   /* font-size: 112%;*/
 }
@@ -93,6 +93,7 @@ table {
    margin-top: 1.4em;
    margin-bottom: 0.8em;
    font-size: 90%;
+   min-width: 60%;
 }
 table td {
    padding-left: 0.4em;
@@ -488,7 +489,6 @@ p.centered-image {
 .pagedjs_first_page > .pagedjs_sheet > .pagedjs_pagebox > .pagedjs_area > .pagedjs_page_content .copyright-detailed {
    display: none;
 }
-.front-page 
 @media only screen {
    .asteric {
       border: 1px solid #00f2;
@@ -523,7 +523,7 @@ p.centered-image {
 @media print {
    @supports (-moz-appearance: none) or (-ms-ime-align: auto) { /* Unlike Chromium */
       a, a:visited { /* a:not[code] */
-         color: initial;
+         color: inherit;
        /* text-decoration: underline dotted #909090; */
       }
    }
