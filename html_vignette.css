@@ -108,6 +108,20 @@ body {
 #TOC li a[href^="#zzzsection"] {
   /* display: none;*/
 }
+#TOC li.appendix {
+   color: #5067b9;
+}
+#TOC li.appendix::marker {
+   color: transparent;
+}
+#TOC li.appendix + li,
+#TOC li.appendix + li + li,
+#TOC li.appendix + li + li + li,
+#TOC li.appendix + li + li + li + li,
+#TOC li.appendix + li + li + li + li + li,
+#TOC li.appendix + li + li + li + li + li + li {
+   margin-left: 1em;
+}
 #zzzTOC li a:empty {
    display: none;
 }
