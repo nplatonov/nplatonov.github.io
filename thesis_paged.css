@@ -371,6 +371,10 @@ table.sign-table tr.signed {
    margin-top: 0.08em;
    margin-bottom: 0.04em;
 }
+#TOC ul li ul {
+   margin-top: 0em;
+   margin-bottom: 0em;
+}
 .references:not([data-previous-break-after]) {
   /* margin-top: 1em; */
    break-before: always;
@@ -525,6 +529,9 @@ p.centered-image {
       a, a:visited { /* a:not[code] */
          color: inherit;
        /* text-decoration: underline dotted #909090; */
+      }
+      #hideLOF, #hideLOT {
+         display: none;
       }
    }
    @supports (not (-moz-appearance: none)) and (not (-ms-ime-align: auto)) { /* like Chromium */
