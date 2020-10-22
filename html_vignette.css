@@ -1,5 +1,6 @@
 :root {
   --page-width: 646.08px; /* 614px;*/ /* (fig.width=6.73)*(dpi=96)=646.08 */
+  --header-color: #1D6D8C;
 }
 
 /*
@@ -83,6 +84,9 @@ body {
   margin-top: 2px;
   margin-bottom: 2px;
 }
+#TOC ul a {
+   color: var(--header-color);
+}
 #TOC ul ul {
   margin-left: -2.2em;
 }
@@ -126,6 +130,9 @@ body {
    display: none;
 }
 /* collapse -- begin */
+.goto_toc:hover {
+   color: red;
+}
 @media only screen and (min-width: 1360px) {
    .zzztitle,.zzzsubtitle {
       max-width: 17.5vw;
@@ -724,7 +731,7 @@ h1, h2, h3, h4, h5, .definition {
   text-align: left;
   font-weight: normal;
   font-variant: normal; /* normal|small-caps|initial|inherit; */
-  color: #1D6D8C; /* #001060 */
+  color: var(--header-color); /* #001060 */
  /* border-color: blue;*/
  /* border: 3px solid red;*/
  /* border-left: 0px solid #f3f3f3;*/
@@ -788,7 +795,8 @@ h1::before, h2::before, h3::before, h4::before, h5::before {
    color: transparent;
 }
 h1:hover::before, h2:hover::before, h3:hover::before, h4:hover::before, h5:hover::before {
-   color: #1D6D8C40;
+   color: var(--header-color);
+   opacity: 0.1;
 }
 /**/
 
@@ -1756,6 +1764,12 @@ body > div.html-widget:first-of-type {
       margin-top: 1em;
       margin-bottom: 1em;
      /* page-break-after: always;*/
+     /* 
+      display: block;
+      position: absolute;
+      bottom: 0em;
+      right: 0em;
+     */
    }
    h1.title, h3.subtitle { 
      text-align: center;
@@ -1861,7 +1875,7 @@ body > div.html-widget:first-of-type {
   */
    a:after {
       text-decoration: underline dotted #F0F0F0;
-      content: '\2009' attr(href) '\2009' !important;
+      content: '\2009' attr(href) '\2009';
       position: relative;
       font-weight: normal;
       font-style: normal;
