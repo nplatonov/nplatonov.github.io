@@ -130,8 +130,13 @@ body {
    display: none;
 }
 /* collapse -- begin */
-.goto_toc:hover {
-   color: red;
+.goto_toc img {
+   margin-left: 0.3em;
+   font-size: 40%;
+   opacity: 0;
+}
+.goto_toc:hover img{
+   opacity: 0.8;
 }
 @media only screen and (min-width: 1360px) {
    .zzztitle,.zzzsubtitle {
@@ -1384,8 +1389,12 @@ body > div.html-widget:first-of-type {
    font-size: 110%;
 }
 .cover-image {
-  margin: 1em auto 1em auto;
-  max-width: 400px;
+   margin: 1em auto 1em auto;
+   text-align: center;
+}
+.cover-image img {
+   width: auto !important;
+   max-height: 400px !important;
 }
 @media only screen and (max-width: 856px) {
    html {background: inherit;}
