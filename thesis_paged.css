@@ -30,7 +30,7 @@ body {
    font-size: 12pt;
    font-family: "Georgia", "Times New Roman", serif; /* "Trebuchet MS" "Cambria" */
 }
-p, .abstract, ul li, ol li, table {
+p, .abstract, ul li, ol li, .zzztable {
    orphans: 3 !important; /*  the minimum number of lines in a block container that must be left at the bottom of a page */
    widows: 3 !important; /* minimum number of lines in a block container that must be left at the top of a page */
    break-inside: avoid;
@@ -94,6 +94,8 @@ table {
    margin-bottom: 0.8em;
    font-size: 90%;
    min-width: 60%;
+   break-after: page;
+   break-inside: auto;
 }
 table td {
    padding-left: 0.4em;
@@ -115,7 +117,7 @@ table tbody tr:first-of-type td {
 table tbody {
    line-height: 1.4;
 }
-.level2 > p, .level3 > p, .level4 > p {
+.level1 > p, .level2 > p, .level3 > p, .level4 > p {
    text-indent: 1.25cm !important;
    /* color: orange !important; */ /* devel */
 }
