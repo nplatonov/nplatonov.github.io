@@ -386,7 +386,7 @@ blockquote, .blockquote {
    border-left: 0.3em solid #eee;
    color: #666;
    font-size: 95%;
-   position: relative;
+  /* position: relative;*/
 }
 /*
 blockquote:hover {
@@ -1081,11 +1081,13 @@ h4.* {
 }
 */
 .references {
+   margin: 2.9em 0 0.5em 0; 
+   border-top: 1px solid #eee;
+}
+div[data-custom-style="Bibliography"], .csl-entry {
    font-size: 90% !important;
    padding-left: 1.05em;
    text-indent:-1.05em;
-   margin: 2.9em 0 0.5em 0; 
-   border-top: 1px solid #eee;
 }
 h5:not(:empty) + .references,
 h4:not(:empty) + .references,
@@ -1198,12 +1200,12 @@ br + .math.display {
 .pdflink {
    display: none;
 }
-.note, .comment, .aside {
+.note, .comment, .aside2 {
    font-size: 92%;
    margin-top: 0.6em;
    margin-bottom: 0.6em;
 }
-div.note, div.comment, div.aside {
+div.note, div.comment, div.aside2 {
    margin-left: 0.8em;
    margin-right: 0.8em;
    padding-left: 0.5em;
@@ -1211,6 +1213,17 @@ div.note, div.comment, div.aside {
    border: 1px solid #d5f0ff;
    border-left: 7px solid #d5f0ff;
    border-radius: 5px;
+}
+.aside {
+    float: right;
+    display: block;
+    position: absolute;
+    right: 60px;
+    width: 100px;
+    grid-column: gutter;
+    font-size: 12px;
+    line-height: 1.6em;
+    color: rgba(0, 0, 0, 0.6);
 }
 figure + .note {
    color: red !important;
@@ -1409,6 +1422,26 @@ a.anchor-section::before {
 }
 .caption-suffix::after {
    content: '.';
+}
+div[data-custom-style^="toc "] p {
+   margin: 0.25em 0;
+   font-size: 90%;
+   line-height: 1.15;
+}
+div[data-custom-style^="toc "] p a {
+   color: transparent;
+}
+div[data-custom-style^="toc "] p a span {
+   color: #084999;
+}
+div[data-custom-style="toc 2"] p a {
+   padding-left: 1em;
+}
+div[data-custom-style="toc 3"] p a {
+   padding-left: 2em;
+}
+div[data-custom-style="toc 4"] p a {
+   padding-left: 3em;
 }
 @media only screen and (max-width: 856px) {
    html {background: inherit;}
