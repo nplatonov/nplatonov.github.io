@@ -138,6 +138,37 @@ body {
 .goto_toc:hover img{
    opacity: 0.8;
 }
+.aside {
+   display: none;
+   font-size: 10pt;
+   line-height: 1.25em;
+   color: rgba(0, 0, 0, 0.6);
+   margin-left: 1em;
+   margin-right: 1em;
+}
+@media only dummy and (min-width: 20px) and (max-width: 930px) {
+   .aside {
+      display: block;
+      opacity: 0.6;
+      width: 12pt;
+      height: 22pt;
+      font-size: 0pt;
+      color: transparent;
+   }
+   .aside:before {
+      color: #444;
+      font-size: 16pt;
+      content: '\1F5CF';
+   }
+   .aside:hover:before {
+      content: '';
+   }
+   .aside:hover {
+      font-size: 13px;
+      color: unset;
+      width: unset;
+   }
+}
 @media only screen and (min-width: 1360px) {
    .zzztitle,.zzzsubtitle {
       max-width: 17.5vw;
@@ -148,12 +179,26 @@ body {
    #TOC {
       display: block;
       position: fixed;
-      left: 0em;
+      left: calc(max(0px,(100% - 790px - 90px)*0.5 - 320px));
       top: 0em;
       font-size: 13px;
-      width: 17.6vw;
+      width: calc((100% - 790px - 90px)*0.5); /*17.6vw;*/
+      max-width: 320px;
       height: 94%;
       overflow-y: auto; 
+   }
+   .aside {
+       margin-left: unset;
+       margin-right: unset;
+       float: right;
+       display: block;
+       position: absolute;
+       right: 0.5em;
+       width: calc((100% - 790px - 60px)*0.5);
+      /* grid-column: gutter;*/
+   }
+   span.aside::before {
+      content: "\261A" ' ';
    }
 }
 @media only screen and (min-width: 930px) and (max-width: 1360px) {
@@ -181,11 +226,23 @@ body {
       color: unset;
       width: unset;
       max-width: 640px;
+     /* width: 17.6vw;*/
       height: 94%;
       opacity: 1.0;
       overflow-y: scroll;
    }
    /* collapse -- end */
+   .aside {
+       display: block;
+       padding-left: 0.7em;
+       padding-right: 0.7em;
+       margin-left: 20vw;
+       float: unset !important;
+       width: unset !important;
+       position: unset !important;
+       box-shadow: inset 5px 0 5px -5px #29627e;
+       color: #29627e;
+   }
 }
 /*
 #TOC {
@@ -1216,17 +1273,6 @@ div.note, div.comment, div.aside2 {
    border: 1px solid #d5f0ff;
    border-left: 7px solid #d5f0ff;
    border-radius: 5px;
-}
-.aside {
-    float: right;
-    display: block;
-    position: absolute;
-    right: 60px;
-    width: 100px;
-    grid-column: gutter;
-    font-size: 12px;
-    line-height: 1.6em;
-    color: rgba(0, 0, 0, 0.6);
 }
 figure + .note {
    color: red !important;
