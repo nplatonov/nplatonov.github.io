@@ -195,10 +195,17 @@ body {
        position: absolute;
        right: 0.5em;
        width: calc((100% - 790px - 60px)*0.5);
-      /* grid-column: gutter;*/
+   }
+   .aside .centered-image {
+       text-align: left;
+       max-width: 420px;
    }
    span.aside::before {
       content: "\261A" ' ';
+   }
+   p span.zzzaside {
+      margin-top: 1em;
+      margin-bottom: 1em;
    }
 }
 @media only screen and (min-width: 930px) and (max-width: 1360px) {
@@ -237,6 +244,8 @@ body {
        padding-left: 0.7em;
        padding-right: 0.7em;
        margin-left: 20vw;
+       margin-top: unset !important;
+       margin-bottom: unset !important;
        float: unset !important;
        width: unset !important;
        position: unset !important;
@@ -1456,6 +1465,7 @@ body > div.html-widget:first-of-type {
 .cover-image {
    margin: 1em auto 1em auto;
    text-align: center;
+  /* box-shadow: 0 0 80px 80px red inset; */
 }
 .cover-image img {
    box-shadow: none;
