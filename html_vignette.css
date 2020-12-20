@@ -140,7 +140,7 @@ body {
 }
 .aside {
    display: none;
-   font-size: 10pt;
+   font-size: 13px;
    line-height: 1.25em;
    color: rgba(0, 0, 0, 0.6);
    margin-left: 1em;
@@ -188,17 +188,24 @@ body {
       overflow-y: auto; 
    }
    .aside {
-       margin-left: unset;
-       margin-right: unset;
+       border-radius: 5px;
+       background-color: #f9f9f9; /* #ffffdf #f9f9f9*/
+       max-width: 420px;
+       margin-left: 1em;
+       margin-right: 1em;
+       padding-left: 0.5em;
+       padding-right: 0.5em;
        float: right;
        display: block;
        position: absolute;
-       right: 0.5em;
-       width: calc((100% - 790px - 60px)*0.5);
+      /* right: calc(max(0.5em,(100% - 790px - 90px)*0.5 - 415px)); */
+       left: calc(max(0px,(100% - 790px - 90px)*0.5 + 790px + 55px));
+      /* right: 0.5em;*/
+       width: calc((100% - 790px - 90px)*0.5);
    }
    .aside .centered-image {
        text-align: left;
-       max-width: 420px;
+      /* max-width: 420px; */
    }
    span.aside::before {
       content: "\261A" ' ';
