@@ -195,6 +195,7 @@ body {
        margin-right: 1em;
        padding-left: 0.5em;
        padding-right: 0.5em;
+       margin-top: -1.2em;
        float: right;
        display: block;
        position: absolute;
@@ -207,6 +208,9 @@ body {
        text-align: left;
       /* max-width: 420px; */
    }
+   span.aside img {
+      margin-bottom: 0.5em;
+   }
    span.aside::before {
       content: "\261A" ' ';
    }
@@ -214,6 +218,12 @@ body {
       margin-top: 1em;
       margin-bottom: 1em;
    }
+  /*
+   div.aside::before {
+      content: 'A';
+      border: 1px solid red;
+   }
+  */
 }
 @media only screen and (min-width: 930px) and (max-width: 1360px) {
    #TOC {
@@ -463,6 +473,14 @@ blockquote, .blockquote {
    color: #666;
    font-size: 95%;
   /* position: relative;*/
+}
+blockquote cite, blockquote .author {
+   font-style: italic;
+   display: block;
+   font-size: 90%;
+}
+blockquote cite::before, blockquote .author::before {
+   content: '\2014' ' ';
 }
 /*
 blockquote:hover {
@@ -1163,6 +1181,8 @@ h4.* {
 div[data-custom-style="Bibliography"], .csl-entry {
    font-size: 90% !important;
    padding-left: 1.05em;
+   margin-top: 0.3em !important;
+   margin-bottom: 0.3em !important;
    text-indent:-1.05em;
 }
 h5:not(:empty) + .references,
@@ -1210,6 +1230,12 @@ p:only-of-type > img
    display: block;
    text-align: center;
   /* border: 5px red solid;*/
+}
+p.centered-image:only-of-type > img {
+   display: inline-block;
+}
+p.centered-image:only-of-type > img:nth-of-type(2) {
+   margin-left: 0.4em;
 }
 table > caption {
    font-size: 90% !important;
@@ -2189,6 +2215,9 @@ div[data-custom-style="toc 4"] p a {
       page-break-inside: avoid !important;
    }
   */
+   .comment, .note {
+      display: none;
+   }
 }
 /* https://stackoverflow.com/questions/47575563/conditional-css-rule-targeting-firefox-quantum */
 @media print {
