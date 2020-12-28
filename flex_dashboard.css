@@ -297,10 +297,17 @@ table {
      /* display: block;*/
      /* border: 3px solid yellow;*/
    }
+   .section.level2:not(:first-of-type) {
+     /* border: 2px solid yellow; */ /* devel */
+      page-break-before: never !important;
+   }
    .section.level3 {
      /* display: block;*/
      /* border: 2px solid orange; */ /* devel */
      /* page-break-inside: avoid !important; */
+   }
+   .section.level2 > .section.level3:first-of-type {
+      page-break-before: avoid !important;
    }
    .tab-content {
       height: initial !important;
@@ -473,6 +480,7 @@ table {
    .
 }
 @media print {
+   @page {margin: 1.45cm 1cm;}
    .image-container {
       border: none !important;
    }
@@ -505,7 +513,7 @@ table {
       display: none;
    }
    @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge --headless*/
-      @page {margin: 0.5cm;}
+     /* @page {margin: 0.5cm;}*/
       a {
          color: #008cba !important;
       }
