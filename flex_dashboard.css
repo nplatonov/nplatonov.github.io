@@ -21,7 +21,7 @@ table {
 }
 .navbar-brand {
   /* line-height: 15px;*/
-   margin-top: -4px;
+   margin-top: -3px;
 }
 .navbar-inverse .navbar-toggle .icon-bar { /* menu compact burger */
    background-color: #AAA;
@@ -34,22 +34,43 @@ table {
    border-color: transparent;
    border: 0;
 }
+.navbar-inverse .dropdown-menu > :not(.active) > a,
 .navbar-inverse .navbar-nav > :not(.active) > a {
    color: #999; /* #BBB */
 }
+.navbar-inverse .dropdown-menu > .active > a:hover,
+.navbar-inverse .dropdown-menu > :not(.active) > a:hover,
+.navbar-inverse .dropdown-menu > li > .active > a:hover,
+.navbar-inverse .dropdown-menu > li > :not(.active) > a:hover,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > :not(.active) > a:hover {
   /* background-color: var(--panel-background);*/
-  background-color: #F0F0F0;
+   background-color: #F0F0F0;
    color: #555; /* #DDD */
 }
+.navbar-inverse .dropdown-menu > a,
+.navbar-inverse .dropdown-menu > .active > a,
+.navbar-inverse .dropdown-menu > .active > a:focus,
+.navbar-inverse .dropdown-menu > li > a,
+.navbar-inverse .dropdown-menu > li > .active > a,
+.navbar-inverse .dropdown-menu > li > .active > a:focus,
 .navbar-inverse .navbar-nav > a,
 .navbar-inverse .navbar-nav > .active > a,
-.navbar-inverse .navbar-nav > .active > a:focus {
+.navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-nav > .open > a:focus {
    color: #222; /* #FFF */
    background-color: var(--panel-background); /* option #1 */
   /* background-color: unset; */ /* option #2 */
   /* border-bottom: 3px solid #6662; */ /* option #2 */
+}
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+   background-color: var(--panel-background); /* option #1 */
+  /* background-color: #F0F0F0;*/
+}
+.zzznavbar-inverse .navbar-nav > .open > a:focus {
+   color: red;
 }
 .navbar-inverse .navbar-brand {
    color: #222;
@@ -208,10 +229,48 @@ table {
    .zchart-shim {
       position: initial;
    }
+   body {
+      padding-top: initial;
+   }
+   .navbar {
+      position: static;
+      border-radius: 5px;
+   }
+   .navbar, .navbar-inverse, .navbar-fixed-top {
+      margin-top: 0.6em;
+      margin-bottom: 0.6em;
+      padding-top: 8px;
+     /* padding-bottom: 8px;*/
+      margin-right: 8px;
+   }
+   .navbar-brand {
+      float: none;
+      display: contents;
+      padding-top: 20px !important;
+   }
+   .navbar-author {
+      display: flex;
+      padding-bottom: 6px;
+   }
+   .navbar-nav {
+      border: 1px solid red;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+   }
 }
 @media screen { /* dev template --> move to '@media print' */
    p:not([class]) {
      /* color: red;*/
+   }
+}
+@media develscreen and (min-width: 1269px) {
+   body {
+      padding-top: initial;
+   }
+   .dashboard-row, .dashboard-column {
+      display: flex;
    }
 }
 @media print, screen and (max-width: 1268px) and (min-width: 769px) {
@@ -267,14 +326,46 @@ table {
      /* border: 1px solid green;*/
       display: block !important;
    }
+   body {
+      padding-top: initial;
+   }
    .navbar {
-      position: absolute !important;
+     /* position: absolute !important;*/
+      position: static;
+      margin-left: auto;
+      margin-right: auto;
+      width: 700px;
       top: 0px;
       display: block !important;
       border-bottom: 1px solid #dadada;
    }
+   .navbar, .navbar-inverse, .navbar-fixed-top {
+      margin-top: 0.6em;
+      margin-bottom: 0.6em;
+      padding-top: 13px;
+      padding-bottom: 0px;
+      margin-right: 8px;
+   }
+   .navbar-header {
+      width: 100%;
+   }
+   .navbar-brand {
+      float: none;
+      display: contents;
+      padding-top: 20px !important;
+   }
+   .navbar-author {
+       display: flex;
+       padding-bottom: 6px;
+   }
+   .navbar-logo img {
+      margin-top: -9px;
+   }
    .navbar-left, .navbar-right {
       display: none;
+   }
+   .navbar.hidden {
+      display: none !important;
    }
    .leaflet-control-attribution a {
       text-shadow: 2px 2px 2px #FFF !important;
