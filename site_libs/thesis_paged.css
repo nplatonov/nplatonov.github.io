@@ -1,0 +1,608 @@
+/* only single page for TOC LOF LOT */
+/*
+#TOC li {line-height: 2.1;}
+*/
+
+/* subject to infinite paging -- begin */
+h1 + .level2:empty, h2 + .level3:empty, h3 + .level4:empty, h4 + .level5:empty { /* 'h2+.level3', 'h2~.level3' - all OK  */
+   break-before: avoid;
+   break-inside: avoid;
+   border: 25px solid #f9f9f9;
+}
+h2 + .level3:empty:after {
+   content: 'manual pagebreak is desired';
+}
+/* subject to infinite paging -- end */
+
+:root {
+  --link-color: #084999;
+}
+.pagedjs_page {
+    --pagedjs-pagebox-width: 210mm;
+    --pagedjs-pagebox-height: 297mm;
+    --pagedjs-margin-top: 15mm;
+    --pagedjs-margin-right: 15mm;
+    --pagedjs-margin-left: 25mm;
+    --pagedjs-margin-bottom: 25mm;
+}
+body {
+   line-height: 1.4;
+   font-size: 12pt;
+   font-family: "Georgia", "Times New Roman", serif; /* "Trebuchet MS" "Cambria" */
+}
+p, .abstract, ul li, ol li, .zzztable {
+   orphans: 3 !important; /*  the minimum number of lines in a block container that must be left at the bottom of a page */
+   widows: 3 !important; /* minimum number of lines in a block container that must be left at the top of a page */
+   break-inside: avoid;
+}
+.toc li {
+   break-before: auto !important;
+   break-inside: auto !important;
+}
+widows, orphans {
+   p: 3;
+}
+p, ul, .abstract {
+   line-height: 1.4;
+   margin-top: 0.3em;
+   margin-bottom: 0.3em;
+}
+p:not(:only-of-type) {
+  /* color: darkgreen; */ /* devel */
+   text-indent: 1.25cm; /* 1.25cm */
+}
+.figure + p {
+  /* color: darkgreen; */ /* devel */
+   text-indent: 1.25cm; /* 1.25cm */
+}
+p:only-of-type {
+   text-indent: 0cm;
+  /* color: brown; */ /* devel */
+}
+h1~p, h2~p, h3~p, h4~p, h5~p, h6~p, .definition~p, .figure~p {
+   text-indent: 1.25cm !important; /* 1.25cm */
+   /* color: magenta !important; */ /* devel */
+}
+.section > p { /* , table.sign-table td , .section > ul:not([data-split-original]) { */
+   text-align: justify;
+}
+/*
+ul[data-split-original] {
+   text-align: justify;
+   border: 1px solid blue;
+}
+ul[data-split-original] > li {
+   text-align: inherit;
+   border: 1px solid green;
+}
+*/
+.figure p.caption {
+  /* text-indent: -1cm;*/
+   font-size: 90%;
+   text-align: left;
+   margin-bottom: 0.8em;
+}
+table > caption {
+   text-align: left;
+   padding-left: 0cm;
+   padding-right: 0cm;
+   text-indent: 0cm;
+  /* font-size: 112%;*/
+}
+table {
+   margin-top: 1.4em;
+   margin-bottom: 0.8em;
+   font-size: 90%;
+   min-width: 60%;
+  /* break-after: page;*/
+  /* break-inside: auto;*/
+   break-inside: avoid;
+}
+table td {
+   padding-left: 0.4em;
+   padding-right: 0.4em;
+}
+table th {
+   border-bottom: none;
+   font-weight: 600;
+}
+table tbody tr:last-of-type td {
+   border-bottom: 1px solid #ddd;
+}
+table thead tr:first-of-type {
+   border-top: 1px solid #ddd;
+}
+table tbody tr:first-of-type td {
+   border-top: 1px solid #bbb;
+}
+table tbody {
+   line-height: 1.4;
+}
+.level1 > p, .level2 > p, .level3 > p, .level4 > p {
+   text-indent: 1.25cm !important;
+   /* color: orange !important; */ /* devel */
+}
+p[data-split-from] {
+   text-indent: 0cm !important;
+   /* color: cyan !important; */ /* devel */
+}
+ul {}
+h3, h4 {
+   font-style: normal;
+   font-weight: 600;
+}
+.titlepage-header {
+   line-height: 1.2;
+  /* color: red; */ /* devel */
+   text-align: center;
+   text-indent: 0;
+   position: initial;
+   left:0;
+   right:0;
+   top:0;
+}
+.titlepage-footer {
+   line-height: 1.2;
+  /* color: blue; */ /* devel */
+   text-align:center;
+   text-indent:0;
+   position:absolute;
+   left:0;
+   right:0;
+   bottom:0;
+}
+.titlepage-updated {
+   margin-top: 1em;
+   font-size: 75%;
+   text-align: left;
+   color: #ccc;
+   position: absolute;
+   right: 0em;
+   bottom: -4em;
+}
+/*
+.titlepage-updated::after {
+   content: ' Число страниц: ' var(--pagedjs-page-count);
+}
+*/
+.zzzprincipal::before {
+   content: 'Ответственный исполнитель: '
+}
+.zzztitlep, .zzzdepartment {
+   display: none;
+}
+.title-page .department {
+   margin-bottom: 0.3em;
+}
+.title-page .institute {
+   margin-top: 1em;
+   text-indent: 0cm;
+}
+.title-page .title {
+   margin-top: 3em;
+   margin-bottom: 3em;
+}
+.signpage .title {
+   margin-top: 1em;
+   margin-bottom: 3em;
+   text-align: center;
+}
+.title-page .subtitle {
+   margin-top: 1.6em;
+   margin-bottom: 0em;
+}
+.title-page .author {
+   text-align: left;
+}
+.title-page h2.author {
+   margin-top: 1em;
+}
+.title-page h2.author:first-of-type {
+   margin-top: 3em;
+}
+.author::first-letter, .signature::first-letter, .sign-duty::first-letter {
+   text-transform: capitalize;
+}
+[data-id="refs"] div > p {
+   padding-left: 0cm !important;
+   text-indent: 1cm !important;
+   text-align: left;
+}
+.adopted { /* :after */
+  /* content: 'Origin/Источник'*/
+   position: relative;
+   font-weight: normal;
+   font-style: normal;
+   top: -0.4em;
+   font-size: 75%;
+}
+sup, sub {
+   font-size: 75%;
+   margin-left: 0.06em;
+}
+.pagedjs_margin-content {
+   color: #888;
+   font-size: 80%;
+}
+.pagedown-linenumbers-container {
+   color: transparent; /*mediumturquoise*/ /* wheat */
+}
+.front-cover {
+   display: block;
+   position: absolute;
+   top: unset;
+   bottom: 2em;
+   opacity: 1;
+   width: 100%;
+   text-align: center;
+}
+.back-cover {
+   display: block;
+   width: 100%;
+   text-align: center;
+}
+.front-cover img {
+   margin-right: 0cm;
+   margin-left: 0cm;
+   max-height: 7cm;
+}
+.front-cover p, .back-cover p {
+   text-indent: 0cm;
+}
+.zzzfront-cover .figure .caption, .zzzback-cover .figure .caption {
+   font-size: 70%;
+   color: #ddd;
+   transform: rotate(180deg);
+   writing-mode: vertical-lr;
+   position: absolute;
+   bottom: -5em; /* -8em */
+  /* left: -7em;*/
+   right: -5em; /* -5em */
+}
+.front-cover .figure .caption, .back-cover .figure .caption {
+   text-shadow: 1px 0px 1px #000000F0,
+                1px 1px 1px #000000F0,
+                0px 1px 1px #000000F0,
+                -1px 0px 1px #000000F0,
+                0px -1px 1px #000000F0,
+               -1px -1px 1px #000000F0,
+                1px -1px 1px #000000F0,
+                -1px 1px 1px #000000F0;
+   color: #FFFFFFF0;
+   display: block;
+   text-align: center;
+   margin-top: -1.8em; /* -2.3em */
+   text-indent: 0em;
+   opacity: 0.4;
+   font-size: 80%;
+}
+.front-cover .figure .caption::before, .back-cover .figure .caption::before {
+   content: 'Иллюстрация: ';
+}
+.front-cover .figure .caption:hover, .back-cover .figure .caption:hover {
+   opacity: 1.0;
+}
+.zzzfront-cover .figure .caption::before, .zzzback-cover .figure .caption::before {
+   font-size: 200%;
+   content: '\1F301';
+   text-shadow: none;
+}
+.front-page {
+   padding-top: 0em;
+}
+.front-cover + .running-h1-title + .running-h2-title + .front-page {
+   padding-top: 1.3em;
+}
+table.sign-table {
+   text-align: left;
+   line-height: 1.2;
+   font-size: 100%;
+  /* background-color: #FF02; */
+   width: 100%;
+}
+.signpage table.sign-table {
+   font-size: 100%;
+}
+table.sign-table tr {
+   height: 1.8cm;
+}
+table.zzzsign-table td.sign-cell {
+   background-color: yellow;
+   width: 4cm;
+   border-bottom: 1px solid red;
+}
+table.sign-table td.sign.cell {
+   box-sizing: border-box;
+   display: inline;
+   float: none;
+   line-height: 22.4px;
+   position: static;
+}
+table.sign-table td.sign-cell::after {
+   content: "__________";
+   display: flex;
+}
+table.title-table td.sign-cell::after {
+   content: "_______________";
+  /*
+   display: block;
+   position: relative;
+   top: -1em;
+  */
+}
+table.sign-table td {
+   min-height: 2cm;
+   padding-top: 0.4em;
+   padding-bottom: 0.4em;
+}
+table.sign-table tbody tr:last-of-type td {
+   border-bottom: 1px solid transparent;
+}
+table.sign-table thead tr:first-of-type {
+   border-top: 1px solid transparent;
+}
+table.sign-table tbody tr:first-of-type td {
+   border-top: 1px solid transparent;
+}
+table.sign-table td.sign-cell {
+  /* background: #FF07;*/
+   padding: 0em 0em 0em 0em;
+  /* vertical-align: bottom;*/
+}
+table.zzzsign-table td.sign-name {
+   padding-left: 0em;
+}
+td.sign-cell > img {
+    margin-bottom: -2em;
+    max-height: 2cm;
+   /*
+    width: auto;
+    margin-right: -12em;
+    display: block;
+    float: left;
+    position: relative;
+    left: 0em;
+    top: 1em;
+   */
+}
+img.title-sign {
+   max-height: 22cm;   
+}
+table.sign-table tr.signed {
+   vertical-align: bottom;
+}
+#TOC .chapter-ref + ul {
+   margin-top: 0.08em;
+   margin-bottom: 0.04em;
+}
+#TOC ul li ul {
+   margin-top: 0em;
+   margin-bottom: 0em;
+}
+.references:not([data-previous-break-after]) {
+  /* margin-top: 1em; */
+   break-before: always;
+}
+.references:not([data-previous-break-after]):before {
+   content: 'Цитируемые источники';
+   font-size: 110%;
+}
+[data-id="references"] p {
+   font-size: 10pt;
+   line-height: 125%;
+}
+[data-id="refs"] div > p {
+   font-size: 11pt;
+   line-height: 125%;
+   margin-left: 0cm;
+   padding-left: 0cm !important;
+   text-indent: -0.75cm !important;
+   text-align: left;
+}
+h5 + .zreferences:before,
+h4 + .zreferences:before,
+h3 + .zreferences:before,
+h2 + .zreferences:before,
+h1 + .zreferences:before,
+.zreferences[data-previous-break-after] {
+   border: 1px solid red;
+   content: '';
+   margin-top: unset;
+   break-before: unset;
+}
+.last_pagedjs_page:not(.pagedjs_named_page) { /*not(.pagedjs_named_page)*/
+   border: 1px solid red;
+   background: red;
+   display: none !important;
+}
+.figure {
+   text-align: center;
+}
+.toc a, .lot a, .lof a {
+   padding-right: 0.33em; /* 0.9em.  default 0.33em */
+}
+.lof li, .lot li {
+   line-height: 1.4;
+}
+.lof li.hidden {
+   display: none;
+}
+.zzzpagedjs_margin-top,
+.pagedjs_margin-top-center {
+   background-color: yellow;
+}
+.running-h2-title::before {
+   content: var(--pagedjs-string-h2-text);
+}
+.pagedjs_margin-bottom .pagedjs_margin-bottom-left .pagedjs_margin-content::before {
+   content: var(--pagedjs-string-h2-text);
+}
+a, a:visited { /* a:not[code] */
+   color: var(--link-color);
+   text-decoration: none;
+  /* color: initial; */
+  /* text-decoration: underline dotted #909090; */
+}
+#TOC a, .lof a, .lot a {
+   color: initial;
+}
+.footnote {
+   font-size: small !important;
+}
+.footnote sup::after {
+   content: ' ';
+}
+.footnote-break {
+   width: 7cm;
+   border-bottom: none;
+  /* margin-top: 0.6em !important;*/ /* be careful for reducing page footer*/
+   border-top: 1px solid #bbb;
+}
+abbr {
+   text-decoration: none;
+}
+abbr::after {
+   content: ' (' attr(title) ')';
+}
+dl dd::first-letter {
+   text-transform: capitalize;
+}
+.acknowledge {
+   line-height: 1.4;
+}
+.acknowledge br {
+   margin-bottom: 1em;
+}
+.acknowledge img {
+   padding: 0em 2em 1em 2em;
+}
+.footnotes hr {
+   margin-bottom: -0.7em;
+}
+.footnotes hr::before {
+  /* content: 'Контекстные примечания:';*/
+   font-size: 110%;
+}
+p.centered-image {
+   text-align: center;
+   text-indent: 0 !important;
+}
+.sign-date {
+   text-align: right;
+   margin-top: 1em;
+}
+.sign-date::before {
+   content: '«            »  _____________                 г.';
+}
+.title-page .title {
+   font-size: 18pt;
+}
+.title-page .subtitle {
+   font-size: 16pt;
+}
+.title-page .author {
+   font-size: 13pt;
+}
+.cover-image {
+   margin-top: 1em;
+   text-align: center;
+}
+.cover-image img {
+   max-height: 8cm;
+}
+.pagedjs_first_page > .pagedjs_sheet > .pagedjs_pagebox > .pagedjs_area > .pagedjs_page_content .copyright-detailed {
+   display: none;
+}
+.emoji, .inline:not(.math) {
+   height: 1.5em; 
+   display: inline-block !important;
+  /* margin-bottom: 3px;*/
+   box-shadow: none;
+}
+.goto_toc img {
+   margin-left: 0.3em;
+   font-size: 40%;
+   opacity: 0;
+}
+.goto_toc:hover img{
+   opacity: 0.8;
+}
+.caption-prefix {
+  /* font-weight: 600;*/
+}
+.caption-suffix::after {
+   content: '.';
+}
+.no-paged, .vignetteonly, .revealonly, .hidden {
+   display: none;
+}
+.aside {
+    font-size: 80%;
+    text-indent: 0cm;
+    display: block;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+    margin-left: 30%;
+    float: unset !important;
+    width: unset !important;
+    position: unset !important;
+    box-shadow: inset 5px 0 5px -5px #29627e;
+    color: #29627e;
+}
+
+@media only screen {
+   .asteric {
+      border: 1px solid #00f2;
+   }
+   a, a:visited { /* a:not[code] */
+      color: var(--link-color) !important;
+      text-decoration: none;
+   }
+   .sign-cell img {display: none;}
+   .author.principal img {display: none;}
+   abbr {
+      text-decoration: underline dotted !important;
+   }
+   abbr::after {
+      content: none;
+   }
+   .pagedown-linenumbers-container {
+      color: #0002;  /* mediumturquoise  wheat */
+   }
+}
+
+@media zzzprint {
+   * {
+      border: 1px solid #0f02;
+   }
+}
+@media only dummyscreen and (max-width: 690px) {
+   * {
+     all: unset;
+   }
+}
+@media print {
+   @supports (-moz-appearance: none) or (-ms-ime-align: auto) { /* Unlike Chromium */
+      a, a:visited { /* a:not[code] */
+         color: inherit;
+       /* text-decoration: underline dotted #909090; */
+      }
+      #hideLOF, #hideLOT {
+         display: none;
+      }
+   }
+   @supports (not (-moz-appearance: none)) and (not (-ms-ime-align: auto)) { /* like Chromium */
+      #TOC a, #TOC a:visited, #LOT a, #LOT a:visited, #LOF a, #LOF a:visited {
+         color: var(--link-color);
+      }
+      .sign-cell img {display: none;}
+     /*
+      a, a:visited {
+         color: #084999;
+         text-decoration: none;
+      }
+      .sign-cell img {display: none;}
+      .author.principal img {display: none;}
+     */
+   }
+}
