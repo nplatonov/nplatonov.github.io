@@ -29,6 +29,12 @@ div.acknowledgement {
    font-size: 90%;
    color: inherit;
 }
+*:not(.leaflet-control),
+.leaflet { /* to overwrite bootstrap.min.css  #conflicted */
+  -webkit-box-sizing: content-box !important;
+  -moz-box-sizing: content-box !important;
+  box-sizing: content-box !important;
+}
 html {
   background: #eee;
   margin: -2pt 0 0 0; /* -8pt 0 -8pt 0 -- failure for printing of first line on each page */
@@ -485,8 +491,14 @@ p {
 h2 + p, h2 + div p, h3 + p {
    margin-top: 0.5em;
 }
+h2:empty + p, h2:empty + div p, h3:empty + p, h1:empty + p, h4:empty + p  {
+   margin-top: revert;
+}
 h4 + p {
    margin-top: 0.5em;
+}
+h3 + .html-widget {
+   margin-top: 0.75em !important;
 }
 blockquote, .blockquote {
    padding-left: 0.5em;
@@ -818,6 +830,9 @@ zzzimg:only-of-type {
 .leaflet .leaflet-control-layers, .legend.leaflet-control,
 .leaflet-control-attribution, .leaflet .lnlt {
    text-align: left;
+}
+.leaflet-bar button { /* conflicted with easy-button.css:1 (reset map view)*/
+   width: unset;
 }
 img:hover {
   -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
@@ -1359,8 +1374,14 @@ span.note::after, span.comment::after {
    top: -0.4em;
    font-size: 80%;
 }
-.plotly .modebar-btn {
+.plotly .modebar {
+   opacity: 0.01;
+}
+.plotly:hover .modebar {
    opacity: 0.3;
+}
+.plotly .modebar:hover {
+   opacity: 1;
 }
 .indent {padding-left:1em;}
 .indent1, .tab1 {padding-left:1em;}
@@ -1436,10 +1457,10 @@ span.note::after, span.comment::after {
    color: #eee;
 }
 .value-box .value {
-   text-shadow: 1px 1px 2px #0009;
+  /* text-shadow: 1px 1px 2px #0009;*/
 }
 .value-box .caption {
-   text-shadow: 1px 1px 1px #000A;
+  /* text-shadow: 1px 1px 1px #000A;*/
 }
 .value-box.bg-primary {
    background-color: rgba(39, 128, 227, 0.7);
@@ -1462,7 +1483,7 @@ span.note::after, span.comment::after {
    top: 4px;
    right: 4px;
    font-size: 32px;
-   color: rgba(0, 0, 0, 0.06);
+   color: rgba(0, 0, 0, 0.09);
 }
 .value-output {
 }
@@ -1609,7 +1630,7 @@ div[data-custom-style="toc 4"] p a {
      /* max-height: 100vw !important; */ /* see `.figure img` */
      /* border: 1px dashed magenta !important;*/
    }
-   .figure img {
+   .figure img, .centered-image img {
       max-height: 92vh !important;
       width: auto !important
    }
@@ -2219,7 +2240,7 @@ div[data-custom-style="toc 4"] p a {
       margin-right: 0 !important;
      /* font-size: 85% !important;*/
    }
-   .value-box {
+   .zvalue-box {
       display: block;
       margin-top: 0.4em;
       margin-bottom: 0.8em;
