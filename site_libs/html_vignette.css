@@ -460,6 +460,10 @@ Ztable:not(.dataTable) {
   padding-bottom: 4px !important;
   font-weight: 600 !important;
 }
+.dataTable.DTFC_Cloned thead th {
+  padding-top: initial !important;
+  padding-bottom: initial !important;
+}
 .dataTables_scrollBody .dataTable thead th {
   padding-top: unset !important;
   padding-bottom: unset !important;
@@ -472,6 +476,17 @@ Ztable:not(.dataTable) {
 .dataTables_length, .dataTables_filter, .dataTables_info {
    font-size: 80%;
    color: #aaa !important;
+   padding-top: 0 !important;
+   padding-bottom: 0 !important;
+}
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_info,
+table.dataTable + .dataTables_length,
+table.dataTable + .dataTables_filter,
+table.dataTable + .dataTables_info {
+   padding-top: 0.4em !important;
+   padding-bottom: 0em !important;
 }
 .dataTables_filter input,.dataTables_length select {
    font-size: 90%;
@@ -479,7 +494,7 @@ Ztable:not(.dataTable) {
    color: #aaa;
 }
 .dataTable caption {
-   caption-side: top-outside;
+  /* caption-side: top-outside;*/
 }
 p {
   margin: 0.75em 0;

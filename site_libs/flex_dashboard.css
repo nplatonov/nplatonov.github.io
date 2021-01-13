@@ -26,6 +26,10 @@ table {
 .navbar-inverse .navbar-toggle .icon-bar { /* menu compact burger */
    background-color: #AAA;
 }
+.navbar-toggle {
+   margin-right: 0px;
+   padding: 0px 9px;
+}
 .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
    color: #888; /* #DDD */
 }
@@ -77,8 +81,8 @@ table {
 }
 .navbar-logo img {
    height: 41px;
-   margin-top: 1px;
-   margin-left: 2px;
+   margin-top: 0px;
+   margin-left: -8px;
 }
 .storyboard-nav .sbframelist ul li:not(.active) {
    background-color: #F8F8F8;
@@ -119,11 +123,11 @@ table {
 .plotly .modebar {
    opacity: 0;
 }
+.plotly:hover .modebar {
+   opacity: 0.3;
+}
 .plotly .modebar:hover {
    opacity: 1;
-}
-.plotly .modebar-btn {
-   opacity: 0.8;
 }
 .chart-wrapper[data-width=auto] .chart-stage.bootstrap-table .table,
 .chart-wrapper.narrow           .chart-stage.bootstrap-table .table {
@@ -177,6 +181,12 @@ table {
 .zzzflexfill-item.bootstrap-table, .zzzflowing-content-shim.bootstrap-table {
    overflow: inherit;
 }
+.flowing-content-container:not(.sbframe-commentary) {
+   padding-bottom: initial;
+}
+strong {
+   font-weight: 600;
+}
 @media zscreen {
    .html-widget {
       max-width: 600px !important;
@@ -207,10 +217,10 @@ table {
 }
 @media only screen and (max-width: 768px) {
    .mobile-layout .chart-wrapper.chart-wrapper-flex {
-      border: 1px dashed magenta;  /* devel */
+     /* border: 1px dashed magenta; */ /* devel */
    }
    .mobile-layout .chart-wrapper:not(.chart-wrapper-flex) {
-      border: 1px dashed cyan;  /* devel */
+     /* border: 1px dashed cyan; */ /* devel */
    }
    .chart-stage .shiny-text-output {
       height: initial !important;
@@ -243,6 +253,12 @@ table {
      /* padding-bottom: 8px;*/
       margin-right: 8px;
    }
+   .container-fluid > .navbar-header {
+      margin-left: -8px !important;
+   }
+   .navbar-logo img {
+       margin-right: 8px;
+   }
    .navbar-brand {
       float: none;
       display: contents;
@@ -253,11 +269,25 @@ table {
       padding-bottom: 6px;
    }
    .navbar-nav {
-      border: 1px solid red;
+    /*  border: 1px solid red; */ /* devel */
       padding-top: 0px;
       padding-bottom: 0px;
       margin-top: 0px;
       margin-bottom: 0px;
+   }
+   .navbar-logo img {
+       margin-left: 5px;
+   }
+   .vertical-layout-scroll .chart-wrapper-flex .chart-stage-flex .chart-shim {
+      padding: 0px !important;
+   }
+   .chart-wrapper .chart-stage {
+      padding-top: 10px;
+      padding-bottom: 0px;
+   }
+   .chart-stage .html-widget-static-bound,
+   .chart-stage .html-widget {
+      height: 100% !important;
    }
 }
 @media screen { /* dev template --> move to '@media print' */
@@ -265,12 +295,96 @@ table {
      /* color: red;*/
    }
 }
-@media develscreen and (min-width: 1269px) {
+@media screen and (min-width: 1269px) {
+   .chart-stage .html-widget-static-bound,
+   .chart-stage .html-widget {
+      height: 100% !important;
+   }
+}
+@media z2screen and (min-width: 1269px) {
+   .desktop-layout {
+      border: 5px solid #F007;
+   }
+   .navbar.invisible {
+      border: 1px solid blue;
+     /* visibility: 0;*/
+   }
+   .navbar.invisible {
+      border: 1px solid blue;
+   }
+   .navbar.invisible ~ .desktop-layout {
+      border: 1px solid green;
+      margin-top: -40px;
+      margin-bottom: -40px;
+   }
+}
+@media z1screen and (min-width: 1269px) { /* scrolled dashboard */
    body {
       padding-top: initial;
    }
    .dashboard-row, .dashboard-column {
-      display: flex;
+     /* display: flex;*/
+   }
+   .navbar {
+     /* position: absolute !important;*/
+      position: static;
+      margin-left: -8px;
+     /* margin-right: auto;*/
+     /* width: 700px;*/
+      top: 0px;
+      display: block !important;
+      border-bottom: 1px solid #dadada;
+   }
+   .navbar, .navbar-inverse, .navbar-fixed-top {
+     /* margin-top: 0.6em;*/
+      margin-bottom: 0.6em;
+      padding-top: 10px;
+      padding-bottom: 0px;
+     /* margin-left: 19px;*/
+     /* margin-right: 8px;*/
+   }
+   .navbar-header {
+     /* width: 100%;*/
+      margin-top: 1px;
+   }
+   .navbar-brand {
+      float: none;
+     /* display: contents;*/
+      padding-top: 12px !important;
+   }
+   .navbar-author {
+     /* display: flex; */
+     /* padding-bottom: 6px; */
+   }
+   .navbar-logo: {
+      margin-top: 0px !important;
+      margin-left: -40px !important;
+   }
+   .navbar-logo img {
+      margin-top: -10px;
+   }
+   .navbar-left, .navbar-right {
+     /* display: none;*/
+   }
+   .navbar-left {
+     /* margin-left: 8px;*/
+   }
+   .navbar.hidden {
+      display: none !important;
+   }
+   .navbar .nav {
+     /* border: 1px solid red;*/ /* devel */
+      margin-bottom: -12px;
+      margin-top: -8px;
+   }
+   .navbar-collapse {
+     /* border: 1px solid blue; */ /* devel */
+   }
+   .navbar-header {
+     /* border: 3px solid green; */ /* devel */
+   }
+   .desktop-layout {
+      margin-top: 0.6em;
    }
 }
 @media print, screen and (max-width: 1268px) and (min-width: 769px) {
@@ -281,11 +395,12 @@ table {
       position: initial;
       width: initial !important;
       background-color: initial;
+      border-right: none;
      /* display: none !important;*/
    }
    .desktop-layout, .vertical-layout-fill {
       padding-left: initial !important;
-      margin-top: -0.2em;
+      margin-top: 0.6em;
    }
    .section.level1 {
      /* border: 0.5px solid #04f8; */ /* devel */
@@ -404,6 +519,7 @@ table {
    }
    .tab-content {
       height: initial !important;
+      margin-top: -0.6em;
    }
    .tab-content>.dashboard-page-wrapper.active {
       display: block;
@@ -478,7 +594,7 @@ table {
    .chart-stage .html-widget:not(.gauge):not([style*="heightzzz"]),
    .zzzchart-stage .html-widget-zzzstatic-bound:not(.gauge):not(.leaflet) {
      /* width: 100% !important;*/
-      height: min(60vw,60vh,403.8px) !important;
+     /* height: min(60vw,60vh,403.8px); */ /* !important */
    }
   /*
    .chart-stage .html-widget[style*="height"] {
@@ -566,6 +682,10 @@ table {
    }
    .sbframe-commentary p {
       margin-bottom: 0em !important;
+      margin-top: 1px;
+   }
+   .sbframe-commentary {
+      margin-top: -5px;
    }
    .sbframe.section.level3 {
       border: none;
@@ -604,6 +724,10 @@ table {
    .leaflet-bar,
    .leaflet-dummy-element {
       display: none;
+   }
+   .leaflet-control a:after {
+      text-decoration: none;
+      content: '';
    }
    @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge --headless*/
      /* @page {margin: 0.5cm;}*/
