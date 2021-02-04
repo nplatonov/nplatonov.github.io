@@ -3,17 +3,25 @@
   --panel-background: #F7F7F7
 }
 body {
-   font-family: "Open Sans", "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
    font-size: 13px;
    line-height: 1.3;
-   background: var(--panel-background);
+   background-color: var(--panel-background);
+}
+body, h1, h2, h3, h4 {
+   font-family: "Segoe UI", "Open Sans", "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
+}
+h3, h4 {
+   font-weight: 300;
 }
 table {
    font-size: 12px;
   /* width: auto !important;*/
 }
-.navbar-brand, .navbar, .chart-title {
+.navbar-brand, .navbar, .chart-title, .dropdown-menu li a {
    font-weight: var(--font-weight);
+}
+.dropdown-menu li a {
+   font-weight: var(--font-weight) !important;
 }
 .navbar {
    font-size: 14px;
@@ -21,7 +29,7 @@ table {
 }
 .navbar-brand {
   /* line-height: 15px;*/
-   margin-top: -3px;
+   margin-top: -8px;
 }
 .navbar-inverse .navbar-toggle .icon-bar { /* menu compact burger */
    background-color: #AAA;
@@ -61,6 +69,7 @@ table {
 .navbar-inverse .navbar-nav > a,
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-nav > li > a:focus:not(:hover),
 .navbar-inverse .navbar-nav > .open > a:focus {
    color: #222; /* #FFF */
    background-color: var(--panel-background); /* option #1 */
@@ -72,9 +81,6 @@ table {
 .navbar-inverse .navbar-nav > .open > a:focus {
    background-color: var(--panel-background); /* option #1 */
   /* background-color: #F0F0F0;*/
-}
-.zzznavbar-inverse .navbar-nav > .open > a:focus {
-   color: red;
 }
 .navbar-inverse .navbar-brand {
    color: #222;
@@ -129,7 +135,9 @@ table {
 .plotly .modebar:hover {
    opacity: 1;
 }
+.chart-wrapper[data-width=auto] .chart-stage > .bootstrap-table > .table,
 .chart-wrapper[data-width=auto] .chart-stage.bootstrap-table .table,
+.chart-wrapper.narrow           .chart-stage > .bootstrap-table > .table,
 .chart-wrapper.narrow           .chart-stage.bootstrap-table .table {
    width: auto;
 }
@@ -145,7 +153,7 @@ table {
    content: attr(data-header);
    padding-left: 0.6em;
    padding-bottom: 0.2em;
-   margin-top: -0.4em;
+   margin-top: 0em; /* -0.4em */
    color: #444;
    font-size: 115%;
 }
@@ -196,6 +204,21 @@ strong {
 }
 .navbar-nav > li > a .fa {
    margin-left: 7px !important;
+}
+.figure img, .centered-image img {
+   max-width: 100%;
+   height: auto;
+}
+.tabset {
+   background-color: var(--panel-background);
+}
+#refs .csl-entry {
+   padding-top: 4px;
+   padding-bottom: 4px;
+}
+.sidebar .row {
+   margin-left: -10px;
+   margin-right: -10px;
 }
 @media zscreen {
    .html-widget {
@@ -300,16 +323,54 @@ strong {
    .chart-stage .html-widget {
       height: 100% !important;
    }
+   .level3.tabset {
+      display: none;
+   }
 }
 @media screen { /* dev template --> move to '@media print' */
    p:not([class]) {
      /* color: red;*/
+   }
+   .sidebar .references {
+      padding-bottom: 16px;
    }
 }
 @media screen and (min-width: 1269px) {
    .chart-stage .html-widget-static-bound,
    .chart-stage .html-widget {
       height: 100% !important;
+   }
+   .navbar-brand::after, .navbar-author:empty:before {
+      content: '';  /* '\3009' */
+      color: #ccc;
+      font-size: 32px;
+      display: contents;
+      position: relative;
+      top: 6px;
+   }
+   .navbar-author:empty {
+     /* background-color: orange !important; */
+   }
+   .tabset {
+      border: none;
+   }
+   .nav-tabs-custom > .nav-tabs  > li.active {
+      border-top-color: #f2f2f2 !important;
+     /* border-top-width: 15px !important;*/
+   }
+   .znav-tabs-custom > .nav-tabs  > li:first-of-type {
+     /* margin-left: 0px;*/
+   }
+   .nav-tabs-custom > .nav-tabs  > li.active:first-of-type {
+      border-left: 1px solid #ddd;
+      margin-left: -0.05em;
+   }
+   .devel.navbar-nav > .active > a {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      margin-top: 6px;
+      border: 1px solid transparent !important;
+      border-radius: 9px;
    }
 }
 @media z2screen and (min-width: 1269px) {
@@ -418,7 +479,7 @@ strong {
       border-radius: 4px;
       margin: 6px auto; /* subject for cancel */
    }
-   .section.level1::before {
+   .section.level1:not(.no-title)::before {
       content: attr(data-header);
       display: block;
       padding: 0.2em 0em 0.2em 0.4em !important;
@@ -487,12 +548,13 @@ strong {
    .navbar-logo img {
       margin-top: -9px;
    }
-   .zznavbar-left, .zznavbar-right {
+   .zznavbar-left, .navbar-right {
       display: inline-block;
       margin-left: 16px;
       position: absolute;
       float: initial;
       max-width: calc(50vw - 360px);
+      margin-top: -13px;
    }
    .navbar-left {
       margin-left: -15px;
@@ -519,7 +581,7 @@ strong {
    .chart-wrapper {
      box-shadow: none;
    }
-   .level3.no-mobile {
+   .level3.no-mobile, .level3.tabset  {
       display: none !important;
    }
    .section.level2 {
@@ -528,15 +590,16 @@ strong {
    }
    .section.level2:not(:first-of-type) {
      /* border: 2px solid yellow; */ /* devel */
-      page-break-before: never !important;
+     /* page-break-before: always !important;*/
    }
    .section.level3 {
      /* display: block;*/
      /* border: 2px solid orange; */ /* devel */
      /* page-break-inside: avoid !important; */
    }
-   .section.level2 > .section.level3:first-of-type {
-      page-break-before: avoid !important;
+   .section.level2 .section.level3:first-of-type {
+       page-break-before: avoid !important;
+      /* border: 1px solid orange; */
    }
    .tab-content {
       height: initial !important;
@@ -617,6 +680,9 @@ strong {
      /* width: 100% !important;*/
      /* height: min(60vw,60vh,403.8px); */ /* !important */
    }
+   .chart-stage .html-widget.shiny-bound-output {
+      height: min(60vw,60vh,600px) !important;
+   }
   /*
    .chart-stage .html-widget[style*="height"] {
       border: 8px solid magenta !important;
@@ -672,7 +738,7 @@ strong {
       display: initial;
    }
    .sbframe-commentary {
-      width: initial;
+      width: initial !important;
    }
    .sbframe[data-header]:not(.no-title):not([empty-header])::before {
       content: attr(data-header);
@@ -713,6 +779,72 @@ strong {
    }
    .centered-image img {
       max-width: 100%;
+   }
+   .nav-tabs-custom {
+      background-color: unset;
+      border: unset;
+   }
+   .nav-tabs-custom > .nav-tabs {
+      border: 1px solid magenta !important; /* devel */
+      display: none;
+   }
+   .nav-tabs-custom > .nav-tabs > li > a {
+      font-weight: 900 !important;
+      background-color: yellow;
+   }
+   .tabset .tab-content {
+     /* border: 3px solid red; */ /* devel */
+      display: inline !important;
+   }
+   .tabset[data-header]:not([no-title])::before {
+     /* color: green !important; */ /* devel */
+   }
+   .tabset .tab-pane {
+      border: 1px solid #ddd !important;
+   }
+   .tabset.no-title .tab-pane {
+     /* border: 1px solid green !important; */ /* devel */
+   }
+   .tabset.no-title  {
+      margin-top: 1.8em !important;
+   }
+   .tabset.no-title .tab-pane:first-of-type {
+     /* border: 3px solid green !important;*/ /* devel */
+      margin-top: 3em !important;
+   }
+   .tabset:not(.no-title) .tab-pane:first-of-type {
+     /* border: 3px solid blue !important; */ /* devel */
+   }
+   .tabset .tab-pane {
+      margin-top: 0.4em !important;
+   }
+   .tabset.no-title .tab-pane:first-of-type {
+      margin-top: -1.2em !important;
+   }
+   .tabset .tab-pane:last-of-type {
+      margin-bottom: 0.4em !important;
+     /* border: 3px solid blue !important; */ /* devel */
+   }
+   .tabset .tab-pane::before {
+      content: attr(data-header);
+      font-size: 14px !important;
+      padding-left: 0.7em;
+      padding-top: 0.4em;
+      padding-bottom: 0.4em;
+      display: block;
+      border-bottom: 1px solid #ddd;
+   }
+   .tabset .tab-pane .chart-shim {
+     /* border: 1px solid orange; */ /* dev */
+   }
+   .tabset .tab-pane {}
+   .sidebar .references {
+      padding-bottom: 16px;
+   }
+}
+@media screen and (max-width: 1359px) and (min-width: 1340px) and (min-height: 720px) and (max-height: 739px) {
+   body, .navbar-inverse .navbar-nav > .active > a {
+      background-color: #FAFAF0; /* appropriate */
    }
 }
 @media print {
