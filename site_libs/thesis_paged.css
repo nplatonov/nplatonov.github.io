@@ -1,3 +1,8 @@
+@page {
+  size: A4;
+  margin: 15mm, 15mm, 25mm, 25mm;
+} /* var(--pagedjs-width) doesn't work in browser when printing */
+
 /* only single page for TOC LOF LOT */
 /*
 #TOC li {line-height: 2.1;}
@@ -12,6 +17,10 @@ h1 + .level2:empty, h2 + .level3:empty, h3 + .level4:empty, h4 + .level5:empty {
 h2 + .level3:empty:after {
    content: 'manual pagebreak is desired';
 }
+.toc-title {
+   break-before: always;
+}
+
 /* subject to infinite paging -- end */
 
 :root {
