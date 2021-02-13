@@ -86,7 +86,7 @@ table {
    color: #222;
 }
 .navbar-logo img {
-   height: 42px;
+   height: 41px;
    margin-top: 1px;
    margin-left: -8px;
 }
@@ -182,6 +182,9 @@ table {
 }
 .chart-wrapper-flex[data-height^="auto"] .chart-shim pre {
    margin: 5px;
+}
+.chart-wrapper-flex[data-height^="auto"] .chart-shim:empty {
+   border: 1px solid blue !important;
 }
 .checkbox-inline, .radio-inline {
    margin-top: 5px;
@@ -365,12 +368,17 @@ strong {
       border-left: 1px solid #ddd;
       margin-left: -0.05em;
    }
-   .devel.navbar-nav > .active > a {
+   .devel.navbar-nav > li > a {
       padding-top: 5px;
       padding-bottom: 5px;
       margin-top: 6px;
-      border: 1px solid transparent !important;
-      border-radius: 9px;
+      border: 1px transparent solid !important;
+      border-radius: 7px;
+      background-color: transparent !important;
+   }
+   .devel.navbar-nav > li.active > a {
+      border-bottom: 3px solid red !important;
+      border-radius: 0px;
    }
 }
 @media z2screen and (min-width: 1269px) {
@@ -840,6 +848,16 @@ strong {
    .tabset .tab-pane {}
    .sidebar .references {
       padding-bottom: 16px;
+   }
+}
+@media screen and (max-width: 1359px) and (min-width: 1340px) {
+   body, .navbar-inverse .navbar-nav > .active > a {
+      background-color: #F0FAFA; /* appropriate */
+   }
+}
+@media screen and (min-height: 710px) and (max-height: 729px) {
+   body, .navbar-inverse .navbar-nav > .active > a {
+      background-color: #FAF0FA; /* appropriate */
    }
 }
 @media screen and (max-width: 1359px) and (min-width: 1340px) and (min-height: 710px) and (max-height: 729px) {
