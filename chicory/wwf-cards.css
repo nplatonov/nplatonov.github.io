@@ -106,8 +106,10 @@ h1 + .figure, p + .figure {
       position: fixed;
       width: calc(516px * 1);
       height: calc(522px * 1);
-      right: 5px;
-      bottom: 5px;
+     /* width: calc(39.25vw - 10px); */
+     /* height: calc(39.25vw - 10px); */
+      right: 8px;
+      bottom: 8px;
       box-shadow: 3px 3px 6px rgba(0,0,0,0.16),
                   3px 1px 6px rgba(0,0,0,0.23),
                   -3px -3px 6px rgba(0,0,0,0.16),
@@ -122,6 +124,7 @@ h1 + .figure, p + .figure {
    font-size: 130%;
 }
 .navbar-brand {
+   margin-top: -5px;
    font-family: wwf;
    font-size: 200%;
 }
@@ -148,6 +151,10 @@ h1 + .figure, p + .figure {
 }
 .navbar-left {
    display: none;
+}
+.chart-stage img.inline, .chart-stage .inline img {
+   height: 1.8em !important;
+   margin-bottom: initial;
 }
 @media print, screen and (max-width: 1268px) and (min-width: 769px) {
    .navbar-right {
