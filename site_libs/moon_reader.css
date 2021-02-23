@@ -6,9 +6,6 @@
 @import url(https://fonts.googleapis.com/css?family=Fira+Sans);
 @import url(https://fonts.googleapis.com/css?family=Cousine);
 */
-.remark-fading { z-index: 9; } 
-.remark-slide-container {transition: opacity 0.4s ease-out;opacity: 0;}
-.remark-visible {transition: opacity 0.4s ease-out;opacity: 1;}
 body {
  /* font-family: Fira Sans, 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;*/
   font-family: "Segoe UI", sans-serif !important;
@@ -67,6 +64,8 @@ h1, h2, h3, h4 {
 .title-slide {
   background-color: #43418A;
 }
+.break .remark-slide-number,
+.picsum .remark-slide-number,
 .title-slide .remark-slide-number {
   display: none;
 }
@@ -282,10 +281,11 @@ table.dataTable {
    padding-bottom: 0.4em;
 }
 .break * {
-   visibility: hidden;
+  /* visibility: hidden;*/
 }
 .picsum, break {
    background-image: url(https://picsum.photos/1060/682);
+   background-size: cover;
 }
 .content-box-blue,
 .content-box-gray,
@@ -372,6 +372,9 @@ img[width$="%"] {
 p img {
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
 }
+ul {
+   margin-top: 0.4em;
+}
 .scroll {
    height: 646px;
    width: 100%;
@@ -387,6 +390,46 @@ p img {
    text-transform: uppercase;
    letter-spacing: 3px;
    font-size: 10px;
+}
+.left-column {
+   position: absolute;
+   height: 100%;
+   background-color: #F4F4F4;
+   margin-left: -0.63em;
+   margin-top: -0.63em;
+   padding-top: 0.63em;
+   padding-left: 0.63em;
+   padding-right: 0.63em;
+   text-align: justify;
+  /* overflow: scroll; */
+}
+/*
+.left-column {
+   background-color: #DFD;
+}
+.right-column {
+   background-color: #DFF;
+}
+.pull-left {
+   background-color: #FFD;
+}
+.pull-right {
+   background-color: #FDD;
+}
+.pull-down {
+   background-color: #DDF;
+}
+.double {
+   background-color: #FDF;
+}
+.double, .triple {
+   text-align: justify;
+}
+*/
+@media only screen {
+   .remark-fading { z-index: 9; } 
+   .remark-slide-container {transition: opacity 0.4s ease-out;opacity: 0;}
+   .remark-visible {transition: opacity 0.4s ease-out;opacity: 1;}
 }
 @page { margin: 0; }
 @media print {
