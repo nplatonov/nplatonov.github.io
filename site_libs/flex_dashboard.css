@@ -1,6 +1,6 @@
 :root {
   --font-weight: 400;
-  --panel-background: #F7F7F7
+  --panel-background: #F7F7F7;
 }
 body {
    font-size: 13px;
@@ -207,6 +207,12 @@ strong {
 }
 .navbar-nav > li > a .fa {
    margin-left: 7px !important;
+}
+.navbar-nav > li > a:empty:after {
+   content: '\1F5CB';
+}
+.navbar-nav > li.active > a:empty:after {
+   content: '\1F5CE';
 }
 .figure img, .centered-image img {
    max-width: 100%;
@@ -643,6 +649,7 @@ strong {
      /* border: 1px red solid;*/
      /* page-break-inside: avoid; */
      /* position: sticky;*/
+     /* background-color: var(--panel-background); */
    }
    .chart-wrapper.chart-wrapper-flex.page-break {
       page-break-before: always !important;
@@ -717,6 +724,7 @@ strong {
    }
    .section.level3.chart-wrapper-flex {
       page-break-inside: avoid !important;
+      border: none;
    }
    .desktop-layout.vertical-layout-scroll .chart-wrapper-flex {
       height: inherit !important;
