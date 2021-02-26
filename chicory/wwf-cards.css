@@ -164,6 +164,27 @@ h1 + .figure, p + .figure {
    height: 1.8em !important;
    margin-bottom: initial;
 }
+.chart-wrapper {
+   font-size: 2.0vh;
+}
+.chart-wrapper .chart-title {
+   font-size: 2.1vh;
+}
+.chart-shim table {
+   font-size: 1.8vh;
+   line-height: 2.1;
+}
+.chart-shim table.table > tbody > tr > td {
+   line-height: 1.2;
+}
+.changeLook {
+   text-align:right;
+   font-size: 200%; 
+   margin-top: -0.5em;
+}
+.changeLook:after{
+   content: '\1F862';
+}
 @media print, screen and (max-width: 1268px) and (min-width: 769px) {
    .navbar-right {
       display: inline-block;
@@ -176,6 +197,9 @@ h1 + .figure, p + .figure {
        overflow-y: initial;
        max-height: calc(100vh - 160px);
        min-width: initial;
+   }
+   .changeLook:after{
+      content: '\1F863';
    }
 }
 @media only screen and (max-width: 768px) {
