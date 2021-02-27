@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Accenter_manual_20022021-Chicory</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.6/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+<div id="chicory" class="section level3">
+<h3>Chicory</h3>
+<p>A tool for querying ArcNet’s priority areas for conservation (PACs)</p>
+<p>Chicory is a web-based application to provide information on the make-up of the ArcNet PACs and to facilitate access to the underlying data layers of the ArcNet Marxan analysis.</p>
+<p><strong>Getting Started</strong></p>
+<p>To access this information from the Chicory landing page, either choose a PAC from the map on the left or from the list on the right. Clicking a PAC in the map reveals options to either view the PAC report (<em>Details)</em> or a report on the oceanographic <span id="1" class="comment-start" author="timothy james" date="2021-02-02T08:34:00Z">Ok, let’s keep this “Oceanographic background”. “Setting” is more appropriate in this context, but I think “background” will be more understandable to non-native English speakers.</span>background<span id="1" class="comment-end"></span> of the region. Clicking a PAC’s number from the list will open the PAC report directly.</p>
+<div class="comment">
+<p>&#x21E7; 1. “Oceanographic description”?</p>
+</div>
+<p>The PAC report summarizes key metrics of the selected PAC. An overview map (left) and closeup (right) show the selected PAC in the context of other PACs in the study area, existing protected areas, and migration bottle necks. Note the blue bounding box that is provided in both maps for scale.</p>
+<p><span id="2" class="comment-start" author="timothy james" date="2021-02-18T11:11:00Z"><span custom-style="annotation reference"></span>I think the text that goes with these statistics is pretty clear now, but Boris thought we shouldn’t take anything for granted. So I’ve added this section to provide a brief description of each summary statistic. If we later think this isn’t necessary, it can be deleted. Some of it is a bit repetitive, but it might be helpful. ¶ Also, I think “summary statistics” is the correct way to reference these data.</span>Below the maps is an array of summary statistics for the chosen PAC, including:<span id="2" class="comment-end"><span custom-style="annotation reference"></span></span></p>
+<div class="comment">
+<p>&#x21E7; 2. “Summary statistics” is saved</p>
+</div>
+<ul>
+<li><div custom-style="List Paragraph">
+<p><u>% of total ArcNet PAC area</u> – A comparison between the selected PAC area and the total combined area of all ArcNet PACs.</p>
+</div></li>
+<li><div custom-style="List Paragraph">
+<p><u>% of the largest PAC area</u> – A comparison of the area of ArcNet’s largest PAC (PAC 54) to that of the selected PAC. <span class="insertion" author="Boris Solovyev" date="2021-02-13T18:03:00Z"></span></p>
+</div></li>
+<li><div custom-style="List Paragraph">
+<p><u>%</u> <span class="deletion" author="timothy james" date="2021-02-19T15:53:00Z"><u>is</u></span> <u>covered by existing protected area coverage</u> – The percentage area of the selected PAC that is covered by existing protected areas.</p>
+</div></li>
+<li><div custom-style="List Paragraph">
+<p><span class="deletion" author="timothy james" date="2021-02-18T14:26:00Z">Number of</span> <span id="6" class="comment-start" author="timothy james" date="2021-02-18T10:58:00Z"><span custom-style="annotation reference"></span>I think this would be better. Also, can the “is” be deleted from the previous?</span>CFs <span class="insertion" author="timothy james" date="2021-02-18T14:26:00Z">in the selected PAC</span> <span id="6" class="comment-end"><span custom-style="annotation reference"></span></span>– The number of CFs found in the selected PAC.</p>
+</div>
+<div class="comment">
+<p>&#x21E7; 6. “is” is deleted</p>
+<p>&#x21E7; Captions for “gauges” are renamed.</p>
+</div></li>
+<li><div custom-style="List Paragraph">
+<p><span id="8" class="comment-start" author="timothy james" date="2021-02-18T13:22:00Z"><span custom-style="annotation reference">I’ve realized I’m not quite clear on this either. I think you mean that these are the percentages of all ArcNet’s CFs in each thematic group that fall within this CF. So, for example in PAC 15, 1.9% of all the seabird CFs in ArcNet fall within PAC 15.</span> ¶ <span custom-style="annotation reference">If this is right, I wonder if this the best statistic to show for “Thematic Group Diversity”. I might be very wrong but to me thematic group diversity would be how diverse this PAC is in terms of the proportion of thematic group CFs it contains. So, a PAC that was 100% seabird CFs wouldn’t be very diverse whereas a PAC that was 20% seabirds, 20% ice biota, 20% marine mammals, 20% fishes, 10% coastal features and 10% benthos would be very diverse. Just a thought.</span> ¶ <span custom-style="annotation reference">I’ll add something there when I understand this better.</span></span><u><em>Thematic Group</em> Diversity</u> <span id="8" class="comment-end"><span custom-style="annotation reference"></span></span><u>(% of the total number of CFs in a group</u><span id="9" class="comment-start" author="timothy james" date="2021-02-18T11:03:00Z"><span custom-style="annotation reference"></span>This bracket is missing in the PAC report.</span><u>)</u><span id="9" class="comment-end"><span custom-style="annotation reference"></span></span> – ??</p>
+</div>
+<div class="comment">
+<p>&#x21E7; 8. Not changed. See “point B” in email 2021-02-25 22:01 UTC+3</p>
+<p>&#x21E7; 9. Bracket is not missed</p>
+</div></li>
+<li><div custom-style="List Paragraph">
+<p><u>CFs entirely within the PAC area</u> – The number of CFs that are completely contained within the selected PAC area.</p>
+</div></li>
+<li><div custom-style="List Paragraph">
+<p><span id="10" class="comment-start" author="timothy james" date="2021-02-18T13:01:00Z"><span custom-style="annotation reference"></span>I think “amount” sounds awkward, but I see why it’s not just area. To be consistent with the first box, maybe this wording works as an alternative. ¶ I’ve also suggested some other text changes for consistency.</span><u>CFs</u> <span class="deletion" author="timothy james" date="2021-02-18T13:02:00Z"><u>with</u></span> <u>a</u><span class="insertion" author="timothy james" date="2021-02-18T12:54:00Z"><u>t least</u></span> <span class="insertion" author="timothy james" date="2021-02-18T13:02:00Z"><u>25%</u></span> <span class="deletion" author="timothy james" date="2021-02-18T13:02:00Z"><u>quarter of their amount</u></span> <u>within the PAC area</u><span id="10" class="comment-end"></span> – the number of CFs that are at least 25% contained within the selected PAC area. <span class="insertion" author="timothy james" date="2021-02-18T13:03:00Z"><span custom-style="annotation reference"></span></span></p>
+</div>
+<div class="comment">
+<p>&#x21E7; 10. E.g., “Conservation Units” (<em>plural</em>) instead “Amount”?</p>
+</div></li>
+<li><div custom-style="List Paragraph">
+<p><u>CFs</u> <span class="insertion" author="timothy james" date="2021-02-18T11:01:00Z"><u>whose</u></span> <span class="deletion" author="timothy james" date="2021-02-18T11:01:00Z"><u>with their</u></span> <u>targets</u> <span class="insertion" author="timothy james" date="2021-02-18T11:01:00Z"><u>are</u></span> <u>achieved in the PAC</u> – The number of CFs whose targets are met entirely in the selected PAC.</p>
+</div></li>
+<li><div custom-style="List Paragraph">
+<p><u>CFs with at least</u> <span class="deletion" author="timothy james" date="2021-02-18T13:02:00Z"><u>half</u></span> <span class="insertion" author="timothy james" date="2021-02-18T13:02:00Z"><u>50%</u></span> <u>of their target achieved in the PAC</u> – The number of CFs whose targets are at least 50% met in the selected PAC.</p>
+</div>
+<div class="comment">
+<p>&#x21E7; Captions for “value boxes” are renamed.</p>
+</div></li>
+</ul>
+<p>Below the array of these summary statistics is a list of the CFs found in the selected PAC with some basic information, <span id="21" class="comment-start" author="timothy james" date="2021-02-18T11:16:00Z"><span custom-style="annotation reference"></span>I’ll leave it for you(s) to decide if R/D should be added to this table as well. ¶ Also… I’m sorry Boris, I can’t remember now what the error was in this table! Was it in the actual calculation or just the heading?</span>including<span id="21" class="comment-end"><span custom-style="annotation reference"></span></span>:</p>
+<div class="comment">
+<p>&#x21E7; 21. Boris and me decided to not include R/D in Chicory reports.</p>
+</div>
+<blockquote>
+<p><em>CF</em> <span class="insertion" author="timothy james" date="2021-02-18T14:28:00Z"><em>ID</em></span> – Unique CF ID number, which is linked to the <a href="#CFReport"><span custom-style="Hyperlink">CF report</span></a> giving relevant metadata.</p>
+<p><span class="insertion" author="timothy james" date="2021-02-18T14:28:00Z"><em>CF</em></span> <em>Name</em> – CF name and description.</p>
+<p><span class="insertion" author="timothy james" date="2021-02-19T21:22:00Z"><em>Proportion</em></span> <span class="deletion" author="timothy james" date="2021-02-19T21:22:00Z"><em>Share of the Total Amount</em></span> <em><span class="deletion" author="timothy james" date="2021-02-19T21:23:00Z">with</span>in the PAC</em> – Percentage of the whole CF <span id="27" class="comment-start" author="timothy james" date="2021-02-19T21:25:00Z"><span custom-style="annotation reference"></span>I think this avoids the use of “amount”</span>extent <span id="27" class="comment-end"><span custom-style="annotation reference"></span></span>that is captured in the PAC.</p>
+<p><em>Conservation Target</em> <span id="28" class="comment-start" author="Nikita Platonov" date="2021-02-13T19:41:00Z"><em>Reply to Boris Solovyev (13/02/2021, 18:08): "..."</em> ¶ Accenter’s column names were renamed for Chicory without changes in Accenter. I think we need make next step to revise Accenter’s column names with reference to Chicory’s names with having in mind, that “PAC” should be absent in Accenter’s column names, because Accenter can be used for any spatial unit (polygons, lines, points) for number of projects.</span><span id="29" class="comment-start" author="timothy james" date="2021-02-19T21:18:00Z"><span custom-style="annotation reference"></span>Ok. See if what I have suggested works.</span><span id="28" class="comment-end"><span class="insertion" author="Nikita Platonov" date="2021-02-13T19:41:00Z"><span id="29" class="comment-end"><span custom-style="annotation reference"></span></span></span></span>– Proportion of the CF that, as a minimum, was to be included in the final Marxan scenario.</p>
+</blockquote>
+<div class="comment">
+<p>&#x21E7; 28, 29. <em>Name consistence</em></p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Chicory</th>
+<th align="left">Accenter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">CF ID</td>
+<td align="left">CF ID</td>
+</tr>
+<tr class="even">
+<td align="left">CF Name</td>
+<td align="left">CF Name</td>
+</tr>
+<tr class="odd">
+<td align="left">Con­ser­va­tion Target</td>
+<td align="left">Con­ser­va­tion Target</td>
+</tr>
+<tr class="even">
+<td align="left"> </td>
+<td align="left">Representative/Distinctive</td>
+</tr>
+<tr class="odd">
+<td align="left"> </td>
+<td align="left">Target Achievement for Study Area</td>
+</tr>
+<tr class="even">
+<td align="left">Pro­por­tion in the PAC</td>
+<td align="left">Pro­por­tion in Selection</td>
+</tr>
+<tr class="odd">
+<td align="left">Cont­ri­bu­tion to ArcNet Tar­get Achie­ve­ment</td>
+<td align="left">Cont­ri­bu­tion to Whole Tar­get Achie­ve­ment</td>
+</tr>
+<tr class="even">
+<td align="left">PAC’s Cont­ri­bu­tion to the Achie­ved Tar­get</td>
+<td align="left">Selection’s Cont­ri­bu­tion to the Achie­ved Tar­get</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><span class="deletion" author="timothy james" date="2021-02-19T21:25:00Z"><em>Share</em></span> <em><span class="insertion" author="timothy james" date="2021-02-19T21:25:00Z">Cont</span><span class="insertion" author="timothy james" date="2021-02-19T21:26:00Z">ribution to ArcNet</span><span class="deletion" author="timothy james" date="2021-02-19T21:26:00Z">of the</span> Target Achievement</em> <span class="deletion" author="timothy james" date="2021-02-19T21:26:00Z"><em>for</em></span> <span class="deletion" author="timothy james" date="2021-02-02T08:43:00Z"><em>the</em></span> <span class="deletion" author="timothy james" date="2021-02-19T21:26:00Z"><em>ArcNet</em></span> <span class="insertion" author="timothy james" date="2021-02-19T21:33:00Z"></span>– The contribution of the CF extent captured in this PAC to the ArcNet target achievement.</p>
+<p><em>PAC’s Contribution to the</em> <span class="insertion" author="timothy james" date="2021-02-19T21:32:00Z"><em>Achieved</em></span> <em>Target</em> <span class="deletion" author="timothy james" date="2021-02-19T21:32:00Z"><em>Achievement</em></span> <span class="insertion" author="timothy james" date="2021-02-19T21:32:00Z"></span>– The contribution of the PAC to the <span class="insertion" author="timothy james" date="2021-02-19T21:30:00Z">actual</span> target that was achieved <span class="insertion" author="timothy james" date="2021-02-19T21:30:00Z"></span><span class="insertion" author="timothy james" date="2021-02-19T21:32:00Z">in ArcNet</span>.</p>
+</blockquote>
+<p><span id="CFReport" class="anchor"></span>Finally, a report is provided for every CF in ArcNet that are accessible from the PAC reports <span id="46" class="comment-start" author="timothy james" date="2021-02-19T21:36:00Z"><span custom-style="annotation reference"></span>If this can be done.</span>(and Accenter Conservation Features tab) <span id="46" class="comment-end"><span custom-style="annotation reference"></span></span>via the CF ID link. An overview map (left) and closeup (right) are provided as previously with the blue bounding box for scale. Any available <span id="47" class="comment-start" author="timothy james" date="2021-02-19T17:31:00Z"><span custom-style="annotation reference"></span>I think the metadata is clear except forseasonality. Sometimes it is months (e.g. Apr-Jul) but I’ve also seen 1-12. Are these also months like Jan-Dec? ¶ Also: ¶ Change “CF code” to “CF ID”. ¶ Change “Scenario’s Target” to “Conservation Target” or just “Target”?</span>metadata <span id="47" class="comment-end"><span custom-style="annotation reference"></span></span>are provided beneath. The table at the bottom provides relative distribution and target achievement of the CF between the different PACs as well as within (<em>inner</em>) and outside (<em>outer</em>) the ArcNet PACs. Note the <em>inner</em> link accesses a PAC report for the whole ArcNet PAC network.</p>
+<div class="comment">
+<p>&#x21E7; 46. This ‘if’ is not clear for me.</p>
+<p>&#x21E7; 47. CF digital identifier is assigned to “CF ID”, targets are assigned to “Conservation Target”. It would be better if Boris approves standard for seasonality naming, and we need to decide either we change ArcNet’s metadata table or just on-the-fly changing in Chicory.</p>
+</div>
+</div>
+<div id="accenter" class="section level3">
+<h3>Accenter</h3>
+<p>A geospatial analysis tool for querying Marxan output</p>
+<p>“Accenter” is Shiny application that was developed to facilitate web-based spatial analysis and query of <span id="49" class="comment-start" author="timothy james" date="2021-02-18T15:21:00Z"><span custom-style="annotation reference"></span>Let’s leave this as <a href="../customXml/item1.xml"><span custom-style="Hyperlink">https://marxansolutions.org/</span></a> for now. ¶ Also, I can’t find the Watts and Possingham reference online with the title given below in the reference section. Is there a link I can add?</span><span custom-style="Hyperlink">Marxan</span><span id="49" class="comment-end"><span custom-style="annotation reference"></span></span> output (Ball et al., 2009; Watts and Possingham, 2013). The application provides users with basic desktop GIS functionality for spatial query of <span id="50" class="comment-start" author="timothy james" date="2021-02-19T21:41:00Z"><span custom-style="annotation reference"></span>Making this more generic.</span><span class="deletion" author="timothy james" date="2021-02-19T21:41:00Z">the ArcNet PACs</span> <span class="insertion" author="timothy james" date="2021-02-19T21:41:00Z">Marxan output <span custom-style="annotation reference"></span></span>and the underlying data base using spatial pre- and user-defined requests.</p>
+<p><strong>Getting started</strong></p>
+<p>The <em>main menu</em> (left) is revealed/hidden with the &#x2630; button in the title bar. Here, you can switch between the <span id="53" class="comment-start" author="timothy james" date="2021-02-19T10:38:00Z"><span custom-style="annotation reference"></span>We agree that in the main menu on the left we will have Main Panel, Documentation and About. “About” can contain contain the license information + info about the project and how the software was developed (funding etc)". If someone has some rough text for this I can polish.</span><em>Main panel</em> and <em>Documentation</em> <span id="53" class="comment-end"><span custom-style="annotation reference"></span></span>pages.</p>
+<p>The <em>Main panel</em> has four tabs across the top (click to jump ahead):</p>
+<p><span class="deletion" author="timothy james" date="2021-02-19T21:42:00Z"><span custom-style="Hyperlink">an</span></span> <span class="deletion" author="timothy james" date="2021-02-19T21:42:00Z"><span custom-style="Hyperlink">the</span></span> <a href="\l"><span custom-style="Hyperlink">Select area-of-interest on map</span></a> – <a href="#CFinSelection"><span custom-style="Hyperlink">Conservation features in selection</span></a> – <a href="#SelectionResults"><span custom-style="Hyperlink">Selection results overview</span></a> – <a href="#ScenarioProperties"><span custom-style="Hyperlink">Scenario properties</span></a></p>
+<p><strong>Select an area-of-interest on the map</strong> - Under the <em>Select</em> <span class="deletion" author="timothy james" date="2021-02-19T21:50:00Z"><em>an</em></span> <em>area-of-interest (AOI</em>) on the map tab, an overview map of the Arctic region is shown, with an overlay of the study area, with a selection of drop-down menus (right) as follows:</p>
+<p><span id="58" class="comment-start" author="timothy james" date="2021-02-19T10:47:00Z"><span custom-style="annotation reference"></span>In summary… First, if you have a logic to the order of the drop down menus on the right, then I think they are fine as they are. I would normally have them in the same order they are discussed in the manual but this isn’t important. ¶ Second, we’ll have a checkbox to turn off the Marxan output layer. ¶ Third, I don’t think the slow rendering is a huge problem. It works and it’s a lot of data so I think it is ok.</span><em>Marxan output</em>: <span id="58" class="comment-end"><span custom-style="annotation reference"></span></span>Choose the parameter to be plotted in the overlay.</p>
+<blockquote>
+<p><em>Frequency</em> – number of times a planning unit was chosen over the many Marxan runs. The higher the frequency, the more “valuable” a cell was for a solution.</p>
+<p><em>Best run</em> – Areas marked “1” are cells that were selected as part of the final Marxan scenario that yielded the ArcNet PACs.</p>
+<p><em>Frequency &#x2265; 0.5</em> – Areas marked “1” are cells that were chosen in at least 50% of the Marxan iterations.</p>
+<p><em>Frequency &#x2265; 0.75</em> – Areas marked “1” are cells that were chosen in at least 75% of the Marxan iterations.</p>
+</blockquote>
+<p><em>Projection</em>: The projection of the overview map can be changed by selecting the desired EPSC code from this menu. Note the area of focus (e.g., Alaska) will appear “right-side-up” at the bottom of the map:</p>
+<p><a href="https://epsg.io/3571"><span custom-style="Hyperlink">EPSG:3571</span></a> – WGS 84 / North Pole Lambert Azimuthal Equal Area (LAEA) Bering Sea</p>
+<p><a href="https://epsg.io/3572"><span custom-style="Hyperlink">EPSG:3572</span></a> – WGS 84 / North Pole LAEA Alaska</p>
+<p><a href="https://epsg.io/3573"><span custom-style="Hyperlink">EPSG:3573</span></a> – WGS 84 / North Pole LAEA Canada</p>
+<p><a href="https://epsg.io/3574"><span custom-style="Hyperlink">EPSG:3574</span></a> – WGS 84 / North Pole LAEA Atlantic</p>
+<p><a href="https://epsg.io/3575"><span custom-style="Hyperlink">EPSG:3575</span></a> – WGS 84 / North Pole LAEA Europe</p>
+<p><a href="https://epsg.io/3576"><span custom-style="Hyperlink">EPSG:3576</span></a> – WGS 84 / North Pole LAEA Russia</p>
+<p><em>Scenario</em>: The ArcNet data accessed here though Accenter, <span id="59" class="comment-start" author="timothy james" date="2021-02-19T11:40:00Z"><span custom-style="annotation reference"></span>I’ve edited this to reflect the terminology we use in the 20-pager for the Marxan run that was chosen as the final ArcNet scenario. This will prevent any confusion with the Marxan best runs.</span>come from the <span class="insertion" author="timothy james" date="2021-02-19T11:40:00Z">final</span> Marxan scenario that was <span class="deletion" author="timothy james" date="2021-02-19T11:40:00Z">deemed to be the “best run”</span> <span class="insertion" author="timothy james" date="2021-02-19T11:40:00Z">selected</span> by the ArcNet steering committee. <span id="59" class="comment-end"><span custom-style="annotation reference"></span></span></p>
+<p><em>Selection</em>: Here, you can choose any of the <span id="63" class="comment-start" author="Nikita Platonov" date="2021-02-13T22:29:00Z">I oppose to transfer Accenter to ArcNet private. This is general manual about GUI. ¶ There is “i” sidebar menu. It is hierarchical thematically. First level general. Second level is project (Pechora Sea MPA, Pan-Arctic MPA). ¶ Third level is specific for project. I think, 83 PACs are more suitable at this third level.</span><span id="64" class="comment-start" author="timothy james" date="2021-02-19T12:30:00Z"><span custom-style="annotation reference"></span>I’m not 100% sure what you mean here, but I think I understand the issue. I have raised this in my email for further discussion, i.e., that Accenter is not exclusively an ArcNet product and thus the headings etc need to be non-ArcNet specific.</span>83 individual PACs<span id="63" class="comment-end"><span id="64" class="comment-end"><span custom-style="annotation reference"></span></span></span> as your area-of-interest (AOI) or you can draw a custom AOI using the tools provided by selecting “manual” from the dropdown menu.</p>
+<p><span id="CFinSelection" class="anchor"></span><strong>Conservation features in selection</strong> - Once an AOI is selected on the map, clicking this tab will take you to a comprehensive list of the CFs that fall within the AOI. While all CFs in the project are listed, those that appear in the selected area appear in bold. The information in the <span id="67" class="comment-start" author="timothy james" date="2021-02-19T12:37:00Z"><span custom-style="annotation reference"></span>Agreed to make the CF columns in Chicory and Accenter the same where appropriate but based on the Chicory headings since these were designed for external use. ¶ Is it possible to add the hyperlink as in Chicory?</span>columns <span id="67" class="comment-end"><span custom-style="annotation reference"></span></span>is as follows:</p>
+<blockquote>
+<p><em>CF</em> ID – Unique CF ID number, which is linked to the <a href="#CFReport"><span custom-style="Hyperlink">CF report</span></a> giving relevant metadata.</p>
+<p><span class="insertion" author="timothy james" date="2021-02-18T14:29:00Z"><em>CF</em></span> <em>Name</em> – CF name and description.</p>
+<p><em>Representative/Distinctive</em> – Indicates whether the CF is a representative (R) or distinctive (D) feature or both (RD) (see Marxan in the <a href="#MarxanGlossary"><span custom-style="Hyperlink">Glossary</span></a>).</p>
+<p><span id="69" class="comment-start" author="timothy james" date="2021-02-19T22:02:00Z"><span custom-style="annotation reference"></span>I think this the same as the 3<sup>rd</sup> column in Chicory. Right? One is in % and the other decimal. Can these be the same with the heading as here?</span><span class="insertion" author="timothy james" date="2021-02-19T22:00:00Z"><em>Proportion in the</em></span> <span class="deletion" author="timothy james" date="2021-02-19T22:00:00Z"><em>Representation of</em></span> <em>selection</em> <span id="69" class="comment-end"><span custom-style="annotation reference"></span></span>– Proportion of the whole CF extent that is captured in the selection.</p>
+<p><span id="72" class="comment-start" author="timothy james" date="2021-02-20T09:00:00Z"><span custom-style="annotation reference"></span>Conservation target is % in chicory and decimal here. Can they be the same with the same heading?</span><span class="insertion" author="timothy james" date="2021-02-19T18:43:00Z"><em>Conservation</em></span> <em>Target</em> <span id="72" class="comment-end"><span custom-style="annotation reference"></span></span>– <span class="insertion" author="timothy james" date="2021-02-20T09:04:00Z"></span>Proportion of the CF that, as a minimum, was to be included in the final Marxan scenario.</p>
+<p><span id="75" class="comment-start" author="timothy james" date="2021-02-19T22:13:00Z"><span custom-style="annotation reference"></span>To me this should be the same as in the Chicory table but the numbers are different.</span><span id="76" class="comment-start" author="timothy james" date="2021-02-20T09:02:00Z"><span custom-style="annotation reference"></span>This is slig</span><em>Target achievement for the</em> <span id="77" class="comment-start" author="timothy james" date="2021-02-19T12:42:00Z"><span custom-style="annotation reference"></span>We’ll go with “study area” to be more generic here.</span><span class="deletion" author="timothy james" date="2021-02-19T12:42:00Z"><em>pan-Arctic</em></span> <span class="insertion" author="timothy james" date="2021-02-19T12:42:00Z"><em>study</em> <span custom-style="annotation reference"></span></span><em>area</em> <span custom-style="annotation reference"><span id="75" class="comment-end"><span id="76" class="comment-end"></span></span></span>– Level of target achievement for the CF across the study area.</p>
+<p><em>Target achievement for selection</em> – Level of target achievement for the CF in the selected area of interest.</p>
+<p><em>Proportion of target achievement in selection</em> – The proportion of the target that is achieved in the selection. <span class="insertion" author="timothy james" date="2021-02-19T22:06:00Z"></span></p>
+</blockquote>
+<p>Individual CFs can be selected in this table (using shift + click and ctrl + click to select multiple CFs) and they will appear in the output of the following tab. Note that only CF with a target contribution above XX are included in the Chicory PAC reports.</p>
+<p><span id="SelectionResults" class="anchor"></span><strong>Selection results overview</strong> – This tab provides a base map over which the AOI and any selected CFs are overlaid. In the box at top right of map, different features on the map can be toggled on/off. Grey links at bottom right zoom to the extent of the specified CF. <span class="insertion" author="timothy james" date="2021-02-19T12:43:00Z">The CF</span> <span class="insertion" author="timothy james" date="2021-02-19T12:44:00Z">colour bars on the left</span> <span class="insertion" author="timothy james" date="2021-02-19T13:08:00Z">provide the relative</span> <span class="insertion" author="timothy james" date="2021-02-19T12:59:00Z">importance</span><span id="85" class="comment-end"><span class="insertion" author="timothy james" date="2021-02-19T13:09:00Z"><span custom-style="annotation reference"></span></span></span> <span class="insertion" author="timothy james" date="2021-02-19T12:59:00Z">of the different cells</span> <span class="insertion" author="timothy james" date="2021-02-19T13:08:00Z">for this CF.</span> <span class="insertion" author="timothy james" date="2021-02-19T13:09:00Z">The</span> <span class="insertion" author="timothy james" date="2021-02-19T13:10:00Z">absolute</span> <span class="insertion" author="timothy james" date="2021-02-19T13:09:00Z">units</span> <span class="insertion" author="timothy james" date="2021-02-20T09:07:00Z">of these colour bars</span> <span class="insertion" author="timothy james" date="2021-02-19T13:10:00Z">are CF-specific and depend on how the CF was quantified, e.g. area, count, etc. More info</span><span class="insertion" author="timothy james" date="2021-02-19T22:18:00Z">rmation</span> <span class="insertion" author="timothy james" date="2021-02-19T13:10:00Z">on each CF</span> <span class="insertion" author="timothy james" date="2021-02-19T22:18:00Z">is</span> <span class="insertion" author="timothy james" date="2021-02-19T13:10:00Z">available in the CF repor</span><span class="insertion" author="timothy james" date="2021-02-19T13:11:00Z">ts</span> <span class="insertion" author="timothy james" date="2021-02-19T22:18:00Z">accessible</span> <span class="insertion" author="timothy james" date="2021-02-19T13:11:00Z">through the CF ID link</span> <span class="insertion" author="timothy james" date="2021-02-19T22:19:00Z">as previously</span> <span class="insertion" author="timothy james" date="2021-02-20T09:07:00Z">described</span><span class="insertion" author="timothy james" date="2021-02-19T13:11:00Z">. <span custom-style="annotation reference"></span></span></p>
+<p><span id="106" class="comment-start" author="timothy james" date="2021-02-20T09:31:00Z"><span custom-style="annotation reference"></span>Boris… you explained this well in our phone call the other day but I’ve confused myself again. I need clarification on this again. Sorry…</span>A <span id="107" class="comment-start" author="timothy james" date="2021-02-20T09:08:00Z"><span custom-style="annotation reference"></span>The text in the upper left of this statistical summary would be easier to read if each were on a separate paragraph.</span>basic statistical comparison <span id="107" class="comment-end"><span custom-style="annotation reference"></span></span>between the XX of the AOI and the study area as a whole is provided to the right of the map. <span id="106" class="comment-end"><span custom-style="annotation reference"></span></span></p>
+<p><span id="ScenarioProperties" class="anchor"></span><span id="109" class="comment-start" author="timothy james" date="2021-02-08T11:15:00Z">Again the scenario label says 33:4_5_1 Basic instead of “best run” ¶ “Units are layers per cell” – I wonder if, for consistency, we should be saying “planning unit” instead of “cell” to be consistent with the reports.</span><span id="110" class="comment-start" author="timothy james" date="2021-02-19T13:14:00Z"><span custom-style="annotation reference"></span>Agreed that the scenario name here (and elsewhere) will be changed to 33: ArcNet Final"</span><strong>Scenario properties</strong> <span id="109" class="comment-end"></span><span id="111" class="comment-start" author="Nikita Platonov" date="2021-02-13T23:09:00Z"><em>Reply to timothy james (08/02/2021, 11:15): "..."</em> ¶ “33:4_5_1 Basic instead” is renamed to “33: ArcNet Final”. Or, please, propose desired name for it. ¶ Proposed units are “Number of CFs per PU”.</span><span id="111" class="comment-end"><span id="110" class="comment-end"><span custom-style="annotation reference"></span></span></span>– This tab provides an overview of the <span class="deletion" author="timothy james" date="2021-02-19T13:14:00Z">best run</span> <span class="insertion" author="timothy james" date="2021-02-19T13:14:00Z">final</span> Marxan scenario on which the ArcNet PACs are based. The <em>map projection code</em> is determined by the choice of projection on the main map. The overlay on the base map can be changed under the <em>Property</em> menu, which are:</p>
+<ul>
+<li><div custom-style="List Paragraph">
+<p>Data coverage – I’m not sure what this is especially compared to layer overlap. Layer vs data is unclear to me.</p>
+</div></li>
+<li><div custom-style="List Paragraph">
+<p>Layer overlap – ?</p>
+</div></li>
+<li><div custom-style="List Paragraph">
+<p>Representative – the number of representative features in each planning unit.</p>
+</div></li>
+<li><div custom-style="List Paragraph">
+<p>Distinctive – the number of distinctive features in each planning unit.</p>
+</div></li>
+</ul>
+<p><strong>References:</strong></p>
+<p>Ball IR, Possingham H, Watts ME. 2009. Marxan and relatives: software for spatial conservation prioritisation. In: Moilanen A, Wilson KA, Possingham H (Eds) Spatial conservation prioritisation: Quantitative methods &amp; computational tools. Book Section. Oxford University Press, Oxford, UK, Ch.14, p. 185–189. <a href="https://global.oup.com/academic/product/spatial-conservation-prioritization-9780199547760" class="uri">https://global.oup.com/academic/product/spatial-conservation-prioritization-9780199547760</a> 9780199547760.</p>
+<p>QGIS Development Team. 2018. QGIS Geographic Information System. Open Source Geospatial Foundation. <a href="http://qgis.osgeo.org" class="uri">http://qgis.osgeo.org</a> (accessed 26 December 2018).</p>
+<p>Warmerdam F. 2008. Coordinate Systems: PROJ.4, EPSG and OGC WKT. <a href="http://2008.foss4g.org/paper/view/177.1.html" class="uri">http://2008.foss4g.org/paper/view/177.1.html</a> (accessed 23 November 2018).</p>
+<p>Watts ME, Possingham HP. 2013. Marxan.net: Cloud infrastructure for systematic conservation planning. <a href="http://marxan.net" class="uri">http://marxan.net</a> (accessed 26 November 2018).</p>
+<p><span id="114" class="comment-start" author="timothy james" date="2021-02-19T14:30:00Z"><span custom-style="annotation reference">I’ve taken definitions from the ArcNet 20 pager for consistency. Remember that we have the technical report and the 20 pager for explaining the key elements of ArcNet. This manual just has to provide enough info to be able to use Accenter and Chicory.</span></span><strong>Glos</strong><span id="115" class="comment-start" author="Boris Solovyev" date="2021-02-13T18:38:00Z">I recommend using a glossary from the Marxan Good Practices Handbook by J. Ardron et al ¶ <a href="../customXml/item2.xml">https://pacmara.org/wp-content/uploads/2018/05/Marxan-Good-Practices-Handbook-v2-2013.pdf</a></span><strong>sa</strong><span id="115" class="comment-end"></span><strong>ry</strong> <span id="114" class="comment-end"><span custom-style="annotation reference"></span></span><strong>– see also the <a href="https://pacmara.org/wp-content/uploads/2018/05/Marxan-Good-Practices-Handbook-v2-2013.pdf"><span custom-style="Hyperlink">Marxan Good Practices Handbook</span></a>.</strong></p>
+<table>
+<colgroup>
+<col width="4%" />
+<col width="95%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><em>Term</em></th>
+<th><em>Definition/description</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span id="MarxanGlossary" class="anchor"></span>Cell</td>
+<td>Also referred to as a <em>planning unit</em>, this is the standardised minimum size of a region whose conservation features can be represented in Marxan.</td>
+</tr>
+<tr class="even">
+<td>Conservation feature (CF)</td>
+<td>Data features that were selected to capture examples of typical habitats within a region (representative features) along with any geophysical and/or biological anomalies of particular importance for biodiversity (distinctive features).</td>
+</tr>
+<tr class="odd">
+<td>Conservation target</td>
+<td>Quantitative parameters set to determine the level of spatial inclusion of each <em>conservation feature</em> a Marxan solution.</td>
+</tr>
+<tr class="even">
+<td>Marxan</td>
+<td><p>The most widely used software for systematic marine conservation planning. It uses an optimisation algorithm to find multiple “good” spatial solutions to achieve predefined conservation goals. Importantly, as a decision-support tool, Marxan does not provide just one optimised solution. It offers various spatial <em>scenarios</em> that achieve the conservation goals through iterative analysis cycles and expert review and adjustment. The process is based on the data used in the analysis (the <em>conservation features</em>); a set of <em>conservation targets</em> for the features; and a function that defines the “cost” of prioritising areas for the purpose of conservation.</p>
+<p>See <span custom-style="Hyperlink">marxansolutions.org</span> for more information.</p></td>
+</tr>
+<tr class="odd">
+<td>PAC</td>
+<td>An area of the marine environment of documented biodiversity value that should be prioritised for future conservation and management efforts.</td>
+</tr>
+<tr class="even">
+<td>Planning unit</td>
+<td>Also referred to as a <em>cell</em>, this is the standardised minimum size of a region whose conservation features can be represented in Marxan.</td>
+</tr>
+<tr class="odd">
+<td>Scenario</td>
+<td>See <em>Marxan.</em><span class="paragraph-insertion" author="Boris Solovyev" date="2021-02-13T18:35:00Z"></span></td>
+</tr>
+<tr class="even">
+<td>Thematic groups</td>
+<td>Grouped elements of the marine environment (CFs) that were the focus for expert engagement during the Marxan process, i.e. marine mammals, seabirds, fish, sea ice biota and benthos.</td>
+</tr>
+</tbody>
+</table>
+<p><span id="138" class="comment-start" author="timothy james" date="2021-02-18T15:07:00Z"><span custom-style="annotation reference"></span>Ok so let’s add <u>licence and citation</u> info to Chicory, in bottom right hand corner, and to Accenter under the “About” menu item on the left (instead of Info). We’ll need to understand this better though… see Nikita’s comment below.</span><strong>Licence</strong> <span id="138" class="comment-end"><span custom-style="annotation reference"></span></span></p>
+<p>MIT.<span id="139" class="comment-start" author="Nikita Platonov" date="2021-02-13T20:37:00Z"><em>Reply to Boris Solovyev (13/02/2021, 18:33): "..."</em> ¶ Advice is required. ¶ I’m not familiar with base of licensing, although I heed to licensing at least half of decade, I’m not still an expert. I specified MIT for github repo, because 1) no restrictions for my source code, 2) no external data with restrictions were used. So, Accenter satisfies my desired license (MIT, I hope this right). External data (outside of my repo) in Accenter may have different restrictions. In ArcNet, metadata contains “Use Restrictions” field (it presents for CF reports in Chicory), but this is not a license. Cell values in Accenter is data, which, perhaps, can be distributed under certain license with accumulated restrictions of source data. ¶ For Chicory with tables and figures, I think, “Creative Commons” group is more appropriated (CC-BY?) ¶ On the next step WWF will be the host of A+C. Perhaps, host can influence to licensing too.</span><span id="139" class="comment-end"></span></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
