@@ -1610,6 +1610,39 @@ div[data-custom-style="toc 4"] p a {
 table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/master/NEWS#L20 */
    unicode-bidi: unset !important;
 }
+.comment-start, .comment-end {
+   display: block;
+   color: green;
+}
+.deletion {
+   text-decoration-line: line-through;
+   color: red;
+}
+.insertion {
+   color: blue;
+}
+.comment-start::before, .deletion::before {
+   content: '<' attr(id) ': ' attr(author) ', ' attr(date) ': ';
+   text-decoration-line: unset !imprortant;
+}
+.comment-start::after {
+   content: '> ';
+}
+.deletion::after {
+   content: ' </>';
+}
+.comment-end::after {
+   content: ' </' attr(id) '> ';
+}
+.insertion::before, .deletion::before {
+   content: '<' attr(author) ', ' attr(date) '> ';
+}
+.insertion::after {
+   content: '</>';
+}
+.deletion u {
+   text-decoration: line-through;
+}
 @media only screen and (max-width: 856px) {
    html {background: inherit;}
    body {box-shadow: none;}
