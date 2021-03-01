@@ -1,27 +1,37 @@
+/**/
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
+/**/
+
 :root {
    --magnifier: 1.7;
    --gap: 3%
 }
-/*
-@import url(https://fonts.googleapis.com/css?family=Fira+Sans);
-@import url(https://fonts.googleapis.com/css?family=Cousine);
-*/
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/robotocondensed/v18/ieVl2ZhZI2eCN5jzbjEETS9weq8-19K7DQ.woff2) format('woff2');
+}
 body {
  /* font-family: Fira Sans, 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;*/
-  font-family: "Segoe UI", sans-serif !important;
+  font-family: "Fira Sans" ,"Segoe UI", sans-serif !important;
   color: #000000;
   line-height: 1.15;
 }
 h1, h2, h3, h4 {
-  font-family: "Segoe UI", sans-serif !important;
- /* font-family: Fira Sans;*/
+  font-family: "Fira Sans" ,"Segoe UI", sans-serif !important;
+ /* font-family: "Segoe UI", sans-serif !important;*/
   font-weight: normal;
   color: #43418A;
+}
+.sidebar h1, .sidebar h2, .sidebar h3 {
+  font-family: "Roboto Condensed", "Fira Sans" ,"Segoe UI", sans-serif !important;
 }
 
 .remark-slide-content {
   background-color: #FFFFFF;
-  font-size: 22pt; /* '26px' for 16:9, '22px' for 16:9; 12pt=16px */
+  font-size: 22pt; /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
 }
 .remark-slide-content h1, .remark-slide-content h2, .remark-slide-content h3 {
   margin-top: 0px;
@@ -74,6 +84,8 @@ h1, h2, h3, h4 {
 .title-slide {
   background-color: #43418A;
 }
+#slide-bib .remark-slide-number,
+#slide-fn .remark-slide-number,
 .break .remark-slide-number,
 .picsum .remark-slide-number,
 .title-slide .remark-slide-number {
@@ -383,6 +395,13 @@ ul {
    width: 100%;
    overflow-y: auto; 
 }
+/* footer identifier */
+/*
+.remark-slide-content > p:first-child { 
+   color: red;
+   margin-top: -12px;
+}
+*/
 .footer {
    position: fixed;
    left: 0;
@@ -396,7 +415,7 @@ ul {
 }
 .left-column {
    position: absolute;
-   height: 100%;
+   height: 98%;
    background-color: #F4F4F4;
    margin-left: -16px;
    margin-top: -16px;
@@ -404,6 +423,7 @@ ul {
    padding-left: 16px;
    padding-right: 16px;
   /* overflow: scroll; */
+   overflow-y: auto; 
 }
 .sidebar {
    font-size: 70%;
@@ -411,28 +431,22 @@ ul {
 .sidebar * {
    font-size: unset;
 }
-.sidebar h1, .sidebar h2 {
+.left-column h2:last-of-type, .left-column h3:last-child,
+.sidebar h1, .sidebar h2, .sidebar h3 {
    color: #ccc;
 }
+.sidebar.left-column h3,
 .sidebar.left-column h2,
 .sidebar.left-column h1 { /* .sidebar.left-column h3:last-child */
    margin: 4px -16px -8px -16px;
    padding: 4px 16px 8px 16px;
 }
-.sidebar.left-column h1:last-of-type:last-child, 
-.sidebar.left-column h2:last-of-type:last-child { /* .sidebar.left-column h3:last-child */
+.sidebar h1[id*=fg], .sidebar h2[id*=fg], .sidebar h3[id*=fg] {
+   color: brown;
+}
+.sidebar h1[id*=bg], .sidebar h2[id*=bg], .sidebar h3[id*=bg] {
    background-color: white; /* #FFFCE1;*/
    color: initial;
-  /* 
-   margin: 0px -16px -12px -16px;
-   padding: 4px 16px 12px 16px;
-  */
-}
-.sidebar.left-column h1:last-of-type {
-   color: #666;
-}
-.sidebar.left-column h2:last-child, .sidebar.left-column h1:last-child {
-   color: blue;
 }
 /*
 .left-column {
@@ -464,13 +478,41 @@ ul {
    width: 90%;
   /* height: 1em;*/
 }
+h1[id*=class-thankyou], h1[id^=-span], h2[id^=-span] {
+   display: none;
+}
+.remark-slide-number {
+   position: fixed;
+}
+.remark-slide-number .progress-bar {
+   height: 100%;
+   background-color: #187BA250;
+}
+.remark-slide-number .progress-bar-container {
+   position: inherit;
+   top: 0;
+   height: 5px;
+   display: block;
+   left: 0;
+   right: 0;
+}
+body:fullscreen .remark-backdrop,
+body:fullscreen {
+   background-image: url(https://picsum.photos/1600/900);
+   background-size: cover;
+}
+
 @media only screen {
-   .remark-fading { z-index: 9; } 
-   .remark-slide-container {transition: opacity 0.4s ease-out;opacity: 0;}
-   .remark-visible {transition: opacity 0.4s ease-out;opacity: 1;}
+   .remark-slides-area .remark-fading { z-index: 9; } 
+   .remark-slides-area .remark-slide-container {transition: opacity 0.4s ease-out;opacity: 0;}
+   .remark-slides-area .remark-visible {transition: opacity 0.4s ease-out;opacity: 1;}
+   .remark-slides-area #slide-bib .remark-slide-number,
+   .remark-slides-area #slide-fn .remark-slide-number {
+      display: none;
+   }
 }
 @page { margin: 0; }
-@media print {
+@media zzzprint {
   .remark-slide-scaler {
     width: 100% !important;
     height: 100% !important;
