@@ -60,15 +60,19 @@ h1, h2, h3, h4 {
 .remark-slide-content h4 {
     font-size: 100%;
 }
-.notable {
-  background-color: #FFFAE4;
- /* color: #43418A;*/
- /* text-shadow: 4px 4px 15px #fff;*/
+.notable, .notable .title-slide.notable {
+  background-color: #FFFDF4 !important;
+  color: #43418A;
+  text-shadow: 4px 4px 15px #fff;
+}
+.title-slide.notable {
+   color: unset;
 }
 .notable h1, .notable h2, .notable h3, .notable h4 {
+   color: red;
  /* color: #43418A; */
 }
-.inverse, .break {
+.inverse:not(.notable), .title-slide.inverse, .break {
   background-color: #2C3E50;
   color: #ffffff;
   text-shadow: 0 0 20px #333;
@@ -413,27 +417,39 @@ ul {
    letter-spacing: 3px;
    font-size: 10px;
 }
-.left-column {
+.left-column.sidebar {
    position: absolute;
+   top: 0;
+   left: 0;
    height: 98%;
-   background-color: #F4F4F4;
+   background-color: #0001;
    margin-left: -16px;
    margin-top: -16px;
-   padding-top: 16px;
-   padding-left: 16px;
+   padding-top: 32px;
+   padding-left: 32px;
    padding-right: 16px;
   /* overflow: scroll; */
-   overflow-y: auto; 
+   overflow-y: auto;
+   line-height: 1 !important; 
+   text-shadow: none;
+}
+.inverse .left-column.sidebar {
+   background-color: #FFF1;
 }
 .sidebar {
    font-size: 70%;
+   text-align: left;
 }
 .sidebar * {
    font-size: unset;
 }
 .left-column h2:last-of-type, .left-column h3:last-child,
+.sidebar h1 a, .sidebar h2 a, .sidebar h3 a,
 .sidebar h1, .sidebar h2, .sidebar h3 {
    color: #ccc;
+}
+.inverse .sidebar h1, .inverse .sidebar h2, .inverse .sidebar h3 {
+   color: #888;
 }
 .sidebar.left-column h3,
 .sidebar.left-column h2,
@@ -441,9 +457,11 @@ ul {
    margin: 4px -16px -8px -16px;
    padding: 4px 16px 8px 16px;
 }
+.sidebar h1[id*=fg] a, .sidebar h2[id*=fg] a, .sidebar h3[id*=fg] a,
 .sidebar h1[id*=fg], .sidebar h2[id*=fg], .sidebar h3[id*=fg] {
    color: brown;
 }
+.sidebar h1[id*=bg] a, .sidebar h2[id*=bg] a, .sidebar h3[id*=bg] a,
 .sidebar h1[id*=bg], .sidebar h2[id*=bg], .sidebar h3[id*=bg] {
    background-color: white; /* #FFFCE1;*/
    color: initial;
@@ -478,7 +496,7 @@ ul {
    width: 90%;
   /* height: 1em;*/
 }
-h1[id*=class-thankyou], h1[id^=-span], h2[id^=-span] {
+h1[id*=class-thankyou], .sidebar h1[id^=-zzspan], .sidebar h2[id^=-zzspan] {
    display: none;
 }
 .remark-slide-number {
@@ -496,8 +514,7 @@ h1[id*=class-thankyou], h1[id^=-span], h2[id^=-span] {
    left: 0;
    right: 0;
 }
-body:fullscreen .remark-backdrop,
-body:fullscreen {
+body:fullscreen .remark-backdrop { /* body:fullscreen */
    background-image: url(https://picsum.photos/1600/900);
    background-size: cover;
 }
