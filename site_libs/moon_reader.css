@@ -87,6 +87,17 @@ h1, h2, h3, h4 {
 }
 .title-slide {
   background-color: #43418A;
+ /* <iframe width="560" height="315" src="https://www.timeanddate.com/worldclock/fullscreen.html?n=1440" frameborder="1" allow="encrypted-media" allowfullscreen></iframe>*/
+}
+body:not(:fullscreen) .title-slide iframe {
+   display: none;
+}
+.title-slide iframe {
+   display: block;
+   position: absolute;
+   right: 0;
+   bottom: 0;
+   opacity: 0.4;
 }
 #slide-bib .remark-slide-number,
 #slide-fn .remark-slide-number,
@@ -300,9 +311,32 @@ table.dataTable {
 .break * {
   /* visibility: hidden;*/
 }
-.picsum, body:fullscreen .title-slide {
+body:fullscreen .picsum.title-slide {
+   background-image: linear-gradient(#000A, #000A),
+                     url(https://picsum.photos/1060/682);
+   background-size: cover;
+}
+.picsum:not(.title-slide) {
    background-image: url(https://picsum.photos/1060/682);
    background-size: cover;
+}
+.picsum:not(.title-slide):after, body:fullscreen .picsum.title-slide:after {
+   content: '\1F306' ' ' 'Lorem Picsum';
+   font-size: 50%;
+   display: block;
+   position: absolute;
+   bottom: 0.4em;
+   left: 0.4em;
+   opacity: 0.2;
+   text-shadow: 1px 0px 1px #000000F0,
+                1px 1px 1px #000000F0,
+                0px 1px 1px #000000F0,
+                -1px 0px 1px #000000F0,
+                0px -1px 1px #000000F0,
+               -1px -1px 1px #000000F0,
+                1px -1px 1px #000000F0,
+                -1px 1px 1px #000000F0;
+   color: #FFFFFFF0;
 }
 .content-box-blue,
 .content-box-gray,
@@ -433,6 +467,10 @@ ul {
    line-height: 1 !important; 
    text-shadow: none;
 }
+.scroll .right-column {
+   height: 646px;
+   overflow-y: auto; 
+}
 .inverse .left-column.sidebar {
    background-color: #FFF1;
 }
@@ -448,8 +486,9 @@ ul {
 .sidebar h1, .sidebar h2, .sidebar h3 {
    color: #ccc;
 }
-.inverse .sidebar h1, .inverse .sidebar h2, .inverse .sidebar h3 {
-   color: #888;
+.inverse .sidebar h1, .inverse .sidebar h2, .inverse .sidebar h3,
+.inverse .sidebar h1 a, .inverse .sidebar h2 a, .inverse .sidebar h3 a {
+   color: #999;
 }
 .sidebar.left-column h3,
 .sidebar.left-column h2,
@@ -459,6 +498,14 @@ ul {
 }
 .sidebar h1[id*=fg] a, .sidebar h2[id*=fg] a, .sidebar h3[id*=fg] a,
 .sidebar h1[id*=fg], .sidebar h2[id*=fg], .sidebar h3[id*=fg] {
+   color: indigo;
+}
+.inverse .sidebar h1[id*=fg] a, .inverse .sidebar h2[id*=fg] a, .inverse .sidebar h3[id*=fg] a,
+.inverse .sidebar h1[id*=fg], .inverse .sidebar h2[id*=fg], .inverse .sidebar h3[id*=fg] {
+   color: #FA4;
+}
+.inverse .sidebar h1[id*=bg][id*=fg] a, .inverse .sidebar h2[id*=bg][id*=fg] a, .inverse .sidebar h3[id*=bg][id*=fg] a,
+.inverse .sidebar h1[id*=bg][id*=fg], .inverse .sidebar h2[id*=bg][id*=bg], .inverse .sidebar h3[id*=bg][id*=fg] {
    color: brown;
 }
 .sidebar h1[id*=bg] a, .sidebar h2[id*=bg] a, .sidebar h3[id*=bg] a {
@@ -544,10 +591,17 @@ body:fullscreen .remark-backdrop { /* body:fullscreen */
   }
 
 }
-@media only screen and (max-width: 999px) and (min-width: 100vw) {
+@media only screen and (min-width: 160vh) {
+  /* background-image: url(https://picsum.photos/768/1090);*/
    .remark-slide-container {
-     /* background-image: url(https://picsum.photos/768/1090);*/
-      background-image: linear-gradient(black, white, white, black);
+      background-image: linear-gradient(to right, indigo, white, indigo);
+      background-repeat: no-repeat;
+      background-size: cover;
+   }
+}
+@media only screen and (max-width: 150vh) {
+   .remark-slide-container:fullscreen {
+      background-image: linear-gradient(to bottom, indigo, white, indigo);
       background-repeat: no-repeat;
       background-size: cover;
    }
