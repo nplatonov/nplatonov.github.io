@@ -1,37 +1,45 @@
-/**/
+/*
 @import url(https://fonts.googleapis.com/css?family=Fira+Sans);
+*/
+/*
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
-/**/
-
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+*/
 :root {
    --magnifier: 1.7;
-   --gap: 3%
+   --gap: 3%;
+   --sidebar: 23%;
+   --sidebar-margin: 2%;
+   --pointsize: 22pt;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
+
 }
+/*
 @font-face {
   font-family: 'Roboto Condensed';
   font-style: normal;
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/robotocondensed/v18/ieVl2ZhZI2eCN5jzbjEETS9weq8-19K7DQ.woff2) format('woff2');
 }
+*/
 body {
  /* font-family: Fira Sans, 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;*/
-  font-family: "Fira Sans" ,"Segoe UI", sans-serif !important;
+  font-family: "Roboto", "z Roboto Condensed" ,"z Fira Sans" ,"z Segoe UI", serif !important;
   color: #000000;
   line-height: 1.15;
 }
 h1, h2, h3, h4 {
-  font-family: "Fira Sans" ,"Segoe UI", sans-serif !important;
+  font-family: "Roboto Condensed" ,"z Segoe UI", serif !important;
  /* font-family: "Segoe UI", sans-serif !important;*/
   font-weight: normal;
   color: #43418A;
 }
 .sidebar h1, .sidebar h2, .sidebar h3 {
-  font-family: "Roboto Condensed", "Fira Sans" ,"Segoe UI", sans-serif !important;
+  font-family: "Roboto Condensed", "z Fira Sans" ,"z Segoe UI", serif !important;
 }
 
 .remark-slide-content {
   background-color: #FFFFFF;
-  font-size: 22pt; /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
+  font-size: var(--pointsize);
 }
 .remark-slide-content h1, .remark-slide-content h2, .remark-slide-content h3 {
   margin-top: 0px;
@@ -52,13 +60,13 @@ h1, h2, h3, h4 {
     font-size: 190%;
 }
 .remark-slide-content h2 {
-    font-size: 150%;
+    font-size: 160%;
 }
 .remark-slide-content h3 {
-    font-size: 115%;
+    font-size: 135%;
 }
 .remark-slide-content h4 {
-    font-size: 100%;
+    font-size: 115%;
 }
 .notable, .notable .title-slide.notable {
   background-color: #FFFDF4 !important;
@@ -296,6 +304,12 @@ h2 .header{
 .right-column {
    padding-top: initial;
 }
+.sidebar {
+   width: calc(var(--sidebar) - var(--sidebar-margin));
+}
+.sidebar + .right-column {
+   width: calc(100% - var(--sidebar) - var(--sidebar-margin));
+}
 a, a > code {
   color: #418A43;
   text-decoration: none;
@@ -493,8 +507,8 @@ ul {
 .sidebar.left-column h3,
 .sidebar.left-column h2,
 .sidebar.left-column h1 { /* .sidebar.left-column h3:last-child */
-   margin: 4px -16px -8px -16px;
-   padding: 4px 16px 8px 16px;
+   margin: 4px -16px -6px -16px;
+   padding: 4px 16px 6px 16px;
 }
 .sidebar h1[id*=fg] a, .sidebar h2[id*=fg] a, .sidebar h3[id*=fg] a,
 .sidebar h1[id*=fg], .sidebar h2[id*=fg], .sidebar h3[id*=fg] {
@@ -553,7 +567,7 @@ h1[id*=class-thankyou], .sidebar h1[id^=-zzspan], .sidebar h2[id^=-zzspan] {
 }
 .remark-slide-number .progress-bar {
    height: 100%;
-   background-color: #187BA250;
+   background-color: #A27B18A0;
 }
 .remark-slide-number .progress-bar-container {
    position: inherit;
@@ -567,7 +581,9 @@ body:fullscreen .remark-backdrop { /* body:fullscreen */
    background-image: url(https://picsum.photos/1600/900);
    background-size: cover;
 }
-
+.remark-notes-area .remark-bottom-area .remark-notes-preview-area {
+   opacity: 0.4;
+}
 @media only screen {
    .remark-slides-area .remark-fading { z-index: 9; } 
    .remark-slides-area .remark-slide-container {transition: opacity 0.4s ease-out;opacity: 0;}
@@ -594,7 +610,7 @@ body:fullscreen .remark-backdrop { /* body:fullscreen */
 @media only screen and (min-width: 160vh) {
   /* background-image: url(https://picsum.photos/768/1090);*/
    .remark-slide-container {
-      background-image: linear-gradient(to right, indigo, white, indigo);
+      background-image: linear-gradient(to right, indigo, white, white, indigo);
       background-repeat: no-repeat;
       background-size: cover;
    }
