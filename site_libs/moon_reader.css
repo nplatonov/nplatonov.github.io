@@ -37,6 +37,12 @@ h1, h2, h3, h4 {
   font-weight: normal;
   color: #538;
 }
+.condensed {
+  font-family: "Roboto Condensed", serif;
+}
+.regular {
+  font-family: "Roboto", serif;
+}
 .sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4 {
   color: unset;
 }
@@ -493,10 +499,10 @@ iframe.ursa-widgetize {
    color: #777;
 }
 */
-img[width="1030"] {
+img[width="1330"] {
    width: unset;
   /* max-width: max(600px, 100%);*/
-  /* height: auto;*/
+   height: auto;
 }
 img[zzzwidth$="%"] {
    height: auto;
@@ -510,6 +516,14 @@ img[image], img[bound] {
    object-fit: scale-down;
   /* scale: calc(0.6 * var(--magnifier));*/
 }
+img[aspect] {
+  /* max-height: 100%;*/
+   height: auto;
+  /* vertical-alignment: middle;*/
+   flex: 0 0 auto;
+   object-fit: scale-down;
+}
+
 p > img {
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
 }
@@ -593,6 +607,9 @@ ul {
   /* padding: 4px 16px 6px 8px;*/
    padding: 0.15em 0.35em 0.15em 0.3em;
 }
+.sidebar.left-column h2 {margin-left: -18px ;}
+.sidebar.left-column h1 {margin-left: -22px ;}
+
 .sidebar h1[id*=fg] a, .sidebar h2[id*=fg] a, .sidebar h3[id*=fg] a,
 .sidebar h1[id*=fg], .sidebar h2[id*=fg], .sidebar h3[id*=fg] {
    opacity: 0.8;
