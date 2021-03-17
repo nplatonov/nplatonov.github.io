@@ -11,7 +11,11 @@
    --sidebar: 23%;
    --sidebar-margin: 2%;
    --pointsize: 22pt;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
+   --inverse-bg: #2C3E50;
 
+}
+.remark-slide { /* devel */
+  /* opacity: 0.2; */
 }
 /*
 @font-face {
@@ -31,7 +35,16 @@ h1, h2, h3, h4 {
   font-family: "Roboto Condensed" ,"z Segoe UI", serif !important;
  /* font-family: "Segoe UI", sans-serif !important;*/
   font-weight: normal;
-  color: #43418A;
+  color: #538;
+}
+.sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4 {
+  color: unset;
+}
+.sidebar.left-column h2:last-of-type, .sidebar.left-column h3:last-child {
+   color: unset;
+}
+.inverse h1, .inverse h2, .inverse h3, .inverse h4 {
+  color: #ff4;
 }
 .sidebar h1, .sidebar h2, .sidebar h3 {
   font-family: "Roboto Condensed", "z Fira Sans" ,"z Segoe UI", serif !important;
@@ -41,14 +54,19 @@ h1, h2, h3, h4 {
   background-color: #FFFFFF;
   font-size: var(--pointsize);
 }
-.remark-slide-content h1, .remark-slide-content h2, .remark-slide-content h3 {
-  margin-top: 0px;
-  margin-bottom: 10px;
+.remark-slide-content h1,
+.remark-slide-content h2,
+.remark-slide-content h3,
+.remark-slide-content h4 {
+  margin-top: 0em;
+  margin-bottom: 0.1em;
 }
+/*
 .remark-slide-content h4 {
   margin-top: 10px;
   margin-bottom: 0px;
 }
+*/
 
 .title-slide h1, .title-slide h2, .title-slide h3 {
   margin-top: 60px;
@@ -70,14 +88,14 @@ h1, h2, h3, h4 {
 }
 .notable, .notable .title-slide.notable {
   background-color: #FFFDF4 !important;
-  color: #43418A;
+ /* color: #43418A;*/
   text-shadow: 4px 4px 15px #fff;
 }
 .title-slide.notable {
    color: unset;
 }
 .notable h1, .notable h2, .notable h3, .notable h4 {
-   color: red;
+ /* color: red; */
  /* color: #43418A; */
 }
 .inverse:not(.notable), .title-slide.inverse, .break {
@@ -94,7 +112,7 @@ h1, h2, h3, h4 {
   color: #FFFFFF;
 }
 .title-slide {
-  background-color: #43418A;
+  background-color: #235; /* #43418A; */
  /* <iframe width="560" height="315" src="https://www.timeanddate.com/worldclock/fullscreen.html?n=1440" frameborder="1" allow="encrypted-media" allowfullscreen></iframe>*/
 }
 body:not(:fullscreen) .title-slide iframe {
@@ -128,13 +146,20 @@ body:not(:fullscreen) .title-slide iframe {
 .smallest { font-size: 50% }
 
 .remark-slide-number {
-  font-size: 50%;
-  margin-bottom: -10px;
-  margin-right: -10px;
- /* color: #FFFFFF; */ /* white */
-  opacity: 0.3; /* default: 0.5 */
+   bottom: 0px;
+   font-size: 45%;
+   margin-right: -18px;
+  /* color: #FFFFFF; */ /* white */
+   opacity: 0.3; /* default: 0.5 */
 }
-
+.remark-slide-number:hover {
+   font-size: 200%;
+   opacity: 1;
+   background-color: #FFF8;
+}
+.remark-slide-number:hover::before {
+   content: 'Slide ';
+}
 /* .remark-slide-content > h1, h2, h3:first-of-type {
   margin-top: 80px;
   margin-top: 80px;
@@ -176,8 +201,9 @@ strong{color: unset;}
 }
 
 caption, p.caption {
+  font-family: "Roboto Condensed";
   font-size: 90%;
-  color: #2F9F4F;
+  color: #274;
  /* margin-top: calc(0.1em * var(--magnifier));*/
 }
 /*
@@ -310,9 +336,15 @@ h2 .header{
 .sidebar + .right-column {
    width: calc(100% - var(--sidebar) - var(--sidebar-margin));
 }
-a, a > code {
-  color: #418A43;
-  text-decoration: none;
+a, a:visited, a > code {
+   color: #358;
+   text-decoration: none;
+}
+.inverse a, .inverse a:visited {
+   color: #bcf;
+}
+a:hover {
+   opacity: 0.8;
 }
 table.dataTable {
    font-size: 70%;
@@ -330,12 +362,43 @@ body:fullscreen .picsum.title-slide {
                      url(https://picsum.photos/1060/682);
    background-size: cover;
 }
-.picsum:not(.title-slide) {
-   background-image: url(https://picsum.photos/1060/682);
+body:fullscreen .giphy.title-slide {
+   background-image: linear-gradient(#000A, #000A),
+                     url(https://media.giphy.com/media/l4hLPzGuhO9FYXQd2/giphy.gif);
    background-size: cover;
+}
+.picsum:not(.title-slide):not(.inverse) {
+   background-image: linear-gradient(#FFFB, #FFFB),
+                     url(https://picsum.photos/1060/682);
+   background-size: cover;
+
+}
+.picsum:not(.title-slide).inverse {
+   background-image: linear-gradient(#000A, #000A),
+                     url(https://picsum.photos/1060/682);
+   background-size: cover;
+
 }
 .picsum:not(.title-slide):after, body:fullscreen .picsum.title-slide:after {
    content: '\1F306' ' ' 'Lorem Picsum';
+   font-size: 50%;
+   display: block;
+   position: absolute;
+   bottom: 0.4em;
+   left: 0.4em;
+   opacity: 0.2;
+   text-shadow: 1px 0px 1px #000000F0,
+                1px 1px 1px #000000F0,
+                0px 1px 1px #000000F0,
+                -1px 0px 1px #000000F0,
+                0px -1px 1px #000000F0,
+               -1px -1px 1px #000000F0,
+                1px -1px 1px #000000F0,
+                -1px 1px 1px #000000F0;
+   color: #FFFFFFF0;
+}
+.giphy:not(.title-slide):after, body:fullscreen .giphy.title-slide:after {
+   content: '\1F306' ' ' 'via GIPHY';
    font-size: 50%;
    display: block;
    position: absolute;
@@ -392,7 +455,7 @@ body:fullscreen .picsum.title-slide {
    -moz-transform-origin: 0 0;
    max-width: calc(100% / var(--magnifier));
 }
-.html-widget {
+.html-widget:not(.datatables) {
    border: 1px solid red;
 }
 .html-widget.widgetframe iframe {
@@ -430,13 +493,24 @@ iframe.ursa-widgetize {
    color: #777;
 }
 */
-img[width="1406"] {
+img[width="1030"] {
    width: unset;
+  /* max-width: max(600px, 100%);*/
+  /* height: auto;*/
 }
-img[width$="%"] {
+img[zzzwidth$="%"] {
    height: auto;
 }
-p img {
+img[image], img[bound] {
+   max-width: 100%;
+  /* height: auto;*/
+   max-height: 100%; /*calc(100% / var(--magnifier));*/
+   width: 100%;
+   flex: 0 0 auto;
+   object-fit: scale-down;
+  /* scale: calc(0.6 * var(--magnifier));*/
+}
+p > img {
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
 }
 ul {
@@ -470,7 +544,9 @@ ul {
    top: 0;
    left: 0;
    height: 98%;
-   background-color: #0001;
+  /* background-image: linear-gradient(to right, #0000, #0000, #0000000A);*/
+   background-image: linear-gradient(to right, #ff35, #fff0); /* #0254 */
+  /* background-color: #0001;*/
    margin-left: -16px;
    margin-top: -16px;
    padding-top: 32px;
@@ -480,13 +556,14 @@ ul {
    overflow-y: auto;
    line-height: 1 !important; 
    text-shadow: none;
+  /* text-align: justify;*/
+}
+.inverse .left-column.sidebar {
+   background-image: linear-gradient(to right, #2589, #fff0);
 }
 .scroll .right-column {
    height: 646px;
    overflow-y: auto; 
-}
-.inverse .left-column.sidebar {
-   background-color: #FFF1;
 }
 .sidebar {
    font-size: 70%;
@@ -498,7 +575,11 @@ ul {
 .left-column h2:last-of-type, .left-column h3:last-child,
 .sidebar h1 a, .sidebar h2 a, .sidebar h3 a,
 .sidebar h1, .sidebar h2, .sidebar h3 {
-   color: #ccc;
+   opacity: 0.5;
+}
+.sidebar h1 a:hover, .sidebar h2 a:hover, .sidebar h3 a:hover {
+   color: #444;
+   opacity: 1;
 }
 .inverse .sidebar h1, .inverse .sidebar h2, .inverse .sidebar h3,
 .inverse .sidebar h1 a, .inverse .sidebar h2 a, .inverse .sidebar h3 a {
@@ -507,28 +588,48 @@ ul {
 .sidebar.left-column h3,
 .sidebar.left-column h2,
 .sidebar.left-column h1 { /* .sidebar.left-column h3:last-child */
+   border-left: 0.15em solid transparent;
    margin: 4px -16px -6px -16px;
-   padding: 4px 16px 6px 16px;
+  /* padding: 4px 16px 6px 8px;*/
+   padding: 0.15em 0.35em 0.15em 0.3em;
 }
 .sidebar h1[id*=fg] a, .sidebar h2[id*=fg] a, .sidebar h3[id*=fg] a,
 .sidebar h1[id*=fg], .sidebar h2[id*=fg], .sidebar h3[id*=fg] {
-   color: indigo;
+   opacity: 0.8;
+   color: black; /* indigo */
 }
 .inverse .sidebar h1[id*=fg] a, .inverse .sidebar h2[id*=fg] a, .inverse .sidebar h3[id*=fg] a,
 .inverse .sidebar h1[id*=fg], .inverse .sidebar h2[id*=fg], .inverse .sidebar h3[id*=fg] {
-   color: #FA4;
+   color: white; /*#fb7;*/
 }
 .inverse .sidebar h1[id*=bg][id*=fg] a, .inverse .sidebar h2[id*=bg][id*=fg] a, .inverse .sidebar h3[id*=bg][id*=fg] a,
 .inverse .sidebar h1[id*=bg][id*=fg], .inverse .sidebar h2[id*=bg][id*=bg], .inverse .sidebar h3[id*=bg][id*=fg] {
-   color: brown;
+   color: #eee;
 }
 .sidebar h1[id*=bg] a, .sidebar h2[id*=bg] a, .sidebar h3[id*=bg] a {
-   color: inherit;
+   opacity: 1.0;
 }
 .sidebar h1[id*=bg], .sidebar h2[id*=bg], .sidebar h3[id*=bg] {
-   background-color: white; /* #FFFCE1;*/
-   color: initial;
+   background-color: #fffa; /* white #FFFCE1;*/
+   border-left-color: #5386;
+   opacity: 1.0;
 }
+.inverse .sidebar h1[id*=bg], .inverse .sidebar h2[id*=bg], .inverse .sidebar h3[id*=bg] {
+   background-color: var(--inverse-bg); /* white #FFFCE1;*/
+   border-left-color: #8836;
+}
+/*
+.sidebar h1[id*="fg"]:before {
+   content: '\23F7';
+   position: absolute;
+   left: 0.2em;
+}
+.sidebar h1[id*="bg"]:before, .sidebar h2[id*="bg"]:before, .sidebar h3[id*="bg"]:before {
+   content: '\23F5';
+   position: absolute;
+   left: 0.2em;
+}
+*/
 /*
 .left-column {
    background-color: #DFD;
@@ -577,12 +678,175 @@ h1[id*=class-thankyou], .sidebar h1[id^=-zzspan], .sidebar h2[id^=-zzspan] {
    left: 0;
    right: 0;
 }
+.remark-backdrop {
+   background-color: #235;
+}
 body:fullscreen .remark-backdrop { /* body:fullscreen */
-   background-image: url(https://picsum.photos/1600/900);
+   background-image: linear-gradient(#000A,#000A),
+                     url(https://picsum.photos/1600/900);
    background-size: cover;
+}
+.remark-backdrop::after {
+   display: inline;
+   margin-left: 3em;
+   margin-right: 1em;
+   margin-top: 4em;
+   position: absolute;
+   white-space: break-spaces;
+   vertical-align: middle;
+  /* text-align: center;*/
+   content: 'Nikita Platonov';
+   font-size: min(7vh, 9vw);
+   color: #FFFFFFF0;
+   text-shadow: 0.05em 0px 0.05em #000000F0,
+                0.05em 0.05em 0.05em #000000F0,
+                0px 0.05em 0.05em #000000F0,
+                -0.05em 0px 0.05em #000000F0,
+                0px -0.05em 0.05em #000000F0,
+               -0.05em -0.05em 0.05em #000000F0,
+                0.05em -0.05em 0.05em #000000F0,
+                -0.05em 0.05em 0.05em #000000F0;
 }
 .remark-notes-area .remark-bottom-area .remark-notes-preview-area {
    opacity: 0.4;
+}
+.metadata p {
+   margin-top: 0.1em;
+   margin-bottom: 0.1em;
+}
+.metadata .title, .metadata .subtitle, .metadata .author, .metadata .institute, .metadata.date {
+  /* font-family: Roboto Condensed;*/
+   display: block;
+}
+.metadata .title {
+   font-size: 160%;
+   margin-top: 0.8em;
+   margin-bottom: 1.2em;
+   line-height: 1.1;
+}
+.metadata .subtitle {
+   font-size: 120%;
+   margin-top: -0.5em;
+   margin-bottom: 1.2em;
+}
+.metadata .author {
+   font-size: 120%;
+   margin-top: 0.5em;
+}
+.metadata .institute {
+   font-size: 90%;
+   margin-top: 0em;
+   margin-left: 2em;
+}
+.metadata .meeting {
+   font-size: 90%;
+}
+.metadata .location {
+   font-size: 90%;
+}
+.metadata .date {
+   font-size: 90%;
+}
+.metadata .advance {
+   margin-top: 2em;
+}
+.remark-help {
+   background-image: linear-gradient(#000A,#000A);
+}
+.remark-help .remark-help-content {
+   left: 45%;
+}
+div > ol {
+   margin-top: unset;
+   margin-bottom: unset;
+}
+ol li {
+   break-inside: avoid;
+}
+sup {
+   font-size: 55%;
+}
+pre {
+   margin-top: 0.1em;
+   margin-bottom: 0.5em;
+   border: 1px solid #2383;
+   border-radius: 5px;
+}
+code.remark-code {
+   padding: 0.2em;
+}
+code.remark-code:not(.hljs) {
+   display: grid;
+}
+.remark-code {
+   padding: 0.01em;
+}
+.remark-code-line:first-of-type:empty {
+  /* background-color: orange; */
+   display: none;
+}
+.xe-scribble__tools {
+   opacity: 0.3;
+   top: unset;
+   bottom: 22px;
+   right: 6px !important;
+}
+.xe-scribble__tools.minimized {
+   opacity: 0;
+}
+.zzz-remark-slide-container::after {
+   color: orange;
+   content: "Lorem ipsum full-screen";
+   position: absolute;
+   right: 0;
+   top: 0;
+}
+.zzz-remark-slide-container::after {
+   color: indigo;
+   content: "ABC DEF full-screen";
+   position: absolute;
+   left: 0;
+   top: 0;
+}
+@media only screen and (min-width: 156vh) {
+   .remark-slide {
+     /* opacity: 0.2;*/
+   }
+   .devel-remark-slide-container:after {
+      transform: rotate(180deg);
+      writing-mode: vertical-lr;
+      position: absolute;
+      width: 600px;
+      bottom: 0.5em;
+      right: calc(50% - 1.2em - (14 / 9) * 50vh);
+   }
+   .remark-slides-area:after {
+      border: 1px solid blue !important;
+      right: unset !important;
+      transform: rotate(180deg);
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      text-align: left !important;
+      height: calc(100vh - 0.4em);
+      width: 1em;
+      margin-top: 0em !important;
+      margin-bottom: 0em !important;
+     /* padding-left: 2em;*/
+     /* margin-left: calc(50% - 1.1% - (14 / 9) * 50vh) !important;*/
+      margin-left: calc(50% + 0.1em + (14 / 9) * 50vh) !important;
+      direction: rtl;
+   }
+   .devel-remark-slides-area:after {
+      transform: rotate(180deg);
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: rtl;
+      position: absolute;
+      bottom: 0.5em !important;
+      right: 0.5em !important;
+      width: 100% !important;
+      height: 100% !important;
+   }
 }
 @media only screen {
    .remark-slides-area .remark-fading { z-index: 9; } 
@@ -591,6 +855,31 @@ body:fullscreen .remark-backdrop { /* body:fullscreen */
    .remark-slides-area #slide-bib .remark-slide-number,
    .remark-slides-area #slide-fn .remark-slide-number {
       display: none;
+   }
+   .remark-slides-area:fullscreen:after {
+      content: '' !important;
+   }
+   .zzz-remark-slides-area:after {
+      border: 1px solid red;
+      position: absolute;
+      right: 0;
+      font-size: min(1.5vh, 1vw);
+      content: "Press 'f' key for full-screen slideshow";
+      color: #888;
+      opacity: 0.91;
+      margin-top: calc(32.2vw + 1 * 50vh) ;
+      margin-right: 0.3em;
+   }
+   .zzz-remark-slide-container::after {
+      font-size: min(1.5vh, 1vw);
+      content: 'Nikita Platonov';
+      color: #888;
+      opacity: 0.91;
+      position: absolute;
+      top: calc(32.2vw + 1 * 50vh) ;
+      right: 0.3em;
+     /* bottom: 0.5em;*/
+     /* right: calc(50% - 1.2em - (14 / 9) * 50vh);*/
    }
 }
 @page { margin: 0; }
@@ -607,7 +896,7 @@ body:fullscreen .remark-backdrop { /* body:fullscreen */
   }
 
 }
-@media only screen and (min-width: 160vh) {
+@media only screen and (min-width: 1600vh) {
   /* background-image: url(https://picsum.photos/768/1090);*/
    .remark-slide-container {
       background-image: linear-gradient(to right, indigo, white, white, indigo);
@@ -615,14 +904,13 @@ body:fullscreen .remark-backdrop { /* body:fullscreen */
       background-size: cover;
    }
 }
-@media only screen and (max-width: 150vh) {
+@media only screen and (max-width: 1500vh) {
    .remark-slide-container:fullscreen {
       background-image: linear-gradient(to bottom, indigo, white, indigo);
       background-repeat: no-repeat;
       background-size: cover;
    }
 }
-
 @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge */
    .html-widget {
       max-width: 100% !important;
