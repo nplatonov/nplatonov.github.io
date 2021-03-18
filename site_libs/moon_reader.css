@@ -35,15 +35,32 @@ h1, h2, h3, h4 {
   font-family: "Roboto Condensed" ,"z Segoe UI", serif !important;
  /* font-family: "Segoe UI", sans-serif !important;*/
   font-weight: normal;
+  line-height: 1;
 }
 h1:hover, h2:hover, h3:hover, h4:hover {
-  color: #538;
+   color: #538;
 }
 .condensed {
-  font-family: "Roboto Condensed", serif;
+   font-family: "Roboto Condensed", serif;
 }
 .regular {
-  font-family: "Roboto", serif;
+   font-family: "Roboto", serif;
+}
+.panel-tabs {
+   font-family: "Roboto Condensed", serif;
+}
+.panelset .panel-tabs .panel-tab {
+   min-height: 1em;
+   padding: 0.2em 1em;
+}
+.panelset .panel-tabs {
+   margin-bottom: 0.4em;
+   border-left: 1px white solid;
+  /* border-left: 0px solid red;*/
+   box-shadow: none;
+}
+.inverse .panelset .panel-tabs {
+   border-left: 5px yellow solid;
 }
 .sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4 {
    color: unset;
@@ -57,7 +74,7 @@ h1:hover, h2:hover, h3:hover, h4:hover {
 .inverse h1, .inverse h2, .inverse h3, .inverse h4 {
   color: #ff4;
 }
-.sidebar h1, .sidebar h2, .sidebar h3 {
+.sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4 {
   font-family: "Roboto Condensed", "z Fira Sans" ,"z Segoe UI", serif !important;
 }
 
@@ -70,7 +87,7 @@ h1:hover, h2:hover, h3:hover, h4:hover {
 .remark-slide-content h3,
 .remark-slide-content h4 {
   margin-top: 0em;
-  margin-bottom: 0.1em;
+  margin-bottom: 0.3em;
 }
 /*
 .remark-slide-content h4 {
@@ -607,19 +624,24 @@ ul {
 .sidebar * {
    font-size: unset;
 }
+.sidebar h4 a {
+   color: unset;
+}
+
 .left-column h2:last-of-type, .left-column h3:last-child,
-.sidebar h1 a, .sidebar h2 a, .sidebar h3 a,
-.sidebar h1, .sidebar h2, .sidebar h3 {
+.sidebar h1 a, .sidebar h2 a, .sidebar h3 a, .sidebar h4 a,
+.sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4 {
    opacity: 0.5;
 }
-.sidebar h1 a:hover, .sidebar h2 a:hover, .sidebar h3 a:hover {
+.sidebar h1 a:hover, .sidebar h2 a:hover, .sidebar h3 a:hover, .sidebar h4 a:hover {
    color: #444;
    opacity: 1;
 }
-.inverse .sidebar h1, .inverse .sidebar h2, .inverse .sidebar h3,
-.inverse .sidebar h1 a, .inverse .sidebar h2 a, .inverse .sidebar h3 a {
+.inverse .sidebar h1, .inverse .sidebar h2, .inverse .sidebar h3, .inverse .sidebar h4,
+.inverse .sidebar h1 a, .inverse .sidebar h2 a, .inverse .sidebar h3 a, .inverse .sidebar h4 a {
    color: #999;
 }
+.sidebar.left-column h4,
 .sidebar.left-column h3,
 .sidebar.left-column h2,
 .sidebar.left-column h1 { /* .sidebar.left-column h3:last-child */
@@ -634,29 +656,30 @@ ul {
 */
 .sidebar.left-column h2 {padding-left: 10px ;}
 .sidebar.left-column h3 {padding-left: 10px ;}
+.sidebar.left-column h4 {padding-left: 30px ;}
 
-.sidebar h1[id*=fg] a, .sidebar h2[id*=fg] a, .sidebar h3[id*=fg] a,
-.sidebar h1[id*=fg], .sidebar h2[id*=fg], .sidebar h3[id*=fg] {
+.sidebar h1[id*=fg] a, .sidebar h2[id*=fg] a, .sidebar h3[id*=fg] a, .sidebar h4[id*=fg] a,
+.sidebar h1[id*=fg], .sidebar h2[id*=fg], .sidebar h3[id*=fg], .sidebar h4[id*=fg] {
    opacity: 0.8;
    color: black; /* indigo */
 }
-.inverse .sidebar h1[id*=fg] a, .inverse .sidebar h2[id*=fg] a, .inverse .sidebar h3[id*=fg] a,
-.inverse .sidebar h1[id*=fg], .inverse .sidebar h2[id*=fg], .inverse .sidebar h3[id*=fg] {
+.inverse .sidebar h1[id*=fg] a, .inverse .sidebar h2[id*=fg] a, .inverse .sidebar h3[id*=fg] a, .inverse .sidebar h4[id*=fg] a,
+.inverse .sidebar h1[id*=fg], .inverse .sidebar h2[id*=fg], .inverse .sidebar h3[id*=fg], .inverse .sidebar h4[id*=fg] {
    color: white; /*#fb7;*/
 }
-.inverse .sidebar h1[id*=bg][id*=fg] a, .inverse .sidebar h2[id*=bg][id*=fg] a, .inverse .sidebar h3[id*=bg][id*=fg] a,
-.inverse .sidebar h1[id*=bg][id*=fg], .inverse .sidebar h2[id*=bg][id*=bg], .inverse .sidebar h3[id*=bg][id*=fg] {
+.inverse .sidebar h1[id*=bg][id*=fg] a, .inverse .sidebar h2[id*=bg][id*=fg] a, .inverse .sidebar h3[id*=bg][id*=fg] a, .inverse .sidebar h4[id*=bg][id*=fg] a,
+.inverse .sidebar h1[id*=bg][id*=fg], .inverse .sidebar h2[id*=bg][id*=bg], .inverse .sidebar h3[id*=bg][id*=fg], .inverse .sidebar h4[id*=bg][id*=fg] {
    color: #eee;
 }
-.sidebar h1[id*=bg] a, .sidebar h2[id*=bg] a, .sidebar h3[id*=bg] a {
+.sidebar h1[id*=bg] a, .sidebar h2[id*=bg] a, .sidebar h3[id*=bg] a, .sidebar h4[id*=bg] a {
    opacity: 1.0;
 }
-.sidebar h1[id*=bg], .sidebar h2[id*=bg], .sidebar h3[id*=bg] {
+.sidebar h1[id*=bg], .sidebar h2[id*=bg], .sidebar h3[id*=bg], .sidebar h4[id*=bg] {
    background-color: #fffc; /* white #FFFCE1;*/
    border-left-color: #5386;
    opacity: 1.0;
 }
-.inverse .sidebar h1[id*=bg], .inverse .sidebar h2[id*=bg], .inverse .sidebar h3[id*=bg] {
+.inverse .sidebar h1[id*=bg], .inverse .sidebar h2[id*=bg], .inverse .sidebar h3[id*=bg], .inverse .sidebar h4[id*=bg] {
    background-color: var(--inverse-bg); /* white #FFFCE1;*/
    border-left-color: #8836;
 }
@@ -855,9 +878,9 @@ code.remark-code:not(.hljs) {
    position: absolute;
    left: 8px;
    bottom: 8px;
-   width: 100px;
-   max-width: 100px;
-   overflow-x: hidden;
+   width: var(--sidebar);
+  /* max-width: 100px;*/
+  /* overflow-x: hidden;*/
    z-index: 1;
 }
 @media only screen and (min-width: 156vh) {
