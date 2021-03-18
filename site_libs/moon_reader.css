@@ -35,6 +35,8 @@ h1, h2, h3, h4 {
   font-family: "Roboto Condensed" ,"z Segoe UI", serif !important;
  /* font-family: "Segoe UI", sans-serif !important;*/
   font-weight: normal;
+}
+h1:hover, h2:hover, h3:hover, h4:hover {
   color: #538;
 }
 .condensed {
@@ -45,6 +47,9 @@ h1, h2, h3, h4 {
 }
 .sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4 {
    color: unset;
+}
+.sidebar h1 a, .sidebar h2 a, .sidebar h3 a, .sidebar h4 a {
+   text-decoration: none !important;
 }
 .sidebar.left-column h2:last-of-type, .sidebar.left-column h3:last-child {
   /* color: unset;*/
@@ -347,6 +352,10 @@ a, a:visited, a > code {
    color: #358;
    text-decoration: none;
 }
+a:hover {
+   color: initial;
+   text-decoration: underline dotted;
+}
 .inverse a, .inverse a:visited {
    color: #bcf;
 }
@@ -500,7 +509,7 @@ iframe.ursa-widgetize {
    color: #777;
 }
 */
-img[width="1330"] {
+img[width="1330"]:not([image]):not([bound]) {
    width: unset;
   /* max-width: max(600px, 100%);*/
    height: auto;
@@ -553,6 +562,9 @@ ul {
    text-transform: uppercase;
    letter-spacing: 3px;
    font-size: 10px;
+}
+.left-column {
+   color: unset;
 }
 .left-column.sidebar {
    position: absolute;
@@ -837,6 +849,16 @@ code.remark-code:not(.hljs) {
    position: absolute;
    left: 0;
    top: 0;
+}
+.banner-bottom {
+   display: block;
+   position: absolute;
+   left: 8px;
+   bottom: 8px;
+   width: 100px;
+   max-width: 100px;
+   overflow-x: hidden;
+   z-index: 1;
 }
 @media only screen and (min-width: 156vh) {
    .remark-slide {
