@@ -412,7 +412,8 @@ body:fullscreen .giphy.title-slide {
    background-size: cover;
 
 }
-.picsum:not(.title-slide):after, body:fullscreen .picsum.title-slide:after {
+.picsum:not(.title-slide):after,
+body:fullscreen .picsum.title-slide:after {
    content: '\1F306' ' ' 'Lorem Picsum';
    font-size: 50%;
    display: block;
@@ -751,6 +752,24 @@ body:fullscreen .remark-backdrop { /* body:fullscreen */
    background-image: linear-gradient(#000A,#000A),
                      url(https://picsum.photos/1600/900);
    background-size: cover;
+}
+body:fullscreen .remark-backdrop:before {
+   content: '\1F306' ' ' 'Lorem Picsum';
+   font-size: min(2.1vh, 2.7vw);
+   display: block;
+   position: absolute;
+   bottom: 0.4em;
+   left: 0.4em;
+   opacity: 0.2;
+   text-shadow: 1px 0px 1px #000000F0,
+                1px 1px 1px #000000F0,
+                0px 1px 1px #000000F0,
+                -1px 0px 1px #000000F0,
+                0px -1px 1px #000000F0,
+               -1px -1px 1px #000000F0,
+                1px -1px 1px #000000F0,
+                -1px 1px 1px #000000F0;
+   color: #FFFFFFF0;
 }
 .remark-backdrop::after {
    display: inline;
