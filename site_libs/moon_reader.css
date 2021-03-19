@@ -893,7 +893,7 @@ code.remark-code:not(.hljs) {
    left: 0;
    top: 0;
 }
-.banner-bottom {
+.banner, .banner-bottom {
    display: block;
    position: absolute;
    left: 8px;
@@ -926,6 +926,11 @@ code.remark-code:not(.hljs) {
 .banner-top ~ .right-column {
    border: 1px solid cyan !important;
 }
+.banner img, .banner-bottom img {
+  box-shadow: none;
+  z-index: 98;
+}
+
 .inline img {
    height: 1.2em !important; 
    display: inline-block;
