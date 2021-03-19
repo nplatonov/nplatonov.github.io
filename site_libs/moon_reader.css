@@ -529,7 +529,7 @@ iframe.ursa-widgetize {
 img[width="1330"]:not([image]):not([bound]) {
    width: unset;
   /* max-width: max(600px, 100%);*/
-   height: auto;
+  /* height: auto;*/
 }
 img[zzzwidth$="%"] {
    height: auto;
@@ -675,7 +675,8 @@ ul {
    opacity: 1.0;
 }
 .sidebar h1[id*=bg], .sidebar h2[id*=bg], .sidebar h3[id*=bg], .sidebar h4[id*=bg] {
-   background-color: #fffc; /* white #FFFCE1;*/
+  /* background-color: #fffc;*/ /* white #FFFCE1;*/
+   background-image: linear-gradient(to right, #fffd, #fffa, #f0f0); /* white #FFFCE1;*/
    border-left-color: #5386;
    opacity: 1.0;
 }
@@ -744,7 +745,7 @@ h1[id*=class-thankyou], .sidebar h1[id^=-zzspan], .sidebar h2[id^=-zzspan] {
    right: 0;
 }
 .remark-backdrop {
-   background-color: #235;
+   background-color: #000e; /* #235;*/
 }
 body:fullscreen .remark-backdrop { /* body:fullscreen */
    background-image: linear-gradient(#000A,#000A),
@@ -882,6 +883,39 @@ code.remark-code:not(.hljs) {
   /* max-width: 100px;*/
   /* overflow-x: hidden;*/
    z-index: 1;
+}
+.banner-top {
+   border: 1px solid magenta;
+   display: block;
+  /*
+   position: absolute;
+   left: 8px;
+   top: 8px;
+  */
+   width: var(--sidebar);
+  /* max-width: 100px;*/
+  /* overflow-x: hidden;*/
+   z-index: 1;
+}
+.banner-top ~ .left-column {
+   position: relative;
+   top: 2em;
+   left: 0;
+   height: 650px;
+   border: 1px solid orange !important;
+}
+.banner-top ~ .right-column {
+   border: 1px solid cyan !important;
+}
+.inline img {
+   height: 1.2em !important; 
+   display: inline-block;
+   margin-bottom: -0.15em;
+   box-shadow: none;
+}
+.timestamp {
+   font-size: 35%;
+   opacity: 0.3;
 }
 @media only screen and (min-width: 156vh) {
    .remark-slide {
