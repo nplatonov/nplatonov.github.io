@@ -17,8 +17,8 @@ h1 + .level2:empty, h2 + .level3:empty, h3 + .level4:empty, h4 + .level5:empty {
 h2 + .level3:empty:after {
    content: 'manual pagebreak is desired';
 }
-.toc-title {
-   break-before: always;
+.front-matter {
+   break-before: always; /* blank page appears before */
 }
 
 /* subject to infinite paging -- end */
@@ -198,7 +198,7 @@ h3, h4 {
 }
 .title-page .subtitle {
    margin-top: 1.6em;
-   margin-bottom: 0em;
+   margin-bottom: 2.4em;
 }
 .title-page .author {
    text-align: left;
@@ -207,7 +207,7 @@ h3, h4 {
    margin-top: 1em;
 }
 .title-page h2.author:first-of-type {
-   margin-top: 3em;
+  /* margin-top: 3em;*/
 }
 .author::first-letter, .signature::first-letter, .sign-duty::first-letter {
    text-transform: capitalize;
@@ -558,7 +558,24 @@ p.centered-image {
     box-shadow: inset 5px 0 5px -5px #29627e;
     color: #29627e;
 }
-
+h1 {
+   font-size: 160%;
+}
+h2 {
+   font-size: 130%;
+}
+h3 {
+   font-size: 115%;
+}
+h4 {
+   font-size: 105%;
+}
+h5 {
+   font-size: 95%;
+}
+img[bound] {
+   height: auto;
+}
 @media only screen {
    .asteric {
       border: 1px solid #00f2;
