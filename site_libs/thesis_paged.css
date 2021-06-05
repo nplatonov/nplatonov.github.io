@@ -18,9 +18,15 @@ h2 + .level3:empty:after {
    content: 'manual pagebreak is desired';
 }
 .front-matter {
+   break-after: always; /* blank page appears before */
+}
+.toc.front-matter {
    break-before: always; /* blank page appears before */
 }
-
+.csl-entry {
+   border: 1px red solid;
+   break-inside: avoid;
+}
 /* subject to infinite paging -- end */
 
 :root {
@@ -64,7 +70,7 @@ p:not(:only-of-type) {
   /* color: darkgreen; */ /* devel */
    text-indent: 1.25cm; /* 1.25cm */
 }
-p:only-of-type {
+p:only-of-type, td p:not(:only-of-type) {
    text-indent: 0cm;
   /* color: brown; */ /* devel */
 }
@@ -575,6 +581,16 @@ h5 {
 }
 img[bound] {
    height: auto;
+}
+blockquote {
+   border-left: 3px solid #ddd;
+   padding-left: 0.25cm;
+   margin-right: 0cm;
+   font-size: 95%;
+   color: #444;
+}
+.titlepage-footer {
+   page-break-before: always;
 }
 @media only screen {
    .asteric {
