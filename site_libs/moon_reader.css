@@ -400,12 +400,18 @@ a:hover {
    margin: auto auto 0.3em auto; 
 }
 table.dataTable {
-   font-size: 100%; /* s1: 70%, s2: 100% */
+   font-size: 85%; /* s1: 70%, s2: 100% */
 }
 .dataTables_filter, .dataTables_length, .dataTables_paginate, .dataTables_info {
-   font-size: 80%; /* s1: 60%, s2: 80% */
-   padding-top: 0.4em;
-   padding-bottom: 0.4em;
+   font-size: 85%; /* s1: 60%, s2: 80% */
+   padding-top: 0.4em !important;
+   padding-bottom: 0.4em !important;
+}
+.dataTables_length > label > select {
+   font-size: 80%;
+}
+.dataTables_filter > label > input {
+   font-size: 80%;
 }
 .break * {
   /* visibility: hidden;*/
@@ -656,7 +662,13 @@ ul {
 .sidebar h4 a, .sidebar h5 a {
    color: unset;
 }
-
+/*
+.sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
+   line-height: 0.95;
+   padding-top: 0.2em !important;
+   padding-bottom: 0.2em !important;
+}
+*/
 .left-column h2:last-of-type, .left-column h3:last-child,
 .sidebar h1 a, .sidebar h2 a, .sidebar h3 a, .sidebar h4 a, .sidebar h5 a,
 .sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
@@ -776,7 +788,7 @@ h1[id*=class-thankyou], .sidebar h1[id^=-zzspan], .sidebar h2[id^=-zzspan] {
    right: 0;
 }
 .remark-backdrop {
-   background-color: #000e; /* #235;*/
+   background-color: #000000f4; /* #235;*/
 }
 body:fullscreen .remark-backdrop { /* body:fullscreen */
    background-image: linear-gradient(#000A,#000A),
@@ -850,7 +862,7 @@ body:fullscreen .remark-backdrop:before {
 }
 .metadata .institute {
    font-size: 90%;
-   margin-top: 0em;
+   margin-top: 0.4em;
    margin-left: 2em;
 }
 .metadata .meeting {
