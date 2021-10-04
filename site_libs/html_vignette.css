@@ -1355,7 +1355,7 @@ sup, sub {
    font-size: 71%;
    margin-left: 0.15em;
 }
-.dontprint, .onlyreveal, .revealonly, .hidden, .no-vignette, .pagedonly {display: none;}
+.dontprint, .onlyreveal, .revealonly, .hidden, .no-vignette, .pagedonly, .onlyremark, .remarkonly {display: none;}
 .onlydashboard > h3, .onlydashboard > h2, .onlydashboard > h1,
 .no-title > h3, .no-title > h2, .no-title > h1 {
    display: none;
@@ -1719,9 +1719,12 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
      /* max-height: 100vw !important; */ /* see `.figure img` */
      /* border: 1px dashed magenta !important;*/
    }
-   .figure img, .centered-image img {
-      max-height: 92vh !important;
-      width: auto !important
+   .banner {
+      width: fit-content;
+   }
+   .figure img, *:not(.banner) > .centered-image > img {
+      max-height: 42vh !important;
+      width: auto !important;
    }
    .figure .caption {
      /* margin-left: initial; */

@@ -14,8 +14,14 @@ h1 + .level2:empty, h2 + .level3:empty, h3 + .level4:empty, h4 + .level5:empty {
    break-inside: avoid;
    border: 25px solid #f9f9f9;
 }
+h2 + .level3:empty {
+   border: 1px solid orange;
+}
 h2 + .level3:empty:after {
    content: 'manual pagebreak is desired';
+}
+[data-previous-break-after="avoid"] > ul {
+   page-break-after: avoid !important;
 }
 .front-matter {
    break-after: always; /* blank page appears before */
@@ -24,7 +30,7 @@ h2 + .level3:empty:after {
    break-before: always; /* blank page appears before */
 }
 .csl-entry {
-   border: 1px red solid;
+  /* border: 1px red solid;*/
    break-inside: avoid;
 }
 /* subject to infinite paging -- end */
@@ -591,6 +597,11 @@ blockquote {
 }
 .titlepage-footer.copyright-detailed {
    page-break-before: always;
+}
+.banner {
+   display: none;
+   page-break-before: avoid;
+   border: 1px solid red;
 }
 @media only screen {
    .asteric {
