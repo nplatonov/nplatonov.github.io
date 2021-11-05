@@ -1,0 +1,58 @@
+.emoji, .inline:not(.math) {
+   height: 1.2em !important; 
+   display: inline-block !important;
+   margin-bottom: 3px;
+   box-shadow: none;
+}
+.aside {
+   display: none;
+}
+.double { /* from shower */
+   -webkit-columns: 2;
+   -moz-columns: 2;
+   columns: 2;
+   -webkit-column-gap: 1em;
+   -moz-column-gap: 1em;
+   column-gap: 1em;
+  /* text-align: justify; */ /* devel */
+}
+.triple { /* from shower */
+   -webkit-columns: 3;
+   -moz-columns: 3;
+   columns: 3;
+   -webkit-column-gap: 1em;
+   -moz-column-gap: 1em;
+   column-gap: 1em;
+  /* text-align: justify; */ /* devel */
+}
+.double, .triple {
+   margin-bottom: 0.8em;
+}
+img.cover.fail { /* from shower for 'img'*/
+   display: block;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   z-index: -1;
+   -webkit-transform: translate(-50%,-50%);
+   transform: translate(-50%,-50%);
+   max-width: 100%;
+   max-height: 100%;
+}
+.outline ol {
+   counter-reset: item;
+   list-style-type: none !important;
+}
+.outline ol {
+   padding-left: 1em;
+}
+.outline ol ol {
+   padding-left: 2em;
+}
+.outline ol > li:before {
+   content: counters(item, "X.X") "Y.Y ";
+   counter-increment: item;
+}
+.outline li p {
+   display: inline;
+}
