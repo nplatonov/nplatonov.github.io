@@ -1,3 +1,8 @@
+@page {
+  size: A4;
+  margin: 15mm, 15mm, 25mm, 25mm;
+} /* var(--pagedjs-width) doesn't work in browser when printing */
+
 /* only single page for TOC LOF LOT */
 /*
 #TOC li {line-height: 2.1;}
@@ -9,8 +14,24 @@ h1 + .level2:empty, h2 + .level3:empty, h3 + .level4:empty, h4 + .level5:empty {
    break-inside: avoid;
    border: 25px solid #f9f9f9;
 }
+h2 + .level3:empty {
+   border: 1px solid orange;
+}
 h2 + .level3:empty:after {
    content: 'manual pagebreak is desired';
+}
+[data-previous-break-after="avoid"] > ul {
+   page-break-after: avoid !important;
+}
+.front-matter {
+   break-after: always; /* blank page appears before */
+}
+.toc.front-matter {
+   break-before: always; /* blank page appears before */
+}
+.csl-entry {
+  /* border: 1px red solid;*/
+   break-inside: avoid;
 }
 /* subject to infinite paging -- end */
 
@@ -55,7 +76,7 @@ p:not(:only-of-type) {
   /* color: darkgreen; */ /* devel */
    text-indent: 1.25cm; /* 1.25cm */
 }
-p:only-of-type {
+p:only-of-type, td p:not(:only-of-type) {
    text-indent: 0cm;
   /* color: brown; */ /* devel */
 }
@@ -160,6 +181,13 @@ h3, h4 {
    right: 0em;
    bottom: -4em;
 }
+.titlepage-main-devel {
+   height: 22.9cm;
+   border: 1px solid red;
+   display: table;
+   table-layout: fixed;
+   width: 100%;
+}
 /*
 .titlepage-updated::after {
    content: ' Число страниц: ' var(--pagedjs-page-count);
@@ -179,8 +207,8 @@ h3, h4 {
    text-indent: 0cm;
 }
 .title-page .title {
-   margin-top: 3em;
-   margin-bottom: 3em;
+   margin-top: 2.4em;
+   margin-bottom: 2.4em;
 }
 .signpage .title {
    margin-top: 1em;
@@ -189,7 +217,7 @@ h3, h4 {
 }
 .title-page .subtitle {
    margin-top: 1.6em;
-   margin-bottom: 0em;
+   margin-bottom: 2.4em;
 }
 .title-page .author {
    text-align: left;
@@ -198,7 +226,7 @@ h3, h4 {
    margin-top: 1em;
 }
 .title-page h2.author:first-of-type {
-   margin-top: 3em;
+  /* margin-top: 3em;*/
 }
 .author::first-letter, .signature::first-letter, .sign-duty::first-letter {
    text-transform: capitalize;
@@ -549,7 +577,42 @@ p.centered-image {
     box-shadow: inset 5px 0 5px -5px #29627e;
     color: #29627e;
 }
-
+h1 {
+   font-size: 160%;
+}
+h2 {
+   font-size: 130%;
+}
+h3 {
+   font-size: 115%;
+}
+h4 {
+   font-size: 105%;
+}
+h5 {
+   font-size: 95%;
+}
+img[bound] {
+   height: auto;
+}
+blockquote {
+   border-left: 3px solid #ddd;
+   padding-left: 0.25cm;
+   margin-right: 0cm;
+   font-size: 95%;
+   color: #444;
+}
+.titlepage-footer.copyright-detailed {
+   page-break-before: always;
+}
+.banner {
+   display: none;
+   page-break-before: avoid;
+   border: 1px solid red;
+}
+.pagebreak {
+   page-break-before: always;
+}
 @media only screen {
    .asteric {
       border: 1px solid #00f2;
