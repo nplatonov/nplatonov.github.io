@@ -1,0 +1,2656 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>omsand</title>
+
+<meta property="og:title" content="omsand" />
+
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+
+<link rel="icon" href="data:image/x-icon;" type="image/x-icon">
+
+
+<script type="text/javascript">
+window.FlexDashboardComponents = [];
+</script>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="https://nplatonov.github.io/site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://nplatonov.github.io/site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="https://nplatonov.github.io/site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="https://nplatonov.github.io/site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="https://nplatonov.github.io/site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="https://nplatonov.github.io/site_libs/stickytableheaders-0.1.19/jquery.stickytableheaders.min.js"></script>
+<script src="https://nplatonov.github.io/site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="https://nplatonov.github.io/site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="https://nplatonov.github.io/site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="https://nplatonov.github.io/site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="https://nplatonov.github.io/site_libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="https://nplatonov.github.io/site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="https://nplatonov.github.io/site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="https://nplatonov.github.io/site_libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="https://nplatonov.github.io/site_libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="https://nplatonov.github.io/site_libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<link href="https://nplatonov.github.io/site_libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="https://nplatonov.github.io/site_libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="https://nplatonov.github.io/site_libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<script src="https://nplatonov.github.io/site_libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="https://nplatonov.github.io/site_libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="https://nplatonov.github.io/site_libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<style type="text/css">
+
+/*
+ Dashboard CSS from Keen IO Dashboards
+ (https://github.com/keen/dashboards)
+*/
+
+body {
+  background: #f2f2f2;
+  padding: 60px 0 0 8px; /* padding-top overridden by theme */
+}
+
+body hr {
+  border-color: #d7d7d7;
+  margin: 10px 0;
+}
+
+.navbar-inverse .navbar-nav > li > a,
+.navbar .navbar-brand {
+  text-decoration: none;
+}
+
+.navbar-logo {
+  margin-top: 1px;
+}
+
+.navbar-logo img {
+  margin-right: 12px;
+}
+
+.navbar-author {
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.navbar .dropdown-menu .fa {
+  min-width: 20px;
+}
+
+.navbar .dropdown-menu {
+  min-width: 150px;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.chart-wrapper,
+.nav-tabs-custom,
+.sbframe-commentary
+{
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+}
+
+.chart-title {
+  border-bottom: 1px solid #d7d7d7;
+  color: #666;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 7px 10px 4px;
+}
+
+.chart-wrapper .chart-title:empty {
+  display: none;
+}
+
+.chart-wrapper .chart-stage {
+  overflow: hidden;
+  padding: 5px 10px;
+  position: relative;
+}
+
+.chart-wrapper .chart-notes {
+  background: #fbfbfb;
+  border-top: 1px solid #e2e2e2;
+  color: #808080;
+  font-size: 12px;
+  padding: 8px 10px 5px;
+}
+
+/*
+ CSS for handling flexbox layout
+*/
+
+#dashboard-container {
+  visibility: hidden;
+}
+
+.tab-content>.dashboard-page-wrapper.active {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.dashboard-page-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.dashboard-row-orientation {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.dashboard-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.dashboard-row-flex {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.dashboard-column-orientation {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.dashboard-column {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.chart-wrapper-flex {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.chart-stage-flex {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  position: relative;
+}
+
+.chart-shim {
+  position: absolute;
+  left: 8px; top: 8px; right: 8px; bottom: 8px;
+}
+
+.no-padding .chart-shim {
+  left: 0; top: 0; right: 0; bottom: 0;
+}
+
+.flowing-content-shim {
+  overflow: auto;
+  left: 0; top: 0; right: 0; bottom: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.flowing-content-container {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.chart-stage .table-bordered {
+  border: none;
+}
+
+.chart-stage .table-bordered > tbody > tr > th,
+.chart-stage .table-bordered > tfoot > tr > th,
+.chart-stage .table-bordered > tbody > tr > td,
+.chart-stage .table-bordered > tfoot > tr > td {
+  border: none;
+}
+
+.chart-stage .table-bordered > tbody > tr > td {
+  border-top: 1px solid #dddddd;
+}
+
+.chart-stage .table-bordered > thead > tr > th {
+  border: none;
+  border-bottom: 2px solid #dddddd;
+}
+
+.bootstrap-table table>thead {
+  background-color: #fff;
+}
+
+.bootstrap-table table.data,
+.bootstrap-table table.shiny-table {
+  width: inherit !important;
+}
+
+.bootstrap-table table.data>tbody>tr>th,
+.bootstrap-table table.shiny-table>tbody>tr>th {
+  border-top: none;
+  border-bottom: 2px solid #dddddd;
+  padding: 5px;
+}
+
+.bootstrap-table .data td[align=right] {
+  font-family: inherit;
+}
+
+.chart-wrapper form {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.shiny-input-container label {
+  font-weight: normal;
+}
+
+.chart-stage .html-widget {
+  width: 100% !important;
+  height: 100%;
+}
+
+.chart-stage .html-widget-static-bound {
+  width: 100% !important;
+  height: 100%;
+}
+
+.chart-stage .shiny-bound-output {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Omit display of empty paragraphs */
+
+.chart-shim>p:empty {
+  display: none;
+}
+
+.chart-stage>p:empty {
+  display: none;
+}
+
+/* Omit display of special knitr options div*/
+
+.chart-stage .knitr-options {
+  display: none;
+}
+
+/* Automatically resizing images */
+
+.image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+}
+
+.image-container img {
+  opacity: 0;
+  overflow: hidden;
+}
+
+/* Value box */
+
+.value-box {
+  border-radius: 2px;
+  position: relative;
+  display: block;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.value-box > .inner {
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.value-box .value {
+  font-size: 38px;
+  font-weight: bold;
+  margin: 0 0 3px 0;
+  white-space: nowrap;
+  padding: 0;
+}
+
+.value-box .caption {
+  font-size: 15px;
+}
+.value-box .caption > small {
+  display: block;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.value-box .icon i {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 80px;
+  color: rgba(0, 0, 0, 0.15);
+}
+
+.linked-value:hover {
+  cursor: pointer;
+}
+
+.value-box.linked-value:hover {
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* STORYBOARD */
+
+.storyboard-nav button {
+  background: transparent;
+  border: 0;
+  opacity: .3;
+  outline: none;
+  padding: 0;
+}
+
+.storyboard-nav button:hover,
+.storyboard-nav button:hover {
+  opacity: .5;
+}
+
+.storyboard-nav button:disabled,
+.storyboard-nav button:disabled {
+  opacity: .1;
+}
+
+.storyboard-nav .sbnext,
+.storyboard-nav .sbprev {
+  float: left;
+  width: 2%;
+  height: 120px;
+  font-size: 50px;
+}
+
+.storyboard-nav .sbprev {
+  text-align: left;
+  width: 2%;
+}
+
+.storyboard-nav .sbnext {
+  float: right;
+  text-align: right;
+  margin-right: 8px;
+}
+
+.storyboard-nav .sbframelist {
+  margin: 0 auto;
+  width: 94%;
+  height: 120px;
+  overflow: hidden;
+  text-shadow: none;
+  margin-bottom: 8px;
+}
+
+.storyboard-nav .sbframelist ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.storyboard-nav .sbframelist ul li {
+  float: left;
+  width: 270px;
+  height: 100%;
+  padding: 10px 10px 10px 10px;
+  margin-right: 8px;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 3px;
+  color: #3a3c47;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.storyboard-nav .sbframelist ul li:last-child {
+  margin-right: 0px;
+}
+
+.storyboard-nav .sbframelist ul li.active {
+  color: #fff;
+  background: #B8B8B8;
+}
+
+.sbframe-commentary {
+  width: 300px;
+  background: #fbfbfb;
+  font-size: 14px;
+}
+
+.sbframe-commentary ul {
+  padding-left: 22px;
+}
+
+.sbframe.active {
+  display: flex;
+}
+
+.sbframe:not(.active) {
+  display: none;
+}
+
+/* NAV TABS */
+
+.nav-tabs-custom > .nav-tabs {
+  margin: 0;
+  border-bottom: 1px solid #d7d7d7;
+  color: #666;
+  font-size: 14px;
+  font-weight: 300;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.nav-tabs-custom > .nav-tabs > li {
+  border-top: 3px solid transparent;
+  margin-bottom: -1px;
+  margin-right: 5px;
+}
+.nav-tabs-custom > .nav-tabs > li > a,
+.nav-tabs-custom > .nav-tabs > li > a:active {
+  color: #666;
+  font-weight: 300;
+  font-size: 14px;
+  border-radius: 0;
+  padding: 3px 10px 5px;
+  text-transform: none;
+}
+
+.nav-tabs-custom > .nav-tabs > li:not(.active) > a {
+  border-bottom-color: transparent;
+}
+
+.nav-tabs-custom > .nav-tabs > li > a.text-muted {
+  color: #999;
+}
+.nav-tabs-custom > .nav-tabs > li > a,
+.nav-tabs-custom > .nav-tabs > li > a:hover {
+  background: transparent;
+  margin: 0;
+}
+.nav-tabs-custom > .nav-tabs > li > a:hover {
+  color: #999;
+}
+.nav-tabs-custom > .nav-tabs > li:not(.active) > a:hover,
+.nav-tabs-custom > .nav-tabs > li:not(.active) > a:focus,
+.nav-tabs-custom > .nav-tabs > li:not(.active) > a:active {
+  border-color: transparent;
+}
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: #3c8dbc;
+}
+.nav-tabs-custom > .nav-tabs > li.active > a,
+.nav-tabs-custom > .nav-tabs > li.active:hover > a {
+  background-color: #fff;
+  color: #666;
+}
+.nav-tabs-custom > .nav-tabs > li.active > a {
+  border-top-color: transparent;
+  border-left-color: #d7d7d7;
+  border-right-color: #d7d7d7;
+}
+.nav-tabs-custom > .nav-tabs > li:first-of-type {
+  margin-left: 0;
+}
+.nav-tabs-custom > .nav-tabs > li:first-of-type.active > a {
+  border-left-color: transparent;
+}
+.nav-tabs-custom > .nav-tabs.pull-right {
+  float: none !important;
+}
+.nav-tabs-custom > .nav-tabs.pull-right > li {
+  float: right;
+}
+.nav-tabs-custom > .nav-tabs.pull-right > li:first-of-type {
+  margin-right: 0;
+}
+.nav-tabs-custom > .nav-tabs.pull-right > li:first-of-type > a {
+  border-left-width: 1px;
+}
+.nav-tabs-custom > .nav-tabs.pull-right > li:first-of-type.active > a {
+  border-left-color: #d7d7d7;
+  border-right-color: transparent;
+}
+.nav-tabs-custom > .nav-tabs > li.header {
+  line-height: 35px;
+  padding: 0 10px;
+  font-size: 20px;
+  color: #666;
+}
+.nav-tabs-custom > .nav-tabs > li.header > .fa,
+.nav-tabs-custom > .nav-tabs > li.header > .glyphicon,
+.nav-tabs-custom > .nav-tabs > li.header > .ion {
+  margin-right: 5px;
+}
+.nav-tabs-custom > .tab-content {
+  background: #fff;
+  padding: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.nav-tabs-custom > .tab-content > .chart-wrapper {
+  background: #fff;
+  border: none;
+  margin: 0;
+}
+
+
+.nav-tabs-custom > .tab-content > .active {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.nav-tabs-custom .dropdown.open > a:active,
+.nav-tabs-custom .dropdown.open > a:focus {
+  background: transparent;
+  color: #999;
+}
+
+
+@media (max-width: 767px) {
+  .value-box {
+    text-align: center;
+    margin-right: 8px;
+  }
+  .value-box .icon {
+    display: none;
+  }
+}
+
+/* Fixed position sidebar */
+
+.section.sidebar {
+  position: fixed;
+  top: 51px; /* overridden by theme */
+  left: 0;
+  bottom: 0;
+  border-right: 1px solid #e2e2e2;
+  background-color: white; /* overridden by theme */
+  padding-left: 10px;
+  padding-right: 10px;
+  visibility: hidden;
+  overflow: auto;
+}
+
+.section.sidebar form p:first-child {
+  margin-top: 10px;
+}
+
+/* Embedded source code */
+
+#flexdashboard-source-code {
+  display: none;
+}
+
+.featherlight-content #flexdashboard-source-code {
+  display: inline-block;
+}
+
+.featherlight-content {
+  width: 80%;
+  max-width: 800px;
+  padding: 0 !important;
+  border-bottom: none !important;
+}
+
+.featherlight:last-of-type {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.featherlight-inner {
+  width: 100%;
+}
+
+.featherlight-content pre {
+  margin: 0;
+  border: 0;
+  background: #fff;
+  font-size: 12px;
+}
+
+.unselectable {
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+#flexdashboard-source-code code {
+  -ms-user-select: text;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -o-user-select: text;
+  user-select: text;
+}
+
+/* DataTables Tweaks */
+
+.dataTables_filter input[type="search"] {
+  -webkit-appearance: searchfield;
+  outline: none;
+}
+
+.dataTables_wrapper.no-footer
+.dataTables_info {
+  padding-top: 0;
+}
+
+
+table.dataTable thead th {
+  border-bottom: 1px solid #d7d7d7;
+}
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+  border-bottom: 1px solid #d7d7d7;
+}
+
+/* Mobile phone only CSS */
+
+.desktop-layout div.section.mobile {
+  display: none;
+}
+
+.mobile-layout div.section.no-mobile {
+  display: none;
+}
+
+.mobile-figure {
+  display: none;
+}
+
+
+
+body {
+  padding-top: 54px;
+}
+
+.section.sidebar {
+  top: 45px;
+  background-color: rgba(0, 140, 186, 0.1);
+}
+
+.value-box {
+  color: inherit;
+}
+
+.bg-primary {
+  background-color: rgba(0, 140, 186, 0.3);
+}
+
+.storyboard-nav .sbframelist ul li.active {
+  background-color: rgba(0, 140, 186, 0.7);
+}
+
+
+.nav-tabs-custom > .nav-tabs > li.active {
+  background-color: rgba(0, 140, 186, 0.7);
+}
+
+@media only screen and (min-width: 768px) {
+html, body {
+  height: 100%;
+}
+
+#dashboard-container {
+  height: 100%;
+}
+}
+</style>
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs\common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs\flex_dashboard.css" type="text/css" /> <style>.navbar{display:none;} body{padding-top:8px;} .section.sidebar{top:8px;}@media print, screen and (max-width: 1268px) and (min-width: 769px){.navbar{display:none !important;}}</style>
+
+</head>
+
+<body>
+
+<div class="navbar invisible navbar-inverse navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+
+<button id="navbar-button" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+
+<span class="navbar-logo pull-left">
+  
+</span>
+<span class="navbar-brand">
+  omsand
+  <span class="navbar-author">
+        </span>
+</span>
+
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav navbar-left">
+</ul>
+<ul class="nav navbar-nav navbar-right">
+</ul>
+</div><!--/.nav-collapse-->
+</div><!--/.container-->
+</div><!--/.navbar-->
+
+<script type="text/javascript">
+
+
+var FlexDashboard = (function () {
+
+  // initialize options
+  var _options = {};
+
+  var FlexDashboard = function() {
+
+    // default options
+    _options = $.extend(_options, {
+      theme: "cosmo",
+      fillPage: false,
+      orientation: 'columns',
+      storyboard: false,
+      defaultFigWidth: 576,
+      defaultFigHeight: 461,
+      defaultFigWidthMobile: 360,
+      defaultFigHeightMobile: 461,
+      isMobile: false,
+      isPortrait: false,
+      resize_reload: true
+    });
+  };
+
+  function init(options) {
+
+    // extend default options
+    $.extend(true, _options, options);
+
+    // add ids to sections that don't have them (pandoc won't assign ids
+    // to e.g. sections with titles consisting of only chinese characters)
+    var nextId = 1;
+    $('.level1:not([id]),.level2:not([id]),.level3:not([id])').each(function() {
+      $(this).attr('id', 'dashboard-' + nextId++);
+    });
+
+    // find navbar items
+    var navbarItems = $('#flexdashboard-navbar');
+    if (navbarItems.length)
+      navbarItems = JSON.parse(navbarItems.html());
+    addNavbarItems(navbarItems);
+
+    // find the main dashboard container
+    var dashboardContainer = $('#dashboard-container');
+
+    // resolve mobile classes
+    resolveMobileClasses(dashboardContainer);
+
+    // one time global initialization for components
+    componentsInit(dashboardContainer);
+
+    // look for a global sidebar
+    var globalSidebar = dashboardContainer.find(".section.level1.sidebar");
+    if (globalSidebar.length > 0) {
+
+      // global layout for fullscreen displays
+      if (!isMobilePhone()) {
+
+         // hoist it up to the top level
+         globalSidebar.insertBefore(dashboardContainer);
+
+         // lay it out (set width/positions)
+         layoutSidebar(globalSidebar, dashboardContainer);
+
+      // tuck sidebar into first page for mobile phones
+      } else {
+
+        // convert it into a level3 section
+        globalSidebar.removeClass('sidebar');
+        globalSidebar.removeClass('level1');
+        globalSidebar.addClass('level3');
+        var h1 = globalSidebar.children('h1');
+        var h3 = $('<h3></h3>');
+        h3.append(h1.contents());
+        h3.insertBefore(h1);
+        h1.detach();
+
+        // move it into the first page
+        var page = dashboardContainer.find('.section.level1').first();
+        if (page.length > 0)
+          page.prepend(globalSidebar);
+      }
+    }
+
+    // look for pages to layout
+    var pages = $('div.section.level1');
+    if (pages.length > 0) {
+
+        // find the navbar and collapse on clicked
+        var navbar = $('#navbar');
+        navbar.on("click", "a[data-toggle!=dropdown]", null, function () {
+           navbar.collapse('hide');
+        });
+
+        // envelop the dashboard container in a tab content div
+        dashboardContainer.wrapInner('<div class="tab-content"></div>');
+
+        pages.each(function(index) {
+
+          // lay it out
+          layoutDashboardPage($(this));
+
+          // add it to the navbar
+          addToNavbar($(this), index === 0);
+
+        });
+
+    } else {
+
+      // remove the navbar and navbar button if we don't
+      // have any navbuttons
+      if (navbarItems.length === 0) {
+        $('#navbar').remove();
+        $('#navbar-button').remove();
+      }
+
+      // add the storyboard class if requested
+      if (_options.storyboard)
+        dashboardContainer.addClass('storyboard');
+
+      // layout the entire page
+      layoutDashboardPage(dashboardContainer);
+    }
+
+    // if we are in shiny we need to trigger a window resize event to
+    // force correct layout of shiny-bound-output elements
+    if (isShinyDoc())
+      $(window).trigger('resize');
+
+    // make main components visible
+    $('.section.sidebar').css('visibility', 'visible');
+    dashboardContainer.css('visibility', 'visible');
+
+    // handle location hash
+    handleLocationHash();
+
+    // intialize prism highlighting
+    initPrismHighlighting();
+
+    // record mobile and orientation state then register a handler
+    // to refresh if resize_reload is set to true and it changes
+    _options.isMobile = isMobilePhone();
+    _options.isPortrait = isPortrait();
+    if (_options.resize_reload) {
+      $(window).on('resize', function() {
+        if (_options.isMobile !== isMobilePhone() ||
+            _options.isPortrait !== isPortrait()) {
+          window.location.reload();
+        }
+      });
+    } else {
+      // if in desktop mode and resizing to mobile, make sure the heights are 100%
+      // This enforces what `fillpage.css` does for "wider" pages.
+      // Since we are not reloading once the page becomes small, we need to force the height to 100%
+      // This is a new situation introduced when `_options.resize_reload` is `false`
+      if (! _options.isMobile) {
+        // only add if `fillpage.css` was added in the first place
+        if (_options.fillPage) {
+          // fillpage.css
+          $("html,body,#dashboard").css("height", "100%");
+        }
+      }
+    }
+    // trigger layoutcomplete event
+    dashboardContainer.trigger('flexdashboard:layoutcomplete');
+  }
+
+  function resolveMobileClasses(dashboardContainer) {
+     // add top level layout class
+    dashboardContainer.addClass(isMobilePhone() ? 'mobile-layout' :
+                                                  'desktop-layout');
+
+    // look for .mobile sections and add .no-mobile to their peers
+    var mobileSections = $('.section.mobile');
+    mobileSections.each(function() {
+       var id = $(this).attr('id');
+       var nomobileId = id.replace(/-\d+$/, '');
+       $('#' + nomobileId).addClass('no-mobile');
+    });
+  }
+
+  function addNavbarItems(navbarItems) {
+
+    var navbarLeft = $('ul.navbar-left');
+    var navbarRight = $('ul.navbar-right');
+
+    for (var i = 0; i<navbarItems.length; i++) {
+
+      // get the item
+      var item = navbarItems[i];
+
+      // determine the container
+      var container = null;
+      if (item.align === "left")
+        container = navbarLeft;
+      else
+        container = navbarRight;
+
+      // navbar menu if we have multiple items
+      if (item.items) {
+        var menu = navbarMenu(null, item.icon, item.title, container);
+        for (var j = 0; j<item.items.length; j++) {
+          var subItem = item.items[j];
+          var li = $('<li></li>');
+          li.append(navbarLink(subItem.icon, subItem.title, subItem.href, subItem.target));
+          menu.append(li);
+        }
+      } else {
+        var li = $('<li></li>');
+        li.append(navbarLink(item.icon, item.title, item.href, item.target));
+        container.append(li);
+      }
+    }
+  }
+
+  // create or get a reference to an existing dropdown menu
+  function navbarMenu(id, icon, title, container) {
+    var existingMenu = [];
+    if (id)
+      existingMenu = container.children('#' + id);
+    if (existingMenu.length > 0) {
+      return existingMenu.children('ul');
+    } else {
+      var li = $('<li></li>');
+      if (id)
+        li.attr('id', id);
+      li.addClass('dropdown');
+      // auto add "Share" title on mobile if necessary
+      if (!title && icon && (icon === "fa-share-alt") && isMobilePhone())
+        title = "Share";
+      if (title) {
+        title = title + ' <span class="caret"></span>';
+      }
+      var a = navbarLink(icon, title, "#");
+      a.addClass('dropdown-toggle');
+      a.attr('data-toggle', 'dropdown');
+      a.attr('role', 'button');
+      a.attr('aria-expanded', 'false');
+      li.append(a);
+      var ul = $('<ul class="dropdown-menu"></ul>');
+      ul.attr('role', 'menu');
+      li.append(ul);
+      container.append(li);
+      return ul;
+    }
+  }
+
+  function addToNavbar(page, active) {
+
+    // capture the id and data-icon attribute (if any)
+    var id = page.attr('id');
+    var icon = page.attr('data-icon');
+    var navmenu = page.attr('data-navmenu');
+
+    // get hidden state (transfer this to navbar)
+    var hidden = page.hasClass('hidden');
+    page.removeClass('hidden');
+
+    // sanitize the id for use with bootstrap tabs
+    id = id.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_');
+    page.attr('id', id);
+
+    // get the wrapper
+    var wrapper = page.closest('.dashboard-page-wrapper');
+
+    // move the id to the wrapper
+    page.removeAttr('id');
+    wrapper.attr('id', id);
+
+    // add the tab-pane class to the wrapper
+    wrapper.addClass('tab-pane');
+    if (active)
+      wrapper.addClass('active');
+
+    // get a reference to the h1, discover its inner contens, then detach it
+    var h1 = wrapper.find('h1').first();
+    var title = h1.contents();
+    h1.detach();
+
+    // create a navbar item
+    var li = $('<li></li>');
+    var a = navbarLink(icon, title, '#' + id);
+    a.attr('data-toggle', 'tab');
+    li.append(a);
+
+    // add it to the navbar (or navbar menu if specified)
+    var container = $('ul.navbar-left');
+    if (navmenu) {
+      var menuId = navmenu.replace(/\s+/g, '');
+      var menu = navbarMenu(menuId, null, navmenu, container);
+      menu.append(li);
+    } else {
+      container.append(li);
+    }
+
+    // hide it if requested
+    if (hidden)
+      li.addClass('hidden');
+  }
+
+  function navbarLink(icon, title, href, target) {
+
+    var a = $('<a></a>');
+    if (icon) {
+
+      // get the name of the icon set and icon
+      var dashPos = icon.indexOf("-");
+      var iconSet = null;
+      var iconSplit = icon.split(" ");
+      if (iconSplit.length > 1) {
+        iconSet = iconSplit[0];
+        icon = iconSplit.slice(1).join(" ");
+      } else {
+        iconSet = icon.substring(0, dashPos);
+      }
+      var iconName = icon.substring(dashPos + 1);
+
+      // create the icon
+      var iconElement = $('<span class="' + iconSet + ' ' + icon + '"></span>');
+      if (title)
+        iconElement.css('margin-right', '7px');
+      a.append(iconElement);
+      // if href is null see if we can auto-generate based on icon (e.g. social)
+      if (!href)
+        maybeGenerateLinkFromIcon(iconName, a);
+    }
+    if (title)
+      a.append(title);
+
+    // add the href.
+    if (href) {
+      if (href === "source_embed") {
+        a.attr('href', '#');
+        a.attr('data-featherlight', "#flexdashboard-source-code");
+        a.featherlight({
+            beforeOpen: function(event){
+              $('body').addClass('unselectable');
+            },
+            afterClose: function(event){
+              $('body').removeClass('unselectable');
+            }
+        });
+      } else {
+        a.attr('href', href);
+      }
+    }
+
+    // add the arget
+    if (target)
+      a.attr('target', target);
+
+    return a;
+  }
+
+  // auto generate a link from an icon name (e.g. twitter) when possible
+  function maybeGenerateLinkFromIcon(iconName, a) {
+
+     var serviceLinks = {
+      "twitter": "https://twitter.com/share?text=" + encodeURIComponent(document.title) + "&url="+encodeURIComponent(location.href),
+      "facebook": "https://www.facebook.com/sharer/sharer.php?s=100&p[url]="+encodeURIComponent(location.href),
+      "google-plus": "https://plus.google.com/share?url="+encodeURIComponent(location.href),
+      "linkedin": "https://www.linkedin.com/shareArticle?mini=true&url="+encodeURIComponent(location.href) + "&title=" + encodeURIComponent(document.title),
+      "pinterest": "https://pinterest.com/pin/create/link/?url="+encodeURIComponent(location.href) + "&description=" + encodeURIComponent(document.title)
+    };
+
+    var makeSocialLink = function(a, href) {
+      a.attr('href', '#');
+      a.on('click', function(e) {
+        e.preventDefault();
+        window.open(href);
+      });
+    };
+
+    $.each(serviceLinks, function(key, value) {
+      if (iconName.indexOf(key) !== -1)
+        makeSocialLink(a, value);
+    });
+  }
+
+  // layout a dashboard page
+  function layoutDashboardPage(page) {
+
+    // use a page wrapper so that free form content above the
+    // dashboard appears at the top rather than the side (as it
+    // would without the wrapper in a column orientation)
+    var wrapper = $('<div class="dashboard-page-wrapper"></div>');
+    page.wrap(wrapper);
+
+    // if there are no level2 or level3 headers synthesize a level3
+    // header to contain the (e.g. frame it, scroll container, etc.)
+    var headers = page.find('h2,h3');
+    if (headers.length === 0)
+      page.wrapInner('<div class="section level3"></div>');
+
+    // hoist up any content before level 2 or level 3 headers
+    var children = page.children();
+    children.each(function(index) {
+      if ($(this).hasClass('level2') || $(this).hasClass('level3'))
+        return false;
+      $(this).insertBefore(page);
+    });
+
+    // determine orientation and fillPage behavior for distinct media
+    var orientation, fillPage, storyboard;
+
+    // media: mobile phone
+    if (isMobilePhone()) {
+
+      // if there is a sidebar we need to ensure it's content
+      // is properly framed as an h3
+      var sidebar = page.find('.section.sidebar');
+      sidebar.removeClass('sidebar');
+      sidebar.wrapInner('<div class="section level3"></div>');
+      var h2 = sidebar.find('h2');
+      var h3 = $('<h3></h3>');
+      h3.append(h2.contents());
+      h3.insertBefore(h2);
+      h2.detach();
+
+      // wipeout h2 elements then enclose them in a single h2
+      var level2 = page.find('div.section.level2');
+      level2.each(function() {
+        level2.children('h2').remove();
+        level2.children().unwrap();
+      });
+      page.wrapInner('<div class="section level2"></div>');
+
+      // substitute mobile images
+      if (isPortrait()) {
+        var mobileFigures = $('img.mobile-figure');
+        mobileFigures.each(function() {
+          // get the src (might be base64 encoded)
+          var src = $(this).attr('src');
+
+          // find it's peer
+          var id = $(this).attr('data-mobile-figure-id');
+          var img = $('img[data-figure-id=' + id + "]");
+          img.attr('src', src)
+             .attr('width', _options.defaultFigWidthMobile)
+             .attr('height', _options.defaultFigHeightMobile);
+        });
+      }
+
+      // hoist storyboard commentary into it's own section
+      if (page.hasClass('storyboard')) {
+        var commentaryHR = page.find('div.section.level3 hr');
+        commentaryHR.each(function() {
+          var commentary = $(this).nextAll().detach();
+          var commentarySection = $('<div class="section level3"></div>');
+          commentarySection.append(commentary);
+          commentarySection.insertAfter($(this).closest('div.section.level3'));
+          $(this).remove();
+        });
+      }
+
+      // force a non full screen layout by columns
+      orientation = _options.orientation = 'columns';
+      fillPage = _options.fillPage = false;
+      storyboard = _options.storyboard = false;
+
+    // media: desktop
+    } else {
+
+      // determine orientation
+      orientation = page.attr('data-orientation');
+      if (orientation !== 'rows' && orientation != 'columns')
+        orientation = _options.orientation;
+
+      // determine storyboard mode
+      storyboard = page.hasClass('storyboard');
+
+      // fillPage based on options (force for storyboard)
+      fillPage = _options.fillPage || storyboard;
+
+      // handle sidebar
+      var sidebar = page.find('.section.level2.sidebar');
+      if (sidebar.length > 0)
+        layoutSidebar(sidebar, page);
+    }
+
+    // give it and it's parent divs height: 100% if we are in fillPage mode
+    if (fillPage) {
+      page.addClass('vertical-layout-fill');
+      page.css('height', '100%');
+      page.parents('div').css('height', '100%');
+    } else {
+      page.addClass('vertical-layout-scroll');
+    }
+
+    // perform the layout
+    if (storyboard)
+      layoutPageAsStoryboard(page);
+    else if (orientation === 'rows')
+      layoutPageByRows(page, fillPage);
+    else if (orientation === 'columns')
+      layoutPageByColumns(page, fillPage);
+  }
+
+  function layoutSidebar(sidebar, content) {
+
+    // get it out of the header hierarchy
+    sidebar = sidebar.first();
+    if (sidebar.hasClass('level1')) {
+      sidebar.removeClass('level1');
+      sidebar.children('h1').remove();
+    } else if (sidebar.hasClass('level2')) {
+      sidebar.removeClass('level2');
+      sidebar.children('h2').remove();
+    }
+
+    // determine width
+    var sidebarWidth = isTablet() ? 220 : 250;
+    var dataWidth = parseInt(sidebar.attr('data-width'));
+    if (dataWidth)
+      sidebarWidth = dataWidth;
+
+    // set the width and shift the page right to accomodate the sidebar
+    sidebar.css('width', sidebarWidth + 'px');
+    content.css('padding-left', sidebarWidth + 'px');
+
+    // wrap it's contents in a form
+    sidebar.wrapInner($('<form></form>'));
+  }
+
+  function layoutPageAsStoryboard(page) {
+
+    // create storyboard navigation
+    var nav = $('<div class="storyboard-nav"></div>');
+
+    // add navigation buttons
+    var prev = $('<button class="sbprev"><i class="fa fa-angle-left"></i></button>');
+    nav.append(prev);
+    var next= $('<button class="sbnext"><i class="fa fa-angle-right"></i></button>');
+    nav.append(next);
+
+    // add navigation frame
+    var frameList = $('<div class="sbframelist"></div>');
+    nav.append(frameList);
+    var ul = $('<ul></ul>');
+    frameList.append(ul);
+
+     // find all the level3 sections (those are the storyboard frames)
+    var frames = page.find('div.section.level3');
+    frames.each(function() {
+
+      // mark it
+      $(this).addClass('sbframe');
+
+      // divide it into chart content and (optional) commentary
+      $(this).addClass('dashboard-column-orientation');
+
+      // stuff the chart into it's own div w/ flex
+      $(this).wrapInner('<div class="sbframe-component"></div>');
+      setFlex($(this), 1);
+      var frame = $(this).children('.sbframe-component');
+
+      // extract the title from the h3
+      var li = $('<li></li>');
+      var h3 = frame.children('h3');
+      li.append(h3.contents());
+      h3.detach();
+      ul.append(li);
+
+      // extract commentary
+      var hr = frame.children('hr');
+      if (hr.length) {
+        var commentary = hr.nextAll().detach();
+        hr.remove();
+        var commentaryFrame = $('<div class="sbframe-commentary"></div>');
+        commentaryFrame.addClass('flowing-content-shim');
+        commentaryFrame.addClass('flowing-content-container');
+        commentaryFrame.append(commentary);
+        $(this).append(commentaryFrame);
+
+        // look for a data-commentary-width attribute
+        var commentaryWidth = $(this).attr('data-commentary-width');
+        if (commentaryWidth)
+          commentaryFrame.css('width', commentaryWidth + 'px');
+      }
+
+      // layout the chart (force flex)
+      var result = layoutChart(frame, true);
+
+      // ice the notes if there are none
+      if (!result.notes)
+        frame.find('.chart-notes').remove();
+
+      // set flex on chart
+      setFlex(frame, 1);
+    });
+
+    // create a div to hold all the frames
+    var frameContent = $('<div class="sbframe-content"></div>');
+    frameContent.addClass('dashboard-row-orientation');
+    frameContent.append(frames.detach());
+
+    // row orientation to stack nav and frame content
+    page.addClass('dashboard-row-orientation');
+    page.append(nav);
+    page.append(frameContent);
+    setFlex(frameContent, 1);
+
+    // initialize sly
+    var sly = new Sly(frameList, {
+    		horizontal: true,
+    		itemNav: 'basic',
+    		smart: true,
+    		activateOn: 'click',
+    		startAt: 0,
+    		scrollBy: 1,
+    		activatePageOn: 'click',
+    		speed: 200,
+    		moveBy: 600,
+    		dragHandle: true,
+    		dynamicHandle: true,
+    		clickBar: true,
+    		keyboardNavBy: 'items',
+    		next: next,
+    		prev: prev
+    	}).init();
+
+    // make first frame active
+    frames.removeClass('active');
+    frames.first().addClass('active');
+
+    // subscribe to frame changed events
+    sly.on('active', function (eventName, itemIndex) {
+      frames.removeClass('active');
+      frames.eq(itemIndex).addClass('active')
+                          .trigger('shown');
+    });
+  }
+
+  function layoutPageByRows(page, fillPage) {
+
+    // row orientation
+    page.addClass('dashboard-row-orientation');
+
+    // find all the level2 sections (those are the rows)
+    var rows = page.find('div.section.level2');
+
+    // if there are no level2 sections then treat the
+    // entire page as if it's a level 2 section
+    if (rows.length === 0) {
+      page.wrapInner('<div class="section level2"></div>');
+      rows = page.find('div.section.level2');
+    }
+
+    rows.each(function () {
+
+      // flags
+      var haveNotes = false;
+      var haveFlexHeight = true;
+
+      // remove the h2
+      $(this).children('h2').remove();
+
+      // check for a tabset
+      var isTabset = $(this).hasClass('tabset');
+      if (isTabset)
+        layoutTabset($(this));
+
+      // give it row layout semantics if it's not a tabset
+      if (!isTabset)
+        $(this).addClass('dashboard-row');
+
+      // find all of the level 3 subheads
+      var columns = $(this).find('div.section.level3');
+
+      // determine figureSizes sizes
+      var figureSizes = chartFigureSizes(columns);
+
+      // fixup the columns
+      columns.each(function(index) {
+
+        // layout the chart (force flex if we are in a tabset)
+        var result = layoutChart($(this), isTabset);
+
+        // update flexHeight state
+        if (!result.flex)
+          haveFlexHeight = false;
+
+        // update state
+        if (result.notes)
+          haveNotes = true;
+
+        // set the column flex based on the figure width
+        // (value boxes will just get the default figure width)
+        var chartWidth = figureSizes[index].width;
+        setFlex($(this), chartWidth + ' ' + chartWidth + ' 0px');
+
+      });
+
+      // remove empty chart note divs
+      if (isTabset)
+        $(this).find('.chart-notes').filter(function() {
+            return $(this).html() === "&nbsp;";
+        }).remove();
+      if (!haveNotes)
+        $(this).find('.chart-notes').remove();
+
+       // make it a flexbox row
+      if (haveFlexHeight)
+        $(this).addClass('dashboard-row-flex');
+
+      // now we can set the height on all the wrappers (based on maximum
+      // figure height + room for title and notes, or data-height on the
+      // container if specified). However, don't do this if there is
+      // no flex on any of the constituent columns
+      var flexHeight = null;
+      var dataHeight = parseInt($(this).attr('data-height'));
+      if (dataHeight)
+        flexHeight = adjustedHeight(dataHeight, columns.first());
+      else if (haveFlexHeight)
+        flexHeight = maxChartHeight(figureSizes, columns);
+      if (flexHeight) {
+        if (fillPage)
+          setFlex($(this), flexHeight + ' ' + flexHeight + ' 0px');
+        else {
+          $(this).css('height', flexHeight + 'px');
+          setFlex($(this), '0 0 ' + flexHeight + 'px');
+        }
+      }
+
+    });
+  }
+
+  function layoutPageByColumns(page, fillPage) {
+
+    // column orientation
+    page.addClass('dashboard-column-orientation');
+
+    // find all the level2 sections (those are the columns)
+    var columns = page.find('div.section.level2');
+
+    // if there are no level2 sections then treat the
+    // entire page as if it's a level 2 section
+    if (columns.length === 0) {
+      page.wrapInner('<div class="section level2"></div>');
+      columns = page.find('div.section.level2');
+    }
+
+    // layout each column
+    columns.each(function (index) {
+
+      // remove the h2
+      $(this).children('h2').remove();
+
+      // make it a flexbox column
+      $(this).addClass('dashboard-column');
+
+      // check for a tabset
+      var isTabset = $(this).hasClass('tabset');
+      if (isTabset)
+        layoutTabset($(this));
+
+      // find all the h3 elements
+      var rows = $(this).find('div.section.level3');
+
+      // get the figure sizes for the rows
+      var figureSizes = chartFigureSizes(rows);
+
+      // column flex is the max row width (or data-width if specified)
+      var flexWidth;
+      var dataWidth = parseInt($(this).attr('data-width'));
+      if (dataWidth)
+        flexWidth = dataWidth;
+      else
+        flexWidth = maxChartWidth(figureSizes);
+      setFlex($(this), flexWidth + ' ' + flexWidth + ' 0px');
+
+      // layout each chart
+      rows.each(function(index) {
+
+        // perform the layout
+        var result = layoutChart($(this), false);
+
+        // ice the notes if there are none
+        if (!result.notes)
+          $(this).find('.chart-notes').remove();
+
+        // set flex height based on figHeight, then adjust
+        if (result.flex) {
+          var chartHeight = figureSizes[index].height;
+          chartHeight = adjustedHeight(chartHeight, $(this));
+          if (fillPage)
+            setFlex($(this), chartHeight + ' ' + chartHeight + ' 0px');
+          else {
+            $(this).css('height', chartHeight + 'px');
+            setFlex($(this), chartHeight + ' ' + chartHeight + ' ' + chartHeight + 'px');
+          }
+        }
+      });
+    });
+  }
+
+  function chartFigureSizes(charts) {
+
+    // sizes
+    var figureSizes = new Array(charts.length);
+
+    // check each chart
+    charts.each(function(index) {
+
+      // start with default
+      figureSizes[index] = {
+        width: _options.defaultFigWidth,
+        height: _options.defaultFigHeight
+      };
+
+      // look for data-height or data-width then knit options
+      var dataWidth = parseInt($(this).attr('data-width'));
+      var dataHeight = parseInt($(this).attr('data-height'));
+      var knitrOptions = $(this).find('.knitr-options:first');
+      var knitrWidth, knitrHeight;
+      if (knitrOptions) {
+        knitrWidth = parseInt(knitrOptions.attr('data-fig-width'));
+        knitrHeight =  parseInt(knitrOptions.attr('data-fig-height'));
+      }
+
+      // width
+      if (dataWidth)
+        figureSizes[index].width = dataWidth;
+      else if (knitrWidth)
+        figureSizes[index].width = knitrWidth;
+
+      // height
+      if (dataHeight)
+        figureSizes[index].height = dataHeight;
+      else if (knitrHeight)
+        figureSizes[index].height = knitrHeight;
+    });
+
+    // return sizes
+    return figureSizes;
+  }
+
+  function maxChartHeight(figureSizes, charts) {
+
+    // first compute the maximum height
+    var maxHeight = _options.defaultFigHeight;
+    for (var i = 0; i<figureSizes.length; i++)
+      if (figureSizes[i].height > maxHeight)
+        maxHeight = figureSizes[i].height;
+
+    // now add offests for chart title and chart notes
+    if (charts.length)
+      maxHeight = adjustedHeight(maxHeight, charts.first());
+
+    return maxHeight;
+  }
+
+  function adjustedHeight(height, chart) {
+    if (chart.length > 0) {
+      var chartTitle = chart.find('.chart-title');
+      if (chartTitle.length)
+        height += chartTitle.first().outerHeight();
+      var chartNotes = chart.find('.chart-notes');
+      if (chartNotes.length)
+        height += chartNotes.first().outerHeight();
+    }
+    return height;
+  }
+
+  function maxChartWidth(figureSizes) {
+    var maxWidth = _options.defaultFigWidth;
+    for (var i = 0; i<figureSizes.length; i++)
+      if (figureSizes[i].width > maxWidth)
+        maxWidth = figureSizes[i].width;
+    return maxWidth;
+  }
+
+  // layout a chart
+  function layoutChart(chart, forceFlex) {
+
+    // state to return
+    var result = {
+      notes: false,
+      flex: false
+    };
+
+    // extract the title
+    var title = extractTitle(chart);
+
+    // find components that apply to this container
+    var components = componentsFind(chart);
+
+    // if it's a custom component then call it and return
+    var customComponents = componentsCustom(components);
+    if (customComponents.length) {
+      componentsLayout(customComponents, title, chart);
+      result.notes = false;
+      result.flex = forceFlex || componentsFlex(customComponents);
+      return result;
+    }
+
+    // put all the content in a chart wrapper div
+    chart.addClass('chart-wrapper');
+    chart.wrapInner('<div class="chart-stage"></div>');
+    var chartContent = chart.children('.chart-stage');
+
+    // flex the content if appropriate
+    result.flex = forceFlex || componentsFlex(components);
+    if (result.flex) {
+      // add flex classes
+      chart.addClass('chart-wrapper-flex');
+      chartContent.addClass('chart-stage-flex');
+
+      // additional shim to break out of flexbox sizing
+      chartContent.wrapInner('<div class="chart-shim"></div>');
+      chartContent = chartContent.children('.chart-shim');
+    }
+
+    // set custom data-padding attribute
+    var pad = chart.attr('data-padding');
+    if (pad) {
+      if (pad === "0")
+        chart.addClass('no-padding');
+      else {
+        pad = pad + 'px';
+        chartContent.css('left', pad)
+                    .css('top', pad)
+                    .css('right', pad)
+                    .css('bottom', pad)
+      }
+    }
+
+    // call compoents
+    componentsLayout(components, title, chartContent);
+
+    // also activate components on shiny output
+    findShinyOutput(chartContent).on('shiny:value',
+      function(event) {
+        var element = $(event.target);
+        setTimeout(function() {
+
+          // see if we opted out of flex based on our output (for shiny
+          // we can't tell what type of output we have until after the
+          // value is bound)
+          var components = componentsFind(element);
+          var flex = forceFlex || componentsFlex(components);
+          if (!flex) {
+            chart.css('height', "");
+            setFlex(chart, "");
+            chart.removeClass('chart-wrapper-flex');
+            chartContent.removeClass('chart-stage-flex');
+            chartContent.children().unwrap();
+          }
+
+          // perform layout
+          componentsLayout(components, title, element.parent());
+        }, 10);
+      });
+
+    // add the title
+    var chartTitle = $('<div class="chart-title"></div>');
+    chartTitle.append(title);
+    chart.prepend(chartTitle);
+
+    // add the notes section
+    var chartNotes = $('<div class="chart-notes"></div>');
+    chartNotes.html('&nbsp;');
+    chart.append(chartNotes);
+
+    // attempt to extract notes if we have a component
+    if (components.length)
+      result.notes = extractChartNotes(chartContent, chartNotes);
+
+    // return result
+    return result;
+  }
+
+  // build a tabset from a section div with the .tabset class
+  function layoutTabset(tabset) {
+
+    // check for fade option
+    var fade = tabset.hasClass("tabset-fade");
+    var navClass = "nav-tabs";
+
+    // determine the heading level of the tabset and tabs
+    var match = tabset.attr('class').match(/level(\d) /);
+    if (match === null)
+      return;
+    var tabsetLevel = Number(match[1]);
+    var tabLevel = tabsetLevel + 1;
+
+    // find all subheadings immediately below
+    var tabs = tabset.find("div.section.level" + tabLevel);
+    if (!tabs.length)
+      return;
+
+    // create tablist and tab-content elements
+    var tabList = $('<ul class="nav ' + navClass + '" role="tablist"></ul>');
+    $(tabs[0]).before(tabList);
+    var tabContent = $('<div class="tab-content"></div>');
+    $(tabs[0]).before(tabContent);
+
+    // build the tabset
+    tabs.each(function(i) {
+
+      // get the tab div
+      var tab = $(tabs[i]);
+
+      // get the id then sanitize it for use with bootstrap tabs
+      var id = tab.attr('id');
+
+      // sanitize the id for use with bootstrap tabs
+      id = id.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_');
+      tab.attr('id', id);
+
+      // get the heading element within it and grab it's text
+      var heading = tab.find('h' + tabLevel + ':first');
+      var headingDom = heading.contents();
+
+      // build and append the tab list item
+      var a = $('<a role="tab" data-toggle="tab"></a>');
+      a.append(headingDom);
+      a.attr('href', '#' + id);
+      a.attr('aria-controls', id);
+      var li = $('<li role="presentation"></li>');
+      li.append(a);
+      if (i === 0)
+        li.attr('class', 'active');
+      tabList.append(li);
+
+      // set it's attributes
+      tab.attr('role', 'tabpanel');
+      tab.addClass('tab-pane');
+      tab.addClass('tabbed-pane');
+      tab.addClass('no-title');
+      if (fade)
+        tab.addClass('fade');
+      if (i === 0) {
+        tab.addClass('active');
+        if (fade)
+          tab.addClass('in');
+      }
+
+      // move it into the tab content div
+      tab.detach().appendTo(tabContent);
+    });
+
+    // add nav-tabs-custom
+    tabset.addClass('nav-tabs-custom');
+
+    // internal layout is dashboard-column with tab-content flexing
+    tabset.addClass('dashboard-column');
+    setFlex(tabContent, 1);
+  }
+
+  // one time global initialization for components
+  function componentsInit(dashboardContainer) {
+    for (var i=0; i<window.FlexDashboardComponents.length; i++) {
+      var component = window.FlexDashboardComponents[i];
+      if (component.init)
+        component.init(dashboardContainer);
+    }
+  }
+
+  // find components that apply within a container
+  function componentsFind(container) {
+
+    // look for components
+    var components = [];
+    for (var i=0; i<window.FlexDashboardComponents.length; i++) {
+      var component = window.FlexDashboardComponents[i];
+      if (component.find(container).length)
+        components.push(component);
+    }
+
+    // if there were none then use a special flowing content component
+    // that just adds a scrollbar in fillPage mode
+    if (components.length == 0) {
+      components.push({
+        find: function(container) {
+          return container;
+        },
+
+        flex: function(fillPage) {
+          return fillPage;
+        },
+
+        layout: function(title, container, element, fillPage) {
+          if (fillPage) {
+            container.addClass('flowing-content-shim');
+            container.addClass('flowing-content-container');
+          }
+        }
+      });
+    }
+
+    return components;
+  }
+
+  // if there is a custom component then pick it out
+  function componentsCustom(components) {
+    var customComponent = [];
+    for (var i=0; i<components.length; i++)
+      if (components[i].type === "custom") {
+        customComponent.push(components[i]);
+        break;
+      }
+    return customComponent;
+  }
+
+  // query all components for flex
+  function componentsFlex(components) {
+
+    // no components at all means no flex
+    if (components.length === 0)
+      return false;
+
+    // otherwise query components (assume true unless we see false)
+    var isMobile = isMobilePhone();
+    for (var i=0; i<components.length; i++)
+      if (components[i].flex && !components[i].flex(_options.fillPage))
+        return false;
+    return true;
+  }
+
+  // layout all components
+  function componentsLayout(components, title, container) {
+    var isMobile = isMobilePhone();
+    for (var i=0; i<components.length; i++) {
+      var element = components[i].find(container);
+      if (components[i].layout) {
+        // call layout (don't call other components if it returns false)
+        var result = components[i].layout(title, container, element, _options.fillPage);
+        if (result === false)
+          return;
+      }
+    }
+  }
+
+  // get a reference to the h3, discover it's inner html, and remove it
+  function extractTitle(container) {
+    var h3 = container.children('h3').first();
+    var title = '';
+    if (!container.hasClass('no-title'))
+      title = h3.contents();
+    h3.detach();
+    return title;
+  }
+
+  // extract chart notes
+  function extractChartNotes(chartContent, chartNotes) {
+    // look for a terminating blockquote or image caption
+    var blockquote = chartContent.children('blockquote:last-child');
+    var caption = chartContent.children('div.image-container')
+                              .children('p.caption');
+    if (blockquote.length) {
+      chartNotes.empty().append(blockquote.children('p:first-child').contents());
+      blockquote.remove();
+      return true;
+    } else if (caption.length) {
+      chartNotes.empty().append(caption.contents());
+      caption.remove();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function findShinyOutput(chartContent) {
+    return chartContent.find('.shiny-text-output, .shiny-html-output');
+  }
+
+  // safely detect rendering on a mobile phone
+  function isMobilePhone() {
+    try
+    {
+      return ! window.matchMedia("only screen and (min-width: 768px)").matches;
+    }
+    catch(e) {
+      return false;
+    }
+  }
+
+  function isFillPage() {
+    return _options.fillPage;
+  }
+
+  // detect portrait mode
+  function isPortrait() {
+    return ($(window).width() < $(window).height());
+  }
+
+  // safely detect rendering on a tablet
+  function isTablet() {
+    try
+    {
+      return window.matchMedia("only screen and (min-width: 769px) and (max-width: 992px)").matches;
+    }
+    catch(e) {
+      return false;
+    }
+  }
+
+  // test whether this is a shiny doc
+  function isShinyDoc() {
+    return (typeof(window.Shiny) !== "undefined" && !!window.Shiny.outputBindings);
+  }
+
+  // set flex using vendor specific prefixes
+  function setFlex(el, flex) {
+    el.css('-webkit-box-flex', flex)
+      .css('-webkit-flex', flex)
+      .css('-ms-flex', flex)
+      .css('flex', flex);
+  }
+
+  // support bookmarking of pages
+  function handleLocationHash() {
+
+    // restore tab/page from bookmark
+    var hash = window.decodeURIComponent(window.location.hash);
+    if (hash.length > 0)
+      $('ul.nav a[href="' + hash + '"]').tab('show');
+    FlexDashboardUtils.manageActiveNavbarMenu();
+
+    // navigate to a tab when the history changes
+    window.addEventListener("popstate", function(e) {
+      var hash = window.decodeURIComponent(window.location.hash);
+      var activeTab = $('ul.nav a[href="' + hash + '"]');
+      if (activeTab.length) {
+        activeTab.tab('show');
+      } else {
+        $('ul.nav a:first').tab('show');
+      }
+      FlexDashboardUtils.manageActiveNavbarMenu();
+    });
+
+    // add a hash to the URL when the user clicks on a tab/page
+    $('.navbar-nav a[data-toggle="tab"]').on('click', function(e) {
+      var baseUrl = FlexDashboardUtils.urlWithoutHash(window.location.href);
+      var hash = FlexDashboardUtils.urlHash($(this).attr('href'));
+      var href = baseUrl + hash;
+      FlexDashboardUtils.setLocation(href);
+    });
+
+    // handle clicks of other links that should activate pages
+    var navPages = $('ul.navbar-nav li a[data-toggle=tab]');
+    navPages.each(function() {
+      var href =  $(this).attr('href');
+      var links = $('a[href="' + href + '"][data-toggle!=tab]');
+      links.each(function() {
+        $(this).on('click', function(e) {
+          window.FlexDashboardUtils.showPage(href);
+        });
+      });
+    });
+  }
+
+  // tweak Prism highlighting
+  function initPrismHighlighting() {
+
+    if (window.Prism) {
+      Prism.languages.insertBefore('r', 'comment', {
+        'heading': [
+          {
+            // title 1
+        	  // =======
+
+        	  // title 2
+        	  // -------
+        	  pattern: /\w+.*(?:\r?\n|\r)(?:====+|----+)/,
+            alias: 'operator'
+          },
+          {
+            // ### title 3
+            pattern: /(^\s*)###[^#].+/m,
+            lookbehind: true,
+            alias: 'operator'
+          }
+        ]
+      });
+
+      // prism highlight
+      Prism.highlightAll();
+    }
+  }
+
+
+  // get theme color
+  var themeColors = {
+    bootstrap: {
+      primary: "rgba(51, 122, 183, 0.4)",
+      info: "rgb(217, 237, 247)",
+      success: "rgb(223, 240, 216)",
+      warning: "rgb(252, 248, 227)",
+      danger: "rgb(242, 222, 222)"
+    },
+    cerulean: {
+      primary: "rgb(47, 164, 231)",
+      info: "rgb(217, 237, 247)",
+      success: "rgb(223, 240, 216)",
+      warning: "rgb(252, 248, 227)",
+      danger: "rgb(242, 222, 222)"
+    },
+    journal: {
+      primary: "rgba(235, 104, 100, 0.70)",
+      info: "rgb(217, 237, 247)",
+      success: "rgb(223, 240, 216)",
+      warning: "rgb(252, 248, 227)",
+      danger: "rgb(242, 222, 222)"
+    },
+    flatly: {
+      primary: "rgba(44, 62, 80, 0.70)",
+      info: "rgba(52, 152, 219, 0.70)",
+      success: "rgba(24, 188, 156, 0.70)",
+      warning: "rgba(243, 156, 18, 0.70)",
+      danger: "rgba(231, 76, 60, 0.70)"
+    },
+    readable: {
+      primary: "rgba(69, 130, 236, 0.4)",
+      info: "rgb(217, 237, 247)",
+      success: "rgb(223, 240, 216)",
+      warning: "rgb(252, 248, 227)",
+      danger: "rgb(242, 222, 222)"
+    },
+    spacelab: {
+      primary: "rgba(68, 110, 155, 0.25)",
+      info: "rgb(217, 237, 247)",
+      success: "rgb(223, 240, 216)",
+      warning: "rgb(252, 248, 227)",
+      danger: "rgb(242, 222, 222)"
+    },
+    united: {
+      primary: "rgba(221, 72, 20, 0.30)",
+      info: "rgb(217, 237, 247)",
+      success: "rgb(223, 240, 216)",
+      warning: "rgb(252, 248, 227)",
+      danger: "rgb(242, 222, 222)"
+    },
+    cosmo: {
+      primary: "rgba(39, 128, 227, 0.7)",
+      info: "rgba(153, 84, 187, 0.7)",
+      success: "rgba(63, 182, 24, 0.7)",
+      warning: "rgba(255, 117, 24, 0.7)",
+      danger: "rgba(255, 0, 57, 0.7)"
+    },
+    lumen: {
+      primary: "rgba(21, 140, 186, 0.70)",
+      info: "rgba(117, 202, 235, 0.90)",
+      success: "rgba(40, 182, 44, 0.70)",
+      warning: "rgba(255, 133, 27, 0.70)",
+      danger: "rgba(255, 65, 54, 0.70)"
+    },
+    paper: {
+      primary: "rgba(33, 150, 243, 0.35)",
+      info: "rgb(225, 190, 231)",
+      success: "rgb(223, 240, 216)",
+      warning: "rgb(255, 224, 178)",
+      danger: "rgb(249, 189, 187)"
+    },
+    sandstone: {
+      primary: "rgba(50, 93, 136, 0.3)",
+      info: "rgb(217, 237, 247)",
+      success: "rgb(223, 240, 216)",
+      warning: "rgb(252, 248, 227)",
+      danger: "rgb(242, 222, 222)"
+    },
+    simplex: {
+      primary: "rgba(217, 35, 15, 0.25)",
+      info: "rgb(217, 237, 247)",
+      success: "rgb(223, 240, 216)",
+      warning: "rgb(252, 248, 227)",
+      danger: "rgb(242, 222, 222)"
+    },
+    yeti: {
+      primary: "rgba(0, 140, 186, 0.298039)",
+      info: "rgb(217, 237, 247)",
+      success: "rgb(223, 240, 216)",
+      warning: "rgb(252, 248, 227)",
+      danger: "rgb(242, 222, 222)"
+    }
+  }
+  function themeColor(color) {
+    return themeColors[_options.theme][color];
+  }
+
+  FlexDashboard.prototype = {
+    constructor: FlexDashboard,
+    init: init,
+    isMobilePhone: isMobilePhone,
+    isFillPage: isFillPage,
+    themeColor: themeColor
+  };
+
+  return FlexDashboard;
+
+})();
+
+// utils
+window.FlexDashboardUtils = {
+  resizableImage: function(img) {
+    var src = img.attr('src');
+    var url = 'url("' + src + '")';
+    img.parent().css('background', url)
+                .css('background-size', 'contain')
+                .css('background-repeat', 'no-repeat')
+                .css('background-position', 'center')
+                .addClass('image-container');
+  },
+  setLocation: function(href) {
+    if (history && history.pushState) {
+      history.pushState(null, null, href);
+    } else {
+      window.location.replace(href);
+    }
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 10);
+    this.manageActiveNavbarMenu();
+  },
+  showPage: function(href) {
+    $('ul.navbar-nav li a[href="' + href + '"]').tab('show');
+    var baseUrl = this.urlWithoutHash(window.location.href);
+    var loc = baseUrl + href;
+    this.setLocation(loc);
+  },
+  showLinkedValue: function(href) {
+    // check for a page link
+    if ($('ul.navbar-nav li a[data-toggle=tab][href="' + href + '"]').length > 0)
+      this.showPage(href);
+    else
+      window.open(href);
+  },
+  urlWithoutHash: function(url) {
+    var hashLoc = url.indexOf('#');
+    if (hashLoc != -1)
+      return url.substring(0, hashLoc);
+    else
+      return url;
+  },
+  urlHash: function(url) {
+    var hashLoc = url.indexOf('#');
+    if (hashLoc != -1)
+      return url.substring(hashLoc);
+    else
+      return "";
+  },
+  manageActiveNavbarMenu: function () {
+    // remove active from anyone currently active
+    $('.navbar ul.nav').find('li').removeClass('active');
+    // find the active tab
+    var activeTab = $('.dashboard-page-wrapper.tab-pane.active');
+    if (activeTab.length > 0) {
+      var tabId = activeTab.attr('id');
+      if (tabId)
+        $(".navbar ul.nav a[href='#" + tabId + "']").parents('li').addClass('active');
+    }
+  }
+};
+
+window.FlexDashboard = new FlexDashboard();
+
+// empty content
+window.FlexDashboardComponents.push({
+  find: function(container) {
+    if (container.find('p').length == 0)
+      return container;
+    else
+      return $();
+  }
+})
+
+// plot image
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('p')
+                    .children('img:only-child');
+  },
+
+  layout: function(title, container, element, fillPage) {
+    FlexDashboardUtils.resizableImage(element);
+  }
+});
+
+// plot image (figure style)
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('div.figure').children('img');
+  },
+
+  layout: function(title, container, element, fillPage) {
+    FlexDashboardUtils.resizableImage(element);
+  }
+});
+
+// htmlwidget
+window.FlexDashboardComponents.push({
+
+  init: function(dashboardContainer) {
+    // trigger "shown" after initial layout to force static htmlwidgets
+    // in runtime: shiny to be resized after the dom has been transformed
+    dashboardContainer.on('flexdashboard:layoutcomplete', function(event) {
+      setTimeout(function() {
+        dashboardContainer.trigger('shown');
+      }, 200);
+    });
+  },
+
+  find: function(container) {
+    return container.children('div[id^="htmlwidget-"],div.html-widget');
+  }
+});
+
+// gauge
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('div.html-widget.gauge');
+  },
+
+  flex: function(fillPage) {
+    return false;
+  },
+
+  layout: function(title, container, element, fillPage) {
+
+
+  }
+
+});
+
+// shiny output
+window.FlexDashboardComponents.push({
+  find: function(container) {
+    return container.children('div[class^="shiny-"]');
+  }
+});
+
+// datatables
+window.FlexDashboardComponents.push({
+  find: function(container) {
+    return container.find('.datatables');
+  },
+  flex: function(fillPage) {
+    return fillPage;
+  }
+});
+
+// bootstrap table
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    var bsTable = container.find('table.table');
+    if (bsTable.length !== 0)
+      return bsTable;
+    else
+      return container.find('tr.header').parent('thead').parent('table');
+  },
+
+  flex: function(fillPage) {
+    return fillPage;
+  },
+
+  layout: function(title, container, element, fillPage) {
+
+    // alias variables
+    var bsTable = element;
+
+    // fixup xtable generated tables with a proper thead
+    var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
+    if (headerRow.length > 0) {
+      var thead = $('<thead></thead>');
+      bsTable.prepend(thead);
+      headerRow.detach().appendTo(thead);
+    }
+
+    // improve appearance
+    container.addClass('bootstrap-table');
+
+    // for fill page provide scrolling w/ sticky headers
+    if (fillPage) {
+      // force scrollbar on overflow
+      container.addClass('flowing-content-shim');
+
+      // stable table headers when scrolling
+      bsTable.stickyTableHeaders({
+        scrollableArea: container
+      });
+    }
+  }
+});
+
+// embedded shiny app
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.find('iframe.shiny-frame');
+  },
+
+  flex: function(fillPage) {
+    return fillPage;
+  },
+
+  layout: function(title, container, element, fillPage) {
+    if (fillPage) {
+      element.attr('height', '100%');
+    } else {
+      // provide default height if necessary
+      var height = element.get(0).style.height;
+      if (!height)
+        height = element.attr('height');
+      if (!height)
+        element.attr('height', 500);
+    }
+  }
+});
+
+// shiny fillRow or fillCol
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.find('.flexfill-container');
+  },
+
+  flex: function(fillPage) {
+    return fillPage;
+  },
+
+  layout: function(title, container, element, fillPage) {
+    if (fillPage)
+      element.css('height', '100%');
+    else {
+      // provide default height if necessary
+      var height = element.get(0).style.height;
+      if (height === "100%" || height === "auto" || height === "initial" ||
+          height === "inherit" || !height) {
+        element.css('height', 500);
+      }
+    }
+  }
+});
+
+// valueBox
+window.FlexDashboardComponents.push({
+
+  type: "custom",
+
+  find: function(container) {
+    if (container.find('span.value-output, .shiny-valuebox-output').length)
+      return container;
+    else
+      return $();
+  },
+
+  flex: function(fillPage) {
+    return false;
+  },
+
+  layout: function(title, container, element, fillPage) {
+
+    // alias variables
+    var chartTitle = title;
+    var valueBox = element;
+
+    // add value-box class to container
+    container.addClass('value-box');
+
+    // value paragraph
+    var value = $('<p class="value"></p>');
+
+    // if we have shiny-text-output then just move it in
+    var valueOutputSpan = [];
+    var shinyOutput = valueBox.find('.shiny-valuebox-output').detach();
+    if (shinyOutput.length) {
+      valueBox.children().remove();
+      shinyOutput.html("&mdash;");
+      value.append(shinyOutput);
+    } else {
+      // extract the value (remove leading vector index)
+      var chartValue = valueBox.text().trim();
+      chartValue = chartValue.replace("[1] ", "");
+      valueOutputSpan = valueBox.find('span.value-output').detach();
+      valueBox.children().remove();
+      value.text(chartValue);
+    }
+
+    // caption
+    var caption = $('<p class="caption centered"></p>');
+    caption.append(chartTitle);
+
+    // build inner div for value box and add it
+    var inner = $('<div class="inner"></div>');
+    inner.append(value);
+    inner.append(caption);
+    valueBox.append(inner);
+
+    // add icon if specified
+    var icon = $('<div class="icon"><i></i></div>');
+    valueBox.append(icon);
+    function setIcon(chartIcon) {
+      var iconLib = "";
+      var iconSplit = chartIcon.split(" ");
+      if (iconSplit.length > 1) {
+        iconLib = iconSplit[0];
+        chartIcon = iconSplit.slice(1).join(" ");
+      } else {
+        var components = chartIcon.split("-");
+        if (components.length > 1)
+          iconLib = components[0];
+      }
+      icon.children('i').attr('class', iconLib + ' ' + chartIcon);
+    }
+    var chartIcon = valueBox.attr('data-icon');
+    if (chartIcon)
+      setIcon(chartIcon);
+
+    // set color based on data-background if necessary
+    var dataBackground = valueBox.attr('data-background');
+    if (dataBackground)
+      valueBox.css('background-color', bgColor);
+    else {
+      // default to bg-primary if no other background is specified
+      if (!valueBox.hasClass('bg-primary') &&
+          !valueBox.hasClass('bg-info') &&
+          !valueBox.hasClass('bg-warning') &&
+          !valueBox.hasClass('bg-success') &&
+          !valueBox.hasClass('bg-danger')) {
+        valueBox.addClass('bg-primary');
+      }
+    }
+
+    // handle data attributes in valueOutputSpan
+    function handleValueOutput(valueOutput) {
+
+      // caption
+      var dataCaption = valueOutput.attr('data-caption');
+      if (dataCaption)
+        caption.html(dataCaption);
+
+      // icon
+      var dataIcon = valueOutput.attr('data-icon');
+      if (dataIcon)
+        setIcon(dataIcon);
+
+      // color
+      var dataColor = valueOutput.attr('data-color');
+      if (dataColor) {
+        if (dataColor.indexOf('bg-') === 0) {
+          valueBox.css('background-color', '');
+          if (!valueBox.hasClass(dataColor)) {
+             valueBox.removeClass('bg-primary bg-info bg-warning bg-danger bg-success');
+             valueBox.addClass(dataColor);
+          }
+        } else {
+          valueBox.removeClass('bg-primary bg-info bg-warning bg-danger bg-success');
+          valueBox.css('background-color', dataColor);
+        }
+      }
+
+      // url
+      var dataHref = valueOutput.attr('data-href');
+      if (dataHref) {
+        valueBox.addClass('linked-value');
+        valueBox.off('click.value-box');
+        valueBox.on('click.value-box', function(e) {
+          window.FlexDashboardUtils.showLinkedValue(dataHref);
+        });
+      }
+    }
+
+    // check for a valueOutputSpan
+    if (valueOutputSpan.length > 0) {
+      handleValueOutput(valueOutputSpan);
+    }
+
+    // if we have a shinyOutput then bind a listener to handle
+    // new valueOutputSpan values
+    shinyOutput.on('shiny:value',
+      function(event) {
+        var element = $(event.target);
+        setTimeout(function() {
+          var valueOutputSpan = element.find('span.value-output');
+          if (valueOutputSpan.length > 0)
+            handleValueOutput(valueOutputSpan);
+        }, 10);
+      }
+    );
+  }
+});
+</script>
+
+<div id="dashboard-container">
+
+<div class="knitr-options" data-fig-width="646" data-fig-height="412">
+
+</div>
+<div id="htmlwidget-f4b136382ae99bf19349" style="width:646.08px;height:412.8px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f4b136382ae99bf19349">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["line",430]},{"method":"addPolylines","args":[[[[{"lng":[30.3049089,30.3054223,30.3058439,30.3060528,30.3064137,30.3065884,30.3065989,30.3066026,30.3066032,30.3066044,30.3066049,30.3066073,30.3066097,30.3066105,30.306612,30.3066147,30.3066163,30.3067125,30.3069725,30.3073918,30.3077058,30.3080598,30.3084526,30.3088789,30.3094797,30.3101443,30.3107116,30.3111897,30.3117639,30.3123233,30.3129198,30.3134896,30.3140289,30.3146209,30.3150129,30.3156123,30.3162063,30.3167144,30.3172987,30.3178781,30.3184513,30.3190384,30.319614,30.3202105,30.3207278,30.3211873,30.321824,30.3225188,30.3231839,30.3237523,30.3243621,30.3249557,30.3253603,30.3260492,30.3267202,30.3274313,30.3279564,30.3283067,30.3292116,30.3300375,30.3308688,30.3316056,30.3322814,30.332927,30.3333402,30.3336357,30.3336371,30.3336314,30.3336316,30.3336743,30.3340868,30.3344094,30.3345875,30.3345964,30.3348798,30.3355209,30.336118,30.3365681,30.3367657,30.3369705,30.3371891,30.337334,30.337534,30.3377552,30.3378783,30.3380582,30.3379147,30.3381833,30.3382084,30.3384778,30.3388657,30.3395622,30.3401613,30.3409201,30.3419024,30.3422119,30.342452,30.3428368,30.3431793,30.3433188,30.3435416,30.343731,30.3439383,30.3440457,30.3440119,30.3439422,30.343757,30.3433179,30.3430198,30.3425667,30.3421985,30.3416691,30.3409994,30.3402925,30.3395836,30.3388173,30.3380062,30.3372801,30.3364755,30.3357493,30.3349797,30.3342622,30.3334812,30.332774,30.3319302,30.3312967,30.3304469,30.3296902,30.3289483,30.3281223,30.3273831,30.3267005,30.3260431,30.3251834,30.3242967,30.3236032,30.3227618,30.3219948,30.3213003,30.3205342,30.3197887,30.3190165,30.3182375,30.3175123,30.3165581,30.3157614,30.3148,30.3139195,30.3130084,30.3121095,30.3112203,30.3103806,30.3095178,30.3086723,30.3077939,30.3069087,30.3060848,30.3052253,30.3042939,30.3034934,30.3028512,30.3022881,30.3018481,30.3013842,30.3010546,30.3007638,30.3004996,30.3002551,30.300023,30.2997859,30.2993693,30.2991029,30.2988602,30.2984675,30.298242,30.2979792,30.2976402,30.2972242,30.2970164,30.2966521,30.296347,30.2960589,30.295789,30.2954466,30.2952556,30.294986,30.2946182,30.294548,30.2945259,30.2943699,30.2941846,30.2940183,30.2939419,30.2938879,30.2936992,30.2936759,30.2935253,30.2935149,30.2939402,30.2945728,30.2950193,30.2957562,30.2964334,30.2969999,30.2976185,30.2981659,30.2988701,30.2996016,30.30045,30.3012375,30.3021169,30.3029662,30.3038193,30.3045725,30.3054065,30.306214,30.3069591,30.3077593,30.3084853,30.3093747,30.3105548,30.3113489,30.3121569,30.3129938,30.3138336,30.3145968,30.315295,30.3159714,30.3166246,30.3171005,30.3175853,30.3180162,30.318404,30.3184896,30.3188889,30.3192478,30.3195122,30.3197256,30.319761,30.3197349,30.319731,30.3196654,30.3195775,30.3193733,30.3192023,30.3191605,30.319163,30.3192123,30.3191421,30.3195137,30.3196497,30.3196445,30.3194108,30.31906,30.3186833,30.3182378,30.3177591,30.317304,30.3170156,30.316562,30.3159938,30.3158597,30.3162391,30.3168812,30.3173389,30.3177723,30.3181419,30.3186458,30.3189642,30.3189096,30.3185585,30.3178817,30.3170967,30.3164358,30.3155884,30.3147497,30.3140067,30.3130856,30.3123054,30.3115521,30.3108647,30.3101911,30.3095375,30.3088701,30.3080627,30.3073949,30.3065376,30.3057419,30.3049077,30.3044706,30.3045809,30.3050041,30.305478,30.3059427,30.3063344,30.3065446,30.3065915,30.3065963,30.3066413,30.3066821,30.3065085,30.3064823,30.3065115,30.3067987,30.3070288,30.3073067,30.3075232,30.3077597,30.3078893,30.3080045,30.3083143,30.3085536,30.3088292,30.3090469,30.3091891,30.3091161,30.3091604,30.3091674,30.3091622,30.3091625,30.3091555,30.3092542,30.3092605,30.3092661,30.309254,30.3092301,30.3092306,30.3092296,30.3092451,30.3093046,30.3092911,30.3092928,30.3093082,30.3093082,30.309267,30.3092647,30.3092578,30.3093073,30.3096766,30.3098467,30.3098445,30.3098934,30.3102088,30.3104372,30.310667,30.310935,30.3111913,30.3114456,30.311478,30.3117675,30.3121907,30.3125834,30.312852,30.312901,30.3131139,30.3133607,30.3136096,30.3138316,30.3141299,30.3143428,30.3145234,30.3147919,30.3150681,30.3152988,30.3154525,30.3156172,30.3159478,30.3163236,30.316605,30.3166125,30.3168719,30.317129,30.3172974,30.3175362,30.3176477,30.3177532,30.3177674,30.3178019,30.3177664,30.317718,30.3177489,30.3177097,30.3176936,30.3175637,30.3175676,30.3178028,30.3181013,30.3184513,30.31877,30.3190558,30.319345,30.3197409,30.3200192,30.3202392,30.3205825,30.320881,30.3212258,30.3215014,30.3217044,30.3220026,30.3221283,30.3221931,30.3223025,30.3223751,30.3223854,30.3223561,30.322606,30.3228,30.3230731,30.3233188,30.3234686,30.3239064,30.3242596,30.3245291,30.3247322,30.3247394,30.3247568,30.3248688,30.3248964,30.3250034,30.3250379,30.3249485,30.324948,30.3253397,30.325786,30.3260614,30.3263108,30.3261838,30.3264076,30.3264891,30.326733,30.3271079,30.3274108,30.3275662,30.3279368,30.32826,30.3286391,30.3289574,30.3292149,30.3294939,30.3298451,30.3301829,30.3304945,30.3304839,30.3308506,30.3308857,30.3311566,30.331673,30.3320763,30.3323309,30.3326332,30.3329479,30.3331115,30.3333689,30.3337059,30.3340189,30.3344871,30.3348642,30.334944,30.3352286,30.3355348,30.3360139,30.3361868,30.3364365,30.3367841,30.3371068,30.337386,30.3374541,30.337475,30.3375322,30.3375105,30.3375069,30.3376636,30.3376765,30.3376252,30.3375909,30.337408,30.3375521,30.3378365,30.3380373,30.3384674,30.3388688,30.3391364,30.3393457,30.3395859,30.3399609,30.3402851,30.3405452,30.3408846,30.341181,30.3413811,30.3416665,30.3420388,30.3423307,30.3426606,30.3426827,30.3427101,30.3427454,30.3427456,30.3427454,30.3429312,30.3433009,30.3435889,30.3437943,30.3439022,30.3439251,30.3439121,30.3440191,30.3444047,30.3448401,30.3450366,30.3450192,30.3450797,30.3450771,30.3450474,30.3450146,30.3450077,30.3449757,30.344986,30.3449664,30.3449698,30.3449712,30.3452036,30.3454344,30.3458601,30.3462075,30.3466062,30.3469361,30.3472863,30.3475366,30.3475923,30.3477587,30.3478423,30.3479005,30.3477965,30.3478817,30.3479574,30.3483514,30.3486334,30.348889,30.3492545,30.3496265,30.3498793,30.3502706,30.3506949,30.3510487,30.35117,30.3512489,30.3516522,30.3520747,30.3523849,30.3527064,30.3529409,30.3533279,30.3536661,30.3540401,30.3543697,30.3547236,30.3550235,30.3553673,30.3557318,30.3560552,30.3563453,30.3565714,30.3568273,30.3569822,30.3573471,30.357646,30.3580014,30.3582661,30.3585286,30.358782,30.3591518,30.3594563,30.3598137,30.3601874,30.360526,30.3605921,30.3605674,30.3606082,30.360491,30.3604753,30.3603143,30.3598608,30.3594665,30.3590935,30.3587562,30.3584863,30.3582833,30.3580175,30.3578077,30.35763,30.3575201,30.3575074,30.3574849,30.357248,30.3572963,30.3571654,30.3570914,30.3569917,30.3568021,30.3567615,30.3568555,30.3569377,30.3566775,30.3565553,30.3563307,30.3564045,30.3563867,30.3565733,30.3564289,30.356266,30.3562204,30.3560532,30.3561048,30.3561728,30.3561847,30.3560638,30.3559931,30.3559423,30.3558822,30.3557938,30.3557451,30.3557985,30.3558962,30.355889,30.3559129,30.3558645,30.3556896,30.3555156,30.3553826,30.355217,30.3550759,30.354952,30.3547831,30.3546295,30.3545061,30.3543527,30.3542479,30.3541296,30.3539529,30.3538296,30.3537774,30.3536956,30.3536346,30.3535501,30.3534488,30.353416,30.3534016,30.3534162,30.3534712,30.3535416,30.3535852,30.3535743,30.3535823,30.353619,30.353643,30.3536563,30.3535925,30.3535569,30.3534111,30.3533324,30.3533596,30.3533432,30.3533463,30.3533422,30.3533307,30.3533355,30.3533509,30.3533452,30.3533434,30.3532609,30.3532924,30.353331,30.3533405,30.3533555,30.3533319,30.353302,30.3532945,30.353323,30.3533297,30.3533094,30.3533235,30.3534,30.3534232,30.35339,30.3533016,30.3533045,30.3534005,30.3534532,30.3534747,30.3533623,30.3533438,30.3533456,30.3534767,30.3534105,30.3533719,30.3533681,30.3533533,30.3533629,30.3533598,30.3533638,30.3533414,30.353353,30.3533861,30.3533765,30.3533624,30.3533549,30.3533741,30.3533883,30.3533889,30.3533736,30.3533863,30.353399,30.3533606,30.3533638,30.3533573,30.3533935,30.3533633,30.3533516,30.3533543,30.3533671,30.3533884,30.3533636,30.3533736,30.353366,30.3533588,30.3533563,30.3533575,30.3533577,30.3533636,30.3533627,30.3533598,30.3533702,30.3533562,30.3533526,30.3533451,30.3533524,30.3533857,30.3533932,30.3533576,30.3533561,30.3533572,30.3533753,30.3533645,30.3533556,30.3533743,30.3533659,30.353377,30.3534307,30.3534349,30.3534397,30.3534865,30.3535166,30.3535065,30.3534951,30.3534907,30.3534856,30.3535006,30.3536995,30.3536617,30.3536888,30.3537531,30.3536219,30.3537782,30.3537577,30.353929,30.3539748,30.3538782,30.3538716,30.3538872,30.3540712,30.353652,30.3538569,30.3534899,30.3534279,30.3537733,30.3540218,30.3541143,30.3540846,30.3540532,30.3538638,30.354009,30.3540077,30.3540465,30.3540817,30.3540278,30.3540193,30.3539716,30.3539417,30.3539927,30.3540381,30.3540693,30.354049,30.3541652,30.354108,30.3539512,30.3540229,30.3540021,30.3541836,30.3539923,30.3539844,30.3540754,30.3536527,30.3540072,30.3541064,30.3538145,30.35413,30.3541356,30.3540672,30.3540857,30.3541289,30.3540535,30.3539416,30.3539161,30.3539141,30.3538992,30.3539577,30.3539695,30.3539591,30.3538857,30.3540027,30.3534236,30.3533981,30.3533727,30.3533554,30.353381,30.3533868,30.3533866,30.3533695,30.3533833,30.3533993,30.3534057,30.3534098,30.353395,30.3533784,30.3533872,30.353372,30.3534491,30.3534439,30.353572,30.3535847,30.3536466,30.353654,30.3535713,30.3535619,30.3535549,30.3534476,30.3534039,30.3534111,30.3532931,30.3533496,30.3533579,30.3533507,30.3533641,30.3533637,30.3533611,30.3534233,30.3533856,30.3533898,30.3533968,30.3534091,30.3534158,30.3534078,30.3533955,30.3533884,30.3533511,30.3533392,30.3533451,30.3533607,30.3533428,30.3533081,30.3532859,30.3532986,30.3533129,30.353335,30.3533483,30.3533611,30.3532862,30.3529502,30.3535566,30.3537177,30.3537067,30.3537124,30.3537121,30.353714,30.3537162,30.3537174,30.3537158,30.3537056,30.3537093,30.3537171,30.3537009,30.3537321,30.3537424,30.3537466,30.3537446,30.3537559,30.3537538,30.353744,30.3537284,30.3537179,30.353707,30.353683,30.3536475,30.3536384,30.3536411,30.3536437,30.3536432,30.3536824,30.3536996,30.3536867,30.3536931,30.3536982,30.3536495,30.3536277,30.3536206,30.3536143,30.3536075,30.3536224,30.3536151,30.3535974,30.3536137,30.3536392,30.3537073,30.3536962,30.3536859,30.3536439,30.3536914,30.3536805,30.3536777,30.3536839,30.353724,30.353679,30.3536794,30.3536804,30.3536806,30.3536812,30.3536704,30.3536897,30.353681,30.3536818,30.3536827,30.3536847,30.3536849,30.3536857,30.3536858,30.3537296,30.3543243,30.3547025,30.3548365,30.3546368,30.3546376,30.3546137,30.3546096,30.354606,30.3546069,30.3546053,30.3546014,30.3545768,30.354564,30.3545448,30.3545314,30.3545283,30.3545251,30.3545245,30.3545254,30.354531,30.3545347,30.3545398,30.3545405,30.3545164,30.3542619,30.3540032,30.3539806,30.3539587,30.3541073,30.3541119,30.3541012,30.354096,30.3540896,30.3540724,30.3540504,30.3540376,30.3540311,30.3529538,30.3529635,30.352549,30.3525583,30.3525718,30.352695,30.352817,30.3539156,30.3539008,30.353887,30.3539054,30.3538945,30.3538897,30.3538882,30.3538864,30.3538852,30.3538841,30.353882,30.3538801,30.3538782,30.353877,30.3538773,30.3538821,30.3538887,30.3538897,30.3538719,30.3538708,30.3538702,30.353869,30.3538668,30.353866,30.3538621,30.35386,30.3538937,30.3538942,30.3538865,30.3538482,30.3538563,30.353854,30.3538532,30.3537348,30.3537236,30.3537327,30.3536673,30.3534443,30.3531027,30.353094,30.3531392,30.3531265,30.3531219,30.3537719,30.3538346,30.3538703,30.3538745,30.3538735,30.3536558,30.3536381,30.3538544,30.3537226,30.353587,30.3535635,30.3535575,30.3535786,30.3535862,30.3535516,30.3533196,30.3533376,30.3533879,30.353408,30.3534147,30.3534201,30.3534338,30.3534378,30.3534151,30.3534026,30.3534054,30.353403,30.3537241,30.3536952,30.3536905,30.3536758,30.3534455,30.3533897,30.3534036,30.3537683,30.3534635,30.3532629,30.3531806,30.3531263,30.3531679,30.3531792,30.3531839,30.3531829,30.3531828,30.353288,30.3533911,30.3536901,30.353621,30.3534551,30.353426,30.3534263,30.3534184,30.3533846,30.3533255,30.3533029,30.3533359,30.3533287,30.3533239,30.3533231,30.3533514,30.3533284,30.3533345,30.3533362,30.3533087,30.3533016,30.3533166,30.3533239,30.3533916,30.3533756,30.3533556,30.353348,30.3533318,30.3533327,30.3533386,30.3533406,30.3533337,30.3533376,30.3533306,30.353328,30.353308,30.35324,30.3532134,30.3532383,30.3533867,30.3534093,30.353411,30.353366,30.3533384,30.3532952,30.3533025,30.3532961,30.353302,30.3532753,30.3531428,30.3530491,30.3530289,30.3529746,30.3529567,30.3529438,30.3528895,30.3528843,30.3528855,30.352845,30.3527816,30.3526457,30.3525062,30.3523464,30.3522334,30.3521213,30.352009,30.3519186,30.351823,30.3517291,30.3516163,30.3515586,30.3515344,30.3513536,30.3512119,30.35108,30.3509098,30.3507471,30.3506289,30.350501,30.3504334,30.3503447,30.3502287,30.3501108,30.3499907,30.3498661,30.3499584,30.3500054,30.3500276,30.3500587,30.3500698,30.3500806,30.3501117,30.3500835,30.3500658,30.3499875,30.3498312,30.3495847,30.3493871,30.3492266,30.3491693,30.3490721,30.3489635,30.3487925,30.3486561,30.3485412,30.348414,30.3482839,30.348138,30.3480184,30.3478825,30.3477473,30.3475903,30.3474783,30.3473754,30.3474005,30.3474216,30.3474355,30.3474069,30.3474638,30.3474262,30.3473767,30.3473611,30.3472947,30.3471145,30.3469428,30.3468338,30.3467842,30.3468243,30.3468127,30.346802,30.3466073,30.3464603,30.3462762,30.3462013,30.3461316,30.3460082,30.3458992,30.3457898,30.3457081,30.3456683,30.3455763,30.345452,30.3453732,30.3452416,30.3450708,30.3449232,30.3447619,30.3446715,30.3446164,30.3445007,30.3444296,30.3443063,30.3442228,30.3441785,30.3441049,30.344009,30.3439065,30.343811,30.3437662,30.3437886,30.3438793,30.3439851,30.3439581,30.3438639,30.3437263,30.3435929,30.3435153,30.3434015,30.3432076,30.3430982,30.3429278,30.3428038,30.3427293,30.3427268,30.3428361,30.342801,30.342785,30.3428152,30.3428545,30.342933,30.3430048,30.3429812,30.3429268,30.3428727,30.3428116,30.3427963,30.3427889,30.3427729,30.3427634,30.342755,30.342773,30.3428491,30.3428651,30.3427577,30.3428812,30.342899,30.3428341,30.3428453,30.3428216,30.3428312,30.3428364,30.3428387,30.3428383,30.3428241,30.3427699,30.3427528,30.3428207,30.3428492,30.3428032,30.3428027,30.3428116,30.3427757,30.3428125,30.3427909,30.3427029,30.3426343,30.3425732,30.3424114,30.3427037,30.3428031,30.3427168,30.3427627,30.3427531,30.34261,30.3426577,30.3427961,30.3427797,30.3428243,30.3427484,30.3426321,30.3427103,30.3428156,30.3428788,30.3427949,30.3427951,30.3427953,30.3428718,30.3427908,30.3427609,30.3428261,30.3427943,30.3427821,30.3428109,30.3428123,30.3429012,30.3428946,30.3427991,30.3427257,30.342732,30.3427326,30.3427339,30.3429053,30.3426699,30.3426772,30.3426677,30.3426519,30.3426578,30.3426631,30.342668,30.3427122,30.3426626,30.3426528,30.3427401,30.3427958,30.3426445,30.3425833,30.3425844,30.3426815,30.3426753,30.3427087,30.342658,30.3426424,30.342658,30.3426898,30.3427189,30.3428429,30.3428557,30.3426133,30.3426299,30.3426233,30.3426223,30.3426432,30.3425884,30.3426307,30.3426243,30.3426127,30.3426196,30.342697,30.3425541,30.3425021,30.3426116,30.3425548,30.3426205,30.3425713,30.3426234,30.3426691,30.3427252,30.3427555,30.3427623,30.3427222,30.3426755,30.3427027,30.3426941,30.3426989,30.3426656,30.3427276,30.3426609,30.3427098,30.3426717,30.3427069,30.3428463,30.342778,30.3426931,30.3427232,30.3427003,30.3427081,30.3425939,30.3426526,30.3426223,30.3426255,30.3426359,30.3426186,30.342635,30.3426246,30.3426173,30.3426628,30.3425841,30.3425723,30.342567,30.3425081,30.3425879,30.3426112,30.3425771,30.3426202,30.3425558,30.3425226,30.3426416,30.3426228,30.3425829,30.342619,30.3427367,30.3426694,30.3426446,30.3426616,30.3426622,30.3425067,30.3427369,30.3426652,30.3426527,30.3426427,30.3426266,30.342618,30.3426726,30.3426352,30.34252,30.3425599,30.3426101,30.3426603,30.3426224,30.3426135,30.3426055,30.342594,30.3425991,30.342591,30.3425972,30.342612,30.342621,30.3426277,30.3426007,30.3425798,30.3426156,30.3426113,30.3426221,30.3426165,30.3426052,30.3426112,30.3426442,30.3426564,30.3426106,30.3426237,30.3426098,30.3426191,30.3424759,30.342593,30.3426238,30.342615,30.3426351,30.3426212,30.3426021,30.3425988,30.3426525,30.3426521,30.3425766,30.3426127,30.3426382,30.3426414,30.3426085,30.3425636,30.3426131,30.3427875,30.3426103,30.3426185,30.3425977,30.3425457,30.3425997,30.342604,30.3426041,30.3425087,30.3425371,30.3425643,30.3425986,30.3425821,30.3426566,30.3426164,30.3425755,30.3426171,30.3425586,30.3427075,30.3425919,30.3425809,30.3425828,30.3426257,30.3426165,30.3426333,30.3425829,30.3425643,30.3425672,30.3426551,30.3426163,30.342554,30.3425793,30.3426993,30.3426541,30.342662,30.3426681,30.3426203,30.3426406,30.3428293,30.3425881,30.3425954,30.3426085,30.3426568,30.3427087,30.3426157,30.3425926,30.3425878,30.3425818,30.3426038,30.3426496,30.342621,30.3426127,30.3425795,30.3425997,30.3426265,30.3426331,30.3426012,30.3426144,30.3426216,30.3425862,30.3424749,30.3426433,30.3426134,30.3425744,30.3426174,30.3425987,30.3426163,30.3426153,30.3425896,30.34268,30.342644,30.3425854,30.3425874,30.3426804,30.3426094,30.3424685,30.3426245,30.3426148,30.3426147,30.3426146,30.3426096,30.3426255,30.3426234,30.3425936,30.3426142,30.342601,30.3425572,30.3426076,30.3426146,30.3425128,30.3426348,30.3426526,30.3425855,30.3426154,30.3425834,30.3425659,30.3426145,30.3426157,30.3426288,30.3426316,30.3425971,30.3426268,30.3426119,30.3426046,30.3426081,30.3425976,30.342526,30.3426266,30.3426098,30.3425358,30.3426175,30.3426124,30.3426139,30.342619,30.3426134,30.3426301,30.3426045,30.3426076,30.3426152,30.3426288,30.3426485,30.3426867,30.3427118,30.3427552,30.3429622,30.343139,30.3431586,30.3430102,30.3427997,30.342705,30.342656,30.3425007,30.3425741,30.3425789,30.3425763,30.3425487,30.3425186,30.3425071,30.3424775,30.3424509,30.3424495,30.3424416,30.3424512,30.3424442,30.3424438,30.3424481,30.3424293,30.3423975,30.3423437,30.3422768,30.3422219,30.3421128,30.3419682,30.3417935,30.3416124,30.3415376,30.3415792,30.3414908,30.3413756,30.3412514,30.341137,30.340992,30.3408532,30.3407693,30.3407013,30.3406871,30.3405372,30.3403474,30.3402305,30.3401357,30.340104,30.3400372,30.3399041,30.3397303,30.3395838,30.3394686,30.3393209,30.3391723,30.339045,30.3388777,30.3388423,30.3387212,30.338581,30.3384664,30.3383821,30.3382804,30.33823,30.3381424,30.3380685,30.3380017,30.337896,30.3378423,30.3377303,30.3375909,30.3374791,30.3373613,30.3372649,30.3371383,30.3370422,30.3369328,30.3368125,30.3366939,30.3366192,30.3365705,30.3364943,30.3363952,30.3363405,30.3363633,30.3364039,30.3364453,30.3365288,30.3365467,30.3365191,30.3365324,30.3365356,30.3365358,30.3365333,30.3365533,30.3365099,30.3364568,30.3364077,30.3361821,30.3360329,30.335916,30.335811,30.3357158,30.3356203,30.3355264,30.3354154,30.3354349,30.3355431,30.335662,30.3357694,30.3357992,30.3357518,30.3357471,30.3356805,30.3355234,30.3354005,30.335289,30.3351513,30.3350046,30.3348841,30.3347727,30.3346588,30.3345458,30.3344369,30.3343439,30.3342424,30.3341689,30.3340805,30.3340367,30.3339856,30.3339598,30.3338947,30.3338728,30.3338315,30.3337565,30.333597,30.3334589,30.3332166,30.3329953,30.3328077,30.3326319,30.3324752,30.332358,30.3322795,30.3322326,30.3321193,30.3320181,30.3319336,30.3318513,30.3317328,30.331684,30.3316734,30.331594,30.3315256,30.3314368,30.331352,30.3312163,30.3311311,30.3310588,30.3310257,30.3309498,30.3308731,30.3308086,30.3307172,30.3306244,30.3304651,30.3303769,30.3302542,30.3301968,30.3301104,30.3300198,30.3299359,30.3298576,30.3297627,30.3297388,30.3297442,30.3296782,30.3295601,30.3295404,30.3294698,30.3293858,30.3292743,30.3290941,30.3288893,30.3286896,30.3285163,30.3284282,30.3283652,30.3283199,30.3282913,30.3282249,30.3281179,30.3280283,30.3278651,30.3276585,30.327537,30.3274388,30.3273516,30.3272718,30.327203,30.3271125,30.3269935,30.3268506,30.326723,30.3267286,30.3267554,30.3267226,30.3266397,30.3265624,30.3264991,30.3264017,30.3263038,30.326225,30.326151,30.3260233,30.3258983,30.3257766,30.3256877,30.3256107,30.3255286,30.32543,30.3253746,30.3253156,30.3252598,30.3251941,30.3251569,30.3251347,30.3249919,30.3248457,30.3247495,30.3246664,30.3245865,30.3244979,30.3244202,30.3242914,30.3241754,30.3241441,30.324098,30.3241389,30.3241922,30.3241657,30.3241573,30.3241505,30.3241006,30.3241668,30.324084,30.3240108,30.3239927,30.323997,30.3239339,30.323766,30.3236306,30.3236041,30.3235653,30.3234869,30.3234457,30.3233198,30.3232047,30.3230757,30.3229696,30.3229594,30.3228704,30.3227706,30.322624,30.3224661,30.3222916,30.3221839,30.322151,30.3220503,30.3219577,30.3219441,30.3219704,30.3219507,30.3219399,30.3219179,30.3219071,30.3218294,30.3217796,30.3217438,30.3216611,30.3215607,30.321446,30.3213343,30.3212399,30.3211146,30.3210302,30.3209243,30.3208278,30.3207399,30.3206649,30.3205452,30.3204806,30.320403,30.3202747,30.3201689,30.3201099,30.3200237,30.3199354,30.3198556,30.3197642,30.319688,30.3195776,30.3194762,30.3193564,30.3193153,30.3192641,30.3192086,30.3191433,30.3190802,30.3189429,30.3187826,30.3186613,30.3184702,30.3183414,30.318218,30.3181017,30.3179855,30.3178405,30.3177137,30.3175665,30.3174509,30.3173083,30.317193,30.3170646,30.3169827,30.3169257,30.3168309,30.3166975,30.3166118,30.3165327,30.3164416,30.3163651,30.3163078,30.3162938,30.3162697,30.3162772,30.3162656,30.316253,30.3162282,30.3162159,30.3162024,30.3161756,30.3161665,30.3160915,30.3159949,30.3159606,30.3159354,30.3158117,30.3157021,30.3156497,30.3156341,30.3155454,30.3154629,30.315303,30.3151858,30.3150478,30.3148932,30.3147693,30.3146722,30.3146693,30.3145747,30.3144771,30.3143496,30.314241,30.3142208,30.314207,30.3141928,30.3141406,30.3140781,30.3140722,30.3141344,30.3140753,30.3139761,30.3138918,30.3138135,30.3137217,30.3136347,30.3135263,30.3134477,30.3133549,30.313248,30.3131567,30.3130537,30.312982,30.3128544,30.3127852,30.3127189,30.3125361,30.3124261,30.3123129,30.3122437,30.312158,30.3120787,30.3119094,30.311764,30.3116345,30.3115329,30.3114219,30.3113044,30.3111727,30.3110482,30.31092,30.3108068,30.3107046,30.3106421,30.3105322,30.3104049,30.3103209,30.3101957,30.3100579,30.3098842,30.3097544,30.3096518,30.3095427,30.3094154,30.309304,30.3092106,30.3091483,30.3090906,30.3089018,30.3087006,30.3085749,30.3084296,30.3083699,30.308209,30.3081477,30.3080965,30.307995,30.3079215,30.3078262,30.3077077,30.3076163,30.3075102,30.3073605,30.3072678,30.3071591,30.3070653,30.3069222,30.3067718,30.3066622,30.306515,30.3063825,30.3062741,30.3061704,30.3061301,30.3060896,30.3060165,30.3058471,30.3057237,30.305708,30.3056517,30.3055304,30.305436,30.3052556,30.3050887,30.3049087,30.3047086,30.3045643,30.3044363,30.3043148,30.3042321,30.3041131,30.3039459,30.3038196,30.3036416,30.3035558,30.3036003,30.3036312,30.3036284,30.3036178,30.3036145,30.3038282,30.30416,30.3040573,30.3039056,30.303871,30.3039344,30.3041687,30.3041666,30.3041498,30.304153,30.3041546,30.3041607,30.3041608,30.3041535,30.3039351,30.3041257,30.3038731,30.3040733,30.3040729,30.3040749,30.3040769,30.3040786,30.3040824,30.3040859,30.3040816,30.3040826,30.3040824,30.3040841,30.3040833,30.3040815,30.3040761,30.3040763,30.3040778,30.3040742,30.3040706,30.3040711,30.304072,30.3040726,30.3040735,30.3040721,30.3040726,30.3040758,30.3040701,30.3040687,30.3040701,30.3040702,30.3040715,30.3040697,30.3040656,30.3040626,30.304062,30.3040614,30.3040593,30.3040555,30.3040553,30.3040555,30.3040539,30.3040524,30.3040529,30.3040535,30.3040545,30.3040558,30.304134,30.3041968,30.304194,30.3042,30.304207,30.3042029,30.3041845,30.3041847,30.3041864,30.3041737,30.304169,30.3041625,30.3041428,30.3041372,30.304129,30.3041128,30.3041121,30.3041037,30.3041032,30.3041054,30.3041036,30.3041016,30.3041026,30.3041028,30.3040997,30.304093,30.3040935,30.3040931,30.3040922,30.3040873,30.3040876,30.3040829,30.3039143,30.3040731,30.3040743,30.3040751,30.3040758,30.3040746,30.3039573,30.3040655,30.3040615,30.3040569,30.3040566,30.3040554,30.3040543,30.3040572,30.3040576,30.3040555,30.3040502,30.3040443,30.3038977,30.3040379,30.3040338,30.304029,30.3040257,30.3040214,30.3040203,30.3040214,30.3040187,30.3040197,30.3040171,30.3040151,30.3040129,30.3040105,30.304011,30.3040095,30.3040085,30.3040098,30.3040074,30.3040051,30.3040029,30.3039989,30.3039979,30.303998,30.3039989,30.303998,30.3039974,30.3039967,30.3039972,30.3039966,30.3039958,30.3039964,30.3039968,30.3039971,30.3039954,30.3039955,30.3039941,30.3039918,30.3039904,30.30399,30.3039887,30.3039886,30.3039891,30.3039895,30.3039903,30.3039912,30.3039907,30.3039911,30.3039917,30.3039923,30.3042068,30.3042883,30.3042682,30.3042369,30.3042242,30.3042081,30.3041864,30.3041738,30.3041689,30.3041684,30.3041667,30.3041678,30.3041506,30.304139,30.3041248,30.3041264,30.3041274,30.304119,30.3041194,30.3041107,30.3041149,30.3041122,30.3041082,30.3040368,30.3041029,30.3041038,30.3041044,30.3041043,30.3041042,30.3041037,30.3040995,30.3040986,30.3040993,30.3041025,30.3041004,30.3040969,30.3040929,30.304093,30.3040933,30.3040942,30.3040855,30.3040804,30.3040775,30.3040778,30.3040777,30.3040792,30.3040794,30.3040723,30.3040679,30.3040639,30.3040643,30.304065,30.3040666,30.3040628,30.3040635,30.3040639,30.3040609,30.3040594,30.3040598,30.3040616,30.3040623,30.3040647,30.3039374,30.3040593,30.3040579,30.3040582,30.3040587,30.3040594,30.3040601,30.303941,30.3040577,30.3040585,30.3041709,30.3042653,30.3042385,30.3041636,30.3041513,30.3041443,30.3041568,30.3041694,30.3044372,30.3039908,30.30421,30.3041785,30.3043603,30.304338,30.3043278,30.3042573,30.3043227,30.3043195,30.3043023,30.3042938,30.3042955,30.3042905,30.3039598,30.3041278,30.3038722,30.3040124,30.3038748,30.3038995,30.3038912,30.3038956,30.3039311,30.3038284,30.3037904,30.3037186,30.3038084,30.3037932,30.3039179,30.3038684,30.3038456,30.3039316,30.3038038,30.3037882,30.3037899,30.303755,30.3037914,30.3040159,30.303923,30.3037152,30.3037205,30.303713,30.3037626,30.3037961,30.303785,30.3037255,30.3038095,30.3038168,30.3038812,30.3039634,30.303919,30.3038551,30.3038481,30.3040277,30.3041467,30.3041737,30.3039828,30.3039777,30.3039804,30.3039812,30.3039826,30.3039227,30.3040264,30.3039031,30.3040784,30.3040738,30.3039157,30.303892,30.3040508,30.304254,30.3040468],"lat":[59.9386573999986,59.9388480999986,59.9390299999986,59.9391193999986,59.9391533999986,59.9391504999986,59.9391486999986,59.9391489999986,59.9391493999986,59.9391491999987,59.9391489999986,59.9391489999986,59.9391483999986,59.9391486999986,59.9391483999986,59.9391476999986,59.9391474999986,59.9391788999987,59.9393407999986,59.9396173999986,59.9400219999986,59.9403540999986,59.9405754999987,59.9407926999987,59.9410391999986,59.9412106999986,59.9414978999986,59.9417305999986,59.9419595999986,59.9422355999986,59.9424809999986,59.9426733999986,59.9428414999986,59.9430961999986,59.9433310999987,59.9435975999986,59.9438447999987,59.9440456999986,59.9442611999986,59.9444630999987,59.9447098999986,59.9449583999986,59.9451847999986,59.9454141999986,59.9456627999987,59.9459076999986,59.9460396999987,59.9462251999986,59.9463999999987,59.9465895999987,59.9467789999986,59.9469640999987,59.9472432999986,59.9474158999987,59.9475378999987,59.9476727999986,59.9477561999987,59.9477994999987,59.9479069999987,59.9480026999987,59.9480066999986,59.9478726999987,59.9477513999986,59.9476662999986,59.9475954999986,59.9475384999986,59.9475221999987,59.9475207999986,59.9475203999987,59.9475279999986,59.9475743999987,59.9477396999986,59.9479020999986,59.9481591999987,59.9484471999986,59.9485910999986,59.9484551999987,59.9481340999986,59.9476223999986,59.9471089999986,59.9466057999986,59.9461147999986,59.9455992999986,59.9450803999986,59.9445468999987,59.9440271999986,59.9435133999986,59.9429237999986,59.9424441999986,59.9420389999986,59.9414733999986,59.9410116999986,59.9405846999986,59.9402484999986,59.9399742999987,59.9393828999986,59.9388023999986,59.9383533999986,59.9377361999986,59.9372976999986,59.9367481999986,59.9362549999986,59.9357697999987,59.9352955999986,59.9347796999986,59.9342884999986,59.9337831999987,59.9330803999986,59.9325576999986,59.9320919999986,59.9316213999986,59.9311110999986,59.9307076999986,59.9303455999986,59.9299391999986,59.9295890999986,59.9292849999986,59.9289861999986,59.9287557999986,59.9284783999986,59.9281697999986,59.9278874999986,59.9275870999986,59.9272991999986,59.9269912999987,59.9268443999986,59.9264849999986,59.9261519999987,59.9258467999986,59.9255846999986,59.9252847999986,59.9250018999986,59.9246158999986,59.9243945999986,59.9241186999987,59.9238183999986,59.9235342999986,59.9232421999986,59.9229629999986,59.9226438999986,59.9223541999987,59.9220577999986,59.9217729999987,59.9215078999986,59.9213518999986,59.9211218999986,59.9209732999986,59.9207855999986,59.9205750999986,59.9203601999986,59.9201909999986,59.9199267999986,59.9197020999986,59.9195028999986,59.9193826999986,59.9191703999986,59.9189942999986,59.9187696999986,59.9185084999986,59.9182900999986,59.9181327999986,59.9180218999986,59.9179581999986,59.9179853999986,59.9181126999986,59.9184073999986,59.9188185999986,59.9192396999986,59.9195900999986,59.9199358999986,59.9203010999986,59.9205980999986,59.9208934999986,59.9212731999986,59.9216560999986,59.9220405999986,59.9224029999986,59.9226917999986,59.9229995999986,59.9234410999986,59.9238404999986,59.9241971999986,59.9245267999986,59.9248551999986,59.9251629999986,59.9254435999986,59.9258136999986,59.9261173999986,59.9264108999986,59.9267575999987,59.9270731999986,59.9273339999986,59.9275148999986,59.9277130999986,59.9278911999986,59.9278940999986,59.9279051999986,59.9279479999986,59.9279497999986,59.9280286999986,59.9281604999986,59.9284494999986,59.9288066999986,59.9291280999986,59.9294606999986,59.9297503999987,59.9300553999986,59.9302972999986,59.9304494999986,59.9305233999986,59.9305239999986,59.9305469999986,59.9306638999986,59.9307878999986,59.9308924999986,59.9310230999986,59.9312752999987,59.9314630999986,59.9316015999986,59.9319255999987,59.9320153999986,59.9321956999986,59.9324732999986,59.9325956999986,59.9327394999986,59.9329111999986,59.9330688999986,59.9332685999986,59.9334995999986,59.9337867999987,59.9341124999987,59.9344319999986,59.9347792999986,59.9352308999986,59.9354946999986,59.9358118999986,59.9360819999986,59.9363843999987,59.9367513999986,59.9371547999987,59.9374844999986,59.9378410999986,59.9382147999986,59.9385116999986,59.9388736999986,59.9392183999986,59.9395720999986,59.9397330999986,59.9401567999986,59.9405203999986,59.9406653999986,59.9408279999986,59.9410416999986,59.9413027999986,59.9415741999986,59.9417901999986,59.9421428999986,59.9423430999987,59.9426379999986,59.9429219999987,59.9432249999986,59.9435417999987,59.9437718999986,59.9438635999987,59.9441177999986,59.9443762999986,59.9446427999987,59.9448615999987,59.9450926999986,59.9453745999987,59.9454841999986,59.9455413999986,59.9454348999987,59.9451918999986,59.9449093999986,59.9446145999986,59.9442872999986,59.9441195999987,59.9438894999986,59.9436256999987,59.9432632999986,59.9429217999986,59.9425476999986,59.9422374999986,59.9419418999987,59.9416599999986,59.9413346999986,59.9410207999986,59.9407522999987,59.9402849999986,59.9399192999986,59.9396192999986,59.9394572999987,59.9393260999986,59.9392566999987,59.9392043999986,59.9391698999986,59.9391699999986,59.9391919999986,59.9391227999986,59.9389839999986,59.9389192999986,59.9389256999986,59.9390678999986,59.9391446999986,59.9392375999986,59.9392872999986,59.9393881999987,59.9395061999987,59.9395375999986,59.9395842999986,59.9397168999986,59.9398375999986,59.9398591999986,59.9398794999986,59.9398826999986,59.9398810999987,59.9398926999987,59.9398988999987,59.9399030999987,59.9399123999986,59.9398637999986,59.9398300999987,59.9398334999987,59.9398290999986,59.9398427999986,59.9398505999986,59.9398518999986,59.9398497999987,59.9398785999987,59.9398723999986,59.9398706999986,59.9398687999986,59.9398693999986,59.9398803999986,59.9398704999986,59.9398685999986,59.9398533999986,59.9398166999986,59.9397720999986,59.9397825999986,59.9397861999986,59.9398736999986,59.9399608999987,59.9398976999986,59.9398058999986,59.9397132999986,59.9396479999986,59.9396035999986,59.9395304999987,59.9394983999987,59.9393831999986,59.9392803999986,59.9392599999986,59.9392326999986,59.9391835999986,59.9391456999986,59.9390618999986,59.9390053999986,59.9389379999986,59.9387934999986,59.9386968999986,59.9386604999986,59.9386076999986,59.9385138999986,59.9384110999986,59.9383532999987,59.9383026999986,59.9382354999986,59.9382549999986,59.9382226999986,59.9381827999986,59.9380736999986,59.9379191999986,59.9377400999986,59.9375849999986,59.9374211999986,59.9373498999986,59.9372277999986,59.9370377999986,59.9368426999986,59.9366303999986,59.9365541999986,59.9364858999986,59.9363938999986,59.9364029999986,59.9363802999986,59.9362951999986,59.9362649999987,59.9362064999986,59.9363826999986,59.9363643999986,59.9362804999986,59.9362159999986,59.9361876999986,59.9361492999986,59.9360992999987,59.9360543999986,59.9360013999986,59.9359120999987,59.9358871999987,59.9360680999986,59.9363273999987,59.9365272999986,59.9363755999986,59.9362071999986,59.9362620999986,59.9361077999986,59.9358640999986,59.9358837999986,59.9358578999987,59.9358108999986,59.9358055999987,59.9357848999986,59.9358337999986,59.9359415999986,59.9360989999986,59.9362120999987,59.9361532999986,59.9361861999986,59.9359993999986,59.9358254999986,59.9356986999987,59.9357250999986,59.9357012999987,59.9356281999986,59.9355816999987,59.9355508999986,59.9355751999986,59.9355025999986,59.9354913999986,59.9354109999986,59.9353557999986,59.9353319999986,59.9352623999986,59.9352235999986,59.9352173999986,59.9352182999986,59.9351865999986,59.9351609999986,59.9351408999987,59.9350246999986,59.9349970999986,59.9349795999986,59.9349863999986,59.9348828999986,59.9347617999986,59.9347949999987,59.9348959999986,59.9347814999986,59.9346672999986,59.9346855999986,59.9347418999986,59.9346452999986,59.9345652999986,59.9344600999986,59.9344044999986,59.9344187999987,59.9343637999986,59.9342701999986,59.9341809999986,59.9343233999986,59.9343194999986,59.9342731999986,59.9342578999986,59.9342207999986,59.9342075999986,59.9342667999987,59.9343892999986,59.9346121999986,59.9346741999986,59.9345936999986,59.9346784999986,59.9345904999986,59.9344090999986,59.9343791999986,59.9342048999986,59.9340782999987,59.9340612999986,59.9340671999986,59.9340962999986,59.9340378999986,59.9339321999986,59.9338852999986,59.9338502999986,59.9338465999986,59.9338287999986,59.9337547999986,59.9337340999986,59.9337771999987,59.9336855999986,59.9335606999986,59.9335506999986,59.9335022999986,59.9335235999986,59.9335629999986,59.9335499999987,59.9335507999986,59.9335497999987,59.9335497999987,59.9335076999986,59.9334352999986,59.9333905999986,59.9333564999987,59.9333310999986,59.9333136999986,59.9333112999986,59.9332856999986,59.9332026999986,59.9331856999986,59.9332010999986,59.9332061999986,59.9332212999986,59.9332038999986,59.9332001999986,59.9332317999987,59.9332113999987,59.9332050999986,59.9332054999986,59.9332084999986,59.9332622999986,59.9332043999987,59.9331195999986,59.9330750999986,59.9331160999986,59.9330559999986,59.9329333999987,59.9328969999986,59.9328788999986,59.9328392999986,59.9328179999986,59.9327752999986,59.9327524999986,59.9327431999986,59.9327881999986,59.9327966999986,59.9327895999986,59.9327297999986,59.9326852999986,59.9326422999986,59.9326133999987,59.9326173999986,59.9326094999986,59.9326335999986,59.9324367999986,59.9323839999986,59.9323308999986,59.9322336999986,59.9322498999986,59.9322858999986,59.9322631999986,59.9321685999986,59.9320372999986,59.9320070999986,59.9319991999986,59.9320682999986,59.9319797999986,59.9319189999986,59.9319360999986,59.9318713999986,59.9318207999986,59.9317521999986,59.9317131999986,59.9317678999986,59.9317666999986,59.9317075999986,59.9316902999986,59.9316483999987,59.9315465999986,59.9314784999986,59.9315450999986,59.9315757999986,59.9314636999986,59.9313278999986,59.9312778999986,59.9313091999986,59.9312703999986,59.9312592999986,59.9312688999986,59.9312839999986,59.9311413999986,59.9310094999986,59.9310111999986,59.9310710999986,59.9311606999986,59.9312139999987,59.9312475999986,59.9313235999986,59.9314233999986,59.9311580999986,59.9309087999986,59.9307467999986,59.9305719999986,59.9303948999986,59.9302330999986,59.9300411999986,59.9298903999986,59.9297217999986,59.9295877999986,59.9294840999987,59.9293545999986,59.9292023999987,59.9290865999986,59.9289079999986,59.9287350999986,59.9286266999986,59.9286593999986,59.9286817999986,59.9286554999986,59.9284042999986,59.9281681999986,59.9279791999986,59.9278258999986,59.9276512999987,59.9276084999986,59.9276139999986,59.9276463999986,59.9275318999987,59.9274575999986,59.9274106999986,59.9273642999986,59.9273586999986,59.9272846999986,59.9272631999986,59.9271642999986,59.9270428999987,59.9269645999986,59.9268936999986,59.9268811999986,59.9269440999986,59.9269905999986,59.9270168999986,59.9270576999986,59.9270895999986,59.9271009999986,59.9271154999986,59.9271177999986,59.9270897999986,59.9270800999986,59.9270803999986,59.9270939999986,59.9271081999986,59.9271271999986,59.9271425999986,59.9271648999986,59.9272038999987,59.9272411999986,59.9272827999986,59.9273367999986,59.9274097999987,59.9274419999986,59.9274594999986,59.9274510999986,59.9274449999986,59.9274476999986,59.9274419999986,59.9274526999986,59.9274336999986,59.9274107999986,59.9273989999986,59.9272952999986,59.9272194999986,59.9272360999986,59.9272272999986,59.9272442999986,59.9272328999986,59.9272402999986,59.9272440999986,59.9272740999986,59.9272671999987,59.9272177999987,59.9272119999986,59.9272465999986,59.9272708999986,59.9272769999986,59.9272403999987,59.9272562999987,59.9272487999986,59.9272713999986,59.9273002999986,59.9272972999986,59.9272763999986,59.9272410999986,59.9272304999986,59.9272356999986,59.9272381999986,59.9272304999986,59.9271993999986,59.9272019999986,59.9272355999986,59.9272433999986,59.9274377999986,59.9274607999986,59.9274482999986,59.9274460999986,59.9273893999986,59.9274093999986,59.9273934999986,59.9272331999986,59.9271986999986,59.9272767999986,59.9274182999986,59.9273444999986,59.9273386999986,59.9274263999986,59.9274440999986,59.9274520999986,59.9274438999986,59.9274268999986,59.9274481999986,59.9274387999986,59.9274437999986,59.9274279999986,59.9274374999986,59.9274448999986,59.9274364999986,59.9274451999986,59.9274431999986,59.9273965999987,59.9273679999986,59.9273882999986,59.9274194999986,59.9274452999986,59.9274118999986,59.9274152999986,59.9274386999986,59.9274462999986,59.9274459999986,59.9274451999987,59.9274450999986,59.9274449999986,59.9274439999986,59.9274437999986,59.9274389999986,59.9274443999986,59.9274385999986,59.9274441999986,59.9274344999986,59.9274410999986,59.9274261999986,59.9274426999986,59.9274449999986,59.9274443999986,59.9274264999986,59.9274381999986,59.9274430999987,59.9274495999986,59.9274450999986,59.9274471999986,59.9274535999987,59.9274517999986,59.9274451999986,59.9274101999986,59.9273817999986,59.9273943999986,59.9273928999986,59.9273868999986,59.9273853999986,59.9273796999986,59.9272467999986,59.9272835999986,59.9272406999986,59.9272217999986,59.9273040999986,59.9271344999986,59.9273371999986,59.9273485999986,59.9274932999986,59.9273899999987,59.9274001999986,59.9274080999986,59.9274900999986,59.9273966999986,59.9275028999986,59.9274630999986,59.9274282999986,59.9274914999986,59.9275360999986,59.9275530999986,59.9275503999986,59.9275400999986,59.9274753999986,59.9275520999986,59.9275147999986,59.9274777999986,59.9274760999986,59.9275057999987,59.9274460999986,59.9274352999986,59.9274530999986,59.9275528999986,59.9275331999986,59.9275298999986,59.9275280999986,59.9274615999987,59.9274551999986,59.9275079999986,59.9275513999986,59.9275400999986,59.9274475999986,59.9275451999986,59.9275454999986,59.9275675999986,59.9274612999986,59.9275563999986,59.9275661999986,59.9274779999986,59.9275625999986,59.9275940999986,59.9275701999986,59.9275537999986,59.9276875999986,59.9275512999986,59.9275688999986,59.9275548999986,59.9275517999987,59.9276053999986,59.9275158999986,59.9275081999986,59.9275933999987,59.9275616999986,59.9275840999986,59.9274380999986,59.9274360999986,59.9274380999986,59.9273843999986,59.9274185999986,59.9274211999986,59.9274223999986,59.9274320999986,59.9274384999986,59.9274387999986,59.9274400999986,59.9274381999986,59.9274331999986,59.9274228999986,59.9274227999987,59.9274238999986,59.9274490999986,59.9274449999986,59.9274567999986,59.9274540999986,59.9274511999986,59.9274386999986,59.9274277999987,59.9274391999986,59.9274875999986,59.9274974999986,59.9274698999986,59.9274568999986,59.9274349999986,59.9274360999986,59.9274445999986,59.9274042999986,59.9274577999986,59.9274512999986,59.9274457999986,59.9274279999986,59.9274347999986,59.9274328999986,59.9274361999986,59.9274527999986,59.9274668999986,59.9274616999986,59.9274583999986,59.9273926999986,59.9274160999986,59.9274421999986,59.9274408999986,59.9274412999986,59.9274322999986,59.9274491999986,59.9274884999986,59.9275157999986,59.9275097999986,59.9275104999987,59.9275174999986,59.9275184999986,59.9274515999986,59.9275597999986,59.9275022999986,59.9274791999986,59.9274815999986,59.9274827999986,59.9274781999986,59.9274790999986,59.9274790999986,59.9274828999986,59.9274899999986,59.9274888999986,59.9274913999986,59.9274983999986,59.9274811999986,59.9275193999986,59.9275321999986,59.9275436999987,59.9275510999986,59.9275574999986,59.9275571999986,59.9275580999986,59.9275592999986,59.9275647999986,59.9275721999986,59.9275609999986,59.9275416999986,59.9275369999986,59.9275370999986,59.9275380999986,59.9275387999986,59.9274964999987,59.9274703999986,59.9274577999986,59.9274740999986,59.9274823999986,59.9273936999986,59.9273787999986,59.9273727999986,59.9273709999986,59.9273841999986,59.9273723999986,59.9273649999986,59.9273560999986,59.9273872999986,59.9274677999987,59.9274684999986,59.9274666999986,59.9274658999986,59.9274542999986,59.9274699999986,59.9274640999986,59.9274640999987,59.9274644999986,59.9274767999986,59.9274608999986,59.9274635999986,59.9274642999986,59.9274643999986,59.9274645999987,59.9274608999986,59.9274681999986,59.9274646999986,59.9274648999986,59.9274652999986,59.9274659999986,59.9274660999986,59.9274665999986,59.9274666999986,59.9274831999986,59.9276035999986,59.9276116999986,59.9276082999986,59.9276168999986,59.9276124999986,59.9276167999986,59.9276182999986,59.9276198999986,59.9276205999986,59.9276208999987,59.9276216999986,59.9276234999986,59.9276242999986,59.9276251999987,59.9276249999986,59.9276248999986,59.9276250999986,59.9276250999986,59.9276259999986,59.9276280999986,59.9276280999986,59.9276293999986,59.9276331999986,59.9276255999986,59.9276052999986,59.9275613999986,59.9275653999986,59.9275727999986,59.9275804999986,59.9275816999986,59.9275812999986,59.9275664999986,59.9275501999986,59.9275494999987,59.9275454999986,59.9275407999986,59.9275391999986,59.9273179999986,59.9272085999986,59.9272106999986,59.9272082999986,59.9272020999986,59.9272315999986,59.9272722999986,59.9275434999986,59.9275557999986,59.9275519999987,59.9275560999986,59.9275447999986,59.9275542999986,59.9275543999986,59.9275544999986,59.9275545999987,59.9275542999986,59.9275543999986,59.9275548999986,59.9275546999986,59.9275548999986,59.9275547999986,59.9275547999987,59.9275502999986,59.9275436999986,59.9275542999986,59.9275543999986,59.9275542999986,59.9275546999986,59.9275542999986,59.9275543999986,59.9275546999986,59.9275543999986,59.9275441999986,59.9275585999986,59.9275544999986,59.9275490999986,59.9275495999987,59.9275490999986,59.9275481999986,59.9274554999987,59.9274487999986,59.9274556999986,59.9274415999986,59.9273859999986,59.9273281999986,59.9273354999986,59.9273504999986,59.9273353999986,59.9273187999986,59.9275180999986,59.9275661999986,59.9275512999986,59.9275448999986,59.9275432999986,59.9274799999986,59.9274773999986,59.9275323999986,59.9275046999987,59.9274646999986,59.9274555999986,59.9274551999986,59.9274625999986,59.9274628999986,59.9274472999986,59.9272102999986,59.9271895999986,59.9271740999986,59.9271913999986,59.9272075999986,59.9272065999986,59.9272033999986,59.9272075999987,59.9272183999986,59.9272197999987,59.9272204999986,59.9272191999986,59.9274351999986,59.9272678999986,59.9272840999986,59.9273851999987,59.9272839999986,59.9272724999986,59.9272943999986,59.9274355999986,59.9272574999986,59.9272085999986,59.9272157999986,59.9272001999986,59.9272114999986,59.9272098999987,59.9272011999986,59.9271964999986,59.9271931999986,59.9271909999987,59.9271990999986,59.9272256999986,59.9271916999986,59.9272133999986,59.9272094999986,59.9272094999986,59.9272120999986,59.9272055999986,59.9272121999986,59.9272245999987,59.9272129999987,59.9272161999986,59.9272223999986,59.9272266999986,59.9272284999986,59.9272428999986,59.9272351999986,59.9272251999986,59.9272340999986,59.9272522999987,59.9272494999986,59.9272456999986,59.9272363999986,59.9272419999986,59.9272413999986,59.9272554999986,59.9272422999986,59.9272379999987,59.9272356999986,59.9272358999987,59.9272380999986,59.9272486999986,59.9272546999986,59.9272608999986,59.9272670999986,59.9272854999986,59.9272559999987,59.9272114999986,59.9271752999986,59.9271457999986,59.9271461999986,59.9271463999986,59.9271466999986,59.9271587999986,59.9271506999986,59.9271370999986,59.9271295999986,59.9271299999986,59.9271386999986,59.9271535999986,59.9271515999986,59.9271575999987,59.9271685999986,59.9271843999986,59.9271568999986,59.9271564999987,59.9272161999986,59.9272549999986,59.9272665999986,59.9272758999986,59.9272653999986,59.9272466999986,59.9272479999986,59.9272673999986,59.9272806999987,59.9272931999986,59.9273084999986,59.9273175999987,59.9273182999986,59.9273341999986,59.9273582999986,59.9273884999986,59.9273996999986,59.9274163999986,59.9274480999986,59.9274306999986,59.9274030999986,59.9273834999986,59.9273405999986,59.9273130999986,59.9273624999986,59.9274223999986,59.9274409999986,59.9274549999986,59.9274533999986,59.9274708999986,59.9274772999986,59.9275051999986,59.9275223999986,59.9275136999986,59.9275144999986,59.9274748999986,59.9274780999986,59.9275012999986,59.9275506999986,59.9276005999986,59.9276179999987,59.9276168999986,59.9276378999986,59.9276739999986,59.9276986999986,59.9277293999986,59.9277560999986,59.9277669999986,59.9277634999986,59.9277572999986,59.9277593999986,59.9277679999986,59.9277625999987,59.9277343999986,59.9276995999986,59.9276846999986,59.9276693999986,59.9276787999986,59.9276824999986,59.9276861999986,59.9277002999986,59.9277295999986,59.9277106999986,59.9277381999986,59.9277535999986,59.9277592999986,59.9277738999986,59.9278221999986,59.9278494999986,59.9278209999986,59.9278147999987,59.9278095999986,59.9277856999986,59.9277700999986,59.9277534999987,59.9277143999986,59.9276501999986,59.9275954999987,59.9275386999986,59.9274984999986,59.9274666999986,59.9274403999986,59.9274103999986,59.9273841999986,59.9273335999986,59.9273072999986,59.9272730999986,59.9272183999986,59.9271734999986,59.9271130999986,59.9270736999986,59.9270555999986,59.9269968999986,59.9269415999986,59.9268955999986,59.9268633999986,59.9268481999986,59.9268119999987,59.9267767999986,59.9267305999986,59.9266722999986,59.9266495999986,59.9266476999986,59.9266951999986,59.9267387999987,59.9267208999986,59.9266779999986,59.9266281999986,59.9265591999986,59.9264859999986,59.9264564999986,59.9264576999986,59.9264217999986,59.9263499999986,59.9263119999987,59.9262827999987,59.9262667999986,59.9262925999986,59.9262973999986,59.9262868999986,59.9262706999986,59.9262384999986,59.9261781999986,59.9261313999986,59.9261377999986,59.9261601999986,59.9261482999986,59.9261605999986,59.9261657999986,59.9261546999986,59.9261531999986,59.9261619999986,59.9261501999986,59.9261479999986,59.9260426999986,59.9259818999986,59.9261295999986,59.9259691999986,59.9259729999986,59.9260774999986,59.9260717999986,59.9261188999986,59.9261058999986,59.9261087999986,59.9261096999986,59.9261041999986,59.9261082999986,59.9261466999986,59.9261750999986,59.9261642999986,59.9260586999986,59.9260933999986,59.9261006999986,59.9260882999987,59.9261217999986,59.9260903999986,59.9260963999986,59.9261300999987,59.9261089999986,59.9261188999986,59.9261325999986,59.9260516999987,59.9260015999986,59.9261392999987,59.9261850999986,59.9260317999986,59.9261337999986,59.9261300999987,59.9260310999986,59.9260271999986,59.9260676999986,59.9261925999986,59.9261648999986,59.9261751999987,59.9260722999987,59.9261473999986,59.9260732999986,59.9260419999986,59.9260025999986,59.9260048999986,59.9260684999986,59.9260796999986,59.9260594999986,59.9260320999986,59.9260274999986,59.9260551999986,59.9261540999986,59.9262229999986,59.9262178999986,59.9261636999986,59.9260809999986,59.9260935999986,59.9261031999986,59.9261162999986,59.9262252999986,59.9261408999986,59.9261442999986,59.9261480999986,59.9261397999986,59.9261389999986,59.9261410999986,59.9261424999986,59.9261830999986,59.9261145999987,59.9260874999987,59.9261098999986,59.9261086999986,59.9262009999986,59.9260989999987,59.9260981999986,59.9262016999986,59.9260814999986,59.9262405999986,59.9260955999986,59.9261424999986,59.9260885999986,59.9261306999986,59.9261567999986,59.9261970999986,59.9262041999986,59.9261319999986,59.9261375999986,59.9261392999986,59.9261385999986,59.9261304999986,59.9261478999987,59.9261599999986,59.9261626999986,59.9261123999986,59.9261140999986,59.9260277999986,59.9261644999986,59.9262689999986,59.9262524999986,59.9261126999986,59.9261353999986,59.9261281999986,59.9260733999986,59.9261178999987,59.9261523999986,59.9261507999986,59.9261439999986,59.9261431999986,59.9261228999986,59.9261345999986,59.9261384999986,59.9261412999986,59.9261311999987,59.9261392999986,59.9261403999986,59.9261289999986,59.9261268999986,59.9261634999986,59.9261918999986,59.9261566999986,59.9261130999986,59.9261301999986,59.9261194999986,59.9260755999986,59.9261256999986,59.9260947999986,59.9261360999986,59.9260788999987,59.9260908999986,59.9260858999986,59.9260906999986,59.9260884999986,59.9260842999986,59.9260675999986,59.9261239999986,59.9261191999986,59.9260912999986,59.9261203999987,59.9260847999986,59.9261175999986,59.9260976999986,59.9260971999986,59.9260917999986,59.9261023999986,59.9261265999986,59.9261494999986,59.9261226999986,59.9260937999986,59.9260477999986,59.9261014999986,59.9261058999986,59.9261064999986,59.9261253999986,59.9261655999986,59.9260126999986,59.9260207999986,59.9260343999986,59.9260707999986,59.9260942999987,59.9260730999986,59.9260799999986,59.9261381999986,59.9261594999986,59.9261618999986,59.9261287999986,59.9261464999986,59.9261444999986,59.9261135999986,59.9261125999986,59.9260811999987,59.9260890999986,59.9260988999986,59.9261041999986,59.9260912999986,59.9260832999986,59.9260937999986,59.9261010999986,59.9260884999986,59.9260961999987,59.9260919999986,59.9260995999986,59.9260905999986,59.9261037999986,59.9260985999986,59.9260895999986,59.9260781999986,59.9260958999986,59.9261092999986,59.9260792999986,59.9260941999986,59.9261958999986,59.9260964999986,59.9261036999986,59.9261659999986,59.9260811999986,59.9260945999986,59.9261263999986,59.9260795999986,59.9260592999986,59.9260587999986,59.9261490999986,59.9260751999986,59.9261225999986,59.9260950999986,59.9261144999986,59.9262596999986,59.9261730999986,59.9260797999986,59.9261013999986,59.9260602999986,59.9260654999986,59.9261341999986,59.9261107999986,59.9261133999986,59.9261245999986,59.9261562999986,59.9261248999986,59.9260967999986,59.9261481999986,59.9261536999987,59.9261708999986,59.9260886999986,59.9262688999986,59.9260776999986,59.9261312999987,59.9261074999986,59.9260754999986,59.9260908999986,59.9260796999986,59.9260753999987,59.9260708999986,59.9260708999986,59.9261500999986,59.9261286999986,59.9260625999986,59.9260924999986,59.9260686999986,59.9260984999986,59.9260985999986,59.9260585999986,59.9261058999986,59.9261012999986,59.9260855999986,59.9260848999986,59.9260643999986,59.9260873999986,59.9261254999986,59.9260907999986,59.9260965999986,59.9260980999986,59.9261626999986,59.9261385999986,59.9261560999987,59.9261065999986,59.9261446999986,59.9261601999986,59.9260560999986,59.9261351999986,59.9260981999986,59.9260722999987,59.9261186999986,59.9261241999986,59.9260859999986,59.9261534999986,59.9260972999986,59.9260788999987,59.9261231999986,59.9261738999986,59.9261464999986,59.9261308999986,59.9261199999986,59.9260978999987,59.9261181999986,59.9260988999986,59.9260995999986,59.9260881999986,59.9260760999986,59.9260626999986,59.9261380999986,59.9261124999986,59.9260697999986,59.9261031999986,59.9261516999986,59.9260971999986,59.9261006999986,59.9261006999986,59.9261007999987,59.9261337999986,59.9261201999986,59.9260990999986,59.9261154999986,59.9261100999986,59.9261067999986,59.9261517999986,59.9261103999987,59.9261015999986,59.9261536999986,59.9261251999986,59.9261033999986,59.9261186999986,59.9261018999986,59.9261592999986,59.9261082999986,59.9261585999986,59.9261031999986,59.9260910999986,59.9260916999987,59.9262192999986,59.9260942999986,59.9261332999986,59.9261103999987,59.9261289999986,59.9261485999986,59.9261911999986,59.9261078999986,59.9261296999986,59.9261570999986,59.9261098999986,59.9261106999986,59.9261044999986,59.9261038999986,59.9261050999986,59.9261164999986,59.9261115999986,59.9261119999986,59.9261145999987,59.9261231999986,59.9261196999986,59.9260994999986,59.9261132999986,59.9261240999986,59.9260946999986,59.9260647999986,59.9261018999986,59.9261883999986,59.9262393999986,59.9262313999986,59.9261734999986,59.9261704999986,59.9262955999986,59.9263661999986,59.9263967999986,59.9263753999986,59.9263671999986,59.9263560999986,59.9262787999986,59.9262438999986,59.9262405999986,59.9262349999986,59.9262347999986,59.9262322999986,59.9262521999986,59.9262856999986,59.9263557999986,59.9263311999986,59.9263410999986,59.9263434999986,59.9263399999986,59.9263502999986,59.9263757999986,59.9263795999986,59.9263855999987,59.9264222999986,59.9265419999986,59.9265740999986,59.9266118999986,59.9266334999986,59.9266350999986,59.9266261999987,59.9266307999986,59.9266388999986,59.9266479999986,59.9266654999986,59.9266821999986,59.9267228999986,59.9267488999986,59.9268060999986,59.9268888999986,59.9269817999986,59.9270447999986,59.9271002999986,59.9271323999986,59.9271999999986,59.9272493999986,59.9272836999986,59.9273190999986,59.9273439999986,59.9273803999986,59.9274015999986,59.9273897999986,59.9274135999986,59.9274801999986,59.9275323999986,59.9275821999986,59.9276225999986,59.9276264999986,59.9276596999986,59.9277037999986,59.9277568999986,59.9277982999986,59.9278324999986,59.9278559999986,59.9278702999986,59.9278825999986,59.9278893999986,59.9279147999986,59.9279272999986,59.9279560999986,59.9279775999986,59.9279406999986,59.9279494999986,59.9279738999986,59.9280129999986,59.9280922999986,59.9281302999986,59.9281546999986,59.9281797999986,59.9282281999986,59.9282532999986,59.9282731999986,59.9282793999986,59.9282726999986,59.9282723999986,59.9282724999986,59.9282797999986,59.9283299999986,59.9283309999986,59.9282931999986,59.9283141999986,59.9283631999986,59.9283981999986,59.9284490999986,59.9284869999986,59.9285480999986,59.9285960999986,59.9286378999986,59.9286970999987,59.9287464999986,59.9287988999986,59.9288536999986,59.9288790999986,59.9288665999986,59.9288779999986,59.9289061999986,59.9288986999986,59.9288810999986,59.9288718999986,59.9288973999986,59.9288933999986,59.9288807999986,59.9288639999986,59.9288445999986,59.9288356999987,59.9288602999987,59.9289011999986,59.9289107999986,59.9289155999986,59.9289383999986,59.9289671999986,59.9289598999986,59.9289438999986,59.9289248999986,59.9289219999986,59.9289140999986,59.9288946999987,59.9288465999986,59.9288180999986,59.9287820999987,59.9287623999986,59.9287691999986,59.9287782999986,59.9287938999986,59.9287963999987,59.9288087999986,59.9288118999986,59.9288135999986,59.9287926999986,59.9287991999986,59.9288076999986,59.9288394999986,59.9288280999986,59.9288026999986,59.9287555999986,59.9287129999986,59.9286431999986,59.9285796999986,59.9285047999986,59.9284330999986,59.9283682999986,59.9283213999986,59.9283082999986,59.9282520999986,59.9281709999986,59.9280981999987,59.9280374999986,59.9280182999986,59.9280285999986,59.9280444999987,59.9280194999986,59.9279750999986,59.9279277999986,59.9278773999987,59.9278200999986,59.9277612999986,59.9277041999986,59.9276785999986,59.9276415999986,59.9276183999986,59.9275975999987,59.9275594999986,59.9275194999986,59.9274738999986,59.9274008999987,59.9273224999987,59.9272805999986,59.9272224999986,59.9272500999987,59.9273182999986,59.9273965999986,59.9274742999986,59.9275370999986,59.9275796999986,59.9276324999986,59.9276609999987,59.9276678999987,59.9276838999986,59.9277214999986,59.9277616999986,59.9277991999986,59.9278383999986,59.9278877999986,59.9279480999986,59.9279942999986,59.9280321999986,59.9280607999986,59.9280594999986,59.9280778999986,59.9281175999986,59.9281708999986,59.9282255999986,59.9282711999986,59.9283226999986,59.9283712999986,59.9284150999986,59.9284683999986,59.9285133999986,59.9285521999986,59.9286061999986,59.9286632999986,59.9287012999986,59.9287622999986,59.9288329999986,59.9288941999986,59.9289424999987,59.9289804999986,59.9290216999986,59.9290597999986,59.9290906999986,59.9291162999986,59.9291367999986,59.9291701999986,59.9291816999986,59.9292310999986,59.9292826999986,59.9293396999986,59.9293816999986,59.9293791999986,59.9293375999987,59.9293720999986,59.9293836999986,59.9293585999986,59.9293695999986,59.9293711999986,59.9293598999986,59.9294000999987,59.9294451999987,59.9294806999987,59.9294631999987,59.9294305999987,59.9294123999986,59.9293679999986,59.9293136999986,59.9293016999987,59.9292502999986,59.9291515999987,59.9290603999986,59.9289817999986,59.9289200999986,59.9288819999986,59.9288516999986,59.9287987999987,59.9287652999986,59.9287072999986,59.9286747999986,59.9286570999986,59.9286409999986,59.9286146999986,59.9285479999986,59.9285278999986,59.9285390999986,59.9285481999986,59.9285695999986,59.9285946999986,59.9286339999986,59.9286261999986,59.9286250999986,59.9286275999986,59.9285821999986,59.9284942999986,59.9284268999986,59.9283614999986,59.9283414999986,59.9283215999986,59.9282964999986,59.9282295999986,59.9281586999986,59.9281307999986,59.9280981999986,59.9280564999986,59.9279983999986,59.9279821999986,59.9279271999987,59.9278778999986,59.9278375999986,59.9277998999986,59.9277531999987,59.9277213999986,59.9276882999986,59.9276733999986,59.9277241999986,59.9277628999986,59.9278249999986,59.9278512999987,59.9278847999986,59.9278934999986,59.9278768999986,59.9278643999986,59.9278561999986,59.9278239999986,59.9277598999986,59.9276809999986,59.9276138999986,59.9275783999986,59.9275280999986,59.9274810999986,59.9274252999986,59.9273675999986,59.9273190999986,59.9272858999986,59.9272666999986,59.9272303999986,59.9272050999986,59.9271595999986,59.9271315999986,59.9270838999986,59.9270357999987,59.9270094999986,59.9270006999986,59.9269669999987,59.9269073999986,59.9268613999986,59.9268151999986,59.9267636999986,59.9267249999986,59.9266746999986,59.9265895999986,59.9265049999986,59.9264436999986,59.9263670999986,59.9262946999986,59.9262345999986,59.9261709999986,59.9261266999986,59.9260843999986,59.9260390999986,59.9260363999986,59.9260236999986,59.9259515999986,59.9258952999986,59.9258532999986,59.9257762999986,59.9257183999986,59.9256842999986,59.9256178999986,59.9255717999986,59.9255405999986,59.9255285999986,59.9255070999986,59.9254612999986,59.9254129999986,59.9253619999986,59.9253331999986,59.9252981999986,59.9253191999986,59.9253529999986,59.9253682999986,59.9253821999986,59.9254034999986,59.9253876999987,59.9253373999986,59.9252517999986,59.9251839999986,59.9251055999987,59.9250489999986,59.9249877999986,59.9249356999986,59.9248998999986,59.9248614999986,59.9248205999986,59.9247855999986,59.9247676999986,59.9247442999986,59.9247153999986,59.9246618999986,59.9246415999986,59.9245986999986,59.9245624999986,59.9245288999986,59.9245076999986,59.9244626999986,59.9244137999986,59.9243607999987,59.9243206999986,59.9243278999986,59.9243344999986,59.9243552999986,59.9243633999987,59.9243796999986,59.9243877999986,59.9243920999986,59.9243966999986,59.9243957999986,59.9243846999986,59.9243787999986,59.9243646999986,59.9243804999986,59.9243938999986,59.9244160999986,59.9243984999986,59.9243661999986,59.9243482999986,59.9243338999986,59.9243215999986,59.9243279999986,59.9243443999986,59.9243596999986,59.9243921999986,59.9244227999986,59.9244111999986,59.9243898999986,59.9243704999986,59.9243759999986,59.9244179999986,59.9244307999986,59.9244069999986,59.9244302999986,59.9244433999986,59.9244305999986,59.9244123999986,59.9244140999986,59.9244155999986,59.9244157999986,59.9244008999986,59.9243837999986,59.9243805999986,59.9243883999987,59.9243976999986,59.9244055999986,59.9243943999986,59.9243911999986,59.9243894999986,59.9243859999986,59.9243925999986,59.9244023999986,59.9244036999987,59.9243958999986,59.9243973999986,59.9243997999986,59.9244308999986,59.9244604999987,59.9244995999986,59.9245136999986,59.9245005999986,59.9244893999986,59.9244847999986,59.9244672999986,59.9244572999987,59.9244444999986,59.9244538999986,59.9244641999986,59.9244787999986,59.9244749999986,59.9244373999986,59.9244112999986,59.9243925999986,59.9244652999986,59.9245705999986,59.9246691999986,59.9249143999986,59.9251097999986,59.9252924999986,59.9252502999986,59.9252784999986,59.9252863999986,59.9251941999986,59.9251610999986,59.9251691999986,59.9252108999986,59.9252069999986,59.9252088999987,59.9252132999986,59.9252146999986,59.9252195999986,59.9252199999986,59.9252178999986,59.9252065999986,59.9252133999986,59.9251976999986,59.9252015999986,59.9252055999986,59.9252068999986,59.9252099999986,59.9252126999986,59.9252168999987,59.9252187999986,59.9252192999987,59.9252197999986,59.9252207999986,59.9252228999986,59.9252228999986,59.9252221999986,59.9252212999986,59.9252216999986,59.9252218999987,59.9252216999986,59.9252208999986,59.9252213999986,59.9252216999986,59.9252218999986,59.9252229999986,59.9252227999986,59.9252232999986,59.9252258999986,59.9252246999986,59.9252246999986,59.9252253999986,59.9252259999986,59.9252266999986,59.9252264999986,59.9252256999986,59.9252253999987,59.9252254999986,59.9252254999986,59.9252251999986,59.9252246999986,59.9252246999986,59.9252244999986,59.9252242999986,59.9252242999986,59.9252246999986,59.9252250999986,59.9252255999986,59.9252265999986,59.9252281999986,59.9252396999986,59.9252442999986,59.9252432999986,59.9252461999986,59.9252465999986,59.9252450999986,59.9252451999986,59.9252456999986,59.9252450999986,59.9252449999986,59.9252444999986,59.9252433999986,59.9252429999986,59.9252424999987,59.9252410999986,59.9252425999986,59.9252422999986,59.9252426999986,59.9252430999987,59.9252434999986,59.9252431999986,59.9252439999986,59.9252443999986,59.9252445999986,59.9252440999986,59.9252444999986,59.9252446999986,59.9252451999986,59.9252448999986,59.9252452999986,59.9252451999986,59.9252213999986,59.9252441999987,59.9252447999986,59.9252462999986,59.9252469999986,59.9252470999986,59.9252225999986,59.9252453999987,59.9252444999986,59.9252435999986,59.9252433999986,59.9252439999986,59.9252439999986,59.9252446999987,59.9252454999987,59.9252451999986,59.9252445999986,59.9252437999986,59.9252186999986,59.9252433999986,59.9252429999986,59.9252422999986,59.9252422999986,59.9252417999986,59.9252417999986,59.9252419999986,59.9252416999986,59.9252420999986,59.9252417999986,59.9252416999986,59.9252414999987,59.9252412999986,59.9252421999986,59.9252420999986,59.9252421999986,59.9252435999986,59.9252432999987,59.9252428999986,59.9252426999986,59.9252417999986,59.9252416999986,59.9252418999986,59.9252430999987,59.9252431999986,59.9252429999986,59.9252428999986,59.9252434999986,59.9252433999986,59.9252433999986,59.9252439999986,59.9252441999986,59.9252443999986,59.9252441999986,59.9252442999986,59.9252440999986,59.9252435999986,59.9252432999987,59.9252431999986,59.9252429999986,59.9252433999986,59.9252437999986,59.9252440999986,59.9252450999986,59.9252459999986,59.9252458999986,59.9252460999986,59.9252462999986,59.9252464999986,59.9252811999986,59.9252766999986,59.9252705999986,59.9252631999986,59.9252610999986,59.9252573999987,59.9252520999986,59.9252492999986,59.9252487999986,59.9252500999986,59.9252513999987,59.9252527999987,59.9252494999986,59.9252474999986,59.9252445999986,59.9252472999986,59.9252475999986,59.9252455999986,59.9252449999986,59.9252463999986,59.9252487999986,59.9252482999986,59.9252479999986,59.9252344999986,59.9252478999986,59.9252484999986,59.9252490999987,59.9252495999986,59.9252501999986,59.9252509999986,59.9252492999986,59.9252491999986,59.9252500999986,59.9252522999986,59.9252518999986,59.9252512999986,59.9252505999986,59.9252507999986,59.9252512999986,59.9252518999986,59.9252499999986,59.9252489999986,59.9252481999986,59.9252487999986,59.9252491999987,59.9252494999986,59.9252497999986,59.9252485999986,59.9252476999986,59.9252470999986,59.9252473999986,59.9252491999987,59.9252506999986,59.9252496999986,59.9252500999986,59.9252507999986,59.9252501999986,59.9252498999986,59.9252503999986,59.9252524999987,59.9252529999986,59.9252539999986,59.9252236999986,59.9252525999987,59.9252522999986,59.9252523999986,59.9252526999986,59.9252527999987,59.9252529999986,59.9252277999986,59.9252524999987,59.9252524999987,59.9253359999986,59.9253367999986,59.9253286999986,59.9253088999986,59.9253065999986,59.9253079999986,59.9253139999986,59.9253063999986,59.9252838999986,59.9252348999986,59.9253416999986,59.9253679999986,59.9252840999986,59.9252876999986,59.9252945999986,59.9253746999986,59.9252960999986,59.9253005999986,59.9252980999986,59.9252966999986,59.9252998999986,59.9252995999986,59.9252587999986,59.9253820999986,59.9252534999986,59.9252305999986,59.9252165999986,59.9251900999986,59.9252050999986,59.9252303999986,59.9252160999987,59.9252356999986,59.9252856999986,59.9252679999986,59.9252504999986,59.9252427999986,59.9252565999986,59.9252651999986,59.9252445999986,59.9252334999986,59.9252546999986,59.9252436999986,59.9252281999986,59.9252288999986,59.9252228999986,59.9252464999986,59.9252351999986,59.9252404999986,59.9252193999986,59.9252004999987,59.9252067999986,59.9251996999987,59.9251876999987,59.9252065999986,59.9251736999986,59.9251757999986,59.9251832999986,59.9251844999986,59.9251927999986,59.9252147999986,59.9251642999987,59.9252162999986,59.9252867999986,59.9253290999986,59.9252824999986,59.9252474999986,59.9252452999986,59.9252458999986,59.9252464999986,59.9252322999986,59.9252597999986,59.9252243999986,59.9252694999986,59.9252689999986,59.9252250999986,59.9252168999986,59.9252525999986,59.9254030999986,59.9252535999986]}]]],null,"spatial_geometry(a)",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"line","stroke":true,"color":"#6666ff","weight":2,"opacity":0.9,"fill":false,"fillColor":"#6666ff","fillOpacity":1,"smoothFactor":1,"noClip":false},null,{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"1",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":3,"opacity":1,"fill":false,"fillOpacity":0,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[30.2935149,59.9179581999986,30.3606082,59.9485910999986,true,"spatial_geometry(a)","Zoom to spatial_geometry(a)","<strong> spatial_geometry(a) <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"spatial_geometry(a)",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"limits":{"lat":[59.9179581999986,59.9485910999986],"lng":[30.2935149,30.3606082]},"fitBounds":[59.9179581999986,30.2935149,59.9485910999986,30.3606082,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+
+</div>
+
+<script>
+
+$(document).ready(function () {
+
+  // add bootstrap table styles to pandoc tables
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+
+  // initialize mathjax
+
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  FlexDashboard.init({
+    theme: "yeti",
+    fillPage: true,
+    orientation: "columns",
+    storyboard: false,
+    defaultFigWidth: 646,
+    defaultFigHeight: 412,
+    defaultFigWidthMobile: 360,
+    defaultFigHeightMobile: 460,
+    resize_reload: true
+  });
+});
+</script>
+
+</body>
+</html>
