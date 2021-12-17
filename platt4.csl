@@ -144,10 +144,12 @@
           </date>
           <choose>
             <if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="none">
+             <group prefix=" (" suffix=")">
               <date variable="issued">
-                <date-part prefix=" (" suffix=" " name="day" form="numeric-leading-zeros"/>
-                <date-part prefix="" suffix=") " name="month"/>
-            </date>
+                <date-part prefix="" suffix=" " name="day" form="numeric-leading-zeros"/>
+                <date-part prefix="" suffix="" name="month"/>
+              </date>
+             </group>
             </if>
           </choose>
         </group>
