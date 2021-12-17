@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5 {
   font-family: "Roboto Condensed" ,"z Segoe UI", serif !important;
  /* font-family: "Segoe UI", sans-serif !important;*/
   font-weight: normal;
-  line-height: 1;
+ /* line-height: 1;*/
 }
 h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
    color: #538;
@@ -63,7 +63,7 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
    border-left: 5px yellow solid;
 }
 .sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
-   color: unset;
+   text-shadow: 0px 0px 0.07em #fff;
 }
 .sidebar h1 a, .sidebar h2 a, .sidebar h3 a, .sidebar h4 a, .sidebar h5 a {
    text-decoration: none !important;
@@ -73,11 +73,11 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
 }
 .inverse h1, .inverse h2, .inverse h3, .inverse h4, .inverse h5 {
   color: #ff4;
+   text-shadow: 0px 0px 0.07em #000;
 }
 .sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
   font-family: "Roboto Condensed", "z Fira Sans" ,"z Segoe UI", serif !important;
 }
-
 .remark-slide-content {
   background-color: #FFFFFF;
   font-size: var(--pointsize);
@@ -133,7 +133,10 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
 .inverse:not(.notable), .title-slide.inverse, .break {
   background-color: #2C3E50;
   color: #ffffff;
-  text-shadow: 0 0 20px #333;
+  text-shadow: 0 0 20px #000;
+}
+.remark-slide-content:not(.inverse) {
+  text-shadow: 0 0 6px #fff;
 }
 .inverse h1, .inverse h2, .inverse h3 {
   color: #ffffff;
@@ -166,7 +169,8 @@ body:not(:fullscreen) .title-slide iframe {
   display: none;
 }
 .remark-code, .remark-inline-code {
-  font-size: calc(var(--pointsize) * 0.8);
+ /* font-size: calc(var(--pointsize) * 0.8);*/
+  font-size: 80%;
   font-family: Cousine, 'Lucida Console', Monaco, monospace;
 }
 
@@ -188,6 +192,7 @@ body:not(:fullscreen) .title-slide iframe {
 .font65 {font-size: 65%}
 .font60 {font-size: 60%}
 .font65 {font-size: 55%}
+.zzsmall .zzremark-code, .zzremark-inline-code {font-size: calc(var(--pointsize) * 0.8 * 0.73);}
 
 .remark-slide-number {
    bottom: 0px;
@@ -429,16 +434,24 @@ body:fullscreen .giphy.title-slide {
 }
 .picsum:not(.title-slide):not(.inverse) {
    background-image: linear-gradient(#FFFB, #FFFB),
-                     url(https://picsum.photos/1060/682);
+                     url(https://picsum.photos/1060/682?random=$randomNumber);
    background-size: cover;
 
 }
 .picsum:not(.title-slide).inverse {
    background-image: linear-gradient(#000A, #000A),
-                     url(https://picsum.photos/1060/682);
+                     url(https://picsum.photos/1060/682?random=$randomNumber);
    background-size: cover;
 
 }
+/*
+.inverse[style*="background-image"] {
+   border: 5px solid red;
+}
+:not(.inverse)[style*="background-image"] {
+   border: 5px solid blue;
+}
+*/
 .picsum:not(.title-slide):after,
 body:fullscreen .picsum.title-slide:after {
    content: '\1F306' ' ' 'Lorem Picsum';
@@ -495,7 +508,7 @@ body:fullscreen .picsum.title-slide:after {
    -moz-transform: scale(var(--magnifier)); 
    -moz-transform-origin: 0 0;
    max-width: calc(100% / var(--magnifier));
-   opacity: 0.5;
+  /* opacity: 0.5;*/
 }
 .html-widget.plotly {
    zoom: var(--magnifier); 
@@ -517,7 +530,7 @@ body:fullscreen .picsum.title-slide:after {
    max-width: calc(100% / var(--magnifier));
 }
 .html-widget:not(.datatables) {
-   border: 1px solid red;
+  /* border: 1px solid red;*/
 }
 .html-widget.widgetframe iframe {
    border: 1px solid blue;
@@ -598,6 +611,11 @@ ul {
    height: 646px;
    width: 100%;
    overflow-y: auto; 
+   overflow-x: auto;
+}
+.wide {
+   display: block;
+   white-space: nowrap;
 }
 /* footer identifier */
 /*
@@ -909,6 +927,7 @@ pre {
 }
 code.remark-code {
    padding: 0.2em;
+   overflow-x: auto;
 }
 code.remark-code:not(.hljs) {
    display: grid;
@@ -986,6 +1005,14 @@ code.remark-code:not(.hljs) {
 .mainbar > .banner {
    border: 1px solid blue !important;
 }
+/*
+:not(.inverse) .mainbar {
+   background-color: #fff5;
+}
+.inverse .mainbar {
+   background-color: #0005;
+}
+*/
 .inline img {
    height: 1.2em !important; 
    display: inline-block;
@@ -1004,6 +1031,9 @@ code.remark-code:not(.hljs) {
 }
 .bullet-active {
    opacity: 1.0;
+}
+.timenow {
+   display: none !important;
 }
 @media only screen and (min-width: 156vh) {
    .remark-slide {
