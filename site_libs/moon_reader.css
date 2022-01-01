@@ -12,7 +12,9 @@
    --sidebar-margin: 18px;
    --pointsize: 22pt;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
    --inverse-bg: #2C3E50;
-
+   --blur: 0.2em;
+   --light: #ffd;
+   --dark: #149;
 }
 .remark-slide { /* devel */
   /* opacity: 0.2; */
@@ -62,8 +64,12 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
 .inverse .panelset .panel-tabs {
    border-left: 5px yellow solid;
 }
-.sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
-   text-shadow: 0px 0px 0.07em #fff;
+remark-slide-content[style*="background"] .sidebar h1,
+remark-slide-content[style*="background"] .sidebar h2,
+remark-slide-content[style*="background"] .sidebar h3,
+remark-slide-content[style*="background"] .sidebar h4,
+remark-slide-content[style*="background"] .sidebar h5 {
+   text-shadow: 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light);
 }
 .sidebar h1 a, .sidebar h2 a, .sidebar h3 a, .sidebar h4 a, .sidebar h5 a {
    text-decoration: none !important;
@@ -71,9 +77,13 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
 .sidebar.left-column h2:last-of-type, .sidebar.left-column h3:last-child {
   /* color: unset;*/
 }
-.inverse h1, .inverse h2, .inverse h3, .inverse h4, .inverse h5 {
-  color: #ff4;
-   text-shadow: 0px 0px 0.07em #000;
+remark-slide-content[style*="background"] .inverse h1,
+remark-slide-content[style*="background"] .inverse h2,
+remark-slide-content[style*="background"] .inverse h3,
+remark-slide-content[style*="background"] .inverse h4,
+remark-slide-content[style*="background"] .inverse h5 {
+   color: #ff4;
+   text-shadow: 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark);
 }
 .sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
   font-family: "Roboto Condensed", "z Fira Sans" ,"z Segoe UI", serif !important;
@@ -100,7 +110,7 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
 .title-slide h1, .title-slide h2, .title-slide h3 {
   margin-top: 60px;
   margin-bottom: 60px;
-  text-shadow: 4px 4px 15px #000;
+  text-shadow: 4px 4px 15px var(--dark);
 }
 
 .remark-slide-content h1 {
@@ -121,7 +131,7 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
 .notable, .notable .title-slide.notable {
   background-color: #FFFDF4 !important;
  /* color: #43418A;*/
-  text-shadow: 4px 4px 15px #fff;
+  text-shadow: 4px 4px 15px var(--light);
 }
 .title-slide.notable {
    color: unset;
@@ -133,10 +143,14 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
 .inverse:not(.notable), .title-slide.inverse, .break {
   background-color: #2C3E50;
   color: #ffffff;
-  text-shadow: 0 0 20px #000;
+ /* text-shadow: 0 0 20px var(--dark);*/
+  text-shadow: 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark);
 }
-.remark-slide-content:not(.inverse) {
-  text-shadow: 0 0 6px #fff;
+.remark-slide-content[style*="background"].inverse {
+  text-shadow: 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark);
+}
+.remark-slide-content[style*="background"]:not(.inverse) {
+  text-shadow: 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light);
 }
 .inverse h1, .inverse h2, .inverse h3 {
   color: #ffffff;
@@ -438,6 +452,11 @@ body:fullscreen .giphy.title-slide {
    background-size: cover;
 
 }
+.picsum:not(.title-slide).break:not(.inverse) {
+   background-image: url(https://picsum.photos/1060/682?random=$randomNumber);
+   background-size: cover;
+
+}
 .picsum:not(.title-slide).inverse {
    background-image: linear-gradient(#000A, #000A),
                      url(https://picsum.photos/1060/682?random=$randomNumber);
@@ -654,7 +673,7 @@ ul {
   /* overflow: scroll; */
    overflow-y: auto;
    line-height: 1 !important; 
-   text-shadow: none;
+  /* text-shadow: none;*/
   /* text-align: justify;*/
 }
 .inverse .left-column.sidebar {
@@ -738,6 +757,10 @@ ul {
 .inverse .sidebar h1[id*=bg][id*=fg] a, .inverse .sidebar h2[id*=bg][id*=fg] a, .inverse .sidebar h3[id*=bg][id*=fg] a, .inverse .sidebar h4[id*=bg][id*=fg] a, .inverse .sidebar h5[id*=bg][id*=fg] a,
 .inverse .sidebar h1[id*=bg][id*=fg], .inverse .sidebar h2[id*=bg][id*=bg], .inverse .sidebar h3[id*=bg][id*=fg], .inverse .sidebar h4[id*=bg][id*=fg], .inverse .sidebar h5[id*=bg][id*=fg] {
    color: #eee;
+}
+.sidebar h1[id*=bg][id*=fg] a, .sidebar h2[id*=bg][id*=fg] a, .sidebar h3[id*=bg][id*=fg] a, .sidebar h4[id*=bg][id*=fg] a, .sidebar h5[id*=bg][id*=fg] a,
+.sidebar h1[id*=bg][id*=fg], .sidebar h2[id*=bg][id*=bg], .sidebar h3[id*=bg][id*=fg], .sidebar h4[id*=bg][id*=fg], .sidebar h5[id*=bg][id*=fg] {
+   color: black;
 }
 .sidebar h1[id*=bg] a, .sidebar h2[id*=bg] a, .sidebar h3[id*=bg] a, .sidebar h4[id*=bg] a, .sidebar h5[id*=bg] a {
    opacity: 1.0;
@@ -1033,7 +1056,12 @@ code.remark-code:not(.hljs) {
    opacity: 1.0;
 }
 .timenow {
-   display: none !important;
+   width: 240px;
+   height: 140px;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   opacity: 0.2;
 }
 @media only screen and (min-width: 156vh) {
    .remark-slide {

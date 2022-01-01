@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>hny2022</title>
+    <meta charset="utf-8" />
+    <script src="https://nplatonov.github.io/site_libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/fabric-4.3.1/fabric.min.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30}) })</script>
+    <link href="https://nplatonov.github.io/site_libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/panelset-0.2.6/panelset.js"></script>
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+class: inverse middle
+background-image: url(shadow.jpg)
+background-color: #002f00
+background-position: contain
+count: false
+
+
+
+
+
+
+
+<div class="snowflakes" aria-hidden="true">
+  <div class="snowflake">
+  &#x2745;
+  </div>
+  <div class="snowflake">
+  &#x2745;
+  </div>
+  <div class="snowflake">
+  &#x2746;
+  </div>
+  <div class="snowflake">
+  &#x2744;
+  </div>
+  <div class="snowflake">
+  &#x2745;
+  </div>
+  <div class="snowflake">
+  &#x2746;
+  </div>
+  <div class="snowflake">
+  &#x2744;
+  </div>
+  <div class="snowflake">
+  &#x2745;
+  </div>
+  <div class="snowflake">
+  &#x2746;
+  </div>
+  <div class="snowflake">
+  &#x2744;
+  </div>
+</div>
+
+
+<style type="text/css">
+/*Source: https://codepen.io/codeconvey/pen/xRzQay*/
+  
+/* customizable snowflake styling */
+.snowflake {
+  color: lightblue;
+  font-size: 5em;
+  font-family: Arial;
+  text-shadow: 0 0 1px #000;
+}
+
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}
+@-webkit-keyframes snowflakes-shake{
+    0%{-webkit-transform:translateX(0px);transform:translateX(0px)}
+   50%{-webkit-transform:translateX(80px);transform:translateX(80px)}
+  100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}
+@keyframes snowflakes-fall{
+    0%{top:-10%}
+  100%{top:100%}}
+@keyframes snowflakes-shake{
+    0%{transform:translateX(0px)}
+   50%{transform:translateX(80px)}
+  100%{transform:translateX(0px)}}
+
+.snowflake{
+  position:fixed;
+  top:-10%;
+  z-index:9999;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  cursor:default;
+  -webkit-animation-name:snowflakes-fall,snowflakes-shake;
+  -webkit-animation-duration:10s,3s;
+  -webkit-animation-timing-function:linear,ease-in-out;
+  -webkit-animation-iteration-count:infinite,infinite;
+  -webkit-animation-play-state:running,running;
+  animation-name:snowflakes-fall,snowflakes-shake;
+  animation-duration:10s,3s;
+  animation-timing-function:linear,ease-in-out;
+  animation-iteration-count:infinite,infinite;
+  animation-play-state:running,running}
+
+.snowflake:nth-of-type(0){left: 1%;-webkit-animation-delay:  0s,  0s;animation-delay:  0s,  0s}
+.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:  1s,  1s;animation-delay:  1s,  1s}
+.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:  6s,0.5s;animation-delay:  6s,0.5s}
+.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:  4s,  2s;animation-delay:  4s,  2s}
+.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:  2s,  2s;animation-delay:  2s,  2s}
+.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:  8s,  3s;animation-delay:  8s,  3s}
+.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:  6s,  2s;animation-delay:  6s,  2s}
+.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,  1s;animation-delay:2.5s,  1s}
+.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:  1s,  0s;animation-delay:  1s,  0s}
+.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:  3s,1.5s;animation-delay:  3s,1.5s}
+</style>
+
+
+.small[
+Уходящий год оказался самым особенным в моей жизни, особенно начиная где-то с одиннадцатого июня в районе часов девяти утра. В нем были сильные эмоции, переживания, чувства. Что-то из этого я не испытывал несколько десятков лет. Что-то произошло впервые, хотя я уже не верил, что это возможно, но и уверен, что что-то подобное уже точно не будет в моей жизни. Эта часть года позволила мне стать тем, кем я раньше и не помышлял быть, например, сочиняя многострочные произведения с рифмованными окончаниями. Эта часть года подарила творчество с карточками, записками, букетами, паззлами, желанием. В моем сердце поселился человек, перед которым я чувствую безграничную ответственность, перед которым я решил быть абсолютно честным и следую этому решению. В моем сердце поселилась желанная женщина, с восхитительным и полным загадок телом, которой хочется доставить все блаженства мира. В моем сердце поселилась маленькая эгоистка, но это настолько душевно тонкая, ранимая и милая девочка, что её капризы превращают её в принцессу, ради которой хочется быть рыцарем. И в моем сердце поселилась девушка, которую хочется оставить в нем до конца жизни, в разлуке с которой сердце ноет, а при встрече с ней радостно бьётся. Эта часть года подарила незабываемые события, которые хоть и случались раньше, но ощущаются моментами, пережитыми впервые. Первые объятия с особенной чувственностью, первый поцелуй с искрами, первая близость непослушных (причем обоим) головам тел, первый осенний Питер. И всё это хочется повторить в наступающем году. Прикосновения, объятия, поцелуи, занятия любовью без чувства времени. И путешествия, пусть даже в виде прогулок, с непринуждёнными разговорам и узнаванием мира и его отдельных уголков. Очень скоро завершающийся год заберёт что-то несбывшееся, так как в Новом обычно желают нового, например, счастья. Кое-что я ему не отдам, а буду стараться реализовать все обещания, прежде всего, данные себе. И из уходящего года я возьму с собой воспоминания и чувства, потому что я не хочу нового счастья, а хочу добиться того счастья, к которому стал стремиться полгода назад. С момента окончания нашего рейса, Аня. И, конечно, каждое здесь слово о тебе, моя малышка. Потому что я очень хочу быть с тобой. С наступающим новым годом! С желанием быть счастливыми и вместе.
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": false,
+"ratio": "29:18",
+"navigation": {
+"scroll": true,
+"click": false,
+"touch": true
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+setInterval(function() {slideshow.gotoNextSlide();}, 999999);</script>
+
+  </body>
+</html>
