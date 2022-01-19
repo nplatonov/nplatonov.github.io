@@ -371,7 +371,7 @@ table {
   word-wrap: normal;
   word-break: normal;
 }
-table.scroll, table[scroll] {
+table.scroll, table[scroll], .scroll > table {
   display: block;
   width: 100% !important;
 }
@@ -800,7 +800,7 @@ iframe {
    padding-right: 0;
   /* width: 614px; */
 }
-iframe:not([class]) {
+iframe:not([class]), iframe.ursa-widgetize {
    border: 1px dashed #eee;
    display: block;
 }
@@ -922,7 +922,7 @@ h2+h3, .section .section {
    margin-top: 0.4em !important;
 }
 h2 + div > h3 {
-   margin-top: 1.2em;
+   margin-top: 0.9em;
 }
 .section.level2 .section.level3 {
    margin-top: -0.7em !important;
@@ -945,25 +945,48 @@ h1:hover, h2:hover, h3:hover, h4:hover {
 }
 */
 /**/
-.section > h1::before {
+.zzzsection > h1::before {
    margin-right: 0.71em;
    margin-left: -0.95em;
    content: '|';
 }
-.section > h2::before {
+.zzzsection > h2::before {
    margin-right: 0.92em;
    margin-left: -1.4em;
    content: '||';
 }
-.section > h3::before {
+.zzzsection > h3::before {
    margin-right: 1.08em;
    margin-left: -1.8em;
    content: '|||';
 }
-.section > h4::before {
+.zzzsection > h4::before {
    margin-right: 1.24em;
    margin-left: -2.2em;
    content: '||||';
+}
+.section > h1::after {
+   content: '|';
+}
+.section > h2::after {
+   content: '||';
+}
+.section > h3::after {
+   content: '|||';
+}
+.section > h4::after {
+   content: '||||';
+}
+.section > h1::after, .section > h2::after, .section > h3::after, .section > h4::after {
+    margin-left: 8pt;
+    margin-top: -1.25em;
+    float: right;
+    display: block;
+    position: absolute;
+   /* right: calc(max(0.5em,(100% - 790px - 90px)*0.5 - 415px)); */
+    left: calc(max(0px,(100% - 790px - 90px)*0.5 + 790px + 55px));
+   /* right: 0.5em;*/
+   /* width: calc((100% - 790px - 90px)*0.5); */
 }
 .section > h5::before {
    margin-right: 1.41em;
@@ -975,10 +998,12 @@ h1:hover, h2:hover, h3:hover, h4:hover {
    margin-left: unset;
    content: '';
 }
-h1::before, h2::before, h3::before, h4::before, h5::before {
+h1::before, h2::before, h3::before, h4::before, h5::before,
+h1::after, h2::after, h3::after, h4::after, h5::after {
    color: transparent;
 }
-h1:hover::before, h2:hover::before, h3:hover::before, h4:hover::before, h5:hover::before {
+h1:hover::before, h2:hover::before, h3:hover::before, h4:hover::before, h5:hover::before,
+h1:hover::after, h2:hover::after, h3:hover::after, h4:hover::after, h5:hover::after {
    color: var(--header-color);
    opacity: 0.1;
 }
@@ -1826,7 +1851,7 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
       }
    }
    body {
-      background-color: #FFFFF5 !important;
+      background-color: #FFFFFA !important;
      /* border: 1px dashed #AFAF9F; */
       max-width: 9999px;
       font-family: "Georgia", "Cambria", "Times New Roman", Times, serif;
