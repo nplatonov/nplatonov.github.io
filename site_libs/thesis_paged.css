@@ -110,14 +110,14 @@ table > caption {
    text-indent: 0cm;
   /* font-size: 112%;*/
 }
-table {
+table { 
    margin-top: 1.4em;
    margin-bottom: 0.8em;
    font-size: 90%;
    min-width: 60%;
   /* break-after: page;*/
   /* break-inside: auto;*/
-   break-inside: avoid;
+  /* break-inside: avoid; */ /* useful before v0.16. In v0.16 long tables are supported */
 }
 table td {
    padding-left: 0.4em;
@@ -157,10 +157,11 @@ h3, h4 {
   /* color: red; */ /* devel */
    text-align: center;
    text-indent: 0;
-   position: initial;
+  /* position: absolute;*/
    left:0;
    right:0;
    top:0;
+  /* border: 1px solid red;*/
 }
 .titlepage-footer {
    line-height: 1.2;
@@ -171,6 +172,16 @@ h3, h4 {
    left:0;
    right:0;
    bottom:0;
+  /* border: 1px solid orange; */
+}
+.titlepage-main {
+   height: 21.5cm;
+   position: absolute;
+   display: flex;
+  /* border: 1px solid red;*/
+  /* align-items: center;*/
+   justify-content: center;
+   flex-direction: column;
 }
 .titlepage-updated {
    margin-top: 1em;
@@ -180,13 +191,6 @@ h3, h4 {
    position: absolute;
    right: 0em;
    bottom: -4em;
-}
-.titlepage-main-devel {
-   height: 22.9cm;
-   border: 1px solid red;
-   display: table;
-   table-layout: fixed;
-   width: 100%;
 }
 /*
 .titlepage-updated::after {
@@ -207,8 +211,8 @@ h3, h4 {
    text-indent: 0cm;
 }
 .title-page .title {
-   margin-top: 2.4em;
-   margin-bottom: 2.4em;
+   margin-top: 1.2em;
+   margin-bottom: 1.2em;
 }
 .signpage .title {
    margin-top: 1em;
@@ -216,8 +220,8 @@ h3, h4 {
    text-align: center;
 }
 .title-page .subtitle {
-   margin-top: 1.6em;
-   margin-bottom: 2.4em;
+   margin-top: 1.2em;
+   margin-bottom: 0.8em;
 }
 .title-page .author {
    text-align: left;
@@ -322,6 +326,7 @@ sup, sub {
    padding-top: 1.3em;
 }
 table.sign-table {
+   margin-top: 0.8em;
    text-align: left;
    line-height: 1.2;
    font-size: 100%;
@@ -407,7 +412,7 @@ table.sign-table tr.signed {
    margin-top: 0em;
    margin-bottom: 0em;
 }
-.references:not([data-previous-break-after]) {
+.references:not([data-previous-break-after]), h6+.references {
   /* margin-top: 1em; */
    break-before: always;
 }
@@ -517,7 +522,7 @@ p.centered-image {
 }
 .sign-date {
    text-align: right;
-   margin-top: 1em;
+   margin-top: 0em;
 }
 .sign-date::before {
    content: '«            »  _____________                 г.';
@@ -612,6 +617,15 @@ blockquote {
 }
 .pagebreak {
    page-break-before: always;
+}
+.remarkonly, .onlyremark {
+   display: none;
+}
+.titlepage-updated + .front-matter-container {
+   break-before: always;
+}
+table > thead {
+  /* background: yellow;*/
 }
 @media only screen {
    .asteric {
