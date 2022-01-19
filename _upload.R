@@ -48,5 +48,5 @@ if (T) {
    ret[1] <- system("git add -A")
    if (!(ret[2] <- system("git commit -m\"ongoing\"")))
       ret[3] <- system("git push")
-   ret
+   print(ret)
 }
