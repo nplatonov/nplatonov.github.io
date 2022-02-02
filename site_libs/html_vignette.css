@@ -145,7 +145,7 @@ body {
 .goto_toc:hover img{
    opacity: 0.8;
 }
-.aside {
+.aside, .marginnote {
    display: none;
    font-size: 13px;
    line-height: 1.25em;
@@ -154,7 +154,7 @@ body {
    margin-right: 1em;
 }
 @media only dummy and (min-width: 20px) and (max-width: 930px) {
-   .aside {
+   .aside, .marginnote {
       display: block;
       opacity: 0.6;
       width: 12pt;
@@ -162,15 +162,15 @@ body {
       font-size: 0pt;
       color: transparent;
    }
-   .aside:before {
+   .aside:before, .marginnote:before {
       color: #444;
       font-size: 16pt;
       content: '\1F5CF';
    }
-   .aside:hover:before {
+   .aside:hover:before, .marginnote:hover:before {
       content: '';
    }
-   .aside:hover {
+   .aside:hover, .marginnote:hover {
       font-size: 13px;
       color: unset;
       width: unset;
@@ -194,7 +194,7 @@ body {
       height: calc(100% - 12px);
       overflow-y: auto; 
    }
-   .aside {
+   .aside, .marginnote {
        border-radius: 5px;
        background-color: #f9f9f9; /* #ffffdf #f9f9f9*/
        max-width: 420px;
@@ -223,17 +223,17 @@ body {
        vertical-align: baseline;
        position: relative;
    }
-   .aside .centered-image {
+   .aside .centered-image, .marginnote .cetered-image {
        text-align: left;
       /* max-width: 420px; */
    }
-   span.aside img {
+   span.aside img, span.marginnote img {
       margin-bottom: 0.5em;
    }
-   span.aside::before {
+   span.aside::before, span.marginnote::before {
       content: "\261A" ' ';
    }
-   div.aside::before {
+   div.aside::before, div.marginnnote::before {
       content: '\261A';
    }
    p span.zzzaside {
@@ -284,7 +284,7 @@ body {
       overflow-y: scroll;
    }
    /* collapse -- end */
-   .aside {
+   .aside, .marginnote {
        display: block;
        padding-left: 0.7em;
        padding-right: 0.7em;
@@ -1040,6 +1040,7 @@ div.uppercase > h1 {
   text-transform: uppercase;
 }
 .title { /* expanded h1 */
+  font-size: 230%;
   color: inherit;
   border: 0;
   margin-top: 0.4em;
@@ -1047,7 +1048,7 @@ div.uppercase > h1 {
   margin-left: 0;
 }
 .subtitle { /* expanded h2 */
-  font-size: 130%;
+  font-size: 150%;
   color: inherit;
   margin-left: 0;
   border: 0;
@@ -1935,11 +1936,20 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
       font-variant: normal;
       padding-bottom: 0.2em;
    }
-  /*
-   h2 + p {
+   .level2 + p:first-of-type {
+      border: 1px solid red;
       page-break-before: avoid !important;
    }
-  */
+   h2 {
+      border: 1px solid blue;
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+   }
+   h2+p {
+      border: 1px solid green;
+      page-break-before: avoid !important;
+      break-before: avoid !important;
+   }
    .references {
       padding-left: 0cm !important;
       text-indent: 0cm !important;
@@ -2100,7 +2110,7 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
      text-align: center;
    }
    h4.author, address.author_afil, h4.date {
-     text-align: left;
+     text-align: center; /* left  center */
    }
    h1::before, h2::before, h3::before, h4::before, h5::before {
       margin-right: unset;

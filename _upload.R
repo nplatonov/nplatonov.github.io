@@ -31,7 +31,7 @@ for (myname in c("C:/platt/article/platt.bib"
       print(a[ind])
       a[ind] <- gsub(patt,"https://nplatonov.github.io/",a[ind])
       print(a[ind])
-      Fout <- file(basename(myname),encoding="UTF-8")
+      Fout <- file(file.path("site_libs",basename(myname)),encoding="UTF-8")
       writeLines(a,Fout)
       close(Fout)
    }
