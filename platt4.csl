@@ -113,8 +113,8 @@
       </else>
     </choose>
     <choose>
-      <if variable="ISBN">
-        <text variable="ISBN" cancel_prefix="isbn:"/>
+      <if type="book chapter paper-conference" match="any">
+        <text variable="ISBN" prefix="ISBN: " suffix=". " />
       </if>
     </choose>
   </macro>
