@@ -968,33 +968,35 @@ h1:hover, h2:hover, h3:hover, h4:hover {
    margin-left: -2.2em;
    content: '||||';
 }
-.section > h1::after {
-   content: '|';
-}
-.section > h2::after {
-   content: '||';
-}
-.section > h3::after {
-   content: '|||';
-}
-.section > h4::after {
-   content: '||||';
-}
-.section > h1::after, .section > h2::after, .section > h3::after, .section > h4::after {
-    margin-left: 8pt;
-    margin-top: -1.25em;
-    float: right;
-    display: block;
-    position: absolute;
-   /* right: calc(max(0.5em,(100% - 790px - 90px)*0.5 - 415px)); */
-    left: calc(max(0px,(100% - 790px - 90px)*0.5 + 790px + 55px));
-   /* right: 0.5em;*/
-   /* width: calc((100% - 790px - 90px)*0.5); */
-}
-.section > h5::before {
+.zzzsection > h5::before {
    margin-right: 1.41em;
    margin-left: -2.6em;
    content: '|||||';
+}
+@media screen and (min-width: 790px) {
+   .section > h1::after {
+      content: '|';
+   }
+   .section > h2::after {
+      content: '||';
+   }
+   .section > h3::after {
+      content: '|||';
+   }
+   .section > h4::after {
+      content: '||||';
+   }
+   .section > h1::after, .section > h2::after, .section > h3::after, .section > h4::after {
+       margin-left: 8pt;
+       margin-top: -1.25em;
+       float: right;
+       display: block;
+       position: absolute;
+      /* right: calc(max(0.5em,(100% - 790px - 90px)*0.5 - 415px)); */
+       left: calc(max(0px,(100% - 790px - 90px)*0.5 + 790px + 55px));
+      /* right: 0.5em;*/
+      /* width: calc((100% - 790px - 90px)*0.5); */
+   }
 }
 .title::before,.subtitle::before,h4.author::before,h4.date::before {
    margin-right: unset;
