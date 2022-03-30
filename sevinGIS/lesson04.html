@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>ГИС 04</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.13/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+<style type="text/css">
+  p.abstract{
+    text-align: center;
+    font-weight: bold;
+  }
+  div.abstract{
+    margin: auto;
+    width: 90%;
+  }
+</style>
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Возможности R для работы с пространственными данными</h1>
+<h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
+<h4 class="author">Никита Платонов</h4>
+<address class="author_afil">
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date">Занятие 04, 31 марта 2022 г.</h4>
+<div class="abstract">
+<p class="abstract">Abstract</p>
+Демонстрация основ работы с интерфейсом командной строки в R, позволяющей создавать скрипты и получать воспроизводимые результаты. Показано, как пространственные векторные и растровые данные могут попасть в R и как они выглядят в R. С возможностью сделать обработку, анализ и визуализацию пространственных данных.
+</div>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#основы-r">Основы R</a>
+<ul>
+<li><a href="#установка-r">Установка R</a>
+<ul>
+<li><a href="#oперационные-системы">Oперационные системы</a></li>
+<li><a href="#базовый-r">Базовый R</a></li>
+<li><a href="#библиотеки">Библиотеки</a></li>
+<li><a href="#дополнительное-по">Дополнительное ПО</a></li>
+<li><a href="#как-использовать-материал">Как использовать материал</a></li>
+</ul></li>
+<li><a href="#начало-работы">Начало работы</a></li>
+<li><a href="#представление-данных">Представление данных</a>
+<ul>
+<li><a href="#простые-типы">Простые типы</a></li>
+<li><a href="#составные-типы">Составные типы</a></li>
+<li><a href="#матрицы">Матрицы</a></li>
+<li><a href="#массивы">Массивы</a></li>
+<li><a href="#факторы">Факторы</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#r-как-гис">R как ГИС?</a>
+<ul>
+<li><a href="#средства-визуализации">Средства визуализации</a>
+<ul>
+<li><a href="#пример-путешествия-мимочерез-спб">Пример путешествия мимо/через Спб</a></li>
+<li><a href="#datavolcano"><code>data(volcano)</code></a></li>
+</ul></li>
+<li><a href="#пространственные-данные">Пространст­вен­ные данные</a>
+<ul>
+<li><a href="#векторы">Векторы</a></li>
+<li><a href="#растры">Растры</a></li>
+<li><a href="#визуализация">Визуализация</a></li>
+</ul></li>
+<li><a href="#по-форматам">По форматам</a>
+<ul>
+<li><a href="#растры-1">Растры</a></li>
+<li><a href="#векторы-1">Векторы</a></li>
+<li><a href="#sf-или-sp"><code>sf</code> или <code>sp</code>?</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#манипуляции-с-пространственными-данными">Манипуляции с пространст­вен­ными данными</a>
+<ul>
+<li><a href="#импорт">Импорт</a>
+<ul>
+<li><a href="#источники-для-примера">Источники для примера</a></li>
+<li><a href="#векторные-данные">Векторные данные</a></li>
+<li><a href="#растровые-данные">Растровые данные</a></li>
+</ul></li>
+<li><a href="#характеристики">Характеристики</a>
+<ul>
+<li><a href="#таблица-атрибутов">Таблица атрибутов</a></li>
+<li><a href="#геометрия">Геометрия</a></li>
+<li><a href="#проекция">Проекция</a></li>
+<li><a href="#пространственный-охват">Пространственный охват</a></li>
+</ul></li>
+<li><a href="#создание">Создание</a></li>
+<li><a href="#визуализация-1">Визуализация</a>
+<ul>
+<li><a href="#статическая">Статическая</a></li>
+<li><a href="#интерактивная">Интерактивная</a></li>
+</ul></li>
+<li><a href="#экспорт">Экспорт</a></li>
+<li><a href="#рисование">Рисование</a></li>
+</ul></li>
+<li><a href="#воспроизводимость">Воспроизво­ди­мость</a>
+<ul>
+<li><a href="#параметры-сессии">Параметры сессии</a></li>
+</ul></li>
+<li><a href="#дополнительная-информация">Дополни­тель­ная информация</a>
+<ul>
+<li><a href="#узнать-больше-об-r">Узнать больше об R</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="основы-r" class="section level2">
+<h2>Основы R</h2>
+<div id="установка-r" class="section level3">
+<h3>Установка R</h3>
+<div id="oперационные-системы" class="section level4">
+<h4>Oперационные системы</h4>
+<p>Не для всех операционных систем есть скомпилированные модули (ядро R, библиотеки). В таком случае модули компилируются, и на это уходит какое-то время. Поэтому если ОС не OS Windows, то этот этап нужно пройти заранее.</p>
+</div>
+<div id="базовый-r" class="section level4">
+<h4>Базовый R</h4>
+<p>Установить или обновить R, например, <a href="https://cran.rstudio.org/">отсюда</a>. Актуальная версия 4.1.3. Не ниже версии 4.0.</p>
+</div>
+<div id="библиотеки" class="section level4">
+<h4>Библиотеки</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pkgList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;rgdal&quot;</span>,<span class="st">&quot;sf&quot;</span>,<span class="st">&quot;raster&quot;</span>,<span class="st">&quot;ggplot2&quot;</span>,<span class="st">&quot;leaflet&quot;</span>,<span class="st">&quot;mapview&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">&quot;mapedit&quot;</span>,<span class="st">&quot;knitr&quot;</span>,<span class="st">&quot;rmarkdown&quot;</span>,<span class="st">&quot;jpeg&quot;</span>,<span class="st">&quot;png&quot;</span>,<span class="st">&quot;ursa&quot;</span>,<span class="st">&quot;tmap&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>whoisready <span class="ot">&lt;-</span> <span class="fu">sapply</span>(pkgList,<span class="cf">function</span>(pkg) {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">requireNamespace</span>(pkg))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">TRUE</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">install.packages</span>(pkg,<span class="at">repos=</span><span class="st">&quot;https://cran.rstudio.com&quot;</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">requireNamespace</span>(pkg)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<pre><code>## Loading required namespace: rgdal</code></pre>
+<pre><code>## Loading required namespace: sf</code></pre>
+<pre><code>## Loading required namespace: raster</code></pre>
+<pre><code>## Loading required namespace: ggplot2</code></pre>
+<pre><code>## Loading required namespace: leaflet</code></pre>
+<pre><code>## Loading required namespace: mapview</code></pre>
+<pre><code>## Loading required namespace: mapedit</code></pre>
+<pre><code>## Loading required namespace: jpeg</code></pre>
+<pre><code>## Loading required namespace: tmap</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>whoisready</span></code></pre></div>
+<pre><code>##     rgdal        sf    raster   ggplot2   leaflet   mapview   mapedit     knitr rmarkdown      jpeg 
+##      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE 
+##       png      ursa      tmap 
+##      TRUE      TRUE      TRUE</code></pre>
+<p>Если отображается <code>TRUE</code> для всех библиотек, то подготовка к занятию осуществлена успешно.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&#39;Everything is ready?&#39;</span><span class="ot">=</span><span class="fu">all</span>(whoisready))</span></code></pre></div>
+<pre><code>## Everything is ready? 
+##                 TRUE</code></pre>
+<p>Если где-то выскочило <code>FALSE</code> (например, для библиотеки “foo”), то можно попробовать его установить заново функцией <code>install.packages("foo")</code>.</p>
+</div>
+<div id="дополнительное-по" class="section level4">
+<h4>Дополнительное ПО</h4>
+<div id="rstudio-ide" class="section level5">
+<h5>RStudio IDE</h5>
+<p><sup>факультативно</sup></p>
+</div>
+<div id="pandoc" class="section level5">
+<h5>Pandoc</h5>
+<div class="font90">
+<p>Pandoc необходим для создания воспроизводимого результата. Этот шаг опциональный, и может быть пропущен, но в этом случае на занятии будет пропущен раздел по <a href="#report1">публикации результатов</a>.</p>
+<p><a href="https://pandoc.org/installing.html">Ссылка</a> на страницу для скачивания. Для пользователей Windows достаточно перейти к <a href="https://github.com/jgm/pandoc/releases/latest">скачиванию актуального релиза</a>, и выбрать либо установщик (<code>*.msi</code>), либо архив (<code>*.zip</code>). Запомнить путь, куда произведена установка и где находится файл <code>pandoc.exe</code> и добавить этот путь в переменную окружения <code>%PATH%</code>, например: WindowsKey+Q, ввести “Переменные среды/Environment Variables”, попасть в окошко “Свойства Системы/System Properties”, нажать на кнопку “Переменные среды/Environment Variables” и отредактировать пользовательскую или системную переменную PATH, добавив путь к <code>pandoc.exe</code>.</p>
+<p>Чтобы проверить правильно ли установлен Pandoc, в новой R-сессии:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">pandoc_available</span>()</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+</div>
+<div id="jupyter" class="section level5">
+<h5>Jupyter</h5>
+<p>Jupyter Notebook для работы с R кодом в браузере.</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://docs.conda.io/en/latest/miniconda.html">Загрузить</a> и установить менеджер Miniconda (проверено на Windows 64bit Python 3.7).</p></li>
+<li><p>Запустить <code>conda</code> (На Windows попробовать WinKey+Q и начать вводить “Anaconda”)</p></li>
+<li><p>Последовательно выполнить команды (в среде Conda, не в среде R):</p></li>
+</ol>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Команда</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>conda install jupyter</code></td>
+<td>установка Jupyter Notebook</td>
+</tr>
+<tr class="even">
+<td><code>conda install -c r r-recommended r-irkernel</code></td>
+<td>Установка R, базовых библиотек и библиотеки для использования R в Jupyter Notebook</td>
+</tr>
+<tr class="odd">
+<td><code>conda install -c conda-forge jupytext</code></td>
+<td>Установка преобразователя кода R в формат Jupyter Notebook</td>
+</tr>
+</tbody>
+</table>
+<!--
+Предварительно скачайте [`main.R`](./main.R) или только код [`codeOnly.R`](./codeOnly.R), если будете использовать на занятии Jupyter Notebook. Если проблема с кодировкой остается, попробуйте взять 
+[`codeOnly1251.R`](./codeOnly1251.R)
+Предупреждение: описательный текст (markdown) местами не отформатирован, в частности, не будут отображаться таблицы; также не будут отображаться html-виджеты.
+-->
+</div>
+</div>
+<div id="как-использовать-материал" class="section level4">
+<h4>Как использовать материал</h4>
+<p>Предполагается, что во время занятий будет использоваться интерактивный режим: либо простая среда R (R, запущенный без команд), либо графическая среда R GUI, либо RStudio.</p>
+<p>Блок исходного кода выделен моноширинным шрифтом с подсветкой синтаксиса, после которого либо приведен текстовый вывод (более бледный цвет шрифта), либо графический вывод (рисунок, таблица). В среде R нужно вводить код из верхнего блока и сравнивать полученный вывод с содержимым нижнего блока.</p>
+<p>К примеру, ниже приведен пример вывода числа <span class="math inline">\(\pi\)</span>: сверху – команда, снизу – выход.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pi</span></code></pre></div>
+<pre><code>## [1] 3.141593</code></pre>
+</div>
+</div>
+<div id="начало-работы" class="section level3">
+<h3>Начало работы</h3>
+<p>Текущий путь, где мы находимся. Здесь появятся файлы, созданные в процессе занятия.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;C:/platt/training/202204-GIS&quot;</code></pre>
+<p>Его можно поменять через меню RGui/RStudio или с помощью <code>setwd()</code>.</p>
+<p>Зафиксируем генератор псевдослучайных чисел на определенную последовательность</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">353</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1]  2  7 10  6  4  1  3  9  5  8</code></pre>
+<div class="font90">
+<p>Команда для проверки кириллицы:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&#39;Здесь кириллица?&#39;</span><span class="ot">=</span><span class="st">&quot;Да!&quot;</span>),<span class="at">quote=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Здесь кириллица? 
+##              Да!</code></pre>
+<p>Если вывод не читаемый, то возможные пути решения:</p>
+<p>1. Задать кириллицу для символьной локали:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (.Platform<span class="sc">$</span>OS.type<span class="sc">==</span><span class="st">&quot;windows&quot;</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">Sys.setlocale</span>(<span class="st">&quot;LC_CTYPE&quot;</span>,<span class="st">&quot;Russian&quot;</span>)</span></code></pre></div>
+<p>2. Если скрипты подключаются через <code>source()</code>, то можно настроить запуск R через конфигурационные файлы. Например, скачать <a href="./.Rprofile">.Rprofile</a>, разместить в рабочей директории, перегрузить R. Файл имеет следующую структуру:</p>
+<pre><code> local({
+    options(encoding=&quot;UTF-8&quot;)
+    Sys.setlocale(&quot;LC_CTYPE&quot;,&quot;Russian&quot;)
+ })</code></pre>
+<p>3. Если скрипт <code>bar.R</code> с кириллицей в кодировке UTF-8 запускается из командной строки, то использовать следующие параметры запуска.</p>
+<pre><code> R --encoding UTF-8 -f bar.R</code></pre>
+</div>
+</div>
+<div id="представление-данных" class="section level3">
+<h3>Представление данных</h3>
+<div id="простые-типы" class="section level4">
+<h4>Простые типы</h4>
+<div id="числа-и-имена-значений" class="section level5">
+<h5>Числа и имена значений</h5>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(a1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">7</span>))</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5 6 7</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a1)</span></code></pre></div>
+<pre><code>##  int [1:7] 1 2 3 4 5 6 7</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> a1</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(a2) <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">Sys.Date</span>()<span class="sc">+</span>a1<span class="dv">-1</span>,<span class="st">&quot;%A&quot;</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>a2</span></code></pre></div>
+<pre><code>## Wednesday  Thursday    Friday  Saturday    Sunday    Monday   Tuesday 
+##         1         2         3         4         5         6         7</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a2)</span></code></pre></div>
+<pre><code>##  Named int [1:7] 1 2 3 4 5 6 7
+##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; ...</code></pre>
+</div>
+<div id="целые-числа-числа-с-плавающей-точкой" class="section level5">
+<h5>Целые числа, числа с плавающей точкой</h5>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a2<span class="sc">+</span>0L)</span></code></pre></div>
+<pre><code>##  Named int [1:7] 1 2 3 4 5 6 7
+##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; ...</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a2<span class="sc">+</span><span class="dv">0</span>)</span></code></pre></div>
+<pre><code>##  Named num [1:7] 1 2 3 4 5 6 7
+##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; ...</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a2<span class="sc">+</span>0L)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a2<span class="sc">+</span><span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+</div>
+<div id="логические-значения-строки" class="section level5">
+<h5>Логические значения, строки</h5>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>(a3 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">FALSE</span>),<span class="fu">length</span>(a2),<span class="at">replace=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a3)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a3)</span></code></pre></div>
+<pre><code>##  logi [1:7] FALSE FALSE TRUE FALSE FALSE TRUE ...</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>(a4 <span class="ot">&lt;-</span> <span class="fu">names</span>(a2))</span></code></pre></div>
+<pre><code>## [1] &quot;Wednesday&quot; &quot;Thursday&quot;  &quot;Friday&quot;    &quot;Saturday&quot;  &quot;Sunday&quot;    &quot;Monday&quot;    &quot;Tuesday&quot;</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a4)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a4)</span></code></pre></div>
+<pre><code>##  chr [1:7] &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; &quot;Monday&quot; &quot;Tuesday&quot;</code></pre>
+</div>
+</div>
+<div id="составные-типы" class="section level4">
+<h4>Составные типы</h4>
+<div id="списки-одинаковой-длины" class="section level5">
+<h5>Списки одинаковой длины</h5>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>(a5 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">num=</span>a1[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)],<span class="at">char=</span>a4[<span class="sc">-</span><span class="dv">2</span>]))</span></code></pre></div>
+<pre><code>## $num
+## [1] 1 3 4 5 6 7
+## 
+## $char
+## [1] &quot;Wednesday&quot; &quot;Friday&quot;    &quot;Saturday&quot;  &quot;Sunday&quot;    &quot;Monday&quot;    &quot;Tuesday&quot;</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a5)</span></code></pre></div>
+<pre><code>## List of 2
+##  $ num : int [1:6] 1 3 4 5 6 7
+##  $ char: chr [1:6] &quot;Wednesday&quot; &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; ...</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a5)</span></code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(a5)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(a5,length)</span></code></pre></div>
+<pre><code>##  num char 
+##    6    6</code></pre>
+</div>
+<div id="таблицы" class="section level5">
+<h5>Таблицы</h5>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>(a6 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">num=</span>a1[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)],<span class="at">char=</span>a4[<span class="sc">-</span><span class="dv">2</span>]))</span></code></pre></div>
+<pre><code>##   num      char
+## 1   1 Wednesday
+## 2   3    Friday
+## 3   4  Saturday
+## 4   5    Sunday
+## 5   6    Monday
+## 6   7   Tuesday</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a6)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    6 obs. of  2 variables:
+##  $ num : int  1 3 4 5 6 7
+##  $ char: chr  &quot;Wednesday&quot; &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; ...</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a6)</span></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(a6)</span></code></pre></div>
+<pre><code>## [1] 6 2</code></pre>
+</div>
+<div id="списки-различной-длины" class="section level5">
+<h5>Списки различной длины</h5>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>(a7 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x=</span><span class="fu">sample</span>(a1,<span class="dv">3</span>),<span class="at">y=</span><span class="fu">sample</span>(a1,<span class="dv">5</span>)))</span></code></pre></div>
+<pre><code>## $x
+## [1] 7 2 3
+## 
+## $y
+## [1] 7 3 2 4 6</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a7)</span></code></pre></div>
+<pre><code>## List of 2
+##  $ x: int [1:3] 7 2 3
+##  $ y: int [1:5] 7 3 2 4 6</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a7)</span></code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(a7)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(a7,length)</span></code></pre></div>
+<pre><code>## x y 
+## 3 5</code></pre>
+</div>
+</div>
+<div id="матрицы" class="section level4">
+<h4>Матрицы</h4>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>(a11 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="fu">seq</span>(<span class="dv">24</span>)),<span class="at">ncol=</span><span class="dv">4</span>,<span class="at">nrow=</span><span class="dv">3</span>))</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]   20   24    6   17
+## [2,]    8   23    2   13
+## [3,]   22    1   21   10</code></pre>
+<p>Размерность массива</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(a11)</span></code></pre></div>
+<pre><code>## [1] 3 4</code></pre>
+<p>Структура данных массива</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a11)</span></code></pre></div>
+<pre><code>##  int [1:3, 1:4] 20 8 22 24 23 1 6 2 21 17 ...</code></pre>
+</div>
+<div id="массивы" class="section level4">
+<h4>Массивы</h4>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>(a8 <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">sample</span>(<span class="dv">24</span>),<span class="at">dim=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>)))</span></code></pre></div>
+<pre><code>## , , 1
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,]   10    4    2   17
+## [2,]    9    5   16   19
+## [3,]   14   15   18   22
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,]   20   23    7   21
+## [2,]   11    6   13   12
+## [3,]    3    8   24    1</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a8)</span></code></pre></div>
+<pre><code>##  int [1:3, 1:4, 1:2] 10 9 14 4 5 15 2 16 18 17 ...</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a8)</span></code></pre></div>
+<pre><code>## [1] &quot;array&quot;</code></pre>
+</div>
+<div id="факторы" class="section level4">
+<h4>Факторы</h4>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>(a9 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(a4),<span class="at">levels=</span>a4))</span></code></pre></div>
+<pre><code>## [1] Thursday  Wednesday Friday    Sunday    Saturday  Tuesday   Monday   
+## Levels: Wednesday Thursday Friday Saturday Sunday Monday Tuesday</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a9)</span></code></pre></div>
+<pre><code>##  Factor w/ 7 levels &quot;Wednesday&quot;,&quot;Thursday&quot;,..: 2 1 3 5 4 7 6</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a9)</span></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>(a10 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(a4),<span class="at">levels=</span>a4,<span class="at">ordered=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## [1] Saturday  Sunday    Tuesday   Wednesday Friday    Monday    Thursday 
+## Levels: Wednesday &lt; Thursday &lt; Friday &lt; Saturday &lt; Sunday &lt; Monday &lt; Tuesday</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(a10)</span></code></pre></div>
+<pre><code>##  Ord.factor w/ 7 levels &quot;Wednesday&quot;&lt;&quot;Thursday&quot;&lt;..: 4 5 7 1 3 6 2</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a10)</span></code></pre></div>
+<pre><code>## [1] &quot;ordered&quot; &quot;factor&quot;</code></pre>
+</div>
+</div>
+</div>
+<div id="r-как-гис" class="section level2">
+<h2>R как ГИС?</h2>
+<ul>
+<li><p>R устроен так, что можно реализовать сложные структуры данных, со средствами их инспектирования, что вполне применимо для пространственных данных и их метаданных</p></li>
+<li><p>В R есть инструменты для анализа данных</p></li>
+<li><p>В R есть инструменты для визуализации</p></li>
+<li><p><em>Как особенность развития до текущего момента</em>: воспроизводимость реализована лучше интерактивности</p></li>
+<li><p>В R уже многое сделано по манипуляции с пространственными данными: пользователю не обязательно быть разработчиком</p></li>
+</ul>
+<div id="средства-визуализации" class="section level3">
+<h3>Средства визуализации</h3>
+<p>Базовые средства R для визуализации (библиотека <code>graphics</code>) пространственных данных:</p>
+<ul>
+<li><p><code>points()</code> – отображение точек (геометрия POINT)</p></li>
+<li><p><code>lines()</code>, <code>segments()</code>, <code>contour()</code> – отображение линий (геометрия LINESTRING)</p></li>
+<li><p><code>polygon()</code>, <code>polypath()</code> – отображение полигонов (геометрия POLYGON)</p></li>
+<li><p><code>image()</code>, <code>rasterImage()</code> – растровые изображения</p></li>
+<li><p><code>text()</code>, <code>legend()</code> – аннотациии</p></li>
+<li><p><code>axis()</code>, <code>mtext()</code> – рамочное оформление</p></li>
+</ul>
+<div id="пример-путешествия-мимочерез-спб" class="section level4">
+<h4>Пример путешествия мимо/через Спб</h4>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">60</span></span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>seqx <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">20</span>,<span class="dv">40</span>,<span class="at">by=</span><span class="dv">5</span>)</span>
+<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>seqy <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">55</span>,<span class="dv">65</span>,<span class="at">by=</span><span class="dv">2</span>)</span>
+<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(n,<span class="at">min=</span><span class="fu">min</span>(seqx),<span class="at">max=</span><span class="fu">max</span>(seqx)))</span>
+<span id="cb108-5"><a href="#cb108-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(n,<span class="at">min=</span><span class="fu">min</span>(seqy),<span class="at">max=</span><span class="fu">max</span>(seqy)))</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">&quot;n&quot;</span>,<span class="at">asp=</span><span class="cn">NA</span>,<span class="at">axes=</span><span class="cn">FALSE</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y,<span class="at">lwd=</span><span class="dv">4</span>,<span class="at">col=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,y,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>()</span>
+<span id="cb109-5"><a href="#cb109-5" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>,<span class="at">at=</span>seqx,<span class="at">lab=</span><span class="fu">paste0</span>(seqx,<span class="st">&quot;°E&quot;</span>),<span class="at">lwd=</span><span class="dv">0</span>,<span class="at">lwd.ticks=</span><span class="dv">1</span>,<span class="at">las=</span><span class="dv">1</span>)</span>
+<span id="cb109-6"><a href="#cb109-6" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>,<span class="at">at=</span>seqy,<span class="at">lab=</span><span class="fu">paste0</span>(seqy,<span class="st">&quot;°N&quot;</span>),<span class="at">lwd=</span><span class="dv">0</span>,<span class="at">lwd.ticks=</span><span class="dv">1</span>,<span class="at">las=</span><span class="dv">1</span>)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/spb1-1.svg" width="600px" height="450px" /></p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(sf<span class="sc">::</span><span class="fu">st_linestring</span>(<span class="fu">cbind</span>(x,y)),<span class="at">crs=</span><span class="dv">4326</span>)</span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
+<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(e,<span class="at">blank=</span><span class="st">&quot;white&quot;</span>,<span class="at">coast.fill=</span><span class="st">&quot;#00000010&quot;</span>,<span class="at">pointsize=</span><span class="dv">12</span></span>
+<span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a>            ,<span class="at">col=</span><span class="st">&quot;black&quot;</span>,<span class="at">plot.lwd=</span><span class="dv">5</span>)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/___ursa01_spb2.png" width="396" height="500" /></p>
+</div>
+<div id="datavolcano" class="section level4">
+<h4><code>data(volcano)</code></h4>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(volcano)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/imgvolcano-1.svg" width="768" /></p>
+<p>Это вулкан Maunga Whau (Mt Eden).</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>(ursa<span class="sc">::</span><span class="fu">glance</span>(<span class="st">&quot;Mount Eden&quot;</span>,<span class="at">place=</span><span class="st">&quot;park&quot;</span>,<span class="at">dpi=</span><span class="dv">90</span>))</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/___ursa03_glancevolcano.png" width="385" height="550" /></p>
+</div>
+</div>
+<div id="пространственные-данные" class="section level3">
+<h3>Пространст­вен­ные данные</h3>
+<div id="векторы" class="section level4">
+<h4>Векторы</h4>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="31%" />
+<col width="26%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Библиотека</th>
+<th>Формат</th>
+<th>Импорт</th>
+<th>Экспорт</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sp</code></td>
+<td><a href="https://gdal.org/drivers/vector/index.html">GDAL vector drivers</a></td>
+<td><strong><code>rgdal</code></strong><code>::readOGR()</code></td>
+<td><strong><code>rgdal</code></strong><code>::writeOGR()</code></td>
+</tr>
+<tr class="even">
+<td><a href="https://r-spatial.github.io/sf/"><code>sf</code></a></td>
+<td><a href="https://gdal.org/drivers/vector/index.html">GDAL vector drivers</a></td>
+<td><code>st_read()</code></td>
+<td><code>st_write()</code></td>
+</tr>
+<tr class="odd">
+<td><a href="https://cran.rstudio.com/web/packages/gdalUtils/"><code>gdalUtuls</code></a><sup><em>факультативно</em><sup></td>
+<td><a href="https://gdal.org/drivers/vector/index.html">GDAL vector drivers</a></td>
+<td></td>
+<td>оболочка системного GDAL</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="растры" class="section level4">
+<h4>Растры</h4>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="21%" />
+<col width="42%" />
+<col width="21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Библиотека</th>
+<th>Формат</th>
+<th>Импорт</th>
+<th>Экспорт</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sp</code></td>
+<td><a href="https://gdal.org/drivers/raster/index.html">GDAL raster drivers</a></td>
+<td><strong><code>rgdal</code></strong><code>::readGDAL()</code></td>
+<td><strong><code>rgdal</code></strong><code>::writeGDAL()</code></td>
+</tr>
+<tr class="even">
+<td><code>raster</code></td>
+<td><a href="https://gdal.org/drivers/raster/index.html">GDAL raster drivers</a></td>
+<td><code>raster()</code>, <code>brick()</code>, <code>stack()</code></td>
+<td><code>writeRaster()</code></td>
+</tr>
+<tr class="odd">
+<td><code>terra</code></td>
+<td><a href="https://gdal.org/drivers/raster/index.html">GDAL raster drivers</a></td>
+<td><code>rast()</code></td>
+<td><code>writeRaster()</code></td>
+</tr>
+<tr class="even">
+<td><code>stars</code></td>
+<td><a href="https://gdal.org/drivers/raster/index.html">GDAL raster drivers</a></td>
+<td><code>read_stars()</code></td>
+<td><code>write_stars()</code></td>
+</tr>
+<tr class="odd">
+<td><a href="https://cran.rstudio.com/web/packages/ncdf4/"><code>ncdf4</code></a></td>
+<td><a href="https://gdal.org/drivers/raster/netcdf.html">NetCDF</a></td>
+<td><code>nc_open()</code></td>
+<td><code>nc_create()</code></td>
+</tr>
+<tr class="even">
+<td><code>ursa</code></td>
+<td><a href="https://gdal.org/drivers/raster/envi.html">ENVI</a></td>
+<td><code>read_envi()</code></td>
+<td><code>write_envi()</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="визуализация" class="section level4">
+<h4>Визуализация</h4>
+<p>Статическая, экспортируемая в обычные форматы изображений. PNG, JPG поддерживают DPI.</p>
+<ul>
+<li><p><code>ggplot2</code> и надстройки (префикс <code>gg*</code>)</p></li>
+<li><p><code>ursa</code></p></li>
+</ul>
+<p>Интерактивная, отображаемая в браузере</p>
+<ul>
+<li><p><code>leaflet</code></p></li>
+<li><p><code>mapview</code></p></li>
+<li><p><code>tmap</code></p></li>
+</ul>
+</div>
+</div>
+<div id="по-форматам" class="section level3">
+<h3>По форматам</h3>
+<div id="растры-1" class="section level4">
+<h4>Растры</h4>
+<ul>
+<li>Для хранения многослойные растров используется BSQ/BIL/BIP чередование слоев/строк/пикелей. Самый неэффективный - это BIP. При пространственно-временном анализе можно выбрать BIL, для большинства случаев - BSQ.</li>
+<li>Целочисленный GeoTIFF быстро пишется и читается при использовании функций из библиотеки <code>rgdal</code></li>
+</ul>
+</div>
+<div id="векторы-1" class="section level4">
+<h4>Векторы</h4>
+<ul>
+<li><p>Хорошую скорость чтения и записи демонстрирует формат “SpatiaLite” при использовании библиотеки <code>sf</code>.</p></li>
+<li><p>“GeoJSON” не очень быстрый, но можно использовать библиотеку <a href="https://cran.rstudio.com/web/packages/geojsonsf/"><code>geojsonf</code></a>.</p></li>
+<li><p>При записи использовать опции, предусмотренные для выбранного формата данных</p></li>
+<li><p>При записи “ESRI Shapefile” обращать внимания на *.prj, так как у QGIS и ESRI-продуктов разные восприятия файлов проекций.</p></li>
+</ul>
+</div>
+<div id="sf-или-sp" class="section level4">
+<h4><code>sf</code> или <code>sp</code>?</h4>
+<ul>
+<li><p>В пользу <span class="large"><code>sf</code></span> больше аргументов:</p>
+<ul>
+<li><p>удобнее, активно развивается, поддерживается</p></li>
+<li><p>в <code>sf</code> объекты класса S3, в <code>sp</code> объекты класса S4 (строже, но медленнее)</p></li>
+<li><p>есть <code>sf::as_Spatial()</code> для преобразования в объекты <code>sp</code>. Обратное преобразование: <code>sf::st_as_sf()</code>.</p></li>
+</ul></li>
+<li><p>Эффективность с геометрией POINT выше у <code>sp</code> из-за представления атрибутивной таблицы и геометрии в одной таблице.</p></li>
+<li><p>Ряд библиотек завязаны на формат данных <code>sp</code>, например
+<a href="https://cran.rstudio.com/web/packages/adehabitatHR/"><code>adehabitatHR</code></a>,
+<a href="https://cran.rstudio.com/web/packages/dismo/"><code>dismo</code></a>.
+<a href="https://cran.rstudio.com/web/packages/sdm/"><code>smd</code></a>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="манипуляции-с-пространственными-данными" class="section level2">
+<h2>Манипуляции с пространст­вен­ными данными</h2>
+<div id="импорт" class="section level3">
+<h3>Импорт</h3>
+<p>Загрузить пространственные данные из файла</p>
+<div id="источники-для-примера" class="section level4">
+<h4>Источники для примера</h4>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>(shpname <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;vectors&quot;</span>,<span class="st">&quot;scot_BNG.shp&quot;</span>,<span class="at">package=</span><span class="st">&quot;rgdal&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;C:/Software/Rlibs41/rgdal/vectors/scot_BNG.shp&quot;</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(shpname)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>(tifname <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;pictures/cea.tif&quot;</span>,<span class="at">package=</span><span class="st">&quot;rgdal&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;C:/Software/Rlibs41/rgdal/pictures/cea.tif&quot;</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(tifname)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(shpname,<span class="at">coast=</span><span class="cn">FALSE</span>,<span class="at">field=</span><span class="st">&quot;(NAME|AFF)&quot;</span>,<span class="at">blank=</span><span class="st">&quot;white&quot;</span></span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a>            ,<span class="at">legend=</span><span class="fu">list</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;right&quot;</span>),<span class="at">dpi=</span><span class="dv">88</span>)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/___ursa05_scotBNG.png" width="1944" height="500" bound /></p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(tifname,<span class="at">coast=</span><span class="cn">FALSE</span>,<span class="at">pal.from=</span><span class="dv">0</span>,<span class="at">pal=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;white&quot;</span>),<span class="at">dpi=</span><span class="dv">96</span>)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/___ursa07_cea.png" width="1342" height="550" bound /></p>
+</div>
+<div id="векторные-данные" class="section level4">
+<h4>Векторные данные</h4>
+<div id="rgdalsp" class="section level5">
+<h5><code>rgdal/sp</code></h5>
+<div class="oversize h650">
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>rgdal<span class="sc">::</span><span class="fu">ogrInfo</span>(shpname)</span></code></pre></div>
+<pre><code>## Warning in OGRSpatialRef(dsn, layer, morphFromESRI = morphFromESRI, dumpSRS = dumpSRS, : Discarded datum
+## OSGB_1936 in Proj4 definition: +proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000
+## +ellps=airy +units=m +no_defs</code></pre>
+<pre><code>## Source: &quot;C:\Software\Rlibs41\rgdal\vectors\scot_BNG.shp&quot;, layer: &quot;scot_BNG&quot;
+## Driver: ESRI Shapefile; number of rows: 56 
+## Feature type: wkbPolygon with 2 dimensions
+## Extent: (7094.552 529495) - (468285.5 1218342)
+## CRS: +proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs 
+## LDID: 0 
+## Number of fields: 13 
+##      name type length typeName
+## 1   SP_ID    4      5   String
+## 2    NAME    4     13   String
+## 3    ID_x    2     19     Real
+## 4   COUNT    2     19     Real
+## 5     SMR    2     19     Real
+## 6    LONG    2     19     Real
+## 7     LAT    2     19     Real
+## 8      PY    2     19     Real
+## 9    EXP_    2     19     Real
+## 10    AFF    2     19     Real
+## 11 X_COOR    2     19     Real
+## 12 Y_COOR    2     19     Real
+## 13   ID_y    2     19     Real</code></pre>
+</div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>b.sp <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">readOGR</span>(shpname)</span></code></pre></div>
+<pre><code>## Warning in OGRSpatialRef(dsn, layer, morphFromESRI = morphFromESRI, dumpSRS = dumpSRS, : Discarded datum
+## OSGB_1936 in Proj4 definition: +proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000
+## +ellps=airy +units=m +no_defs</code></pre>
+<pre><code>## OGR data source with driver: ESRI Shapefile 
+## Source: &quot;C:\Software\Rlibs41\rgdal\vectors\scot_BNG.shp&quot;, layer: &quot;scot_BNG&quot;
+## with 56 features
+## It has 13 fields</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isS4</span>(b.sp)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slotNames</span>(b.sp)</span></code></pre></div>
+<pre><code>## [1] &quot;data&quot;        &quot;polygons&quot;    &quot;plotOrder&quot;   &quot;bbox&quot;        &quot;proj4string&quot;</code></pre>
+<div class="oversize">
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">current_input</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;lesson04~~~.Rmd&quot;</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">head</span>(b.sp,<span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## Formal class &#39;SpatialPolygonsDataFrame&#39; [package &quot;sp&quot;] with 5 slots
+##   ..@ data       :&#39;data.frame&#39;:  2 obs. of  13 variables:
+##   .. ..$ SP_ID : chr [1:2] &quot;0&quot; &quot;1&quot;
+##   .. ..$ NAME  : chr [1:2] &quot;Sutherland&quot; &quot;Nairn&quot;
+##   .. ..$ ID_x  : num [1:2] 12 13
+##   .. ..$ COUNT : num [1:2] 5 3
+##   .. ..$ SMR   : num [1:2] 279 278
+##   .. ..$ LONG  : num [1:2] 58.1 57.5
+##   .. ..$ LAT   : num [1:2] 4.64 3.98
+##   .. ..$ PY    : num [1:2] 37521 29374
+##   .. ..$ EXP_  : num [1:2] 1.8 1.1
+##   .. ..$ AFF   : num [1:2] 16 10
+##   .. ..$ X_COOR: num [1:2] 247757 289592
+##   .. ..$ Y_COOR: num [1:2] 924954 842305
+##   .. ..$ ID_y  : num [1:2] 12 13
+##   ..@ polygons   :List of 2
+##   .. ..$ :Formal class &#39;Polygons&#39; [package &quot;sp&quot;] with 5 slots
+##   .. .. .. ..@ Polygons :List of 1
+##   .. .. .. .. ..$ :Formal class &#39;Polygon&#39; [package &quot;sp&quot;] with 5 slots
+##   .. .. .. .. .. .. ..@ labpt  : num [1:2] 247754 924885
+##   .. .. .. .. .. .. ..@ area   : num 3.92e+09
+##   .. .. .. .. .. .. ..@ hole   : logi FALSE
+##   .. .. .. .. .. .. ..@ ringDir: int 1
+##   .. .. .. .. .. .. ..@ coords : num [1:73, 1:2] 254218 254359 252991 244974 259133 ...
+##   .. .. .. ..@ plotOrder: int 1
+##   .. .. .. ..@ labpt    : num [1:2] 247754 924885
+##   .. .. .. ..@ ID       : chr &quot;0&quot;
+##   .. .. .. ..@ area     : num 3.92e+09
+##   .. .. .. ..$ comment: chr &quot;0&quot;
+##   .. ..$ :Formal class &#39;Polygons&#39; [package &quot;sp&quot;] with 5 slots
+##   .. .. .. ..@ Polygons :List of 1
+##   .. .. .. .. ..$ :Formal class &#39;Polygon&#39; [package &quot;sp&quot;] with 5 slots
+##   .. .. .. .. .. .. ..@ labpt  : num [1:2] 289590 842235
+##   .. .. .. .. .. .. ..@ area   : num 4.7e+08
+##   .. .. .. .. .. .. ..@ hole   : logi FALSE
+##   .. .. .. .. .. .. ..@ ringDir: int 1
+##   .. .. .. .. .. .. ..@ coords : num [1:9, 1:2] 292542 301399 301520 289304 288882 ...
+##   .. .. .. ..@ plotOrder: int 1
+##   .. .. .. ..@ labpt    : num [1:2] 289590 842235
+##   .. .. .. ..@ ID       : chr &quot;1&quot;
+##   .. .. .. ..@ area     : num 4.7e+08
+##   .. .. .. ..$ comment: chr &quot;0&quot;
+##   ..@ plotOrder  : int [1:2] 1 2
+##   ..@ bbox       : num [1:2, 1:2] 204670 825310 306671 974566
+##   .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. .. ..$ : chr [1:2] &quot;x&quot; &quot;y&quot;
+##   .. .. ..$ : chr [1:2] &quot;min&quot; &quot;max&quot;
+##   ..@ proj4string:Formal class &#39;CRS&#39; [package &quot;sp&quot;] with 1 slot
+##   .. .. ..@ projargs: chr &quot;+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs&quot;
+##   .. .. ..$ comment: chr &quot;PROJCRS[\&quot;OSGB 1936 / British National Grid\&quot;,\n    BASEGEOGCRS[\&quot;OSGB 1936\&quot;,\n        DATUM[\&quot;OSGB 1936\&quot;,\n &quot;| __truncated__
+##   ..$ comment: chr &quot;TRUE&quot;</code></pre>
+</div>
+</div>
+<div id="importExample" class="section level5">
+<h5><code>sf</code> {#importExampleM}</h5>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>b.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(shpname)</span></code></pre></div>
+<pre><code>## Reading layer `scot_BNG&#39; from data source `C:\Software\Rlibs41\rgdal\vectors\scot_BNG.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 56 features and 13 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 7094.552 ymin: 529495 xmax: 468285.5 ymax: 1218342
+## Projected CRS: OSGB 1936 / British National Grid</code></pre>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(b.sf)</span></code></pre></div>
+<pre><code>## Classes &#39;sf&#39; and &#39;data.frame&#39;:   56 obs. of  14 variables:
+##  $ SP_ID   : chr  &quot;0&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; ...
+##  $ NAME    : chr  &quot;Sutherland&quot; &quot;Nairn&quot; &quot;Inverness&quot; &quot;Banff-Buchan&quot; ...
+##  $ ID_x    : num  12 13 19 2 17 16 21 50 15 25 ...
+##  $ COUNT   : num  5 3 9 39 2 9 16 6 17 19 ...
+##  $ SMR     : num  279 278 163 450 187 ...
+##  $ LONG    : num  58.1 57.5 57.2 57.6 57.1 ...
+##  $ LAT     : num  4.64 3.98 4.73 2.36 4.09 3 2.98 3.2 3.1 3.3 ...
+##  $ PY      : num  37521 29374 162867 231337 27075 ...
+##  $ EXP_    : num  1.8 1.1 5.5 8.7 1.1 4.6 10.5 19.6 7.8 15.5 ...
+##  $ AFF     : num  16 10 7 16 10 16 7 1 7 1 ...
+##  $ X_COOR  : num  247757 289592 249685 385776 280492 ...
+##  $ Y_COOR  : num  924954 842305 825855 852378 801036 ...
+##  $ ID_y    : num  12 13 19 2 17 16 21 50 15 25 ...
+##  $ geometry:sfc_MULTIPOLYGON of length 56; first list element: List of 1
+##   ..$ :List of 1
+##   .. ..$ : num [1:73, 1:2] 254218 254359 252991 244974 259133 ...
+##   ..- attr(*, &quot;class&quot;)= chr [1:3] &quot;XY&quot; &quot;MULTIPOLYGON&quot; &quot;sfg&quot;
+##  - attr(*, &quot;sf_column&quot;)= chr &quot;geometry&quot;
+##  - attr(*, &quot;agr&quot;)= Factor w/ 3 levels &quot;constant&quot;,&quot;aggregate&quot;,..: NA NA NA NA NA NA NA NA NA NA ...
+##   ..- attr(*, &quot;names&quot;)= chr [1:13] &quot;SP_ID&quot; &quot;NAME&quot; &quot;ID_x&quot; &quot;COUNT&quot; ...</code></pre>
+</div>
+</div>
+<div id="растровые-данные" class="section level4">
+<h4>Растровые данные</h4>
+<div id="rgdalsp-1" class="section level5">
+<h5><code>rgdal/sp</code></h5>
+<div class="font95">
+<p>Получение данных напрямую</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">readGDAL</span>(tifname)</span></code></pre></div>
+<pre><code>## C:/Software/Rlibs41/rgdal/pictures/cea.tif has GDAL driver GTiff 
+## and has 515 rows and 514 columns</code></pre>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(d1)</span></code></pre></div>
+<pre><code>## Formal class &#39;SpatialGridDataFrame&#39; [package &quot;sp&quot;] with 4 slots
+##   ..@ data       :&#39;data.frame&#39;:  264710 obs. of  1 variable:
+##   .. ..$ band1: int [1:264710] 0 0 0 0 0 0 0 0 0 0 ...
+##   ..@ grid       :Formal class &#39;GridTopology&#39; [package &quot;sp&quot;] with 3 slots
+##   .. .. ..@ cellcentre.offset: Named num [1:2] -28463 4225003
+##   .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;x&quot; &quot;y&quot;
+##   .. .. ..@ cellsize         : num [1:2] 60 60
+##   .. .. ..@ cells.dim        : int [1:2] 514 515
+##   ..@ bbox       : num [1:2, 1:2] -28493 4224973 2358 4255885
+##   .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. .. ..$ : chr [1:2] &quot;x&quot; &quot;y&quot;
+##   .. .. ..$ : chr [1:2] &quot;min&quot; &quot;max&quot;
+##   ..@ proj4string:Formal class &#39;CRS&#39; [package &quot;sp&quot;] with 1 slot
+##   .. .. ..@ projargs: chr &quot;+proj=cea +lat_ts=33.75 +lon_0=-117.333333333333 +x_0=0 +y_0=0 +datum=NAD27 +units=m +no_defs&quot;
+##   .. .. ..$ comment: chr &quot;PROJCRS[\&quot;unnamed\&quot;,\n    BASEGEOGCRS[\&quot;NAD27\&quot;,\n        DATUM[\&quot;North American Datum 1927\&quot;,\n            ELL&quot;| __truncated__</code></pre>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d1<span class="sc">@</span>data[[<span class="dv">1</span>]])</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     0.0    58.0    99.0   103.1   140.0   255.0</code></pre>
+</div>
+<p>Получение данных более гибким способом</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>md <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">GDALinfo</span>(tifname)</span></code></pre></div>
+<pre><code>## Warning in rgdal::GDALinfo(tifname): statistics not supported by this driver</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>mdname <span class="ot">&lt;-</span> <span class="fu">names</span>(md)</span>
+<span id="cb149-2"><a href="#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(md) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb149-3"><a href="#cb149-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(md) <span class="ot">&lt;-</span> mdname</span>
+<span id="cb149-4"><a href="#cb149-4" aria-hidden="true" tabindex="-1"></a>md</span></code></pre></div>
+<pre><code>##          rows       columns         bands          ll.x          ll.y         res.x         res.y 
+##     515.00000     514.00000       1.00000  -28493.16678 4224973.14326      60.02214      60.02214 
+##     oblique.x     oblique.y 
+##       0.00000       0.00000</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>dset <span class="ot">&lt;-</span> methods<span class="sc">::</span><span class="fu">new</span>(<span class="st">&quot;GDALReadOnlyDataset&quot;</span>,tifname)</span>
+<span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">getRasterData</span>(dset,<span class="at">offset=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)</span>
+<span id="cb151-3"><a href="#cb151-3" aria-hidden="true" tabindex="-1"></a>                          ,<span class="at">region.dim=</span>md[<span class="fu">c</span>(<span class="st">&quot;rows&quot;</span>,<span class="st">&quot;columns&quot;</span>)])</span>
+<span id="cb151-4"><a href="#cb151-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(d2)</span></code></pre></div>
+<pre><code>##  int [1:514, 1:515] 0 0 0 0 0 0 0 0 0 0 ...</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">c</span>(d2))</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     0.0    58.0    99.0   103.1   140.0   255.0</code></pre>
+</div>
+<div id="raster" class="section level5">
+<h5><code>raster</code></h5>
+<div class="font95">
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a>(d3 <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">brick</span>(tifname))</span></code></pre></div>
+<pre><code>## class      : RasterBrick 
+## dimensions : 515, 514, 264710, 1  (nrow, ncol, ncell, nlayers)
+## resolution : 60.02214, 60.02214  (x, y)
+## extent     : -28493.17, 2358.212, 4224973, 4255885  (xmin, xmax, ymin, ymax)
+## crs        : +proj=cea +lat_ts=33.75 +lon_0=-117.333333333333 +x_0=0 +y_0=0 +datum=NAD27 +units=m +no_defs 
+## source     : cea.tif 
+## names      : cea 
+## min values :   0 
+## max values : 255</code></pre>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> d3[] <span class="do">## &#39;d3[]&#39; то же, что и &#39;raster::getValues(d3)&#39;</span></span>
+<span id="cb157-2"><a href="#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">d3=</span><span class="fu">object.size</span>(d3),<span class="at">v3=</span><span class="fu">object.size</span>(v3))</span></code></pre></div>
+<pre><code>##      d3      v3 
+##   14480 1059344</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(v3)</span></code></pre></div>
+<pre><code>##  int [1:264710, 1] 0 0 0 0 0 0 0 0 0 0 ...
+##  - attr(*, &quot;dimnames&quot;)=List of 2
+##   ..$ : NULL
+##   ..$ : chr &quot;cea&quot;</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">c</span>(v3))</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     0.0    58.0    99.0   103.1   140.0   255.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="характеристики" class="section level3">
+<h3>Характеристики</h3>
+<h4 class="toc-ignore">
+Характеристики, свойства и компоненты пространственных данных
+</h4>
+<div id="таблица-атрибутов" class="section level4">
+<h4>Таблица атрибутов</h4>
+<div id="sp" class="section level5">
+<h5><code>sp</code></h5>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">slot</span>(b.sp,<span class="st">&quot;data&quot;</span>))</span></code></pre></div>
+<pre><code>##   SP_ID         NAME ID_x COUNT   SMR  LONG  LAT     PY EXP_ AFF   X_COOR   Y_COOR ID_y
+## 0     0   Sutherland   12     5 279.3 58.06 4.64  37521  1.8  16 247756.6 924953.6   12
+## 1     1        Nairn   13     3 277.8 57.47 3.98  29374  1.1  10 289592.2 842305.2   13
+## 2     2    Inverness   19     9 162.7 57.24 4.73 162867  5.5   7 249685.5 825854.5   19
+## 3     3 Banff-Buchan    2    39 450.3 57.56 2.36 231337  8.7  16 385776.1 852378.2    2
+## 4     4     Bedenoch   17     2 186.9 57.06 4.09  27075  1.1  10 280491.6 801035.6   17
+## 5     5   Kincardine   16     9 197.8 57.00 3.00 111665  4.6  16 351350.5 792161.7   16</code></pre>
+</div>
+<div id="sf" class="section level5">
+<h5><code>sf</code></h5>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sf<span class="sc">::</span><span class="fu">st_set_geometry</span>(b.sf,<span class="cn">NULL</span>))</span></code></pre></div>
+<pre><code>##   SP_ID         NAME ID_x COUNT   SMR  LONG  LAT     PY EXP_ AFF   X_COOR   Y_COOR ID_y
+## 1     0   Sutherland   12     5 279.3 58.06 4.64  37521  1.8  16 247756.6 924953.6   12
+## 2     1        Nairn   13     3 277.8 57.47 3.98  29374  1.1  10 289592.2 842305.2   13
+## 3     2    Inverness   19     9 162.7 57.24 4.73 162867  5.5   7 249685.5 825854.5   19
+## 4     3 Banff-Buchan    2    39 450.3 57.56 2.36 231337  8.7  16 385776.1 852378.2    2
+## 5     4     Bedenoch   17     2 186.9 57.06 4.09  27075  1.1  10 280491.6 801035.6   17
+## 6     5   Kincardine   16     9 197.8 57.00 3.00 111665  4.6  16 351350.5 792161.7   16</code></pre>
+</div>
+</div>
+<div id="геометрия" class="section level4">
+<h4>Геометрия</h4>
+<div id="sp-1" class="section level5">
+<h5><code>sp</code></h5>
+<div class="oversize">
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a>g.sp <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">geometry</span>(b.sp)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">head</span>(g.sp,<span class="dv">2</span>)) <span class="do">## много строк; выведем первые две записи</span></span></code></pre></div>
+<pre><code>## Formal class &#39;SpatialPolygons&#39; [package &quot;sp&quot;] with 4 slots
+##   ..@ polygons   :List of 2
+##   .. ..$ :Formal class &#39;Polygons&#39; [package &quot;sp&quot;] with 5 slots
+##   .. .. .. ..@ Polygons :List of 1
+##   .. .. .. .. ..$ :Formal class &#39;Polygon&#39; [package &quot;sp&quot;] with 5 slots
+##   .. .. .. .. .. .. ..@ labpt  : num [1:2] 247754 924885
+##   .. .. .. .. .. .. ..@ area   : num 3.92e+09
+##   .. .. .. .. .. .. ..@ hole   : logi FALSE
+##   .. .. .. .. .. .. ..@ ringDir: int 1
+##   .. .. .. .. .. .. ..@ coords : num [1:73, 1:2] 254218 254359 252991 244974 259133 ...
+##   .. .. .. ..@ plotOrder: int 1
+##   .. .. .. ..@ labpt    : num [1:2] 247754 924885
+##   .. .. .. ..@ ID       : chr &quot;0&quot;
+##   .. .. .. ..@ area     : num 3.92e+09
+##   .. .. .. ..$ comment: chr &quot;0&quot;
+##   .. ..$ :Formal class &#39;Polygons&#39; [package &quot;sp&quot;] with 5 slots
+##   .. .. .. ..@ Polygons :List of 1
+##   .. .. .. .. ..$ :Formal class &#39;Polygon&#39; [package &quot;sp&quot;] with 5 slots
+##   .. .. .. .. .. .. ..@ labpt  : num [1:2] 289590 842235
+##   .. .. .. .. .. .. ..@ area   : num 4.7e+08
+##   .. .. .. .. .. .. ..@ hole   : logi FALSE
+##   .. .. .. .. .. .. ..@ ringDir: int 1
+##   .. .. .. .. .. .. ..@ coords : num [1:9, 1:2] 292542 301399 301520 289304 288882 ...
+##   .. .. .. ..@ plotOrder: int 1
+##   .. .. .. ..@ labpt    : num [1:2] 289590 842235
+##   .. .. .. ..@ ID       : chr &quot;1&quot;
+##   .. .. .. ..@ area     : num 4.7e+08
+##   .. .. .. ..$ comment: chr &quot;0&quot;
+##   ..@ plotOrder  : int [1:2] 1 2
+##   ..@ bbox       : num [1:2, 1:2] 204670 825310 306671 974566
+##   .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. .. ..$ : chr [1:2] &quot;x&quot; &quot;y&quot;
+##   .. .. ..$ : chr [1:2] &quot;min&quot; &quot;max&quot;
+##   ..@ proj4string:Formal class &#39;CRS&#39; [package &quot;sp&quot;] with 1 slot
+##   .. .. ..@ projargs: chr &quot;+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs&quot;
+##   .. .. ..$ comment: chr &quot;PROJCRS[\&quot;OSGB 1936 / British National Grid\&quot;,\n    BASEGEOGCRS[\&quot;OSGB 1936\&quot;,\n        DATUM[\&quot;OSGB 1936\&quot;,\n &quot;| __truncated__
+##   ..$ comment: chr &quot;TRUE&quot;</code></pre>
+</div>
+</div>
+<div id="sf-1" class="section level5">
+<h5><code>sf</code></h5>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">head</span>(g.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_geometry</span>(b.sf),<span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## Geometry set for 2 features 
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 204669.7 ymin: 825310 xmax: 306671.2 ymax: 974566.2
+## Projected CRS: OSGB 1936 / British National Grid</code></pre>
+<pre><code>## MULTIPOLYGON (((254218.3 967027, 254358.6 96696...</code></pre>
+<pre><code>## MULTIPOLYGON (((292542.2 859596.3, 301398.8 836...</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(g.sf)</span></code></pre></div>
+<pre><code>## sfc_MULTIPOLYGON of length 56; first list element: List of 1
+##  $ :List of 1
+##   ..$ : num [1:73, 1:2] 254218 254359 252991 244974 259133 ...
+##  - attr(*, &quot;class&quot;)= chr [1:3] &quot;XY&quot; &quot;MULTIPOLYGON&quot; &quot;sfg&quot;</code></pre>
+</div>
+</div>
+<div id="проекция" class="section level4">
+<h4>Проекция</h4>
+<p>В современных пакетах R данные проекции представляются в виде WKT;
+по возможножности, сохраняется связь с EPSG и PROJ.4.</p>
+<div id="sp-2" class="section level5">
+<h5><code>sp</code></h5>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="#cb176-1" aria-hidden="true" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">proj4string</span>(b.sp)</span></code></pre></div>
+<pre><code>## Warning in sp::proj4string(b.sp): CRS object has comment, which is lost in output; in tests, see
+## https://cran.r-project.org/web/packages/sp/vignettes/CRS_warnings.html</code></pre>
+<pre><code>## [1] &quot;+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs&quot;</code></pre>
+</div>
+<div id="sf-2" class="section level5">
+<h5><code>sf</code></h5>
+<div class="oversize">
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b.sf)</span></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: OSGB 1936 / British National Grid 
+##   wkt:
+## PROJCRS[&quot;OSGB 1936 / British National Grid&quot;,
+##     BASEGEOGCRS[&quot;OSGB 1936&quot;,
+##         DATUM[&quot;OSGB 1936&quot;,
+##             ELLIPSOID[&quot;Airy 1830&quot;,6377563.396,299.3249646,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
+##         PRIMEM[&quot;Greenwich&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4277]],
+##     CONVERSION[&quot;British National Grid&quot;,
+##         METHOD[&quot;Transverse Mercator&quot;,
+##             ID[&quot;EPSG&quot;,9807]],
+##         PARAMETER[&quot;Latitude of natural origin&quot;,49,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8801]],
+##         PARAMETER[&quot;Longitude of natural origin&quot;,-2,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8802]],
+##         PARAMETER[&quot;Scale factor at natural origin&quot;,0.9996012717,
+##             SCALEUNIT[&quot;unity&quot;,1],
+##             ID[&quot;EPSG&quot;,8805]],
+##         PARAMETER[&quot;False easting&quot;,400000,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8806]],
+##         PARAMETER[&quot;False northing&quot;,-100000,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8807]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;(E)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##         AXIS[&quot;(N)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##     USAGE[
+##         SCOPE[&quot;Engineering survey, topographic mapping.&quot;],
+##         AREA[&quot;United Kingdom (UK) - offshore to boundary of UKCS within 49В°45&#39;N to 61В°N and 9В°W to 2В°E; onshore Great Britain (England, Wales and Scotland). Isle of Man onshore.&quot;],
+##         BBOX[49.75,-9,61.01,2.01]],
+##     ID[&quot;EPSG&quot;,27700]]</code></pre>
+</div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="#cb181-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b.sf)<span class="sc">$</span>proj4string</span></code></pre></div>
+<pre><code>## [1] &quot;+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs&quot;</code></pre>
+</div>
+</div>
+<div id="пространственный-охват" class="section level4">
+<h4>Пространственный охват</h4>
+<div id="sp-3" class="section level5">
+<h5><code>sp</code></h5>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="#cb183-1" aria-hidden="true" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">bbox</span>(b.sp)</span></code></pre></div>
+<pre><code>##          min       max
+## x   7094.552  468285.5
+## y 529495.039 1218342.5</code></pre>
+</div>
+<div id="sf-3" class="section level5">
+<h5><code>sf</code></h5>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="#cb185-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_bbox</span>(b.sf)</span></code></pre></div>
+<pre><code>##        xmin        ymin        xmax        ymax 
+##    7094.552  529495.039  468285.495 1218342.493</code></pre>
+</div>
+</div>
+</div>
+<div id="создание" class="section level3">
+<h3>Создание</h3>
+<p>Создание пространственных данных, например, новый слой ГИС</p>
+<p>Выйдем из здания вокзала ст. Валдай и создадим точечный <code>Spatial</code>-объект:</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="#cb187-1" aria-hidden="true" tabindex="-1"></a>pt0 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">lon=</span><span class="fl">33.24529</span>,<span class="at">lat=</span><span class="fl">57.97012</span>)</span>
+<span id="cb187-2"><a href="#cb187-2" aria-hidden="true" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">coordinates</span>(pt0) <span class="ot">&lt;-</span> <span class="er">~</span>lon<span class="sc">+</span>lat</span>
+<span id="cb187-3"><a href="#cb187-3" aria-hidden="true" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">proj4string</span>(pt0) <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">CRS</span>(<span class="st">&quot;+init=epsg:4326&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(pt0,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>,<span class="at">basemap.order=</span><span class="st">&quot;before&quot;</span>,<span class="at">basemap.alpha=</span><span class="dv">1</span>,<span class="at">dpi=</span><span class="dv">91</span>)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/___ursa08_Valdai.png" width="441" /></p>
+<p>Смотрим на структуру данных:</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pt0)</span></code></pre></div>
+<pre><code>## Formal class &#39;SpatialPoints&#39; [package &quot;sp&quot;] with 3 slots
+##   ..@ coords     : num [1, 1:2] 33.2 58
+##   .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. .. ..$ : chr &quot;1&quot;
+##   .. .. ..$ : chr [1:2] &quot;lon&quot; &quot;lat&quot;
+##   ..@ bbox       : num [1:2, 1:2] 33.2 58 33.2 58
+##   .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. .. ..$ : chr [1:2] &quot;lon&quot; &quot;lat&quot;
+##   .. .. ..$ : chr [1:2] &quot;min&quot; &quot;max&quot;
+##   ..@ proj4string:Formal class &#39;CRS&#39; [package &quot;sp&quot;] with 1 slot
+##   .. .. ..@ projargs: chr &quot;+proj=longlat +datum=WGS84 +no_defs&quot;
+##   .. .. ..$ comment: chr &quot;GEOGCRS[\&quot;WGS 84\&quot;,\n    DATUM[\&quot;World Geodetic System 1984\&quot;,\n        ELLIPSOID[\&quot;WGS 84\&quot;,6378137,298.257223&quot;| __truncated__</code></pre>
+<p>Изменим проекцию для расчета расстояний по координатам:</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="#cb191-1" aria-hidden="true" tabindex="-1"></a>pt0 <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">spTransform</span>(pt0,<span class="st">&quot;+proj=laea +lat_0=58 +lon_0=35 +datum=WGS84&quot;</span>)</span></code></pre></div>
+<p>Извлечем координаты:</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="#cb192-1" aria-hidden="true" tabindex="-1"></a>xy <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">coordinates</span>(pt0)</span></code></pre></div>
+<p>Решаем перемещаться минутными сегментами в течение часа:</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="#cb193-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">60</span></span></code></pre></div>
+<p>На основе координат создаем таблицу перемещения. По умолчанию весь период стоим на месте и смотрим на север:</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="#cb194-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">step=</span><span class="fu">seq</span>(<span class="dv">0</span>,n),<span class="at">look=</span>pi<span class="sc">/</span><span class="dv">2</span>,<span class="at">x=</span>xy[,<span class="dv">1</span>],<span class="at">y=</span>xy[,<span class="dv">2</span>])</span></code></pre></div>
+<p>Скорость перемещений (в м мин<sup>-1</sup>) в течение минуты случайна:</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="#cb195-1" aria-hidden="true" tabindex="-1"></a>segment <span class="ot">&lt;-</span> <span class="fu">runif</span>(n,<span class="at">min=</span><span class="dv">5</span>,<span class="at">max=</span><span class="dv">80</span>)</span>
+<span id="cb195-2"><a href="#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(segment)</span></code></pre></div>
+<pre><code>##  num [1:60] 41.3 80 51.4 57.7 64.6 ...</code></pre>
+<p>Задаем, что если следующий сегмент длинный, то отклонение направления от предыдущего сегмента будет меньше:</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="#cb197-1" aria-hidden="true" tabindex="-1"></a>angle <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">-</span>segment<span class="sc">/</span><span class="dv">100</span>,<span class="cf">function</span>(x) <span class="fu">runif</span>(<span class="dv">1</span>,<span class="at">min=</span><span class="sc">-</span>x<span class="sc">*</span>pi,<span class="at">max=</span>x<span class="sc">*</span>pi))</span>
+<span id="cb197-2"><a href="#cb197-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(angle)</span></code></pre></div>
+<pre><code>##  num [1:60] 0.0668 0.2761 -0.4628 0.7868 0.7046 ...</code></pre>
+<p>Заполняем последующие шаги на основе предыдущих:</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(n)) {</span>
+<span id="cb199-2"><a href="#cb199-2" aria-hidden="true" tabindex="-1"></a>   loc<span class="sc">$</span>look[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> (loc<span class="sc">$</span>look[i]<span class="sc">+</span>angle[i]) <span class="sc">%%</span> (<span class="dv">2</span><span class="sc">*</span>pi)</span>
+<span id="cb199-3"><a href="#cb199-3" aria-hidden="true" tabindex="-1"></a>   loc<span class="sc">$</span>x[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> loc<span class="sc">$</span>x[i]<span class="sc">+</span>segment[i]<span class="sc">*</span><span class="fu">cos</span>(loc<span class="sc">$</span>look[i<span class="sc">+</span><span class="dv">1</span>])</span>
+<span id="cb199-4"><a href="#cb199-4" aria-hidden="true" tabindex="-1"></a>   loc<span class="sc">$</span>y[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> loc<span class="sc">$</span>y[i]<span class="sc">+</span>segment[i]<span class="sc">*</span><span class="fu">sin</span>(loc<span class="sc">$</span>look[i<span class="sc">+</span><span class="dv">1</span>])</span>
+<span id="cb199-5"><a href="#cb199-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb199-6"><a href="#cb199-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(loc)</span></code></pre></div>
+<pre><code>##   step     look         x         y
+## 1    0 1.570796 -103834.6 -1982.122
+## 2    1 1.637558 -103837.4 -1940.908
+## 3    2 1.913633 -103864.2 -1865.572
+## 4    3 1.450857 -103858.1 -1814.530
+## 5    4 2.237702 -103893.8 -1769.165
+## 6    5 2.942329 -103957.2 -1756.369</code></pre>
+<p>Создадим линейный <code>sf</code>-объект</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="#cb201-1" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;list&quot;</span>,n)</span></code></pre></div>
+<p>Матрица (с двумя столбцами) координат задается как LINESTRING:</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(n))</span>
+<span id="cb202-2"><a href="#cb202-2" aria-hidden="true" tabindex="-1"></a>   tr[[i]] <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_linestring</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(loc<span class="sc">$</span>x[i],loc<span class="sc">$</span>y[i],loc<span class="sc">$</span>x[i<span class="sc">+</span><span class="dv">1</span>],loc<span class="sc">$</span>y[i<span class="sc">+</span><span class="dv">1</span>])</span>
+<span id="cb202-3"><a href="#cb202-3" aria-hidden="true" tabindex="-1"></a>                               ,<span class="at">ncol=</span><span class="dv">2</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="oversize">
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(tr)</span></code></pre></div>
+<pre><code>## List of 60
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103835 -103837 -1982 -1941
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103837 -103864 -1941 -1866
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103864 -103858 -1866 -1815
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103858 -103894 -1815 -1769
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103894 -103957 -1769 -1756
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103957 -103982 -1756 -1776
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103982 -103997 -1776 -1844
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103997 -103984 -1844 -1851
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103984 -103953 -1851 -1908
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103953 -103986 -1908 -1966
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103986 -104050 -1966 -2005
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104050 -104072 -2005 -2050
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104072 -104077 -2050 -2108
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104077 -104117 -2108 -2101
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104117 -104120 -2101 -2059
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104120 -104145 -2059 -2000
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104145 -104128 -2000 -1991
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104128 -104080 -1991 -1997
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104080 -104066 -1997 -1989
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104066 -104072 -1989 -1980
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104072 -104099 -1980 -1947
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104099 -104106 -1947 -1975
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104106 -104128 -1975 -1969
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104128 -104126 -1969 -1981
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104126 -104124 -1981 -1974
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104124 -104155 -1974 -1912
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104155 -104133 -1912 -1883
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104133 -104143 -1883 -1851
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104143 -104151 -1851 -1863
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104151 -104148 -1863 -1886
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104148 -104151 -1886 -1878
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104151 -104160 -1878 -1898
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104160 -104164 -1898 -1966
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104164 -104121 -1966 -2009
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104121 -104124 -2009 -2037
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104124 -104171 -2037 -2039
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104171 -104211 -2039 -2035
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104211 -104209 -2035 -2042
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104209 -104165 -2042 -2084
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104165 -104139 -2084 -2109
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104139 -104106 -2109 -2074
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104106 -104113 -2074 -2074
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104113 -104171 -2074 -2119
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104171 -104173 -2119 -2101
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104173 -104182 -2101 -2026
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104182 -104199 -2026 -2038
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104199 -104269 -2038 -2069
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104269 -104262 -2069 -2089
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104262 -104238 -2089 -2138
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104238 -104178 -2138 -2161
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104178 -104128 -2161 -2124
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104128 -104074 -2124 -2121
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104074 -104072 -2121 -2093
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104072 -104047 -2093 -2092
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104047 -104010 -2092 -2111
+##  $ : &#39;XY&#39; num [1:2, 1:2] -104010 -103946 -2111 -2081
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103946 -103913 -2081 -2098
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103913 -103914 -2098 -2088
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103914 -103882 -2088 -2073
+##  $ : &#39;XY&#39; num [1:2, 1:2] -103882 -103838 -2073 -2046</code></pre>
+</div>
+<p>Набор сегментов объединяем в геометрию:</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="#cb205-1" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(tr,<span class="at">crs=</span>sp<span class="sc">::</span><span class="fu">proj4string</span>(pt0))</span></code></pre></div>
+<pre><code>## Warning in sp::proj4string(pt0): CRS object has comment, which is lost in output; in tests, see
+## https://cran.r-project.org/web/packages/sp/vignettes/CRS_warnings.html</code></pre>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(tr)</span></code></pre></div>
+<pre><code>## sfc_LINESTRING of length 60; first list element:  &#39;XY&#39; num [1:2, 1:2] -103835 -103837 -1982 -1941</code></pre>
+<p>С геометрией связываем атрибутивную таблицу.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="#cb209-1" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="at">step=</span><span class="fu">seq</span>(n),<span class="at">segment=</span>segment,<span class="at">geometry=</span>tr)</span>
+<span id="cb209-2"><a href="#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(tr)</span></code></pre></div>
+<pre><code>## Classes &#39;sf&#39; and &#39;data.frame&#39;:   60 obs. of  3 variables:
+##  $ step    : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ segment : num  41.3 80 51.4 57.7 64.6 ...
+##  $ geometry:sfc_LINESTRING of length 60; first list element:  &#39;XY&#39; num [1:2, 1:2] -103835 -103837 -1982 -1941
+##  - attr(*, &quot;sf_column&quot;)= chr &quot;geometry&quot;
+##  - attr(*, &quot;agr&quot;)= Factor w/ 3 levels &quot;constant&quot;,&quot;aggregate&quot;,..: NA NA
+##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;step&quot; &quot;segment&quot;</code></pre>
+</div>
+<div id="визуализация-1" class="section level3">
+<h3>Визуализация</h3>
+<div id="статическая" class="section level4">
+<h4>Статическая</h4>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
+<span id="cb211-2"><a href="#cb211-2" aria-hidden="true" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(tr,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>,<span class="at">plot.lwd=</span><span class="dv">5</span></span>
+<span id="cb211-3"><a href="#cb211-3" aria-hidden="true" tabindex="-1"></a>            ,<span class="at">layout=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">legend=</span><span class="fu">list</span>(<span class="st">&quot;left&quot;</span>,<span class="fu">list</span>(<span class="st">&quot;bottom&quot;</span>,<span class="dv">2</span>)),<span class="at">las=</span><span class="dv">1</span>,<span class="at">dpi=</span><span class="dv">96</span>)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/___ursa10_route.png" width="883" height="500" bound /></p>
+<p>Графическое отображение переопределенной под класс объекта функцией <code>plot()</code> средствами библиотеки <code>sp</code> и <code>sf</code> развито слабо…</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tr,<span class="at">lwd=</span><span class="dv">5</span>) <span class="do">## &#39;sf&#39;-object</span></span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/trplot-sf-1.svg" width="646.08" bound /></p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="#cb213-1" aria-hidden="true" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">as_Spatial</span>(tr),<span class="at">lwd=</span><span class="dv">5</span>) <span class="do">## &#39;sp&#39;-object (&#39;SpatialPointsDataFrame&#39;)</span></span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/trplot-sp-1.svg" width="646.08" bound /></p>
+<p><a href="#importExample">Возвращаясь</a> к ранее загруженным данным</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(b.sf[<span class="st">&quot;AFF&quot;</span>])</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/scotplot-1.svg" width="646.08" height="550" /></p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(b.sf),<span class="at">col=</span>sf<span class="sc">::</span><span class="fu">sf.colors</span>(<span class="dv">12</span>,<span class="at">categorical=</span><span class="cn">TRUE</span>)</span>
+<span id="cb215-2"><a href="#cb215-2" aria-hidden="true" tabindex="-1"></a>    ,<span class="at">border=</span><span class="st">&#39;grey&#39;</span>,<span class="at">axes=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/scotplotgeom-1.svg" width="646.08" height="550" /></p>
+<p>Для оформления карт можно использовать функционал других библиотек.
+##### <code>ggplot2</code></p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span></code></pre></div>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb218-2"><a href="#cb218-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_sf</span>(<span class="at">data=</span>b.sf,<span class="fu">aes</span>(<span class="at">fill=</span>AFF))<span class="sc">+</span></span>
+<span id="cb218-3"><a href="#cb218-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_sf</span>(<span class="at">crs=</span>sf<span class="sc">::</span><span class="fu">st_crs</span>(<span class="dv">3857</span>))</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/geomsf-1.svg" width="646.08" height="420" /></p>
+<div id="tmap" class="section level5">
+<h5><code>tmap</code></h5>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tmap)</span></code></pre></div>
+<pre><code>## Loading required package: tmap</code></pre>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</span></code></pre></div>
+<pre><code>## tmap mode set to plotting</code></pre>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(b.sf) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">&quot;COUNT&quot;</span>)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/tmap-plot-1.svg" width="646.08" height="445" /></p>
+</div>
+</div>
+<div id="интерактивная" class="section level4">
+<h4>Интерактивная</h4>
+<div id="mapview" class="section level5">
+<h5><code>mapview</code></h5>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="#cb224-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> mapview<span class="sc">::</span><span class="fu">mapview</span>(b.sf) <span class="do">## Не отобразится в Jupyter R Notebook.</span></span>
+<span id="cb224-2"><a href="#cb224-2" aria-hidden="true" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(m)</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson04/widget_mapview_c6385e746c4e47f43930da643b341679.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+</div>
+<div id="leaflet" class="section level5">
+<h5><code>leaflet</code></h5>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(leaflet)</span></code></pre></div>
+<pre><code>## Loading required package: leaflet</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="#cb227-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(b.sf,<span class="dv">4326</span>)</span>
+<span id="cb227-2"><a href="#cb227-2" aria-hidden="true" tabindex="-1"></a>b<span class="sc">$</span>category <span class="ot">&lt;-</span> <span class="fu">factor</span>(b<span class="sc">$</span>AFF,<span class="at">ordered=</span><span class="cn">TRUE</span>)</span>
+<span id="cb227-3"><a href="#cb227-3" aria-hidden="true" tabindex="-1"></a>fpal <span class="ot">&lt;-</span> <span class="fu">colorFactor</span>(<span class="fu">topo.colors</span>(<span class="dv">5</span>),b<span class="sc">$</span>category)</span>
+<span id="cb227-4"><a href="#cb227-4" aria-hidden="true" tabindex="-1"></a>provList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;CartoDB.Positron&quot;</span>,<span class="st">&quot;CartoDB.DarkMatter&quot;</span>,<span class="st">&quot;Esri.OceanBasemap&quot;</span>)</span>
+<span id="cb227-5"><a href="#cb227-5" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">leaflet</span>()</span>
+<span id="cb227-6"><a href="#cb227-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="fu">c</span>(provList)) m <span class="ot">&lt;-</span> <span class="fu">addProviderTiles</span>(m,providers[[p]],<span class="at">group=</span>p)</span>
+<span id="cb227-7"><a href="#cb227-7" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> m <span class="sc">%&gt;%</span> </span>
+<span id="cb227-8"><a href="#cb227-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">addPolygons</span>(<span class="at">data=</span>b,<span class="at">fillColor=</span><span class="sc">~</span><span class="fu">fpal</span>(category),<span class="at">fillOpacity=</span><span class="fl">0.5</span></span>
+<span id="cb227-9"><a href="#cb227-9" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">weight=</span><span class="fl">1.6</span>,<span class="at">color=</span><span class="sc">~</span><span class="fu">fpal</span>(category),<span class="at">opacity=</span><span class="fl">0.75</span></span>
+<span id="cb227-10"><a href="#cb227-10" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">label=</span><span class="sc">~</span><span class="fu">paste0</span>(<span class="st">&quot;AFF: &quot;</span>,AFF,<span class="st">&quot; (&quot;</span>,NAME,<span class="st">&quot;)&quot;</span>)</span>
+<span id="cb227-11"><a href="#cb227-11" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">popup=</span><span class="sc">~</span><span class="fu">sprintf</span>(<span class="st">&quot;Например, поле COUNT, равное %.1f&quot;</span>,COUNT)</span>
+<span id="cb227-12"><a href="#cb227-12" aria-hidden="true" tabindex="-1"></a>              ) <span class="sc">%&gt;%</span></span>
+<span id="cb227-13"><a href="#cb227-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">addMeasure</span>(<span class="st">&quot;topright&quot;</span>,<span class="at">primaryLengthUnit=</span><span class="st">&quot;meters&quot;</span></span>
+<span id="cb227-14"><a href="#cb227-14" aria-hidden="true" tabindex="-1"></a>             ,<span class="at">primaryAreaUnit=</span><span class="st">&quot;sqmeters&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb227-15"><a href="#cb227-15" aria-hidden="true" tabindex="-1"></a>   <span class="fu">addScaleBar</span>(<span class="st">&quot;bottomright&quot;</span></span>
+<span id="cb227-16"><a href="#cb227-16" aria-hidden="true" tabindex="-1"></a>             <span class="co"># ,options = scaleBarOptions(imperial=FALSE,maxWidth=400)</span></span>
+<span id="cb227-17"><a href="#cb227-17" aria-hidden="true" tabindex="-1"></a>              ) <span class="sc">%&gt;%</span></span>
+<span id="cb227-18"><a href="#cb227-18" aria-hidden="true" tabindex="-1"></a>   <span class="fu">addLayersControl</span>(<span class="at">position=</span><span class="st">&quot;topleft&quot;</span></span>
+<span id="cb227-19"><a href="#cb227-19" aria-hidden="true" tabindex="-1"></a>                   ,<span class="at">baseGroups=</span><span class="fu">c</span>(provList)</span>
+<span id="cb227-20"><a href="#cb227-20" aria-hidden="true" tabindex="-1"></a>                   ,<span class="at">options=</span><span class="fu">layersControlOptions</span>(<span class="at">collapsed=</span><span class="cn">TRUE</span>)</span>
+<span id="cb227-21"><a href="#cb227-21" aria-hidden="true" tabindex="-1"></a>                   ) <span class="sc">%&gt;%</span></span>
+<span id="cb227-22"><a href="#cb227-22" aria-hidden="true" tabindex="-1"></a>   <span class="fu">addLegend</span>(<span class="st">&quot;bottomright&quot;</span>,<span class="at">pal=</span>fpal,<span class="at">values=</span>b<span class="sc">$</span>category,<span class="at">opacity=</span><span class="fl">0.6</span></span>
+<span id="cb227-23"><a href="#cb227-23" aria-hidden="true" tabindex="-1"></a>            ,<span class="at">title=</span><span class="st">&quot;AFF&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="#cb228-1" aria-hidden="true" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(m) <span class="do">## Не отображается в Jupyter R Notebook.</span></span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson04/widget_leadletwidget_7666c6da740eb89e19c46b0a1ac4bb67.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+</div>
+<div id="tmap-1" class="section level5">
+<h5><code>tmap</code></h5>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</span></code></pre></div>
+<pre><code>## tmap mode set to interactive viewing</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="#cb231-1" aria-hidden="true" tabindex="-1"></a>tm <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(b.sf) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">&quot;COUNT&quot;</span>)</span>
+<span id="cb231-2"><a href="#cb231-2" aria-hidden="true" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(<span class="fu">tmap_leaflet</span>(tm),<span class="at">height=</span><span class="dv">510</span>)</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson04/widget_tmap-view_c006a40842b269fd6763e684157602c0.html" width="646.08" height="510" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+<p><a href="https://cran.rstudio.com/web/packages/tmap/vignettes/tmap-getstarted.html"><code>tmap</code> “Get Started” vignette</a></p>
+<iframe src="https://cran.rstudio.com/web/packages/tmap/vignettes/tmap-getstarted.html" width="646.08" height="610" data-external="1">
+</iframe>
+</div>
+</div>
+</div>
+<div id="экспорт" class="section level3">
+<h3>Экспорт</h3>
+<p>Сохранить пространственные данные в файл</p>
+<div id="sprgdal" class="section level5">
+<h5><code>sp/rgdal</code></h5>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="#cb232-1" aria-hidden="true" tabindex="-1"></a>pt <span class="ot">&lt;-</span> loc</span>
+<span id="cb232-2"><a href="#cb232-2" aria-hidden="true" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">coordinates</span>(pt) <span class="ot">&lt;-</span> <span class="er">~</span>x<span class="sc">+</span>y</span>
+<span id="cb232-3"><a href="#cb232-3" aria-hidden="true" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">proj4string</span>(pt) <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">proj4string</span>(pt0)</span></code></pre></div>
+<pre><code>## Warning in sp::proj4string(pt0): CRS object has comment, which is lost in output; in tests, see
+## https://cran.r-project.org/web/packages/sp/vignettes/CRS_warnings.html</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="#cb234-1" aria-hidden="true" tabindex="-1"></a>pt <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">spTransform</span>(pt,<span class="st">&quot;EPSG:4326&quot;</span>)</span>
+<span id="cb234-2"><a href="#cb234-2" aria-hidden="true" tabindex="-1"></a>fileout1 <span class="ot">&lt;-</span> <span class="st">&quot;afterTrain.geojson&quot;</span></span>
+<span id="cb234-3"><a href="#cb234-3" aria-hidden="true" tabindex="-1"></a>rgdal<span class="sc">::</span><span class="fu">writeOGR</span>(pt,fileout1,<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout1)),<span class="at">driver=</span><span class="st">&quot;GeoJSON&quot;</span></span>
+<span id="cb234-4"><a href="#cb234-4" aria-hidden="true" tabindex="-1"></a>                 ,<span class="at">overwrite_layer=</span><span class="cn">TRUE</span>,<span class="at">morphToESRI=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Проверим, появился ли файл:</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout1),<span class="st">&quot;.*&quot;</span>)))</span></code></pre></div>
+<pre><code>## [1] &quot;afterTrain.geojson&quot;</code></pre>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>(ursa<span class="sc">::</span><span class="fu">glance</span>(fileout1,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>,<span class="at">las=</span><span class="dv">1</span>,<span class="at">size=</span><span class="dv">480</span>,<span class="at">dpi=</span><span class="dv">192</span>))</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/___ursa12_glancept.png" width="421" bound /></p>
+</div>
+<div id="sf-4" class="section level5">
+<h5><code>sf</code></h5>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="#cb238-1" aria-hidden="true" tabindex="-1"></a>b.sf <span class="ot">&lt;-</span> b.sf[,<span class="fu">c</span>(<span class="st">&quot;NAME&quot;</span>,<span class="st">&quot;COUNT&quot;</span>)]</span>
+<span id="cb238-2"><a href="#cb238-2" aria-hidden="true" tabindex="-1"></a>b.sf<span class="sc">$</span><span class="st">&#39;категория&#39;</span> <span class="ot">&lt;-</span> b<span class="sc">$</span>category</span>
+<span id="cb238-3"><a href="#cb238-3" aria-hidden="true" tabindex="-1"></a>b.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(b.sf,<span class="dv">3857</span>)</span>
+<span id="cb238-4"><a href="#cb238-4" aria-hidden="true" tabindex="-1"></a>fileout2 <span class="ot">&lt;-</span> <span class="st">&quot;scotland.sqlite&quot;</span></span>
+<span id="cb238-5"><a href="#cb238-5" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(b.sf,<span class="at">dsn=</span>fileout2,<span class="at">layer=</span><span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout2))</span>
+<span id="cb238-6"><a href="#cb238-6" aria-hidden="true" tabindex="-1"></a>            ,<span class="at">driver=</span><span class="st">&quot;SQLite&quot;</span>,<span class="at">layer_options=</span><span class="fu">c</span>(<span class="st">&quot;LAUNDER=NO&quot;</span>),<span class="at">quiet=</span><span class="cn">TRUE</span></span>
+<span id="cb238-7"><a href="#cb238-7" aria-hidden="true" tabindex="-1"></a>            ,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(fileout2),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(fileout2))</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout2),<span class="st">&quot;.*&quot;</span>)))</span></code></pre></div>
+<pre><code>## [1] &quot;scotland.sqlite&quot;</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>(ursa<span class="sc">::</span><span class="fu">glance</span>(fileout2,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>,<span class="at">las=</span><span class="dv">1</span>,<span class="at">dpi=</span><span class="dv">192</span>,<span class="at">size=</span><span class="dv">480</span>))</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/___ursa14_glancescot.png" width="378" bound /></p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="#cb242-1" aria-hidden="true" tabindex="-1"></a>fileout3 <span class="ot">&lt;-</span> <span class="st">&quot;track.shp&quot;</span></span>
+<span id="cb242-2"><a href="#cb242-2" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(tr,<span class="at">dsn=</span>fileout3,<span class="at">layer=</span><span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout2))</span>
+<span id="cb242-3"><a href="#cb242-3" aria-hidden="true" tabindex="-1"></a>            ,<span class="at">driver=</span><span class="st">&quot;ESRI Shapefile&quot;</span>,<span class="at">quiet=</span><span class="cn">TRUE</span></span>
+<span id="cb242-4"><a href="#cb242-4" aria-hidden="true" tabindex="-1"></a>            ,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(fileout3),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(fileout3))</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout3),<span class="st">&quot;.*&quot;</span>)))</span></code></pre></div>
+<pre><code>## [1] &quot;track.dbf&quot; &quot;track.prj&quot; &quot;track.shp&quot; &quot;track.shx&quot;</code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>(ursa<span class="sc">::</span><span class="fu">glance</span>(fileout3,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>,<span class="at">las=</span><span class="dv">1</span>,<span class="at">dpi=</span><span class="dv">192</span>,<span class="at">size=</span><span class="dv">480</span>))</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson04/___ursa16_glancetrack.png" width="421" bound /></p>
+</div>
+</div>
+<div id="рисование" class="section level3">
+<h3>Рисование</h3>
+<p>Этот раздел предлагается пройти самостоятельно</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="#cb246-1" aria-hidden="true" tabindex="-1"></a>track <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_linestring</span>(<span class="fu">cbind</span>(loc<span class="sc">$</span>x,loc<span class="sc">$</span>y))</span>
+<span id="cb246-2"><a href="#cb246-2" aria-hidden="true" tabindex="-1"></a>track <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="fu">data.frame</span>(<span class="at">desc=</span><span class="st">&quot;walk&quot;</span></span>
+<span id="cb246-3"><a href="#cb246-3" aria-hidden="true" tabindex="-1"></a>                  ,sf<span class="sc">::</span><span class="fu">st_sfc</span>(track,<span class="at">crs=</span>sp<span class="sc">::</span><span class="fu">proj4string</span>(pt0))))</span>
+<span id="cb246-4"><a href="#cb246-4" aria-hidden="true" tabindex="-1"></a>paint <span class="ot">&lt;-</span> mapview<span class="sc">::</span><span class="fu">viewExtent</span>(track,<span class="at">alpha=</span><span class="fl">0.01</span>) <span class="sc">%&gt;%</span> mapedit<span class="sc">::</span><span class="fu">editMap</span>(<span class="st">&quot;track&quot;</span>)</span>
+<span id="cb246-5"><a href="#cb246-5" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb246-6"><a href="#cb246-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(paint<span class="sc">$</span>finished)) {</span>
+<span id="cb246-7"><a href="#cb246-7" aria-hidden="true" tabindex="-1"></a>   result <span class="ot">&lt;-</span> paint<span class="sc">$</span>finished</span>
+<span id="cb246-8"><a href="#cb246-8" aria-hidden="true" tabindex="-1"></a>   mapview<span class="sc">::</span><span class="fu">mapview</span>(result)</span>
+<span id="cb246-9"><a href="#cb246-9" aria-hidden="true" tabindex="-1"></a>   ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
+<span id="cb246-10"><a href="#cb246-10" aria-hidden="true" tabindex="-1"></a>   ursa<span class="sc">::</span><span class="fu">glance</span>(result,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>)</span>
+<span id="cb246-11"><a href="#cb246-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="воспроизводимость" class="section level2">
+<h2>Воспроизво­ди­мость</h2>
+<p>Ниже приведены фрагмента кода, которые не были выполнены при составлении программы занятия. Их предлагается выполнить самостоятельно. Также необходимо <a href="#pandoc">установленный Pandoc</a>.</p>
+<p>Содержимое занятия сгенерировано из файла <code>lesson04.R</code>. Загрузим его, переименовав:</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="#cb247-1" aria-hidden="true" tabindex="-1"></a>sfile <span class="ot">&lt;-</span> <span class="st">&quot;lesson04.R&quot;</span></span>
+<span id="cb247-2"><a href="#cb247-2" aria-hidden="true" tabindex="-1"></a>rfile <span class="ot">&lt;-</span> <span class="st">&quot;lesson04-reproduced.R&quot;</span></span>
+<span id="cb247-3"><a href="#cb247-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb247-4"><a href="#cb247-4" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">file.exists</span>(sfile))</span>
+<span id="cb247-5"><a href="#cb247-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">file.copy</span>(sfile,rfile,<span class="at">overwrite=</span><span class="cn">TRUE</span>,<span class="at">copy.date=</span><span class="cn">TRUE</span>)</span>
+<span id="cb247-6"><a href="#cb247-6" aria-hidden="true" tabindex="-1"></a>   <span class="cf">else</span></span>
+<span id="cb247-7"><a href="#cb247-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">download.file</span>(<span class="fu">file.path</span>(<span class="st">&quot;https://nplatonov.github.io/404&quot;</span>,sfile)</span>
+<span id="cb247-8"><a href="#cb247-8" aria-hidden="true" tabindex="-1"></a>                   ,rfile)</span>
+<span id="cb247-9"><a href="#cb247-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<!-- file.copy("main.R","lesson.R",overwrite=TRUE,copy.date=TRUE) -->
+<p>На основе этого файла создадим markdown-документ:</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="#cb248-1" aria-hidden="true" tabindex="-1"></a>mdfile <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">spin</span>(rfile,<span class="at">knit=</span><span class="cn">FALSE</span>)</span>
+<span id="cb248-2"><a href="#cb248-2" aria-hidden="true" tabindex="-1"></a>mdfile</span></code></pre></div>
+<p>Затем из markdown-документа сформируем html-документ:</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (rmarkdown<span class="sc">::</span><span class="fu">pandoc_available</span>()) {</span>
+<span id="cb249-2"><a href="#cb249-2" aria-hidden="true" tabindex="-1"></a>   htmlfile <span class="ot">&lt;-</span> rmarkdown<span class="sc">::</span><span class="fu">render</span>(mdfile,<span class="at">output_format=</span><span class="st">&quot;html_document&quot;</span></span>
+<span id="cb249-3"><a href="#cb249-3" aria-hidden="true" tabindex="-1"></a>                                ,<span class="at">output_options=</span><span class="fu">list</span>(<span class="at">toc=</span><span class="cn">TRUE</span>))</span>
+<span id="cb249-4"><a href="#cb249-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">print</span>(<span class="fu">basename</span>(htmlfile))</span>
+<span id="cb249-5"><a href="#cb249-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Полученный html-документ можно открыть в браузере.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ((rmarkdown<span class="sc">::</span><span class="fu">pandoc_available</span>())<span class="sc">&amp;&amp;</span>(<span class="fu">file.exists</span>(htmlfile))) </span>
+<span id="cb250-2"><a href="#cb250-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">browseURL</span>(<span class="fu">basename</span>(htmlfile))</span></code></pre></div>
+<p>И можно скопировать на флешку на память:))</p>
+<div id="параметры-сессии" class="section level3">
+<h3>Параметры сессии</h3>
+<div class="oversize">
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.1.3 Patched (2022-03-10 r81883)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 19044)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United Kingdom.1252  LC_CTYPE=Russian_Russia.1251           
+## [3] LC_MONETARY=English_United Kingdom.1252 LC_NUMERIC=C                           
+## [5] LC_TIME=English_United States.1252     
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] leaflet_2.1.0 tmap_3.3-3    ggplot2_3.3.5
+## 
+## loaded via a namespace (and not attached):
+##   [1] sf_1.0-7                satellite_1.0.4         webshot_0.5.2           RColorBrewer_1.1-2     
+##   [5] mapview_2.10.0          tools_4.1.3             bslib_0.3.1             utf8_1.2.2             
+##   [9] rgdal_1.5-29            R6_2.5.1                KernSmooth_2.23-20      DBI_1.1.2              
+##  [13] colorspace_2.0-3        raster_3.5-15           withr_2.5.0             sp_1.4-6               
+##  [17] tidyselect_1.1.2        compiler_4.1.3          leafem_0.1.6            cli_3.2.0              
+##  [21] geojsonsf_2.0.2         labeling_0.4.2          sass_0.4.0              scales_1.1.1           
+##  [25] classInt_0.4-3          proxy_0.4-26            systemfonts_1.0.4       stringr_1.4.0          
+##  [29] digest_0.6.29           rmarkdown_2.13          svglite_2.1.0           base64enc_0.1-3        
+##  [33] dichromat_2.0-0         jpeg_0.1-9              pkgconfig_2.0.3         htmltools_0.5.2        
+##  [37] ursa_3.9.7              fastmap_1.1.0           highr_0.9               htmlwidgets_1.5.4      
+##  [41] rlang_1.0.2             shiny_1.7.1             jquerylib_0.1.4         generics_0.1.2         
+##  [45] farver_2.1.0            jsonlite_1.8.0          crosstalk_1.2.0         dplyr_1.0.8            
+##  [49] magrittr_2.0.2          s2_1.0.7                Rcpp_1.0.8.3            munsell_0.5.0          
+##  [53] fansi_1.0.2             abind_1.4-5             lifecycle_1.0.1         terra_1.5-21           
+##  [57] stringi_1.7.6           leafsync_0.1.0          yaml_2.3.5              tmaptools_3.1-1        
+##  [61] widgetframe_0.3.1       grid_4.1.3              parallel_4.1.3          promises_1.2.0.1       
+##  [65] crayon_1.5.0            lattice_0.20-45         stars_0.5-5             leafpop_0.1.0          
+##  [69] knitr_1.37              pillar_1.7.0            tcltk_4.1.3             uuid_1.0-4             
+##  [73] codetools_0.2-18        stats4_4.1.3            wk_0.6.0                XML_3.99-0.9           
+##  [77] glue_1.6.2              evaluate_0.15           leaflet.providers_1.9.0 png_0.1-7              
+##  [81] vctrs_0.3.8             httpuv_1.6.5            gtable_0.3.0            purrr_0.3.4            
+##  [85] assertthat_0.2.1        xfun_0.30               mime_0.12               lwgeom_0.2-8           
+##  [89] xtable_1.8-4            e1071_1.7-9             later_1.3.0             class_7.3-20           
+##  [93] viridisLite_0.4.0       tibble_3.1.6            units_0.8-0             mapedit_0.6.0          
+##  [97] plutil_0.9-7175         ellipsis_0.3.2          brew_1.0-7              xaringanExtra_0.5.5</code></pre>
+</div>
+</div>
+</div>
+<div id="дополнительная-информация" class="section level2">
+<h2>Дополни­тель­ная информация</h2>
+<div id="узнать-больше-об-r" class="section level3">
+<h3>Узнать больше об R</h3>
+<ul>
+<li><p><a href="https://www.r-bloggers.com/">R-Bloggers</a> – современные тенденции R</p></li>
+<li><p>R’s <a href="https://cran.rstudio.com/web/views/Spatial.html">Spatial</a> and <a href="https://cran.rstudio.com/web/views/SpatioTemporal.html">SpatioTemporal</a> Task Views</p></li>
+<li><p><a href="https://www.r-spatial.org/">R-Spatial</a> – веб-сайт и блог для интересующихся использованием R для анализа пространственных и пространственно-временных данных</p></li>
+<li><p><a href="https://geocompr.github.io">Geocomputation with R</a> - book and relative</p></li>
+<li><p><a href="https://stackoverflow.com/feeds/tag/r">Stackoverflow</a> с тегом #R.</p></li>
+<li><p><a href="https://gis.stackexchange.com/questions">Stackexchange</a> о ГИС, в т.ч. с использованием R.</p></li>
+<li><p>Package’s vignettes – обобщенное знакомство с библиотекой. Обычно содержат воспроизводимый код.</p></li>
+</ul>
+<div id="section" class="section level6">
+<h6></h6>
+<div class="small">
+<p>Данные после занятия остались на диске. Если не нужны, выполнить следующее:</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout1),<span class="st">&quot;.*&quot;</span>))))</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout2),<span class="st">&quot;.*&quot;</span>))))</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout3),<span class="st">&quot;.*&quot;</span>))))</span></code></pre></div>
+<pre><code>## [1] TRUE TRUE TRUE TRUE</code></pre>
+</div>
+<style type="text/css">
+:root {
+   --pointsize: 20pt;
+   --sidebar-pointsize: 78%;
+   --sidebar: 25%;
+}
+</style>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
