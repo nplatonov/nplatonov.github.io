@@ -199,13 +199,13 @@ body:not(:fullscreen) .title-slide iframe {
 }
 .remark-code, .remark-inline-code {
   /* font-size: calc(var(--pointsize) * 0.8);*/
-   font-family: Cousine, 'Lucida Console', Monaco, monospace;
+   font-family: 'Source Code Pro', 'Cousine', 'Lucida Console', Monaco, monospace;
 }
 .remark-code {
    font-size: 70%;
 }
 .remark-inline-code {
-   font-size: 90%;
+   font-size: 95%;
 }
 .remark-code-line:empty {
    display: none;
@@ -261,7 +261,7 @@ body:not(:fullscreen) .title-slide iframe {
 
 .remark-slide-content {
   padding-top: 0.5em;
-  padding-left: 0.5em;
+  padding-left: 0.2em;
   padding-right: 0.5em;
   padding-bottom: 0.2em;
  /*
@@ -601,6 +601,21 @@ body:fullscreen .picsum.title-slide:after {
    max-height: calc(644px / var(--magnifier));
    margin-bottom: calc(60px * var(--magnifier) * var(--magnifier));
 }
+iframe:not([class]) {
+   -moz-border-radius: 12px;
+   -webkit-border-radius: 12px;
+   border-radius: 12px;
+   -moz-box-shadow: 2px 2px 7px #0007;
+   -webkit-box-shadow: 2px 2px 7px #0007;
+   box-shadow: 2px 2px 7px #0007;
+  /*
+   -moz-transform:rotate(20deg);
+   -webkit-transform:rotate(20deg);
+   -o-transform:rotate(20deg);
+   -ms-transform:rotate(20deg);
+   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=.2);
+  */
+}
 iframe.ursa-widgetize {
    border: 1px dashed #eee;
    height: calc( 98% / var(--magnifier));
@@ -752,8 +767,10 @@ ul {
 }
 .sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
    line-height: 0.9;
-   padding-top: 0.23em !important;
-   padding-bottom: 0.23em !important;
+}
+.sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
+   padding-top: 0.17em !important;
+   padding-bottom: 0.17em !important;
 }
 .left-column h2:last-of-type, .left-column h3:last-child,
 .sidebar h1 a, .sidebar h2 a, .sidebar h3 a, .sidebar h4 a, .sidebar h5 a,
@@ -1155,9 +1172,9 @@ code.remark-code:not(.hljs) {
    width: 240px;
    height: 140px;
    position: absolute;
-   bottom: 0;
+   bottom: 9px;
    right: 0;
-   opacity: 0.2;
+   opacity: 0.1;
 }
 .framed {
    width: 100%;
@@ -1273,7 +1290,7 @@ code.remark-code:not(.hljs) {
 .h640 {height: 640px !important;}
 .h635 {height: 635px !important;}
 .h630 {height: 630px !important;}
-@media only screen and (min-width: 156vh) {
+@media only screen and (min-width: 162vh) {
    .remark-slide {
      /* opacity: 0.2;*/
    }
@@ -1286,6 +1303,7 @@ code.remark-code:not(.hljs) {
       right: calc(50% - 1.2em - (14 / 9) * 50vh);
    }
    .remark-slides-area:after {
+      content: 'A';
       border: 1px solid blue !important;
       right: unset !important;
       transform: rotate(180deg);
