@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>ГИС 05</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.13/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Пространственные данные: получение и обработка</h1>
+<h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
+<h4 class="author">Никита Платонов</h4>
+<address class="author_afil">
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date">Занятие 05, 07 апреля 2022 г.
+<div class="updated">
+Обновлено: 2022-04-07 17:23
+</div></h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#для-картоосновы">Для картоосновы</a>
+<ul>
+<li><a href="#natural-earth">Natural Earth</a></li>
+</ul></li>
+<li><a href="#для-проектов">Для проектов</a>
+<ul>
+<li><a href="#global-elevation-map">Global Elevation Map</a></li>
+<li><a href="#openstreetmap">OpenStreetMap</a></li>
+</ul></li>
+<li><a href="#геокодирование">Геокодирование</a></li>
+<li><a href="#цмр">ЦМР</a>
+<ul>
+<li><a href="#qgis-визуализация">QGIS визуализация</a>
+<ul>
+<li><a href="#через-свойства-растра">Через свойства растра</a></li>
+<li><a href="#с-помощью-gdal">С помощью GDAL</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#учебный-материал">Учебный материал</a>
+<ul>
+<li><a href="#биотелеметрия">Биотелеметрия</a>
+<ul>
+<li><a href="#подготовка-данных">Подготовка данных</a></li>
+<li><a href="#участки-обитания">Участки обитания</a></li>
+<li><a href="#анализ-траекторий">Анализ траекторий</a></li>
+</ul></li>
+<li><a href="#gps">GPS</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="для-картоосновы" class="section level2">
+<h2>Для картоосновы</h2>
+<p>Мы привыкли к картам в браузерах и в приложениях. Журналы выдвигают определенные требования к рисункам для повышения уровня восприятия информации
++ Копия экрана не удовлетворяет требованиям<br />
++ Тайловые картографические web-сервисы, в основном, выдают данные экранного разрешения. Некоторые, как CartoDB, — с улучшенным (двухкратным), но и это не всегда дотягивает до требований<br />
++ QGIS для Windows, вероятно, чувствителен к масштабу текста в параметрах ОС.</p>
+<p>Для оформления картографического мелкомасштабного и среднемасштабного материала есть данные в свободном доступе
++ Возможно, что-то будет лишь через VPN</p>
+<div id="natural-earth" class="section level3">
+<h3>Natural Earth</h3>
+<p>См. <a href="https://www.naturalearthdata.com/">Natural Earth World GIS Data</a></p>
+<iframe src="https://www.naturalearthdata.com/downloads/" width="646.08" height="480" data-external="1">
+</iframe>
+<ul>
+<li>Есть поддержка русскоязычных названий (см. поля “name_ru”, “NAME_RU”)</li>
+</ul>
+<div class="note">
+<div class="pull-left-45">
+<h2 class="toc-ignore">
+Домашнее задание на 14 апреля 2022 г.
+</h2>
+<p>В QGIS на основе данных Natural Earth 1:10m cоздать картооснову, ориентируясь
+на для территории,
+охватывающую Карелию и Мурманскую области.
+Желательно включить административные границы, батиметрию и контуры высот.
+Экспортировать через Export Image или Print Layout два изображения,
+соответствующих русскоязычным журнальным требованиям,
+с различным пространственным охватом:
+1) только Кольский п-ов, 2) вместе Карелия и Мурманская обл.</p>
+</div>
+<div class="pull-right-55">
+<p class="centered-image"><img src="assets/lesson05/homework.png" width="752" height="400" bound /></p>
+</div>
+</div>
+</div>
+</div>
+<div id="для-проектов" class="section level2">
+<h2>Для проектов</h2>
+<div id="global-elevation-map" class="section level3">
+<h3>Global Elevation Map</h3>
+<p>Cм. <a href="https://gislounge.com/new-global-elevation-data-available-to-download-global-multi-resolution-terrain-elevation-data-2010/">Global Elevation Map</a></p>
+<iframe src="https://www.gislounge.com/new-global-elevation-data-available-global-multi-resolution-terrain-elevation-data-2010/" width="646.08" height="480" data-external="1">
+</iframe>
+<p>Доступ через <a href="https://earthexplorer.usgs.gov/">USGS EarthExplorer</a> (требуется регистрация)
+### ESA Copernicus
+См. <a href="https://scihub.copernicus.eu/dhus/#/home">Copernicus Open Access Hub</a></p>
+<iframe src="https://scihub.copernicus.eu/" width="646.08" height="480" data-external="1">
+</iframe>
+</div>
+<div id="openstreetmap" class="section level3">
+<h3>OpenStreetMap</h3>
+<p>QGIS модуль <a href="https://plugins.qgis.org/plugins/quick_map_services/">QuickMapServices</a>, преимущественно, выдает тайлы на основе OpenStreetMap (OSM) данных. Сами данные доступны.</p>
+<p><a href="https://www.openstreetmap.org/export#map=13/56.0052/38.3995">Пример</a> выгрузки данных.</p>
+<p>При нажатии кнопки ‘Экспорт’ по умолчанию создается файл <code>map.osm</code>.</p>
+<p>Альтернатива: использование <a href="https://overpass-api.de/api/map?bbox=38.3594,55.9835,38.4396,56.0270">Overpass API</a></p>
+<ul>
+<li><p>QGIS, модуль <a href="https://plugins.qgis.org/plugins/QuickOSM/">“QuickOSM”</a></p>
+<ul>
+<li><p>Импорт <code>map.osm</code></p></li>
+<li><p>Экспорт в векторные (ГИС) форматы (ESRI Shapefile, GeoJSON).</p></li>
+</ul></li>
+<li><p>R, пакет <a href="https://cran.rstudio.com/web/packages/osmdata/"><code>osmdata</code></a></p>
+<ul>
+<li>Формирование запроса для Overpass API<br />
+</li>
+<li>Использование средств R для работы с атрибутами<br />
+</li>
+<li>Экспорт в векторные (ГИС) форматы</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="геокодирование" class="section level2">
+<h2>Геокодирование</h2>
+<p>Получение пространственных данных по текстовому запросу. Обратное геокодирование - поиск объекта по географическим координатам
+### Nominatim</p>
+<p>URL: <a href="https://nominatim.openstreetmap.org">Nominatim</a></p>
+<iframe src="https://nominatim.openstreetmap.org/ui/search.html?q=Черноголовка" width="646.08" height="480" data-external="1">
+</iframe>
+</div>
+<div id="цмр" class="section level2">
+<h2>ЦМР</h2>
+<p>Цифровая модель рельефа ЦМР (Digital Elevation Model DEM)</p>
+<p><a href="https://dwtkns.com/srtm30m/">SRTM Tile Downloader</a></p>
+<iframe src="https://dwtkns.com/srtm30m/" width="646.08" height="480" data-external="1">
+</iframe>
+<div id="qgis-визуализация" class="section level3">
+<h3>QGIS визуализация</h3>
+<p>На примере вулканов Камчатского п-ова</p>
+<p class="centered-image"><img src="assets/lesson05/Kamchatka.png" width="1096" /></p>
+<div id="через-свойства-растра" class="section level4">
+<h4>Через свойства растра</h4>
+<p>Оригинальное изображение в проекции WGS84</p>
+<p class="centered-image"><img src="assets/lesson05/grey4326.png" width="1096" /></p>
+<p>Изображение в сферической проекции Меркатора</p>
+<p class="centered-image"><img src="assets/lesson05/grey3857.png" width="1096" /></p>
+<p>Настройка отображения теневой заливкой</p>
+<p class="centered-image"><img src="assets/lesson05/hillshade-symbology.png" width="1094" /></p>
+<p>Отображение теневой заливкой</p>
+<p class="centered-image"><img src="assets/lesson05/hillshade-output.png" width="1096" /></p>
+<p>3D отображение</p>
+<p class="centered-image"><img src="assets/lesson05/map3D.png" width="1094" /></p>
+<p>Настройка контурного отображения</p>
+<p class="centered-image"><img src="assets/lesson05/contour-symbology.png" width="1094" /></p>
+<p>Контурное отображение</p>
+<p class="centered-image"><img src="assets/lesson05/contour-output.png" width="1096" /></p>
+</div>
+<div id="с-помощью-gdal" class="section level4">
+<h4>С помощью GDAL</h4>
+<p>Настройка GDAL модуля <code>gdal_contour</code></p>
+<p class="centered-image"><img src="assets/lesson05/gdal-contour-setting.png" width="1094" /></p>
+<p>Контур после GDAL модуля <code>gdal_contour</code></p>
+<p class="centered-image"><img src="assets/lesson05/gdal-contour-output.png" width="1096" /></p>
+<p>Настройка GDAL модуля <code>gdaldem</code></p>
+<p class="centered-image"><img src="assets/lesson05/gdaldem-setting.png" width="1094" /></p>
+<p>Растр после GDAL модуля <code>gdaldem</code></p>
+<p class="centered-image"><img src="assets/lesson05/gdaldem-output.png" width="1096" /></p>
+</div>
+</div>
+</div>
+<div id="учебный-материал" class="section level2">
+<h2>Учебный материал</h2>
+<div id="биотелеметрия" class="section level3">
+<h3>Биотелеметрия</h3>
+<p>Локации белого медведя <span class="citation">(<a href="#ref-Durner2019_data" role="doc-biblioref">Durner, 2019</a>)</span>.</p>
+<iframe src="https://doi.org/10.5066%2FP9ZRJ3XU" width="646.08" height="316" data-external="1">
+</iframe>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remote <span class="ot">&lt;-</span> <span class="st">&quot;https://alaska.usgs.gov/data/polarBear/polarBear_satelliteTelemetry_distribution_HabitatSelection_beaufortChukchi_1985_2016/polarBear_satelliteTelemetry_distribution_HabitatSelection_beaufortChukchi_1985_2016.zip&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>local <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(remote,local,<span class="at">mode=</span><span class="st">&quot;wb&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>list1 <span class="ot">&lt;-</span> <span class="fu">unzip</span>(local,<span class="at">exdir=</span><span class="fu">tempdir</span>())</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>fname <span class="ot">&lt;-</span> list1[<span class="fu">grep</span>(<span class="st">&quot;kernelUD&quot;</span>,<span class="fu">basename</span>(list1))]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">file.remove</span>(list1)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fname</span></code></pre></div>
+<pre><code>[1] &quot;C:\\TEMP\\RtmpIfb2hO/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
+<div id="подготовка-данных" class="section level4">
+<h4>Подготовка данных</h4>
+<div class="oversize">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(sf)</span></code></pre></div>
+<pre><code>Loading required package: sf</code></pre>
+<pre><code>Linking to GEOS 3.9.1, GDAL 3.2.1, PROJ 7.2.1; sf_use_s2() is TRUE</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span></code></pre></div>
+<pre><code>Loading required package: ggplot2</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(adehabitatHR)</span></code></pre></div>
+<pre><code>Loading required package: adehabitatHR</code></pre>
+<pre><code>Loading required package: sp</code></pre>
+<pre><code>Loading required package: deldir</code></pre>
+<pre><code>deldir 1.0-6      Nickname: &quot;Mendacious Cosmonaut&quot;</code></pre>
+<pre><code>
+     The syntax of deldir() has had an important change. 
+     The arguments have been re-ordered (the first three 
+     are now &quot;x, y, z&quot;) and some arguments have been 
+     eliminated.  The handling of the z (&quot;tags&quot;) 
+     argument has been improved.
+ 
+     The &quot;dummy points&quot; facility has been removed. 
+     This facility was a historical artefact, was really 
+     of no use to anyone, and had hung around much too 
+     long.  Since there are no longer any &quot;dummy points&quot;, 
+     the structure of the value returned by deldir() has 
+     changed slightly.  The arguments of plot.deldir() 
+     have been adjusted accordingly; e.g. the character 
+     string &quot;wpoints&quot; (&quot;which points&quot;) has been 
+     replaced by the logical scalar &quot;showpoints&quot;. 
+     The user should consult the help files.</code></pre>
+<pre><code>Loading required package: ade4</code></pre>
+<pre><code>Loading required package: adehabitatMA</code></pre>
+<pre><code>Registered S3 methods overwritten by &#39;adehabitatMA&#39;:
+  method                       from
+  print.SpatialPixelsDataFrame sp  
+  print.SpatialPixels          sp  </code></pre>
+<pre><code>Loading required package: adehabitatLT</code></pre>
+<pre><code>Loading required package: CircStats</code></pre>
+<pre><code>Loading required package: MASS</code></pre>
+<pre><code>Loading required package: boot</code></pre>
+</div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>src <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(fname)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(src)</span></code></pre></div>
+<pre><code>      BearID_ud  DateTimeUTC_ud latitude_ud longitude_ud season period
+21613       255 5/23/2010 21:49      70.981     -146.952    max    716
+21614       255 5/27/2010 18:12      70.992     -146.340    max    716
+21615       255 5/30/2010 18:41      70.815     -145.721    max    716
+21616       255  6/2/2010 20:09      70.689     -143.814    max    716
+21617       255  6/5/2010 20:12      71.729     -146.236    max    716
+21618       255  6/8/2010 21:11      72.548     -145.328    max    716</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>src<span class="sc">$</span>period <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;%04d&quot;</span>,src<span class="sc">$</span>period)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>src<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">paste0</span>(src<span class="sc">$</span>season,<span class="st">&quot;:&quot;</span>,src<span class="sc">$</span>period)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(src)</span></code></pre></div>
+<pre><code>      BearID_ud  DateTimeUTC_ud latitude_ud longitude_ud season period    group
+21613       255 5/23/2010 21:49      70.981     -146.952    max   0716 max:0716
+21614       255 5/27/2010 18:12      70.992     -146.340    max   0716 max:0716
+21615       255 5/30/2010 18:41      70.815     -145.721    max   0716 max:0716
+21616       255  6/2/2010 20:09      70.689     -143.814    max   0716 max:0716
+21617       255  6/5/2010 20:12      71.729     -146.236    max   0716 max:0716
+21618       255  6/8/2010 21:11      72.548     -145.328    max   0716 max:0716</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(loc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(src,<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;longitude_ud&quot;</span>,<span class="st">&quot;latitude_ud&quot;</span>),<span class="at">crs=</span><span class="dv">4326</span>))</span></code></pre></div>
+<pre><code>Simple feature collection with 21618 features and 5 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -179.967 ymin: 63.8911 xmax: 179.998 ymax: 82.22576
+Geodetic CRS:  WGS 84
+First 10 features:
+   BearID_ud  DateTimeUTC_ud season period    group                geometry
+1        196  5/2/1992 22:00    max   8595 max:8595 POINT (-125.103 73.985)
+2        196  5/11/1992 0:43    max   8595 max:8595 POINT (-125.262 74.398)
+3        196 5/17/1992 22:19    max   8595 max:8595 POINT (-123.282 74.458)
+4        196 5/23/1992 23:27    max   8595 max:8595 POINT (-125.084 73.983)
+5        182  5/2/1986 17:57    max   8595 max:8595 POINT (-137.429 69.353)
+6        182  5/12/1986 0:46    max   8595 max:8595 POINT (-138.622 69.735)
+7        182 5/26/1986 18:51    max   8595 max:8595   POINT (-139.31 69.73)
+8        182   6/2/1986 0:19    mlt   8595 mlt:8595 POINT (-139.165 69.839)
+9        182  6/7/1986 19:53    mlt   8595 mlt:8595 POINT (-138.242 69.717)
+10       182  6/23/1986 0:38    mlt   8595 mlt:8595  POINT (-141.019 69.72)</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(loc)<span class="sc">$</span>epsg</span></code></pre></div>
+<pre><code>[1] 4326</code></pre>
+<p>Cохранение всех данных в формате ГИС</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>))</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>dst <span class="ot">&lt;-</span> <span class="st">&quot;data/locations_for_kernelUD.geojson&quot;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(loc,<span class="at">dsn=</span>dst,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(dst),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(dst))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> loc[loc<span class="sc">$</span>group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;max:0716&quot;</span>),]</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ta <span class="ot">&lt;-</span> <span class="fu">table</span>(loc<span class="sc">$</span>BearID_ud)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>ta <span class="ot">&lt;-</span> ta[ta<span class="sc">&gt;</span><span class="dv">150</span>] <span class="do">## 120</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>ta</span></code></pre></div>
+<pre><code>
+145 168 
+155 183 </code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> loc[loc<span class="sc">$</span>BearID_ud <span class="sc">%in%</span> <span class="fu">names</span>(ta),]</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(loc<span class="sc">$</span>BearID_ud)</span></code></pre></div>
+<pre><code>
+145 168 
+155 183 </code></pre>
+<p>Сохранение части данных</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>))</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>dst <span class="ot">&lt;-</span> <span class="st">&quot;data/locations_for_ltraj.geojson&quot;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(loc,<span class="at">dsn=</span>dst,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(dst),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(dst))</span></code></pre></div>
+</div>
+<div id="участки-обитания" class="section level4">
+<h4>Участки обитания</h4>
+<div id="формирование-сетки" class="section level5">
+<h5>Формирование сетки</h5>
+<div class="font90">
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>(loc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(loc,<span class="dv">3572</span>))</span></code></pre></div>
+<pre><code>Simple feature collection with 338 features and 5 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -88920.86 ymin: -2211301 xmax: 733452.4 ymax: -1455791
+Projected CRS: WGS 84 / North Pole LAEA Alaska
+First 10 features:
+      BearID_ud  DateTimeUTC_ud season period    group                  geometry
+17462       145  5/14/2008 3:54    max   0716 max:0716 POINT (208385.1 -2172907)
+17463       145 5/18/2008 20:14    max   0716 max:0716 POINT (219304.5 -2105274)
+17464       145 5/21/2008 21:32    max   0716 max:0716   POINT (199755 -2080243)
+17465       145 5/27/2008 18:08    max   0716 max:0716 POINT (183527.7 -2054768)
+17466       145 5/30/2008 18:29    max   0716 max:0716 POINT (190180.1 -2042328)
+17467       145  6/2/2008 18:37    max   0716 max:0716 POINT (191254.4 -2033488)
+17468       145  6/5/2008 20:03    max   0716 max:0716   POINT (144390 -2001121)
+17469       145  6/8/2008 20:16    max   0716 max:0716   POINT (142381 -2013417)
+17470       145 6/11/2008 21:29    max   0716 max:0716 POINT (104305.1 -2028877)
+17471       145 6/17/2008 19:01    max   0716 max:0716 POINT (146107.4 -1997239)</code></pre>
+</div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(loc)<span class="sc">$</span>epsg</span></code></pre></div>
+<pre><code>[1] 3572</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(loc)<span class="sc">$</span>proj4string</span></code></pre></div>
+<pre><code>[1] &quot;+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_bbox</span>(loc)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>bbox</span></code></pre></div>
+<pre><code>       xmin        ymin        xmax        ymax 
+  -88920.86 -2211300.60   733452.40 -1455790.58 </code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sfc</span>(bbox) <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>   sf<span class="sc">::</span><span class="fu">st_buffer</span>(<span class="dv">500</span><span class="sc">*</span><span class="fl">1e3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>   sf<span class="sc">::</span><span class="fu">st_bbox</span>()</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>bbox</span></code></pre></div>
+<pre><code>      xmin       ymin       xmax       ymax 
+ -588920.9 -2711300.6  1233452.4  -955790.6 </code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>gr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_make_grid</span>(bbox,<span class="at">cellsize=</span><span class="dv">12000</span>,<span class="at">what=</span><span class="st">&quot;centers&quot;</span>) <span class="co">#&lt;&lt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(gr)</span></code></pre></div>
+<pre><code>sfc_POINT of length 22344; first list element:  &#39;XY&#39; num [1:2] -582921 -2705301</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>gr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">as_Spatial</span>(gr)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(gr)</span></code></pre></div>
+<pre><code>Formal class &#39;SpatialPoints&#39; [package &quot;sp&quot;] with 3 slots
+  ..@ coords     : num [1:22344, 1:2] -582921 -570921 -558921 -546921 -534921 ...
+  .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. ..$ : NULL
+  .. .. ..$ : chr [1:2] &quot;coords.x1&quot; &quot;coords.x2&quot;
+  ..@ bbox       : num [1:2, 1:2] -582921 -2705301 1229079 -953301
+  .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. ..$ : chr [1:2] &quot;coords.x1&quot; &quot;coords.x2&quot;
+  .. .. ..$ : chr [1:2] &quot;min&quot; &quot;max&quot;
+  ..@ proj4string:Formal class &#39;CRS&#39; [package &quot;sp&quot;] with 1 slot
+  .. .. ..@ projargs: chr &quot;+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;
+  .. .. ..$ comment: chr &quot;| __truncated__&quot;</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">gridded</span>(gr) <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
+</div>
+<div id="построение-кёрнел" class="section level5">
+<h5>Построение кёрнел</h5>
+<p>Пример построения кёрнел с параметром <code>h="LSCV"</code></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>ud <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernelUD</span>(sf<span class="sc">::</span><span class="fu">as_Spatial</span>(loc[<span class="st">&quot;BearID_ud&quot;</span>])</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>                            ,<span class="at">grid=</span>gr</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>                            ,<span class="at">h=</span><span class="fu">list</span>(<span class="st">&quot;href&quot;</span>,<span class="st">&quot;LSCV&quot;</span>,<span class="dv">30000</span>)[[<span class="dv">2</span>]]</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>                            )</span></code></pre></div>
+<div class="pull-left">
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>adehabitatHR<span class="sc">::</span><span class="fu">plotLSCV</span>(ud[[<span class="dv">1</span>]])</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson05/unnamed-chunk-40-1.svg" width="646.08" height="325" /></p>
+</div>
+<div class="pull-right">
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>adehabitatHR<span class="sc">::</span><span class="fu">plotLSCV</span>(ud[[<span class="dv">2</span>]])</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson05/unnamed-chunk-41-1.svg" width="646.08" height="325" /></p>
+</div>
+<div class="oversize">
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>ud <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernelUD</span>(sf<span class="sc">::</span><span class="fu">as_Spatial</span>(loc[<span class="st">&quot;BearID_ud&quot;</span>]) <span class="co">#&lt;&lt;</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>                            ,<span class="at">grid=</span>gr</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>                            ,<span class="at">h=</span><span class="fu">list</span>(<span class="st">&quot;href&quot;</span>,<span class="st">&quot;LSCV&quot;</span>,<span class="dv">30000</span>)[[<span class="dv">3</span>]]</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>                            )</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ud)</span></code></pre></div>
+<pre><code>List of 2
+ $ 145:Formal class &#39;estUD&#39; [package &quot;adehabitatHR&quot;] with 9 slots
+  .. ..@ h          :List of 2
+  .. .. ..$ h   : num 30000
+  .. .. ..$ meth: chr &quot;specified&quot;
+  .. ..@ vol        : logi FALSE
+  .. ..@ data       :&#39;data.frame&#39;:  22344 obs. of  1 variable:
+  .. .. ..$ ud: num [1:22344] 0 0 0 0 0 0 0 0 0 0 ...
+  .. ..@ coords.nrs : num(0) 
+  .. ..@ grid       :Formal class &#39;GridTopology&#39; [package &quot;sp&quot;] with 3 slots
+  .. .. .. ..@ cellcentre.offset: Named num [1:2] -582921 -2705301
+  .. .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. .. .. ..@ cellsize         : Named num [1:2] 12000 12000
+  .. .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. .. .. ..@ cells.dim        : Named int [1:2] 152 147
+  .. .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. ..@ grid.index : int [1:22344] 1 153 305 457 609 761 913 1065 1217 1369 ...
+  .. ..@ coords     : num [1:22344, 1:2] -582921 -582921 -582921 -582921 -582921 ...
+  .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. .. ..$ : NULL
+  .. .. .. ..$ : chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. ..@ bbox       : num [1:2, 1:2] -588921 -2711301 1235079 -947301
+  .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. .. ..$ : chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. .. .. ..$ : chr [1:2] &quot;min&quot; &quot;max&quot;
+  .. ..@ proj4string:Formal class &#39;CRS&#39; [package &quot;sp&quot;] with 1 slot
+  .. .. .. ..@ projargs: chr &quot;+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;
+  .. .. .. ..$ comment: chr &quot;| __truncated__&quot;
+ $ 168:Formal class &#39;estUD&#39; [package &quot;adehabitatHR&quot;] with 9 slots
+  .. ..@ h          :List of 2
+  .. .. ..$ h   : num 30000
+  .. .. ..$ meth: chr &quot;specified&quot;
+  .. ..@ vol        : logi FALSE
+  .. ..@ data       :&#39;data.frame&#39;:  22344 obs. of  1 variable:
+  .. .. ..$ ud: num [1:22344] 0 0 0 0 0 0 0 0 0 0 ...
+  .. ..@ coords.nrs : num(0) 
+  .. ..@ grid       :Formal class &#39;GridTopology&#39; [package &quot;sp&quot;] with 3 slots
+  .. .. .. ..@ cellcentre.offset: Named num [1:2] -582921 -2705301
+  .. .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. .. .. ..@ cellsize         : Named num [1:2] 12000 12000
+  .. .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. .. .. ..@ cells.dim        : Named int [1:2] 152 147
+  .. .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. ..@ grid.index : int [1:22344] 1 153 305 457 609 761 913 1065 1217 1369 ...
+  .. ..@ coords     : num [1:22344, 1:2] -582921 -582921 -582921 -582921 -582921 ...
+  .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. .. ..$ : NULL
+  .. .. .. ..$ : chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. ..@ bbox       : num [1:2, 1:2] -588921 -2711301 1235079 -947301
+  .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. .. ..$ : chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. .. .. ..$ : chr [1:2] &quot;min&quot; &quot;max&quot;
+  .. ..@ proj4string:Formal class &#39;CRS&#39; [package &quot;sp&quot;] with 1 slot
+  .. .. .. ..@ projargs: chr &quot;+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;
+  .. .. .. ..$ comment: chr &quot;| __truncated__&quot;
+ - attr(*, &quot;class&quot;)= chr &quot;estUDm&quot;</code></pre>
+</div>
+</div>
+<div id="площади-по-уровням" class="section level5">
+<h5>Площади по уровням</h5>
+<div class="dummy">
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>ka <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernel.area</span>(ud,<span class="at">unin=</span><span class="st">&quot;m&quot;</span>,<span class="at">unout=</span><span class="st">&quot;km2&quot;</span>) <span class="co">#&lt;&lt;</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ka) <span class="ot">&lt;-</span> <span class="fu">names</span>(ud)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">rbind</span>(<span class="fu">head</span>(ka,<span class="dv">4</span>),<span class="fu">tail</span>(ka,<span class="dv">4</span>)),<span class="at">row.names=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">145</th>
+<th align="right">168</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">20</td>
+<td align="right">9936</td>
+<td align="right">5472</td>
+</tr>
+<tr class="even">
+<td align="left">25</td>
+<td align="right">13104</td>
+<td align="right">7200</td>
+</tr>
+<tr class="odd">
+<td align="left">30</td>
+<td align="right">16560</td>
+<td align="right">8928</td>
+</tr>
+<tr class="even">
+<td align="left">35</td>
+<td align="right">20304</td>
+<td align="right">10944</td>
+</tr>
+<tr class="odd">
+<td align="left">80</td>
+<td align="right">107568</td>
+<td align="right">38448</td>
+</tr>
+<tr class="even">
+<td align="left">85</td>
+<td align="right">129744</td>
+<td align="right">45216</td>
+</tr>
+<tr class="odd">
+<td align="left">90</td>
+<td align="right">158112</td>
+<td align="right">54432</td>
+</tr>
+<tr class="even">
+<td align="left">95</td>
+<td align="right">199008</td>
+<td align="right">72720</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>ta <span class="ot">&lt;-</span> <span class="fu">reshape</span>(ka,<span class="at">direction=</span><span class="st">&quot;long&quot;</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>             ,<span class="at">varying=</span><span class="fu">list</span>(<span class="fu">grep</span>(<span class="st">&quot;^</span><span class="sc">\\</span><span class="st">d+&quot;</span>,<span class="fu">colnames</span>(ka),<span class="at">value=</span><span class="cn">TRUE</span>))</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>             ,<span class="at">times=</span><span class="fu">grep</span>(<span class="st">&quot;^</span><span class="sc">\\</span><span class="st">d+&quot;</span>,<span class="fu">colnames</span>(ka),<span class="at">value=</span><span class="cn">TRUE</span>)</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>             ,<span class="at">v.names=</span><span class="st">&quot;area&quot;</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>             ,<span class="at">timevar=</span><span class="st">&quot;bear&quot;</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>             ,<span class="at">ids=</span><span class="fu">row.names</span>(ka)</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>             ,<span class="at">idvar=</span><span class="st">&quot;level&quot;</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>             )</span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>ta<span class="sc">$</span>level <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(ta<span class="sc">$</span>level)</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">rbind</span>(<span class="fu">head</span>(ta,<span class="dv">4</span>),<span class="fu">tail</span>(ta,<span class="dv">4</span>)),<span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">bear</th>
+<th align="right">area</th>
+<th align="right">level</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">145</td>
+<td align="right">9936</td>
+<td align="right">20</td>
+</tr>
+<tr class="even">
+<td align="left">145</td>
+<td align="right">13104</td>
+<td align="right">25</td>
+</tr>
+<tr class="odd">
+<td align="left">145</td>
+<td align="right">16560</td>
+<td align="right">30</td>
+</tr>
+<tr class="even">
+<td align="left">145</td>
+<td align="right">20304</td>
+<td align="right">35</td>
+</tr>
+<tr class="odd">
+<td align="left">168</td>
+<td align="right">38448</td>
+<td align="right">80</td>
+</tr>
+<tr class="even">
+<td align="left">168</td>
+<td align="right">45216</td>
+<td align="right">85</td>
+</tr>
+<tr class="odd">
+<td align="left">168</td>
+<td align="right">54432</td>
+<td align="right">90</td>
+</tr>
+<tr class="even">
+<td align="left">168</td>
+<td align="right">72720</td>
+<td align="right">95</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>(p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ta,<span class="fu">aes</span>(level,area,<span class="at">colour=</span>bear))<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">geom_point</span>())</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson05/unnamed-chunk-47-1.svg" width="646.08" height="565" /></p>
+</div>
+<div id="извлечение-уровней" class="section level5">
+<h5>Извлечение уровней</h5>
+<div class="font95">
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>levHR <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">50</span>)</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">lapply</span>(ud,<span class="cf">function</span>(U) {</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>   hr2 <span class="ot">&lt;-</span> <span class="fu">lapply</span>(levHR,<span class="cf">function</span>(L) {</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>      hr3 <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">getverticeshr</span>(U,<span class="at">percent=</span>L,<span class="at">unin=</span><span class="st">&quot;m&quot;</span>,<span class="at">unout=</span><span class="st">&quot;km2&quot;</span>)</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>      hr3<span class="sc">$</span>level <span class="ot">&lt;-</span> L</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>      sf<span class="sc">::</span><span class="fu">st_as_sf</span>(hr3)</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>   })</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">do.call</span>(rbind,hr2)</span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">names</span>(hr),<span class="cf">function</span>(x) {hr[[x]]<span class="sc">$</span>id <span class="ot">&lt;-</span> x;hr[[x]]})</span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,hr)</span></code></pre></div>
+<p>Экспорт</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>))</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>dst <span class="ot">&lt;-</span> <span class="st">&quot;data/hr.geojson&quot;</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(sf<span class="sc">::</span><span class="fu">st_transform</span>(hr,<span class="dv">4326</span>)</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>            ,<span class="at">dsn=</span>dst</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>            ,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(dst)</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>            ,<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(dst)</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div>
+</div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>hr</span></code></pre></div>
+<pre><code>Simple feature collection with 4 features and 3 fields
+Geometry type: GEOMETRY
+Dimension:     XY
+Bounding box:  xmin: -109626 ymin: -2254479 xmax: 779252.1 ymax: -1438563
+CRS:           +proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs
+             id      area level                       geometry
+homerange   145 200163.21    95 MULTIPOLYGON (((-109626 -20...
+homerange1  145  35748.68    50 POLYGON ((437079.1 -2107065...
+homerange2  168  73098.40    95 POLYGON ((-90920.86 -210402...
+homerange11 168  17253.45    50 POLYGON ((-6920.856 -214782...</code></pre>
+</div>
+<div id="визуализация" class="section level5">
+<h5>Визуализация</h5>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hr)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson05/unnamed-chunk-51-1.svg" width="646.08" /></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hr[<span class="fu">order</span>(hr<span class="sc">$</span>level),])</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson05/unnamed-chunk-52-1.svg" width="646.08" /></p>
+</div>
+</div>
+<div id="анализ-траекторий" class="section level4">
+<h4>Анализ траекторий</h4>
+<p>TODO? См. R пакет <code>adehabitatLT</code></p>
+</div>
+</div>
+<div id="gps" class="section level3">
+<h3>GPS</h3>
+<p>TODO? Файлы в формате GPX, импортируемые с GPS-навигаторов.</p>
+<style type="text/css">
+:root {
+   --sidebar: 27%;
+   --pointsize: 21pt;
+   --sidebar-pointsize: 85%;
+}
+</style>
+<div id="section" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<div id="refs" class="references csl-bib-body" entry-spacing="1">
+<div id="ref-Durner2019_data" class="csl-entry">
+Durner GM. 2019. <span class="nocase">Polar Bear Distribution and Habitat Resource Selection Data, Beaufort and Chukchi Seas</span>, 1985-2016. U.S. Geological Survey. <a href="https://doi.org/10.5066/P9ZRJ3XU">10.5066/P9ZRJ3XU</a>.
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
