@@ -49,103 +49,103 @@
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date">Занятие 02, 24 марта 2022 г.
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="meeting">Занятие 02</span> 24 марта 2022 г.
 <div class="updated">
-Обновлено: 2022-03-30 10:12
+Обновлено: 2022-04-15 11:00
 </div></h4>
 
 
 <div id="TOC">
 <ul>
-<li><a href="#установка">Установка</a>
+<li><a href="#установка" id="toc-установка">Установка</a>
 <ul>
-<li><a href="#standalone">Standalone</a></li>
-<li><a href="#osgeo4w">OSGeo4W</a></li>
-<li><a href="#nextgis-qgis">NextGIS QGIS</a></li>
-<li><a href="#good-practice">Good practice</a></li>
+<li><a href="#standalone" id="toc-standalone">Standalone</a></li>
+<li><a href="#osgeo4w" id="toc-osgeo4w">OSGeo4W</a></li>
+<li><a href="#nextgis-qgis" id="toc-nextgis-qgis">NextGIS QGIS</a></li>
+<li><a href="#good-practice" id="toc-good-practice">Good practice</a></li>
 </ul></li>
-<li><a href="#интерфейс-пользователя">Интерфейс пользователя</a>
+<li><a href="#интерфейс-пользователя" id="toc-интерфейс-пользователя">Интерфейс пользователя</a>
 <ul>
-<li><a href="#menu">Menu</a>
+<li><a href="#menu" id="toc-menu">Menu</a>
 <ul>
-<li><a href="#project">Project</a></li>
-<li><a href="#edit">Edit</a></li>
-<li><a href="#view">View</a></li>
-<li><a href="#layer">Layer</a></li>
-<li><a href="#settings">Settings</a></li>
-<li><a href="#plugins">Plugins</a></li>
-<li><a href="#vector">Vector</a></li>
-<li><a href="#raster">Raster</a></li>
-<li><a href="#web">Web</a></li>
-<li><a href="#processing">Processing</a></li>
+<li><a href="#project" id="toc-project">Project</a></li>
+<li><a href="#edit" id="toc-edit">Edit</a></li>
+<li><a href="#view" id="toc-view">View</a></li>
+<li><a href="#layer" id="toc-layer">Layer</a></li>
+<li><a href="#settings" id="toc-settings">Settings</a></li>
+<li><a href="#plugins" id="toc-plugins">Plugins</a></li>
+<li><a href="#vector" id="toc-vector">Vector</a></li>
+<li><a href="#raster" id="toc-raster">Raster</a></li>
+<li><a href="#web" id="toc-web">Web</a></li>
+<li><a href="#processing" id="toc-processing">Processing</a></li>
 </ul></li>
-<li><a href="#options">Options</a>
+<li><a href="#options" id="toc-options">Options</a>
 <ul>
-<li><a href="#general">General</a></li>
-<li><a href="#crs-handling">CRS Handling</a></li>
-<li><a href="#custom-crs">Custom CRS</a></li>
-<li><a href="#gdal-raster">GDAL Raster</a></li>
-<li><a href="#gdal-vector">GDAL Vector</a></li>
-<li><a href="#rendering">Rendering</a></li>
-<li><a href="#map-tools">Map Tools</a></li>
-<li><a href="#digitizing">Digitizing</a></li>
-<li><a href="#gps-support">GPS Support</a></li>
+<li><a href="#general" id="toc-general">General</a></li>
+<li><a href="#crs-handling" id="toc-crs-handling">CRS Handling</a></li>
+<li><a href="#custom-crs" id="toc-custom-crs">Custom CRS</a></li>
+<li><a href="#gdal-raster" id="toc-gdal-raster">GDAL Raster</a></li>
+<li><a href="#gdal-vector" id="toc-gdal-vector">GDAL Vector</a></li>
+<li><a href="#rendering" id="toc-rendering">Rendering</a></li>
+<li><a href="#map-tools" id="toc-map-tools">Map Tools</a></li>
+<li><a href="#digitizing" id="toc-digitizing">Digitizing</a></li>
+<li><a href="#gps-support" id="toc-gps-support">GPS Support</a></li>
 </ul></li>
-<li><a href="#specific">Specific</a>
+<li><a href="#specific" id="toc-specific">Specific</a>
 <ul>
-<li><a href="#panels">Panels</a></li>
-<li><a href="#toolbars">Toolbars</a></li>
-<li><a href="#shortcuts">Shortcuts</a></li>
-<li><a href="#style-manager">Style Manager</a></li>
-<li><a href="#plugins-1">Plugins</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#ведение-проекта">Ведение проекта</a>
-<ul>
-<li><a href="#options-1">Options</a>
-<ul>
-<li><a href="#crs">CRS</a></li>
-<li><a href="#decoration-scalebar">Decoration Scalebar</a></li>
-<li><a href="#decoration-north-arrow">Decoration North Arrow</a></li>
-<li><a href="#decoration-copyright-label">Decoration Copyright Label</a></li>
-<li><a href="#basemap-qms">Basemap (QMS)</a></li>
-<li><a href="#esri-satellite">ESRI Satellite</a></li>
-</ul></li>
-<li><a href="#layer-1">Layer</a>
-<ul>
-<li><a href="#add">Add</a></li>
-<li><a href="#properties">Properties</a></li>
-<li><a href="#information">Information</a></li>
-<li><a href="#information-fields">Information (Fields)</a></li>
-<li><a href="#symbology">Symbology</a></li>
-<li><a href="#symbol-settings">Symbol Settings</a></li>
-<li><a href="#query">Query</a></li>
-<li><a href="#attribute-table">Attribute Table</a></li>
-<li><a href="#rendering-1">Rendering</a></li>
-</ul></li>
-<li><a href="#labelling">Labelling</a>
-<ul>
-<li><a href="#text">Text</a></li>
-<li><a href="#text-buffer">Text Buffer</a></li>
-<li><a href="#placement">Placement</a></li>
-<li><a href="#rendering-2">Rendering</a></li>
-</ul></li>
-<li><a href="#digitizing-1">Digitizing</a>
-<ul>
-<li><a href="#create">Create</a></li>
-<li><a href="#new-shapefile">New Shapefile</a></li>
-<li><a href="#feature-attrubute">Feature Attrubute</a></li>
-<li><a href="#add-ring">Add Ring</a></li>
-<li><a href="#результат">Результат</a></li>
+<li><a href="#panels" id="toc-panels">Panels</a></li>
+<li><a href="#toolbars" id="toc-toolbars">Toolbars</a></li>
+<li><a href="#shortcuts" id="toc-shortcuts">Shortcuts</a></li>
+<li><a href="#style-manager" id="toc-style-manager">Style Manager</a></li>
+<li><a href="#plugins-1" id="toc-plugins-1">Plugins</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#анализ">Анализ</a>
+<li><a href="#ведение-проекта" id="toc-ведение-проекта">Ведение проекта</a>
 <ul>
-<li><a href="#извлечение-характеристик">Извлечение характеристик</a>
+<li><a href="#options-1" id="toc-options-1">Options</a>
 <ul>
-<li><a href="#extract-perimeter">Extract Perimeter</a></li>
-<li><a href="#builder">Builder</a></li>
-<li><a href="#as-new-field">as New Field</a></li>
+<li><a href="#crs" id="toc-crs">CRS</a></li>
+<li><a href="#decoration-scalebar" id="toc-decoration-scalebar">Decoration Scalebar</a></li>
+<li><a href="#decoration-north-arrow" id="toc-decoration-north-arrow">Decoration North Arrow</a></li>
+<li><a href="#decoration-copyright-label" id="toc-decoration-copyright-label">Decoration Copyright Label</a></li>
+<li><a href="#basemap-qms" id="toc-basemap-qms">Basemap (QMS)</a></li>
+<li><a href="#esri-satellite" id="toc-esri-satellite">ESRI Satellite</a></li>
+</ul></li>
+<li><a href="#layer-1" id="toc-layer-1">Layer</a>
+<ul>
+<li><a href="#add" id="toc-add">Add</a></li>
+<li><a href="#properties" id="toc-properties">Properties</a></li>
+<li><a href="#information" id="toc-information">Information</a></li>
+<li><a href="#information-fields" id="toc-information-fields">Information (Fields)</a></li>
+<li><a href="#symbology" id="toc-symbology">Symbology</a></li>
+<li><a href="#symbol-settings" id="toc-symbol-settings">Symbol Settings</a></li>
+<li><a href="#query" id="toc-query">Query</a></li>
+<li><a href="#attribute-table" id="toc-attribute-table">Attribute Table</a></li>
+<li><a href="#rendering-1" id="toc-rendering-1">Rendering</a></li>
+</ul></li>
+<li><a href="#labelling" id="toc-labelling">Labelling</a>
+<ul>
+<li><a href="#text" id="toc-text">Text</a></li>
+<li><a href="#text-buffer" id="toc-text-buffer">Text Buffer</a></li>
+<li><a href="#placement" id="toc-placement">Placement</a></li>
+<li><a href="#rendering-2" id="toc-rendering-2">Rendering</a></li>
+</ul></li>
+<li><a href="#digitizing-1" id="toc-digitizing-1">Digitizing</a>
+<ul>
+<li><a href="#create" id="toc-create">Create</a></li>
+<li><a href="#new-shapefile" id="toc-new-shapefile">New Shapefile</a></li>
+<li><a href="#feature-attrubute" id="toc-feature-attrubute">Feature Attrubute</a></li>
+<li><a href="#add-ring" id="toc-add-ring">Add Ring</a></li>
+<li><a href="#результат" id="toc-результат">Результат</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#анализ" id="toc-анализ">Анализ</a>
+<ul>
+<li><a href="#извлечение-характеристик" id="toc-извлечение-характеристик">Извлечение характеристик</a>
+<ul>
+<li><a href="#extract-perimeter" id="toc-extract-perimeter">Extract Perimeter</a></li>
+<li><a href="#builder" id="toc-builder">Builder</a></li>
+<li><a href="#as-new-field" id="toc-as-new-field">as New Field</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -181,6 +181,7 @@
 </iframe>
 <p>Находим “Download NextGIS QGIS installer”</p>
 <hr />
+<p>class: middle</p>
 </div>
 <div id="good-practice" class="section level3">
 <h3>Good practice</h3>

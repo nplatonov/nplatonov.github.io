@@ -167,9 +167,9 @@ div.csl-indent {
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date">Занятие 08, 07, 14 апреля 2022 г.
-<div class="\&quot;updated\&quot;">
-Обновлено: 2022-04-14 17:49
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="meeting">Занятие 08</span> 07 апреля, 14 апреля 2022 г.
+<div class="updated">
+Обновлено: 2022-04-15 13:07
 </div></h4>
 
 
@@ -212,11 +212,17 @@ div.csl-indent {
 </ul></li>
 <li><a href="#gps" id="toc-gps">GPS</a>
 <ul>
+<li><a href="#qgis" id="toc-qgis">QGIS</a>
+<ul>
+<li><a href="#импорт-данных" id="toc-импорт-данных">Импорт данных</a>
+<ul>
 <li><a href="#plt" id="toc-plt">PLT</a></li>
 <li><a href="#gpx" id="toc-gpx">GPX</a></li>
+</ul></li>
+</ul></li>
 <li><a href="#r" id="toc-r">R</a>
 <ul>
-<li><a href="#ввод" id="toc-ввод">Ввод</a>
+<li><a href="#импорт-данных-1" id="toc-импорт-данных-1">Импорт данных</a>
 <ul>
 <li><a href="#plt-1" id="toc-plt-1">PLT</a></li>
 <li><a href="#gpx-1" id="toc-gpx-1">GPX</a></li>
@@ -240,7 +246,7 @@ div.csl-indent {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>fname <span class="ot">&lt;-</span> list1[<span class="fu">grep</span>(<span class="st">&quot;kernelUD&quot;</span>,<span class="fu">basename</span>(list1))]</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">file.remove</span>(list1)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fname</span></code></pre></div>
-<pre><code>[1] &quot;C:\\TEMP\\RtmpWwN4Z6/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
+<pre><code>[1] &quot;C:\\TEMP\\Rtmpo16TFk/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
 <div id="подготовка-данных" class="section level3">
 <h3><span class="small">Подготовка данных</span></h3>
 <div class="oversize">
@@ -805,13 +811,13 @@ Characteristics of the bursts:
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
   3.000   3.000   3.012   7.753   3.090 289.299       2 </code></pre>
 <p>Обратим внимание на медианное значение частоты локации: каждые три дня.</p>
-<p>plotltr(lt1,“dt/3600/24”)
-Установим точку отсчета</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>(refda <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">strptime</span>(<span class="st">&quot;12:00&quot;</span>,<span class="st">&quot;%H:%M&quot;</span>,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))))</span></code></pre></div>
-<pre><code>[1] &quot;2022-04-14 12:00:00 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plotltr(lt1,&quot;dt/3600/24&quot;)</span></span></code></pre></div>
+<p>Установим точку отсчета</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>(refda <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">strptime</span>(<span class="st">&quot;12:00&quot;</span>,<span class="st">&quot;%H:%M&quot;</span>,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))))</span></code></pre></div>
+<pre><code>[1] &quot;2022-04-15 12:00:00 UTC&quot;</code></pre>
 <p>Заполним пропуски значениями <code>NA</code></p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>lt3 <span class="ot">&lt;-</span> <span class="fu">setNA</span>(lt2,refda,<span class="dv">3</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span>)</span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>lt3</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>lt3 <span class="ot">&lt;-</span> <span class="fu">setNA</span>(lt2,refda,<span class="dv">3</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span>)</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>lt3</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -821,23 +827,23 @@ Irregular traject. Variable time lag between two locs
 
 Characteristics of the bursts:
    id burst nb.reloc NAs          date.begin            date.end
-1 145 145.1       15   3 2008-05-14 03:54:00 2008-06-26 18:57:00
+1 145 145.1       16   4 2008-05-14 03:54:00 2008-06-26 18:57:00
 2 145 145.3       36   9 2009-03-17 20:15:00 2009-06-30 18:29:00
 3 145 145.4       80  17 2009-11-03 18:26:00 2010-06-28 18:58:00
 4 145 145.5       71  24 2010-12-01 20:34:00 2011-06-29 16:51:00
 5 145 145.6       17  12 2012-03-28 20:20:00 2012-05-15 18:27:00
-6 168 168.1       27   4 2012-04-12 21:45:00 2012-06-30 10:00:00
-7 168 168.2       80   1 2012-11-02 00:00:00 2013-06-28 14:17:00
+6 168 168.1       27   1 2012-04-12 21:45:00 2012-06-30 10:00:00
+7 168 168.2       80   7 2012-11-05 00:00:00 2013-06-28 14:17:00
 8 168 168.3       27   0 2014-04-13 21:27:00 2014-06-30 22:00:00
-9 168 168.4       60  12 2014-12-06 00:00:00 2015-05-30 04:00:00
+9 168 168.4       61  10 2014-12-03 00:00:00 2015-05-30 04:00:00
 
 
  infolocs provided. The following variables are available:
 [1] &quot;pkey&quot;</code></pre>
 <p><span id="data-lt4" class="hiddenanchor"> </span>
 Приведение к единому шагу по времени. См. <a href="#map-lt4">визуализацию</a>.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>lt4 <span class="ot">&lt;-</span> <span class="fu">sett0</span>(lt3,refda,<span class="dv">3</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span>)</span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>lt4</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>lt4 <span class="ot">&lt;-</span> <span class="fu">sett0</span>(lt3,refda,<span class="dv">3</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span>)</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>lt4</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -847,29 +853,29 @@ Regular traject. Time lag between two locs: 259200 seconds
 
 Characteristics of the bursts:
    id burst nb.reloc NAs          date.begin            date.end
-1 145 145.1       15   3 2008-05-15 12:00:00 2008-06-26 12:00:00
-2 145 145.3       36   9 2009-03-17 12:00:00 2009-06-30 12:00:00
-3 145 145.4       80  17 2009-11-03 12:00:00 2010-06-28 12:00:00
-4 145 145.5       71  24 2010-12-01 12:00:00 2011-06-29 12:00:00
-5 145 145.6       17  12 2012-03-28 12:00:00 2012-05-15 12:00:00
-6 168 168.1       27   4 2012-04-12 12:00:00 2012-06-29 12:00:00
-7 168 168.2       80   1 2012-11-02 12:00:00 2013-06-27 12:00:00
-8 168 168.3       27   0 2014-04-14 12:00:00 2014-07-01 12:00:00
-9 168 168.4       60  12 2014-12-04 12:00:00 2015-05-30 12:00:00
+1 145 145.1       16   4 2008-05-13 12:00:00 2008-06-27 12:00:00
+2 145 145.3       36   9 2009-03-18 12:00:00 2009-07-01 12:00:00
+3 145 145.4       80  17 2009-11-04 12:00:00 2010-06-29 12:00:00
+4 145 145.5       71  24 2010-12-02 12:00:00 2011-06-30 12:00:00
+5 145 145.6       17  12 2012-03-29 12:00:00 2012-05-16 12:00:00
+6 168 168.1       27   1 2012-04-13 12:00:00 2012-06-30 12:00:00
+7 168 168.2       80   7 2012-11-03 12:00:00 2013-06-28 12:00:00
+8 168 168.3       27   0 2014-04-12 12:00:00 2014-06-29 12:00:00
+9 168 168.4       61  10 2014-12-02 12:00:00 2015-05-31 12:00:00
 
 
  infolocs provided. The following variables are available:
 [1] &quot;pkey&quot;</code></pre>
 <p>Проверка на регулярность по времени.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.sd</span>(lt4)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.sd</span>(lt4)</span></code></pre></div>
 <pre><code>[1] FALSE</code></pre>
 <div id="одинаковый-период" class="section level5">
 <h5>Одинаковый период</h5>
 <p>Получение траекторий разных объектов в один временной период.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>lt5 <span class="ot">&lt;-</span> <span class="fu">set.limits</span>(lt4[<span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)]</span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>                 ,<span class="at">begin=</span><span class="st">&quot;2012-04-11 12:00&quot;</span>,<span class="at">dur=</span><span class="dv">33</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span></span>
-<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>                 ,<span class="at">pattern=</span><span class="st">&quot;%Y-%m-%d %H:%M&quot;</span>,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))</span>
-<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>lt5</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>lt5 <span class="ot">&lt;-</span> <span class="fu">set.limits</span>(lt4[<span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)]</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>                 ,<span class="at">begin=</span><span class="st">&quot;2012-04-11 12:00&quot;</span>,<span class="at">dur=</span><span class="dv">33</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>                 ,<span class="at">pattern=</span><span class="st">&quot;%Y-%m-%d %H:%M&quot;</span>,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))</span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>lt5</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -880,12 +886,12 @@ Regular traject. Time lag between two locs: 259200 seconds
 Characteristics of the bursts:
    id burst nb.reloc NAs          date.begin            date.end
 1 145 145.6       12   8 2012-04-11 12:00:00 2012-05-14 12:00:00
-2 168 168.1       12   1 2012-04-11 12:00:00 2012-05-14 12:00:00
+2 168 168.1       12   0 2012-04-11 12:00:00 2012-05-14 12:00:00
 
 
  infolocs provided. The following variables are available:
 [1] &quot;pkey&quot;</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.sd</span>(lt5)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.sd</span>(lt5)</span></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
@@ -894,8 +900,8 @@ Characteristics of the bursts:
 <div id="data-lt6" class="section level5">
 <h5>… по расстоянию</h5>
 <p>Локации каждые 50 км. См. <a href="#map-lt6">визуализацию</a>.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>lt6 <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4,<span class="dv">50000</span>,<span class="at">type=</span><span class="st">&quot;space&quot;</span>) <span class="do">## 50000</span></span>
-<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>lt6</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>lt6 <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4,<span class="dv">50000</span>,<span class="at">type=</span><span class="st">&quot;space&quot;</span>) <span class="do">## 50000</span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>lt6</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -905,15 +911,15 @@ Irregular traject. Variable time lag between two locs
 
 Characteristics of the bursts:
    id        burst nb.reloc NAs          date.begin            date.end
-1 145 145.1.R50000        6   0 2008-05-15 12:00:00 2008-06-26 05:12:02
-2 145 145.3.R50000       19   0 2009-03-17 12:00:00 2009-06-30 08:29:14
-3 145 145.4.R50000       32   0 2009-11-03 12:00:00 2010-06-27 09:31:12
-4 145 145.5.R50000       21   0 2010-12-01 12:00:00 2011-06-27 04:20:19
-5 145 145.6.R50000        4   0 2012-03-28 12:00:00 2012-05-10 23:37:20
-6 168 168.1.R50000        8   0 2012-04-12 12:00:00 2012-06-28 06:44:26
-7 168 168.2.R50000       44   0 2012-11-02 12:00:00 2013-06-27 07:26:02
-8 168 168.3.R50000        3   0 2014-04-14 12:00:00 2014-07-01 06:11:42
-9 168 168.4.R50000       13   0 2014-12-04 12:00:00 2015-05-18 04:13:57
+1 145 145.1.R50000        6   0 2008-05-13 12:00:00 2008-06-27 05:12:02
+2 145 145.3.R50000       19   0 2009-03-18 12:00:00 2009-07-01 08:29:14
+3 145 145.4.R50000       32   0 2009-11-04 12:00:00 2010-06-28 09:31:12
+4 145 145.5.R50000       21   0 2010-12-02 12:00:00 2011-06-28 04:20:19
+5 145 145.6.R50000        4   0 2012-03-29 12:00:00 2012-05-11 23:37:20
+6 168 168.1.R50000        9   0 2012-04-13 12:00:00 2012-06-28 17:09:24
+7 168 168.2.R50000       38   0 2012-11-03 12:00:00 2013-06-28 07:21:26
+8 168 168.3.R50000        3   0 2014-04-12 12:00:00 2014-06-29 06:11:42
+9 168 168.4.R50000       16   0 2014-12-02 12:00:00 2015-05-19 11:29:34
 
 
  infolocs provided. The following variables are available:
@@ -922,8 +928,8 @@ Characteristics of the bursts:
 <div id="data-lt7" class="section level5">
 <h5>… по времени</h5>
 <p>Локации каждые шесть суток. См. <a href="#map-lt7">визуализацию</a>.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>lt7 <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4,<span class="dv">6</span><span class="sc">*</span><span class="dv">86400</span>,<span class="at">type=</span><span class="st">&quot;time&quot;</span>,<span class="at">nnew=</span><span class="dv">30</span>)</span>
-<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>lt7</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>lt7 <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4,<span class="dv">6</span><span class="sc">*</span><span class="dv">86400</span>,<span class="at">type=</span><span class="st">&quot;time&quot;</span>,<span class="at">nnew=</span><span class="dv">30</span>)</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>lt7</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -933,21 +939,21 @@ Regular traject. Time lag between two locs: 518400 seconds
 
 Characteristics of the bursts:
    id burst nb.reloc NAs          date.begin            date.end
-1 145 145.1        7   3 2008-05-15 12:00:00 2008-06-20 12:00:00
-2 145 145.3       18   8 2009-03-17 12:00:00 2009-06-27 12:00:00
-3 145 145.4       40  17 2009-11-03 12:00:00 2010-06-25 12:00:00
-4 145 145.5       35  19 2010-12-01 12:00:00 2011-06-23 12:00:00
-5 145 145.6        8   7 2012-03-28 12:00:00 2012-05-09 12:00:00
-6 168 168.1       13   4 2012-04-12 12:00:00 2012-06-23 12:00:00
-7 168 168.2       40   1 2012-11-02 12:00:00 2013-06-24 12:00:00
-8 168 168.3       13   0 2014-04-14 12:00:00 2014-06-25 12:00:00
-9 168 168.4       30  11 2014-12-04 12:00:00 2015-05-27 12:00:00
+1 145 145.1        8   3 2008-05-13 12:00:00 2008-06-24 12:00:00
+2 145 145.3       18   8 2009-03-18 12:00:00 2009-06-28 12:00:00
+3 145 145.4       40  17 2009-11-04 12:00:00 2010-06-26 12:00:00
+4 145 145.5       35  19 2010-12-02 12:00:00 2011-06-24 12:00:00
+5 145 145.6        8   7 2012-03-29 12:00:00 2012-05-10 12:00:00
+6 168 168.1       13   1 2012-04-13 12:00:00 2012-06-24 12:00:00
+7 168 168.2       40   6 2012-11-03 12:00:00 2013-06-25 12:00:00
+8 168 168.3       13   0 2014-04-12 12:00:00 2014-06-23 12:00:00
+9 168 168.4       30   8 2014-12-02 12:00:00 2015-05-25 12:00:00
 
 
  infolocs provided. The following variables are available:
 [1] &quot;pkey&quot;</code></pre>
 <p>Извлечение характеристик регулярных траекторий.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>(di <span class="ot">&lt;-</span> <span class="fu">sd2df</span>(lt5,<span class="st">&quot;date&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>(di <span class="ot">&lt;-</span> <span class="fu">sd2df</span>(lt5,<span class="st">&quot;date&quot;</span>))</span></code></pre></div>
 <pre><code>                 145.6               168.1
 1  2012-04-11 12:00:00 2012-04-11 12:00:00
 2  2012-04-14 12:00:00 2012-04-14 12:00:00
@@ -966,58 +972,58 @@ Characteristics of the bursts:
 <div id="визуализация-1" class="section level4">
 <h4>Визуализация</h4>
 <p>Тест на нормальное распределение пропусков</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runsNAltraj</span>(lt4)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runsNAltraj</span>(lt4)</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson08/dd11-1.svg" width="646.08" /></p>
 <p>Просмотр траекторий</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lt4)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lt4)</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson08/dd13-1.svg" width="576" /></p>
 <p>Просмотр отдельно взятой траектории</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lt4[<span class="dv">8</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lt4[<span class="dv">8</span>])</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson08/dd14-1.svg" width="576" /></p>
 <p>Вспомогательная функция</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;plottraj&#39;</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(lt,<span class="at">desc=</span><span class="fu">c</span>(<span class="st">&quot;burst&quot;</span>,<span class="st">&quot;id&quot;</span>)) {</span>
-<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>   desc <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(desc)</span>
-<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>   lt <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(lt)</span>
-<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a>   id <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lt,attr,desc)</span>
-<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a>   bt_loc <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(<span class="fu">ld</span>(lt),<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>),<span class="at">crs=</span><span class="fu">st_crs</span>(loc)</span>
-<span id="cb112-6"><a href="#cb112-6" aria-hidden="true" tabindex="-1"></a>                         )[<span class="fu">c</span>(desc,<span class="st">&quot;date&quot;</span>)]</span>
-<span id="cb112-7"><a href="#cb112-7" aria-hidden="true" tabindex="-1"></a>   bt_ext <span class="ot">&lt;-</span> <span class="fu">by</span>(<span class="fu">st_geometry</span>(bt_loc),bt_loc[[desc]],<span class="cf">function</span>(x) {</span>
-<span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">st_sf</span>(<span class="at">onset=</span><span class="fu">c</span>(<span class="st">&quot;begin&quot;</span>,<span class="st">&quot;end&quot;</span>)</span>
-<span id="cb112-9"><a href="#cb112-9" aria-hidden="true" tabindex="-1"></a>           ,<span class="at">geometry=</span><span class="fu">rbind</span>(<span class="fu">head</span>(x,<span class="dv">1</span>),<span class="fu">tail</span>(x,<span class="dv">1</span>)))</span>
-<span id="cb112-10"><a href="#cb112-10" aria-hidden="true" tabindex="-1"></a>   })</span>
-<span id="cb112-11"><a href="#cb112-11" aria-hidden="true" tabindex="-1"></a>   bt_ext <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,bt_ext)</span>
-<span id="cb112-12"><a href="#cb112-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">st_crs</span>(bt_ext) <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(bt_loc)</span>
-<span id="cb112-13"><a href="#cb112-13" aria-hidden="true" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt,<span class="cf">function</span>(obj) {</span>
-<span id="cb112-14"><a href="#cb112-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.matrix</span>(obj[,<span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>)]) <span class="sc">|&gt;</span> <span class="fu">st_linestring</span>()</span>
-<span id="cb112-15"><a href="#cb112-15" aria-hidden="true" tabindex="-1"></a>   })</span>
-<span id="cb112-16"><a href="#cb112-16" aria-hidden="true" tabindex="-1"></a>   bt_track <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">dummy=</span>id,<span class="at">geometry=</span><span class="fu">st_sfc</span>(xy,<span class="at">crs=</span><span class="fu">st_crs</span>(loc)))</span>
-<span id="cb112-17"><a href="#cb112-17" aria-hidden="true" tabindex="-1"></a>   <span class="fu">colnames</span>(bt_track)[<span class="fu">grep</span>(<span class="st">&quot;dummy&quot;</span>,<span class="fu">colnames</span>(bt_track))] <span class="ot">&lt;-</span> desc</span>
-<span id="cb112-18"><a href="#cb112-18" aria-hidden="true" tabindex="-1"></a>   <span class="fu">with</span>(<span class="fu">list</span>(<span class="at">loc=</span>bt_loc,<span class="at">track=</span>bt_track,<span class="at">ext=</span>bt_ext)</span>
-<span id="cb112-19"><a href="#cb112-19" aria-hidden="true" tabindex="-1"></a>       ,<span class="fu">mapview</span>(ext,<span class="at">zcol=</span><span class="st">&quot;onset&quot;</span>,<span class="at">cex=</span><span class="dv">6</span>,<span class="at">layer=</span><span class="st">&quot;Period&quot;</span></span>
-<span id="cb112-20"><a href="#cb112-20" aria-hidden="true" tabindex="-1"></a>               ,<span class="at">col.regions=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>),<span class="at">legend=</span>F,<span class="at">home=</span>F)<span class="sc">+</span></span>
-<span id="cb112-21"><a href="#cb112-21" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mapview</span>(track,<span class="at">layer=</span><span class="st">&quot;Track&quot;</span>,<span class="at">zcol=</span>desc,<span class="at">home=</span>F,<span class="at">legend=</span>F)<span class="sc">+</span></span>
-<span id="cb112-22"><a href="#cb112-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mapview</span>(loc,<span class="at">zcol=</span>desc,<span class="at">layer=</span><span class="st">&quot;Locations&quot;</span>,<span class="at">cex=</span><span class="dv">3</span>,<span class="at">home=</span>T,<span class="at">label=</span><span class="st">&quot;date&quot;</span>)</span>
-<span id="cb112-23"><a href="#cb112-23" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb112-24"><a href="#cb112-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;plottraj&#39;</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(lt,<span class="at">desc=</span><span class="fu">c</span>(<span class="st">&quot;burst&quot;</span>,<span class="st">&quot;id&quot;</span>)) {</span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>   desc <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(desc)</span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>   lt <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(lt)</span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>   id <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lt,attr,desc)</span>
+<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a>   bt_loc <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(<span class="fu">ld</span>(lt),<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>),<span class="at">crs=</span><span class="fu">st_crs</span>(loc)</span>
+<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>                         )[<span class="fu">c</span>(desc,<span class="st">&quot;date&quot;</span>)]</span>
+<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a>   bt_ext <span class="ot">&lt;-</span> <span class="fu">by</span>(<span class="fu">st_geometry</span>(bt_loc),bt_loc[[desc]],<span class="cf">function</span>(x) {</span>
+<span id="cb113-8"><a href="#cb113-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">st_sf</span>(<span class="at">onset=</span><span class="fu">c</span>(<span class="st">&quot;begin&quot;</span>,<span class="st">&quot;end&quot;</span>)</span>
+<span id="cb113-9"><a href="#cb113-9" aria-hidden="true" tabindex="-1"></a>           ,<span class="at">geometry=</span><span class="fu">rbind</span>(<span class="fu">head</span>(x,<span class="dv">1</span>),<span class="fu">tail</span>(x,<span class="dv">1</span>)))</span>
+<span id="cb113-10"><a href="#cb113-10" aria-hidden="true" tabindex="-1"></a>   })</span>
+<span id="cb113-11"><a href="#cb113-11" aria-hidden="true" tabindex="-1"></a>   bt_ext <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,bt_ext)</span>
+<span id="cb113-12"><a href="#cb113-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">st_crs</span>(bt_ext) <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(bt_loc)</span>
+<span id="cb113-13"><a href="#cb113-13" aria-hidden="true" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt,<span class="cf">function</span>(obj) {</span>
+<span id="cb113-14"><a href="#cb113-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.matrix</span>(obj[,<span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>)]) <span class="sc">|&gt;</span> <span class="fu">st_linestring</span>()</span>
+<span id="cb113-15"><a href="#cb113-15" aria-hidden="true" tabindex="-1"></a>   })</span>
+<span id="cb113-16"><a href="#cb113-16" aria-hidden="true" tabindex="-1"></a>   bt_track <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">dummy=</span>id,<span class="at">geometry=</span><span class="fu">st_sfc</span>(xy,<span class="at">crs=</span><span class="fu">st_crs</span>(loc)))</span>
+<span id="cb113-17"><a href="#cb113-17" aria-hidden="true" tabindex="-1"></a>   <span class="fu">colnames</span>(bt_track)[<span class="fu">grep</span>(<span class="st">&quot;dummy&quot;</span>,<span class="fu">colnames</span>(bt_track))] <span class="ot">&lt;-</span> desc</span>
+<span id="cb113-18"><a href="#cb113-18" aria-hidden="true" tabindex="-1"></a>   <span class="fu">with</span>(<span class="fu">list</span>(<span class="at">loc=</span>bt_loc,<span class="at">track=</span>bt_track,<span class="at">ext=</span>bt_ext)</span>
+<span id="cb113-19"><a href="#cb113-19" aria-hidden="true" tabindex="-1"></a>       ,<span class="fu">mapview</span>(ext,<span class="at">zcol=</span><span class="st">&quot;onset&quot;</span>,<span class="at">cex=</span><span class="dv">6</span>,<span class="at">layer=</span><span class="st">&quot;Period&quot;</span></span>
+<span id="cb113-20"><a href="#cb113-20" aria-hidden="true" tabindex="-1"></a>               ,<span class="at">col.regions=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>),<span class="at">legend=</span>F,<span class="at">home=</span>F)<span class="sc">+</span></span>
+<span id="cb113-21"><a href="#cb113-21" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mapview</span>(track,<span class="at">layer=</span><span class="st">&quot;Track&quot;</span>,<span class="at">zcol=</span>desc,<span class="at">home=</span>F,<span class="at">legend=</span>F)<span class="sc">+</span></span>
+<span id="cb113-22"><a href="#cb113-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mapview</span>(loc,<span class="at">zcol=</span>desc,<span class="at">layer=</span><span class="st">&quot;Locations&quot;</span>,<span class="at">cex=</span><span class="dv">3</span>,<span class="at">home=</span>T,<span class="at">label=</span><span class="st">&quot;date&quot;</span>)</span>
+<span id="cb113-23"><a href="#cb113-23" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb113-24"><a href="#cb113-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <div id="map-lt4" class="section level5">
 <h5>шаг 3 суток, с пропусками</h5>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>(m1 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt4[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>(m1 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt4[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_dd17_2ce56d2527f7b84d2d13a3a40313bf0a.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson08/widget_dd17_ae56d1f626d1daed5bebafaff69542fd.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <p>[<span class="small">См. исходные данные</span>(#data-lt4)].
 ##### шаг 50 км, без пропусков {#map-lt6}</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>(m2 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt6[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>(m2 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt6[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_dd19_3072efd556817c88c0486552c854dcdd.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson08/widget_dd19_61e5d567e0a9ec8450baebe8f89491fb.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <p>[<span class="small">См. исходные данные</span>(#data-lt6)].
 ##### шаг 6 суток, без пропусков {#map-lt7}</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>(m3 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt7[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>(m3 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt7[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_dd21_50f7a82edaee5378998cfc49e5371382.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson08/widget_dd21_9aa0df83ebf4873cfe854fdfba08e511.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <p>[<span class="small">См. исходные данные</span>(#data-lt7)].
@@ -1025,8 +1031,8 @@ Characteristics of the bursts:
 <p>Рассмотрим метод поиска структурных изменений
 <span class="citation">(<a href="#ref-Lavielle1999" role="doc-biblioref">Lavielle, 1999</a>)</span>,
 <span class="citation">(<a href="#ref-Lavielle2005" role="doc-biblioref">Lavielle, 2005</a>)</span>.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>lt6b <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4[<span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">8</span>)],<span class="dv">15000</span>,<span class="at">type=</span><span class="st">&quot;space&quot;</span>)</span>
-<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>lt6b</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>lt6b <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4[<span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">8</span>)],<span class="dv">15000</span>,<span class="at">type=</span><span class="st">&quot;space&quot;</span>)</span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>lt6b</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -1036,53 +1042,53 @@ Irregular traject. Variable time lag between two locs
 
 Characteristics of the bursts:
    id        burst nb.reloc NAs          date.begin            date.end
-1 168 168.2.R15000      165   0 2012-11-02 12:00:00 2013-06-26 22:52:44
-2 168 168.3.R15000       22   0 2014-04-14 12:00:00 2014-06-30 18:06:23
+1 168 168.2.R15000      156   0 2012-11-03 12:00:00 2013-06-27 22:52:44
+2 168 168.3.R15000       22   0 2014-04-12 12:00:00 2014-06-28 18:06:23
 
 
  infolocs provided. The following variables are available:
 [1] &quot;pkey&quot;</code></pre>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>lv <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt6b,<span class="cf">function</span>(lt) {</span>
-<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>   y <span class="ot">&lt;-</span> <span class="fu">head</span>(lt<span class="sc">$</span>dt,<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">lavielle</span>(y, <span class="at">Lmin=</span><span class="dv">5</span>, <span class="at">Kmax=</span><span class="dv">4</span>, <span class="at">type=</span><span class="st">&quot;mean&quot;</span>)</span>
-<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>opP <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="fu">length</span>(lv)))</span>
-<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>nseg <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lv,chooseseg,<span class="at">draw=</span><span class="cn">TRUE</span>,<span class="at">output=</span><span class="st">&quot;opt&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>lv <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt6b,<span class="cf">function</span>(lt) {</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>   y <span class="ot">&lt;-</span> <span class="fu">head</span>(lt<span class="sc">$</span>dt,<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">lavielle</span>(y, <span class="at">Lmin=</span><span class="dv">5</span>, <span class="at">Kmax=</span><span class="dv">4</span>, <span class="at">type=</span><span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>opP <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="fu">length</span>(lv)))</span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>nseg <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lv,chooseseg,<span class="at">draw=</span><span class="cn">TRUE</span>,<span class="at">output=</span><span class="st">&quot;opt&quot;</span>)</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson08/dd24-1.svg" width="646.08" height="480" /></p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(opP)</span>
-<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>nseg</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(opP)</span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>nseg</span></code></pre></div>
 <pre><code>[1] 3 2</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>opP <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="fu">length</span>(lv),<span class="dv">1</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lv,<span class="cf">function</span>(lv2) {</span>
-<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a>   nseg <span class="ot">&lt;-</span> <span class="fu">chooseseg</span>(lv2,<span class="at">output=</span><span class="st">&quot;opt&quot;</span>,<span class="at">draw=</span><span class="cn">FALSE</span>)</span>
-<span id="cb122-4"><a href="#cb122-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">findpath</span>(lv2,<span class="at">K=</span>nseg,<span class="at">plotit=</span><span class="cn">TRUE</span>)</span>
-<span id="cb122-5"><a href="#cb122-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>opP <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="fu">length</span>(lv),<span class="dv">1</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lv,<span class="cf">function</span>(lv2) {</span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a>   nseg <span class="ot">&lt;-</span> <span class="fu">chooseseg</span>(lv2,<span class="at">output=</span><span class="st">&quot;opt&quot;</span>,<span class="at">draw=</span><span class="cn">FALSE</span>)</span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">findpath</span>(lv2,<span class="at">K=</span>nseg,<span class="at">plotit=</span><span class="cn">TRUE</span>)</span>
+<span id="cb123-5"><a href="#cb123-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson08/dd25-1.svg" width="646.08" height="470" /></p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(opP)</span></code></pre></div>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(lt6b))</span>
-<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">attr</span>(lt6b[[i]],<span class="st">&quot;segments&quot;</span>) <span class="ot">&lt;-</span> fp[[i]]</span>
-<span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt6b,<span class="cf">function</span>(lt) {</span>
-<span id="cb124-4"><a href="#cb124-4" aria-hidden="true" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">attr</span>(lt,<span class="st">&quot;segments&quot;</span>),<span class="cf">function</span>(seg) {</span>
-<span id="cb124-5"><a href="#cb124-5" aria-hidden="true" tabindex="-1"></a>      lt2 <span class="ot">&lt;-</span> lt[<span class="fu">seq</span>(seg[<span class="dv">1</span>],seg[<span class="dv">2</span>]<span class="sc">+</span><span class="fu">ifelse</span>(seg[<span class="dv">2</span>]<span class="sc">+</span><span class="dv">1</span><span class="sc">==</span><span class="fu">nrow</span>(lt),0L,1L)),]</span>
-<span id="cb124-6"><a href="#cb124-6" aria-hidden="true" tabindex="-1"></a>      xy2 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(lt2[,<span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>)]) <span class="sc">|&gt;</span> <span class="fu">st_linestring</span>()</span>
-<span id="cb124-7"><a href="#cb124-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">st_sf</span>(<span class="at">segment=</span><span class="fu">attr</span>(lt2,<span class="st">&quot;burst&quot;</span>)</span>
-<span id="cb124-8"><a href="#cb124-8" aria-hidden="true" tabindex="-1"></a>           ,<span class="at">begin=</span><span class="fu">min</span>(lt2<span class="sc">$</span>date),<span class="at">end=</span><span class="fu">max</span>(lt2<span class="sc">$</span>date)</span>
-<span id="cb124-9"><a href="#cb124-9" aria-hidden="true" tabindex="-1"></a>           ,<span class="at">dt_mean=</span><span class="fu">round</span>(<span class="fu">mean</span>(lt2<span class="sc">$</span>dt)<span class="sc">/</span><span class="dv">86400</span>,<span class="dv">1</span>)</span>
-<span id="cb124-10"><a href="#cb124-10" aria-hidden="true" tabindex="-1"></a>           ,<span class="at">dt_median=</span><span class="fu">round</span>(<span class="fu">median</span>(lt2<span class="sc">$</span>dt)<span class="sc">/</span><span class="dv">86400</span>,<span class="dv">1</span>)</span>
-<span id="cb124-11"><a href="#cb124-11" aria-hidden="true" tabindex="-1"></a>           ,<span class="at">geometry=</span><span class="fu">st_sfc</span>(<span class="fu">list</span>(xy2),<span class="at">crs=</span><span class="fu">st_crs</span>(loc)))</span>
-<span id="cb124-12"><a href="#cb124-12" aria-hidden="true" tabindex="-1"></a>   })</span>
-<span id="cb124-13"><a href="#cb124-13" aria-hidden="true" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,xy)</span>
-<span id="cb124-14"><a href="#cb124-14" aria-hidden="true" tabindex="-1"></a>   xy<span class="sc">$</span>segment <span class="ot">&lt;-</span> <span class="fu">paste</span>(xy<span class="sc">$</span>segment,<span class="fu">seq_along</span>(xy<span class="sc">$</span>segment),<span class="at">sep=</span><span class="st">&quot;:&quot;</span>)</span>
-<span id="cb124-15"><a href="#cb124-15" aria-hidden="true" tabindex="-1"></a>   xy</span>
-<span id="cb124-16"><a href="#cb124-16" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb124-17"><a href="#cb124-17" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,res)</span>
-<span id="cb124-18"><a href="#cb124-18" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">by</span>(res,res<span class="sc">$</span>segment,<span class="cf">function</span>(x) x))</span>
-<span id="cb124-19"><a href="#cb124-19" aria-hidden="true" tabindex="-1"></a>color <span class="ot">&lt;-</span> <span class="fu">sample</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">8</span>,<span class="st">&quot;Dark2&quot;</span>),<span class="fu">length</span>(res)) <span class="sc">|&gt;</span></span>
-<span id="cb124-20"><a href="#cb124-20" aria-hidden="true" tabindex="-1"></a>   <span class="fu">lapply</span>(<span class="cf">function</span>(x) x)</span>
-<span id="cb124-21"><a href="#cb124-21" aria-hidden="true" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_along</span>(res),<span class="cf">function</span>(x) <span class="st">&quot;dt_mean&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>(m4 <span class="ot">&lt;-</span> <span class="fu">mapview</span>(res,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">color=</span>color,<span class="at">label=</span>label))</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(opP)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(lt6b))</span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">attr</span>(lt6b[[i]],<span class="st">&quot;segments&quot;</span>) <span class="ot">&lt;-</span> fp[[i]]</span>
+<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt6b,<span class="cf">function</span>(lt) {</span>
+<span id="cb125-4"><a href="#cb125-4" aria-hidden="true" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">attr</span>(lt,<span class="st">&quot;segments&quot;</span>),<span class="cf">function</span>(seg) {</span>
+<span id="cb125-5"><a href="#cb125-5" aria-hidden="true" tabindex="-1"></a>      lt2 <span class="ot">&lt;-</span> lt[<span class="fu">seq</span>(seg[<span class="dv">1</span>],seg[<span class="dv">2</span>]<span class="sc">+</span><span class="fu">ifelse</span>(seg[<span class="dv">2</span>]<span class="sc">+</span><span class="dv">1</span><span class="sc">==</span><span class="fu">nrow</span>(lt),0L,1L)),]</span>
+<span id="cb125-6"><a href="#cb125-6" aria-hidden="true" tabindex="-1"></a>      xy2 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(lt2[,<span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>)]) <span class="sc">|&gt;</span> <span class="fu">st_linestring</span>()</span>
+<span id="cb125-7"><a href="#cb125-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">st_sf</span>(<span class="at">segment=</span><span class="fu">attr</span>(lt2,<span class="st">&quot;burst&quot;</span>)</span>
+<span id="cb125-8"><a href="#cb125-8" aria-hidden="true" tabindex="-1"></a>           ,<span class="at">begin=</span><span class="fu">min</span>(lt2<span class="sc">$</span>date),<span class="at">end=</span><span class="fu">max</span>(lt2<span class="sc">$</span>date)</span>
+<span id="cb125-9"><a href="#cb125-9" aria-hidden="true" tabindex="-1"></a>           ,<span class="at">dt_mean=</span><span class="fu">round</span>(<span class="fu">mean</span>(lt2<span class="sc">$</span>dt)<span class="sc">/</span><span class="dv">86400</span>,<span class="dv">1</span>)</span>
+<span id="cb125-10"><a href="#cb125-10" aria-hidden="true" tabindex="-1"></a>           ,<span class="at">dt_median=</span><span class="fu">round</span>(<span class="fu">median</span>(lt2<span class="sc">$</span>dt)<span class="sc">/</span><span class="dv">86400</span>,<span class="dv">1</span>)</span>
+<span id="cb125-11"><a href="#cb125-11" aria-hidden="true" tabindex="-1"></a>           ,<span class="at">geometry=</span><span class="fu">st_sfc</span>(<span class="fu">list</span>(xy2),<span class="at">crs=</span><span class="fu">st_crs</span>(loc)))</span>
+<span id="cb125-12"><a href="#cb125-12" aria-hidden="true" tabindex="-1"></a>   })</span>
+<span id="cb125-13"><a href="#cb125-13" aria-hidden="true" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,xy)</span>
+<span id="cb125-14"><a href="#cb125-14" aria-hidden="true" tabindex="-1"></a>   xy<span class="sc">$</span>segment <span class="ot">&lt;-</span> <span class="fu">paste</span>(xy<span class="sc">$</span>segment,<span class="fu">seq_along</span>(xy<span class="sc">$</span>segment),<span class="at">sep=</span><span class="st">&quot;:&quot;</span>)</span>
+<span id="cb125-15"><a href="#cb125-15" aria-hidden="true" tabindex="-1"></a>   xy</span>
+<span id="cb125-16"><a href="#cb125-16" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb125-17"><a href="#cb125-17" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,res)</span>
+<span id="cb125-18"><a href="#cb125-18" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">by</span>(res,res<span class="sc">$</span>segment,<span class="cf">function</span>(x) x))</span>
+<span id="cb125-19"><a href="#cb125-19" aria-hidden="true" tabindex="-1"></a>color <span class="ot">&lt;-</span> <span class="fu">sample</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">8</span>,<span class="st">&quot;Dark2&quot;</span>),<span class="fu">length</span>(res)) <span class="sc">|&gt;</span></span>
+<span id="cb125-20"><a href="#cb125-20" aria-hidden="true" tabindex="-1"></a>   <span class="fu">lapply</span>(<span class="cf">function</span>(x) x)</span>
+<span id="cb125-21"><a href="#cb125-21" aria-hidden="true" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_along</span>(res),<span class="cf">function</span>(x) <span class="st">&quot;dt_mean&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>(m4 <span class="ot">&lt;-</span> <span class="fu">mapview</span>(res,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">color=</span>color,<span class="at">label=</span>label))</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_dd28_001eff254b073c9a98641040a55cd2d4.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson08/widget_dd28_44b2b6a0763fc11e56f1da7857e2df1c.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 </div>
@@ -1092,17 +1098,20 @@ Characteristics of the bursts:
 <div id="gps" class="section level2">
 <h2>GPS</h2>
 <p><a href="data/2022-01-09_14-00_Sun.gpx">Данные</a> записи трека в приложении OsmAnd (Android) лыжной прогулки 09 января 2022 г.</p>
-<p>Для иллюстрации также использованы данные из OziExplorer в формате PLT.
-### QGIS</p>
-<div id="plt" class="section level4">
-<h4>PLT</h4>
+<p>Для иллюстрации также использованы данные из OziExplorer в формате PLT.</p>
+<div id="qgis" class="section level3">
+<h3>QGIS</h3>
+<div id="импорт-данных" class="section level4">
+<h4>Импорт данных</h4>
+<div id="plt" class="section level5">
+<h5>PLT</h5>
 <p>OziExprorer</p>
 <p class="centered-image"><img src="assets/lesson08/PLT-open.png" width="1092" /></p>
 <p>Формат *.PLT, используется драйвер GPSBabel.</p>
 <p class="centered-image"><img src="assets/lesson08/PLT-show.png" width="1096" /></p>
 </div>
-<div id="gpx" class="section level4">
-<h4>GPX</h4>
+<div id="gpx" class="section level5">
+<h5>GPX</h5>
 <p>Garmin через Mapsource</p>
 <p class="centered-image"><img src="assets/lesson08/GPX-open.png" width="1092" /></p>
 <p><span id="QGIS-layer" class="hiddenanchor"> </span></p>
@@ -1110,12 +1119,14 @@ Characteristics of the bursts:
 <p>См. метаданные по слоям в <a href="#R-layer">R</a></p>
 <p class="centered-image"><img src="assets/lesson08/GPX-show.png" width="1096" /></p>
 </div>
+</div>
+</div>
 <div id="r" class="section level3">
 <h3>R</h3>
 <p>Обработка пространственных данных - пакет <code>sf</code></p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(sf)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(sf)</span></code></pre></div>
 <p>Визуализация - пакет <code>plotly</code>. См. <a href="https://plotly.com/r">примеры с документацией</a>.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(plotly)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(plotly)</span></code></pre></div>
 <pre><code>Loading required package: plotly</code></pre>
 <pre><code>
 Attaching package: &#39;plotly&#39;</code></pre>
@@ -1131,14 +1142,14 @@ Attaching package: &#39;plotly&#39;</code></pre>
 <pre><code>The following object is masked from &#39;package:graphics&#39;:
 
     layout</code></pre>
-<div id="ввод" class="section level4">
-<h4>Ввод</h4>
+<div id="импорт-данных-1" class="section level4">
+<h4>Импорт данных</h4>
 <div id="plt-1" class="section level5">
 <h5>PLT</h5>
 <h5 class="toc-ignore">
 OziExplorer
 </h5>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>(car <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_layers</span>(<span class="st">&quot;Ozi/20090201_car.plt&quot;</span>)) <span class="do">## don&#39;t copy&amp;paste</span></span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>(car <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_layers</span>(<span class="st">&quot;Ozi/20090201_car.plt&quot;</span>)) <span class="do">## don&#39;t copy&amp;paste</span></span></code></pre></div>
 <pre><code>Driver: GPSBabel 
 Available layers:
     layer_name     geometry_type features fields
@@ -1158,8 +1169,8 @@ Rscript -e &quot;sf::st_layers(&#39;Ozi/20090201_car.plt&#39;)&quot;</code></pre
 <h5 class="toc-ignore">
 Windows MapSource, Android OsmAnd
 </h5>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>dsn <span class="ot">&lt;-</span> <span class="st">&quot;data/2022-01-09_14-00_Sun.gpx&quot;</span></span>
-<span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a>ski <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>dsn <span class="ot">&lt;-</span> <span class="st">&quot;data/2022-01-09_14-00_Sun.gpx&quot;</span></span>
+<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a>ski <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn)</span></code></pre></div>
 <pre><code>Multiple layers are present in data source data\2022-01-09_14-00_Sun.gpx, reading layer `waypoints&#39;.
 Use `st_layers&#39; to list all layer names and their type in a data source.
 Set the `layer&#39; argument in `st_read&#39; to read a particular layer.</code></pre>
@@ -1170,7 +1181,7 @@ Simple feature collection with 0 features and 23 fields
 Bounding box:  xmin: NA ymin: NA xmax: NA ymax: NA
 Geodetic CRS:  WGS 84</code></pre>
 <p><span id="R-layer" class="hiddenanchor"> </span></p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>(bundle <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_layers</span>(dsn))</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>(bundle <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_layers</span>(dsn))</span></code></pre></div>
 <pre><code>Driver: GPX 
 Available layers:
     layer_name     geometry_type features fields
@@ -1180,14 +1191,14 @@ Available layers:
 4 route_points             Point        0     25
 5 track_points             Point      835     27</code></pre>
 <p>См. метаданные по слоям в <a href="#QGIS-layer">QGIS</a></p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn,<span class="at">layer=</span><span class="st">&quot;track_points&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn,<span class="at">layer=</span><span class="st">&quot;track_points&quot;</span>)</span></code></pre></div>
 <pre><code>Reading layer `track_points&#39; from data source `data\2022-01-09_14-00_Sun.gpx&#39; using driver `GPX&#39;
 Simple feature collection with 835 features and 27 fields
 Geometry type: POINT
 Dimension:     XY
 Bounding box:  xmin: 37.178 ymin: 56.73616 xmax: 37.18673 ymax: 56.7426
 Geodetic CRS:  WGS 84</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn,<span class="at">layer=</span><span class="st">&quot;tracks&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn,<span class="at">layer=</span><span class="st">&quot;tracks&quot;</span>)</span></code></pre></div>
 <pre><code>Reading layer `tracks&#39; from data source `data\2022-01-09_14-00_Sun.gpx&#39; using driver `GPX&#39;
 Simple feature collection with 1 feature and 12 fields
 Geometry type: MULTILINESTRING
@@ -1199,49 +1210,57 @@ Geodetic CRS:  WGS 84</code></pre>
 <div id="обработка" class="section level4">
 <h4>Обработка</h4>
 <p>Как с пространственными данными</p>
-<p><span class="large">Домашнее задание</span>
-+ Исходные данные: “<code>data/2022-01-09_14-00_Sun.gpx</code>” (“Лыжная прогулка”)
-+ Длина круга<br />
-+ Средняя скорость круга<br />
-+ Сегментация на участки трассы и подхода/ухода к трассе</p>
+<div class="note">
+<h2 class="toc-ignore">
+Домашнее задание на 21 апреля 2022 г.
+</h2>
+<ul>
+<li><p>Исходные данные: “<code>data/2022-01-09_14-00_Sun.gpx</code>” (“Лыжная прогулка”)</p></li>
+<li><p>Длина круга</p></li>
+<li><p>Средняя скорость круга</p></li>
+<li><p>Сегментация на участки трассы и подхода/ухода к трассе</p></li>
+</ul>
+</div>
 </div>
 <div id="визуализация-2" class="section level4">
 <h4>Визуализация</h4>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>da <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sf<span class="sc">::</span><span class="fu">st_coordinates</span>(loc))</span>
-<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>time <span class="ot">&lt;-</span> loc<span class="sc">$</span>time</span>
-<span id="cb147-3"><a href="#cb147-3" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>z <span class="ot">&lt;-</span> loc<span class="sc">$</span>ele</span>
-<span id="cb147-4"><a href="#cb147-4" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>color <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">as.factor</span>(loc<span class="sc">$</span>time))</span>
-<span id="cb147-5"><a href="#cb147-5" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>color <span class="ot">&lt;-</span> da<span class="sc">$</span>color<span class="sc">/</span><span class="fu">max</span>(da<span class="sc">$</span>color)</span>
-<span id="cb147-6"><a href="#cb147-6" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">as.character</span>(da<span class="sc">$</span>time)</span>
-<span id="cb147-7"><a href="#cb147-7" aria-hidden="true" tabindex="-1"></a>s3d <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">plot_ly</span>(da,<span class="at">x=</span><span class="sc">~</span>X,<span class="at">y=</span><span class="sc">~</span>Y,<span class="at">z=</span><span class="sc">~</span>z,<span class="at">type=</span><span class="st">&#39;scatter3d&#39;</span>,<span class="at">mode=</span><span class="st">&#39;lines&#39;</span></span>
-<span id="cb147-8"><a href="#cb147-8" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">opacity=</span><span class="dv">1</span></span>
-<span id="cb147-9"><a href="#cb147-9" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">hoverinfo=</span><span class="sc">~</span>text</span>
-<span id="cb147-10"><a href="#cb147-10" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">line=</span><span class="fu">list</span>(<span class="at">width=</span><span class="dv">6</span></span>
-<span id="cb147-11"><a href="#cb147-11" aria-hidden="true" tabindex="-1"></a>                        ,<span class="at">color=</span><span class="sc">~</span>color</span>
-<span id="cb147-12"><a href="#cb147-12" aria-hidden="true" tabindex="-1"></a>                        ,<span class="at">colorscale=</span><span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="st">&#39;#BA52ED&#39;</span>),<span class="fu">c</span>(<span class="dv">1</span>,<span class="st">&#39;#FCB040&#39;</span>))</span>
-<span id="cb147-13"><a href="#cb147-13" aria-hidden="true" tabindex="-1"></a>                        ,<span class="at">reverscale=</span><span class="cn">FALSE</span></span>
-<span id="cb147-14"><a href="#cb147-14" aria-hidden="true" tabindex="-1"></a>                        )</span>
-<span id="cb147-15"><a href="#cb147-15" aria-hidden="true" tabindex="-1"></a>              )</span></code></pre></div>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a>s3d</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a>da <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sf<span class="sc">::</span><span class="fu">st_coordinates</span>(loc))</span>
+<span id="cb148-2"><a href="#cb148-2" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>time <span class="ot">&lt;-</span> loc<span class="sc">$</span>time</span>
+<span id="cb148-3"><a href="#cb148-3" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>z <span class="ot">&lt;-</span> loc<span class="sc">$</span>ele</span>
+<span id="cb148-4"><a href="#cb148-4" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>color <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">as.factor</span>(loc<span class="sc">$</span>time))</span>
+<span id="cb148-5"><a href="#cb148-5" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>color <span class="ot">&lt;-</span> da<span class="sc">$</span>color<span class="sc">/</span><span class="fu">max</span>(da<span class="sc">$</span>color)</span>
+<span id="cb148-6"><a href="#cb148-6" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">as.character</span>(da<span class="sc">$</span>time)</span>
+<span id="cb148-7"><a href="#cb148-7" aria-hidden="true" tabindex="-1"></a>s3d <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">plot_ly</span>(da,<span class="at">x=</span><span class="sc">~</span>X,<span class="at">y=</span><span class="sc">~</span>Y,<span class="at">z=</span><span class="sc">~</span>z,<span class="at">type=</span><span class="st">&#39;scatter3d&#39;</span>,<span class="at">mode=</span><span class="st">&#39;lines&#39;</span></span>
+<span id="cb148-8"><a href="#cb148-8" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">opacity=</span><span class="dv">1</span></span>
+<span id="cb148-9"><a href="#cb148-9" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">hoverinfo=</span><span class="sc">~</span>text</span>
+<span id="cb148-10"><a href="#cb148-10" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">line=</span><span class="fu">list</span>(<span class="at">width=</span><span class="dv">6</span></span>
+<span id="cb148-11"><a href="#cb148-11" aria-hidden="true" tabindex="-1"></a>                        ,<span class="at">color=</span><span class="sc">~</span>color</span>
+<span id="cb148-12"><a href="#cb148-12" aria-hidden="true" tabindex="-1"></a>                        ,<span class="at">colorscale=</span><span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="st">&#39;#BA52ED&#39;</span>),<span class="fu">c</span>(<span class="dv">1</span>,<span class="st">&#39;#FCB040&#39;</span>))</span>
+<span id="cb148-13"><a href="#cb148-13" aria-hidden="true" tabindex="-1"></a>                        ,<span class="at">reverscale=</span><span class="cn">FALSE</span></span>
+<span id="cb148-14"><a href="#cb148-14" aria-hidden="true" tabindex="-1"></a>                        )</span>
+<span id="cb148-15"><a href="#cb148-15" aria-hidden="true" tabindex="-1"></a>              )</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>s3d</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_s3d-show_85b5bd39252861168b3ecf137d4fd266.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson08/widget_s3d-show_57da0323af82b2c3222fd4252cd59d45.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(tr) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
-<span id="cb149-2"><a href="#cb149-2" aria-hidden="true" tabindex="-1"></a>center <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_coordinates</span>(sf<span class="sc">::</span><span class="fu">st_centroid</span>(tr))[<span class="dv">1</span>,]</span>
-<span id="cb149-3"><a href="#cb149-3" aria-hidden="true" tabindex="-1"></a>dm <span class="ot">&lt;-</span> da <span class="sc">%&gt;%</span></span>
-<span id="cb149-4"><a href="#cb149-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_ly</span>(</span>
-<span id="cb149-5"><a href="#cb149-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&#39;densitymapbox&#39;</span>,</span>
-<span id="cb149-6"><a href="#cb149-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">lat =</span> <span class="sc">~</span>Y,</span>
-<span id="cb149-7"><a href="#cb149-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">lon =</span> <span class="sc">~</span>X,</span>
-<span id="cb149-8"><a href="#cb149-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">coloraxis =</span> <span class="st">&#39;coloraxis&#39;</span>,</span>
-<span id="cb149-9"><a href="#cb149-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">radius =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb149-10"><a href="#cb149-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">layout</span>(<span class="at">mapbox =</span> <span class="fu">list</span>(<span class="at">style=</span><span class="st">&quot;stamen-watercolor&quot;</span></span>
-<span id="cb149-11"><a href="#cb149-11" aria-hidden="true" tabindex="-1"></a>                       ,<span class="at">center=</span><span class="fu">list</span>(<span class="at">lon=</span>center[<span class="st">&quot;X&quot;</span>],<span class="at">lat=</span>center[<span class="st">&quot;Y&quot;</span>])</span>
-<span id="cb149-12"><a href="#cb149-12" aria-hidden="true" tabindex="-1"></a>                       ,<span class="at">zoom=</span><span class="dv">15</span>)</span>
-<span id="cb149-13"><a href="#cb149-13" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coloraxis=</span><span class="fu">list</span>(<span class="at">colorscale =</span> <span class="st">&quot;Viridis&quot;</span>)</span>
-<span id="cb149-14"><a href="#cb149-14" aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>dm</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(tr) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
+<span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a>center <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_coordinates</span>(sf<span class="sc">::</span><span class="fu">st_centroid</span>(tr))[<span class="dv">1</span>,]</span>
+<span id="cb150-3"><a href="#cb150-3" aria-hidden="true" tabindex="-1"></a>dm <span class="ot">&lt;-</span> da <span class="sc">|&gt;</span></span>
+<span id="cb150-4"><a href="#cb150-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">plot_ly</span>(<span class="at">type=</span><span class="st">&quot;densitymapbox&quot;</span></span>
+<span id="cb150-5"><a href="#cb150-5" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">lat=</span><span class="sc">~</span>Y</span>
+<span id="cb150-6"><a href="#cb150-6" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">lon=</span><span class="sc">~</span>X</span>
+<span id="cb150-7"><a href="#cb150-7" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">coloraxis=</span><span class="st">&quot;coloraxis&quot;</span></span>
+<span id="cb150-8"><a href="#cb150-8" aria-hidden="true" tabindex="-1"></a>          ,<span class="at">radius=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb150-9"><a href="#cb150-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">layout</span>(<span class="at">mapbox=</span><span class="fu">list</span>(<span class="at">style=</span><span class="st">&quot;stamen-watercolor&quot;</span></span>
+<span id="cb150-10"><a href="#cb150-10" aria-hidden="true" tabindex="-1"></a>                     ,<span class="at">center=</span><span class="fu">list</span>(<span class="at">lon=</span>center[<span class="st">&quot;X&quot;</span>],<span class="at">lat=</span>center[<span class="st">&quot;Y&quot;</span>])</span>
+<span id="cb150-11"><a href="#cb150-11" aria-hidden="true" tabindex="-1"></a>                     ,<span class="at">zoom=</span><span class="dv">15</span>)</span>
+<span id="cb150-12"><a href="#cb150-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coloraxis=</span><span class="fu">list</span>(<span class="at">colorscale =</span> <span class="st">&quot;Viridis&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>dm</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_dm-plot_3a34d879ba83e7350c6da046e1dfa6d9.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
 <div id="refs" class="references csl-bib-body" entry-spacing="1">
 <div id="ref-Durner2019_data" class="csl-entry">
 Durner GM. 2019. <span class="nocase">Polar Bear Distribution and Habitat Resource Selection Data, Beaufort and Chukchi Seas</span>, 1985-2016. U.S. Geological Survey. <a href="https://doi.org/10.5066/P9ZRJ3XU">10.5066/P9ZRJ3XU</a>.
