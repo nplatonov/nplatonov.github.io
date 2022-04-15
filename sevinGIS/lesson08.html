@@ -169,7 +169,7 @@ div.csl-indent {
 <address class="author_afil">
 с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="meeting">Занятие 08</span> 07 апреля, 14 апреля 2022 г.
 <div class="updated">
-Обновлено: 2022-04-15 13:07
+Обновлено: 2022-04-15 16:56
 </div></h4>
 
 
@@ -207,7 +207,10 @@ div.csl-indent {
 <li><a href="#визуализация-1" id="toc-визуализация-1">Визуализация</a>
 <ul>
 <li><a href="#map-lt4" id="toc-map-lt4">шаг 3 суток, с пропусками</a></li>
+<li><a href="#map-lt6" id="toc-map-lt6">шаг 50 км, без пропусков</a></li>
+<li><a href="#map-lt7" id="toc-map-lt7">шаг 6 суток, без пропусков</a></li>
 </ul></li>
+<li><a href="#гомогенность-поведения" id="toc-гомогенность-поведения">Гомогенность поведения</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#gps" id="toc-gps">GPS</a>
@@ -246,7 +249,7 @@ div.csl-indent {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>fname <span class="ot">&lt;-</span> list1[<span class="fu">grep</span>(<span class="st">&quot;kernelUD&quot;</span>,<span class="fu">basename</span>(list1))]</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">file.remove</span>(list1)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fname</span></code></pre></div>
-<pre><code>[1] &quot;C:\\TEMP\\Rtmpo16TFk/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
+<pre><code>[1] &quot;C:\\TEMP\\RtmpMBnDfY/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
 <div id="подготовка-данных" class="section level3">
 <h3><span class="small">Подготовка данных</span></h3>
 <div class="oversize">
@@ -1012,22 +1015,29 @@ Characteristics of the bursts:
 <iframe src="assets/lesson08/widget_dd17_ae56d1f626d1daed5bebafaff69542fd.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
-<p>[<span class="small">См. исходные данные</span>(#data-lt4)].
-##### шаг 50 км, без пропусков {#map-lt6}</p>
+<p><sup><a href="#data-lt4">См. исходные данные</a></sup></p>
+</div>
+<div id="map-lt6" class="section level5">
+<h5>шаг 50 км, без пропусков</h5>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>(m2 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt6[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
 <iframe src="assets/lesson08/widget_dd19_61e5d567e0a9ec8450baebe8f89491fb.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
-<p>[<span class="small">См. исходные данные</span>(#data-lt6)].
-##### шаг 6 суток, без пропусков {#map-lt7}</p>
+<p><sup><a href="#data-lt6">См. исходные данные</a></sup></p>
+</div>
+<div id="map-lt7" class="section level5">
+<h5>шаг 6 суток, без пропусков</h5>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>(m3 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt7[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
 <iframe src="assets/lesson08/widget_dd21_9aa0df83ebf4873cfe854fdfba08e511.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
-<p>[<span class="small">См. исходные данные</span>(#data-lt7)].
-#### Гомогенность поведения</p>
+<p><sup><a href="#data-lt7">См. исходные данные</a></sup></p>
+</div>
+</div>
+<div id="гомогенность-поведения" class="section level4">
+<h4>Гомогенность поведения</h4>
 <p>Рассмотрим метод поиска структурных изменений
 <span class="citation">(<a href="#ref-Lavielle1999" role="doc-biblioref">Lavielle, 1999</a>)</span>,
 <span class="citation">(<a href="#ref-Lavielle2005" role="doc-biblioref">Lavielle, 2005</a>)</span>.</p>
@@ -1088,9 +1098,8 @@ Characteristics of the bursts:
 <span id="cb125-21"><a href="#cb125-21" aria-hidden="true" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_along</span>(res),<span class="cf">function</span>(x) <span class="st">&quot;dt_mean&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>(m4 <span class="ot">&lt;-</span> <span class="fu">mapview</span>(res,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">color=</span>color,<span class="at">label=</span>label))</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_dd28_44b2b6a0763fc11e56f1da7857e2df1c.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson08/widget_dd28_f6772b0d39ec83ebb161d8817095c589.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
-</div>
 </div>
 </div>
 </div>
@@ -1241,7 +1250,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb148-15"><a href="#cb148-15" aria-hidden="true" tabindex="-1"></a>              )</span></code></pre></div>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>s3d</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_s3d-show_57da0323af82b2c3222fd4252cd59d45.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson08/widget_s3d-show_3c476bc0dc8a6187d1f82cd25d505a63.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(tr) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
@@ -1258,7 +1267,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb150-12"><a href="#cb150-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coloraxis=</span><span class="fu">list</span>(<span class="at">colorscale =</span> <span class="st">&quot;Viridis&quot;</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>dm</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_dm-plot_3a34d879ba83e7350c6da046e1dfa6d9.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson08/widget_dm-plot_72f098a107a50769936c620f96fb7a24.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <div id="refs" class="references csl-bib-body" entry-spacing="1">
