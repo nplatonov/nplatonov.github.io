@@ -9,7 +9,7 @@
    --accent: #268; /* #0084D7;*/
    --magnifier: 1.7;
    --pointsize: 22pt;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
-   --gap: 3%;
+   --gap: 2%;
    --sidebar: 23%;
    --sidebar-pointsize: 70%;
    --sidebar-margin: 18px;
@@ -23,6 +23,12 @@
    --blur: 0.2em;
    --light: #fff;
    --dark: #000; /* #149 */
+}
+body.remark-container.dev:before {
+   content: 'nplatonov';
+   position: absolute;
+   bottom: 0;
+   right: 0
 }
 .remark-slide { /* devel */
   /* opacity: 0.2; */
@@ -65,7 +71,7 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
 }
 .panelset .panel-tabs {
    margin-bottom: 0.4em;
-   border-left: 1px white solid;
+  /* border-left: 1px white solid;*/
   /* border-left: 0px solid red;*/
    box-shadow: none;
 }
@@ -261,7 +267,7 @@ body:not(:fullscreen) .title-slide iframe {
 
 .remark-slide-content {
   padding-top: 0.5em;
-  padding-left: 0.2em;
+  padding-left: 0.5em;
   padding-right: 0.5em;
   padding-bottom: 0.2em;
  /*
@@ -276,8 +282,11 @@ body:not(:fullscreen) .title-slide iframe {
  */
 }
 .remark-slide-content p {
-   margin-top: 0em;
-   margin-bottom: 0.4em;
+   margin-top: 0em;    /* 0em */
+   margin-bottom: 0.4em; /* 0.4em */
+}
+pre+p {
+   margin-top: 0.3em !important;
 }
 .title-slide {
  /* background-image: url(../figs/sevin.png); */
@@ -360,11 +369,11 @@ h2 .header{
   float: left;
   width: calc(45% - var(--gap));
 }
-.pull-left-50 {
+.pull-left-50, .pull-left {
   float: left;
   width: calc(50% - var(--gap));
 }
-.pull-left-55, .pull-left {
+.pull-left-55 {
   float: left;
   width: calc(55% - var(--gap));
 }
@@ -400,6 +409,10 @@ h2 .header{
   float: right;
   width: calc(50% - var(--gap));
 }
+.pull-right-45 {
+  float: right;
+  width: calc(45% - var(--gap));
+}
 .pull-right-40 {
   float: right;
   width: calc(40% - var(--gap));
@@ -430,7 +443,7 @@ h2 .header{
    width: calc(var(--sidebar) - var(--sidebar-margin));
 }
 .sidebar + .right-column {
-   width: calc(100% - var(--sidebar) - var(--sidebar-margin));
+   width: calc(101% - var(--sidebar) - var(--sidebar-margin));
 }
 a, a:visited, a > code {
    color: #358;
@@ -970,7 +983,7 @@ body:fullscreen .remark-backdrop:before {
 .remark-notes-area .remark-bottom-area .remark-notes-preview-area {
    opacity: 0.4;
 }
-.metadata .mainbar p {
+.metadata .mainbar p, .notable .mainbar p {
    margin-top: 0.1em;
    margin-bottom: 0.1em;
    margin-left: 0.8em;
@@ -1049,6 +1062,14 @@ code.remark-code {
 }
 code.remark-code:not(.hljs) {
    display: grid;
+}
+.hljs {
+}
+.hljs.remark-code {
+   padding-top: 0.2em;
+   padding-bottom: 0.2em;
+   padding-left: 0.2em;
+   padding-right: 0.2em;
 }
 .remark-code {
    padding: 0.01em;
@@ -1129,7 +1150,7 @@ code.remark-code:not(.hljs) {
   opacity: 0.3;
   text-align: left;
 }
-.metadata .shorttitle {
+.metadata .shorttitle, .notable .shorttitle {
   opacity: 0;
 }
 .shorttitle:hover {
@@ -1184,6 +1205,22 @@ code.remark-code:not(.hljs) {
 }
 .full p {
   margin-top: 0px;
+}
+.indent {
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+}
+.remark-code-line-highlighted {
+   background-color: #ffffdf;
+}
+.footnote {
+  bottom: 0.8em;
+  padding-right: 2em;
+}
+table tr th:empty {
+   padding-top: 0.05em;
+   padding-bottom: 0.05em;
+  /* background-color: yellow;*/
 }
 .w00 {width: 00%;}
 .w01 {width: 01%;}
