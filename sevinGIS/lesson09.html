@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>ГИС 09</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.13/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Инструменты QGIS</h1>
+<h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
+<h4 class="author">Никита Платонов</h4>
+<address class="author_afil">
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="meeting">Занятие 09</span> 21 апреля 2022 г.
+<div class="updated">
+Обновлено: 2022-04-20 18:22
+</div></h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#оцифровка" id="toc-оцифровка">Оцифровка</a>
+<ul>
+<li><a href="#извлекаем-рисунок" id="toc-извлекаем-рисунок">Извлекаем рисунок</a></li>
+<li><a href="#новая-система-координат" id="toc-новая-система-координат">Новая система координат</a></li>
+<li><a href="#картооснова" id="toc-картооснова">Картооснова</a></li>
+<li><a href="#геопривязка" id="toc-геопривязка">Геопривязка</a>
+<ul>
+<li><a href="#опорные-точки" id="toc-опорные-точки">Опорные точки</a></li>
+<li><a href="#параметры-привязки" id="toc-параметры-привязки">Параметры привязки</a></li>
+</ul></li>
+<li><a href="#обрисовка" id="toc-обрисовка">Обрисовка</a></li>
+<li><a href="#получение-характеристик" id="toc-получение-характеристик">Получение характеристик</a></li>
+</ul></li>
+<li><a href="#классификация" id="toc-классификация">Классификация</a>
+<ul>
+<li><a href="#установка-модуля" id="toc-установка-модуля">Установка модуля</a></li>
+<li><a href="#предобработка" id="toc-предобработка">Предобработка</a>
+<ul>
+<li><a href="#download" id="toc-download">Получение данных</a></li>
+<li><a href="#clip" id="toc-clip">Обрезка данных</a></li>
+<li><a href="#RT" id="toc-RT">Преобразование яркости</a></li>
+<li><a href="#маскирование-облачности" id="toc-маскирование-облачности">Маскирование облачности</a></li>
+<li><a href="#rgb" id="toc-rgb">Отображение данных</a></li>
+</ul></li>
+<li><a href="#без-учителя" id="toc-без-учителя">Без учителя</a>
+<ul>
+<li><a href="#кластеризация" id="toc-кластеризация">Кластеризация</a></li>
+<li><a href="#реклассификация" id="toc-реклассификация">Реклассификация</a></li>
+<li><a href="#просеивание" id="toc-просеивание">Просеивание</a></li>
+</ul></li>
+<li><a href="#с-учителем" id="toc-с-учителем">С учителем</a>
+<ul>
+<li><a href="#данные-для-обучения" id="toc-данные-для-обучения">Данные для обучения</a></li>
+<li><a href="#классы-c-и-макро-классы-mc" id="toc-классы-c-и-макро-классы-mc">Классы (C) и макро-классы (MC)</a>
+<ul>
+<li><a href="#геометрия-оцифровка" id="toc-геометрия-оцифровка">геометрия (оцифровка)</a></li>
+<li><a href="#таблица-атрибутов" id="toc-таблица-атрибутов">таблица атрибутов</a></li>
+<li><a href="#заполнение" id="toc-заполнение">Заполнение</a></li>
+</ul></li>
+<li><a href="#спектральные-характеристики" id="toc-спектральные-характеристики">Спектральные характеристики</a>
+<ul>
+<li><a href="#визуализация" id="toc-визуализация">Визуализация</a></li>
+<li><a href="#свойства" id="toc-свойства">Свойства</a></li>
+<li><a href="#отличия" id="toc-отличия">Отличия</a></li>
+<li><a href="#классы-c" id="toc-классы-c">Классы (C)</a></li>
+<li><a href="#макро-классы-mc" id="toc-макро-классы-mc">Макро-классы (MC)</a></li>
+<li><a href="#оценка-качества" id="toc-оценка-качества">Оценка качества</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="оцифровка" class="section level2">
+<h2>Оцифровка</h2>
+<p>Задача: оценить площадь заприпайных площадей моря Лаптевых из “Атласа биологического разнообразия морей и побережий российской Арктики” <span class="citation">(<a href="#ref-AtlasWWF" role="doc-biblioref">Спиридонов <em>и др.</em>, 2011</a>)</span>, <a href="https://wwf.ru/upload/iblock/523/atlas_biol_ros_arkt_web.pdf#page=38">стр. 37</a></p>
+<div id="извлекаем-рисунок" class="section level3">
+<h3>Извлекаем рисунок</h3>
+<p class="centered-image"><img src="assets/lesson09/Clipboard01.png" width="690" height="580" /></p>
+</div>
+<div id="новая-система-координат" class="section level3">
+<h3>Новая система координат</h3>
+<ul>
+<li><p>Пробуем подобрать класс проекций (прямоугольная, равноугольная, равноплощадная, равнопромежуточная, …)</p></li>
+<li><p>Подбираем параметры проекции</p></li>
+</ul>
+<p class="centered-image"><img src="assets/lesson09/Clipboard04.png" width="690" height="480" /></p>
+<p>Устанавливаем систему координат проекта</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard05.png" width="690" height="580" /></p>
+</div>
+<div id="картооснова" class="section level3">
+<h3>Картооснова</h3>
+<p>Необходимо выделить опорные точки, для которых известны географические координаты.</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard06.png" width="690" height="575" /></p>
+<p>Дополнительные данные (координаты известных мысов, точки пересечения широт/долгот)</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard07.png" width="690" height="575" /></p>
+</div>
+<div id="геопривязка" class="section level3">
+<h3>Геопривязка</h3>
+<p>Запускаем модуль</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard08.png" width="690" height="580" /></p>
+<p>Открываем исходный рисунок</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard09.png" width="690" height="580" /></p>
+<div id="опорные-точки" class="section level4">
+<h4>Опорные точки</h4>
+<p>Создаем таблицу опорных точек, стараясь, чтобы они были распределены равномерно</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard10.png" width="690" height="580" /></p>
+<p>Точке на рисунке соотносим точку на картооснове или задаем координаты вручную</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard11.png" width="690" height="575" /></p>
+</div>
+<div id="параметры-привязки" class="section level4">
+<h4>Параметры привязки</h4>
+<p class="centered-image"><img src="assets/lesson09/Clipboard12.png" width="689" height="580" /></p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard15.png" width="690" height="580" /></p>
+<p>Итерационный процесс: ищем оптимальный вариант, запуская приязку после изменения параметров</p>
+<ul>
+<li><p>тип преобразования</p></li>
+<li><p>метод записи нового значения в ячейку (resample)</p></li>
+<li><p>параметры проекции</p></li>
+<li><p>размер ячейки</p></li>
+<li><p>изменяем положения точек</p></li>
+<li><p>добавляем, удаляем точки</p></li>
+</ul>
+<p class="centered-image"><img src="assets/lesson09/Clipboard14.png" width="689" height="580" /></p>
+<p>Оценка качества по минимизации искажений</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard16.png" width="690" height="580" /></p>
+</div>
+</div>
+<div id="обрисовка" class="section level3">
+<h3>Обрисовка</h3>
+<p>Новый векторный слой</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard17.png" width="690" height="580" /></p>
+<p>Для обрисовки площадных объектов выбираем полигональную геометрию</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard18.png" width="689" height="575" /></p>
+<p>Обводим контуры и заполняем атрибутивную таблицу</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard19.png" width="690" height="580" /></p>
+</div>
+<div id="получение-характеристик" class="section level3">
+<h3>Получение характеристик</h3>
+<p>Используем калькулятор полей для вывода аннотаций</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard20.png" width="690" height="580" /></p>
+<p>Результат можно сравнить со значениями столбчатой диаграммы</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard21.png" width="690" height="575" /></p>
+<p><span class="onlyremark huge">Демонстрация в QGIS</span></p>
+<div class="hote">
+<p><span class="large">Домашнее задание к 28 апреля</span></p>
+<p>Оценить площадь каждой из обозначенных в легенде заприпайных полыней Карского моря Лаптевых из “Атласа биологического разнообразия морей и побережий российской Арктики” <span class="citation">(<a href="#ref-AtlasWWF" role="doc-biblioref">Спиридонов <em>и др.</em>, 2011</a>)</span>, <a href="https://wwf.ru/upload/iblock/523/atlas_biol_ros_arkt_web.pdf#page=36">стр. 35</a></p>
+<p>Береговую линию не оцифровывать, а вырезать по слою из набора <a href="https://www.naturalearthdata.com/">Natural Earth World GIS Data</a> 1:10m.</p>
+</div>
+</div>
+</div>
+<div id="классификация" class="section level2">
+<h2>Классификация</h2>
+<div id="установка-модуля" class="section level3">
+<h3>Установка модуля</h3>
+<p>QGIS, «Semi-Automatic Classification Plugin» - один из самых популярных модулей</p>
+<iframe src="https://plugins.qgis.org/plugins/?sort=-downloads" width="800" height="570" data-external="1">
+</iframe>
+<p>Устанавливается через меню в QGIS</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard41.png" width="690" height="560" zbound /></p>
+<p><a href="https://fromgistors.blogspot.com/p/semi-automatic-classification-plugin.html">Домашняя страница модуля</a></p>
+<p>В QGIS появятся пункт меню, Dock-панель и Toolbar «SCP»</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard42.png" width="690" height="600" bound /></p>
+</div>
+<div id="предобработка" class="section level3">
+<h3>Предобработка</h3>
+<div id="download" class="section level4">
+<h4>Получение данных</h4>
+<p class="centered-image"><img src="assets/lesson09/Clipboard45.png" width="690" height="600" bound /></p>
+</div>
+<div id="clip" class="section level4">
+<h4>Обрезка данных</h4>
+<p>Должен быть выбран нужный Band Set номер.</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard54.png" width="689" height="600" bound /></p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard55.png" width="690" height="600" bound /></p>
+</div>
+<div id="RT" class="section level4">
+<h4>Преобразование яркости</h4>
+<p class="centered-image"><img src="assets/lesson09/Clipboard75.png" width="865" height="600" bound /></p>
+</div>
+<div id="маскирование-облачности" class="section level4">
+<h4>Маскирование облачности</h4>
+<p class="centered-image"><img src="assets/lesson09/Clipboard77.png" width="865" height="600" bound /></p>
+</div>
+<div id="rgb" class="section level4">
+<h4>Отображение данных</h4>
+<p>Каналы для формирования RGB-изображения (7-3-2)</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard57.png" width="690" height="600" bound /></p>
+<p>Через SCP Working Panel выбрать RGB = 3-2-1</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard58.png" width="690" height="600" bound /></p>
+</div>
+</div>
+<div id="без-учителя" class="section level3">
+<h3>Без учителя</h3>
+<p>Использовано обучающее пособие <a href="https://fromgistors.blogspot.com/2021/01/unsupervised-classification-using-scp7.html">«Unsupervised Classification using the Semi-Automatic Classification Plugin version 7»</a></p>
+<p>Набор данных – фрагмент изображений Copernicus-2, <a href="https://docs.google.com/uc?id=1cph9rCQ1oiWgRGusgRkjUWwLW3JEwqUK">архив</a>.</p>
+<p>Загружать в проект необязательно, но можно сделать для «знакомства» с данными.</p>
+<div id="кластеризация" class="section level4">
+<h4>Кластеризация</h4>
+<p>Алгоритм ISODATA</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard56.png" width="689" height="600" bound /></p>
+<p>Результат ISODATA</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard65.png" width="690" height="600" bound /></p>
+</div>
+<div id="реклассификация" class="section level4">
+<h4>Реклассификация</h4>
+<p>Нужно присвоить номерам классов названия категорий. К примеру, можно использовать 7-3-2, 3-2-1 RGB изображения, другие данные (OSM, как ниже).</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard59.png" width="690" height="520" bound /></p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard60.png" width="690" height="600" bound /></p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard61.png" width="689" height="600" bound /></p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard62.png" width="690" height="600" bound /></p>
+</div>
+<div id="просеивание" class="section level4">
+<h4>Просеивание</h4>
+<p>Удаление шума - отдельных ячеек одного класса, окруженных ячейками другого класса</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard63.png" width="689" height="560" bound /></p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard64.png" width="690" height="600" bound /></p>
+<p><span class="onlyremark huge">Демонстрация в QGIS</span></p>
+</div>
+</div>
+<div id="с-учителем" class="section level3">
+<h3>С учителем</h3>
+<p>Использовано обучающее пособие <a href="https://fromgistors.blogspot.com/2020/10/land-cover-classification-scp-7.html">«Land Cover Classification using the Semi-Automatic Classification Plugin version 7»</a></p>
+<p>Набор данных – фрагмент изображений Copernicus-2 L1C_T37VDC_A022727_20210713T085013_2021-07-13 для района Черноголовки</p>
+<p>Подготовка данных - в модуле SCP:</p>
+<ul>
+<li><p><a href="#download">Получение</a></p></li>
+<li><p><a href="#clip">Обрезка</a></p></li>
+<li><p><a href="#RT">Преобразование яркости</a></p></li>
+</ul>
+<p class="centered-image"><img src="assets/lesson09/Clipboard76.png" width="864" height="600" bound /></p>
+<div id="данные-для-обучения" class="section level4">
+<h4>Данные для обучения</h4>
+<p class="centered-image"><img src="assets/lesson09/Clipboard78.png" width="864" height="600" bound /></p>
+</div>
+<div id="классы-c-и-макро-классы-mc" class="section level4">
+<h4>Классы (C) и макро-классы (MC)</h4>
+<div id="геометрия-оцифровка" class="section level5">
+<h5>геометрия (оцифровка)</h5>
+<p class="centered-image"><img src="assets/lesson09/Clipboard79.png" width="864" height="600" bound /></p>
+</div>
+<div id="таблица-атрибутов" class="section level5">
+<h5>таблица атрибутов</h5>
+<p class="centered-image"><img src="assets/lesson09/Clipboard80.png" width="864" height="600" bound /></p>
+</div>
+<div id="заполнение" class="section level5">
+<h5>Заполнение</h5>
+<p class="centered-image"><img src="assets/lesson09/Clipboard82.png" width="864" height="600" bound /></p>
+</div>
+</div>
+<div id="спектральные-характеристики" class="section level4">
+<h4>Спектральные характеристики</h4>
+<p class="centered-image"><img src="assets/lesson09/Clipboard92.png" width="864" height="600" bound /></p>
+<div id="визуализация" class="section level5">
+<h5>Визуализация</h5>
+<p class="centered-image"><img src="assets/lesson09/Clipboard83.png" width="863" height="600" bound /></p>
+</div>
+<div id="свойства" class="section level5">
+<h5>Свойства</h5>
+<p class="centered-image"><img src="assets/lesson09/Clipboard84.png" width="863" height="600" bound /></p>
+</div>
+<div id="отличия" class="section level5">
+<h5>Отличия</h5>
+<p class="centered-image"><img src="assets/lesson09/Clipboard85.png" width="863" height="600" bound />
+#### Результат</p>
+</div>
+<div id="классы-c" class="section level5">
+<h5>Классы (C)</h5>
+<p class="centered-image"><img src="assets/lesson09/Clipboard86.png" width="865" height="600" bound /></p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard87.png" width="864" height="600" bound /></p>
+<p>Соответствие цветов из таблицы данных для обучения</p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard88.png" width="864" height="600" bound /></p>
+</div>
+<div id="макро-классы-mc" class="section level5">
+<h5>Макро-классы (MC)</h5>
+<p class="centered-image"><img src="assets/lesson09/Clipboard89.png" width="865" height="600" bound /></p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard90.png" width="864" height="600" bound /></p>
+</div>
+<div id="оценка-качества" class="section level5">
+<h5>Оценка качества</h5>
+<p>В том числе, визуально: подложкой (ниже) или по <a href="#rgb">исходным данным</a></p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard91.png" width="864" height="576" bound /></p>
+<p><span class="onlyremark huge">Демонстрация в QGIS</span></p>
+<div id="section" class="section level6 unnumbered">
+<h6 class="unnumbered"></h6>
+<div id="refs" class="references csl-bib-body" entry-spacing="1">
+<div id="ref-AtlasWWF" class="csl-entry">
+Спиридонов ВА, Краснова ЕД, Гаврило МВ, Николаева НГ (<em>Editors</em>). 2011. Атлас биологического разнообразия морей и побережий российской <span>А</span>рктики. WWF России, М. Авторский коллектив: Беликов С. Е., Гаврило М. В., Горин С. Л., Иванов А. Н., Краснова Е. Д., Краснов Ю. В., Кулангиев А. О., Лашманов Ф. И., Макаров А. В., Николаева Н. Г., Попов А. В., Сергиенко Л. А., Спиридонов В. А., Шредерс М. А. <a href="https://wwf.ru/upload/iblock/523/atlas_biol_ros_arkt_web.pdf">https://wwf.ru/upload/iblock/523/atlas_biol_ros_arkt_web.pdf</a> (просмотрено 30 октября 2019). ISBN: 978-5-9902786-1-5.
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
