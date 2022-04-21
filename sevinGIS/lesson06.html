@@ -145,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <address class="author_afil">
 с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="meeting">Занятие 06</span> 21 апреля 2022 г.
 <div class="updated">
-Обновлено: 2022-04-15 11:06
+Обновлено: 2022-04-21 12:37
 </div></h4>
 
 
@@ -480,18 +480,18 @@ Geodetic CRS:  WGS 84
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>inside <span class="ot">&lt;-</span> extent <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="dv">3572</span>) <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_buffer</span>(<span class="sc">-</span><span class="dv">100</span><span class="sc">*</span><span class="fl">1e3</span>)</span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>m9 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(hr2)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)<span class="sc">+</span></span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">tm_shape</span>(extent)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Extent&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dotted&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)<span class="sc">+</span></span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">tm_shape</span>(inside)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Inside 200km&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">tm_shape</span>(inside)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Inside 100km&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>m9</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson06/widget_unnamed-chunk-55_2104f56d8e4df9249dde048ea5e1d922.html" width="646.08" height="460" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_unnamed-chunk-55_be5b552e65f4fecb465d348f51a8148c.html" width="646.08" height="460" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>cutted <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_intersection</span>(hr2,sf<span class="sc">::</span><span class="fu">st_transform</span>(inside,sf<span class="sc">::</span><span class="fu">st_crs</span>(hr2)))</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>m9 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(cutted)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)<span class="sc">+</span></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">tm_shape</span>(inside)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Inside 200km&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">tm_shape</span>(inside)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Inside 100km&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>m9</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson06/widget_unnamed-chunk-58_b32c5571cb71e235716724e5a5079783.html" width="646.08" height="485" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_unnamed-chunk-58_5072727dc5969f8d301633317bdfee45.html" width="646.08" height="485" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 </div>
@@ -507,10 +507,10 @@ Geodetic CRS:  WGS 84
 </div>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>within <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_intersection</span>(hr2,sf<span class="sc">::</span><span class="fu">st_transform</span>(bound,sf<span class="sc">::</span><span class="fu">st_crs</span>(hr2)))</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>m11 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(within)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)<span class="sc">+</span></span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">tm_shape</span>(bound)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Within 200km&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">tm_shape</span>(bound)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Within 100km&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>m11</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson06/widget_unnamed-chunk-64_6c7ea5b871aeb6dc3acc1bd4e4d2b92c.html" width="646.08" height="485" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_unnamed-chunk-64_54b1ad123b2b19b58684f2eb2b58ef4c.html" width="646.08" height="485" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <div class="note">
