@@ -609,7 +609,7 @@ ul ul ul {
   list-style-type: '• ';
 }
 ul ul ul ul {
-  list-style-type: '\2023  ';  /* '<U+2023> '; */
+  list-style-type: '\2023  ';  /* '‣ '; */
 }
 ul ul {
   margin-bottom: 0;
@@ -758,6 +758,9 @@ br~a > img, p > img {
 */
 p.centered-image {
    text-align: center;
+}
+p.centered-image {
+   display: grid;
 }
 img[zzzaltzzz] {
    display: block;
@@ -1862,9 +1865,6 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
 @media screen {
 }
 @media print {
-   .noprint, .decoration, .mobile {
-       display: none !important;
-   }
    html {
       background: inherit;
    }
@@ -1904,6 +1904,9 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
       z-index: 999; 
      /* top: 0px;*/
       transform: rotate(-70deg);
+   }
+   .noprint *, .decoration, .mobile {
+      display: none !important;
    }
    pre, code {
      font-family: 'Courier New', monospace;
