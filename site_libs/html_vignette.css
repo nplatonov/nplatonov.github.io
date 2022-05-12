@@ -24,8 +24,8 @@ div.abstract{
 .abstract > .line-block > br {
    margin-bottom: 0.25em;
 }
-div.acknowledgement {
-   padding: 0.6em 1.2em 0em 1.2em;
+.acknowledgement {
+   padding: 0em 1.2em 0em 1.2em;
    font-size: 90%;
    color: inherit;
 }
@@ -2442,6 +2442,10 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
    .commentCancel, .note {
       display: none;
    }
+   .acknowledgement p:first-of-type {
+      text-indent: 0cm !important;
+   }
+
 }
 /* https://stackoverflow.com/questions/47575563/conditional-css-rule-targeting-firefox-quantum */
 @media print {
