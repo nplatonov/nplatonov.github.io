@@ -196,19 +196,25 @@
         </group>
         <text variable="page" prefix=": "/>
       </if>
-      <else-if type="bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="any">
+      <else-if type="misc bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="any">
         <group delimiter=". ">
           <group delimiter=" ">
-            <text term="zzzin" font-style="italic" text-case="capitalize-first" suffix=":" />
+            <text term="hide_it:in" font-style="italic" text-case="capitalize-first" suffix=":" />
             <group delimiter=", ">
               <text variable="container-title" font-style="italic" />
               <text macro="edition"/>
             </group>
           </group>
+          <text macro="publisher"/>
           <text macro="container-contributors"/>
           <text macro="secondary-contributors"/>
         </group>
       </else-if>
+      <else>
+        <group delimiter=". ">
+          <text macro="publisher"/>
+        </group>
+      </else>
     </choose>
   </macro>
   <macro name="citation-locator">
@@ -244,7 +250,6 @@
           <text macro="locators"/>
         </group>
         <group delimiter=". ">
-          <text macro="publisher"/>
           <text variable="note" prefix="" suffix="" />
           <text macro="access"/>
         </group>
