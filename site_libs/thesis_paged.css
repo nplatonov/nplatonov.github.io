@@ -33,6 +33,13 @@ h2 + .level3:empty:after {
   /* border: 1px red solid;*/
    break-inside: avoid;
 }
+.level1 h1 {
+   page-break-after: avoid !important;
+}
+.level1 h1+.references {
+   break-before: avoid !important;
+   page-break-before: avoid !important;
+}
 /* subject to infinite paging -- end */
 
 :root {
@@ -54,7 +61,8 @@ body {
 p, .abstract, ul li, ol li, .zzztable {
    orphans: 3 !important; /*  the minimum number of lines in a block container that must be left at the bottom of a page */
    widows: 3 !important; /* minimum number of lines in a block container that must be left at the top of a page */
-   break-inside: avoid;
+  /* break-inside: avoid;*/
+  /* border: 1px solid red;*/
 }
 .toc li {
    break-before: auto !important;
