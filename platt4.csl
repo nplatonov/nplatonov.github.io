@@ -91,11 +91,16 @@
   </macro>
   <macro name="access">
     <choose>
+      <if type="book chapter paper-conference" match="any">
+        <text variable="ISBN" prefix=" ISBN: " suffix=". " />
+      </if>
+    </choose>
+    <choose>
       <if variable="DOI">
         <text variable="DOI" cancel_prefix="doi:"/>
       </if>
       <else>
-        <group prefix="" suffix=". ">
+        <group prefix=" " suffix=". ">
           <group delimiter=" ">
            <!-- <text value="Available"/> -->
            <!-- <text term="from"/> -->
@@ -112,18 +117,13 @@
         </group>
       </else>
     </choose>
-    <choose>
-      <if type="book chapter paper-conference" match="any">
-        <text variable="ISBN" prefix="ISBN: " suffix=". " />
-      </if>
-    </choose>
   </macro>
   <macro name="publisher">
     <group delimiter=". ">
-      <group delimiter=", ">
-        <text variable="genre"/>
-        <text variable="publisher"/>
-        <text variable="publisher-place"/>
+      <group delimiter=". ">
+        <text variable="genre" />
+        <text variable="publisher" />
+        <text variable="publisher-place" />
       </group>
       <choose>
         <if type="chapter paper-conference" match="any">
@@ -188,7 +188,7 @@
   </macro>
   <macro name="locators">
     <choose>
-      <if type="article-journal article-magazine article-newspaper" match="any">
+      <if type="article-journal article-magazine article-newspaper book" match="any">
         <text variable="container-title" form="short" font-style="italic" strip-periods="true" />
         <group prefix=", " suffix="">
           <text variable="volume" prefix="" font-weight="normal"/>

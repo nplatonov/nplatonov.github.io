@@ -199,6 +199,20 @@ body {
       height: calc(100% - 12px);
       overflow-y: auto; 
    }
+   .csl-entry:hover::after {
+      opacity: 0.4;
+      content: attr(id);
+      margin-top: -1.3em;
+      float: right;
+      display: block;
+      position: absolute;
+      left: calc(max(0px,(100% - 790px - 90px)*0.5 + 790px + 80px));
+
+   }
+   span[id]::after:hover {
+      content: attr(id);
+      border: 1px solid red;
+   }
    .aside, .marginnote {
        border-radius: 5px;
        background-color: #f9f9f9; /* #ffffdf #f9f9f9*/
