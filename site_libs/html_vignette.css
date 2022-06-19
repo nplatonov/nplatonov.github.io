@@ -2471,6 +2471,7 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
 }
 /* https://stackoverflow.com/questions/47575563/conditional-css-rule-targeting-firefox-quantum */
 @media print {
+   @supports (-moz-appearance: none) or (-ms-ime-align: auto) { /* Firefox or Edge */
       .footnote-back {
          display: none;
       }
@@ -2481,4 +2482,47 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
         color: inherit !important;
         text-decoration: underline dotted #909090;
       }
+   }
+   @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge */
+      table thead, table tbody {
+         font-size: 85% !important;
+      }
+     /*
+      a, a:visited {
+         color: #084999;
+	         text-decoration: none;
+      }
+     */
+      a:after {
+        /* text-decoration: none;*/
+         content: '' !important; /* try without 'important' */
+      }
+   }
+   @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge --headless*/
+      @page {margin: 0.5cm;}
+      body {
+         background-color: white;
+         font-family: 'Segoe UI', sans-serif;
+         font-size: 12pt;
+         line-height: 1.25;
+         text-align: center;
+      }
+      p, h1~p, h2~p, h3~p, h4~p {text-indent: 0cm !important;}
+      p {margin-top: 0.3cm; margin-bottom: 0.3cm;}
+      .zfigure {
+         text-align: right;
+      }
+      img {
+         max-width: 18.2cm !important;
+         text-align: center !important;
+      }
+      div[id^="ref-"] > p {
+         text-indent: 0cm;
+         padding-left: 0cm;
+         text-align: left;
+      }
+      pre {
+         text-align: left;
+      }
+   }
 }
