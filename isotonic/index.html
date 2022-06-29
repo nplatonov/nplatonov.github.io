@@ -12,7 +12,7 @@
 
 
 
-<title>SID/SIA</title>
+<title>SID/SIA (18:30)</title>
 
 <link href="https://nplatonov.github.io/site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="https://nplatonov.github.io/site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
@@ -75,14 +75,14 @@ div.csl-indent {
 <address class="author_afil">
 A. N. Severtsov Institute of Ecology and Evolution of Russian Academy of Sciences, Moscow, Russia</address><br><h4 class="author">David Douglas <a href="https://orcid.org/0000-0003-0186-1104"><img src="https://nplatonov.github.io/orcid.svg" class="inline orcid" /></a></h4>
 <address class="author_afil">
-Alaska Science Center, U. S. Geological Survey, Juneau, Alaska, USA</address><br><h4 class="date">2022-06-20 01:45</h4>
+Alaska Science Center, U. S. Geological Survey, Juneau, Alaska, USA</address><br><h4 class="date">2022-06-29 18:30</h4>
 
 
 <div id="TOC">
 <ul>
 <li style="display: none;"><a href="#section" id="toc-section"></a>
 <ul>
-<li><a href="#dont-forget-abbreviating-when-first-use" id="toc-dont-forget-abbreviating-when-first-use">Don’t forget abbreviating when first use<span></span></a></li>
+<li><a href="#abbreviations" id="toc-abbreviations">Abbreviations<span></span></a></li>
 </ul></li>
 <li><a href="#introduction" id="toc-introduction">Introduction<span></span></a></li>
 <li><a href="#methods" id="toc-methods">Methods<span></span></a>
@@ -91,19 +91,22 @@ Alaska Science Center, U. S. Geological Survey, Juneau, Alaska, USA</address><br
 <li><a href="#isotonic-regression" id="toc-isotonic-regression">Isotonic regression<span></span></a></li>
 <li><a href="#seasons" id="toc-seasons">Seasons<span></span></a></li>
 <li><a href="#sic-threshold" id="toc-sic-threshold">SIC threshold<span></span></a></li>
-<li><a href="#short-terms-states" id="toc-short-terms-states">Short-terms states<span></span></a></li>
+<li><a href="#sea-ice-stages" id="toc-sea-ice-stages">Sea ice stages<span></span></a>
+<ul>
+<li><a href="#resident-ice-types" id="toc-resident-ice-types">Resident ice types<span></span></a></li>
+<li><a href="#short-terms-stages" id="toc-short-terms-stages">Short-terms stages<span></span></a></li>
+</ul></li>
 <li><a href="#sic-preprocessing" id="toc-sic-preprocessing">SIC preprocessing<span></span></a></li>
 <li><a href="#algorithm" id="toc-algorithm">Algorithm<span></span></a>
 <ul>
 <li><a href="#inverting" id="toc-inverting">Inverting<span></span></a></li>
+<li><a href="#onset-resilience" id="toc-onset-resilience">Onset resilience<span></span></a></li>
 </ul></li>
 <li><a href="#decision-making" id="toc-decision-making">Decision making<span></span></a></li>
 <li><a href="#output" id="toc-output">Output<span></span></a></li>
+<li><a href="#quality-assessment" id="toc-quality-assessment">Quality assessment<span></span></a></li>
 </ul></li>
-<li><a href="#mapping" id="toc-mapping">Mapping<span></span></a>
-<ul>
-<li><a href="#comparison-with" id="toc-comparison-with">Comparison with<span></span></a></li>
-</ul></li>
+<li><a href="#mapping" id="toc-mapping">Mapping<span></span></a></li>
 <li><a href="#application" id="toc-application">Application<span></span></a>
 <ul>
 <li><a href="#data-compression" id="toc-data-compression">Data compression<span></span></a></li>
@@ -113,7 +116,6 @@ Alaska Science Center, U. S. Geological Survey, Juneau, Alaska, USA</address><br
 </ul></li>
 <li><a href="#discussion" id="toc-discussion">Discussion<span></span></a>
 <ul>
-<li><a href="#resident-ice-term" id="toc-resident-ice-term">“Resident ice” term<span></span></a></li>
 <li><a href="#monitoring-tasks" id="toc-monitoring-tasks">Monitoring tasks<span></span></a></li>
 </ul></li>
 <li style="display: none;"><a href="#section-1" id="toc-section-1"></a>
@@ -129,13 +131,14 @@ Alaska Science Center, U. S. Geological Survey, Juneau, Alaska, USA</address><br
 
 <div id="section" class="section level1 additional">
 <h1 class="additional"></h1>
-<div id="dont-forget-abbreviating-when-first-use" class="section level2 hasAnchor">
-<h2>Don’t forget abbreviating when first use<a href="#dont-forget-abbreviating-when-first-use" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="abbreviations" class="section level2 hasAnchor">
+<h2>Abbreviations<a href="#abbreviations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><abbr title="Sea ice concentration">SIC</abbr>…</p>
 <p><abbr title="Sea ice extent">SIE</abbr>…</p>
 <p><abbr title="Sea ice disappearance">SID</abbr> onset dates…</p>
 <p><abbr title="Sea ice appearance">SIA</abbr> onset dates…</p>
 <p><abbr title="Day of the year">DOY</abbr>…</p>
+<p><abbr title="Root mean square error">RMSE</abbr>…</p>
 </div>
 </div>
 <div id="introduction" class="section level1 hasAnchor">
@@ -150,7 +153,15 @@ Alaska Science Center, U. S. Geological Survey, Juneau, Alaska, USA</address><br
 </div>
 <div id="isotonic-regression" class="section level2 hasAnchor">
 <h2>Isotonic regression<a href="#isotonic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Isotonic regression with a singe peak <span class="citation">(<a href="#ref-Turner1997" role="doc-biblioref">Turner and Wollan, 1997</a>)</span>. Implemented in package <code>Iso</code> <span class="citation">(<a href="#ref-r-Iso" role="doc-biblioref">Turner, 2020</a>)</span> for R statistical software <span class="citation">(<a href="#ref-r-core" role="doc-biblioref">R Core Team, 2022</a>)</span>.</p>
+<p>Isotonic unimodal regression <span class="citation">(<a href="#ref-Turner1997" role="doc-biblioref">Turner and Wollan, 1997</a>)</span> is used for fitting of SIC time-series. Implemented in package <code>Iso</code> <span class="citation">(<a href="#ref-r-Iso" role="doc-biblioref">Turner, 2020</a>)</span> for R statistical software <span class="citation">(<a href="#ref-r-core" role="doc-biblioref">R Core Team, 2022</a>)</span>. Isotonic fitted curve excludes double or multiple crossing threshold value, which was reached in 4.8 % cases of fitted smoothed regional SIC time-series <span class="citation">(<a href="#ref-SternLaidre2016" role="doc-biblioref">Stern and Laidre, 2016</a>)</span>.</p>
+<div class="aside">
+<blockquote>
+<p>In practice, out of 2736 crossing dates (36 years × 2 seasons × 19 regions × 2 time series
+per region), only 131 dates (4.8 %) had any potential for ambiguity.
+In more than 95 % of the cases there was clearly only a single crossing date.
+<span class="citation">(<a href="#ref-SternLaidre2016" role="doc-biblioref">Stern and Laidre, 2016</a>)</span></p>
+</blockquote>
+</div>
 <p>Less sensitive for period subset in comparison with asymmetrical Gaussian</p>
 </div>
 <div id="seasons" class="section level2 hasAnchor">
@@ -159,7 +170,7 @@ Alaska Science Center, U. S. Geological Survey, Juneau, Alaska, USA</address><br
 <ul>
 <li><p>“max”: winter, period of maximal sea ice extent between 15 January and 15 May.</p></li>
 <li><p>“mlt”: Spring, period of sea ice retreat between 15 February and 30 September.</p></li>
-<li><p>“min”: Summer, perod of minimal sea ice extent between 15 July and 31 October.</p></li>
+<li><p>“min”: Summer, perod of minimal sea ice extent between 15 July and 15 November.</p></li>
 <li><p>“frz”: Autumn, period of sea ice advance between 15 August and 31 March.</p></li>
 </ul>
 <p>Seasonal sequence for SID is “max”, “mlt”, “min”.</p>
@@ -173,11 +184,34 @@ Alaska Science Center, U. S. Geological Survey, Juneau, Alaska, USA</address><br
 </div>
 <div id="sic-threshold" class="section level2 hasAnchor">
 <h2>SIC threshold<a href="#sic-threshold" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We selected SIC 15%, which is abopted from <span class="citation">Parkinson <em>et al.</em> (<a href="#ref-Parkinson1999" role="doc-biblioref">1999</a>)</span>. This is common value for estimating sea ice extent <span class="citation">(<a href="#ref-NSIDC_ice-extent" role="doc-biblioref">NSIDC, 2020</a>)</span>.</p>
+<p>We selected SIC 15 %, which is abopted from <span class="citation">Parkinson <em>et al.</em> (<a href="#ref-Parkinson1999" role="doc-biblioref">1999</a>)</span>. This is common value for estimating sea ice extent <span class="citation">(<a href="#ref-NSIDC_ice-extent" role="doc-biblioref">NSIDC, 2020</a>)</span>.</p>
 </div>
-<div id="short-terms-states" class="section level2 hasAnchor">
-<h2>Short-terms states<a href="#short-terms-states" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We selected 3 days for identification onsets. If SIC is &lt;15% for fitted timeseries during 3 days, then SID and SIA are detected. If SIC is &lt;15% for fitted time-series during 3 days, then resident ice ice is detected.</p>
+<div id="sea-ice-stages" class="section level2 hasAnchor">
+<h2>Sea ice stages<a href="#sea-ice-stages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="aside">
+<p>2013:</p>
+<blockquote>
+<p><em>Resident ice</em> – status of grid cell, for which the ice-free conditions are absent during the considered period. The extent of resident ice is less than or equal to extent of multiyear ice.
+<em>Resident open water</em> – status of grid cell, for which the icy conditions are absent during the considered period.
+<em>Ice presence, icy conditions</em> mean that sea ice concentration is ≥15%.
+<em>Ice-free conditions</em> mean that sea ice concentration is &lt;15%.</p>
+</blockquote>
+</div>
+<div id="resident-ice-types" class="section level3 hasAnchor">
+<h3>Resident ice types<a href="#resident-ice-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Resident open water where ice is absent during the entire winter period</p>
+<p>Resident ice where ice is present all summer.</p>
+<p>We distinguish summer minimum extent and extent of resident ice. The former is set of cells with ice for the date of mimimal seasonal extent. The later is set of cells without SID or SIA detection.</p>
+</div>
+<div id="short-terms-stages" class="section level3 hasAnchor">
+<h3>Short-terms stages<a href="#short-terms-stages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Comparing summer minimal extent and extent of resident sea ice, we estimated 7 as a minimal duration for open-water period during summer.
+Comparing winter maximal extent and outer extent without resident open water, we estimated 21 as a minimal duration for sea ice period during winter.
+If SIC is &lt;15 % for fitted timeseries during 7 days or more, then SID and SIA are detected.
+If SIC is &lt;15 % for fitted time-series during less than 7 days, then resident ice is detected.
+If SIC is ≥15 % for fitted timeseries during 21 days or more, then SID and SIA are detected.
+If SIC is ≥15 % for fitted time-series during less than21 days, then resident open water is detected.</p>
+</div>
 </div>
 <div id="sic-preprocessing" class="section level2 hasAnchor">
 <h2>SIC preprocessing<a href="#sic-preprocessing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -185,6 +219,7 @@ Alaska Science Center, U. S. Geological Survey, Juneau, Alaska, USA</address><br
 <blockquote>
 <p><em>2013</em>: We developed an algorithm to estimate SID and SIA onset dates using daily SIC data derived from 25-km x 25-km pixel resolution SSM/I and SSMIS passive microwave satellite imagery (Maslanik et al. 1999). We preprocessed the SIC data in two steps: 1) spatial filtering to fill no-data pixels using Gaussian smoothing with a 3x3 pixel window size and <span class="math inline"><em>σ</em></span>=0.75; and 2) temporal linear interpolation to fill remaining no-data pixels using three sequential sliding windows with sizes 3x3, 5x5, and 7x7 pixels.</p>
 </blockquote>
+<div class="aside">
 <blockquote>
 <blockquote>
 <p>“Maslanik et al. 1999” is <span class="citation">Maslanik and Stroeve (<a href="#ref-NASATeam_NRT" role="doc-biblioref">1999</a>)</span>. Change to <span class="citation">(<a href="#ref-NASATeam_GSFC" role="doc-biblioref">Cavalieri, 1996</a>)</span>.<br />
@@ -193,45 +228,70 @@ Alaska Science Center, U. S. Geological Survey, Juneau, Alaska, USA</address><br
 + NRT NASA Team <span class="citation">(<a href="#ref-NASATeam_NRT" role="doc-biblioref">Maslanik and Stroeve, 1999</a>)</span></p>
 </blockquote>
 </blockquote>
-<p>Polar belt is filled by SIC value 100%. Each data contains 66285 cells. Coastal buffer zone (1-2 pixel or 25-50 km) are (can be) applied for output.</p>
+</div>
+<p>Invisible for SSM/I and SSMIS scanning instrument Polar belt (approximately north of 86.5°N) is filled by SIC value 100%. For our data () There is no SID or SIA onsets, which are close to polar belt for our data (1988-2021). Each map contains 66285 cells. Coastal buffer zone (1-2 pixel or 25-50 km) are (can be) applied for output.</p>
 </div>
 <div id="algorithm" class="section level2 hasAnchor">
 <h2>Algorithm<a href="#algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Each phenological state (SID or SIA) is considered independently. For each phenological state seasons are considered independently: “max”, “mlt”, and “min” for SID; “min”, “frz”, and “max” for SIA. For each season, SIC time-series is approximated by isotonic function with a single peak. Based on fitted time-series, SID is last date when SIC≥15%, SIA is first date when SIC≥15%.</p>
+<p>Each phenological state (SID or SIA) is considered independently. For each phenological state seasons are considered independently: “max”, “mlt”, and “min” for SID; “min”, “frz”, and “max” for SIA. For each season, SIC time-series is approximated by isotonic function with a single mode. Based on fitted time-series, SID is last date when SIC ≥15 %, SIA is first date when SIC ≥15 %.</p>
 <div id="inverting" class="section level3 hasAnchor">
 <h3>Inverting<a href="#inverting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Two time-series: original <em>x</em> and inverted <em>100-x</em> are fitted. Fitting with minimal RMSE is selected. Backward transition <em>100-x</em> for inverted fitting.</p>
+<p>Generally, two time-series: original <span class="math inline"><em>x</em></span> and inverted <span class="math inline">100 − <em>x</em></span> are fitted. For “max” season only original <span class="math inline"><em>x</em></span> is considered. For “min” season only inverted <span class="math inline">100 − <em>x</em></span> is considered. For “mlt” and “frz” seasons both fittings compete, and fitting with minimal RMSE is selected. Backward transition <span class="math inline">100 − <em>x</em></span> is applied for inverted fitting.</p>
+</div>
+<div id="onset-resilience" class="section level3 hasAnchor">
+<h3>Onset resilience<a href="#onset-resilience" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Additional numeric value for resilience of onset date, proximity to ends of time-series, is included to interim output for estimating quality of fitting. Proximity to ends is estimated as a fraction between 0.0 and 0.5, where 0.0 means position in the head or tail of time-series, 0.5 means position in the middle of time-series. There is more uncertainty in the proximity to the boundaries of time-series period because of the uncertain time-series behavior beyond considered period.</p>
 </div>
 </div>
 <div id="decision-making" class="section level2 hasAnchor">
 <h2>Decision making<a href="#decision-making" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Because output has length 3, only one value is selected. For SID “mlt” has higher priority. For SIA “frz” has higher priority. If SIA, then “max” is selected between “min” and “max” competition.</p>
+<p>Because output has length 3, only one value is selected based on maximal value of onset resilience.</p>
+<div class="aside">
+<p>Deprecated:</p>
+<blockquote>
+<p>For SID “mlt” has higher priority. For SIA “frz” has higher priority. If SIA, then “max” is selected between “min” and “max” competition.</p>
+</blockquote>
+</div>
 </div>
 <div id="output" class="section level2 hasAnchor">
 <h2>Output<a href="#output" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Raster maps with two kinds of information.</p>
 <ol style="list-style-type: decimal">
-<li><p>Values between 15 and 490 denote DOY of SID onset or SIA onset.</p></li>
-<li><p>Values greater than 800 are flags.</p>
+<li><p>Values between 15 and 600 denote DOY of SID onset or SIA onset.</p></li>
+<li><p>Values between 600 and 1000 are flags.</p>
 <ul>
-<li>880: resident sea ice<br />
-</li>
-<li>870: resident open water<br />
-Below are additional flags for data procuct:
+<li><p>990: resident sea ice<br />
+</p></li>
+<li><p>980: resident open water</p></li>
+<li><p>930: transition</p>
+<p>Below are interim flags for flexible detection of short-term phenological stages:</p>
 <ul>
-<li>860: algorithm fails to detect transition from sea ice to open water<br />
+<li>701-750: lifetime of short-term ice during winter in days with added value 700<br />
 </li>
-<li>850: algorithm fails to detect transition from open water to sea ice</li>
-<li>840: short-term sea ice (duration of period with ice is less than 3 days)</li>
-<li>830: short-term open water (duration of period without ice is less than 3 days)<br />
-</li>
-<li>820: sometimes SIC drops &lt;15% but fitting doesn’t drops this threshold<br />
-</li>
-<li>810: sometimes SIC raises ≥15% but fitting doesn’t raises this threshold</li>
+<li>701-750: lifetime of short-term open water during summer in days with added value 800</li>
 </ul>
-Flags 880, 830, and 820 are interpreted as resident ice.</li>
-</ul></li>
+<p>After excluding of short-term phenological stages (21 days for sea ice and 7 days for open water), values between 701 and 720 are reclassified to 980, values between 721 and 750 are reclassified to 930, values between 801 and 806 are reclassified to 990, values between 807 and 850 are reclassified to 930.</p></li>
+</ul>
+<!--
+   + 850: algorithm fails to detect transition from open water to sea ice
+   + 840: short-term sea ice (duration of period with ice is less than `slen` days)
+   + 830: short-term open water (duration of period without ice is less than `slen` days)  
+   + 820: sometimes SIC drops <15 % but fitting doesn't drops this threshold  
+   + 810: sometimes SIC raises ≥15 % but fitting doesn't raises this threshold  
+
+   Flags 880, 830, and 820 are interpreted as resident ice.
+--></li>
+<li><p>Values greater than 6500 are dates with origin 1970-01-01 00:00:00.</p></li>
 </ol>
+<p>Based on available SIC <span class="citation">(<a href="#ref-NASATeam_GSFC" role="doc-biblioref">Cavalieri, 1996</a>)</span> the interleaving starts by 1988 SID and ends 2001 SID. For demonstration purposed four maps in the tail of sequence are used: 2019 SIA, 2020 SID, 2020 SIA, 2021 SID</p>
+</div>
+<div id="quality-assessment" class="section level2 hasAnchor">
+<h2>Quality assessment<a href="#quality-assessment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We developed two kind of maps for consequent interleaving.</p>
+<ul>
+<li><p>Difference between consequent SIA dates and SID dates – duration of open water season. For all 33 maps during 1988-2020, based on consequent SIA after SID, with total 524971 cells there are 10 cells (19ppm) with negative values of season duration: 4 for 2014, 1 for 2005, 3 for 2000 and 1 for 1996.</p></li>
+<li><p>Difference between consequent SID dates and SIA dates – duration of ice season. For all maps there was not detection of negative values.</p></li>
+</ul>
 </div>
 </div>
 <div id="mapping" class="section level1 hasAnchor">
@@ -243,26 +303,29 @@ Flags 880, 830, and 820 are interpreted as resident ice.</li>
 <span class="caption-prefix">Figure 2</span><span class="caption-suffix"></span> Consequence of phenological seasons
 </p>
 </div>
-<div id="comparison-with" class="section level2 hasAnchor">
-<h2>Comparison with<a href="#comparison-with" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>Using ‘nugget’ (variogram parameter), spatial autocorrelation</p>
-<ul>
-<li><p>SID <em>vs</em> first/second/third day when SIC drops below 15%.</p></li>
-<li><p>SID <em>vs</em> date when “At least three consequent days with SIC&lt;15%”.</p></li>
-</ul></li>
-<li><p>Difference in days between snowmelt onset and SID.</p></li>
-</ul>
-</div>
+<!--
+
+## Comparison with 
+
+
++ Using ‘nugget’ (variogram parameter), spatial autocorrelation
+
+   + SID *vs* first/second/third day when SIC drops below 15 %.
+
+   + SID *vs* date when "At least three consequent days with SIC<15 %". 
+
++ Difference in days between snowmelt onset [@Markus_PMW_data] and SID.
+
+-->
 </div>
 <div id="application" class="section level1 hasAnchor">
 <h1>Application<a href="#application" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="data-compression" class="section level2 hasAnchor">
 <h2>Data compression<a href="#data-compression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For any date (in units of DOY) of transitional period SIE is restored by overlapping mask with values ≤DOY and mask with flag of resident ice.</p>
-<p>Single map instead of seasonal set (about two hundred maps) of sea ice extent maps. See comparison on Figure <a href="#fig:cumextent">3</a>. Tails of isotonic SID and SIA curvesare limited by minimal and maximal values of onset.</p>
+<p>Single map instead of seasonal set (about three hundred maps) of sea ice extent maps. See comparison on Figure <a href="#fig:cumextent">3</a>. Tails of isotonic SID and SIA curvesare limited by minimal and maximal values of onset.</p>
 <div class="figure"><span style="display:block;" id="fig:cumextent"></span>
-<img src="assets/cumextent.png" alt="Evolutions of SIE (grey) from SIC and restored SIE from SID (red) and SIA (blue) maps" width="403" />
+<img src="assets/cumextent.png" alt="Evolutions of SIE (grey) from SIC and restored SIE from SID (red) and SIA (blue) maps" width="771" />
 <p class="caption">
 <span class="caption-prefix">Figure 3</span><span class="caption-suffix"></span> Evolutions of SIE (grey) from SIC and restored SIE from SID (red) and SIA (blue) maps
 </p>
@@ -272,7 +335,7 @@ Flags 880, 830, and 820 are interpreted as resident ice.</li>
 <h2>Polar bears behaviour<a href="#polar-bears-behaviour" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>As a metric for polar bear habitat.</p></li>
-<li><p>Polar bear subpopulation heatmaps</p></li>
+<li><p>Polar bear subpopulation choropleths.</p></li>
 <li><p>Scatterplot (Figure <a href="#fig:telemetry">4</a>), X-value is date of polar bear location, Y-value is SID/SIA.</p></li>
 </ul>
 <div class="figure"><span style="display:block;" id="fig:telemetry"></span>
@@ -281,8 +344,8 @@ Flags 880, 830, and 820 are interpreted as resident ice.</li>
 <span class="caption-prefix">Figure 4</span><span class="caption-suffix"></span> How to polar bear adapt to sea ice break-up
 </p>
 </div>
-<div class="note">
-<p>Figure <a href="#fig:telemetry">4</a> is apopted from <span class="citation">Rozhnov <em>et al.</em> (<a href="#ref-Rozhnov2017_hutuda" role="doc-biblioref">2017</a>)</span>. Would be better to use permitted data, like <span class="citation">Pagano <em>et al.</em> (<a href="#ref-Pagano2021_CRW" role="doc-biblioref">2021</a>)</span>.</p>
+<div class="aside">
+<p>Figure <a href="#fig:telemetry">4</a> is adopted from <span class="citation">Rozhnov <em>et al.</em> (<a href="#ref-Rozhnov2017_hutuda" role="doc-biblioref">2017</a>)</span>. Would be better to use permitted data, like <span class="citation">Pagano <em>et al.</em> (<a href="#ref-Pagano2021_CRW" role="doc-biblioref">2021</a>)</span>.</p>
 </div>
 </div>
 <div id="isodates" class="section level2 hasAnchor">
@@ -311,10 +374,6 @@ Flags 880, 830, and 820 are interpreted as resident ice.</li>
 </div>
 <div id="discussion" class="section level1 hasAnchor">
 <h1>Discussion<a href="#discussion" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="resident-ice-term" class="section level2 hasAnchor">
-<h2>“Resident ice” term<a href="#resident-ice-term" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We used “resident” ice instead of summer minimum.</p>
-</div>
 <div id="monitoring-tasks" class="section level2 hasAnchor">
 <h2>Monitoring tasks<a href="#monitoring-tasks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Near real-time data for monitoring tasks. For mapping “near” means couple weeks for regions with seasonal ice and months for regions with close proximity to MYI</p>
@@ -333,8 +392,12 @@ Flags 880, 830, and 820 are interpreted as resident ice.</li>
 </div>
 <div id="availability-of-data-and-material" class="section level2 hasAnchor">
 <h2>Availability of data and material<a href="#availability-of-data-and-material" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Github <a href="https://github.com/nplatonov/phenology">nplatonov/phenology</a> repository with GeoTiff<del>/NetCDF</del> dataset and source R <span class="citation">(<a href="#ref-r-core" role="doc-biblioref">R Core Team, 2022</a>)</span> code. Assigned Zenodo DOI. Dependence from package <code>ursa</code> <span class="citation">(<a href="#ref-r-ursa-dev" role="doc-biblioref">Platonov, 2022</a>)</span>, version ≥ 3.9.7.</p>
 <ul>
-<li><p>Any stage: github R <span class="citation">(<a href="#ref-r-core" role="doc-biblioref">R Core Team, 2022</a>)</span> repository, including GeoTiff/NetCDF dataset, with Zenodo DOI. CRAN package.</p></li>
+<li><p>R package on github with vignette, then CRAN. Only sia2019.tif, sia2020.tif, sid2020.tif, sid2021.tif. <a href="https://cran.r-project.org/web/packages/policies.html#Source-packages">Because</a>:</p>
+<blockquote>
+<p>As a general rule, neither data nor documentation should exceed 5MB (which covers several books). A CRAN package is not an appropriate way to distribute course notes, and authors will be asked to trim their documentation to a maximum of 5MB.</p>
+</blockquote></li>
 <li><p>After publication: add publication citing to package’s “how to cite”.</p></li>
 <li><p>NSIDC dataset?</p></li>
 </ul>
@@ -383,6 +446,9 @@ Pagano AM, Durner GM, Atwood TC and Douglas DC. 2021. <span class="nocase">Polar
 <div id="ref-Parkinson1999" class="csl-entry">
 Parkinson CL, Cavalieri DJ, Gloersen P, Zwally HJ and Comiso JC. 1999. Arctic sea ice extents, areas, and trends, 1978-1996. <em>Journal of Geophysical Research: Oceans</em>, 104(C9): 20837–20856. <a href="https://doi.org/10.1029/1999jc900082">10.1029/1999jc900082</a>.
 </div>
+<div id="ref-r-ursa-dev" class="csl-entry">
+Platonov N. 2022. <span class="nocase">ursa: Non-Interactive Spatial Tools for Raster Processing and Visualization</span>. R package version 3.9.7. <a href="https://github.com/nplatonov/ursa">https://github.com/nplatonov/ursa</a> (accessed 29 June 2022).
+</div>
 <div id="ref-r-core" class="csl-entry">
 R Core Team. 2022. R: A language and environment for statistical computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a> (accessed 04 March 2022).
 </div>
@@ -394,6 +460,9 @@ Rozhnov VV, Platonov NG, Naidenko SV, Mordvintsev IN and Ivanov EA. 2017. <span 
 </div>
 <div id="ref-Bremen_iceconc" class="csl-entry">
 Spreen G, Kaleschke L and Heygster G. 2008. Sea ice remote sensing using <span>AMSR-E</span> 89-<span>GHz</span> channels. <em>Journal of Geophysical Research: Oceans</em>, 113(C2). C02S03. <a href="https://doi.org/10.1029/2005JC003384">10.1029/2005JC003384</a>.
+</div>
+<div id="ref-SternLaidre2016" class="csl-entry">
+Stern HL and Laidre KL. 2016. Sea-ice indicators of polar bear habitat. <em>The Cryosphere</em>, 10(5): 2027–2041. <a href="https://doi.org/10.5194/tc-10-2027-2016">10.5194/tc-10-2027-2016</a>.
 </div>
 <div id="ref-Stroeve2018" class="csl-entry">
 Stroeve J and Notz D. 2018. Changing state of <span>A</span>rctic sea ice across all seasons. <em>Environmental Research Letters</em>, 13(10): 103001. <a href="https://doi.org/10.1088/1748-9326/aade56">10.1088/1748-9326/aade56</a>.
