@@ -21,6 +21,8 @@ for (myname in c("C:/platt/article/platt.bib"
                 ,"C:/platt/R/style/thesis_paged.css"
                 ,"C:/platt/R/style/distill_article.css"
                 ,"C:/platt/R/style/tufte_html.css"
+                ,"C:/platt/R/style/moon_reader.css"
+                ,"C:/platt/R/style/moon_reader-fonts.css"
                 ,"C:/platt/R/style/link.svg"
                 ,"C:/platt/R/style/orcid.svg"
                 )) {

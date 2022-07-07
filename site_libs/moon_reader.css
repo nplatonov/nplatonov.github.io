@@ -16,7 +16,7 @@
    --sidebar-background: #00000008; /* #FAFAFA #ffc */
    --sidebar-background-inverse: #FFFFFF08;
    --sidebar-color: var(--accent);
-   --sidebar-strip: transparent; 
+   --sidebar-strip: #FFFFFFFE	; 
    --sidebar-select: var(--accent);
    --bg: #37A;
    --inverse-bg: #222E3A; /* #3B0863 #2C3E50*/
@@ -43,7 +43,7 @@ body.remark-container.dev:before {
 */
 body {
  /* font-family: Fira Sans, 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;*/
-  font-family: "Roboto", "z Roboto Condensed" ,"z Fira Sans" ,"z Segoe UI", serif !important;
+  font-family: "Roboto", "Roboto Condensed" ,"z Fira Sans" ,"z Segoe UI", serif !important;
   color: #000000;
   line-height: 1.15;
 }
@@ -145,7 +145,7 @@ remark-slide-content[style*="background"] .inverse h5 {
 .remark-slide-content h5 {
     font-size: 110%;
 }
-.notable, .notable .title-slide.notable {
+.notable:not(.inverse), .notable:not(.inverse) .title-slide.notable {
   background-color: #FFFDF4 !important;
  /* color: #43418A;*/
   text-shadow: 4px 4px 15px var(--light);
@@ -157,7 +157,7 @@ remark-slide-content[style*="background"] .inverse h5 {
  /* color: red; */
  /* color: #43418A; */
 }
-.remark-slide-content.inverse:not(.notable), .title-slide.inverse, .break {
+.remark-slide-content.inverse:not(.notable), .title-slide.inverse, .break, .notable.inverse {
   background-color: var(--inverse-bg);
   color: #ffffff;
  /* text-shadow: 0 0 20px var(--dark);*/
@@ -1339,7 +1339,7 @@ table tr th:empty {
       bottom: 0.5em;
       right: calc(50% - 1.2em - (14 / 9) * 50vh);
    }
-   .remark-slides-area:after {
+   .devel2-remark-slides-area:after {
       content: 'A';
       border: 1px solid blue !important;
       right: unset !important;
