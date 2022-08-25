@@ -13,6 +13,7 @@ for (myname in c("C:/platt/article/platt.bib"
                 ,"C:/platt/R/style/platt3.csl"
                 ,"C:/platt/R/style/platt4.csl"
                 ,"C:/platt/R/style/common.css"
+                ,"C:/platt/R/style/fonts.css"
                 ,"C:/platt/R/style/html_vignette.css"
                 ,"C:/platt/R/style/flex_dashboard.css"
                 ,"C:/platt/R/style/revealjs_presentation.css"
@@ -21,6 +22,8 @@ for (myname in c("C:/platt/article/platt.bib"
                 ,"C:/platt/R/style/thesis_paged.css"
                 ,"C:/platt/R/style/distill_article.css"
                 ,"C:/platt/R/style/tufte_html.css"
+                ,"C:/platt/R/style/moon_reader.css"
+                ,"C:/platt/R/style/moon_reader-fonts.css"
                 ,"C:/platt/R/style/link.svg"
                 ,"C:/platt/R/style/orcid.svg"
                 )) {
@@ -31,7 +34,7 @@ for (myname in c("C:/platt/article/platt.bib"
       print(a[ind])
       a[ind] <- gsub(patt,"https://nplatonov.github.io/",a[ind])
       print(a[ind])
-      Fout <- file(basename(myname),encoding="UTF-8")
+      Fout <- file(file.path("site_libs",basename(myname)),encoding="UTF-8")
       writeLines(a,Fout)
       close(Fout)
    }

@@ -33,6 +33,13 @@ h2 + .level3:empty:after {
   /* border: 1px red solid;*/
    break-inside: avoid;
 }
+.level1 h1 {
+   page-break-after: avoid !important;
+}
+.level1 h1+.references {
+   break-before: avoid !important;
+   page-break-before: avoid !important;
+}
 /* subject to infinite paging -- end */
 
 :root {
@@ -54,7 +61,8 @@ body {
 p, .abstract, ul li, ol li, .zzztable {
    orphans: 3 !important; /*  the minimum number of lines in a block container that must be left at the bottom of a page */
    widows: 3 !important; /* minimum number of lines in a block container that must be left at the top of a page */
-   break-inside: avoid;
+  /* break-inside: avoid;*/
+  /* border: 1px solid red;*/
 }
 .toc li {
    break-before: auto !important;
@@ -81,7 +89,7 @@ p:only-of-type, td p:not(:only-of-type) {
   /* color: brown; */ /* devel */
 }
 h1~p, h2~p, h3~p, h4~p, h5~p, h6~p, .definition~p, .figure~p {
-   text-indent: 1.25cm !important; /* 1.25cm */
+   text-indent: 1.25cm; /* 1.25cm */
    /* color: magenta !important; */ /* devel */
 }
 .section > p { /* , table.sign-table td , .section > ul:not([data-split-original]) { */
@@ -272,6 +280,9 @@ sup, sub {
    display: block;
    width: 100%;
    text-align: center;
+}
+img {
+   height: auto !important;
 }
 .front-cover img {
    margin-right: 0cm;
@@ -616,17 +627,34 @@ blockquote {
    border: 1px solid red;
 }
 .pagebreak {
-   page-break-before: always;
+  /* page-break-before: always !important; */
+  /* break-before: always !important; */
+   break-after: always !important;
 }
 .remarkonly, .onlyremark {
    display: none;
 }
-.titlepage-updated + .front-matter-container {
-   break-before: always;
-}
 table > thead {
   /* background: yellow;*/
 }
+.zzz.titlepage-updated + .front-matter-container {
+   break-before: always;
+}
+pre code {
+   white-space: pre-wrap;
+}
+code {
+   font-size: 90%;
+}
+pre {
+   font-size: 90%;
+   line-height: 1.15;
+}
+/*
+.front-matter-container +p {
+   break-after: none !important;
+}
+*/
 @media only screen {
    .asteric {
       border: 1px solid #00f2;

@@ -19,15 +19,20 @@ div.abstract{
   width: 75%;
   font-size: 90%  !important;
   color: #444;
-  padding: 1em 0 0.01em 0;
+  padding: 0.2em 0 0.2em 0;
 }
 .abstract > .line-block > br {
    margin-bottom: 0.25em;
 }
-div.acknowledgement {
-   padding: 0.6em 1.2em 0em 1.2em;
+.acknowledgement, .additional, .supplement, .supplemental {
+   padding: 0em 1.2em 0em 1.2em;
    font-size: 90%;
    color: inherit;
+}
+.additional h2 {
+   color: inherit;
+   text-transform: uppercase;
+   font-size: 120%;
 }
 *:not(.leaflet-control),
 .leaflet { /* to overwrite bootstrap.min.css  #conflicted */
@@ -50,7 +55,7 @@ body {
   padding-bottom: 0.01em;
   color: #222;
  /* Verdana, Tahoma и Segoe UI (никакого Arial и Calibri!) */  /* "Georgia", "Garamond" */
-  font-family: "Segoe UI", "Roboto", "Lato", "Open Sans", "Helvetica Neue", Helvetica, Verdana, sans-serif;
+  font-family: "Segoe UI", "zRoboto", "zLato", "Open Sans", "Helvetica Neue", Helvetica, Verdana, sans-serif;
  /* font-family: sans-serif;*/
   font-size: 11pt;
   line-height: 1.30;
@@ -145,7 +150,7 @@ body {
 .goto_toc:hover img{
    opacity: 0.8;
 }
-.aside {
+.aside, .marginnote {
    display: none;
    font-size: 13px;
    line-height: 1.25em;
@@ -154,7 +159,7 @@ body {
    margin-right: 1em;
 }
 @media only dummy and (min-width: 20px) and (max-width: 930px) {
-   .aside {
+   .aside, .marginnote {
       display: block;
       opacity: 0.6;
       width: 12pt;
@@ -162,15 +167,15 @@ body {
       font-size: 0pt;
       color: transparent;
    }
-   .aside:before {
+   .aside:before, .marginnote:before {
       color: #444;
       font-size: 16pt;
       content: '\1F5CF';
    }
-   .aside:hover:before {
+   .aside:hover:before, .marginnote:hover:before {
       content: '';
    }
-   .aside:hover {
+   .aside:hover, .marginnote:hover {
       font-size: 13px;
       color: unset;
       width: unset;
@@ -194,7 +199,21 @@ body {
       height: calc(100% - 12px);
       overflow-y: auto; 
    }
-   .aside {
+   .csl-entry:hover::after {
+      opacity: 0.4;
+      content: attr(id);
+      margin-top: -1.3em;
+      float: right;
+      display: block;
+      position: absolute;
+      left: calc(max(0px,(100% - 790px - 90px)*0.5 + 790px + 80px));
+
+   }
+   span[id]::after:hover {
+      content: attr(id);
+      border: 1px solid red;
+   }
+   .aside, .marginnote {
        border-radius: 5px;
        background-color: #f9f9f9; /* #ffffdf #f9f9f9*/
        max-width: 420px;
@@ -223,17 +242,17 @@ body {
        vertical-align: baseline;
        position: relative;
    }
-   .aside .centered-image {
+   .aside .centered-image, .marginnote .cetered-image {
        text-align: left;
       /* max-width: 420px; */
    }
-   span.aside img {
+   span.aside img, span.marginnote img {
       margin-bottom: 0.5em;
    }
-   span.aside::before {
+   span.aside::before, span.marginnote::before {
       content: "\261A" ' ';
    }
-   div.aside::before {
+   div.aside::before, div.marginnnote::before {
       content: '\261A';
    }
    p span.zzzaside {
@@ -284,7 +303,7 @@ body {
       overflow-y: scroll;
    }
    /* collapse -- end */
-   .aside {
+   .aside, .marginnote {
        display: block;
        padding-left: 0.7em;
        padding-right: 0.7em;
@@ -609,7 +628,7 @@ ul ul ul {
   list-style-type: '• ';
 }
 ul ul ul ul {
-  list-style-type: '\2023  ';  /* '<U+2023> '; */
+  list-style-type: '\2023  ';  /* '‣ '; */
 }
 ul ul {
   margin-bottom: 0;
@@ -703,6 +722,9 @@ pre:not([class]) > code {
   background-color: transparent !important;
   font-size: 100% !important;
 }
+table pre > code, table pre {
+  white-space: pre-wrap;
+}
 .sourceCode {
   border-radius: 5px;
   border: 0px;
@@ -755,6 +777,9 @@ br~a > img, p > img {
 */
 p.centered-image {
    text-align: center;
+}
+p.centered-image {
+   display: grid;
 }
 img[zzzaltzzz] {
    display: block;
@@ -965,33 +990,35 @@ h1:hover, h2:hover, h3:hover, h4:hover {
    margin-left: -2.2em;
    content: '||||';
 }
-.section > h1::after {
-   content: '|';
-}
-.section > h2::after {
-   content: '||';
-}
-.section > h3::after {
-   content: '|||';
-}
-.section > h4::after {
-   content: '||||';
-}
-.section > h1::after, .section > h2::after, .section > h3::after, .section > h4::after {
-    margin-left: 8pt;
-    margin-top: -1.25em;
-    float: right;
-    display: block;
-    position: absolute;
-   /* right: calc(max(0.5em,(100% - 790px - 90px)*0.5 - 415px)); */
-    left: calc(max(0px,(100% - 790px - 90px)*0.5 + 790px + 55px));
-   /* right: 0.5em;*/
-   /* width: calc((100% - 790px - 90px)*0.5); */
-}
-.section > h5::before {
+.zzzsection > h5::before {
    margin-right: 1.41em;
    margin-left: -2.6em;
    content: '|||||';
+}
+@media screen and (min-width: 790px) {
+   .section > h1::after {
+      content: '|';
+   }
+   .section > h2::after {
+      content: '||';
+   }
+   .section > h3::after {
+      content: '|||';
+   }
+   .section > h4::after {
+      content: '||||';
+   }
+   .section > h1::after, .section > h2::after, .section > h3::after, .section > h4::after {
+       margin-left: 8pt;
+       margin-top: -1.25em;
+       float: right;
+       display: block;
+       position: absolute;
+      /* right: calc(max(0.5em,(100% - 790px - 90px)*0.5 - 415px)); */
+       left: calc(max(0px,(100% - 790px - 90px)*0.5 + 790px + 55px));
+      /* right: 0.5em;*/
+      /* width: calc((100% - 790px - 90px)*0.5); */
+   }
 }
 .title::before,.subtitle::before,h4.author::before,h4.date::before {
    margin-right: unset;
@@ -1040,6 +1067,7 @@ div.uppercase > h1 {
   text-transform: uppercase;
 }
 .title { /* expanded h1 */
+  font-size: 230%;
   color: inherit;
   border: 0;
   margin-top: 0.4em;
@@ -1047,7 +1075,7 @@ div.uppercase > h1 {
   margin-left: 0;
 }
 .subtitle { /* expanded h2 */
-  font-size: 130%;
+  font-size: 150%;
   color: inherit;
   margin-left: 0;
   border: 0;
@@ -1089,7 +1117,7 @@ div.uppercase > h1 {
    padding-left: 20px;
 }
 */
-h3.subtitle > em, h4.author > em, h4.date > em {
+h3.zzzsubtitle > em, h4.author > em, h4.date > em {
    font-style: normal;
 }
 
@@ -1104,7 +1132,23 @@ h3.subtitle > em, h4.author > em, h4.date > em {
    background: transparent url(https://nplatonov.github.io/date.png) center left no-repeat;
    padding-left: 18px;
 }
-
+.date > .updated {
+   font-size: 100%;
+   opacity: 0.3;
+  /*
+   position: absolute;
+   top: 1em;
+   right: 2em;
+  */
+   text-align: right;
+}
+.date > .meeting {
+   display: block;
+   padding-bottom: 0.2em;
+}
+.date > .location::after {
+   content: ', ';
+}
 h2 {
   margin: 6px 0px 6px 0px;
   border-width: 0 8px 0 0;
@@ -1199,10 +1243,11 @@ code span.kw { font-weight: 600; } /* Keyword */
 .justify {
   text-align: justify;
 }
-.citation {
+
+.citation:hover {
    color: #282;
 }
-.citation:hover {
+.citation {
    color: unset;
 }
 strong {
@@ -1348,8 +1393,13 @@ p:only-of-type > img
 p.centered-image:only-of-type > img {
    display: inline-block;
 }
+/*
 p.centered-image:only-of-type > img:nth-of-type(2) {
    margin-left: 0.4em;
+}
+*/
+img+strong:only-of-type {
+   display: block;
 }
 .footnotes {
    margin-top: 1.6em;
@@ -1378,7 +1428,8 @@ p.centered-image:only-of-type > img:nth-of-type(2) {
 }
 sup, sub {
    font-size: 71%;
-   margin-left: 0.15em;
+   margin-left: 0.05em;
+   margin-left: 0.05em;
 }
 .dontprint, .onlyreveal, .revealonly, .hidden, .no-vignette, .pagedonly, .onlyremark, .remarkonly {display: none;}
 .onlydashboard > h3, .onlydashboard > h2, .onlydashboard > h1,
@@ -1643,6 +1694,9 @@ a.anchor-section::before {
 .caption-suffix::after {
    content: '.';
 }
+.header-section-number:after, .toc-section-number:after {
+   content: '.';
+}
 div[data-custom-style^="toc "] p {
    margin: 0.25em 0;
    font-size: 90%;
@@ -1698,6 +1752,9 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
 }
 .deletion u {
    text-decoration: line-through;
+}
+.hiddenanchor {
+   display: table-column;
 }
 @media only screen and (max-width: 856px) {
    html {background: inherit;}
@@ -1833,9 +1890,6 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
 @media screen {
 }
 @media print {
-   .noprint, .decoration, .mobile {
-       display: none !important;
-   }
    html {
       background: inherit;
    }
@@ -1863,7 +1917,8 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
   /* https://s3.ap-south-1.amazonaws.com/floweraura-blog-img/saveEnvironment-2019/02.jpg */
    body::after {
       content: 'This document is not well designed for printing';
-      color: #00000004 !important;
+      color: #000000;
+      opacity: 0.015;
       text-shadow: 3px 3px 1px #FFFFFF04;
       padding-left: 0.5em;
       text-align: center;
@@ -1875,12 +1930,15 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
      /* top: 0px;*/
       transform: rotate(-70deg);
    }
+   .noprint *, .decoration, .mobile {
+      display: none !important;
+   }
    pre, code {
      font-family: 'Courier New', monospace;
      color: initial !important; /*initial !important;*/
    }
    pre {
-     font-size: 75% !important; /* 10pt */
+     font-size: 75% !important; /* 10pt 64% */
    }
    pre > code {
      font-size: 100% !important;
@@ -1935,11 +1993,20 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
       font-variant: normal;
       padding-bottom: 0.2em;
    }
-  /*
-   h2 + p {
+   .level2 + p:first-of-type {
+     /* border: 1px solid red;*/
       page-break-before: avoid !important;
    }
-  */
+   h2 {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+   }
+   h2+p {
+     /* border: 1px solid lightgreen; */
+      page-break-before: avoid !important;
+     /* page-break-inside: avoid !important; */
+      break-before: avoid !important;
+   }
    .references {
       padding-left: 0cm !important;
       text-indent: 0cm !important;
@@ -2100,7 +2167,7 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
      text-align: center;
    }
    h4.author, address.author_afil, h4.date {
-     text-align: left;
+     text-align: center; /* left  center */
    }
    h1::before, h2::before, h3::before, h4::before, h5::before {
       margin-right: unset;
@@ -2397,6 +2464,10 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
    .commentCancel, .note {
       display: none;
    }
+   .acknowledgement p:first-of-type {
+      text-indent: 0cm !important;
+   }
+
 }
 /* https://stackoverflow.com/questions/47575563/conditional-css-rule-targeting-firefox-quantum */
 @media print {

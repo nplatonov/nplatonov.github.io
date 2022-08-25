@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>lesson_plan</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.11/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+<div class="note">
+<h2 class="toc-ignore">
+Запрос на проведение курсов
+</h2>
+<div class="blockquote">
+<p>Здравствуйте, уважаемый Никита Геннадьевич!
+Пишу по поводу дополнительных курсов по программе QGis в ИПЭЭ РАН. Мы провели опрос среди заинтересованных в занятиях аспирантов со всех курсов аспирантуры, и подавляющему большинству интересен был бы вводный курс!
+Где рассматривались бы возможности программы QGis, часто используемые инструменты внутри программы. В общем, определенная обзорная часть программы, а так же основные наглядные примеры работы в ней.
+Среди аспирантов, уже работавших в Qgis, были высказаны такие пожелания
+- методах классификации растительности с автоматическим дешифрованием космических снимков
+- расчетах и визуализацию Home range
+- анализе перекрытия различных площадей на картах
+Так-же было бы интересно послушать про проекции-центроиды
+Есть ли возможность выбирать проекции для региона, кроме как методом перебора.
+- использование открытых баз данных типа etopo.
+- создание теневого рельефа.</p>
+<ul>
+<li><p>Есть запрос на работу с полигонами и линиями - слияние, разделение, сглаживание углов, обводка и тд.</p></li>
+<li><p>Интересуют возможные манипуляции с точками, типа обвести все, посчитать расстояние между точками, площадь полигона, поставить середину автоматически, разделить территории по плотности точек и т.д</p></li>
+<li><p>Как работать с макетами карт.</p></li>
+</ul>
+<p>Конечно, наиболее насущный для всех вопрос, это процесс верстки карт для статей.
+Ну а также юридические нюансы работы с картами.</p>
+<p>С уважением аспирант Мещерский С.И.</p>
+<p>P.S Прошу прощение за столь долгий ответ, опросить всех заинтересованных оказалось чуть более затруднительно чем предполагалось, так как выяснилось, что заинтересованных в курсе больше чем думалось ! .</p>
+</div>
+<!--
+<h2 class='toc-ignore'>Ссылки на материалы</h2>
+
++ [Spatial Data Science](https://keen-swartz-3146c4.netlify.app/older.html)
+
++ [Руководство пользователя QGIS](https://docs.qgis.org/3.22/ru/docs/user_manual/index.html)
+-->
+</div>
+<div id="анализ-пространственных-данных" class="section level1">
+<h1>Анализ пространственных данных</h1>
+<ul>
+<li><p>Инструменты анализа пространственных данных<br />
+<span class="note">QGIS, R</span></p>
+<ul>
+<li><p>Установка и настройка программного обеспечения (ПО)<br />
+<span class="note">в QGIS - плагины, в R - пакеты</span></p></li>
+<li><p>Принципы работы с ПО с позиции пользователя<br />
+<span class="note">QGIS - GUI, R - CLI</span></p></li>
+</ul></li>
+<li><p>Загрузка пространственных данных
+<span class="note">из файла</span></p></li>
+<li><p>Структура пространственных данных</p>
+<ul>
+<li><p>Система координат<br />
+<span class="note">PROJ, WKT</span></p></li>
+<li><p>Растры</p>
+<ul>
+<li><p>Координатная сетка</p></li>
+<li><p>Слои <span class="note">brick, stack</span></p></li>
+<li><p>Значения
+<span class="note">Количественные значения, категории, цветовая шкала</span></p></li>
+</ul></li>
+<li><p>Векторы</p>
+<ul>
+<li><p>Таблица данных</p></li>
+<li><p>Геометрия</p></li>
+</ul></li>
+<li><p>Характеристики геометрии<br />
+<span class="note">Extent, CRS, dimension</span></p></li>
+</ul></li>
+<li><p>Операции с растровыми данными</p>
+<ul>
+<li><p>Глобальные операции</p></li>
+<li><p>Локальные операции<br />
+<span class="note">унарные операции (sqrt, log), бинарные операции (сложение, умножение на скаляр)</span></p></li>
+<li><p>Фокальные операции<br />
+<span class="note">низкочастотный фильтр</span></p></li>
+<li><p>Перепроецирование<br />
+<span class="note">nearest neighbor, bilinear interpolation</span></p></li>
+</ul></li>
+<li><p>Операции с векторными данными</p>
+<ul>
+<li><p>Перепроецирование</p></li>
+<li><p>Буферизация, центроид, извлечение длин, площадей, пространственного охвата</p></li>
+<li><p>Объединение, пересечение, вхождение, соприкосновение<br />
+<span class="note">унарные и бинарные</span></p></li>
+</ul></li>
+<li><p>Инструменты QGIS</p>
+<ul>
+<li><p>Интерфейс <span class="note">Menu, toolbars, shortcuts, global options</span></p></li>
+<li><p>Ведение проекта</p>
+<ul>
+<li><p>Выбор проекции и пространственного охвата <span class="note">для растра важно, особенно, размер ячейки; для вектора не так важно</span></p></li>
+<li><p>Манипуляции со слоями <span class="note">Layer properties</span></p></li>
+<li><p>Декорирование</p></li>
+</ul></li>
+<li><p>Отрисовка данных <span class="note">Digitizing</span></p></li>
+<li><p>Географическая привязка <span class="note">Georeferencing</span></p></li>
+<li><p>Модули
+<span class="note">Plugins</span></p></li>
+</ul></li>
+<li><p>Практическое применение<br />
+<span class="note">различными инструментами</span></p>
+<ul>
+<li><p>Подготовка картографического материала для статей<br />
+<span class="note">Правовая информация по использованию картографических подложек; 300 DPI, минимальный размер шрифта</span></p></li>
+<li><p>Тематическое дешифрирование<br />
+<span class="note">Целесообразно ли, если столько готовых продуктов? по теории – первичная обработка, классификация с учителем, без учителя</span></p></li>
+<li><p>Анализ биотелеметрии<br />
+<span class="note">Linear Trajectory, Home Range, Habitat Selection</span></p></li>
+<li><p>Моделирование ареалов<br />
+<span class="note">Species distribution modelling</span></p></li>
+</ul></li>
+<li><p>Рассмотрение отдельных вопросов по применению ГИС</p></li>
+</ul>
+<div class="note">
+<ul>
+<li><ul>
+<li><p>Получение и использование находящихся в свободном доступе данных</p></li>
+<li><p>Отмывка рельефа</p></li>
+<li><p><em>другое</em></p></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>

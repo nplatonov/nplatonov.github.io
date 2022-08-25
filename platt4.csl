@@ -62,7 +62,7 @@
   </macro>
   <macro name="author">
     <names variable="author">
-      <name delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=" " initialize-with="" delimiter=", " and="zzztext" />
+      <name delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=" " initialize-with="" delimiter=", " and="text" />
       <label prefix=" (" suffix=")" text-case="capitalize-first" font-style="italic"/>
       <substitute>
         <names variable="editor"/>
@@ -83,7 +83,7 @@
             <text variable="title" form="short" font-style="italic"/>
           </if>
           <else>
-            <text variable="title" form="short" quotes="true" />
+            <text variable="title" form="short" quotes="false" />
           </else>
         </choose>
       </substitute>
@@ -91,11 +91,16 @@
   </macro>
   <macro name="access">
     <choose>
+      <if type="book chapter paper-conference" match="any">
+        <text variable="ISBN" prefix=" ISBN: " suffix=". " />
+      </if>
+    </choose>
+    <choose>
       <if variable="DOI">
         <text variable="DOI" cancel_prefix="doi:"/>
       </if>
       <else>
-        <group prefix="" suffix=". ">
+        <group prefix=" " suffix=". ">
           <group delimiter=" ">
            <!-- <text value="Available"/> -->
            <!-- <text term="from"/> -->
@@ -112,18 +117,13 @@
         </group>
       </else>
     </choose>
-    <choose>
-      <if variable="ISBN">
-        <text variable="ISBN" cancel_prefix="isbn:"/>
-      </if>
-    </choose>
   </macro>
   <macro name="publisher">
     <group delimiter=". ">
-      <group delimiter=", ">
-        <text variable="genre"/>
-        <text variable="publisher"/>
-        <text variable="publisher-place"/>
+      <group delimiter=". ">
+        <text variable="genre" />
+        <text variable="publisher" />
+        <text variable="publisher-place" />
       </group>
       <choose>
         <if type="chapter paper-conference" match="any">
@@ -188,7 +188,7 @@
   </macro>
   <macro name="locators">
     <choose>
-      <if type="article-journal article-magazine article-newspaper" match="any">
+      <if type="article-journal article-magazine article-newspaper book" match="any">
         <text variable="container-title" form="short" font-style="italic" strip-periods="true" />
         <group prefix=", " suffix="">
           <text variable="volume" prefix="" font-weight="normal"/>
@@ -196,19 +196,25 @@
         </group>
         <text variable="page" prefix=": "/>
       </if>
-      <else-if type="bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="any">
+      <else-if type="misc bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="any">
         <group delimiter=". ">
           <group delimiter=" ">
-            <text term="zzzin" font-style="italic" text-case="capitalize-first" suffix=":" />
+            <text term="hide_it:in" font-style="italic" text-case="capitalize-first" suffix=":" />
             <group delimiter=", ">
               <text variable="container-title" font-style="italic" />
               <text macro="edition"/>
             </group>
           </group>
+          <text macro="publisher" />
           <text macro="container-contributors"/>
           <text macro="secondary-contributors"/>
         </group>
       </else-if>
+      <else>
+        <group delimiter=". ">
+          <text macro="publisher" />
+        </group>
+      </else>
     </choose>
   </macro>
   <macro name="citation-locator">
@@ -244,7 +250,6 @@
           <text macro="locators"/>
         </group>
         <group delimiter=". ">
-          <text macro="publisher"/>
           <text variable="note" prefix="" suffix="" />
           <text macro="access"/>
         </group>
