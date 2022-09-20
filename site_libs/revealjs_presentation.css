@@ -1,5 +1,13 @@
+:root{
+  --r-main-font-size: 35px !important;
+  --r-heading-font: "Segoe UI", sans-serif;
+  --magnifier: 1.75;
+}
+.reveal-viewport {
+  /* background: white !important; */
+}
 body {
-   background-color: #F0F1EB5F !important;
+  /* background-color: #F0F1EB5F !important; */
   /*
    background-image: url("https://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico");
    background-repeat: no-repeat;
@@ -530,9 +538,16 @@ body {
 .reveal section.slide h1 {
    transition: transform 0.2s ease-in-out;
 }
+.reveal .r-fit-text {
+   line-height: 0.8;
+}
 .reveal p + .r-fit-text {
    border: 1px solid red;
    line-height: unset !important;
+}
+.slide-menu-wrapper li.slide-menu-item.no-title,
+.reveal li.slide-menu-item.no-title {
+   display: none;
 }
 @keyframes example {
   0%   {color: red;}
@@ -577,6 +592,13 @@ body {
    max-width: 100%;
    max-height: 100%;
 }
+.html-widget.plotly {
+   zoom: var(--magnifier); 
+   -moz-transform: scale(var(--magnifier)); 
+   -moz-transform-origin: 0 0;
+   max-width: calc(100% / var(--magnifier)) !important;
+  /* opacity: 0.5;*/
+}
 .reveal @page {
   size: A4;
   margin: 0;
@@ -617,7 +639,7 @@ body {
 }
 */
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6,
-.reveal .footnotes,
+.reveal .footnotes, .reveal #TOC,
 .reveal .slide {
    font-family: "Segoe UI", sans-serif !important;
 }
@@ -973,8 +995,8 @@ body {
 }
 .reveal section.slide.level1,
 .reveal section.slide.level2 {
-   margin-top: -20px;
-   padding-bottom: 8px !important;
+   margin-top: -10px;
+  /* padding-bottom: 8px !important;*/
 }
 .reveal section.slide.has-dark-background.level2 {
    color: white;

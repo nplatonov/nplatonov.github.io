@@ -16,7 +16,8 @@
    --sidebar-background: #00000008; /* #FAFAFA #ffc */
    --sidebar-background-inverse: #FFFFFF08;
    --sidebar-color: var(--accent);
-   --sidebar-strip: #FFFFFFFE	; 
+   --sidebar-strip: #FFFFFFFE; 
+   --sidebar-strip-inverse: var(--inverse-bg); 
    --sidebar-select: var(--accent);
    --bg: #37A;
    --inverse-bg: #222E3A; /* #3B0863 #2C3E50*/
@@ -695,7 +696,7 @@ ul {
 }
 .mainbar {
    margin-top: -0.2em;
-   margin-right: -0.4em;
+   margin-right: -0.3em;
 }
 .scroll, .mainbar > .oversize { /* .mainbar:not[.break] */
    height: 656px;
@@ -785,10 +786,10 @@ ul {
   /* color: unset; */
 }
 .sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
-   line-height: 0.96; /* 0.9 */
+   line-height: 0.92; /* 0.9 */
 }
 .sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
-   padding-top: 0.17em !important;
+   padding-top: 0.07em !important;
    padding-bottom: 0.17em !important;
 }
 .sidebar h1 a:hover, .sidebar h2 a:hover, .sidebar h3 a:hover,
@@ -806,7 +807,7 @@ ul {
 .sidebar.left-column h2,
 .sidebar.left-column h1 { /* .sidebar.left-column h3:last-child */
    border-left: 0.15em solid transparent;
-   margin: 4px -16px -6px -16px;
+   margin: 5px -16px -5px -16px;
    padding: 4px 16px 6px 8px;
   /* padding: 0.15em 0.35em 0.15em 0.3em;*/
 }
@@ -875,6 +876,13 @@ ul {
   /* border-left-width: 0px;*/
   /* background-color: white !important;*/
    background-image: linear-gradient(to right, var(--sidebar-strip), var(--sidebar-strip), var(--sidebar-strip)); /* #FFFF, #FFF9, #FFF0 ; white #FFFCE1;*/
+}
+.inverse .sidebar h1[id*=bg][id*=fg],
+.inverse .sidebar h2[id*=bg][id*=bg],
+.inverse .sidebar h3[id*=bg][id*=fg],
+.inverse .sidebar h4[id*=bg][id*=fg],
+.inverse .sidebar h5[id*=bg][id*=fg] {
+   background-image: linear-gradient(to right, var(--sidebar-strip-inverse), var(--sidebar-strip-inverse), var(--sidebar-strip-inverse));
 }
 /*
 .sidebar h1[id*="fg"]:before {
