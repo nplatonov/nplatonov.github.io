@@ -296,11 +296,15 @@ body {
 }
 .reveal .controls {
    right: 0px;
-   bottom: 10px;
+   bottom: 20px;
 }
 .reveal .center, .reveal .bottom, .reveal .top {text-align: center;}
-.reveal .controls .enabled {opacity: 0.03;}
+.reveal .controls .enabled {opacity: 0.07;}
 .reveal .controls .enabled:hover {opacity: 0.2;}
+.reveal:not(.rtl) .controls[data-controls-back-arrows="faded"] .navigate-left.enabled,
+.reveal:not(.rtl) .controls[data-controls-back-arrows="faded"] .navigate-up.enabled {opacity: 0.03;}
+.reveal:not(.rtl) .controls[data-controls-back-arrows="faded"] .navigate-left.enabled:hover,
+.reveal:not(.rtl) .controls[data-controls-back-arrows="faded"] .navigate-up.enabled:hover {opacity: 0.1;}
 .reveal .thankyou {font-size: 2.0em;}
 .reveal .scale200 {font-size: 200%;}
 .reveal .scale190 {font-size: 190%;}
@@ -796,16 +800,17 @@ body {
    padding-right: 80px;
 }
 .print-pdf .reveal .slides {
-   font-size: 87%;
+  /* font-size: 87%;*/
 }
 .reveal .middle,
-.reveal section:not(.level1):not(.level2):not(.stack) {
+.reveal section:not(.level1):not(.level2):not(.level3):not(.stack) {
   display: flex !important;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   min-height: 106%;
+  margin-left: 0.85em;
   margin-top: -2%; /* -23px */
   margin-bottom: -2%;
 }
@@ -984,9 +989,9 @@ body {
    background-color: #00000060;
 }
 .reveal section.slide {
-   margin-left: -0.3em !important;
-   padding-left: 0.3em !important;
-   padding-right: 0.3em !important;
+   margin-left: 0.85em !important;
+   padding-left: 0em;
+  /* padding-right: 0em !important; */
   /* padding-top: 0em !important;*/
   /* dev
    background-color: yellow;
@@ -995,7 +1000,7 @@ body {
 }
 .reveal section.slide.level1,
 .reveal section.slide.level2 {
-   margin-top: -10px;
+  /* margin-top: -10px;*/
   /* padding-bottom: 8px !important;*/
 }
 .reveal section.slide.has-dark-background.level2 {
@@ -1074,8 +1079,16 @@ body {
    opacity: 0.5;
   /* filter: brightness(120%); */
 }
-.reveal .slide-menu-button, .reveal .chalkboard-button {
-   visibility: hidden;
+.reveal .slide-menu-button,
+.reveal .chalkboard-button,
+.reveal #customcontrols {
+  /* visibility: hidden;*/
+   opacity: 0.03;
+}
+.print-pdf .reveal .slide-menu-button,
+.print-pdf .reveal .slide-menu-button,
+.print-pdf .reveal #customcontrols {
+   display: none;
 }
 .print-pdf .reveal .backgrounds .slide-background {
    display: none !important;
@@ -1116,4 +1129,34 @@ body {
 }
 .remarkonly, .onlyremark {
    display: none;
+}
+.reveal section {
+  /* border: 1px solid red;*/
+}
+.print-pdf .reveal section {
+   border: unset;
+}
+.reveal section.stack > section {
+  /* border: 1px solid blue;*/
+   margin-left: 0em !important;
+   max-width: 100%;
+}
+.reveal section:not(.level1):not(.level2):not(.level3):not(.stack) {
+  /* border: 1px solid orange;*/
+}
+.reveal .slide-number {
+   right: 28px;
+   bottom: 5px;
+   color: inherit;
+   background-color: inherit;
+   opacity: 0.91;
+   padding: 1px;
+   opacity: 0.1;
+}
+.reveal section {
+   max-width: 95%;
+   margin-left: 2%
+}
+.reveal section#title-slide {
+  /* border: 1px solid violet;*/
 }
