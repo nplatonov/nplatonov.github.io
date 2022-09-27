@@ -797,7 +797,8 @@ embed {
   /* max-height: 460px !important;*/
    max-height: auto !important;
   /* height: auto !important;*/
-   border: 1px dashed #eee; /* 1px solid orange*/
+  /* border: 1px dashed #eee; */ /* 1px solid orange*/
+   box-shadow: 0 0 15px 0 #eee; /* #eee */
 }
 .html-widget.highchart,
 .html-widget.echarts4r,
@@ -1142,12 +1143,22 @@ h3.zzzsubtitle > em, h4.author > em, h4.date > em {
   */
    text-align: right;
 }
-.date > .meeting {
+.date > .meeting, .date > .what {
    display: block;
    padding-bottom: 0.2em;
 }
-.date > .location::after {
-   content: ', ';
+.date > .location, .date > .where {
+   display: block;
+   padding-bottom: 0.2em;
+}
+.date > .location::after, .date > .where::after {
+  /* content: ', '; */
+}
+.date .updated {
+   font-size: 100%;
+   opacity: 0.3;
+   display: block;
+   text-align: right;
 }
 h2 {
   margin: 6px 0px 6px 0px;
