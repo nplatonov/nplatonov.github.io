@@ -1414,8 +1414,83 @@ table tr th:empty {
 .remark-container {
    background-color: #000;
 }
+/*
 .remark-slide-scaler {
    -moz-box-shadow: 0 0 30px #000;
    -webkit-box-shadow: 0 0 30px #000;
    box-shadow: 0 0 30px #000;
+}
+*/
+@media only screen {
+   .remark-slides-area .remark-fading { z-index: 9; } 
+   .remark-slides-area .remark-slide-container {transition: opacity 0.4s ease-out;opacity: 0;}
+   .remark-slides-area .remark-visible {transition: opacity 0.4s ease-out;opacity: 1;}
+   .remark-slides-area #slide-bib .remark-slide-number,
+   .remark-slides-area #slide-fn .remark-slide-number {
+      display: none;
+   }
+   .remark-slides-area:fullscreen:after {
+      content: '' !important;
+   }
+   .zzz-remark-slides-area:after {
+      border: 1px solid red;
+      position: absolute;
+      right: 0;
+      font-size: min(1.5vh, 1vw);
+      content: "Press 'f' key for full-screen slideshow";
+      color: #888;
+      opacity: 0.91;
+      margin-top: calc(32.2vw + 1 * 50vh) ;
+      margin-right: 0.3em;
+   }
+   .zzz-remark-slide-container::after {
+      font-size: min(1.5vh, 1vw);
+      content: 'Nikita Platonov';
+      color: #888;
+      opacity: 0.91;
+      position: absolute;
+      top: calc(32.2vw + 1 * 50vh) ;
+      right: 0.3em;
+     /* bottom: 0.5em;*/
+     /* right: calc(50% - 1.2em - (14 / 9) * 50vh);*/
+   }
+}
+@page { margin: 0; }
+@media print {
+   p > img {
+      box-shadow: none;
+   }
+}
+@media zzzprint {
+  .remark-slide-scaler {
+    width: 100% !important;
+    height: 100% !important;
+    transform: scale(1) !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+  .remark-slide-content {
+     padding-top: 0.18cm !important;
+  }
+
+}
+@media only screen and (min-width: 1600vh) {
+  /* background-image: url(https://picsum.photos/768/1090);*/
+   .remark-slide-container {
+      background-image: linear-gradient(to right, indigo, white, white, indigo);
+      background-repeat: no-repeat;
+      background-size: cover;
+   }
+}
+@media only screen and (max-width: 1500vh) {
+   .remark-slide-container:fullscreen {
+      background-image: linear-gradient(to bottom, indigo, white, indigo);
+      background-repeat: no-repeat;
+      background-size: cover;
+   }
+}
+@supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge */
+   .html-widget {
+      max-width: 100% !important;
+   }
 }

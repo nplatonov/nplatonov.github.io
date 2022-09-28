@@ -1,6 +1,7 @@
 :root{
   --r-main-font-size: 35px !important;
-  --r-heading-font: "Segoe UI", sans-serif;
+  --r-heading-font: "Roboto Condensed" ,"Segoe UI", sans-serif;
+  --r-main-font: "Roboto" ,"Segoe UI", sans-serif;
   --magnifier: 1.9;
 }
 .reveal-viewport {
@@ -646,10 +647,13 @@ body {
    margin-top: -10cm !important;
 }
 */
-.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6,
 .reveal .footnotes, .reveal #TOC,
 .reveal .slide {
-   font-family: "Roboto", "Segoe UI", sans-serif !important;
+  /* font-family: "Roboto", "Segoe UI", sans-serif !important;*/
+   font-family: var(--r-main-font);
+}
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+   font-family: var(--r-heading-font);
 }
 .reveal code {
    font-family: Consolas, "DejaVu Sans Mono", Monaco, "Courier New", monospace !important;
