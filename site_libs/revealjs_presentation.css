@@ -302,6 +302,7 @@ body {
 .reveal .progress {
    height: 7px;
    margin-top: 1px;
+   color: #999;
 }
 .reveal .controls {
    right: 0px;
@@ -835,8 +836,8 @@ body {
   text-align: center;
   min-height: 106%;
   margin-left: 0.85em;
-  margin-top: -2%; /* -23px */
-  margin-bottom: -2%;
+  margin-top: -1%; /* -23px */
+  margin-bottom: -1%;
 }
 .reveal.picsum section:not(.level1):not(.level2):not(.stack),
 .reveal.parallax section:not(.level1):not(.level2):not(.stack) {
@@ -1103,9 +1104,15 @@ body {
 }
 */
 .reveal.picsum .backgrounds .slide-background.present:not(.slide):not(.stack) {
-   background-image: url("https://picsum.photos/1052/744");
+   background-image: url("https://picsum.photos/1212/744");
    opacity: 0.5;
   /* filter: brightness(120%); */
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-position: 50% 50%;
+   background-repeat: no-repeat;
+   background-size: cover;
 }
 .reveal .slide-menu-button,
 .reveal .chalkboard-button,
