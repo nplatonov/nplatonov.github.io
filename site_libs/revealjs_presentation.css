@@ -4,6 +4,7 @@
   --r-main-font: "Roboto" ,"Segoe UI", sans-serif;
   --magnifier: 1.9;
   --r-heading1-text-shadow: none;
+  --r-heading-margin: 0 0 0px 0;
 }
 .reveal-viewport {
   /* background: white !important; */
@@ -50,8 +51,11 @@ body {
 .reveal .author:first-of-type {
    padding-top: 0.8em;
 }
-.reveal .author:last-of-type {
+.reveal .author {
    padding-bottom: 0.4em;
+}
+.reveal .author:last-of-type {
+   padding-bottom: 0.6em;
 }
 .reveal .affiliation::before {
    content: "\A\A0" attr(text);
@@ -74,9 +78,9 @@ body {
    left: 1em;
 }
 .reveal section.slide > h1 {
-   font-size: 2.4em;
+  /* font-size: 2.4em;*/
    line-height: 1em;
-   padding-bottom: 0.1em;
+  /* padding-bottom: 0.1em; */
   /* color: white; */
   /* text-shadow: 0.05em 0.05em 0.06em #000;*/
   /* margin-top: -30px;*/ /* -23px */
@@ -171,6 +175,7 @@ body {
 .reveal section.slide.bottom > h1,
 .reveal section.slide.top > h1,
 .reveal section.slide h1:last-child {
+  /* font-size: calc(var(--r-heading1-size) * 1);*/
    font-size: 3.2em;
    text-shadow: none;
    margin-top: unset;
@@ -190,10 +195,10 @@ body {
 */
 .reveal section.slide > h2 {
    font-size: 1.6em !important;
-   line-height: 1em;
-   margin-bottom: 0.3em;
+   line-height: 1.1em;
+   margin-bottom: 0.2em;
   /* color: #0063B1;*/ /* #7B5A85; */
-   text-shadow: 1px 1px 3px #aaa;
+  /* text-shadow: 1px 1px 3px #aaa;*/
   /*
    margin-left: -0.8em;	
    margin-right: -0.8em;
@@ -206,7 +211,7 @@ body {
 .reveal section.slide > h3 {
    font-size: 1.3em !important;
    line-height: 1em;
-   margin-bottom: 0.3em;
+   margin-bottom: 0.2em;
 }
 .reveal section.slide.picsum > h3 {
    text-shadow: 1px 1px 2px #aaa;
@@ -224,7 +229,7 @@ body {
 }
 .reveal section.slide > h2 {
    font-size: 1.4em;
-   padding-bottom: 5px;
+  /* padding-bottom: 5px;*/
   /* margin: -23px 0 0 0 ;*/
 }
 /*
@@ -395,7 +400,7 @@ body {
 
 .reveal p {
    line-height: 1.1em;
-   margin: 0.5em 0;
+   margin: 0.4em 0;
   /* font-size: 42px;*/
 }
 .Zreveal .level1.has-dark-background p {
@@ -827,17 +832,38 @@ body {
 .print-pdf .reveal .slides {
   /* font-size: 87%;*/
 }
+/*
 .reveal .middle,
 .reveal section:not(.level1):not(.level2):not(.level3):not(.stack) {
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 106%;
-  margin-left: 0.85em;
-  margin-top: -1%; /* -23px */
-  margin-bottom: -1%;
+*/
+.reveal section {
+   display: flex !important;
+   flex-direction: column;
+   text-align: center;
+   align-items: normal;
+   justify-content: normal;
+   min-height: 102%;
+   margin-left: 0.85em;
+   margin-top: -1%; /* -23px */
+   margin-bottom: -1%;
+}
+.reveal section.footnotes,
+.reveal section.middle.slide {
+   text-align: left;
+   justify-content: center;
+}
+.reveal section:not(.slide),
+.reveal section.center.slide {
+   text-align: center;
+   align-items: center;
+   justify-content: normal;
+}
+.reveal section:not(.slide),
+.reveal section.center.middle.slide {
+   justify-content: center;
+}
+.reveal section.right.slide {
+   text-align: right;
 }
 .reveal.picsum section:not(.level1):not(.level2):not(.stack),
 .reveal.parallax section:not(.level1):not(.level2):not(.stack) {
@@ -1015,7 +1041,8 @@ body {
 }
 .reveal section.slide {
   /* margin-left: 0.85em !important; */
-   padding-left: 0em;
+   padding-left: 10px;
+   width: calc(100% - 64px);
   /* padding-right: 0em !important; */
   /* padding-top: 0em !important;*/
   /* dev
@@ -1182,7 +1209,7 @@ body {
 .reveal section {
    max-width: 96%;
    margin-left: 2%;
-   background: #FF00;
+   background: #FF02;
 }
 .reveal section#title-slide {
   /* border: 1px solid violet;*/
@@ -1219,7 +1246,7 @@ body {
 .reveal .what, .reveal .where, .reveal .when {
    display: block;
 }
-.reveal .scroll {
+.reveal .scroll, .reveal .scrollable {
    height: 736px;
    width: 100%;
    overflow-y: auto; 
@@ -1227,4 +1254,30 @@ body {
    scrollbar-width: thin;
   /* background-color: orange;*/
   /* border: 3px solid #f5f5f5;*/
+}
+.reveal ul li:first-of-type {
+   padding-top: 0.2em;
+}
+.reveal .aside {
+   display: block;
+   position: absolute;
+   bottom: 0.5em;
+   font-size: 85%;
+   color: #777;
+   margin-right: 0.5em;
+}
+.reveal .footer {
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.85em;
+  z-index: 2;
+  color: #999;
+  border: 1px #999 dotted;
+}
+.reveal .footer p {
+  margin: 0.1em 0;
 }
