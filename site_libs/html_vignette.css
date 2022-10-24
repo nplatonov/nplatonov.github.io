@@ -150,7 +150,7 @@ body {
 .goto_toc:hover img{
    opacity: 0.8;
 }
-.aside, .marginnote {
+.aside, .marginnote, .footer {
    display: none;
    font-size: 13px;
    line-height: 1.25em;
@@ -159,7 +159,7 @@ body {
    margin-right: 1em;
 }
 @media only dummy and (min-width: 20px) and (max-width: 930px) {
-   .aside, .marginnote {
+   .aside, .marginnote, .footer {
       display: block;
       opacity: 0.6;
       width: 12pt;
@@ -167,15 +167,15 @@ body {
       font-size: 0pt;
       color: transparent;
    }
-   .aside:before, .marginnote:before {
+   .aside:before, .marginnote:before, .footer:before {
       color: #444;
       font-size: 16pt;
       content: '\1F5CF';
    }
-   .aside:hover:before, .marginnote:hover:before {
+   .aside:hover:before, .marginnote:hover:before, .footer:hover:before {
       content: '';
    }
-   .aside:hover, .marginnote:hover {
+   .aside:hover, .marginnote:hover, .footer:hover {
       font-size: 13px;
       color: unset;
       width: unset;
@@ -213,7 +213,7 @@ body {
       content: attr(id);
       border: 1px solid red;
    }
-   .aside, .marginnote {
+   .aside, .marginnote, .footer {
        border-radius: 5px;
        background-color: #f9f9f9; /* #ffffdf #f9f9f9*/
        max-width: 420px;
@@ -249,10 +249,10 @@ body {
    span.aside img, span.marginnote img {
       margin-bottom: 0.5em;
    }
-   span.aside::before, span.marginnote::before {
+   span.aside::before, span.marginnote::before, span.footer::before {
       content: "\261A" ' ';
    }
-   div.aside::before, div.marginnnote::before {
+   div.aside::before, div.marginnnote::before, div.footer::before {
       content: '\261A';
    }
    p span.zzzaside {
@@ -269,6 +269,11 @@ body {
       margin-top: 1.6em;
    }
 }
+/*
+.section.level1, .section.level2, .section.level3, .section.level4, .section.level5 {
+   display: inline-block;
+}
+*/
 @media only screen and (min-width: 930px) and (max-width: 1355px) {
    .author + #TOC + .section, .author + .section {
       margin-top: 1.6em;
