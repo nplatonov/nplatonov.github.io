@@ -1,5 +1,5 @@
 for (libs in c("site_libs","quarto_libs")) {
-   src <- file.path(getOption("ursaCacheDir"),"knit","site_libs")
+   src <- file.path(getOption("ursaCacheDir"),"knit",libs)
    dst <- file.path(".",basename(src))
    invisible(lapply(dir(src,recursive=TRUE),function(x) {
       dst0 <- file.path(dst,x)
