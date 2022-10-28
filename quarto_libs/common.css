@@ -1,0 +1,188 @@
+:root {
+   --gap: 0.8em;
+}
+.emoji, .inline:not(.math) {
+   height: 1.2em !important; 
+   display: inline-block !important;
+   margin-bottom: 3px;
+   box-shadow: none;
+}
+.aside {
+   display: none;
+}
+.double { /* from shower */
+   -webkit-columns: 2;
+   -moz-columns: 2;
+   columns: 2;
+   -webkit-column-gap: calc(var(--gap) * 2);
+   -moz-column-gap: calc(var(--gap) * 2);
+   column-gap: calc(var(--gap) * 2);
+  /* text-align: justify; */ /* devel */
+}
+.triple { /* from shower */
+   -webkit-columns: 3;
+   -moz-columns: 3;
+   columns: 3;
+   -webkit-column-gap: calc(var(--gap) * 2);
+   -moz-column-gap: calc(var(--gap) * 2);
+   column-gap: calc(var(--gap) * 2);
+  /* text-align: justify; */ /* devel */
+}
+.double:not(:first-child), .triple {
+   margin-top: 1.2em;
+}
+.double:not(:last-child), .triple {
+   margin-bottom: 0.8em;
+}
+.double p:first-child {
+   margin-top: 0em;
+}
+.double > .column, .triple > .column, .double > .twin {
+   width: revert;
+   vertical-align: top;
+   display: inline-block;
+}
+.pull-left-30, .pull-right-30 {
+  width: calc(30% - var(--gap));
+}
+.pull-left-35, .pull-right-35 {
+  width: calc(35% - var(--gap));
+}
+.pull-left-40, .pull-right-40 {
+  width: calc(40% - var(--gap));
+}
+.pull-left-45, .pull-right-45 {
+  width: calc(45% - var(--gap));
+}
+.pull-left-50, .pull-right-50, .pull-left, .pull-right {
+  width: calc(50% - var(--gap));
+}
+.pull-left-55, .pull-right-55 {
+  width: calc(55% - var(--gap));
+}
+.pull-left-60, .pull-right-60 {
+  width: calc(60% - var(--gap));
+}
+.pull-left-65, .pull-right-65 {
+  width: calc(65% - var(--gap));
+}
+.pull-left-70, .pull-right-70 {
+  width: calc(70% - var(--gap));
+}
+.pull-left-30,
+.pull-left-35,
+.pull-left-40,
+.pull-left-45,
+.pull-left-50,
+.pull-left-55,
+.pull-left-60,
+.pull-left-65,
+.pull-left-70,
+.pull-left {
+  float: left;
+}
+.pull-right-30,
+.pull-right-35,
+.pull-right-40,
+.pull-right-45,
+.pull-right-50,
+.pull-right-55,
+.pull-right-60,
+.pull-right-65,
+.pull-right-70,
+.pull-right {
+   float: right;
+   margin-right: 0em;
+}
+.pull-right-30 + *,
+.pull-right-35 + *,
+.pull-right-40 + *,
+.pull-right-45 + *,
+.pull-right-50 + *,
+.pull-right-55 + *,
+.pull-right-60 + *,
+.pull-right-65 + *,
+.pull-right-70 + *,
+.pull-right + * {
+   clear: both;
+}
+.pulling:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+@media print {
+   .zzzpulling {
+      page-break-inside: avoid;
+   }
+}
+@media screen and (max-width: 680px) {
+  .pull-left-30, .pull-right-30,
+  .pull-left-35, .pull-right-35,
+  .pull-left-40, .pull-right-40,
+  .pull-left-45, .pull-right-45,
+  .pull-left-50, .pull-right-50,
+  .pull-left-55, .pull-right-55,
+  .pull-left-60, .pull-right-60,
+  .pull-left-65, .pull-right-65,
+  .pull-left-70, .pull-right-70,
+  .pull-left, .pull-right {
+    width: 100%;
+  }
+}
+img.cover.fail { /* from shower for 'img'*/
+   display: block;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   z-index: -1;
+   -webkit-transform: translate(-50%,-50%);
+   transform: translate(-50%,-50%);
+   max-width: 100%;
+   max-height: 100%;
+}
+.outline ol {
+   counter-reset: item;
+   list-style-type: none !important;
+}
+.outline ol {
+   padding-left: 1em;
+}
+.outline ol ol {
+   padding-left: 2em;
+}
+.outline ol > li:before {
+   content: counters(item, "X.X") "Y.Y ";
+   counter-increment: item;
+}
+.outline li p {
+   display: inline;
+}
+#content-wrap > #main-content > #settings-container.desktop-only, /* Google Chrome Reader header */
+#content-wrap > #main-content > #content > p:only-of-type:first-child, /* Google Chrome Reader header */
+#toolbar.toolbar-container, /* Mozilla Firefox Reader header */
+.container .meta-data .reader-estimated-time-zzz, /* Mozilla Firefox Reader header */
+#d666d4993f3fc8294edf5eb9049274.dc3742482ef58b86daa984c3090999dd {
+   display: none;
+   border: 1px solid red;
+}
+iframe {
+   margin: 0 auto 0 auto !important;
+   padding-left: 0;
+   padding-right: 0;
+   border: 1px dotted #eee;
+  /* width: 614px; */
+}
+.centered-image > img {
+   height: auto;
+}
+/*
+ul li:only-child::marker {
+  color: transparent;
+}
+*/
+@media screen {
+   .noscreen {
+       display: none;
+   }
+}

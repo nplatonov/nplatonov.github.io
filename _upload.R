@@ -28,22 +28,25 @@ for (myname in c("C:/platt/article/platt.bib"
                 ,"C:/platt/R/style/moon_reader-fonts.css"
                 ,"C:/platt/R/style/link.svg"
                 ,"C:/platt/R/style/orcid.svg"
+                ,"C:/platt/R/style/quarto/revealjs.css"
+                ,"C:/platt/R/style/quarto/html.css"
                 )) {
    cat(myname,"\n")
+   lib <- ifelse(grepl("quarto",myname),"quarto_libs","site_libs")
    a <- readLines(myname,encoding="UTF-8")
    if (length(ind <- grep(patt,a))) {
       message("gsub file:/// pattern")
       print(a[ind])
-      a[ind] <- gsub(patt,"https://nplatonov.github.io/",a[ind])
+      a[ind] <- gsub(patt,paste0("https://nplatonov.github.io/","site_libs","/"),a[ind])
       print(a[ind])
-      Fout <- file(file.path("site_libs",basename(myname)),encoding="UTF-8")
+      Fout <- file(file.path(lib,basename(myname)),encoding="UTF-8")
       writeLines(a,Fout)
       close(Fout)
    }
    else {
       message("just copy file")
       if (grepl("\\.css$",myname))
-         file.copy(myname,file.path("site_libs",basename(myname)),overwrite=TRUE,copy.date=TRUE)
+         file.copy(myname,file.path(lib,basename(myname)),overwrite=TRUE,copy.date=TRUE)
       else
          file.copy(myname,basename(myname),overwrite=TRUE,copy.date=TRUE)
    }

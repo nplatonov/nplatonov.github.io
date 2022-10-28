@@ -1,0 +1,39 @@
+@import "url(https://nplatonov.github.io/site_libs/moon_reader-fonts-local.css)";
+:root {
+   --r-heading1-size: 1.8em;
+   --r-heading2-size: 1.4em;
+   --r-heading3-size: 1.2em;
+   --r-heading4-size: 1.1em;
+   --r-heading-font: "Roboto Condensed" ,"Segoe UI", sans-serif;
+   --r-main-font: "Roboto" ,"Segoe UI", sans-serif;
+   --r-heading-font-weight: normal;
+   --r-heading-line-height: 1.1;
+   --r-main-font-size: 35px;
+}
+.reveal #refs {
+   font-size: calc(var(--r-main-font-size) * 0.7);
+}
+.reveal p, .reveal .slides section, .reveal .slides section > section {
+   line-height: 1.2;
+}
+.reveal section.stack {
+   border: 1px dashed blue;
+}
+.reveal section:not(.stack) {
+   border: 1px dotted red;
+}
+.reveal h1.title {
+   font-family: var(--r-main-font)
+}
+.reveal section.footnotes > h2 {
+   display: none;
+}
+.reveal .footer {
+   font-size: 17px !important;
+   bottom: 3px !important;
+}
+@media screen and (max-width: 800px) {
+   .reveal .footer {
+      bottom: 8px !important;
+   }
+}
