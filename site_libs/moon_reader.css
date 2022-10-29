@@ -7,6 +7,7 @@
 */
 :root {
    --accent: #268; /* #0084D7;*/
+   --inverse-accent: #eee;
    --magnifier: 1.7;
    --pointsize: 22pt;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
    --sidebar: 23%;
@@ -163,15 +164,15 @@ remark-slide-content[style*="background"] .inverse h5 {
   color: #ffffff;
  /* text-shadow: 0 0 20px var(--dark);*/
 }
-.remark-slide-content[style*="background"].inverse:not(.notable), .title-slide[style*="background"].inverse, .break[style*="background"] {
+.remark-slide-content[style*="zbackground"].inverse:not(.notable), .title-slide[style*="background"].inverse, .break[style*="background"] {
  /* text-shadow: 0 0 20px var(--dark);*/
   text-shadow: 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark);
 }
-.remark-slide-content[style*="background"].inverse,
+.remark-slide-content[style*="zbackground"].inverse,
 .remark-slide-content.break.picsum {
   text-shadow: 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark);
 }
-.remark-slide-content[style*="background"]:not(.inverse) {
+.remark-slide-content[style*="zbackground"]:not(.inverse) {
   text-shadow: 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light);
 }
 .inverse h1, .inverse h2, .inverse h3 {
@@ -800,7 +801,7 @@ ul {
 }
 .inverse .sidebar h1[id*=bg][id*=fg] a, .inverse .sidebar h2[id*=bg][id*=fg] a, .inverse .sidebar h3[id*=bg][id*=fg] a, .inverse .sidebar h4[id*=bg][id*=fg] a, .inverse .sidebar h5[id*=bg][id*=fg] a,
 .inverse .sidebar h1[id*=bg][id*=fg], .inverse .sidebar h2[id*=bg][id*=bg], .inverse .sidebar h3[id*=bg][id*=fg], .inverse .sidebar h4[id*=bg][id*=fg], .inverse .sidebar h5[id*=bg][id*=fg] {
-   color: #eee;
+   color: var(--inverse-accent);
 }
 .sidebar h1[id*=bg][id*=fg] a, .sidebar h2[id*=bg][id*=fg] a, .sidebar h3[id*=bg][id*=fg] a, .sidebar h4[id*=bg][id*=fg] a, .sidebar h5[id*=bg][id*=fg] a,
 .sidebar h1[id*=bg][id*=fg], .sidebar h2[id*=bg][id*=bg], .sidebar h3[id*=bg][id*=fg], .sidebar h4[id*=bg][id*=fg], .sidebar h5[id*=bg][id*=fg] {
@@ -838,7 +839,15 @@ ul {
 .inverse .sidebar h3[id*=bg][id*=fg],
 .inverse .sidebar h4[id*=bg][id*=fg],
 .inverse .sidebar h5[id*=bg][id*=fg] {
+   border-left-color: var(--inverse-accent);
    background-image: linear-gradient(to right, var(--sidebar-strip-inverse), var(--sidebar-strip-inverse), var(--sidebar-strip-inverse));
+}
+.remark-slide-content[style*=background] .sidebar h1[id*=bg][id*=fg],
+.remark-slide-content[style*=background] .sidebar h2[id*=bg][id*=bg],
+.remark-slide-content[style*=background] .sidebar h3[id*=bg][id*=fg],
+.remark-slide-content[style*=background] .sidebar h4[id*=bg][id*=fg],
+.remark-slide-content[style*=background] .sidebar h5[id*=bg][id*=fg] {
+   background-image: none;
 }
 /*
 .sidebar h1[id*="fg"]:before {
