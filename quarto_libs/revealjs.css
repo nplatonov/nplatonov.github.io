@@ -9,6 +9,8 @@
    --r-heading-font-weight: normal;
    --r-heading-line-height: 1.1;
    --r-main-font-size: 35px;
+   --r-block-margin: 6px;
+   --magnifier: 1.8;
 }
 .reveal #refs {
    font-size: calc(var(--r-main-font-size) * 0.7);
@@ -50,4 +52,27 @@
 }
 .reveal .cell > .cell-output-display > p {
    display: none;
+}
+.reveal .slide figure > figcaption,
+.reveal .slide img.stretch + p.caption,
+.reveal .slide img.r-stretch + p.caption {
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+.reveal figure > figcaption {
+  margin: 0em 2em 0em 2em;
+}
+.reveal .quarto-figure {
+  /* margin-bottom: 0.1em;*/
+}
+.reveal .html-widget.leaflet {
+   zoom: var(--magnifier);
+   -moz-transform: scale(var(--magnifier)); 
+   -moz-transform-origin: 0 0;
+   max-width: calc(100% / var(--magnifier));
+   max-height: calc(650px / var(--magnifier));
+  /* opacity: 0.5;*/
+}
+.reveal .widget > .cell-output-display {
+   overflow-x: revert;
 }
