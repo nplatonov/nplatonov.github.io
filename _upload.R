@@ -37,7 +37,7 @@ for (myname in c("C:/platt/article/platt.bib"
    if (length(ind <- grep(patt,a))) {
       message("gsub file:/// pattern")
       print(a[ind])
-      a[ind] <- gsub(patt,paste0("https://nplatonov.github.io/","site_libs","/"),a[ind])
+      a[ind] <- gsub(patt,paste0("https://nplatonov.github.io/",lib,"/"),a[ind])
       print(a[ind])
       Fout <- file(file.path(lib,basename(myname)),encoding="UTF-8")
       writeLines(a,Fout)
