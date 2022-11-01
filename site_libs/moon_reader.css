@@ -345,7 +345,7 @@ strong{color: unset;}
 
 caption, p.caption {
   font-family: "Roboto Condensed";
-  font-size: 90%;
+  font-size: (var(--pointsize) * 0.9);
   color: #555; /* #274;*/
  /* margin-top: calc(0.1em * var(--magnifier));*/
 }
@@ -421,21 +421,35 @@ a:hover {
    margin: auto auto 0.3em auto; 
 }
 table.dataTable {
-   font-size: 85%; /* s1: 70%, s2: 100% */
+   font-size: 80%; /* s1: 70%, s2: 100% */
 }
 table:not([class]) {
    font-size: 80%;
 }
 .dataTables_filter, .dataTables_length, .dataTables_paginate, .dataTables_info {
-   font-size: 85%; /* s1: 60%, s2: 80% */
+   font-size: 55%; /* s1: 60%, s2: 80% */
    padding-top: 0.4em !important;
    padding-bottom: 0.4em !important;
+   padding-left: 0.8em !important;
+   padding-right: 0.8em !important;
+}
+.dataTables_info {
+   padding-top: 0.4em !important;
+}
+.dataTables_filter {
+   padding-top: 0.2em !important;
+}
+.dataTables_length {
+   padding-top: 0.2em !important;
+}
+.dataTables_paginate {
+   padding-top: 0em !important;
 }
 .dataTables_length > label > select {
-   font-size: 80%;
+   font-size: 90%;
 }
 .dataTables_filter > label > input {
-   font-size: 80%;
+   font-size: 90%;
 }
 .break * {
   /* visibility: hidden;*/

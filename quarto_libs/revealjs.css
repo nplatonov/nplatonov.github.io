@@ -1,4 +1,6 @@
+<!--
 @import "url(https://nplatonov.github.io/quarto_libs/moon_reader-fonts.css)";
+-->
 :root {
    --r-heading1-size: 1.8em;
    --r-heading2-size: 1.4em;
@@ -9,8 +11,13 @@
    --r-heading-font-weight: normal;
    --r-heading-line-height: 1.1;
    --r-main-font-size: 35px;
-   --r-block-margin: 6px;
-   --magnifier: 1.8;
+   --r-block-margin: 10px;
+   --rzzz-background-color: #fefdf6 !important;
+   --rzzzz-background-color: #003 !important;
+   --magnifier: 2.0;
+   --layout-border: 0px;
+   --caption-opacity: 0.6;
+
 }
 .reveal #refs {
    font-size: calc(var(--r-main-font-size) * 0.7);
@@ -18,11 +25,17 @@
 .reveal p, .reveal .slides section, .reveal .slides section > section {
    line-height: 1.2;
 }
+.reveal section > p:first-of-type {
+   margin-top: 0em;
+}
+.reveal section > p:last-of-type {
+   margin-bottom: 0em;
+}
 .reveal section.stack {
-   border: 1px dashed blue;
+   border: var(--layout-border) dashed blue;
 }
 .reveal section:not(.stack) {
-   border: 1px dotted red;
+   border: var(--layout-border) dotted red;
 }
 .reveal h1.title {
    font-family: var(--r-main-font)
@@ -40,24 +53,38 @@
    }
 }
 .reveal .slide-menu-button {
-  left: 0px !important;
-  top: -3px;
+   left: 0px !important;
+   top: -3px;
+   bottom: unset !important;
+   opacity: 0.1;
+}
+.reveal .slide-menu-button:hover {
+   opacity: 0.9;
 }
 .reveal .slide-number {
-  top: 0px;
-  right: -2px !important;
+   top: 0px;
+   right: 0px !important;
+   bottom: unset !important;
+   opacity: 0.1;
+}
+.reveal .slide-menu-button:hover,
+.reveal .slide-number:hover {
+   opacity: 0.9;
 }
 .reveal .slides {
    inset: 49% auto auto 50% !important;
 }
 .reveal .cell > .cell-output-display > p {
-   display: none;
+  /* display: none; */
+}
+.reveal .html-widget > p {
+   border: var(--layout-border) solid orange;
 }
 .reveal .slide figure > figcaption,
 .reveal .slide img.stretch + p.caption,
 .reveal .slide img.r-stretch + p.caption {
   font-size: 0.85em;
-  opacity: 0.8;
+  opacity: var(--caption-opacity);
 }
 .reveal figure > figcaption {
   margin: 0em 2em 0em 2em;
@@ -65,7 +92,8 @@
 .reveal .quarto-figure {
   /* margin-bottom: 0.1em;*/
 }
-.reveal .html-widget.leaflet {
+.reveal .html-widget.leaflet,
+.reveal .html-widget.plotly {
    zoom: var(--magnifier);
    -moz-transform: scale(var(--magnifier)); 
    -moz-transform-origin: 0 0;
@@ -73,6 +101,163 @@
    max-height: calc(650px / var(--magnifier));
   /* opacity: 0.5;*/
 }
-.reveal .widget > .cell-output-display {
+.reveal .widget > .cell-output-display,
+.reveal .widget > .cell > .cell-output-display,
+.reveal .widget > .cell {
    overflow-x: revert;
+}
+.reveal figcaption,
+.reveal .cell-output-display p {
+   margin-left: 1em;
+   margin-right: 1em;
+   font-family: var(--r-heading-font);
+   opacity: var(--caption-opacity);
+}
+table caption,
+img+.caption {
+   font-family: var(--r-heading-font);
+   opacity: var(--caption-opacity);
+   font-size: calc(var(--r-main-font-size) * 0.9);
+}
+.reveal .cell-output-display p:before {
+   content: '↑ ';
+}
+.reveal table.dataTable thead tr th,
+.reveal table.dataTable tbody tr td {
+   font-size: calc(var(--r-main-font-size) * 0.7);
+}
+.reveal .dataTables_wrapper {
+   font-size: calc(var(--r-main-font-size) * 0.5);
+}
+.reveal .dataTables_filter,
+.reveal .dataTables_length {
+  /*
+   float: unset !important;
+   text-align: center !important;
+  */
+   margin-top: 0.44em;
+   margin-left: 0.9em;
+   margin-right: 0.9em;
+}
+.dataTables_length > label > select {
+   font-size: 100%;
+}
+.dataTables_filter > label > input {
+   font-size: 100%;
+   opacity: 1.0 !important;
+}
+.dataTables_paginate .paginate_button {
+   padding: 0.4em 0.6em !important;
+}
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+  opacity: var(--caption-opacity);
+}
+.font99 {font-size: 99%}
+.font98 {font-size: 98%}
+.font97 {font-size: 97%}
+.font96 {font-size: 96%}
+.font95 {font-size: 95%}
+.font94 {font-size: 94%}
+.font93 {font-size: 93%}
+.font92 {font-size: 92%}
+.font91 {font-size: 91%}
+.font90 {font-size: 90%}
+.font89 {font-size: 89%}
+.font88 {font-size: 88%}
+.font87 {font-size: 87%}
+.font86 {font-size: 86%}
+.font85 {font-size: 85%}
+.font84 {font-size: 84%}
+.font83 {font-size: 83%}
+.font82 {font-size: 82%}
+.font81 {font-size: 81%}
+.font80 {font-size: 80%}
+.font79 {font-size: 79%}
+.font78 {font-size: 78%}
+.font77 {font-size: 77%}
+.font76 {font-size: 76%}
+.font75 {font-size: 75%}
+.font74 {font-size: 74%}
+.font73 {font-size: 73%}
+.font72 {font-size: 72%}
+.font71 {font-size: 71%}
+.font70 {font-size: 70%}
+.font69 {font-size: 69%}
+.font68 {font-size: 68%}
+.font67 {font-size: 67%}
+.font66 {font-size: 66%}
+.font65 {font-size: 65%}
+.font64 {font-size: 64%}
+.font63 {font-size: 63%}
+.font62 {font-size: 62%}
+.font61 {font-size: 61%}
+.font60 {font-size: 60%}
+.font59 {font-size: 59%}
+.font58 {font-size: 58%}
+.font57 {font-size: 57%}
+.font56 {font-size: 56%}
+.font55 {font-size: 55%}
+.font50 {font-size: 50%}
+.font45 {font-size: 45%}
+.font40 {font-size: 40%}
+.font35 {font-size: 35%}
+.font30 {font-size: 30%}
+.font25 {font-size: 25%}
+.font20 {font-size: 20%}
+.font15 {font-size: 15%}
+.reveal h1:only-child {
+   margin-left: 1em;
+   font-size: calc(var(--r-heading1-size) * 1.6);
+   line-height: 1;
+}
+.reveal h2:only-child {
+   margin-left: 1em;
+   font-size: calc(var(--r-heading2-size) * 1.6);
+   line-height: 1;
+}
+.reveal .datatables {
+   color: unset !important;
+   opacity: 0.8;
+}
+/*
+.reveal .datatables {
+   background: white;
+}
+.reveal .datatables.has-dark-backgrgound {
+   background: black;
+}
+*/
+.reveal .controls-arrow {
+   opacity: 0.05;
+}
+.reveal .controls-arrow:hover {
+   opacity: 0.45;
+}
+.reveal .reactable {
+   font-size: 80%;
+}
+.reveal .slidingheader {
+   text-align: left;
+   display: block;
+   position: fixed;
+   right: 24px;
+   top: -0.9em;
+   opacity: 0.7;
+   font-size: calc(var(--r-main-font-size) * 0.54);
+   color: #8884;
+   border-bottom: 1px solid #8884;
+  /* background-color: #8882;*/
+   transition: all 2.3s ease;
+   padding: 0 0 0.05em 15em;
+   line-height: 1.15;
+}
+.reveal .bulleting {
+   opacity: 0.15;
+   line-height: 1;
+   font-size: 50%;
+   vertical-align: super;
 }
