@@ -17,6 +17,7 @@
    --magnifier: 2.0;
    --layout-border: 1px;
    --caption-opacity: 0.6;
+   --subheader-opacity: 0.15;
 
 }
 .reveal #refs {
@@ -66,10 +67,15 @@
    opacity: 0.9;
 }
 .reveal .slide-number {
-   top: 0px;
+   top: -2px;
    right: 0px !important;
    bottom: unset !important;
    opacity: 0.1;
+}
+@media screen and (min-width: 1200px) {
+   .reveal .slide-number {
+      font-size: 1.5vw !important;
+   }
 }
 .reveal .slide-menu-button:hover,
 .reveal .slide-number:hover {
@@ -124,7 +130,7 @@ img+.caption {
    font-size: calc(var(--r-main-font-size) * 0.9);
 }
 .reveal .cell-output-display p:before {
-   content: '↑ ';
+  /* content: '↑ ';*/
 }
 .reveal table.dataTable thead tr th,
 .reveal table.dataTable tbody tr td {
@@ -244,12 +250,12 @@ img+.caption {
 .reveal .reactable {
    font-size: 80%;
 }
-.reveal .slidingheader {
+.reveal div.slidingheader {
    text-align: left;
    display: block;
    position: fixed;
    right: 24px;
-   top: -0.9em;
+   top: -0.8em;
    opacity: 0.7;
    font-size: calc(var(--r-main-font-size) * 0.54);
    color: #8884;
@@ -259,8 +265,18 @@ img+.caption {
    padding: 0 0 0.05em 15em;
    line-height: 1.15;
 }
+.reveal span.slidingheader {
+  /* font-size: calc(var(--r-main-font-size) * 1);*/
+   opacity: var(--subheader-opacity);
+   display: inline;
+   vertical-align: super;
+   font-size: 60%;
+}
+.reveal span.slidingheader::before {
+   content: ' // ';
+}
 .reveal .bulleting {
-   opacity: 0.15;
+   opacity: var(--subheader-opacity);
    line-height: 1;
    font-size: 50%;
    vertical-align: super;
