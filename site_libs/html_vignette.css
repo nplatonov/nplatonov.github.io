@@ -952,6 +952,9 @@ h1, h2, h3, h4, h5, .definition {
  /* padding: 3px 8px 3px 8px;*/
  /* border-bottom: 1px solid #b3cde0a0 !important; */
 }
+h1.toc-ignore, h2.toc-ignore, h3.toc-ignore, h4.toc-ignore, h5.toc-ignore {
+   color: revert;
+}
 h2+h3, .section .section {
    margin-top: 0.4em !important;
 }
@@ -1420,6 +1423,10 @@ p.centered-image:only-of-type > img:nth-of-type(2) {
 */
 img+strong:only-of-type {
    display: block;
+}
+img[aspect] {
+   height: unset !important;
+   max-width: 100%;
 }
 .footnotes {
    margin-top: 1.6em;

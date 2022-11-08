@@ -7,20 +7,20 @@
 */
 :root {
    --accent: #268; /* #0084D7;*/
-   --inverse-accent: #eee;
+   --inverse-accent: #ee9;
    --magnifier: 1.7;
    --pointsize: 22pt;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
    --sidebar: 23%;
    --sidebar-pointsize: 70%;
    --sidebar-margin: 18px;
    --sidebar-background: #00000008; /* #FAFAFA #ffc */
-   --sidebar-background-inverse: #FFFFFF08;
+   --sidebar-background-inverse: #FFFFFF1A;
    --sidebar-color: var(--accent);
    --sidebar-strip: #FFFFFFFE; 
    --sidebar-strip-inverse: var(--inverse-bg); 
    --sidebar-select: var(--accent);
    --bg: #37A;
-   --inverse-bg: #222E3A; /* #3B0863 #2C3E50*/
+   --inverse-bg: #000; /*#222E3A #3B0863 #2C3E50*/
    --blur: 0.2em;
    --light: #fff;
    --dark: #000; /* #149 */
@@ -77,7 +77,7 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
   /* border-left: 0px solid red;*/
    box-shadow: none;
 }
-.inverse .panelset .panel-tabs {
+.inverse:not(.revert) .panelset .panel-tabs {
    border-left: 5px yellow solid;
 }
 remark-slide-content[style*="background"] .sidebar h1,
@@ -93,11 +93,11 @@ remark-slide-content[style*="background"] .sidebar h5 {
 .sidebar.left-column h2:last-of-type, .sidebar.left-column h3:last-child {
   /* color: unset;*/
 }
-remark-slide-content[style*="background"] .inverse h1,
-remark-slide-content[style*="background"] .inverse h2,
-remark-slide-content[style*="background"] .inverse h3,
-remark-slide-content[style*="background"] .inverse h4,
-remark-slide-content[style*="background"] .inverse h5 {
+remark-slide-content[style*="background"] .inverse:not(.revert) h1,
+remark-slide-content[style*="background"] .inverse:not(.revert) h2,
+remark-slide-content[style*="background"] .inverse:not(.revert) h3,
+remark-slide-content[style*="background"] .inverse:not(.revert) h4,
+remark-slide-content[style*="background"] .inverse:not(.revert) h5 {
    color: #ff4;
    text-shadow: 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark);
 }
@@ -159,7 +159,7 @@ remark-slide-content[style*="background"] .inverse h5 {
  /* color: red; */
  /* color: #43418A; */
 }
-.remark-slide-content.inverse:not(.notable),
+.remark-slide-content.inverse:not(.notable, .revert),
 .title-slide.inverse,
 .break,
 .notable.inverse {
@@ -184,7 +184,10 @@ remark-slide-content[style*="background"] .inverse h5 {
   color: #ffffff;
   line-height: 1.0em;
 }
-
+.inverse.revert {
+   color: var(--dark);
+   text-shadow: none;
+}
 .title-slide, .title-slide h1, .title-slide h2, .title-slide h3 {
   color: #FFFFFF;
 }
@@ -351,11 +354,12 @@ strong{color: unset;}
 caption, p.caption {
   font-family: "Roboto Condensed";
   font-size: (var(--pointsize) * 0.9);
-  color: #555; /* #274;*/
+ /* color: #555;*/ /* #274;*/
  /* margin-top: calc(0.1em * var(--magnifier));*/
+  opacity: 0.6;
 }
 caption:hover, p.caption:hover {
-  color: #274;
+ /* color: #274;*/
 }
 /*
 img {
@@ -430,6 +434,10 @@ table.dataTable {
 }
 table:not([class]) {
    font-size: 80%;
+}
+table:not([class]) th,
+table:not([class]) td {
+   padding: 0.15em 0.15em;
 }
 .dataTables_filter, .dataTables_length, .dataTables_paginate, .dataTables_info {
    font-size: 55%; /* s1: 60%, s2: 80% */
@@ -578,7 +586,7 @@ body:fullscreen .picsum.title-slide:after {
 .html-widget:not(.datatables) {
   /* border: 1px solid red;*/
 }
-.html-widget.widgetframe iframe {
+.html-widget.widgetframe iframe:not[.timenow] {
    border: 1px solid blue;
    height: calc( 98% / var(--magnifier));
    zoom: var(--magnifier); 
@@ -734,13 +742,13 @@ ul {
 }
 .inverse {
 }
-.inverse .left-column.sidebar {
+.inverse:not(.revert) .left-column.sidebar {
   /* filter: invert(100%);*/
    background-image: linear-gradient(to right, var(--sidebar-background-inverse), var(--sidebar-background-inverse)); /*#2589 #fff2->#fff0*/
 }
 .remark-slide-content[style*=background] > .sidebar {
    background-color: none !important;
-   background-image: none !important;
+  /* background-image: none !important;*/
   /* border-right: 1px solid #0002;*/
 }
 /*
@@ -817,12 +825,28 @@ ul {
    opacity: 0.999;
    color: var(--sidebar-color); /* indigo */
 }
-.inverse .sidebar h1[id*=fg] a, .inverse .sidebar h2[id*=fg] a, .inverse .sidebar h3[id*=fg] a, .inverse .sidebar h4[id*=fg] a, .inverse .sidebar h5[id*=fg] a,
-.inverse .sidebar h1[id*=fg], .inverse .sidebar h2[id*=fg], .inverse .sidebar h3[id*=fg], .inverse .sidebar h4[id*=fg], .inverse .sidebar h5[id*=fg] {
-   color: white; /*#fb7;*/
+.inverse:not(.revert) .sidebar h1[id*=fg] a,
+.inverse:not(.revert) .sidebar h2[id*=fg] a,
+.inverse:not(.revert) .sidebar h3[id*=fg] a,
+.inverse:not(.revert) .sidebar h4[id*=fg] a,
+.inverse:not(.revert) .sidebar h5[id*=fg] a,
+.inverse:not(.revert) .sidebar h1[id*=fg],
+.inverse:not(.revert) .sidebar h2[id*=fg],
+.inverse:not(.revert) .sidebar h3[id*=fg],
+.inverse:not(.revert) .sidebar h4[id*=fg],
+.inverse:not(.revert) .sidebar h5[id*=fg] {
+   color: var(--inverse-accent); /*white #fb7;*/
 }
-.inverse .sidebar h1[id*=bg][id*=fg] a, .inverse .sidebar h2[id*=bg][id*=fg] a, .inverse .sidebar h3[id*=bg][id*=fg] a, .inverse .sidebar h4[id*=bg][id*=fg] a, .inverse .sidebar h5[id*=bg][id*=fg] a,
-.inverse .sidebar h1[id*=bg][id*=fg], .inverse .sidebar h2[id*=bg][id*=bg], .inverse .sidebar h3[id*=bg][id*=fg], .inverse .sidebar h4[id*=bg][id*=fg], .inverse .sidebar h5[id*=bg][id*=fg] {
+.inverse:not(.revert) .sidebar h1[id*=bg][id*=fg] a,
+.inverse:not(.revert) .sidebar h2[id*=bg][id*=fg] a,
+.inverse:not(.revert) .sidebar h3[id*=bg][id*=fg] a,
+.inverse:not(.revert) .sidebar h4[id*=bg][id*=fg] a,
+.inverse:not(.revert) .sidebar h5[id*=bg][id*=fg] a,
+.inverse:not(.revert) .sidebar h1[id*=bg][id*=fg],
+.inverse:not(.revert) .sidebar h2[id*=bg][id*=bg],
+.inverse:not(.revert) .sidebar h3[id*=bg][id*=fg],
+.inverse:not(.revert) .sidebar h4[id*=bg][id*=fg],
+.inverse:not(.revert) .sidebar h5[id*=bg][id*=fg] {
    color: var(--inverse-accent);
 }
 .sidebar h1[id*=bg][id*=fg] a, .sidebar h2[id*=bg][id*=fg] a, .sidebar h3[id*=bg][id*=fg] a, .sidebar h4[id*=bg][id*=fg] a, .sidebar h5[id*=bg][id*=fg] a,
@@ -856,11 +880,11 @@ ul {
   /* background-color: white !important;*/
    background-image: linear-gradient(to right, var(--sidebar-strip), var(--sidebar-strip), var(--sidebar-strip)); /* #FFFF, #FFF9, #FFF0 ; white #FFFCE1;*/
 }
-.inverse .sidebar h1[id*=bg][id*=fg],
-.inverse .sidebar h2[id*=bg][id*=bg],
-.inverse .sidebar h3[id*=bg][id*=fg],
-.inverse .sidebar h4[id*=bg][id*=fg],
-.inverse .sidebar h5[id*=bg][id*=fg] {
+.inverse:not(.revert) .sidebar h1[id*=bg][id*=fg],
+.inverse:not(.revert) .sidebar h2[id*=bg][id*=bg],
+.inverse:not(.revert) .sidebar h3[id*=bg][id*=fg],
+.inverse:not(.revert) .sidebar h4[id*=bg][id*=fg],
+.inverse:not(.revert) .sidebar h5[id*=bg][id*=fg] {
    border-left-color: var(--inverse-accent);
    background-image: linear-gradient(to right, var(--sidebar-strip-inverse), var(--sidebar-strip-inverse), var(--sidebar-strip-inverse));
 }
@@ -1394,6 +1418,9 @@ table tr th:empty {
    font-size: 85%;
    color: #777;
    margin-right: 0.5em;
+}
+.column {
+   display: table-cell;
 }
 @media only screen {
    .remark-slides-area .remark-fading { z-index: 9; } 

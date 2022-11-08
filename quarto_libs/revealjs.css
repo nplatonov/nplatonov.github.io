@@ -10,12 +10,13 @@
    --r-main-font: "Roboto" ,"Segoe UI", sans-serif;
    --r-heading-font-weight: normal;
    --r-heading-line-height: 1.1;
-   --r-main-font-size: 35px;
-   --r-block-margin: 10px;
+   --r-main-font-size: 34.5px;
+   --r-block-margin: 6px;
    --rzzz-background-color: #fefdf6 !important;
    --rzzzz-background-color: #003 !important;
    --magnifier: 2.0;
-   --layout-border: 1px;
+   --layout-border: 0px;
+   --layout-opacity: 0.2;
    --caption-opacity: 0.6;
    --subheader-opacity: 0.15;
 
@@ -24,7 +25,7 @@
    font-size: calc(var(--r-main-font-size) * 0.7);
 }
 .reveal p, .reveal .slides section, .reveal .slides section > section {
-   line-height: 1.2;
+   line-height: 1.15; /* 1.15 is desired. 1.3 is fixed for fitting figures+text */
 }
 .reveal section > p:first-of-type {
    margin-top: 0em;
@@ -37,6 +38,18 @@
 }
 .reveal section:not(.stack) {
    border: var(--layout-border) dotted red;
+}
+.reveal section.level1 {
+   background-color: rgb(255,0,0,var(--layout-opacity));
+}
+.reveal section.level2 {
+   background-color: rgb(0,255,0,var(--layout-opacity));
+}
+.reveal section.level3 {
+   background-color: rgb(0,0,255,var(--layout-opacity));
+}
+.reveal section.level4 {
+   background-color: rgb(255,0,255,var(--layout-opacity));
 }
 .reveal h1.title {
    font-family: var(--r-main-font)
@@ -72,6 +85,9 @@
    bottom: unset !important;
    opacity: 0.1;
 }
+.reveal .slide-number a[href="#/title-slide"] {
+   opacity: 0;
+}
 @media screen and (min-width: 1200px) {
    .reveal .slide-number {
       font-size: 1.5vw !important;
@@ -84,8 +100,9 @@
 .reveal .slides {
    inset: 49% auto auto 50% !important;
 }
-.reveal .cell > .cell-output-display > p {
+.reveal .cell > .cell-output-display > p:first-of-type:last-of-type:first-child:last-child:only-of-type:only-child {
   /* display: none; */
+   border: 1px solid red;
 }
 .reveal .html-widget > p {
    border: var(--layout-border) solid orange;
@@ -117,11 +134,14 @@
    overflow-x: revert;
 }
 .reveal figcaption,
-.reveal .cell-output-display p {
+.reveal .cell-output-display p:empty {
    margin-left: 1em;
    margin-right: 1em;
    font-family: var(--r-heading-font);
    opacity: var(--caption-opacity);
+}
+.reveal .cell-output-display figure p {
+   opacity: unset;
 }
 table caption,
 img+.caption {
@@ -131,6 +151,10 @@ img+.caption {
 }
 .reveal .cell-output-display p:before {
   /* content: '↑ ';*/
+}
+.reveal table:not([class]) {
+  /* font-size: calc(var(--r-main-font-size) * 0.7);*/
+   font-size: 75%;
 }
 .reveal table.dataTable thead tr th,
 .reveal table.dataTable tbody tr td {
@@ -275,9 +299,38 @@ img+.caption {
 .reveal span.slidingheader::before {
    content: ' // ';
 }
-.reveal .bulleting {
+.reveal .bulletting {
    opacity: var(--subheader-opacity);
    line-height: 1;
    font-size: 50%;
    vertical-align: super;
+}
+.reveal table th, .reveal table td {
+   border-bottom: 1px solid #7777;
+}
+.reveal h1:empty,
+.reveal h2:empty,
+.reveal h3:empty,
+.reveal h4:empty,
+.reveal h5:empty {
+   display: none;
+}
+.reveal .tippy-box {
+   font-size: calc(var(--r-main-font-size) * 0.8);
+  /* background-color: rgb(255, 255, 255, 0.8);*/
+  /* opacity: 0.3;*/
+}
+img[image], img[bound] {
+  /* max-width: 100%;*/
+  /* height: auto;*/
+  /* max-height: 100%; */ /*calc(100% / var(--magnifier));*/
+  /* width: 100%; */
+  /* flex: 0 0 auto; */
+   object-fit: scale-down;
+  /* scale: calc(0.6 * var(--magnifier));*/
+}
+img[aspect] {
+   height: auto;
+   flex: 0 0 auto;
+   object-fit: scale-down;
 }
