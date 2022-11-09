@@ -16,7 +16,7 @@
    --rzzzz-background-color: #003 !important;
    --magnifier: 2.0;
    --layout-border: 0px;
-   --layout-opacity: 0.2;
+   --layout-opacity: 0.0;
    --caption-opacity: 0.6;
    --subheader-opacity: 0.15;
 
@@ -54,8 +54,10 @@
 .reveal h1.title {
    font-family: var(--r-main-font)
 }
+.reveal section#refs > h1,
 .reveal section.footnotes > h2 {
-   display: none;
+  /* display: none;*/
+  font-size: 150% !important;
 }
 .reveal .footer {
    font-size: 2.9vh !important;
@@ -333,4 +335,7 @@ img[aspect] {
    height: auto;
    flex: 0 0 auto;
    object-fit: scale-down;
+}
+section.thankyou {
+   background-color: rgb(255,255,0,var(--layout-opacity)) !important;
 }
