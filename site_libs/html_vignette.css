@@ -1020,7 +1020,27 @@ h1:hover, h2:hover, h3:hover, h4:hover {
    .section > h4::after {
       content: '||||';
    }
-   .section > h1::after, .section > h2::after, .section > h3::after, .section > h4::after {
+   pre.sourceCode.python::after {
+      content: '{python}';
+   }
+   pre.sourceCode.r::after {
+      content: '{r}';
+   }
+   pre.sourceCode.python::after,
+   pre.sourceCode.r::after {
+      color: transparent;
+   }
+   pre.sourceCode.python:hover::after,
+   pre.sourceCode.r:hover::after {
+      color: black;
+      opacity: 0.2;
+   }
+   .section > h1::after,
+   .section > h2::after,
+   .section > h3::after,
+   .section > h4::after,
+   pre.sourceCode.r::after,
+   pre.sourceCode.python::after {
        margin-left: 8pt;
        margin-top: -1.25em;
        float: right;
@@ -2178,6 +2198,9 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
    }
    address.author_afil {
       margin-top: 0em;
+   }
+   address.author_afil, address.author_email {
+      padding-left: unset;
    }
    h4.date {
       margin-top: 1em;
