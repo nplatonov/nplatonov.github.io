@@ -236,6 +236,19 @@
       </group>
     </layout>
   </citation>
+  <macro name="version">
+    <choose>
+      <if is-numeric="version">
+        <group delimiter=" ">
+          <text term="version" text-case="capitalize-first"/>
+          <text variable="version"/>
+        </group>
+      </if>
+      <else>
+        <text variable="version"/>
+      </else>
+    </choose>
+  </macro>
   <bibliography hanging-indent="false" entry-spacing="1" line-spacing="1">
     <sort>
       <key macro="author"/>
@@ -247,6 +260,7 @@
           <text macro="author"/>
           <text macro="issued"/>
           <text variable="title"/>
+          <text macro="version"/>
           <text macro="locators"/>
         </group>
         <group delimiter=". ">
