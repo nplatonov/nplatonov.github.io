@@ -12,7 +12,7 @@
   <meta name="author" content="Платонов Н. Г.">
   <meta name="author" content="Мордвинцев И. Н.">
   <meta name="author" content="Артемьева С. М.">
-  <title>Отчетная сессия (14:58)</title>
+  <title>Отчетная сессия (17:13)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -408,10 +408,12 @@
 <section>
 <section id="sec422C" class="title-slide slide level1 center" data-transition="convex" data-zautoslide="1000">
 <h1>Данные</h1>
-
+<div class="footer">
+<p>Основные наборы данных. Также оперировали с Sentinel-1, MODIS.</p>
+</div>
 </section>
 <section id="secD4A0" class="slide level2">
-<h2></h2><div class="slidingheader">Данные</div>
+<h2></h2>
 <div class="font93">
 <div class="zragment fade-in-then-semi-out zfade-in zsemi-fade-out">
 <h2 class="toc-ignore unnumbered unlisted">
@@ -445,7 +447,7 @@
 
 </section>
 <section id="sec7DB9" class="slide level2">
-<h2>Построение траектории</h2><div class="slidingheader">Методы</div>
+<h2>Построение траектории</h2>
 <ul>
 <li><p>Фильтрация локаций <span class="citation" data-cites="Argos-filter">(<a href="" role="doc-biblioref" onclick="return false;">Freitas <em>et al.</em>, 2008</a>)</span></p></li>
 <li><p>Модель простого случайного блуждания <span class="citation" data-cites="Jonsen2019 Jonsen2020">(<a href="" role="doc-biblioref" onclick="return false;">Jonsen <em>et al.</em>, 2019</a>, <a href="" role="doc-biblioref" onclick="return false;">2020</a>)</span> для построения ежесуточных локаций на 12:00 <abbr title="единое скоординированное время, единое время">UTC</abbr></p></li>
@@ -457,7 +459,7 @@
 </ul>
 </section>
 <section id="sec8B09" class="slide level2">
-<h2>Периоды ледовой фенологии</h2><div class="slidingheader">Методы</div>
+<h2>Периоды ледовой фенологии</h2>
 <p>Воспроизведение алгоритма определения сезона максимальной протяженности льда (зима), минимальной протяженности льда (лето), ледотаяния (весна) и ледообразования (осень), описанного в работе <span class="citation" data-cites="Durner2009">(<a href="" role="doc-biblioref" onclick="return false;">Durner <em>et al.</em>, 2009</a>)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -560,7 +562,7 @@
 </div>
 </section>
 <section id="sec94BB" class="slide level2">
-<h2>Учет дрейфа льда</h2><div class="slidingheader">Методы</div>
+<h2>Учет дрейфа льда</h2>
 <p>Для каждого передатчика выделен набор из двух локаций через каждые 48&nbsp;ч для согласованности с данными дрейфа льда.</p>
 <ul>
 <li><p>«no» – абсолютное смещение без учета дрейфа льда</p></li>
@@ -569,7 +571,7 @@
 </ul>
 </section>
 <section id="secB825" class="slide level2 no-title">
-<h2><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;а также…</em></h2><div class="slidingheader">Методы</div>
+<h2><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;а также…</em></h2>
 <div class="zragment fade-in-then-semi-out">
 <h2 class="toc-ignore unnumbered unlisted">
 Сегментация
@@ -595,15 +597,15 @@
 
 </section>
 <section id="secA66F" class="slide level2">
-<h2>Влияние дрейфа льда <span class="bulletting">◉</span><span class="bulletting">○</span></h2><div class="slidingheader">Результаты</div>
+<h2>Влияние дрейфа льда <span class="bulletting">◉</span><span class="bulletting">○</span></h2>
 
-<img data-src="file:///C:/RAS/2023/trefoil/assets/displacement_map.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Форма участков обитания по уровням кёрнела 95&nbsp;% и 50&nbsp;% без учета и с учетом дрейфа льда</p></section>
+<img data-src="assets/displacement_map.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Форма участков обитания по уровням кёрнела 95&nbsp;% и 50&nbsp;% без учета и с учетом дрейфа льда</p></section>
 <section id="sec5E83" class="slide level2">
-<h2>Влияние дрейфа льда <span class="bulletting">○</span><span class="bulletting">◉</span></h2><div class="slidingheader">Результаты</div>
+<h2>Влияние дрейфа льда <span class="bulletting">○</span><span class="bulletting">◉</span></h2>
 
-<img data-src="file:///C:/RAS/2023/trefoil/assets/displacement_plot.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Двухсуточное смещение без учета и с учетом дрейфа льда</p></section>
+<img data-src="assets/displacement_plot.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Двухсуточное смещение без учета и с учетом дрейфа льда</p></section>
 <section id="sec6933" class="slide level2">
-<h2>Сегментация по суточному ходу <span class="bulletting">◉</span><span class="bulletting">○</span><span class="bulletting">○</span></h2><div class="slidingheader">Результаты</div>
+<h2>Сегментация по суточному ходу <span class="bulletting">◉</span><span class="bulletting">○</span><span class="bulletting">○</span></h2>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-lavielle-distance">
@@ -715,48 +717,48 @@
 </div>
 </section>
 <section id="secC78A" class="slide level2">
-<h2>Сегментация по суточному ходу <span class="bulletting">○</span><span class="bulletting">◉</span><span class="bulletting">○</span></h2><div class="slidingheader">Результаты</div>
+<h2>Сегментация по суточному ходу <span class="bulletting">○</span><span class="bulletting">◉</span><span class="bulletting">○</span></h2>
 
-<img data-src="file:///C:/RAS/2023/trefoil/assets/distance213857-combine.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Пространственное распределение сегментов по локациям с ошейника «213857»</p></section>
+<img data-src="assets/distance213857-combine.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Пространственное распределение сегментов по локациям с ошейника «213857»</p></section>
 <section id="secB08D" class="slide level2">
-<h2>Сегментация по суточному ходу <span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">◉</span></h2><div class="slidingheader">Результаты</div>
+<h2>Сегментация по суточному ходу <span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">◉</span></h2>
 
-<img data-src="file:///C:/RAS/2023/trefoil/assets/distance213857-separate-h.png" data-aspect="1" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Узловые точки сегментов (начало △, окончание ◻) по локациям с ошейника «213857», наложенные на усредненную концентрацию морского льда Арктики за период сегмента</p></section>
+<img data-src="assets/distance213857-separate-h.png" data-aspect="1" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Узловые точки сегментов (начало △, окончание ◻) по локациям с ошейника «213857», наложенные на усредненную концентрацию морского льда Арктики за период сегмента</p></section>
 <section id="secE9D5" class="slide level2">
-<h2>Периоды ледовой фенологии <span class="bulletting">◉</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span></h2><div class="slidingheader">Результаты</div>
+<h2>Периоды ледовой фенологии <span class="bulletting">◉</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span></h2>
 
-<img data-src="file:///C:/RAS/2023/trefoil/assets/segments-rsf-dist2land.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Изменчивость рассстояние до берега по сезонам ледовой фенологии</p></section>
+<img data-src="assets/segments-rsf-dist2land.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Изменчивость рассстояние до берега по сезонам ледовой фенологии</p></section>
 <section id="sec2EE9" class="slide level2">
-<h2>Периоды ледовой фенологии <span class="bulletting">○</span><span class="bulletting">◉</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span></h2><div class="slidingheader">Результаты</div>
+<h2>Периоды ледовой фенологии <span class="bulletting">○</span><span class="bulletting">◉</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span></h2>
 
-<img data-src="file:///C:/RAS/2023/trefoil/assets/segments-rsf-rsf.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Изменчивость предпочтительности ледовых местообитаний по сезонам ледовой фенологии</p></section>
+<img data-src="assets/segments-rsf-rsf.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Изменчивость предпочтительности ледовых местообитаний по сезонам ледовой фенологии</p></section>
 <section id="sec59EE" class="slide level2">
-<h2>Периоды ледовой фенологии <span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">◉</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span></h2><div class="slidingheader">Результаты</div>
+<h2>Периоды ледовой фенологии <span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">◉</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span></h2>
 
-<img data-src="file:///C:/RAS/2023/trefoil/assets/segments-rsf-dist15.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Изменчивость расстояния до кромки льда по сезонам ледовой фенологии</p></section>
+<img data-src="assets/segments-rsf-dist15.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Изменчивость расстояния до кромки льда по сезонам ледовой фенологии</p></section>
 <section id="secC0E7" class="slide level2">
-<h2>Периоды ледовой фенологии <span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">◉</span><span class="bulletting">○</span><span class="bulletting">○</span></h2><div class="slidingheader">Результаты</div>
+<h2>Периоды ледовой фенологии <span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">◉</span><span class="bulletting">○</span><span class="bulletting">○</span></h2>
 
-<img data-src="file:///C:/RAS/2023/trefoil/assets/segments-rsf-depth.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Изменчивость глубины моря по сезонам ледовой фенологии</p></section>
+<img data-src="assets/segments-rsf-depth.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Изменчивость глубины моря по сезонам ледовой фенологии</p></section>
 <section id="secB7E0" class="slide level2">
-<h2>Периоды ледовой фенологии <span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">◉</span><span class="bulletting">○</span></h2><div class="slidingheader">Результаты</div>
+<h2>Периоды ледовой фенологии <span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">◉</span><span class="bulletting">○</span></h2>
 
-<img data-src="file:///C:/RAS/2023/trefoil/assets/segments-rsf-conc.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Изменчивость сплоченности льда по сезонам ледовой фенологии</p></section>
+<img data-src="assets/segments-rsf-conc.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Изменчивость сплоченности льда по сезонам ледовой фенологии</p></section>
 <section id="sec275F" class="slide level2">
-<h2>Периоды ледовой фенологии <span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">◉</span></h2><div class="slidingheader">Результаты</div>
+<h2>Периоды ледовой фенологии <span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">○</span><span class="bulletting">◉</span></h2>
 
-<img data-src="file:///C:/RAS/2023/trefoil/assets/segments-rsf-distance.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Изменчивость суточного хода по сезонам ледовой фенологии</p></section></section>
+<img data-src="assets/segments-rsf-distance.png" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Изменчивость суточного хода по сезонам ледовой фенологии</p></section></section>
 <section>
 <section id="secF8B5" class="title-slide slide level1 center" data-transition="convex">
 <h1>Обсуждение</h1>
 
 </section>
 <section id="sec98F0" class="slide level2">
-<h2>Пелагический экотип</h2><div class="slidingheader">Обсуждение</div>
+<h2>Пелагический экотип</h2>
 <p>Сравнение среднесуточного перемещения (16 км для «213855», 15 км для «213856» и 21 км для «213857») с данными норвежцев по выделению прибрежного экотипа (суточный ход порядка 6&nbsp;км) и пелагического экотипа (суточный ход порядка 13&nbsp;км) при характере использования белыми медведями пространственных ресурсов <span class="citation" data-cites="Blanchet2020">(<a href="" role="doc-biblioref" onclick="return false;">Blanchet <em>et al.</em>, 2020</a>)</span>.</p>
 </section>
 <section id="secA169" class="slide level2">
-<h2>Открытая вода <span class="bulletting">◉</span><span class="bulletting">○</span></h2><div class="slidingheader">Обсуждение</div>
+<h2>Открытая вода <span class="bulletting">◉</span><span class="bulletting">○</span></h2>
 <p>Разобраны все случаи возможного пребывания в воде каждой отслеживаемой особи</p>
 <p>&nbsp;</p>
 <div class="pulling">
@@ -774,9 +776,9 @@
 </div>
 </section>
 <section id="sec5058" class="slide level2">
-<h2>Открытая вода <span class="bulletting">○</span><span class="bulletting">◉</span></h2><div class="slidingheader">Обсуждение</div>
+<h2>Открытая вода <span class="bulletting">○</span><span class="bulletting">◉</span></h2>
 
-<img data-src="file:///C:/RAS/2023/trefoil/sentinel/Sentinel-20211027.png" data-aspect="1" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Применение изображений Sentinel-1 для выявления фактов нахождения в воде</p></section></section>
+<img data-src="sentinel/Sentinel-20211027.png" data-aspect="1" width="1030" class="r-stretch quarto-figure-center"><p class="caption">Применение изображений Sentinel-1 для выявления фактов нахождения в воде</p></section></section>
 <section id="sec1726" class="title-slide slide level1 center" data-transition="convex">
 <h1>Выводы</h1>
 
