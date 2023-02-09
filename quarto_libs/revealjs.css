@@ -10,7 +10,8 @@
    --r-main-font: "Roboto" ,"Segoe UI", sans-serif;
    --r-heading-font-weight: normal;
    --r-heading-line-height: 1.1;
-   --r-heading-margin: 0.4em 0 0.2em 0;
+   --r-heading-margin: 0em 0 0.2em 0;
+   --r-heading-line-height: 1;
    --r-main-font-size: 34.5px;
    --r-block-margin: 16px;
    --rzzz-background-color: #fefdf6 !important;
@@ -96,7 +97,7 @@
 }
 .reveal .slide-logo {
    right: 2px !important;
-   bottom: 0px !important;
+   bottom: -12px !important;
    z-index: 40;
   /* border: 4px solid white;*/
    max-height: 2.9vh !important;
@@ -373,8 +374,13 @@ img[image], img[bound] {
    object-fit: scale-down;
   /* scale: calc(0.6 * var(--magnifier));*/
 }
-img[aspect] {
+img[data-aspect], img[data-fixheight] {
    height: auto;
+   flex: 0 0 auto;
+   object-fit: scale-down;
+}
+img[data-fixwidth] {
+   width: auto;
    flex: 0 0 auto;
    object-fit: scale-down;
 }
@@ -398,7 +404,8 @@ section.thankyou {
 .reveal h1:empty+h2,
 .reveal h2:empty+h2,
 .reveal .dummy div ~ h2:first-of-type {
-   margin-top: 0;
+  /* margin-top: 0;*/
+  /* border: 1px solid red;*/
 }
 .reveal .slides section .zfragment.semi-fade-out.visible,
 .reveal .slides section .fragment.fade-in-then-semi-out.visible:not(.current-fragment) {
@@ -416,7 +423,7 @@ section.thankyou {
    font-size: calc(var(--r-main-font-size) * 0.3) !important;*/
 }
 .print-pdf .reveal .slide-logo {
-   margin-bottom: 1px;
+   margin-bottom: 14px;
   /* font-size: calc(var(--r-main-font-size) * 0.4) !important;*/
 }
 .print-pdf .reveal section#refs,
@@ -430,4 +437,7 @@ section.thankyou {
 .no-title > h2:first-of-type,
 .no-title > h1:first-of-type {
    display: none;
+}
+h2 {
+   break-after: avoid;
 }
