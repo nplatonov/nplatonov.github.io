@@ -2,16 +2,17 @@
 @import "url(https://nplatonov.github.io/quarto_libs/moon_reader-fonts.css)";
 -->
 :root {
-   --r-heading1-size: 1.8em;
-   --r-heading2-size: 1.4em;
-   --r-heading3-size: 1.2em;
+   --r-heading1-size: 2.1em;
+   --r-heading2-size: 1.6em;
+   --r-heading3-size: 1.3em;
    --r-heading4-size: 1.1em;
    --r-heading-font: "Roboto Condensed" ,"Segoe UI", sans-serif;
    --r-main-font: "Roboto" ,"Segoe UI", sans-serif;
    --r-heading-font-weight: normal;
-   --r-heading-line-height: 1.1;
+   --r-heading-line-height: 1;
+   --r-heading-margin: 0em 0 0.2em 0;
    --r-main-font-size: 34.5px;
-   --r-block-margin: 6px;
+   --r-block-margin: 16px;
    --rzzz-background-color: #fefdf6 !important;
    --rzzzz-background-color: #003 !important;
    --magnifier: 2.0;
@@ -19,13 +20,19 @@
    --layout-opacity: 0.0;
    --caption-opacity: 0.6;
    --subheader-opacity: 0.15;
-
+  /* --r-main-color: ...; */
 }
-.reveal #refs {
+.reveal section#refs {
    font-size: calc(var(--r-main-font-size) * 0.7);
 }
+.csl-entry {
+   margin-top: 0.4em !important;
+   margin-bottom: 0.4em !important;
+   padding-left: 1.05em;
+   text-indent: -1.05em;
+}
 .reveal p, .reveal .slides section, .reveal .slides section > section {
-   line-height: 1.15; /* 1.15 is desired. 1.3 is fixed for fitting figures+text */
+   line-height: 1.1; /* 1.15 is desired. 1.3 is fixed for fitting figures+text */
 }
 .reveal section > p:first-of-type {
    margin-top: 0em;
@@ -62,15 +69,53 @@
 .reveal .footer {
    font-size: 2.9vh !important;
    bottom: 3px !important;
+  /*
+   background-color: #FFF2;
+   color: #0004;
+  */
+   background-color: #7F7F7F50;
+   color: var(--r-main-color);
+   filter: invert(100%);
+   z-index: 2 !important;
+}
+.quarto-light .reveal .footer {
+   color: black;
+}
+.quarto-dark .reveal .footer {
+   color: white;
+}
+.reveal.has-dark-background .footer {
+   color: white;
+}
+.reveal.has-light-background .footer {
+   color: black;
 }
 .reveal .footer p {
    text-align: left;
    padding-left: 2em;
+   padding-right: 2em;
+}
+.reveal .no-footer .footer,
+.reveal .break .footer {
+   display: none;
+}
+.reveal .slide-logo {
+   right: 2px !important;
+   bottom: -12px !important;
+   z-index: 3;
+  /* border: 4px solid white;*/
+   max-height: 2.9vh !important;
 }
 @media screen and (max-width: 800px) {
    .reveal .zzzfooter {
       bottom: 8px !important;
    }
+}
+.reveal .slide-menu-offset {
+   display: grid;
+   left: 4px !important;
+   bottom: 32px !important;
+   opacity: 0.05;
 }
 .reveal .slide-menu-button {
    left: 0px !important;
@@ -82,7 +127,7 @@
    opacity: 0.9;
 }
 .reveal .slide-number {
-   top: -2px;
+   top: -2px !important;
    right: 0px !important;
    bottom: unset !important;
    opacity: 0.1;
@@ -96,6 +141,7 @@
    }
 }
 .reveal .slide-menu-button:hover,
+.reveal .slide-menu-offset:hover,
 .reveal .slide-number:hover {
    opacity: 0.9;
 }
@@ -246,8 +292,9 @@ img+.caption {
 .font20 {font-size: 20%}
 .font15 {font-size: 15%}
 .reveal h1:only-child {
-   margin-left: 1em;
-   font-size: calc(var(--r-heading1-size) * 1.6);
+  /* margin-left: 1em; */ /* inconistent with central alignmnent */
+   font-size: calc(var(--r-heading1-size) * 1.6) !important;
+   text-align: center;
    line-height: 1;
 }
 .reveal h2:only-child {
@@ -280,15 +327,15 @@ img+.caption {
    text-align: left;
    display: block;
    position: fixed;
-   right: 24px;
-   top: -0.8em;
+   right: 28px;
+   top: -18px;
    opacity: 0.7;
-   font-size: calc(var(--r-main-font-size) * 0.54);
+   font-size: calc(var(--r-main-font-size) * 0.74);
    color: #8884;
-   border-bottom: 1px solid #8884;
+  /* border-bottom: 1px solid #8884;*/
   /* background-color: #8882;*/
-   transition: all 2.3s ease;
-   padding: 0 0 0.05em 15em;
+  /* transition: all 2.3s ease;*/
+   padding: 0 0 0.05em 0em;
    line-height: 1.15;
 }
 .reveal span.slidingheader {
@@ -303,9 +350,9 @@ img+.caption {
 }
 .reveal .bulletting {
    opacity: var(--subheader-opacity);
-   line-height: 1;
+  /* line-height: 1;*/
    font-size: 50%;
-   vertical-align: super;
+   vertical-align: middle;
 }
 .reveal table th, .reveal table td {
    border-bottom: 1px solid #7777;
@@ -317,7 +364,11 @@ img+.caption {
 .reveal h5:empty {
    display: none;
 }
+.reveal .tippy-box > .tippy-content {
+   z-index: 4 !important;
+}
 .reveal .tippy-box {
+   z-index: 5 !important;
    font-size: calc(var(--r-main-font-size) * 0.8);
   /* background-color: rgb(255, 255, 255, 0.8);*/
   /* opacity: 0.3;*/
@@ -331,11 +382,70 @@ img[image], img[bound] {
    object-fit: scale-down;
   /* scale: calc(0.6 * var(--magnifier));*/
 }
-img[aspect] {
+img[data-aspect], img[data-fixheight] {
    height: auto;
+   flex: 0 0 auto;
+   object-fit: scale-down;
+}
+img[data-fixwidth] {
+   width: auto;
    flex: 0 0 auto;
    object-fit: scale-down;
 }
 section.thankyou {
    background-color: rgb(255,255,0,var(--layout-opacity)) !important;
+}
+#title-slide .subtitle {
+   margin-top: 3.5rem;
+   margin-bottom: 3.5rem;
+   font-size: 120%;
+}
+.reveal .title-slide h1 {
+  font-size: calc((var(--r-heading1-size) + var(--r-heading1-size)) / 2);
+}
+.reveal section > h1,
+.reveal section > h2:not(:empty):first-of-type,
+.reveal section > div > h2:not(:empty):first-of-type,
+.reveal section > h3,
+.reveal section > h4,
+.reveal h1:empty+h1,
+.reveal h1:empty+h2,
+.reveal h2:empty+h2,
+.reveal .dummy div ~ h2:first-of-type {
+  /* margin-top: 0;*/
+  /* border: 1px solid red;*/
+}
+.reveal .slides section .zfragment.semi-fade-out.visible,
+.reveal .slides section .fragment.fade-in-then-semi-out.visible:not(.current-fragment) {
+   opacity: 0.2;
+}
+.reveal .slide.level1.center {
+  /* text-align: center;*/
+}
+.print-pdf .reveal .footer-hidden,
+.print-pdf .reveal .slidingheader {
+   display: none;
+}
+.print-pdf .reveal .footer {
+   margin-bottom: -3px;
+   font-size: calc(var(--r-main-font-size) * 0.3) !important;*/
+}
+.print-pdf .reveal .slide-logo {
+   margin-bottom: 14px;
+  /* font-size: calc(var(--r-main-font-size) * 0.4) !important;*/
+}
+.print-pdf .reveal section#refs,
+.print-pdf .reveal section#footnotes {
+   font-size: calc(var(--r-main-font-size) * 0.6);
+}
+.print-pdf .reveal .csl-entry {
+   break-inside: avoid;
+}
+.no-title > h3:first-of-type,
+.no-title > h2:first-of-type,
+.no-title > h1:first-of-type {
+   display: none;
+}
+h2 {
+   break-after: avoid;
 }
