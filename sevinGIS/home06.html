@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>ГИС 06</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.20/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Пространственные данные в качестве учебного материала</h1>
+<h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
+<h4 class="author">Никита Платонов</h4>
+<address class="author_afil">
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 06</span> <span class="when">06 апреля 2023 г. <span class="updated">Обновлено: 2023-03-06 21:35</span></span></h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#биотелеметрия" id="toc-биотелеметрия">Биотелеметрия</a>
+<ul>
+<li><a href="#подготовка-данных" id="toc-подготовка-данных"><span class="small">Подготовка данных</span></a></li>
+<li><a href="#участки-обитания" id="toc-участки-обитания">Участки обитания</a>
+<ul>
+<li><a href="#формирование-сетки" id="toc-формирование-сетки">Формирование сетки</a></li>
+<li><a href="#построение-кёрнел" id="toc-построение-кёрнел">Построение кёрнел</a></li>
+<li><a href="#площади-по-уровням" id="toc-площади-по-уровням">Площади по уровням</a></li>
+<li><a href="#извлечение-уровней" id="toc-извлечение-уровней">Извлечение уровней</a></li>
+<li><a href="#визуализация" id="toc-визуализация">Визуализация</a></li>
+</ul></li>
+<li><a href="#анализ-траекторий" id="toc-анализ-траекторий">Анализ траекторий</a>
+<ul>
+<li><a href="#ltraj" id="toc-ltraj">Построение траекторий</a></li>
+<li><a href="#преобразования" id="toc-преобразования">Преобразования</a>
+<ul>
+<li><a href="#в-data-frame" id="toc-в-data-frame">в <code>data frame</code></a></li>
+<li><a href="#в-ltraj" id="toc-в-ltraj">в <code>ltraj</code></a></li>
+</ul></li>
+<li><a href="#подтраектории" id="toc-подтраектории">Подтраектории</a></li>
+<li><a href="#регулярность" id="toc-регулярность">Регулярность</a>
+<ul>
+<li><a href="#одинаковый-период" id="toc-одинаковый-период">Одинаковый период</a></li>
+</ul></li>
+<li><a href="#шаги" id="toc-шаги">Шаги</a>
+<ul>
+<li><a href="#data-lt6" id="toc-data-lt6">… по расстоянию</a></li>
+<li><a href="#data-lt7" id="toc-data-lt7">… по времени</a></li>
+</ul></li>
+<li><a href="#визуализация-1" id="toc-визуализация-1">Визуализация</a>
+<ul>
+<li><a href="#map-lt4" id="toc-map-lt4">шаг 3 суток, с пропусками</a></li>
+<li><a href="#map-lt6" id="toc-map-lt6">шаг 50 км, без пропусков</a></li>
+<li><a href="#map-lt7" id="toc-map-lt7">шаг 6 суток, без пропусков</a></li>
+</ul></li>
+<li><a href="#гомогенность-поведения" id="toc-гомогенность-поведения">Гомогенность поведения</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#gps" id="toc-gps">GPS</a>
+<ul>
+<li><a href="#qgis" id="toc-qgis">QGIS</a>
+<ul>
+<li><a href="#импорт-данных" id="toc-импорт-данных">Импорт данных</a>
+<ul>
+<li><a href="#plt" id="toc-plt">PLT</a></li>
+<li><a href="#gpx" id="toc-gpx">GPX</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#r" id="toc-r">R</a>
+<ul>
+<li><a href="#импорт-данных-1" id="toc-импорт-данных-1">Импорт данных</a>
+<ul>
+<li><a href="#plt-1" id="toc-plt-1">PLT</a></li>
+<li><a href="#gpx-1" id="toc-gpx-1">GPX</a></li>
+</ul></li>
+<li><a href="#обработка" id="toc-обработка">Обработка</a></li>
+<li><a href="#визуализация-2" id="toc-визуализация-2">Визуализация</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="биотелеметрия" class="section level2">
+<h2>Биотелеметрия</h2>
+<p>Локации белого медведя <span class="citation">(<a href="#ref-Durner2019_data">Durner, 2019</a>)</span>.</p>
+<iframe src="https://doi.org/10.5066%2FP9ZRJ3XU" width="646.08" height="350" data-external="1">
+</iframe>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>remote <span class="ot">&lt;-</span> <span class="st">&quot;https://alaska.usgs.gov/data/polarBear/polarBear_satelliteTelemetry_distribution_HabitatSelection_beaufortChukchi_1985_2016/polarBear_satelliteTelemetry_distribution_HabitatSelection_beaufortChukchi_1985_2016.zip&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>local <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">download.file</span>(remote,local,<span class="at">mode=</span><span class="st">&quot;wb&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>list1 <span class="ot">&lt;-</span> <span class="fu">unzip</span>(local,<span class="at">exdir=</span><span class="fu">tempdir</span>())</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>fname <span class="ot">&lt;-</span> list1[<span class="fu">grep</span>(<span class="st">&quot;kernelUD&quot;</span>,<span class="fu">basename</span>(list1))]</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">file.remove</span>(list1)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>fname</span></code></pre></div>
+<pre><code>[1] &quot;C:\\TEMP\\RtmpQtkkyX/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
+<div id="подготовка-данных" class="section level3">
+<h3><span class="small">Подготовка данных</span></h3>
+<div class="oversize">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">require</span>(sf)</span></code></pre></div>
+<pre><code>Loading required package: sf</code></pre>
+<pre><code>Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span></code></pre></div>
+<pre><code>Loading required package: ggplot2</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">require</span>(adehabitatHR)</span></code></pre></div>
+<pre><code>Loading required package: adehabitatHR</code></pre>
+<pre><code>Loading required package: sp</code></pre>
+<pre><code>Loading required package: deldir</code></pre>
+<pre><code>deldir 1.0-6      Nickname: &quot;Mendacious Cosmonaut&quot;</code></pre>
+<pre><code>
+     The syntax of deldir() has had an important change. 
+     The arguments have been re-ordered (the first three 
+     are now &quot;x, y, z&quot;) and some arguments have been 
+     eliminated.  The handling of the z (&quot;tags&quot;) 
+     argument has been improved.
+ 
+     The &quot;dummy points&quot; facility has been removed. 
+     This facility was a historical artefact, was really 
+     of no use to anyone, and had hung around much too 
+     long.  Since there are no longer any &quot;dummy points&quot;, 
+     the structure of the value returned by deldir() has 
+     changed slightly.  The arguments of plot.deldir() 
+     have been adjusted accordingly; e.g. the character 
+     string &quot;wpoints&quot; (&quot;which points&quot;) has been 
+     replaced by the logical scalar &quot;showpoints&quot;. 
+     The user should consult the help files.</code></pre>
+<pre><code>Loading required package: ade4</code></pre>
+<pre><code>Loading required package: adehabitatMA</code></pre>
+<pre><code>Registered S3 methods overwritten by &#39;adehabitatMA&#39;:
+  method                       from
+  print.SpatialPixelsDataFrame sp  
+  print.SpatialPixels          sp  </code></pre>
+<pre><code>Loading required package: adehabitatLT</code></pre>
+<pre><code>Loading required package: CircStats</code></pre>
+<pre><code>Loading required package: MASS</code></pre>
+<pre><code>Loading required package: boot</code></pre>
+</div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>src <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(fname)</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">tail</span>(src)</span></code></pre></div>
+<pre><code>      BearID_ud  DateTimeUTC_ud latitude_ud longitude_ud season period
+21613       255 5/23/2010 21:49      70.981     -146.952    max    716
+21614       255 5/27/2010 18:12      70.992     -146.340    max    716
+21615       255 5/30/2010 18:41      70.815     -145.721    max    716
+21616       255  6/2/2010 20:09      70.689     -143.814    max    716
+21617       255  6/5/2010 20:12      71.729     -146.236    max    716
+21618       255  6/8/2010 21:11      72.548     -145.328    max    716</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>src<span class="sc">$</span>period <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;%04d&quot;</span>,src<span class="sc">$</span>period)</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>src<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">paste0</span>(src<span class="sc">$</span>season,<span class="st">&quot;:&quot;</span>,src<span class="sc">$</span>period)</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="fu">tail</span>(src)</span></code></pre></div>
+<pre><code>      BearID_ud  DateTimeUTC_ud latitude_ud longitude_ud season period    group
+21613       255 5/23/2010 21:49      70.981     -146.952    max   0716 max:0716
+21614       255 5/27/2010 18:12      70.992     -146.340    max   0716 max:0716
+21615       255 5/30/2010 18:41      70.815     -145.721    max   0716 max:0716
+21616       255  6/2/2010 20:09      70.689     -143.814    max   0716 max:0716
+21617       255  6/5/2010 20:12      71.729     -146.236    max   0716 max:0716
+21618       255  6/8/2010 21:11      72.548     -145.328    max   0716 max:0716</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>(loc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(src,<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;longitude_ud&quot;</span>,<span class="st">&quot;latitude_ud&quot;</span>),<span class="at">crs=</span><span class="dv">4326</span>))</span></code></pre></div>
+<pre><code>Simple feature collection with 21618 features and 5 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -179.967 ymin: 63.8911 xmax: 179.998 ymax: 82.22576
+Geodetic CRS:  WGS 84
+First 10 features:
+   BearID_ud  DateTimeUTC_ud season period    group                geometry
+1        196  5/2/1992 22:00    max   8595 max:8595 POINT (-125.103 73.985)
+2        196  5/11/1992 0:43    max   8595 max:8595 POINT (-125.262 74.398)
+3        196 5/17/1992 22:19    max   8595 max:8595 POINT (-123.282 74.458)
+4        196 5/23/1992 23:27    max   8595 max:8595 POINT (-125.084 73.983)
+5        182  5/2/1986 17:57    max   8595 max:8595 POINT (-137.429 69.353)
+6        182  5/12/1986 0:46    max   8595 max:8595 POINT (-138.622 69.735)
+7        182 5/26/1986 18:51    max   8595 max:8595   POINT (-139.31 69.73)
+8        182   6/2/1986 0:19    mlt   8595 mlt:8595 POINT (-139.165 69.839)
+9        182  6/7/1986 19:53    mlt   8595 mlt:8595 POINT (-138.242 69.717)
+10       182  6/23/1986 0:38    mlt   8595 mlt:8595  POINT (-141.019 69.72)</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(loc)<span class="sc">$</span>epsg</span></code></pre></div>
+<pre><code>[1] 4326</code></pre>
+<p>Cохранение всех данных в формате ГИС</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>))</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>   <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>dst <span class="ot">&lt;-</span> <span class="st">&quot;data/locations_for_kernelUD.geojson&quot;</span></span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(loc,<span class="at">dsn=</span>dst,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(dst),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(dst))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> loc[loc<span class="sc">$</span>group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;max:0716&quot;</span>),]</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>ta <span class="ot">&lt;-</span> <span class="fu">table</span>(loc<span class="sc">$</span>BearID_ud)</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>ta <span class="ot">&lt;-</span> ta[ta<span class="sc">&gt;</span><span class="dv">150</span>] <span class="do">## 120</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>ta</span></code></pre></div>
+<pre><code>
+145 168 
+155 183 </code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> loc[loc<span class="sc">$</span>BearID_ud <span class="sc">%in%</span> <span class="fu">names</span>(ta),]</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">table</span>(loc<span class="sc">$</span>BearID_ud)</span></code></pre></div>
+<pre><code>
+145 168 
+155 183 </code></pre>
+<p>Сохранение части данных</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>))</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>   <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>dst <span class="ot">&lt;-</span> <span class="st">&quot;data/locations_for_ltraj.geojson&quot;</span></span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(loc,<span class="at">dsn=</span>dst,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(dst),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(dst))</span></code></pre></div>
+</div>
+<div id="участки-обитания" class="section level3">
+<h3>Участки обитания</h3>
+<div id="формирование-сетки" class="section level4">
+<h4>Формирование сетки</h4>
+<div class="font90">
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>(loc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(loc,<span class="dv">3572</span>))</span></code></pre></div>
+<pre><code>Simple feature collection with 338 features and 5 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -88920.86 ymin: -2211301 xmax: 733452.4 ymax: -1455791
+Projected CRS: WGS 84 / North Pole LAEA Alaska
+First 10 features:
+      BearID_ud  DateTimeUTC_ud season period    group                  geometry
+17462       145  5/14/2008 3:54    max   0716 max:0716 POINT (208385.1 -2172907)
+17463       145 5/18/2008 20:14    max   0716 max:0716 POINT (219304.5 -2105274)
+17464       145 5/21/2008 21:32    max   0716 max:0716   POINT (199755 -2080243)
+17465       145 5/27/2008 18:08    max   0716 max:0716 POINT (183527.7 -2054768)
+17466       145 5/30/2008 18:29    max   0716 max:0716 POINT (190180.1 -2042328)
+17467       145  6/2/2008 18:37    max   0716 max:0716 POINT (191254.4 -2033488)
+17468       145  6/5/2008 20:03    max   0716 max:0716   POINT (144390 -2001121)
+17469       145  6/8/2008 20:16    max   0716 max:0716   POINT (142381 -2013417)
+17470       145 6/11/2008 21:29    max   0716 max:0716 POINT (104305.1 -2028877)
+17471       145 6/17/2008 19:01    max   0716 max:0716 POINT (146107.4 -1997239)</code></pre>
+</div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(loc)<span class="sc">$</span>epsg</span></code></pre></div>
+<pre><code>[1] 3572</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(loc)<span class="sc">$</span>proj4string</span></code></pre></div>
+<pre><code>[1] &quot;+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_bbox</span>(loc)</span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a>bbox</span></code></pre></div>
+<pre><code>       xmin        ymin        xmax        ymax 
+  -88920.86 -2211300.60   733452.40 -1455790.58 </code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sfc</span>(bbox) <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>   sf<span class="sc">::</span><span class="fu">st_buffer</span>(<span class="dv">500</span><span class="sc">*</span><span class="fl">1e3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a>   sf<span class="sc">::</span><span class="fu">st_bbox</span>()</span>
+<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a>bbox</span></code></pre></div>
+<pre><code>      xmin       ymin       xmax       ymax 
+ -588920.9 -2711300.6  1233452.4  -955790.6 </code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>gr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_make_grid</span>(bbox,<span class="at">cellsize=</span><span class="dv">12000</span>,<span class="at">what=</span><span class="st">&quot;centers&quot;</span>) <span class="co">#&lt;&lt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a><span class="fu">str</span>(gr)</span></code></pre></div>
+<pre><code>sfc_POINT of length 22344; first list element:  &#39;XY&#39; num [1:2] -582921 -2705301</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a>gr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">as_Spatial</span>(gr)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="fu">str</span>(gr)</span></code></pre></div>
+<pre><code>Formal class &#39;SpatialPoints&#39; [package &quot;sp&quot;] with 3 slots
+  ..@ coords     : num [1:22344, 1:2] -582921 -570921 -558921 -546921 -534921 ...
+  .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. ..$ : NULL
+  .. .. ..$ : chr [1:2] &quot;coords.x1&quot; &quot;coords.x2&quot;
+  ..@ bbox       : num [1:2, 1:2] -582921 -2705301 1229079 -953301
+  .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. ..$ : chr [1:2] &quot;coords.x1&quot; &quot;coords.x2&quot;
+  .. .. ..$ : chr [1:2] &quot;min&quot; &quot;max&quot;
+  ..@ proj4string:Formal class &#39;CRS&#39; [package &quot;sp&quot;] with 1 slot
+  .. .. ..@ projargs: chr &quot;+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;
+  .. .. ..$ comment: chr &quot;| __truncated__&quot;</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">gridded</span>(gr) <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
+</div>
+<div id="построение-кёрнел" class="section level4">
+<h4>Построение кёрнел</h4>
+<p>Пример построения кёрнел с параметром <code>h="LSCV"</code></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>ud <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernelUD</span>(sf<span class="sc">::</span><span class="fu">as_Spatial</span>(loc[<span class="st">&quot;BearID_ud&quot;</span>])</span>
+<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>                            ,<span class="at">grid=</span>gr</span>
+<span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a>                            ,<span class="at">h=</span><span class="fu">list</span>(<span class="st">&quot;href&quot;</span>,<span class="st">&quot;LSCV&quot;</span>,<span class="dv">30000</span>)[[<span class="dv">2</span>]]</span>
+<span id="cb52-4"><a href="#cb52-4" tabindex="-1"></a>                            )</span></code></pre></div>
+<div class="pull-left">
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a>adehabitatHR<span class="sc">::</span><span class="fu">plotLSCV</span>(ud[[<span class="dv">1</span>]])</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/plot-kernel1-1.svg" width="646.08" height="325" /></p>
+</div>
+<div class="pull-right">
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a>adehabitatHR<span class="sc">::</span><span class="fu">plotLSCV</span>(ud[[<span class="dv">2</span>]])</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/plot-kernel2-1.svg" width="646.08" height="325" /></p>
+</div>
+<div class="oversize">
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a>ud <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernelUD</span>(sf<span class="sc">::</span><span class="fu">as_Spatial</span>(loc[<span class="st">&quot;BearID_ud&quot;</span>]) <span class="co">#&lt;&lt;</span></span>
+<span id="cb55-2"><a href="#cb55-2" tabindex="-1"></a>                            ,<span class="at">grid=</span>gr</span>
+<span id="cb55-3"><a href="#cb55-3" tabindex="-1"></a>                            ,<span class="at">h=</span><span class="fu">list</span>(<span class="st">&quot;href&quot;</span>,<span class="st">&quot;LSCV&quot;</span>,<span class="dv">30000</span>)[[<span class="dv">3</span>]]</span>
+<span id="cb55-4"><a href="#cb55-4" tabindex="-1"></a>                            )</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="fu">str</span>(ud)</span></code></pre></div>
+<pre><code>List of 2
+ $ 145:Formal class &#39;estUD&#39; [package &quot;adehabitatHR&quot;] with 9 slots
+  .. ..@ h          :List of 2
+  .. .. ..$ h   : num 30000
+  .. .. ..$ meth: chr &quot;specified&quot;
+  .. ..@ vol        : logi FALSE
+  .. ..@ data       :&#39;data.frame&#39;:  22344 obs. of  1 variable:
+  .. .. ..$ ud: num [1:22344] 0 0 0 0 0 0 0 0 0 0 ...
+  .. ..@ coords.nrs : num(0) 
+  .. ..@ grid       :Formal class &#39;GridTopology&#39; [package &quot;sp&quot;] with 3 slots
+  .. .. .. ..@ cellcentre.offset: Named num [1:2] -582921 -2705301
+  .. .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. .. .. ..@ cellsize         : Named num [1:2] 12000 12000
+  .. .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. .. .. ..@ cells.dim        : Named int [1:2] 152 147
+  .. .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. ..@ grid.index : int [1:22344] 1 153 305 457 609 761 913 1065 1217 1369 ...
+  .. ..@ coords     : num [1:22344, 1:2] -582921 -582921 -582921 -582921 -582921 ...
+  .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. .. ..$ : NULL
+  .. .. .. ..$ : chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. ..@ bbox       : num [1:2, 1:2] -588921 -2711301 1235079 -947301
+  .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. .. ..$ : chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. .. .. ..$ : chr [1:2] &quot;min&quot; &quot;max&quot;
+  .. ..@ proj4string:Formal class &#39;CRS&#39; [package &quot;sp&quot;] with 1 slot
+  .. .. .. ..@ projargs: chr &quot;+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;
+  .. .. .. ..$ comment: chr &quot;| __truncated__&quot;
+ $ 168:Formal class &#39;estUD&#39; [package &quot;adehabitatHR&quot;] with 9 slots
+  .. ..@ h          :List of 2
+  .. .. ..$ h   : num 30000
+  .. .. ..$ meth: chr &quot;specified&quot;
+  .. ..@ vol        : logi FALSE
+  .. ..@ data       :&#39;data.frame&#39;:  22344 obs. of  1 variable:
+  .. .. ..$ ud: num [1:22344] 0 0 0 0 0 0 0 0 0 0 ...
+  .. ..@ coords.nrs : num(0) 
+  .. ..@ grid       :Formal class &#39;GridTopology&#39; [package &quot;sp&quot;] with 3 slots
+  .. .. .. ..@ cellcentre.offset: Named num [1:2] -582921 -2705301
+  .. .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. .. .. ..@ cellsize         : Named num [1:2] 12000 12000
+  .. .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. .. .. ..@ cells.dim        : Named int [1:2] 152 147
+  .. .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. ..@ grid.index : int [1:22344] 1 153 305 457 609 761 913 1065 1217 1369 ...
+  .. ..@ coords     : num [1:22344, 1:2] -582921 -582921 -582921 -582921 -582921 ...
+  .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. .. ..$ : NULL
+  .. .. .. ..$ : chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. ..@ bbox       : num [1:2, 1:2] -588921 -2711301 1235079 -947301
+  .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. .. .. ..$ : chr [1:2] &quot;Var2&quot; &quot;Var1&quot;
+  .. .. .. ..$ : chr [1:2] &quot;min&quot; &quot;max&quot;
+  .. ..@ proj4string:Formal class &#39;CRS&#39; [package &quot;sp&quot;] with 1 slot
+  .. .. .. ..@ projargs: chr &quot;+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;
+  .. .. .. ..$ comment: chr &quot;| __truncated__&quot;
+ - attr(*, &quot;class&quot;)= chr &quot;estUDm&quot;</code></pre>
+</div>
+</div>
+<div id="площади-по-уровням" class="section level4">
+<h4>Площади по уровням</h4>
+<div class="dummy">
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a>ka <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernel.area</span>(ud,<span class="at">unin=</span><span class="st">&quot;m&quot;</span>,<span class="at">unout=</span><span class="st">&quot;km2&quot;</span>) <span class="co">#&lt;&lt;</span></span>
+<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a><span class="fu">colnames</span>(ka) <span class="ot">&lt;-</span> <span class="fu">names</span>(ud)</span>
+<span id="cb58-3"><a href="#cb58-3" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">rbind</span>(<span class="fu">head</span>(ka,<span class="dv">4</span>),<span class="fu">tail</span>(ka,<span class="dv">4</span>)),<span class="at">row.names=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">145</th>
+<th align="right">168</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">20</td>
+<td align="right">9936</td>
+<td align="right">5472</td>
+</tr>
+<tr class="even">
+<td align="left">25</td>
+<td align="right">13104</td>
+<td align="right">7200</td>
+</tr>
+<tr class="odd">
+<td align="left">30</td>
+<td align="right">16560</td>
+<td align="right">8928</td>
+</tr>
+<tr class="even">
+<td align="left">35</td>
+<td align="right">20304</td>
+<td align="right">10944</td>
+</tr>
+<tr class="odd">
+<td align="left">80</td>
+<td align="right">107568</td>
+<td align="right">38448</td>
+</tr>
+<tr class="even">
+<td align="left">85</td>
+<td align="right">129744</td>
+<td align="right">45216</td>
+</tr>
+<tr class="odd">
+<td align="left">90</td>
+<td align="right">158112</td>
+<td align="right">54432</td>
+</tr>
+<tr class="even">
+<td align="left">95</td>
+<td align="right">199008</td>
+<td align="right">72720</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a>ta <span class="ot">&lt;-</span> <span class="fu">reshape</span>(ka,<span class="at">direction=</span><span class="st">&quot;long&quot;</span></span>
+<span id="cb59-2"><a href="#cb59-2" tabindex="-1"></a>             ,<span class="at">varying=</span><span class="fu">list</span>(<span class="fu">grep</span>(<span class="st">&quot;^</span><span class="sc">\\</span><span class="st">d+&quot;</span>,<span class="fu">colnames</span>(ka),<span class="at">value=</span><span class="cn">TRUE</span>))</span>
+<span id="cb59-3"><a href="#cb59-3" tabindex="-1"></a>             ,<span class="at">times=</span><span class="fu">grep</span>(<span class="st">&quot;^</span><span class="sc">\\</span><span class="st">d+&quot;</span>,<span class="fu">colnames</span>(ka),<span class="at">value=</span><span class="cn">TRUE</span>)</span>
+<span id="cb59-4"><a href="#cb59-4" tabindex="-1"></a>             ,<span class="at">v.names=</span><span class="st">&quot;area&quot;</span></span>
+<span id="cb59-5"><a href="#cb59-5" tabindex="-1"></a>             ,<span class="at">timevar=</span><span class="st">&quot;bear&quot;</span></span>
+<span id="cb59-6"><a href="#cb59-6" tabindex="-1"></a>             ,<span class="at">ids=</span><span class="fu">row.names</span>(ka)</span>
+<span id="cb59-7"><a href="#cb59-7" tabindex="-1"></a>             ,<span class="at">idvar=</span><span class="st">&quot;level&quot;</span></span>
+<span id="cb59-8"><a href="#cb59-8" tabindex="-1"></a>             )</span>
+<span id="cb59-9"><a href="#cb59-9" tabindex="-1"></a>ta<span class="sc">$</span>level <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(ta<span class="sc">$</span>level)</span>
+<span id="cb59-10"><a href="#cb59-10" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">rbind</span>(<span class="fu">head</span>(ta,<span class="dv">4</span>),<span class="fu">tail</span>(ta,<span class="dv">4</span>)),<span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">bear</th>
+<th align="right">area</th>
+<th align="right">level</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">145</td>
+<td align="right">9936</td>
+<td align="right">20</td>
+</tr>
+<tr class="even">
+<td align="left">145</td>
+<td align="right">13104</td>
+<td align="right">25</td>
+</tr>
+<tr class="odd">
+<td align="left">145</td>
+<td align="right">16560</td>
+<td align="right">30</td>
+</tr>
+<tr class="even">
+<td align="left">145</td>
+<td align="right">20304</td>
+<td align="right">35</td>
+</tr>
+<tr class="odd">
+<td align="left">168</td>
+<td align="right">38448</td>
+<td align="right">80</td>
+</tr>
+<tr class="even">
+<td align="left">168</td>
+<td align="right">45216</td>
+<td align="right">85</td>
+</tr>
+<tr class="odd">
+<td align="left">168</td>
+<td align="right">54432</td>
+<td align="right">90</td>
+</tr>
+<tr class="even">
+<td align="left">168</td>
+<td align="right">72720</td>
+<td align="right">95</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a>(p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ta,<span class="fu">aes</span>(level,area,<span class="at">colour=</span>bear))<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">geom_point</span>())</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/ggplot-1.svg" width="646.08" height="565" /></p>
+</div>
+<div id="извлечение-уровней" class="section level4">
+<h4>Извлечение уровней</h4>
+<div class="font95">
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a>levHR <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">50</span>)</span>
+<span id="cb61-2"><a href="#cb61-2" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">lapply</span>(ud,<span class="cf">function</span>(U) {</span>
+<span id="cb61-3"><a href="#cb61-3" tabindex="-1"></a>   hr2 <span class="ot">&lt;-</span> <span class="fu">lapply</span>(levHR,<span class="cf">function</span>(L) {</span>
+<span id="cb61-4"><a href="#cb61-4" tabindex="-1"></a>      hr3 <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">getverticeshr</span>(U,<span class="at">percent=</span>L,<span class="at">unin=</span><span class="st">&quot;m&quot;</span>,<span class="at">unout=</span><span class="st">&quot;km2&quot;</span>)</span>
+<span id="cb61-5"><a href="#cb61-5" tabindex="-1"></a>      hr3<span class="sc">$</span>level <span class="ot">&lt;-</span> L</span>
+<span id="cb61-6"><a href="#cb61-6" tabindex="-1"></a>      sf<span class="sc">::</span><span class="fu">st_as_sf</span>(hr3)</span>
+<span id="cb61-7"><a href="#cb61-7" tabindex="-1"></a>   })</span>
+<span id="cb61-8"><a href="#cb61-8" tabindex="-1"></a>   <span class="fu">do.call</span>(rbind,hr2)</span>
+<span id="cb61-9"><a href="#cb61-9" tabindex="-1"></a>})</span>
+<span id="cb61-10"><a href="#cb61-10" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">names</span>(hr),<span class="cf">function</span>(x) {hr[[x]]<span class="sc">$</span>id <span class="ot">&lt;-</span> x;hr[[x]]})</span>
+<span id="cb61-11"><a href="#cb61-11" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,hr)</span></code></pre></div>
+<p>Экспорт</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>))</span>
+<span id="cb62-2"><a href="#cb62-2" tabindex="-1"></a>   <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb62-3"><a href="#cb62-3" tabindex="-1"></a>dst <span class="ot">&lt;-</span> <span class="st">&quot;data/hr.geojson&quot;</span></span>
+<span id="cb62-4"><a href="#cb62-4" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(sf<span class="sc">::</span><span class="fu">st_transform</span>(hr,<span class="dv">4326</span>)</span>
+<span id="cb62-5"><a href="#cb62-5" tabindex="-1"></a>            ,<span class="at">dsn=</span>dst</span>
+<span id="cb62-6"><a href="#cb62-6" tabindex="-1"></a>            ,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(dst)</span>
+<span id="cb62-7"><a href="#cb62-7" tabindex="-1"></a>            ,<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(dst)</span>
+<span id="cb62-8"><a href="#cb62-8" tabindex="-1"></a>            )</span></code></pre></div>
+</div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a>hr</span></code></pre></div>
+<pre><code>Simple feature collection with 4 features and 3 fields
+Geometry type: GEOMETRY
+Dimension:     XY
+Bounding box:  xmin: -109626 ymin: -2254479 xmax: 779252.1 ymax: -1438563
+CRS:           +proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs
+             id      area level                       geometry
+homerange   145 200163.21    95 MULTIPOLYGON (((-109626 -20...
+homerange1  145  35748.68    50 POLYGON ((437079.1 -2107065...
+homerange2  168  73098.40    95 POLYGON ((-90920.86 -210402...
+homerange11 168  17253.45    50 POLYGON ((-6920.856 -214782...</code></pre>
+</div>
+<div id="визуализация" class="section level4">
+<h4>Визуализация</h4>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a><span class="fu">plot</span>(hr)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/plothr1-1.svg" width="646.08" /></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a><span class="fu">plot</span>(hr[<span class="fu">order</span>(hr<span class="sc">$</span>level),])</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/plothr2-1.svg" width="646.08" /></p>
+</div>
+</div>
+<div id="анализ-траекторий" class="section level3">
+<h3>Анализ траекторий</h3>
+<div id="ltraj" class="section level4">
+<h4>Построение траекторий</h4>
+<div class="oversize">
+<ul>
+<li>Анализ траектории: пакет <strong><code>adehabitatLT</code></strong><br />
+</li>
+<li>Манипуляция с пространственными данными: пакет <strong><code>sf</code></strong><br />
+</li>
+<li>Визуализация (интерактивная): пакет <strong><code>mapview</code></strong></li>
+</ul>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">TZ=</span><span class="st">&quot;UTC&quot;</span>)</span>
+<span id="cb67-2"><a href="#cb67-2" tabindex="-1"></a><span class="fu">require</span>(mapview)</span></code></pre></div>
+<pre><code>Loading required package: mapview</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
+<span id="cb69-2"><a href="#cb69-2" tabindex="-1"></a><span class="fu">require</span>(adehabitatLT)</span></code></pre></div>
+</div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;data/locations_for_ltraj.geojson&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb70-2"><a href="#cb70-2" tabindex="-1"></a>   <span class="fu">st_transform</span>(<span class="dv">3572</span>)</span></code></pre></div>
+<pre><code>Reading layer `locations_for_ltraj&#39; from data source 
+  `data\locations_for_ltraj.geojson&#39; using driver `GeoJSON&#39;
+Simple feature collection with 338 features and 5 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -152.516 ymin: 69.8789 xmax: -128.911 ymax: 75.993
+Geodetic CRS:  WGS 84</code></pre>
+<div class="oversize">
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a>loc<span class="sc">$</span>DateTimeUTC_ud <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(loc<span class="sc">$</span>DateTimeUTC_ud</span>
+<span id="cb72-2"><a href="#cb72-2" tabindex="-1"></a>                                ,<span class="at">format=</span><span class="st">&quot;%m/%d/%Y %H:%M&quot;</span></span>
+<span id="cb72-3"><a href="#cb72-3" tabindex="-1"></a>                                ,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))</span>
+<span id="cb72-4"><a href="#cb72-4" tabindex="-1"></a>loc</span></code></pre></div>
+<pre><code>Simple feature collection with 338 features and 5 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -88920.86 ymin: -2211301 xmax: 733452.4 ymax: -1455791
+Projected CRS: WGS 84 / North Pole LAEA Alaska
+First 10 features:
+   BearID_ud      DateTimeUTC_ud season period    group                  geometry
+1        145 2008-05-14 03:54:00    max   0716 max:0716 POINT (208385.1 -2172907)
+2        145 2008-05-18 20:14:00    max   0716 max:0716 POINT (219304.5 -2105274)
+3        145 2008-05-21 21:32:00    max   0716 max:0716   POINT (199755 -2080243)
+4        145 2008-05-27 18:08:00    max   0716 max:0716 POINT (183527.7 -2054768)
+5        145 2008-05-30 18:29:00    max   0716 max:0716 POINT (190180.1 -2042328)
+6        145 2008-06-02 18:37:00    max   0716 max:0716 POINT (191254.4 -2033488)
+7        145 2008-06-05 20:03:00    max   0716 max:0716   POINT (144390 -2001121)
+8        145 2008-06-08 20:16:00    max   0716 max:0716   POINT (142381 -2013417)
+9        145 2008-06-11 21:29:00    max   0716 max:0716 POINT (104305.1 -2028877)
+10       145 2008-06-17 19:01:00    max   0716 max:0716 POINT (146107.4 -1997239)</code></pre>
+</div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" tabindex="-1"></a>lt1 <span class="ot">&lt;-</span> <span class="fu">as.ltraj</span>(<span class="fu">st_coordinates</span>(loc)</span>
+<span id="cb74-2"><a href="#cb74-2" tabindex="-1"></a>               ,<span class="at">date=</span>loc<span class="sc">$</span>DateTimeUTC_ud</span>
+<span id="cb74-3"><a href="#cb74-3" tabindex="-1"></a>               ,<span class="at">id=</span>loc<span class="sc">$</span>BearID_ud</span>
+<span id="cb74-4"><a href="#cb74-4" tabindex="-1"></a>               ,<span class="at">proj4string=</span>sp<span class="sc">::</span><span class="fu">CRS</span>(<span class="fu">st_crs</span>(loc)<span class="sc">$</span>proj4string)</span>
+<span id="cb74-5"><a href="#cb74-5" tabindex="-1"></a>               )</span>
+<span id="cb74-6"><a href="#cb74-6" tabindex="-1"></a><span class="fu">names</span>(lt1) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lt1,<span class="cf">function</span>(x) <span class="fu">attr</span>(x,<span class="st">&quot;id&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a>lt1</span></code></pre></div>
+<pre><code>
+*********** List of class ltraj ***********
+
+Type of the traject: Type II (time recorded)
+* Time zone: UTC *
+Irregular traject. Variable time lag between two locs
+
+Characteristics of the bursts:
+     id burst nb.reloc NAs          date.begin            date.end
+145 145   145      155   0 2008-05-14 03:54:00 2012-05-15 18:27:00
+168 168   168      183   0 2012-04-12 21:45:00 2015-05-30 04:00:00
+
+
+ infolocs provided. The following variables are available:
+[1] &quot;pkey&quot;</code></pre>
+</div>
+<div id="преобразования" class="section level4">
+<h4>Преобразования</h4>
+<div id="в-data-frame" class="section level5">
+<h5>в <code>data frame</code></h5>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">ld</span>(lt1)</span>
+<span id="cb77-2"><a href="#cb77-2" tabindex="-1"></a><span class="fu">head</span>(df1)</span></code></pre></div>
+<pre><code>             x        y                date         dx       dy      dist     dt         R2n abs.angle
+145.1 208385.1 -2172907 2008-05-14 03:54:00  10919.387 67632.70 68508.504 404400           0  1.410726
+145.2 219304.5 -2105274 2008-05-18 20:14:00 -19549.513 25031.27 31760.792 263880  4693415081  2.233846
+145.3 199755.0 -2080243 2008-05-21 21:32:00 -16227.265 25475.45 30204.681 506160  8661090144  2.137962
+145.4 183527.7 -2054768 2008-05-27 18:08:00   6652.395 12439.54 14106.617 260460 14574812280  1.079715
+145.5 190180.1 -2042328 2008-05-30 18:29:00   1074.327  8840.00  8905.043 259680 17382287790  1.449859
+145.6 191254.4 -2033488 2008-06-02 18:37:00 -46864.403 32366.86 56955.119 264360 19731107532  2.537170
+        rel.angle  id burst                    pkey
+145.1          NA 145   145 145.2008-05-14 03:54:00
+145.2  0.82312004 145   145 145.2008-05-18 20:14:00
+145.3 -0.09588465 145   145 145.2008-05-21 21:32:00
+145.4 -1.05824674 145   145 145.2008-05-27 18:08:00
+145.5  0.37014429 145   145 145.2008-05-30 18:29:00
+145.6  1.08731086 145   145 145.2008-06-02 18:37:00</code></pre>
+</div>
+<div id="в-ltraj" class="section level5">
+<h5>в <code>ltraj</code></h5>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" tabindex="-1"></a>lt1 <span class="ot">&lt;-</span> <span class="fu">dl</span>(df1)</span>
+<span id="cb79-2"><a href="#cb79-2" tabindex="-1"></a><span class="fu">head</span>(lt1)</span></code></pre></div>
+<pre><code>
+*********** List of class ltraj ***********
+
+Type of the traject: Type II (time recorded)
+* Time zone: UTC *
+Irregular traject. Variable time lag between two locs
+
+Characteristics of the bursts:
+   id burst nb.reloc NAs          date.begin            date.end
+1 145   145      155   0 2008-05-14 03:54:00 2012-05-15 18:27:00
+2 168   168      183   0 2012-04-12 21:45:00 2015-05-30 04:00:00
+
+
+ infolocs provided. The following variables are available:
+[1] &quot;pkey&quot;</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" tabindex="-1"></a>(da <span class="ot">&lt;-</span> adehabitatLT<span class="sc">::</span><span class="fu">summary.ltraj</span>(lt1))</span></code></pre></div>
+<pre><code>   id burst nb.reloc NAs          date.begin            date.end
+1 145   145      155   0 2008-05-14 03:54:00 2012-05-15 18:27:00
+2 168   168      183   0 2012-04-12 21:45:00 2015-05-30 04:00:00</code></pre>
+</div>
+</div>
+<div id="подтраектории" class="section level4">
+<h4>Подтраектории</h4>
+<p>Разбиение на отдельные сегменты по условию, если есть пропуск более 100 дней.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" tabindex="-1"></a>cond <span class="ot">&lt;-</span> <span class="st">&quot;dt&gt;c(days=100)*c(hour=24)*c(min=60)*c(sec=60)&quot;</span></span>
+<span id="cb83-2"><a href="#cb83-2" tabindex="-1"></a>lt2 <span class="ot">&lt;-</span> <span class="fu">cutltraj</span>(lt1,cond,<span class="at">nextr=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>Warning in cutltraj(lt1, cond, nextr = TRUE): At least 3 relocations are needed for a burst
+ 1 relocations have been deleted</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" tabindex="-1"></a>lt2</span></code></pre></div>
+<pre><code>
+*********** List of class ltraj ***********
+
+Type of the traject: Type II (time recorded)
+* Time zone: UTC *
+Irregular traject. Variable time lag between two locs
+
+Characteristics of the bursts:
+   id burst nb.reloc NAs          date.begin            date.end
+1 145 145.1       12   0 2008-05-14 03:54:00 2008-06-26 18:57:00
+2 145 145.3       27   0 2009-03-17 20:15:00 2009-06-30 18:29:00
+3 145 145.4       63   0 2009-11-03 18:26:00 2010-06-28 18:58:00
+4 145 145.5       47   0 2010-12-01 20:34:00 2011-06-29 16:51:00
+5 145 145.6        5   0 2012-03-28 20:20:00 2012-05-15 18:27:00
+6 168 168.1       26   0 2012-04-12 21:45:00 2012-06-30 10:00:00
+7 168 168.2       79   0 2012-11-02 00:00:00 2013-06-28 14:17:00
+8 168 168.3       27   0 2014-04-13 21:27:00 2014-06-30 22:00:00
+9 168 168.4       51   0 2014-12-03 00:00:00 2015-05-30 04:00:00
+
+
+ infolocs provided. The following variables are available:
+[1] &quot;pkey&quot;</code></pre>
+</div>
+<div id="регулярность" class="section level4">
+<h4>Регулярность</h4>
+<p>Проверка на регулярность</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" tabindex="-1"></a><span class="fu">is.regular</span>(lt2)</span></code></pre></div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">ld</span>(lt1)<span class="sc">$</span>dt<span class="sc">/</span><span class="dv">3600</span><span class="sc">/</span><span class="dv">24</span>)</span></code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+  3.000   3.000   3.012   7.753   3.090 289.299       2 </code></pre>
+<p>Обратим внимание на медианное значение частоты локации: каждые три дня.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" tabindex="-1"></a><span class="co"># plotltr(lt1,&quot;dt/3600/24&quot;)</span></span></code></pre></div>
+<p>Установим точку отсчета</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" tabindex="-1"></a>(refda <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">strptime</span>(<span class="st">&quot;12:00&quot;</span>,<span class="st">&quot;%H:%M&quot;</span>,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))))</span></code></pre></div>
+<pre><code>[1] &quot;2023-03-06 12:00:00 UTC&quot;</code></pre>
+<p>Заполним пропуски значениями <code>NA</code></p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" tabindex="-1"></a>lt3 <span class="ot">&lt;-</span> <span class="fu">setNA</span>(lt2,refda,<span class="dv">3</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span>)</span>
+<span id="cb94-2"><a href="#cb94-2" tabindex="-1"></a>lt3</span></code></pre></div>
+<pre><code>
+*********** List of class ltraj ***********
+
+Type of the traject: Type II (time recorded)
+* Time zone: UTC *
+Irregular traject. Variable time lag between two locs
+
+Characteristics of the bursts:
+   id burst nb.reloc NAs          date.begin            date.end
+1 145 145.1       15   3 2008-05-14 03:54:00 2008-06-26 18:57:00
+2 145 145.3       36   9 2009-03-17 20:15:00 2009-06-30 18:29:00
+3 145 145.4       80  17 2009-11-03 18:26:00 2010-06-28 18:58:00
+4 145 145.5       71  24 2010-12-01 20:34:00 2011-06-29 16:51:00
+5 145 145.6       17  12 2012-03-28 20:20:00 2012-05-15 18:27:00
+6 168 168.1       28   4 2012-04-12 21:45:00 2012-06-30 10:00:00
+7 168 168.2       81   2 2012-11-02 00:00:00 2013-06-28 14:17:00
+8 168 168.3       27   0 2014-04-13 21:27:00 2014-06-30 22:00:00
+9 168 168.4       60   9 2014-12-03 00:00:00 2015-05-30 04:00:00
+
+
+ infolocs provided. The following variables are available:
+[1] &quot;pkey&quot;</code></pre>
+<p><span id="data-lt4" class="hiddenanchor"> </span>
+Приведение к единому шагу по времени. См. <a href="#map-lt4">визуализацию</a>.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" tabindex="-1"></a>lt4 <span class="ot">&lt;-</span> <span class="fu">sett0</span>(lt3,refda,<span class="dv">3</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span>)</span>
+<span id="cb96-2"><a href="#cb96-2" tabindex="-1"></a>lt4</span></code></pre></div>
+<pre><code>
+*********** List of class ltraj ***********
+
+Type of the traject: Type II (time recorded)
+* Time zone: UTC *
+Regular traject. Time lag between two locs: 259200 seconds
+
+Characteristics of the bursts:
+   id burst nb.reloc NAs          date.begin            date.end
+1 145 145.1       15   3 2008-05-14 12:00:00 2008-06-25 12:00:00
+2 145 145.3       36   9 2009-03-16 12:00:00 2009-06-29 12:00:00
+3 145 145.4       80  17 2009-11-02 12:00:00 2010-06-27 12:00:00
+4 145 145.5       71  24 2010-11-30 12:00:00 2011-06-28 12:00:00
+5 145 145.6       17  12 2012-03-27 12:00:00 2012-05-14 12:00:00
+6 168 168.1       28   4 2012-04-11 12:00:00 2012-07-01 12:00:00
+7 168 168.2       81   2 2012-11-01 12:00:00 2013-06-29 12:00:00
+8 168 168.3       27   0 2014-04-13 12:00:00 2014-06-30 12:00:00
+9 168 168.4       60   9 2014-12-03 12:00:00 2015-05-29 12:00:00
+
+
+ infolocs provided. The following variables are available:
+[1] &quot;pkey&quot;</code></pre>
+<p>Проверка на регулярность по времени.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" tabindex="-1"></a><span class="fu">is.sd</span>(lt4)</span></code></pre></div>
+<pre><code>[1] FALSE</code></pre>
+<div id="одинаковый-период" class="section level5">
+<h5>Одинаковый период</h5>
+<p>Получение траекторий разных объектов в один временной период.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" tabindex="-1"></a>lt5 <span class="ot">&lt;-</span> <span class="fu">set.limits</span>(lt4[<span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)]</span>
+<span id="cb100-2"><a href="#cb100-2" tabindex="-1"></a>                 ,<span class="at">begin=</span><span class="st">&quot;2012-04-11 12:00&quot;</span>,<span class="at">dur=</span><span class="dv">33</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span></span>
+<span id="cb100-3"><a href="#cb100-3" tabindex="-1"></a>                 ,<span class="at">pattern=</span><span class="st">&quot;%Y-%m-%d %H:%M&quot;</span>,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))</span>
+<span id="cb100-4"><a href="#cb100-4" tabindex="-1"></a>lt5</span></code></pre></div>
+<pre><code>
+*********** List of class ltraj ***********
+
+Type of the traject: Type II (time recorded)
+* Time zone unspecified: dates printed in user time zone *
+Regular traject. Time lag between two locs: 259200 seconds
+
+Characteristics of the bursts:
+   id burst nb.reloc NAs          date.begin            date.end
+1 145 145.6       12   8 2012-04-11 12:00:00 2012-05-14 12:00:00
+2 168 168.1       12   3 2012-04-11 12:00:00 2012-05-14 12:00:00
+
+
+ infolocs provided. The following variables are available:
+[1] &quot;pkey&quot;</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" tabindex="-1"></a><span class="fu">is.sd</span>(lt5)</span></code></pre></div>
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<div id="шаги" class="section level4">
+<h4>Шаги</h4>
+<div id="data-lt6" class="section level5">
+<h5>… по расстоянию</h5>
+<p>Локации каждые 50 км. См. <a href="#map-lt6">визуализацию</a>.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" tabindex="-1"></a>lt6 <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4,<span class="dv">50000</span>,<span class="at">type=</span><span class="st">&quot;space&quot;</span>) <span class="do">## 50000</span></span>
+<span id="cb104-2"><a href="#cb104-2" tabindex="-1"></a>lt6</span></code></pre></div>
+<pre><code>
+*********** List of class ltraj ***********
+
+Type of the traject: Type II (time recorded)
+* Time zone: UTC *
+Irregular traject. Variable time lag between two locs
+
+Characteristics of the bursts:
+   id        burst nb.reloc NAs          date.begin            date.end
+1 145 145.1.R50000        6   0 2008-05-14 12:00:00 2008-06-25 05:12:02
+2 145 145.3.R50000       19   0 2009-03-16 12:00:00 2009-06-29 08:29:14
+3 145 145.4.R50000       32   0 2009-11-02 12:00:00 2010-06-26 09:31:12
+4 145 145.5.R50000       21   0 2010-11-30 12:00:00 2011-06-26 04:20:19
+5 145 145.6.R50000        4   0 2012-03-27 12:00:00 2012-05-09 23:37:20
+6 168 168.1.R50000        9   0 2012-04-11 12:00:00 2012-06-29 17:07:01
+7 168 168.2.R50000       44   0 2012-11-01 12:00:00 2013-06-29 02:52:05
+8 168 168.3.R50000        3   0 2014-04-13 12:00:00 2014-06-30 06:11:42
+9 168 168.4.R50000       16   0 2014-12-03 12:00:00 2015-05-17 11:29:34
+
+
+ infolocs provided. The following variables are available:
+[1] &quot;pkey&quot;</code></pre>
+</div>
+<div id="data-lt7" class="section level5">
+<h5>… по времени</h5>
+<p>Локации каждые шесть суток. См. <a href="#map-lt7">визуализацию</a>.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" tabindex="-1"></a>lt7 <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4,<span class="dv">6</span><span class="sc">*</span><span class="dv">86400</span>,<span class="at">type=</span><span class="st">&quot;time&quot;</span>,<span class="at">nnew=</span><span class="dv">30</span>)</span>
+<span id="cb106-2"><a href="#cb106-2" tabindex="-1"></a>lt7</span></code></pre></div>
+<pre><code>
+*********** List of class ltraj ***********
+
+Type of the traject: Type II (time recorded)
+* Time zone: UTC *
+Regular traject. Time lag between two locs: 518400 seconds
+
+Characteristics of the bursts:
+   id burst nb.reloc NAs          date.begin            date.end
+1 145 145.1        7   3 2008-05-14 12:00:00 2008-06-19 12:00:00
+2 145 145.3       18   8 2009-03-16 12:00:00 2009-06-26 12:00:00
+3 145 145.4       40  17 2009-11-02 12:00:00 2010-06-24 12:00:00
+4 145 145.5       35  19 2010-11-30 12:00:00 2011-06-22 12:00:00
+5 145 145.6        8   7 2012-03-27 12:00:00 2012-05-08 12:00:00
+6 168 168.1       14   4 2012-04-11 12:00:00 2012-06-28 12:00:00
+7 168 168.2       40   2 2012-11-01 12:00:00 2013-06-23 12:00:00
+8 168 168.3       13   0 2014-04-13 12:00:00 2014-06-24 12:00:00
+9 168 168.4       30   8 2014-12-03 12:00:00 2015-05-26 12:00:00
+
+
+ infolocs provided. The following variables are available:
+[1] &quot;pkey&quot;</code></pre>
+<p>Извлечение характеристик регулярных траекторий.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" tabindex="-1"></a>(di <span class="ot">&lt;-</span> <span class="fu">sd2df</span>(lt5,<span class="st">&quot;date&quot;</span>))</span></code></pre></div>
+<pre><code>                 145.6               168.1
+1  2012-04-11 12:00:00 2012-04-11 12:00:00
+2  2012-04-14 12:00:00 2012-04-14 12:00:00
+3  2012-04-17 12:00:00 2012-04-17 12:00:00
+4  2012-04-20 12:00:00 2012-04-20 12:00:00
+5  2012-04-23 12:00:00 2012-04-23 12:00:00
+6  2012-04-26 12:00:00 2012-04-26 12:00:00
+7  2012-04-29 12:00:00 2012-04-29 12:00:00
+8  2012-05-02 12:00:00 2012-05-02 12:00:00
+9  2012-05-05 12:00:00 2012-05-05 12:00:00
+10 2012-05-08 12:00:00 2012-05-08 12:00:00
+11 2012-05-11 12:00:00 2012-05-11 12:00:00
+12 2012-05-14 12:00:00 2012-05-14 12:00:00</code></pre>
+</div>
+</div>
+<div id="визуализация-1" class="section level4">
+<h4>Визуализация</h4>
+<p>Тест на нормальное распределение пропусков</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" tabindex="-1"></a><span class="fu">runsNAltraj</span>(lt4)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/dd11-1.svg" width="646.08" /></p>
+<p>Просмотр траекторий</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" tabindex="-1"></a><span class="fu">plot</span>(lt4)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/dd13-1.svg" width="576" /></p>
+<p>Просмотр отдельно взятой траектории</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" tabindex="-1"></a><span class="fu">plot</span>(lt4[<span class="dv">8</span>])</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/dd14-1.svg" width="576" /></p>
+<p>Вспомогательная функция</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" tabindex="-1"></a><span class="st">&#39;plottraj&#39;</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(lt,<span class="at">desc=</span><span class="fu">c</span>(<span class="st">&quot;burst&quot;</span>,<span class="st">&quot;id&quot;</span>)) {</span>
+<span id="cb113-2"><a href="#cb113-2" tabindex="-1"></a>   desc <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(desc)</span>
+<span id="cb113-3"><a href="#cb113-3" tabindex="-1"></a>   lt <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(lt)</span>
+<span id="cb113-4"><a href="#cb113-4" tabindex="-1"></a>   id <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lt,attr,desc)</span>
+<span id="cb113-5"><a href="#cb113-5" tabindex="-1"></a>   bt_loc <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(<span class="fu">ld</span>(lt),<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>),<span class="at">crs=</span><span class="fu">st_crs</span>(loc)</span>
+<span id="cb113-6"><a href="#cb113-6" tabindex="-1"></a>                         )[<span class="fu">c</span>(desc,<span class="st">&quot;date&quot;</span>)]</span>
+<span id="cb113-7"><a href="#cb113-7" tabindex="-1"></a>   bt_ext <span class="ot">&lt;-</span> <span class="fu">by</span>(<span class="fu">st_geometry</span>(bt_loc),bt_loc[[desc]],<span class="cf">function</span>(x) {</span>
+<span id="cb113-8"><a href="#cb113-8" tabindex="-1"></a>      <span class="fu">st_sf</span>(<span class="at">onset=</span><span class="fu">c</span>(<span class="st">&quot;begin&quot;</span>,<span class="st">&quot;end&quot;</span>)</span>
+<span id="cb113-9"><a href="#cb113-9" tabindex="-1"></a>           ,<span class="at">geometry=</span><span class="fu">rbind</span>(<span class="fu">head</span>(x,<span class="dv">1</span>),<span class="fu">tail</span>(x,<span class="dv">1</span>)))</span>
+<span id="cb113-10"><a href="#cb113-10" tabindex="-1"></a>   })</span>
+<span id="cb113-11"><a href="#cb113-11" tabindex="-1"></a>   bt_ext <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,bt_ext)</span>
+<span id="cb113-12"><a href="#cb113-12" tabindex="-1"></a>   <span class="fu">st_crs</span>(bt_ext) <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(bt_loc)</span>
+<span id="cb113-13"><a href="#cb113-13" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt,<span class="cf">function</span>(obj) {</span>
+<span id="cb113-14"><a href="#cb113-14" tabindex="-1"></a>      <span class="fu">as.matrix</span>(obj[,<span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>)]) <span class="sc">|&gt;</span> <span class="fu">st_linestring</span>()</span>
+<span id="cb113-15"><a href="#cb113-15" tabindex="-1"></a>   })</span>
+<span id="cb113-16"><a href="#cb113-16" tabindex="-1"></a>   bt_track <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">dummy=</span>id,<span class="at">geometry=</span><span class="fu">st_sfc</span>(xy,<span class="at">crs=</span><span class="fu">st_crs</span>(loc)))</span>
+<span id="cb113-17"><a href="#cb113-17" tabindex="-1"></a>   <span class="fu">colnames</span>(bt_track)[<span class="fu">grep</span>(<span class="st">&quot;dummy&quot;</span>,<span class="fu">colnames</span>(bt_track))] <span class="ot">&lt;-</span> desc</span>
+<span id="cb113-18"><a href="#cb113-18" tabindex="-1"></a>   <span class="fu">with</span>(<span class="fu">list</span>(<span class="at">loc=</span>bt_loc,<span class="at">track=</span>bt_track,<span class="at">ext=</span>bt_ext)</span>
+<span id="cb113-19"><a href="#cb113-19" tabindex="-1"></a>       ,<span class="fu">mapview</span>(ext,<span class="at">zcol=</span><span class="st">&quot;onset&quot;</span>,<span class="at">cex=</span><span class="dv">6</span>,<span class="at">layer=</span><span class="st">&quot;Period&quot;</span></span>
+<span id="cb113-20"><a href="#cb113-20" tabindex="-1"></a>               ,<span class="at">col.regions=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>),<span class="at">legend=</span>F,<span class="at">home=</span>F)<span class="sc">+</span></span>
+<span id="cb113-21"><a href="#cb113-21" tabindex="-1"></a>        <span class="fu">mapview</span>(track,<span class="at">layer=</span><span class="st">&quot;Track&quot;</span>,<span class="at">zcol=</span>desc,<span class="at">home=</span>F,<span class="at">legend=</span>F)<span class="sc">+</span></span>
+<span id="cb113-22"><a href="#cb113-22" tabindex="-1"></a>        <span class="fu">mapview</span>(loc,<span class="at">zcol=</span>desc,<span class="at">layer=</span><span class="st">&quot;Locations&quot;</span>,<span class="at">cex=</span><span class="dv">3</span>,<span class="at">home=</span>T,<span class="at">label=</span><span class="st">&quot;date&quot;</span>)</span>
+<span id="cb113-23"><a href="#cb113-23" tabindex="-1"></a>        )</span>
+<span id="cb113-24"><a href="#cb113-24" tabindex="-1"></a>}</span></code></pre></div>
+<div id="map-lt4" class="section level5">
+<h5>шаг 3 суток, с пропусками</h5>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" tabindex="-1"></a>(m1 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt4[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson06/widget_dd17_692ef384d468a269f407286523c769da.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+<p><sup><a href="#data-lt4">См. исходные данные</a></sup></p>
+</div>
+<div id="map-lt6" class="section level5">
+<h5>шаг 50 км, без пропусков</h5>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a>(m2 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt6[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson06/widget_dd19_153727101e029acc8097a73013aaf0c2.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+<p><sup><a href="#data-lt6">См. исходные данные</a></sup></p>
+</div>
+<div id="map-lt7" class="section level5">
+<h5>шаг 6 суток, без пропусков</h5>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" tabindex="-1"></a>(m3 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt7[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson06/widget_dd21_33031040ade7761b9906a74aeb36d84c.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+<p><sup><a href="#data-lt7">См. исходные данные</a></sup></p>
+</div>
+</div>
+<div id="гомогенность-поведения" class="section level4">
+<h4>Гомогенность поведения</h4>
+<p>Рассмотрим метод поиска структурных изменений
+<span class="citation">(<a href="#ref-Lavielle1999">Lavielle, 1999</a>)</span>,
+<span class="citation">(<a href="#ref-Lavielle2005">Lavielle, 2005</a>)</span>.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" tabindex="-1"></a>lt6b <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4[<span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">8</span>)],<span class="dv">15000</span>,<span class="at">type=</span><span class="st">&quot;space&quot;</span>)</span>
+<span id="cb117-2"><a href="#cb117-2" tabindex="-1"></a>lt6b</span></code></pre></div>
+<pre><code>
+*********** List of class ltraj ***********
+
+Type of the traject: Type II (time recorded)
+* Time zone: UTC *
+Irregular traject. Variable time lag between two locs
+
+Characteristics of the bursts:
+   id        burst nb.reloc NAs          date.begin            date.end
+1 168 168.2.R15000      165   0 2012-11-01 12:00:00 2013-06-28 09:45:29
+2 168 168.3.R15000       22   0 2014-04-13 12:00:00 2014-06-29 18:06:23
+
+
+ infolocs provided. The following variables are available:
+[1] &quot;pkey&quot;</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" tabindex="-1"></a>lv <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt6b,<span class="cf">function</span>(lt) {</span>
+<span id="cb119-2"><a href="#cb119-2" tabindex="-1"></a>   y <span class="ot">&lt;-</span> <span class="fu">head</span>(lt<span class="sc">$</span>dt,<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb119-3"><a href="#cb119-3" tabindex="-1"></a>   <span class="fu">lavielle</span>(y, <span class="at">Lmin=</span><span class="dv">5</span>, <span class="at">Kmax=</span><span class="dv">4</span>, <span class="at">type=</span><span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb119-4"><a href="#cb119-4" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" tabindex="-1"></a>opP <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="fu">length</span>(lv)))</span>
+<span id="cb120-2"><a href="#cb120-2" tabindex="-1"></a>nseg <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lv,chooseseg,<span class="at">draw=</span><span class="cn">TRUE</span>,<span class="at">output=</span><span class="st">&quot;opt&quot;</span>)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/dd24-1.svg" width="646.08" height="480" /></p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" tabindex="-1"></a><span class="fu">par</span>(opP)</span>
+<span id="cb121-2"><a href="#cb121-2" tabindex="-1"></a>nseg</span></code></pre></div>
+<pre><code>[1] 3 2</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" tabindex="-1"></a>opP <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="fu">length</span>(lv),<span class="dv">1</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb123-2"><a href="#cb123-2" tabindex="-1"></a>fp <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lv,<span class="cf">function</span>(lv2) {</span>
+<span id="cb123-3"><a href="#cb123-3" tabindex="-1"></a>   nseg <span class="ot">&lt;-</span> <span class="fu">chooseseg</span>(lv2,<span class="at">output=</span><span class="st">&quot;opt&quot;</span>,<span class="at">draw=</span><span class="cn">FALSE</span>)</span>
+<span id="cb123-4"><a href="#cb123-4" tabindex="-1"></a>   <span class="fu">findpath</span>(lv2,<span class="at">K=</span>nseg,<span class="at">plotit=</span><span class="cn">TRUE</span>)</span>
+<span id="cb123-5"><a href="#cb123-5" tabindex="-1"></a>})</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/dd25-1.svg" width="646.08" height="470" /></p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" tabindex="-1"></a><span class="fu">par</span>(opP)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(lt6b))</span>
+<span id="cb125-2"><a href="#cb125-2" tabindex="-1"></a>   <span class="fu">attr</span>(lt6b[[i]],<span class="st">&quot;segments&quot;</span>) <span class="ot">&lt;-</span> fp[[i]]</span>
+<span id="cb125-3"><a href="#cb125-3" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt6b,<span class="cf">function</span>(lt) {</span>
+<span id="cb125-4"><a href="#cb125-4" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">attr</span>(lt,<span class="st">&quot;segments&quot;</span>),<span class="cf">function</span>(seg) {</span>
+<span id="cb125-5"><a href="#cb125-5" tabindex="-1"></a>      lt2 <span class="ot">&lt;-</span> lt[<span class="fu">seq</span>(seg[<span class="dv">1</span>],seg[<span class="dv">2</span>]<span class="sc">+</span><span class="fu">ifelse</span>(seg[<span class="dv">2</span>]<span class="sc">+</span><span class="dv">1</span><span class="sc">==</span><span class="fu">nrow</span>(lt),0L,1L)),]</span>
+<span id="cb125-6"><a href="#cb125-6" tabindex="-1"></a>      xy2 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(lt2[,<span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>)]) <span class="sc">|&gt;</span> <span class="fu">st_linestring</span>()</span>
+<span id="cb125-7"><a href="#cb125-7" tabindex="-1"></a>      <span class="fu">st_sf</span>(<span class="at">segment=</span><span class="fu">attr</span>(lt2,<span class="st">&quot;burst&quot;</span>)</span>
+<span id="cb125-8"><a href="#cb125-8" tabindex="-1"></a>           ,<span class="at">begin=</span><span class="fu">min</span>(lt2<span class="sc">$</span>date),<span class="at">end=</span><span class="fu">max</span>(lt2<span class="sc">$</span>date)</span>
+<span id="cb125-9"><a href="#cb125-9" tabindex="-1"></a>           ,<span class="at">dt_mean=</span><span class="fu">round</span>(<span class="fu">mean</span>(lt2<span class="sc">$</span>dt)<span class="sc">/</span><span class="dv">86400</span>,<span class="dv">1</span>)</span>
+<span id="cb125-10"><a href="#cb125-10" tabindex="-1"></a>           ,<span class="at">dt_median=</span><span class="fu">round</span>(<span class="fu">median</span>(lt2<span class="sc">$</span>dt)<span class="sc">/</span><span class="dv">86400</span>,<span class="dv">1</span>)</span>
+<span id="cb125-11"><a href="#cb125-11" tabindex="-1"></a>           ,<span class="at">geometry=</span><span class="fu">st_sfc</span>(<span class="fu">list</span>(xy2),<span class="at">crs=</span><span class="fu">st_crs</span>(loc)))</span>
+<span id="cb125-12"><a href="#cb125-12" tabindex="-1"></a>   })</span>
+<span id="cb125-13"><a href="#cb125-13" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,xy)</span>
+<span id="cb125-14"><a href="#cb125-14" tabindex="-1"></a>   xy<span class="sc">$</span>segment <span class="ot">&lt;-</span> <span class="fu">paste</span>(xy<span class="sc">$</span>segment,<span class="fu">seq_along</span>(xy<span class="sc">$</span>segment),<span class="at">sep=</span><span class="st">&quot;:&quot;</span>)</span>
+<span id="cb125-15"><a href="#cb125-15" tabindex="-1"></a>   xy</span>
+<span id="cb125-16"><a href="#cb125-16" tabindex="-1"></a>})</span>
+<span id="cb125-17"><a href="#cb125-17" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,res)</span>
+<span id="cb125-18"><a href="#cb125-18" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">by</span>(res,res<span class="sc">$</span>segment,<span class="cf">function</span>(x) x))</span>
+<span id="cb125-19"><a href="#cb125-19" tabindex="-1"></a>color <span class="ot">&lt;-</span> <span class="fu">sample</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">8</span>,<span class="st">&quot;Dark2&quot;</span>),<span class="fu">length</span>(res)) <span class="sc">|&gt;</span></span>
+<span id="cb125-20"><a href="#cb125-20" tabindex="-1"></a>   <span class="fu">lapply</span>(<span class="cf">function</span>(x) x)</span>
+<span id="cb125-21"><a href="#cb125-21" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_along</span>(res),<span class="cf">function</span>(x) <span class="st">&quot;dt_mean&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" tabindex="-1"></a>(m4 <span class="ot">&lt;-</span> <span class="fu">mapview</span>(res,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">color=</span>color,<span class="at">label=</span>label))</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson06/widget_dd28_caa6478ba25660003a59e9f67cb2b75e.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+</div>
+</div>
+</div>
+<div id="gps" class="section level2">
+<h2>GPS</h2>
+<p><a href="data/2022-01-09_14-00_Sun.gpx">Данные</a> записи трека в приложении OsmAnd (Android) лыжной прогулки 09 января 2022 г.</p>
+<p>Для иллюстрации также использованы данные из OziExplorer в формате PLT.</p>
+<div id="qgis" class="section level3">
+<h3>QGIS</h3>
+<div id="импорт-данных" class="section level4">
+<h4>Импорт данных</h4>
+<div id="plt" class="section level5">
+<h5>PLT</h5>
+<p>OziExprorer</p>
+<p class="centered-image"><img src="assets/lesson06/PLT-open.png" width="1092" /></p>
+<p>Формат *.PLT, используется драйвер GPSBabel.</p>
+<p class="centered-image"><img src="assets/lesson06/PLT-show.png" width="1096" /></p>
+</div>
+<div id="gpx" class="section level5">
+<h5>GPX</h5>
+<p>Garmin через Mapsource</p>
+<p class="centered-image"><img src="assets/lesson06/GPX-open.png" width="1092" /></p>
+<p><span id="QGIS-layer" class="hiddenanchor"> </span></p>
+<p class="centered-image"><img src="assets/lesson06/GPX-group.png" width="1085" /></p>
+<p>См. метаданные по слоям в <a href="#R-layer">R</a></p>
+<p class="centered-image"><img src="assets/lesson06/GPX-show.png" width="1096" /></p>
+</div>
+</div>
+</div>
+<div id="r" class="section level3">
+<h3>R</h3>
+<p>Обработка пространственных данных - пакет <code>sf</code></p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" tabindex="-1"></a><span class="fu">require</span>(sf)</span></code></pre></div>
+<p>Визуализация - пакет <code>plotly</code>. См. <a href="https://plotly.com/r">примеры с документацией</a>.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" tabindex="-1"></a><span class="fu">require</span>(plotly)</span></code></pre></div>
+<pre><code>Loading required package: plotly</code></pre>
+<pre><code>
+Attaching package: &#39;plotly&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:MASS&#39;:
+
+    select</code></pre>
+<pre><code>The following object is masked from &#39;package:ggplot2&#39;:
+
+    last_plot</code></pre>
+<pre><code>The following object is masked from &#39;package:stats&#39;:
+
+    filter</code></pre>
+<pre><code>The following object is masked from &#39;package:graphics&#39;:
+
+    layout</code></pre>
+<div id="импорт-данных-1" class="section level4">
+<h4>Импорт данных</h4>
+<div id="plt-1" class="section level5">
+<h5>PLT</h5>
+<h5 class="toc-ignore unnumbered unlisted">
+OziExplorer
+</h5>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" tabindex="-1"></a>(car <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_layers</span>(<span class="st">&quot;Ozi/20090201_car.plt&quot;</span>)) <span class="do">## don&#39;t copy&amp;paste</span></span></code></pre></div>
+<pre><code>Driver: GPSBabel 
+Available layers:
+    layer_name     geometry_type features fields crs_name
+1       tracks Multi Line String        2     12   WGS 84
+2 track_points             Point      323     26   WGS 84</code></pre>
+<p><span class="footnote small"><sup>*</sup> Эти данные без ссылки на источник; приведены для примера работы с форматом PLT</span></p>
+<div class="note">
+<p>Возможно, будет искать, где библиотека <code>Qt5core.dll</code>. Тогда к ней нужно указать путь.</p>
+<pre><code>set PATH=%PATH%;%OSGEO4W%/apps/Qt5/bin
+where Qt5Core.dll
+Rscript -e &quot;sf::st_layers(&#39;Ozi/20090201_car.plt&#39;)&quot;</code></pre>
+<p class="centered-image"><img src="assets/lesson06/PLT-GPSbabel.png" width="539" height="430" /></p>
+</div>
+</div>
+<div id="gpx-1" class="section level5">
+<h5>GPX</h5>
+<h5 class="toc-ignore unnumbered unlisted">
+Windows MapSource, Android OsmAnd
+</h5>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" tabindex="-1"></a>dsn <span class="ot">&lt;-</span> <span class="st">&quot;data/2022-01-09_14-00_Sun.gpx&quot;</span></span>
+<span id="cb138-2"><a href="#cb138-2" tabindex="-1"></a>ski <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn)</span></code></pre></div>
+<pre><code>Multiple layers are present in data source data\2022-01-09_14-00_Sun.gpx, reading layer `waypoints&#39;.
+Use `st_layers&#39; to list all layer names and their type in a data source.
+Set the `layer&#39; argument in `st_read&#39; to read a particular layer.</code></pre>
+<pre><code>Warning in evalq((function (..., call. = TRUE, immediate. = FALSE, noBreaks. = FALSE, : automatically
+selected the first layer in a data source containing more than one.</code></pre>
+<pre><code>Reading layer `waypoints&#39; from data source `data\2022-01-09_14-00_Sun.gpx&#39; using driver `GPX&#39;
+Simple feature collection with 0 features and 23 fields
+Bounding box:  xmin: NA ymin: NA xmax: NA ymax: NA
+Geodetic CRS:  WGS 84</code></pre>
+<p><span id="R-layer" class="hiddenanchor"> </span></p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" tabindex="-1"></a>(bundle <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_layers</span>(dsn))</span></code></pre></div>
+<pre><code>Driver: GPX 
+Available layers:
+    layer_name     geometry_type features fields crs_name
+1    waypoints             Point        0     23   WGS 84
+2       routes       Line String        0     12   WGS 84
+3       tracks Multi Line String        1     12   WGS 84
+4 route_points             Point        0     25   WGS 84
+5 track_points             Point      835     27   WGS 84</code></pre>
+<p>См. метаданные по слоям в <a href="#QGIS-layer">QGIS</a></p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn,<span class="at">layer=</span><span class="st">&quot;track_points&quot;</span>)</span></code></pre></div>
+<pre><code>Reading layer `track_points&#39; from data source `data\2022-01-09_14-00_Sun.gpx&#39; using driver `GPX&#39;
+Simple feature collection with 835 features and 27 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: 37.178 ymin: 56.73616 xmax: 37.18673 ymax: 56.7426
+Geodetic CRS:  WGS 84</code></pre>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" tabindex="-1"></a>tr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn,<span class="at">layer=</span><span class="st">&quot;tracks&quot;</span>)</span></code></pre></div>
+<pre><code>Reading layer `tracks&#39; from data source `data\2022-01-09_14-00_Sun.gpx&#39; using driver `GPX&#39;
+Simple feature collection with 1 feature and 12 fields
+Geometry type: MULTILINESTRING
+Dimension:     XY
+Bounding box:  xmin: 37.178 ymin: 56.73616 xmax: 37.18673 ymax: 56.7426
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+</div>
+<div id="обработка" class="section level4">
+<h4>Обработка</h4>
+<p>Как с пространственными данными</p>
+<div class="note">
+<h2 class="toc-ignore unnumbered unlisted">
+Домашнее задание на 21 апреля 2022 г.
+</h2>
+<ul>
+<li><p>Исходные данные: “<code>data/2022-01-09_14-00_Sun.gpx</code>” (“Лыжная прогулка”)</p></li>
+<li><p>Длина круга</p></li>
+<li><p>Средняя скорость круга</p></li>
+<li><p>Сегментация на участки трассы и подхода/ухода к трассе</p></li>
+</ul>
+</div>
+</div>
+<div id="визуализация-2" class="section level4">
+<h4>Визуализация</h4>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" tabindex="-1"></a>da <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sf<span class="sc">::</span><span class="fu">st_coordinates</span>(loc))</span>
+<span id="cb148-2"><a href="#cb148-2" tabindex="-1"></a>da<span class="sc">$</span>time <span class="ot">&lt;-</span> loc<span class="sc">$</span>time</span>
+<span id="cb148-3"><a href="#cb148-3" tabindex="-1"></a>da<span class="sc">$</span>z <span class="ot">&lt;-</span> loc<span class="sc">$</span>ele</span>
+<span id="cb148-4"><a href="#cb148-4" tabindex="-1"></a>da<span class="sc">$</span>color <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">as.factor</span>(loc<span class="sc">$</span>time))</span>
+<span id="cb148-5"><a href="#cb148-5" tabindex="-1"></a>da<span class="sc">$</span>color <span class="ot">&lt;-</span> da<span class="sc">$</span>color<span class="sc">/</span><span class="fu">max</span>(da<span class="sc">$</span>color)</span>
+<span id="cb148-6"><a href="#cb148-6" tabindex="-1"></a>da<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">as.character</span>(da<span class="sc">$</span>time)</span>
+<span id="cb148-7"><a href="#cb148-7" tabindex="-1"></a>s3d <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">plot_ly</span>(da,<span class="at">x=</span><span class="sc">~</span>X,<span class="at">y=</span><span class="sc">~</span>Y,<span class="at">z=</span><span class="sc">~</span>z,<span class="at">type=</span><span class="st">&#39;scatter3d&#39;</span>,<span class="at">mode=</span><span class="st">&#39;lines&#39;</span></span>
+<span id="cb148-8"><a href="#cb148-8" tabindex="-1"></a>              ,<span class="at">opacity=</span><span class="dv">1</span></span>
+<span id="cb148-9"><a href="#cb148-9" tabindex="-1"></a>              ,<span class="at">hoverinfo=</span><span class="sc">~</span>text</span>
+<span id="cb148-10"><a href="#cb148-10" tabindex="-1"></a>              ,<span class="at">line=</span><span class="fu">list</span>(<span class="at">width=</span><span class="dv">6</span></span>
+<span id="cb148-11"><a href="#cb148-11" tabindex="-1"></a>                        ,<span class="at">color=</span><span class="sc">~</span>color</span>
+<span id="cb148-12"><a href="#cb148-12" tabindex="-1"></a>                        ,<span class="at">colorscale=</span><span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="st">&#39;#BA52ED&#39;</span>),<span class="fu">c</span>(<span class="dv">1</span>,<span class="st">&#39;#FCB040&#39;</span>))</span>
+<span id="cb148-13"><a href="#cb148-13" tabindex="-1"></a>                        ,<span class="at">reverscale=</span><span class="cn">FALSE</span></span>
+<span id="cb148-14"><a href="#cb148-14" tabindex="-1"></a>                        )</span>
+<span id="cb148-15"><a href="#cb148-15" tabindex="-1"></a>              )</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" tabindex="-1"></a>s3d</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson06/widget_s3d-show_1bb1334d5436550d9816984099c8ca83.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(tr) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
+<span id="cb150-2"><a href="#cb150-2" tabindex="-1"></a>center <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_coordinates</span>(sf<span class="sc">::</span><span class="fu">st_centroid</span>(tr))[<span class="dv">1</span>,]</span>
+<span id="cb150-3"><a href="#cb150-3" tabindex="-1"></a>dm <span class="ot">&lt;-</span> da <span class="sc">|&gt;</span></span>
+<span id="cb150-4"><a href="#cb150-4" tabindex="-1"></a>   <span class="fu">plot_ly</span>(<span class="at">type=</span><span class="st">&quot;densitymapbox&quot;</span></span>
+<span id="cb150-5"><a href="#cb150-5" tabindex="-1"></a>          ,<span class="at">lat=</span><span class="sc">~</span>Y</span>
+<span id="cb150-6"><a href="#cb150-6" tabindex="-1"></a>          ,<span class="at">lon=</span><span class="sc">~</span>X</span>
+<span id="cb150-7"><a href="#cb150-7" tabindex="-1"></a>          ,<span class="at">coloraxis=</span><span class="st">&quot;coloraxis&quot;</span></span>
+<span id="cb150-8"><a href="#cb150-8" tabindex="-1"></a>          ,<span class="at">radius=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb150-9"><a href="#cb150-9" tabindex="-1"></a>   <span class="fu">layout</span>(<span class="at">mapbox=</span><span class="fu">list</span>(<span class="at">style=</span><span class="st">&quot;stamen-watercolor&quot;</span></span>
+<span id="cb150-10"><a href="#cb150-10" tabindex="-1"></a>                     ,<span class="at">center=</span><span class="fu">list</span>(<span class="at">lon=</span>center[<span class="st">&quot;X&quot;</span>],<span class="at">lat=</span>center[<span class="st">&quot;Y&quot;</span>])</span>
+<span id="cb150-11"><a href="#cb150-11" tabindex="-1"></a>                     ,<span class="at">zoom=</span><span class="dv">15</span>)</span>
+<span id="cb150-12"><a href="#cb150-12" tabindex="-1"></a>         ,<span class="at">coloraxis=</span><span class="fu">list</span>(<span class="at">colorscale =</span> <span class="st">&quot;Viridis&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" tabindex="-1"></a>dm</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson06/widget_dm-plot_1451c9267f6be20176d3635e9257c085.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+<div id="refs" class="references csl-bib-body" entry-spacing="1">
+<div id="ref-Durner2019_data" class="csl-entry">
+Durner GM. 2019. <span class="nocase">Polar Bear Distribution and Habitat Resource Selection Data, Beaufort and Chukchi Seas</span>, 1985-2016. U.S. Geological Survey. <a href="https://alaska.usgs.gov/products/data.php?dataid=246">https://alaska.usgs.gov/products/data.php?dataid=246</a>. <a href="https://doi.org/10.5066/P9ZRJ3XU">10.5066/P9ZRJ3XU</a>.
+</div>
+<div id="ref-Lavielle1999" class="csl-entry">
+Lavielle M. 1999. Detection of multiple changes in a sequence of dependent variables. <em>Stochastic Processes and their Applications</em>, 83(1): 79–102. ISSN: 0304-4149. <a href="http://www.sciencedirect.com/science/article/pii/S030441499900023X">http://www.sciencedirect.com/science/article/pii/S030441499900023X</a>. <a href="https://doi.org/10.1016/S0304-4149(99)00023-X">10.1016/S0304-4149(99)00023-X</a>.
+</div>
+<div id="ref-Lavielle2005" class="csl-entry">
+Lavielle M. 2005. Using penalized contrasts for the change-point problem. <em>Signal Processing</em>, 85(8): 1501–1510. <a href="https://doi.org/10.1016/j.sigpro.2005.01.012">10.1016/j.sigpro.2005.01.012</a>.
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
