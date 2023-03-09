@@ -1,0 +1,3295 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ГИС 10</title>
+    <meta charset="utf-8" />
+    <script src="https://nplatonov.github.io/site_libs/header-attrs-2.20/header-attrs.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader-fonts.css" type="text/css" />
+  </head>
+  <body>
+<style>
+.remark-backdrop:after{
+   content: 'Никита Платонов \A \A SDM';
+}
+:root {--pointsize: 22pt;}
+</style>
+
+    <textarea id="source">
+
+layout: true
+
+
+
+
+
+
+
+.banner[
+
+.shorttitle[
+SDM
+]
+
+]
+
+---
+class: metadata customtitle middle left
+name: H3216
+<iframe width='220' height='220' class='timenow' src='https://www.timeanddate.com/worldclock/fullscreen.html?n=1440' frameborder='0' allow='encrypted-media' allowfullscreen></iframe>
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+
+
+.author[Никита&nbsp;Платонов]
+
+
+.institute[с.н.с. ИПЭЭ РАН]
+
+
+
+
+.title[Моделирование ареалов]
+
+
+.subtitle[ГИС технологии в биологических исследованиях]
+
+
+.what[Занятие 10]
+
+
+.where[]
+
+
+.when[27 апреля 2023 г. .updated[Обновлено: 2023-03-06 21:32]]
+
+
+
+
+
+
+
+
+
+]
+---
+
+name: H48af
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af).fg[].bg[]
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66)
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+AUC - 
+
+
+
+]
+---
+
+name: H0cfa
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa).fg[].bg[]
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66)
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+.scrollable[
+
+
+
+
+Основной **`dismo`**. Он подгружает **`sp`**  для работы с векторными пространственными данными и **`raster`** для работы с растровыми пространственными данными.
+
+Данные из пакета **`maptools`** используются для картоосновы.
+
+Пакет **`MuMIn`** - для определения оптимального числа независимых переменных
+
+Пакет **`kernlab`** - для моделирования методом опорных векторов (SVM)
+
+
+
+```r
+invisible(lapply(c("dismo","maptools","MuMIn","kernlab")
+   ,function(pkg)
+      if (!requireNamespace(pkg)) install.packages(pkg) else 0L
+))
+```
+
+```
+Loading required namespace: dismo
+```
+
+```
+Loading required namespace: maptools
+```
+
+```
+Loading required namespace: MuMIn
+```
+
+```
+Loading required namespace: kernlab
+```
+
+```r
+require(dismo)
+```
+
+```
+Loading required package: dismo
+```
+
+```
+Loading required package: raster
+```
+
+```
+Loading required package: sp
+```
+
+]
+
+]
+---
+
+name: He464
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464).fg[].bg[]
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66)
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+Данные по бурогорлому ленивцу [<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M640 51.2l-.3 12.2c-28.1.8-45 15.8-55.8 40.3-25 57.8-103.3 240-155.3 358.6H415l-81.9-193.1c-32.5 63.6-68.3 130-99.2 193.1-.3.3-15 0-15-.3C172 352.3 122.8 243.4 75.8 133.4 64.4 106.7 26.4 63.4.2 63.7c0-3.1-.3-10-.3-14.2h161.9v13.9c-19.2 1.1-52.8 13.3-43.3 34.2 21.9 49.7 103.6 240.3 125.6 288.6 15-29.7 57.8-109.2 75.3-142.8-13.9-28.3-58.6-133.9-72.8-160-9.7-17.8-36.1-19.4-55.8-19.7V49.8l142.5.3v13.1c-19.4.6-38.1 7.8-29.4 26.1 18.9 40 30.6 68.1 48.1 104.7 5.6-10.8 34.7-69.4 48.1-100.8 8.9-20.6-3.9-28.6-38.6-29.4.3-3.6 0-10.3.3-13.6 44.4-.3 111.1-.3 123.1-.6v13.6c-22.5.8-45.8 12.8-58.1 31.7l-59.2 122.8c6.4 16.1 63.3 142.8 69.2 156.7L559.2 91.8c-8.6-23.1-36.4-28.1-47.2-28.3V49.6l127.8 1.1.2.5z"/></svg>](https://ru.wikipedia.org/wiki/Бурогорлый_ленивец)
+
+
+```r
+bradypus <- read.table(file.path(system.file(package="dismo"),"ex/bradypus.csv")
+                      ,header=TRUE,sep=',')
+str(bradypus)
+```
+
+```
+'data.frame':	116 obs. of  3 variables:
+ $ species: chr  "Bradypus variegatus" "Bradypus variegatus" "Bradypus variegatus" "Bradypus variegatus" ...
+ $ lon    : num  -65.4 -65.4 -65.1 -63.7 -63.9 ...
+ $ lat    : num  -10.4 -10.4 -16.8 -17.4 -17.4 ...
+```
+
+.pull-left-60[
+
+
+```r
+head(bradypus)
+```
+
+```
+              species      lon      lat
+1 Bradypus variegatus -65.4000 -10.3833
+2 Bradypus variegatus -65.3833 -10.3833
+3 Bradypus variegatus -65.1333 -16.8000
+4 Bradypus variegatus -63.6667 -17.4500
+5 Bradypus variegatus -63.8500 -17.4000
+6 Bradypus variegatus -64.4167 -16.0000
+```
+
+]
+.pull-right-40[
+
+<img src="assets/lesson10//ursa01_unnamed-chunk-8.png" width="1330" height="300" bound style="display: block; margin: auto;" />
+
+]
+
+]
+---
+
+name: Hfa07
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07).fg[].bg[]
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66)
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+Использование векторной карты границ государств в качестве картографической основы
+
+
+```r
+data(wrld_simpl,package="maptools")
+op <- par(mar=rep(0,4))
+plot(wrld_simpl)
+```
+
+<img src="assets/lesson10/unnamed-chunk-9-1.svg" width="1330" height="440" style="display: block; margin: auto;" />
+
+```r
+par(op)
+```
+
+
+]
+---
+
+name: Hd5ed
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed) <span class="bullet bullet-active">[&#8226;](#Hd5ed)</span><span class="bullet mslide13m">[&#8226;](#H508a)</span><span class="bullet mslide14m">[&#8226;](#Hceee)</span><span class="bullet mslide16m">[&#8226;](#H20e0)</span>.fg[].bg[]
+### [Подвыборки](#H8e66)
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+
+```r
+(predictnames <- dir(file.path(system.file(package="dismo"),'ex')
+                       ,pattern='grd$',full.names=TRUE))
+```
+
+```
+[1] "C:/Software/Rlibs4/dismo/ex/bio1.grd" 
+[2] "C:/Software/Rlibs4/dismo/ex/bio12.grd"
+[3] "C:/Software/Rlibs4/dismo/ex/bio16.grd"
+[4] "C:/Software/Rlibs4/dismo/ex/bio17.grd"
+[5] "C:/Software/Rlibs4/dismo/ex/bio5.grd" 
+[6] "C:/Software/Rlibs4/dismo/ex/bio6.grd" 
+[7] "C:/Software/Rlibs4/dismo/ex/bio7.grd" 
+[8] "C:/Software/Rlibs4/dismo/ex/bio8.grd" 
+[9] "C:/Software/Rlibs4/dismo/ex/biome.grd"
+```
+
+```r
+(predictors <- stack(predictnames) |> brick())
+```
+
+```
+class      : RasterBrick 
+dimensions : 192, 186, 35712, 9  (nrow, ncol, ncell, nlayers)
+resolution : 0.5, 0.5  (x, y)
+extent     : -125, -32, -56, 40  (xmin, xmax, ymin, ymax)
+crs        : +proj=longlat +datum=WGS84 +no_defs 
+source     : memory
+names      : bio1, bio12, bio16, bio17, bio5, bio6, bio7, bio8, biome 
+min values :  -23,     0,     0,     0,   61, -212,   60,  -66,     1 
+max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 
+```
+
+```r
+(levels <- sort(unique(na.omit(predictors[["biome"]][]))))
+```
+
+```
+ [1]  1  2  3  4  5  7  8  9 10 11 12 13 14
+```
+
+
+]
+---
+
+name: H508a
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed) <span class="bullet bullet">[&#8226;](#Hd5ed)</span><span class="bullet bullet-active">[&#8226;](#H508a)</span><span class="bullet mslide14m">[&#8226;](#Hceee)</span><span class="bullet mslide16m">[&#8226;](#H20e0)</span>.fg[].bg[]
+### [Подвыборки](#H8e66)
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+plot(predictors)
+```
+
+<img src="assets/lesson10/unnamed-chunk-11-1.svg" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: Hceee
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed) <span class="bullet bullet">[&#8226;](#Hd5ed)</span><span class="bullet bullet">[&#8226;](#H508a)</span><span class="bullet bullet-active">[&#8226;](#Hceee)</span><span class="bullet mslide16m">[&#8226;](#H20e0)</span>.fg[].bg[]
+### [Подвыборки](#H8e66)
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+
+
+Биоклиматические переменные WorldClim ([полный список](https://www.worldclim.org/data/bioclim.html))
+
+||
+-|-
+BIO1 | Annual Mean Temperature
+BIO5 | Max Temperature of Warmest Month
+BIO6 | Min Temperature of Coldest Month
+BIO7 | Temperature Annual Range (BIO5-BIO6)
+BIO8 | Mean Temperature of Wettest Quarter
+BIO12 | Annual Precipitation
+BIO16 | Precipitation of Wettest Quarter
+BIO17 | Precipitation of Driest Quarter
+
+Данные можно получить с помощью функции `getData()` из пакета **`raster`**, например:
+
+
+```r
+raster::getData('worldclim',var='bio',res=10)
+```
+
+
+Наземные биомы ([данные](https://www.worldwildlife.org/pages/conservation-science-data-and-tools))
+
+||
+-|-
+BIOME | Terrestrial biome
+
+
+]
+---
+
+name: H20e0
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed) <span class="bullet bullet">[&#8226;](#Hd5ed)</span><span class="bullet bullet">[&#8226;](#H508a)</span><span class="bullet bullet">[&#8226;](#Hceee)</span><span class="bullet bullet-active">[&#8226;](#H20e0)</span>.fg[].bg[]
+### [Подвыборки](#H8e66)
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+В растре `biome` записаны номинальные характеристики:
+
+||
+-|-
+1 | Tropical & Subtropical Moist Broadleaf Forests
+2 | Tropical & Subtropical Dry Broadleaf Forests
+3 | Tropical & Subtropical Coniferous Forests
+4 | Temperate Broadleaf & Mixed Forests
+5 | Temperate Conifer Forests
+6 | Boreal Forests/Taiga
+7 | Tropical & Subtropical Grasslands, Savannas & Shrublands
+8 | Temperate Grasslands, Savannas & Shrublands
+9 | Flooded Grasslands & Savannas
+10| Montane Grasslands & Shrublands
+11| Tundra
+12| Mediterranean Forests, Woodlands & Scrub
+13| Deserts & Xeric Shrublands
+14| Mangroves
+
+
+]
+---
+
+name: H8e66
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66).fg[].bg[]
+#### [Присутствие](#He931)
+#### [Псевдоотсутствие](#H9eed)
+#### [Обучение и тестирование](#H1802)
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+Используемый параметр для генератора псевдослучайных чисел. Зафиксированное значение обеспечивает воспроизводимость вычислений.
+
+
+```r
+(seed <- sample(100:999,1))
+```
+
+```
+[1] 427
+```
+
+```r
+set.seed(seed)
+```
+
+Число `1/k` характеризует долю тестовых данных. Разбиваем данные на `k` групп, одна из которых будет тестовая.
+
+
+```r
+k <- 5L
+```
+
+Выбор номера тестовой группы:
+
+
+```r
+(g <- sample(seq(k),1))
+```
+
+```
+[1] 2
+```
+
+
+]
+---
+
+name: He931
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66).fg[]
+#### [Присутствие](#He931).fg[].bg[]
+#### [Псевдоотсутствие](#H9eed)
+#### [Обучение и тестирование](#H1802)
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+group <- dismo::kfold(bradypus,k) ## group <- sample(seq(k),nrow(pres),replace=TRUE) ## альтернативное группирование
+str(group)
+```
+
+```
+ int [1:116] 4 3 2 3 1 2 2 4 5 3 ...
+```
+
+```r
+table(group)
+```
+
+```
+group
+ 1  2  3  4  5 
+23 23 24 23 23 
+```
+
+Формирование точек присутствия и разбиение их на группы для обучения и тестирования
+
+
+```r
+pres <- bradypus[,-1] ## presence
+pres_train <- pres[group!=g,]
+pres_test <- pres[group==g,]
+nrow(pres_train)
+```
+
+```
+[1] 93
+```
+
+```r
+nrow(pres_test)
+```
+
+```
+[1] 23
+```
+
+
+]
+---
+
+name: H9eed
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66).fg[]
+#### [Присутствие](#He931)
+#### [Псевдоотсутствие](#H9eed) <span class="bullet bullet-active">[&#8226;](#H9eed)</span><span class="bullet mslide20m">[&#8226;](#He2ae)</span>.fg[].bg[]
+#### [Обучение и тестирование](#H1802)
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+Используемый пространственный охват
+
+.notpull-left[
+
+
+
+```r
+ext <- raster::extent(-90, -32, -33, 23)
+opP <- par(mar=c(3,3,1,1))
+plot(ext,col="brown")
+plot(wrld_simpl,col="#FFFFA080",border="orange",add=TRUE)
+```
+
+```r
+par(opP)
+```
+
+
+]
+
+.notpull-right[
+
+<img src="assets/lesson10/ext-code-1.svg" width="1330" height="450" style="display: block; margin: auto;" />
+
+]
+
+]
+---
+
+name: He2ae
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66).fg[]
+#### [Присутствие](#He931)
+#### [Псевдоотсутствие](#H9eed) <span class="bullet bullet">[&#8226;](#H9eed)</span><span class="bullet bullet-active">[&#8226;](#He2ae)</span>.fg[].bg[]
+#### [Обучение и тестирование](#H1802)
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+Формирование набора точек псевдоотсутствия
+
+
+```r
+backg <- randomPoints(predictors, n=1000, ext=ext, extf = 1.25)
+colnames(backg) = c('lon', 'lat')
+head(backg)
+```
+
+```
+        lon    lat
+[1,] -89.25  19.75
+[2,] -66.75 -34.25
+[3,] -96.25  16.75
+[4,] -55.75   4.25
+[5,] -56.75  -5.25
+[6,] -77.75  -2.75
+```
+
+Присвоения номеров групп для отбора в тестовую группу
+
+
+```r
+group <- kfold(backg,k)
+table(group)
+```
+
+```
+group
+  1   2   3   4   5 
+200 200 200 200 200 
+```
+
+
+]
+---
+
+name: H1802
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66).fg[]
+#### [Присутствие](#He931)
+#### [Псевдоотсутствие](#H9eed)
+#### [Обучение и тестирование](#H1802) <span class="bullet bullet-active">[&#8226;](#H1802)</span><span class="bullet mslide22m">[&#8226;](#H0ca0)</span><span class="bullet mslide23m">[&#8226;](#H7ba7)</span><span class="bullet mslide24m">[&#8226;](#He5c3)</span>.fg[].bg[]
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+Формирование группы для обучения и группы для тестирования для точек псевдоотсутствия
+
+
+```r
+backg_train <- backg[group!=g,]
+backg_test <- backg[group==g,]
+```
+
+Формирование группы для обучения из точек присутствия и точек псевдоотсутствия
+
+
+```r
+train <- rbind(pres_train, backg_train)
+```
+
+Формирование группы для тестирования из точек присутствия и точек псевдоотсутствия
+
+
+```r
+test <- rbind(pres_test, backg_test)
+```
+
+Вектор присутствия (значение 1) и отсутствия (значения 0) для обучающей выборки
+
+
+```r
+pb_train <- c(rep(1L, nrow(pres_train)), rep(0L, nrow(backg_train)))
+```
+
+Вектор присутствия (значение 1) и отсутствия (значения 0) для тестовой выборки
+
+
+```r
+pb_test <- c(rep(1L, nrow(pres_test)), rep(0L, nrow(backg_test)))
+```
+
+
+]
+---
+
+name: H0ca0
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66).fg[]
+#### [Присутствие](#He931)
+#### [Псевдоотсутствие](#H9eed)
+#### [Обучение и тестирование](#H1802) <span class="bullet bullet">[&#8226;](#H1802)</span><span class="bullet bullet-active">[&#8226;](#H0ca0)</span><span class="bullet mslide23m">[&#8226;](#H7ba7)</span><span class="bullet mslide24m">[&#8226;](#He5c3)</span>.fg[].bg[]
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+Получение характеристик из растров для точек обучающей выборки
+
+
+```r
+envtrain <- extract(predictors, train) |> data.frame()
+```
+
+Новый столбец присутствия/отсутствия
+
+
+```r
+envtrain <- cbind(pa=pb_train,envtrain)
+```
+
+Зададим биом категорией (фактором)
+
+
+```r
+envtrain$biome = factor(envtrain$biome,levels=levels)
+str(envtrain)
+```
+
+```
+'data.frame':	893 obs. of  10 variables:
+ $ pa   : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ bio1 : int  263 263 243 243 275 271 274 266 274 266 ...
+ $ bio12: int  1639 1639 1693 1693 2259 2212 2233 2592 2233 2608 ...
+ $ bio16: int  724 724 775 775 956 807 877 872 877 957 ...
+ $ bio17: int  62 62 186 186 208 281 230 498 230 306 ...
+ $ bio5 : int  338 338 318 318 335 327 329 320 329 322 ...
+ $ bio6 : int  191 191 150 150 231 220 227 214 227 219 ...
+ $ bio7 : int  147 147 168 168 104 107 102 105 102 103 ...
+ $ bio8 : int  261 261 264 264 270 266 269 262 269 262 ...
+ $ biome: Factor w/ 13 levels "1","2","3","4",..: 1 1 1 1 1 1 1 1 1 1 ...
+```
+
+
+]
+---
+
+name: H7ba7
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66).fg[]
+#### [Присутствие](#He931)
+#### [Псевдоотсутствие](#H9eed)
+#### [Обучение и тестирование](#H1802) <span class="bullet bullet">[&#8226;](#H1802)</span><span class="bullet bullet">[&#8226;](#H0ca0)</span><span class="bullet bullet-active">[&#8226;](#H7ba7)</span><span class="bullet mslide24m">[&#8226;](#He5c3)</span>.fg[].bg[]
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+head(envtrain,24)
+```
+
+```
+   pa bio1 bio12 bio16 bio17 bio5 bio6 bio7 bio8 biome
+1   1  263  1639   724    62  338  191  147  261     1
+2   1  263  1639   724    62  338  191  147  261     1
+3   1  243  1693   775   186  318  150  168  264     1
+4   1  243  1693   775   186  318  150  168  264     1
+5   1  275  2259   956   208  335  231  104  270     1
+6   1  271  2212   807   281  327  220  107  266     1
+7   1  274  2233   877   230  329  227  102  269     1
+8   1  266  2592   872   498  320  214  105  262     1
+9   1  274  2233   877   230  329  227  102  269     1
+10  1  266  2608   957   306  322  219  103  262     1
+11  1  239  1194   540   130  313  165  148  252     1
+12  1  269  2211   981   196  333  219  114  263     1
+13  1  270  2274  1008   191  331  221  110  266     1
+14  1  254  2084  1011   137  317  197  119  251     1
+15  1  263  1842   818   176  326  204  121  257     1
+16  1  260  1945   880   143  324  204  120  256     1
+17  1  263  1878   893   122  324  212  112  259     1
+18  1  263  1878   893   122  324  212  112  259     1
+19  1  260  1882   845   170  324  203  121  255     1
+20  1  260  1882   845   170  324  203  121  255     1
+21  1  270  2479  1277   154  331  214  117  267     1
+22  1  270  2487  1221   182  329  216  113  268     1
+23  1  270  2413  1286   140  330  214  116  268     1
+24  1  181  1372   650   114  259   86  172  206     1
+```
+
+
+]
+---
+
+name: He5c3
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66).fg[]
+#### [Присутствие](#He931)
+#### [Псевдоотсутствие](#H9eed)
+#### [Обучение и тестирование](#H1802) <span class="bullet bullet">[&#8226;](#H1802)</span><span class="bullet bullet">[&#8226;](#H0ca0)</span><span class="bullet bullet">[&#8226;](#H7ba7)</span><span class="bullet bullet-active">[&#8226;](#He5c3)</span>.fg[].bg[]
+### [В итоге](#Hd5bb)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+Получение характеристик из растров для точек тестовой выборки
+
+
+```r
+envtest <- extract(predictors, test) |> data.frame()
+envtest <- cbind(pa=pb_test,envtest)
+envtest$biome = factor(envtest$biome, levels=levels)
+str(envtest)
+```
+
+```
+'data.frame':	223 obs. of  10 variables:
+ $ pa   : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ bio1 : int  253 252 240 251 271 232 264 251 263 272 ...
+ $ bio12: int  3624 2501 1214 1617 2599 3921 7682 3719 7091 2955 ...
+ $ bio16: int  1547 1081 516 808 1250 1364 2426 1469 2065 1271 ...
+ $ bio17: int  373 280 146 97 136 365 1496 170 1372 247 ...
+ $ bio5 : int  329 326 317 312 325 290 312 305 316 343 ...
+ $ bio6 : int  150 154 150 194 224 171 218 204 213 218 ...
+ $ bio7 : int  179 172 168 118 101 119 94 100 104 124 ...
+ $ bio8 : int  271 270 261 246 267 229 263 246 262 263 ...
+ $ biome: Factor w/ 13 levels "1","2","3","4",..: 1 1 2 1 1 1 1 1 1 1 ...
+```
+
+Отдельно пригодятся точки присутствия и псевдоотсутствия тестовой выборки
+
+
+```r
+testpres <- envtest[envtest$pa==1,-1]
+testbackg <- envtest[envtest$pa==0,-1]
+```
+
+
+]
+---
+
+name: Hd5bb
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66)
+### [В итоге](#Hd5bb) <span class="bullet bullet-active">[&#8226;](#Hd5bb)</span><span class="bullet mslide27m">[&#8226;](#H7cca)</span>.fg[].bg[]
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+Обзор размеров выборок
+
+
+```r
+data.frame(pres_train=nrow(pres_train),pres_test=nrow(pres_test),pres=nrow(pres)
+ ,backg_train=nrow(backg_train),backg_test=nrow(backg_test)
+ ,train=nrow(train),envtrain=nrow(envtrain)
+ ,test=nrow(test),envtest=nrow(envtest)
+ ,row.names="size") |> t() |> knitr::kable()
+```
+
+
+
+|            | size|
+|:-----------|----:|
+|pres_train  |   93|
+|pres_test   |   23|
+|pres        |  116|
+|backg_train |  800|
+|backg_test  |  200|
+|train       |  893|
+|envtrain    |  893|
+|test        |  223|
+|envtest     |  223|
+
+
+]
+---
+
+name: H7cca
+
+.sidebar.left-column[
+## [Подготовка](#H48af).fg[]
+### [Некоторые определения](#H48af)
+### [Требуемые пакеты](#H0cfa)
+### [Находки](#He464)
+### [Картооснова](#Hfa07)
+### [Среда обитания](#Hd5ed)
+### [Подвыборки](#H8e66)
+### [В итоге](#Hd5bb) <span class="bullet bullet">[&#8226;](#Hd5bb)</span><span class="bullet bullet-active">[&#8226;](#H7cca)</span>.fg[].bg[]
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+
+
+.notpull-left[
+
+
+
+```r
+opP <- par(mar=c(2.5,2.5,1,1))
+plot(!is.na(predictors[[1]]), col=c('white', 'light grey'), legend=FALSE)
+plot(ext, add=TRUE, col='red', lwd=2)
+points(backg_train, pch='b', cex=0.5, col='yellow')
+points(backg_test, pch='b',  cex=0.5, col='black')
+points(pres_train, pch= 'p', col='forestgreen')
+points(pres_test, pch='p', col='blue')
+```
+
+```r
+par(opP)
+```
+
+
+]
+
+.notpull-right[
+
+<img src="assets/lesson10/loc-code-1.svg" width="1330" height="405" style="display: block; margin: auto;" />
+
+]
+
+
+
+
+
+
+]
+---
+
+name: H3264
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264).fg[]
+#### [Binomilal/logit](#H3264) <span class="bullet bullet-active">[&#8226;](#H3264)</span><span class="bullet mslide31m">[&#8226;](#H8cb2)</span><span class="bullet mslide32m">[&#8226;](#H15bb)</span><span class="bullet mslide33m">[&#8226;](#H62bc)</span><span class="bullet mslide34m">[&#8226;](#Hfcd8)</span>.fg[].bg[]
+#### [Gaussian/identity](#Hb9f7)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+.font90[
+
+
+```r
+gm1 <- glm(pa ~ bio1 + bio5 + bio6 + bio7 + bio8 + bio12 + bio16 + bio17,
+            family = binomial(link = "logit"), data=envtrain, na.action=na.pass)
+summary(gm1)
+```
+
+```
+
+Call:
+glm(formula = pa ~ bio1 + bio5 + bio6 + bio7 + bio8 + bio12 + 
+    bio16 + bio17, family = binomial(link = "logit"), data = envtrain, 
+    na.action = na.pass)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.6623  -0.5057  -0.2215  -0.0401   2.8034  
+
+Coefficients:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  3.1165460  1.5370232   2.028 0.042596 *  
+bio1         0.0766687  0.0612061   1.253 0.210340    
+bio5         0.1218965  0.2663447   0.458 0.647193    
+bio6        -0.1892600  0.2638368  -0.717 0.473166    
+bio7        -0.1986272  0.2635371  -0.754 0.451031    
+bio8        -0.0125829  0.0270962  -0.464 0.642376    
+bio12        0.0027516  0.0007597   3.622 0.000292 ***
+bio16       -0.0034605  0.0016050  -2.156 0.031081 *  
+bio17       -0.0070755  0.0016471  -4.296 1.74e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 596.69  on 892  degrees of freedom
+Residual deviance: 435.86  on 884  degrees of freedom
+AIC: 453.86
+
+Number of Fisher Scoring iterations: 8
+```
+
+]
+
+]
+---
+
+name: H8cb2
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264).fg[]
+#### [Binomilal/logit](#H3264) <span class="bullet bullet">[&#8226;](#H3264)</span><span class="bullet bullet-active">[&#8226;](#H8cb2)</span><span class="bullet mslide32m">[&#8226;](#H15bb)</span><span class="bullet mslide33m">[&#8226;](#H62bc)</span><span class="bullet mslide34m">[&#8226;](#Hfcd8)</span>.fg[].bg[]
+#### [Gaussian/identity](#Hb9f7)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+.font95[
+
+
+```r
+res <- MuMIn::get.models(MuMIn::dredge(gm1),subset=seq(2))
+```
+
+```
+Fixed term is "(Intercept)"
+```
+
+```r
+gm1 <- res[[1]]
+summary(gm1)
+```
+
+```
+
+Call:
+glm(formula = pa ~ bio1 + bio12 + bio16 + bio17 + bio5 + 1, family = binomial(link = "logit"), 
+    data = envtrain, na.action = na.pass)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-1.68511  -0.49501  -0.23123  -0.03874   2.69210  
+
+Coefficients:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  3.1312755  1.5437493   2.028 0.042524 *  
+bio1         0.0876090  0.0143906   6.088 1.14e-09 ***
+bio12        0.0027232  0.0007488   3.637 0.000276 ***
+bio16       -0.0032506  0.0015871  -2.048 0.040551 *  
+bio17       -0.0071460  0.0016241  -4.400 1.08e-05 ***
+bio5        -0.0902034  0.0144254  -6.253 4.02e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 596.69  on 892  degrees of freedom
+Residual deviance: 437.44  on 887  degrees of freedom
+AIC: 449.44
+
+Number of Fisher Scoring iterations: 7
+```
+
+]
+
+]
+---
+
+name: H15bb
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264).fg[]
+#### [Binomilal/logit](#H3264) <span class="bullet bullet">[&#8226;](#H3264)</span><span class="bullet bullet">[&#8226;](#H8cb2)</span><span class="bullet bullet-active">[&#8226;](#H15bb)</span><span class="bullet mslide33m">[&#8226;](#H62bc)</span><span class="bullet mslide34m">[&#8226;](#Hfcd8)</span>.fg[].bg[]
+#### [Gaussian/identity](#Hb9f7)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+(e1 <- evaluate(p=testpres,a=testbackg,model=gm1))
+```
+
+```
+class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.8348913 
+cor            : 0.3143662 
+max TPR+TNR at : -2.465182 
+```
+
+```r
+(tr <- threshold(e1))
+```
+
+```
+                thresholds
+kappa           -0.4681406
+spec_sens       -2.4651819
+no_omission     -3.8518282
+prevalence       0.1178389
+equal_sens_spec -1.9022797
+sensitivity     -2.4389341
+```
+
+
+]
+---
+
+name: H62bc
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264).fg[]
+#### [Binomilal/logit](#H3264) <span class="bullet bullet">[&#8226;](#H3264)</span><span class="bullet bullet">[&#8226;](#H8cb2)</span><span class="bullet bullet">[&#8226;](#H15bb)</span><span class="bullet bullet-active">[&#8226;](#H62bc)</span><span class="bullet mslide34m">[&#8226;](#Hfcd8)</span>.fg[].bg[]
+#### [Gaussian/identity](#Hb9f7)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+(pg <- predict(predictors, gm1, ext=ext))
+```
+
+```
+class      : RasterLayer 
+dimensions : 112, 116, 12992  (nrow, ncol, ncell)
+resolution : 0.5, 0.5  (x, y)
+extent     : -90, -32, -33, 23  (xmin, xmax, ymin, ymax)
+crs        : +proj=longlat +datum=WGS84 +no_defs 
+source     : memory
+names      : layer 
+values     : -12.12796, 3.220052  (min, max)
+```
+
+
+]
+---
+
+name: Hfcd8
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264).fg[]
+#### [Binomilal/logit](#H3264) <span class="bullet bullet">[&#8226;](#H3264)</span><span class="bullet bullet">[&#8226;](#H8cb2)</span><span class="bullet bullet">[&#8226;](#H15bb)</span><span class="bullet bullet">[&#8226;](#H62bc)</span><span class="bullet bullet-active">[&#8226;](#Hfcd8)</span>.fg[].bg[]
+#### [Gaussian/identity](#Hb9f7)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+op <- par(mfrow=c(1,2),mar=rep(2,4))
+plot(pg, main='Binomial/logit, raw values')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+plot(pg > tr$spec_sens, main='presence/absence')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+points(backg_train, pch='x', cex=0.4,col="lightblue")
+points(pres_train, pch='o',cex=0.6,col="blue")
+```
+
+<img src="assets/lesson10/unnamed-chunk-46-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+
+```r
+par(op)
+```
+
+
+]
+---
+
+name: Hb9f7
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264).fg[]
+#### [Binomilal/logit](#H3264)
+#### [Gaussian/identity](#Hb9f7) <span class="bullet bullet-active">[&#8226;](#Hb9f7)</span><span class="bullet mslide36m">[&#8226;](#H12d6)</span><span class="bullet mslide37m">[&#8226;](#H65d1)</span>.fg[].bg[]
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+.font85[
+
+
+```r
+gm2 <- glm(pa ~ bio1 + bio5 + bio6 + bio7 + bio8 + bio12 + bio16 + bio17,
+            family = gaussian(link = "identity"), data=envtrain, na.action=na.pass)
+res <- MuMIn::get.models(MuMIn::dredge(gm2) ,subset=seq(2))
+```
+
+```
+Fixed term is "(Intercept)"
+```
+
+```r
+gm2 <- res[[1]]
+summary(gm2)
+```
+
+```
+
+Call:
+glm(formula = pa ~ bio1 + bio12 + bio16 + bio17 + bio6 + bio8 + 
+    1, family = gaussian(link = "identity"), data = envtrain, 
+    na.action = na.pass)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-0.53832  -0.15187  -0.05992   0.01360   0.98917  
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  4.172e-01  9.241e-02   4.515 7.19e-06 ***
+bio1        -5.398e-03  1.275e-03  -4.233 2.55e-05 ***
+bio12        4.099e-04  7.028e-05   5.833 7.64e-09 ***
+bio16       -5.985e-04  1.424e-04  -4.202 2.92e-05 ***
+bio17       -8.521e-04  1.630e-04  -5.226 2.16e-07 ***
+bio6         3.027e-03  5.856e-04   5.168 2.92e-07 ***
+bio8         1.471e-03  6.735e-04   2.184   0.0292 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for gaussian family taken to be 0.07960212)
+
+    Null deviance: 83.315  on 892  degrees of freedom
+Residual deviance: 70.527  on 886  degrees of freedom
+AIC: 283.27
+
+Number of Fisher Scoring iterations: 2
+```
+
+]
+
+]
+---
+
+name: H12d6
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264).fg[]
+#### [Binomilal/logit](#H3264)
+#### [Gaussian/identity](#Hb9f7) <span class="bullet bullet">[&#8226;](#Hb9f7)</span><span class="bullet bullet-active">[&#8226;](#H12d6)</span><span class="bullet mslide37m">[&#8226;](#H65d1)</span>.fg[].bg[]
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+(e2 <- evaluate(p=testpres,a=testbackg,model=gm2))
+```
+
+```
+class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.7627174 
+cor            : 0.3490088 
+max TPR+TNR at : 0.1968364 
+```
+
+```r
+(tr <- threshold(e2))
+```
+
+```
+                thresholds
+kappa           0.33623463
+spec_sens       0.19683644
+no_omission     0.00391176
+prevalence      0.10315914
+equal_sens_spec 0.14601267
+sensitivity     0.06019263
+```
+
+
+]
+---
+
+name: H65d1
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264).fg[]
+#### [Binomilal/logit](#H3264)
+#### [Gaussian/identity](#Hb9f7) <span class="bullet bullet">[&#8226;](#Hb9f7)</span><span class="bullet bullet">[&#8226;](#H12d6)</span><span class="bullet bullet-active">[&#8226;](#H65d1)</span>.fg[].bg[]
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+pg <- predict(predictors, gm2, ext=ext)
+op <- par(mfrow=c(1,2),mar=rep(2,4))
+plot(pg, main='GLM/gaussian, raw values') 
+plot(wrld_simpl, add=TRUE, border='dark grey')
+plot(pg > tr$spec_sens, main='presence/absence') 
+plot(wrld_simpl, add=TRUE, border='dark grey')
+points(backg_train, pch='x', cex=0.4,col="lightblue")
+points(pres_train, pch='o',cex=0.6,col="blue")
+```
+
+<img src="assets/lesson10/unnamed-chunk-51-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+
+```r
+par(op)
+```
+
+
+]
+---
+
+name: Heedd
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd) <span class="bullet bullet-active">[&#8226;](#Heedd)</span><span class="bullet mslide39m">[&#8226;](#H8269)</span><span class="bullet mslide40m">[&#8226;](#Hb4f4)</span><span class="bullet mslide41m">[&#8226;](#Hc3f3)</span>.fg[].bg[]
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+pred_nf <- dropLayer(predictors,'biome')
+bc <- bioclim(x=pred_nf, p=pres_train)
+```
+
+```r
+plot(bc) ## only two predictors
+```
+
+<img src="assets/lesson10/unnamed-chunk-53-1.svg" width="1330" height="535" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H8269
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd) <span class="bullet bullet">[&#8226;](#Heedd)</span><span class="bullet bullet-active">[&#8226;](#H8269)</span><span class="bullet mslide40m">[&#8226;](#Hb4f4)</span><span class="bullet mslide41m">[&#8226;](#Hc3f3)</span>.fg[].bg[]
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+(e <- evaluate(p=pres_test, a=backg_test, model=bc, x=pred_nf))
+```
+
+```
+class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.6466304 
+cor            : 0.02234457 
+max TPR+TNR at : 0.01065269 
+```
+
+```r
+(tr <- threshold(e))
+```
+
+```
+                 thresholds
+kappa            0.04291075
+spec_sens        0.01065269
+no_omission     -0.00010000
+prevalence       0.10742688
+equal_sens_spec  0.06441613
+sensitivity      0.01065269
+```
+
+
+]
+---
+
+name: Hb4f4
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd) <span class="bullet bullet">[&#8226;](#Heedd)</span><span class="bullet bullet">[&#8226;](#H8269)</span><span class="bullet bullet-active">[&#8226;](#Hb4f4)</span><span class="bullet mslide41m">[&#8226;](#Hc3f3)</span>.fg[].bg[]
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+op <- par(mar=c(4,4,1,1))
+response(bc) ## it's a plot
+```
+
+<img src="assets/lesson10/unnamed-chunk-57-1.svg" width="1330" height="535" style="display: block; margin: auto;" />
+
+```r
+par(op)
+```
+
+
+]
+---
+
+name: Hc3f3
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd) <span class="bullet bullet">[&#8226;](#Heedd)</span><span class="bullet bullet">[&#8226;](#H8269)</span><span class="bullet bullet">[&#8226;](#Hb4f4)</span><span class="bullet bullet-active">[&#8226;](#Hc3f3)</span>.fg[].bg[]
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+
+
+
+
+```r
+pb <- predict(predictors, bc, ext=ext, progress='')
+op <- par(mfrow=c(1,2),mar=c(2,2,2,4))
+plot(pb, main='Bioclim, raw values')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+points(pres_train, pch='+')
+plot(pb > tr$spec_sens, main='presence/absence')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+points(pres_train, pch='+')
+```
+
+<img src="assets/lesson10/unnamed-chunk-59-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+
+```r
+par(op)
+```
+
+
+]
+---
+
+name: H45eb
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb) <span class="bullet bullet-active">[&#8226;](#H45eb)</span><span class="bullet mslide44m">[&#8226;](#Hb399)</span>.fg[].bg[]
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+dm <- domain(pred_nf,pres_train)
+(e <- evaluate(pres_test, backg_test, dm, pred_nf))
+```
+
+```
+class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.7102174 
+cor            : 0.2268065 
+max TPR+TNR at : 0.7239695 
+```
+
+```r
+(tr <- threshold(e))#, 'spec_sens')
+```
+
+```
+                thresholds
+kappa            0.7239695
+spec_sens        0.7239695
+no_omission      0.1666580
+prevalence       0.1086085
+equal_sens_spec  0.7306379
+sensitivity      0.3173997
+```
+
+
+]
+---
+
+name: Hb399
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb) <span class="bullet bullet">[&#8226;](#H45eb)</span><span class="bullet bullet-active">[&#8226;](#Hb399)</span>.fg[].bg[]
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+pm <- predict(pred_nf,dm,ext=ext,progress='')
+```
+
+```r
+op <- par(mfrow=c(1,2),mar=c(2,2,2,4))
+plot(pm, main='Domain, raw values')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+points(pres_train, pch='+')
+plot(pm > tr$spec_sens, main='presence/absence')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+points(pres_train, pch='+')
+```
+
+<img src="assets/lesson10/unnamed-chunk-64-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+
+```r
+par(op)
+```
+
+
+]
+---
+
+name: H3008
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008) <span class="bullet bullet-active">[&#8226;](#H3008)</span><span class="bullet mslide46m">[&#8226;](#H5d97)</span>.fg[].bg[]
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+mm <- mahal(pred_nf,pres_train)  
+(e <- evaluate(pres_test, backg_test, mm, pred_nf))
+```
+
+```
+class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.7566304 
+cor            : 0.1232286 
+max TPR+TNR at : -5.029892 
+```
+
+```r
+(tr <- threshold(e))#, 'spec_sens')
+```
+
+```
+                 thresholds
+kappa             0.8508512
+spec_sens        -5.0298923
+no_omission     -21.4885265
+prevalence        0.1020640
+equal_sens_spec  -3.4499568
+sensitivity      -8.8036936
+```
+
+
+]
+---
+
+name: H5d97
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008) <span class="bullet bullet">[&#8226;](#H3008)</span><span class="bullet bullet-active">[&#8226;](#H5d97)</span>.fg[].bg[]
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+
+```r
+pm <- predict(pred_nf,mm,ext=ext,progress='')
+```
+
+```r
+op <- par(mfrow=c(1,2),mar=c(2,2,2,4))
+plot(pm, main='Mahalanobis, raw values')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+points(pres_train, pch='+')
+plot(pm > tr$spec_sens, main='presence/absence')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+points(pres_train, pch='+')
+```
+
+<img src="assets/lesson10/unnamed-chunk-70-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+
+```r
+par(op)
+```
+
+
+]
+---
+
+name: H87ad
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad) <span class="bullet bullet-active">[&#8226;](#H87ad)</span><span class="bullet mslide48m">[&#8226;](#Hba2f)</span><span class="bullet mslide49m">[&#8226;](#Hcd28)</span><span class="bullet mslide50m">[&#8226;](#Hadef)</span>.fg[].bg[]
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+
+```r
+# maxent(silent=F)
+xm <- maxent(predictors, pres_train, factors='biome',silent=TRUE)
+```
+
+```
+Loading required namespace: rJava
+```
+
+```r
+plot(xm)
+```
+
+<img src="assets/lesson10/unnamed-chunk-73-1.svg" width="1330" height="422" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: Hba2f
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad) <span class="bullet bullet">[&#8226;](#H87ad)</span><span class="bullet bullet-active">[&#8226;](#Hba2f)</span><span class="bullet mslide49m">[&#8226;](#Hcd28)</span><span class="bullet mslide50m">[&#8226;](#Hadef)</span>.fg[].bg[]
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+response(xm) ## it's a plot
+```
+
+<img src="assets/lesson10/unnamed-chunk-74-1.svg" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: Hcd28
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad) <span class="bullet bullet">[&#8226;](#H87ad)</span><span class="bullet bullet">[&#8226;](#Hba2f)</span><span class="bullet bullet-active">[&#8226;](#Hcd28)</span><span class="bullet mslide50m">[&#8226;](#Hadef)</span>.fg[].bg[]
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+(e <- evaluate(p=pres_test, a=backg_test, model=xm, x=predictors))
+```
+
+```
+class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.8516304 
+cor            : 0.4227736 
+max TPR+TNR at : 0.5820705 
+```
+
+```r
+(tr <- threshold(e)) #, 'spec_sens')
+```
+
+```
+                thresholds
+kappa           0.69329120
+spec_sens       0.58207049
+no_omission     0.01881147
+prevalence      0.09983607
+equal_sens_spec 0.51785572
+sensitivity     0.13861270
+```
+
+
+]
+---
+
+name: Hadef
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad) <span class="bullet bullet">[&#8226;](#H87ad)</span><span class="bullet bullet">[&#8226;](#Hba2f)</span><span class="bullet bullet">[&#8226;](#Hcd28)</span><span class="bullet bullet-active">[&#8226;](#Hadef)</span>.fg[].bg[]
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+px <- predict(predictors,xm,ext=ext,progress='')
+```
+
+
+```r
+op <- par(mfrow=c(1,2),mar=c(2,2,2,4))
+plot(px, main='Maxent, raw values')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+points(pres_train, pch='+')
+plot(px > tr$spec_sens, main='presence/absence')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+points(pres_train, pch='+')
+```
+
+<img src="assets/lesson10/unnamed-chunk-80-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+
+```r
+par(op)
+```
+
+
+]
+---
+
+name: Heb5a
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a) <span class="bullet bullet-active">[&#8226;](#Heb5a)</span><span class="bullet mslide52m">[&#8226;](#H43e1)</span><span class="bullet mslide53m">[&#8226;](#H34e6)</span><span class="bullet mslide54m">[&#8226;](#Haa82)</span><span class="bullet mslide55m">[&#8226;](#Hdd85)</span>.fg[].bg[]
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+require(randomForest)
+```
+
+```
+Loading required package: randomForest
+```
+
+```
+randomForest 4.7-1.1
+```
+
+```
+Type rfNews() to see new features/changes/bug fixes.
+```
+
+```r
+model <- pa ~ bio1 + bio5 + bio6 + bio7 + bio8 + bio12 + bio16 + bio17
+(rf1 <- randomForest(model, data=envtrain))
+```
+
+```
+Warning in randomForest.default(m, y, ...): The response has five or
+fewer unique values.  Are you sure you want to do regression?
+```
+
+```
+
+Call:
+ randomForest(formula = model, data = envtrain) 
+               Type of random forest: regression
+                     Number of trees: 500
+No. of variables tried at each split: 2
+
+          Mean of squared residuals: 0.07090929
+                    % Var explained: 24
+```
+
+
+]
+---
+
+name: H43e1
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a) <span class="bullet bullet">[&#8226;](#Heb5a)</span><span class="bullet bullet-active">[&#8226;](#H43e1)</span><span class="bullet mslide53m">[&#8226;](#H34e6)</span><span class="bullet mslide54m">[&#8226;](#Haa82)</span><span class="bullet mslide55m">[&#8226;](#Hdd85)</span>.fg[].bg[]
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+model <- factor(pa) ~ bio1 + bio5 + bio6 + bio7 + bio8 + bio12 + bio16 + bio17
+(rf2 <- randomForest(model, data=envtrain))
+```
+
+```
+
+Call:
+ randomForest(formula = model, data = envtrain) 
+               Type of random forest: classification
+                     Number of trees: 500
+No. of variables tried at each split: 2
+
+        OOB estimate of  error rate: 9.18%
+Confusion matrix:
+    0  1 class.error
+0 776 24   0.0300000
+1  58 35   0.6236559
+```
+
+
+]
+---
+
+name: H34e6
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a) <span class="bullet bullet">[&#8226;](#Heb5a)</span><span class="bullet bullet">[&#8226;](#H43e1)</span><span class="bullet bullet-active">[&#8226;](#H34e6)</span><span class="bullet mslide54m">[&#8226;](#Haa82)</span><span class="bullet mslide55m">[&#8226;](#Hdd85)</span>.fg[].bg[]
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+(rf3 <- randomForest(envtrain[,1:8], factor(pb_train)))
+```
+
+```
+
+Call:
+ randomForest(x = envtrain[, 1:8], y = factor(pb_train)) 
+               Type of random forest: classification
+                     Number of trees: 500
+No. of variables tried at each split: 2
+
+        OOB estimate of  error rate: 0%
+Confusion matrix:
+    0  1 class.error
+0 800  0           0
+1   0 93           0
+```
+
+
+]
+---
+
+name: Haa82
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a) <span class="bullet bullet">[&#8226;](#Heb5a)</span><span class="bullet bullet">[&#8226;](#H43e1)</span><span class="bullet bullet">[&#8226;](#H34e6)</span><span class="bullet bullet-active">[&#8226;](#Haa82)</span><span class="bullet mslide55m">[&#8226;](#Hdd85)</span>.fg[].bg[]
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+(erf <- evaluate(testpres, testbackg, rf1))
+```
+
+```
+class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.9155435 
+cor            : 0.5685722 
+max TPR+TNR at : 0.09633333 
+```
+
+```r
+(tr <- threshold(erf))
+```
+
+```
+                thresholds
+kappa           0.30783333
+spec_sens       0.09633333
+no_omission     0.08114286
+prevalence      0.10070000
+equal_sens_spec 0.11313333
+sensitivity     0.10070000
+```
+
+
+]
+---
+
+name: Hdd85
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a) <span class="bullet bullet">[&#8226;](#Heb5a)</span><span class="bullet bullet">[&#8226;](#H43e1)</span><span class="bullet bullet">[&#8226;](#H34e6)</span><span class="bullet bullet">[&#8226;](#Haa82)</span><span class="bullet bullet-active">[&#8226;](#Hdd85)</span>.fg[].bg[]
+### [SVM](#Hdd54)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+pr <- predict(predictors, rf1, ext=ext)
+```
+
+```r
+op <- par(mfrow=c(1,2),mar=c(2,2,2,4))
+plot(pr, main='Random Forest, regression')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+plot(pr > tr$spec_sens, main='presence/absence')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+points(pres_train, pch='+')
+points(backg_train, pch='-',cex=0.4)
+```
+
+<img src="assets/lesson10/unnamed-chunk-88-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+
+```r
+par(op)
+```
+
+
+]
+---
+
+name: Hdd54
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54) <span class="bullet bullet-active">[&#8226;](#Hdd54)</span><span class="bullet mslide57m">[&#8226;](#H338b)</span>.fg[].bg[]
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+ ### Support Vector Machine (SVM)
+
+
+```r
+require(kernlab)
+```
+
+```
+Loading required package: kernlab
+```
+
+```
+
+Attaching package: 'kernlab'
+```
+
+```
+The following objects are masked from 'package:raster':
+
+    buffer, rotated
+```
+
+```r
+svm <- ksvm(pa ~ bio1+bio5+bio6+bio7+bio8+bio12+bio16+bio17, data=envtrain)
+(esv <- evaluate(p=testpres, a=testbackg, model=svm))
+```
+
+```
+class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.7538043 
+cor            : 0.4463688 
+max TPR+TNR at : 0.04280311 
+```
+
+.font60[
+
+
+```r
+(esv <- evaluate(p=pres_test, a=backg_test, model=svm,x=pred_nf))
+```
+
+```
+class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.7538043 
+cor            : 0.4463688 
+max TPR+TNR at : 0.04280311 
+```
+
+]
+
+
+```r
+(tr <- threshold(esv))
+```
+
+```
+                 thresholds
+kappa            0.09779200
+spec_sens        0.04280311
+no_omission     -0.02998398
+prevalence       0.09942881
+equal_sens_spec  0.02597113
+sensitivity      0.00346518
+```
+
+
+]
+---
+
+name: H338b
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264).fg[]
+### [GML](#H3264)
+### [Bioclim](#Heedd)
+### [Domain](#H45eb)
+### [Mahalanobis](#H3008)
+### [MaxEnt](#H87ad)
+### [Random Forests](#Heb5a)
+### [SVM](#Hdd54) <span class="bullet bullet">[&#8226;](#Hdd54)</span><span class="bullet bullet-active">[&#8226;](#H338b)</span>.fg[].bg[]
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+```r
+ps <- predict(predictors, svm, ext=ext)
+```
+
+```r
+op <- par(mfrow=c(1,2),mar=c(2,2,2,4))
+plot(ps, main='Support Vector Machine')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+plot(ps > tr$spec_sens, main='presence/absence')
+plot(wrld_simpl, add=TRUE, border='dark grey')
+points(pres_train, pch='+',cex=0.75)
+points(backg_train, pch='-', cex=0.25)
+```
+
+<img src="assets/lesson10/unnamed-chunk-94-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+
+```r
+par(op)
+```
+
+
+
+
+]
+---
+
+name: H57f2
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2).fg[].bg[]
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951)
+### [Прогноз](#H12ca)
+]
+.mainbar.right-column[
+
+
+
+```r
+# require(raster)
+fname <- system.file("external/species.shp", package="sdm") # get the location of the species shapefile
+species <- sf::st_read(fname,quiet=TRUE) |> sf::as_Spatial()
+```
+<img src="assets/lesson10//ursa03_unnamed-chunk-96.png" width="1330" height="356" bound style="display: block; margin: auto;" />
+
+```r
+table(species$Occurrence)
+```
+
+```
+
+  0   1 
+106  94 
+```
+
+
+]
+---
+
+name: Ha4ea
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea) <span class="bullet bullet-active">[&#8226;](#Ha4ea)</span><span class="bullet mslide61m">[&#8226;](#Hf1c5)</span><span class="bullet mslide62m">[&#8226;](#H68cc)</span>.fg[].bg[]
+### [Модели](#H4951)
+### [Прогноз](#H12ca)
+]
+.mainbar.right-column[
+
+
+
+```r
+list1 <- list.files(path=system.file("external",package="sdm")
+                   ,pattern='\\.asc$',full.names= T) 
+preds <- stack(list1)
+crs(preds) <- crs(species)
+```
+<img src="assets/lesson10//ursa05_unnamed-chunk-99.png" width="1330" height="500" bound style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: Hf1c5
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea) <span class="bullet bullet">[&#8226;](#Ha4ea)</span><span class="bullet bullet-active">[&#8226;](#Hf1c5)</span><span class="bullet mslide62m">[&#8226;](#H68cc)</span>.fg[].bg[]
+### [Модели](#H4951)
+### [Прогноз](#H12ca)
+]
+.mainbar.right-column[
+
+.oversize[
+
+
+```r
+require(sdm)
+```
+
+```
+Loading required package: sdm
+```
+
+```
+sdm 1.1-8 (2021-11-11)
+```
+
+```r
+# d <- sdmData(formula=Occurrence~., train=species, predictors=preds)
+d <- sdmData(train=species, predictors=preds)
+```
+
+```
+Loading required package: gbm
+```
+
+```
+Loaded gbm 2.1.8.1
+```
+
+```
+Loading required package: tree
+```
+
+```
+Loading required package: mda
+```
+
+```
+Loading required package: class
+```
+
+```
+Loaded mda 0.5-3
+```
+
+```
+Loading required package: mgcv
+```
+
+```
+Loading required package: nlme
+```
+
+```
+
+Attaching package: 'nlme'
+```
+
+```
+The following object is masked from 'package:raster':
+
+    getData
+```
+
+```
+This is mgcv 1.8-41. For overview type 'help("mgcv-package")'.
+```
+
+```
+Loading required package: glmnet
+```
+
+```
+Loading required package: Matrix
+```
+
+```
+Loaded glmnet 4.1-6
+```
+
+```
+Loading required package: earth
+```
+
+```
+Loading required package: Formula
+```
+
+```
+Loading required package: plotmo
+```
+
+```
+Loading required package: plotrix
+```
+
+```
+Loading required package: TeachingDemos
+```
+
+```
+Loading required package: rJava
+```
+
+```
+Loading required package: RSNNS
+```
+
+```
+Loading required package: Rcpp
+```
+
+```
+Loading required package: ranger
+```
+
+```
+
+Attaching package: 'ranger'
+```
+
+```
+The following object is masked from 'package:randomForest':
+
+    importance
+```
+
+```
+Loading required package: rpart
+```
+
+```r
+# d <- sdmData(formula=Occurrence~precipitation+temperature,train=species,predictors=preds)
+# d <- sdmData(formula= ~., train=species, predictors=preds)
+```
+
+]
+
+]
+---
+
+name: H68cc
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea) <span class="bullet bullet">[&#8226;](#Ha4ea)</span><span class="bullet bullet">[&#8226;](#Hf1c5)</span><span class="bullet bullet-active">[&#8226;](#H68cc)</span>.fg[].bg[]
+### [Модели](#H4951)
+### [Прогноз](#H12ca)
+]
+.mainbar.right-column[
+
+
+
+```r
+d
+```
+
+```
+class                                 : sdmdata 
+=========================================================== 
+number of species                     :  1 
+species names                         :  Occurrence 
+number of features                    :  4 
+feature names                         :  elevation, precipitation, temperature, ... 
+type                                  :  Presence-Absence 
+has independet test data?             :  FALSE 
+number of records                     :  200 
+has Coordinates?                      :  TRUE 
+```
+
+
+
+
+]
+---
+
+name: H4951
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951).fg[]
+#### [Построение](#H4951) <span class="bullet bullet-active">[&#8226;](#H4951)</span><span class="bullet mslide65m">[&#8226;](#Hf6a8)</span>.fg[].bg[]
+#### [Характеристики](#H8965)
+### [Прогноз](#H12ca)
+]
+.mainbar.right-column[
+
+.font95[
+
+
+```r
+(m1 <- sdm(Occurrence~.,data=d,methods=c('glm','gam','brt')))
+```
+
+```
+Loading required package: parallel
+```
+
+```
+class                                 : sdmModels 
+======================================================== 
+number of species                     :  1 
+number of modelling methods           :  3 
+names of modelling methods            :  glm, gam, brt 
+------------------------------------------
+model run success percentage (per species)  :
+------------------------------------------
+method          Occurrence       
+---------------------- 
+glm        :        100   %
+gam        :        100   %
+brt        :        100   %
+
+###################################################################
+model performance (per species), using training test dataset:
+-------------------------------------------------------------------------------
+
+ ## species   :  Occurrence 
+=========================
+
+methods    :     AUC     |     COR     |     TSS     |     Deviance 
+-------------------------------------------------------------------------
+glm        :     0.88    |     0.7     |     0.69    |     0.83     
+gam        :     0.88    |     0.71    |     0.7     |     0.82     
+brt        :     0.94    |     0.77    |     0.75    |     0.85     
+```
+
+]
+
+]
+---
+
+name: Hf6a8
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951).fg[]
+#### [Построение](#H4951) <span class="bullet bullet">[&#8226;](#H4951)</span><span class="bullet bullet-active">[&#8226;](#Hf6a8)</span>.fg[].bg[]
+#### [Характеристики](#H8965)
+### [Прогноз](#H12ca)
+]
+.mainbar.right-column[
+
+.font95.oversize[
+
+
+```r
+(m2 <- sdm(Occurrence~.,data=d
+         ,methods=c('rf','tree','fda','mars','svm')
+         ,replicatin='sub' # replicate.methods (data partitioning)
+         ,test.percent=1/5*100
+         ,n=2)) # number of replicates (each method) 
+```
+
+```
+class                                 : sdmModels 
+======================================================== 
+number of species                     :  1 
+number of modelling methods           :  5 
+names of modelling methods            :  rf, cart, fda, mars, svm 
+replicate.methods (data partitioning) :  subsampling 
+number of replicates (each method)    :  2 
+toral number of replicates per model  :  2 (per species) 
+test percentage (in subsampling)      :  20 
+------------------------------------------
+model run success percentage (per species)  :
+------------------------------------------
+method          Occurrence       
+---------------------- 
+rf         :        100   %
+cart       :        100   %
+fda        :        100   %
+mars       :        100   %
+svm        :        100   %
+
+###################################################################
+model Mean performance (per species), using test dataset (generated using partitioning):
+-------------------------------------------------------------------------------
+
+ ## species   :  Occurrence 
+=========================
+
+methods    :     AUC     |     COR     |     TSS     |     Deviance 
+-------------------------------------------------------------------------
+rf         :     0.84    |     0.65    |     0.66    |     0.96     
+cart       :     0.81    |     0.58    |     0.63    |     1.44     
+fda        :     0.81    |     0.63    |     0.66    |     1.03     
+mars       :     0.88    |     0.72    |     0.75    |     0.9      
+svm        :     0.84    |     0.72    |     0.74    |     0.84     
+```
+
+]
+
+]
+---
+
+name: H8965
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951).fg[]
+#### [Построение](#H4951)
+#### [Характеристики](#H8965) <span class="bullet bullet-active">[&#8226;](#H8965)</span><span class="bullet mslide67m">[&#8226;](#H18a6)</span><span class="bullet mslide68m">[&#8226;](#H8819)</span>.fg[].bg[]
+### [Прогноз](#H12ca)
+]
+.mainbar.right-column[
+
+
+
+```r
+getModelInfo(m2)
+```
+
+```
+   modelID    species method replication replicationID success
+1        1 Occurrence     rf subsampling             1    TRUE
+2        2 Occurrence     rf subsampling             2    TRUE
+3        3 Occurrence   cart subsampling             1    TRUE
+4        4 Occurrence   cart subsampling             2    TRUE
+5        5 Occurrence    fda subsampling             1    TRUE
+6        6 Occurrence    fda subsampling             2    TRUE
+7        7 Occurrence   mars subsampling             1    TRUE
+8        8 Occurrence   mars subsampling             2    TRUE
+9        9 Occurrence    svm subsampling             1    TRUE
+10      10 Occurrence    svm subsampling             2    TRUE
+   training test.dep test.indep
+1      TRUE     TRUE      FALSE
+2      TRUE     TRUE      FALSE
+3      TRUE     TRUE      FALSE
+4      TRUE     TRUE      FALSE
+5      TRUE     TRUE      FALSE
+6      TRUE     TRUE      FALSE
+7      TRUE     TRUE      FALSE
+8      TRUE     TRUE      FALSE
+9      TRUE     TRUE      FALSE
+10     TRUE     TRUE      FALSE
+```
+
+
+]
+---
+
+name: H18a6
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951).fg[]
+#### [Построение](#H4951)
+#### [Характеристики](#H8965) <span class="bullet bullet">[&#8226;](#H8965)</span><span class="bullet bullet-active">[&#8226;](#H18a6)</span><span class="bullet mslide68m">[&#8226;](#H8819)</span>.fg[].bg[]
+### [Прогноз](#H12ca)
+]
+.mainbar.right-column[
+
+
+
+```r
+roc(m2)
+```
+
+<img src="assets/lesson10/unnamed-chunk-105-1.svg" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H8819
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951).fg[]
+#### [Построение](#H4951)
+#### [Характеристики](#H8965) <span class="bullet bullet">[&#8226;](#H8965)</span><span class="bullet bullet">[&#8226;](#H18a6)</span><span class="bullet bullet-active">[&#8226;](#H8819)</span>.fg[].bg[]
+### [Прогноз](#H12ca)
+]
+.mainbar.right-column[
+
+
+
+```r
+roc(m2,smooth=T)
+```
+
+<img src="assets/lesson10/unnamed-chunk-106-1.svg" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+
+
+]
+---
+
+name: H12ca
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951)
+### [Прогноз](#H12ca).fg[]
+#### [Индивидуальный](#H12ca) <span class="bullet bullet-active">[&#8226;](#H12ca)</span><span class="bullet mslide71m">[&#8226;](#He8de)</span><span class="bullet mslide72m">[&#8226;](#H71d7)</span><span class="bullet mslide73m">[&#8226;](#H06d0)</span><span class="bullet mslide74m">[&#8226;](#H98b4)</span><span class="bullet mslide75m">[&#8226;](#Hefb3)</span><span class="bullet mslide76m">[&#8226;](#H76ba)</span>.fg[].bg[]
+#### [Ансамбли](#H8246)
+]
+.mainbar.right-column[
+
+
+
+```r
+(p1 <- predict(m1,newdata=preds,filename=tempfile()))
+```
+
+```
+Warning in .rasterFromRasterFile(grdfile, band = band, objecttype,
+...): size of values file does not match the number of cells (given
+the data type)
+
+Warning in .rasterFromRasterFile(grdfile, band = band, objecttype,
+...): size of values file does not match the number of cells (given
+the data type)
+```
+
+```
+class      : RasterBrick 
+dimensions : 71, 124, 8804, 3  (nrow, ncol, ncell, nlayers)
+resolution : 4219.223, 4219.223  (x, y)
+extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
+crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
+source     : file30bc48c72a2f.grd 
+names      : id_1.sp_1.m_glm, id_2.sp_1.m_gam, id_3.sp_1.m_brt 
+min values :      0.00376331,      0.00217490,      0.20718244 
+max values :       0.9957391,       0.9957009,       0.7832114 
+fullname   : id_1-species_Occurrence-method_glm, id_2-species_Occurrence-method_gam, id_3-species_Occurrence-method_brt 
+```
+
+
+]
+---
+
+name: He8de
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951)
+### [Прогноз](#H12ca).fg[]
+#### [Индивидуальный](#H12ca) <span class="bullet bullet">[&#8226;](#H12ca)</span><span class="bullet bullet-active">[&#8226;](#He8de)</span><span class="bullet mslide72m">[&#8226;](#H71d7)</span><span class="bullet mslide73m">[&#8226;](#H06d0)</span><span class="bullet mslide74m">[&#8226;](#H98b4)</span><span class="bullet mslide75m">[&#8226;](#Hefb3)</span><span class="bullet mslide76m">[&#8226;](#H76ba)</span>.fg[].bg[]
+#### [Ансамбли](#H8246)
+]
+.mainbar.right-column[
+
+
+
+<img src="assets/lesson10//ursa07_unnamed-chunk-109.png" width="1330" height="568" bound style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H71d7
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951)
+### [Прогноз](#H12ca).fg[]
+#### [Индивидуальный](#H12ca) <span class="bullet bullet">[&#8226;](#H12ca)</span><span class="bullet bullet">[&#8226;](#He8de)</span><span class="bullet bullet-active">[&#8226;](#H71d7)</span><span class="bullet mslide73m">[&#8226;](#H06d0)</span><span class="bullet mslide74m">[&#8226;](#H98b4)</span><span class="bullet mslide75m">[&#8226;](#Hefb3)</span><span class="bullet mslide76m">[&#8226;](#H76ba)</span>.fg[].bg[]
+#### [Ансамбли](#H8246)
+]
+.mainbar.right-column[
+
+
+
+```r
+(p2 <- predict(m2,newdata=preds,filename=tempfile()))
+```
+
+```
+Warning in .rasterFromRasterFile(grdfile, band = band, objecttype,
+...): size of values file does not match the number of cells (given
+the data type)
+
+Warning in .rasterFromRasterFile(grdfile, band = band, objecttype,
+...): size of values file does not match the number of cells (given
+the data type)
+```
+
+```
+class      : RasterBrick 
+dimensions : 71, 124, 8804, 10  (nrow, ncol, ncell, nlayers)
+resolution : 4219.223, 4219.223  (x, y)
+extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
+crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
+source     : file30bc3be55d8a.grd 
+names      : id_1.sp_1.m_rf.re_subs, id_2.sp_1.m_rf.re_subs, id_3.sp_1.m_cart.re_subs, id_4.sp_1.m_cart.re_subs, id_5.sp_1.m_fda.re_subs, id_6.sp_1.m_fda.re_subs, id_7.sp_1.m_mars.re_subs, id_8.sp_1.m_mars.re_subs, id_9.sp_1.m_svm.re_subs, id_10.sp_1.m_svm.re_subs 
+min values :           3.133333e-03,           5.133333e-03,             5.084746e-02,             0.000000e+00,            6.021749e-04,            2.035709e-03,             3.165464e-06,             1.493387e-11,            5.398403e-02,             9.056090e-02 
+max values :              0.9998000,              0.9940000,                1.0000000,                1.0000000,               0.9991425,               0.9978045,                0.9994029,                0.9980608,               0.9562224,                0.9328559 
+fullname   : id_1-species_Occurrence-method_rf-replication_subsampling, id_2-species_Occurrence-method_rf-replication_subsampling, id_3-species_Occurrence-method_cart-replication_subsampling, id_4-species_Occurrence-method_cart-replication_subsampling, id_5-species_Occurrence-method_fda-replication_subsampling, id_6-species_Occurrence-method_fda-replication_subsampling, id_7-species_Occurrence-method_mars-replication_subsampling, id_8-species_Occurrence-method_mars-replication_subsampling, id_9-species_Occurrence-method_svm-replication_subsampling, id_10-species_Occurrence-method_svm-replication_subsampling 
+```
+
+
+]
+---
+
+name: H06d0
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951)
+### [Прогноз](#H12ca).fg[]
+#### [Индивидуальный](#H12ca) <span class="bullet bullet">[&#8226;](#H12ca)</span><span class="bullet bullet">[&#8226;](#He8de)</span><span class="bullet bullet">[&#8226;](#H71d7)</span><span class="bullet bullet-active">[&#8226;](#H06d0)</span><span class="bullet mslide74m">[&#8226;](#H98b4)</span><span class="bullet mslide75m">[&#8226;](#Hefb3)</span><span class="bullet mslide76m">[&#8226;](#H76ba)</span>.fg[].bg[]
+#### [Ансамбли](#H8246)
+]
+.mainbar.right-column[
+
+
+<img src="assets/lesson10//ursa09_unnamed-chunk-111.png" width="1330" height="568" bound style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H98b4
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951)
+### [Прогноз](#H12ca).fg[]
+#### [Индивидуальный](#H12ca) <span class="bullet bullet">[&#8226;](#H12ca)</span><span class="bullet bullet">[&#8226;](#He8de)</span><span class="bullet bullet">[&#8226;](#H71d7)</span><span class="bullet bullet">[&#8226;](#H06d0)</span><span class="bullet bullet-active">[&#8226;](#H98b4)</span><span class="bullet mslide75m">[&#8226;](#Hefb3)</span><span class="bullet mslide76m">[&#8226;](#H76ba)</span>.fg[].bg[]
+#### [Ансамбли](#H8246)
+]
+.mainbar.right-column[
+
+
+
+```r
+(p2m <- predict(m2,newdata=preds,mean=T,filename=tempfile()))
+```
+
+```
+Warning in .rasterFromRasterFile(grdfile, band = band, objecttype,
+...): size of values file does not match the number of cells (given
+the data type)
+
+Warning in .rasterFromRasterFile(grdfile, band = band, objecttype,
+...): size of values file does not match the number of cells (given
+the data type)
+```
+
+```
+class      : RasterBrick 
+dimensions : 71, 124, 8804, 5  (nrow, ncol, ncell, nlayers)
+resolution : 4219.223, 4219.223  (x, y)
+extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
+crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
+source     : file30bc20962fc4.grd 
+names      : sp_1.m_rf.re_subs, sp_1.m_cart.re_subs, sp_1.m_fda.re_subs, sp_1.m_mars.re_subs, sp_1.m_svm.re_subs 
+min values :      0.0056583332,        0.0588235296,       0.0013189418,        0.0001104659,       0.0792634357 
+max values :         0.9944083,           1.0000000,          0.9984735,           0.9986220,          0.9400311 
+fullname   : species_Occurrence-method_rf-replication (Mean)_subsampling, species_Occurrence-method_cart-replication (Mean)_subsampling, species_Occurrence-method_fda-replication (Mean)_subsampling, species_Occurrence-method_mars-replication (Mean)_subsampling, species_Occurrence-method_svm-replication (Mean)_subsampling 
+```
+
+
+]
+---
+
+name: Hefb3
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951)
+### [Прогноз](#H12ca).fg[]
+#### [Индивидуальный](#H12ca) <span class="bullet bullet">[&#8226;](#H12ca)</span><span class="bullet bullet">[&#8226;](#He8de)</span><span class="bullet bullet">[&#8226;](#H71d7)</span><span class="bullet bullet">[&#8226;](#H06d0)</span><span class="bullet bullet">[&#8226;](#H98b4)</span><span class="bullet bullet-active">[&#8226;](#Hefb3)</span><span class="bullet mslide76m">[&#8226;](#H76ba)</span>.fg[].bg[]
+#### [Ансамбли](#H8246)
+]
+.mainbar.right-column[
+
+
+<img src="assets/lesson10//ursa11_unnamed-chunk-113.png" width="1330" height="568" bound style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H76ba
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951)
+### [Прогноз](#H12ca).fg[]
+#### [Индивидуальный](#H12ca) <span class="bullet bullet">[&#8226;](#H12ca)</span><span class="bullet bullet">[&#8226;](#He8de)</span><span class="bullet bullet">[&#8226;](#H71d7)</span><span class="bullet bullet">[&#8226;](#H06d0)</span><span class="bullet bullet">[&#8226;](#H98b4)</span><span class="bullet bullet">[&#8226;](#Hefb3)</span><span class="bullet bullet-active">[&#8226;](#H76ba)</span>.fg[].bg[]
+#### [Ансамбли](#H8246)
+]
+.mainbar.right-column[
+
+
+
+```r
+getZ(p2m)
+```
+
+```
+[1] "species_Occurrence-method_rf-replication (Mean)_subsampling"  
+[2] "species_Occurrence-method_cart-replication (Mean)_subsampling"
+[3] "species_Occurrence-method_fda-replication (Mean)_subsampling" 
+[4] "species_Occurrence-method_mars-replication (Mean)_subsampling"
+[5] "species_Occurrence-method_svm-replication (Mean)_subsampling" 
+```
+
+
+]
+---
+
+name: H8246
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951)
+### [Прогноз](#H12ca).fg[]
+#### [Индивидуальный](#H12ca)
+#### [Ансамбли](#H8246) <span class="bullet bullet-active">[&#8226;](#H8246)</span><span class="bullet mslide78m">[&#8226;](#H9102)</span><span class="bullet mslide79m">[&#8226;](#He605)</span>.fg[].bg[]
+]
+.mainbar.right-column[
+
+
+
+```r
+(e1 <- ensemble(m1,newdata=preds,filename=tempfile()
+              ,setting=list(method='weighted',stat='AUC'))) 
+```
+
+```
+class      : RasterLayer 
+dimensions : 71, 124, 8804  (nrow, ncol, ncell)
+resolution : 4219.223, 4219.223  (x, y)
+extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
+crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
+source     : file30bc39fb743d.grd 
+names      : layer 
+values     : 0.08211093, 0.917188  (min, max)
+```
+<img src="assets/lesson10//ursa13_unnamed-chunk-116.png" width="1330" height="320" bound style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H9102
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951)
+### [Прогноз](#H12ca).fg[]
+#### [Индивидуальный](#H12ca)
+#### [Ансамбли](#H8246) <span class="bullet bullet">[&#8226;](#H8246)</span><span class="bullet bullet-active">[&#8226;](#H9102)</span><span class="bullet mslide79m">[&#8226;](#He605)</span>.fg[].bg[]
+]
+.mainbar.right-column[
+
+
+
+```r
+(e2 <- ensemble(m2,newdata=preds,filename=tempfile()
+              ,setting=list(method='weighted',stat='TSS',opt=2)))
+```
+
+```
+class      : RasterLayer 
+dimensions : 71, 124, 8804  (nrow, ncol, ncell)
+resolution : 4219.223, 4219.223  (x, y)
+extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
+crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
+source     : file30bc6b3f3654.grd 
+names      : layer 
+values     : 0.05179795, 0.9626755  (min, max)
+```
+<img src="assets/lesson10//ursa14_unnamed-chunk-118.png" width="1330" height="320" bound style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: He605
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2).fg[]
+### [Находки](#H57f2)
+### [Среда обитания](#Ha4ea)
+### [Модели](#H4951)
+### [Прогноз](#H12ca).fg[]
+#### [Индивидуальный](#H12ca)
+#### [Ансамбли](#H8246) <span class="bullet bullet">[&#8226;](#H8246)</span><span class="bullet bullet">[&#8226;](#H9102)</span><span class="bullet bullet-active">[&#8226;](#He605)</span>.fg[].bg[]
+]
+.mainbar.right-column[
+
+
+
+```r
+(e3 <- ensemble(m2,newdata=preds,filename=tempfile()
+              ,setting=list(method='unweighted')))
+```
+
+```
+class      : RasterLayer 
+dimensions : 71, 124, 8804  (nrow, ncol, ncell)
+resolution : 4219.223, 4219.223  (x, y)
+extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
+crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
+source     : file30bc715e5e9e.grd 
+names      : layer 
+values     : 0.0499945, 0.9643749  (min, max)
+```
+<img src="assets/lesson10//ursa15_unnamed-chunk-120.png" width="1330" height="320" bound style="display: block; margin: auto;" />
+
+
+
+]
+---
+
+name: H1841
+
+.sidebar.left-column[
+## [Подготовка](#H48af)
+## [Моделирование](#H3264)
+## [Пакет **`sdm`**](#H57f2)
+]
+.mainbar.right-column[
+
+
+
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": false,
+"ratio": "29:18",
+"navigation": {
+"scroll": true,
+"click": false,
+"touch": true
+},
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+  </body>
+</html>

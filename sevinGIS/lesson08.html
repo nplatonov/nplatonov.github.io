@@ -419,11 +419,11 @@ First 10 features:
 <span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>                            )</span></code></pre></div>
 <div class="pull-left">
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>adehabitatHR<span class="sc">::</span><span class="fu">plotLSCV</span>(ud[[<span class="dv">1</span>]])</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson08/plot-kernel1-1.svg" width="646.08" height="325" /></p>
+<p class="centered-image"><img src="assets/lesson06/plot-kernel1-1.svg" width="646.08" height="325" /></p>
 </div>
 <div class="pull-right">
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>adehabitatHR<span class="sc">::</span><span class="fu">plotLSCV</span>(ud[[<span class="dv">2</span>]])</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson08/plot-kernel2-1.svg" width="646.08" height="325" /></p>
+<p class="centered-image"><img src="assets/lesson06/plot-kernel2-1.svg" width="646.08" height="325" /></p>
 </div>
 <div class="oversize">
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>ud <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernelUD</span>(sf<span class="sc">::</span><span class="fu">as_Spatial</span>(loc[<span class="st">&quot;BearID_ud&quot;</span>]) <span class="co">#&lt;&lt;</span></span>
@@ -609,7 +609,7 @@ First 10 features:
 </tbody>
 </table>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>(p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ta,<span class="fu">aes</span>(level,area,<span class="at">colour=</span>bear))<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">geom_point</span>())</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson08/ggplot-1.svg" width="646.08" height="565" /></p>
+<p class="centered-image"><img src="assets/lesson06/ggplot-1.svg" width="646.08" height="565" /></p>
 </div>
 <div id="извлечение-уровней" class="section level4">
 <h4>Извлечение уровней</h4>
@@ -650,9 +650,9 @@ homerange11 168  17253.45    50 POLYGON ((-6920.856 -214782...</code></pre>
 <div id="визуализация" class="section level4">
 <h4>Визуализация</h4>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hr)</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson08/plothr1-1.svg" width="646.08" /></p>
+<p class="centered-image"><img src="assets/lesson06/plothr1-1.svg" width="646.08" /></p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hr[<span class="fu">order</span>(hr<span class="sc">$</span>level),])</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson08/plothr2-1.svg" width="646.08" /></p>
+<p class="centered-image"><img src="assets/lesson06/plothr2-1.svg" width="646.08" /></p>
 </div>
 </div>
 <div id="анализ-траекторий" class="section level3">
@@ -976,13 +976,13 @@ Characteristics of the bursts:
 <h4>Визуализация</h4>
 <p>Тест на нормальное распределение пропусков</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runsNAltraj</span>(lt4)</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson08/dd11-1.svg" width="646.08" /></p>
+<p class="centered-image"><img src="assets/lesson06/dd11-1.svg" width="646.08" /></p>
 <p>Просмотр траекторий</p>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lt4)</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson08/dd13-1.svg" width="576" /></p>
+<p class="centered-image"><img src="assets/lesson06/dd13-1.svg" width="576" /></p>
 <p>Просмотр отдельно взятой траектории</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lt4[<span class="dv">8</span>])</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson08/dd14-1.svg" width="576" /></p>
+<p class="centered-image"><img src="assets/lesson06/dd14-1.svg" width="576" /></p>
 <p>Вспомогательная функция</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;plottraj&#39;</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(lt,<span class="at">desc=</span><span class="fu">c</span>(<span class="st">&quot;burst&quot;</span>,<span class="st">&quot;id&quot;</span>)) {</span>
 <span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>   desc <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(desc)</span>
@@ -1012,7 +1012,7 @@ Characteristics of the bursts:
 <h5>шаг 3 суток, с пропусками</h5>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>(m1 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt4[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_dd17_ae56d1f626d1daed5bebafaff69542fd.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_dd17_ae56d1f626d1daed5bebafaff69542fd.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <p><sup><a href="#data-lt4">См. исходные данные</a></sup></p>
@@ -1021,7 +1021,7 @@ Characteristics of the bursts:
 <h5>шаг 50 км, без пропусков</h5>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>(m2 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt6[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_dd19_61e5d567e0a9ec8450baebe8f89491fb.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_dd19_61e5d567e0a9ec8450baebe8f89491fb.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <p><sup><a href="#data-lt6">См. исходные данные</a></sup></p>
@@ -1030,7 +1030,7 @@ Characteristics of the bursts:
 <h5>шаг 6 суток, без пропусков</h5>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>(m3 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt7[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_dd21_9aa0df83ebf4873cfe854fdfba08e511.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_dd21_9aa0df83ebf4873cfe854fdfba08e511.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <p><sup><a href="#data-lt7">См. исходные данные</a></sup></p>
@@ -1064,7 +1064,7 @@ Characteristics of the bursts:
 <span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>opP <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="fu">length</span>(lv)))</span>
 <span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>nseg <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lv,chooseseg,<span class="at">draw=</span><span class="cn">TRUE</span>,<span class="at">output=</span><span class="st">&quot;opt&quot;</span>)</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson08/dd24-1.svg" width="646.08" height="480" /></p>
+<p class="centered-image"><img src="assets/lesson06/dd24-1.svg" width="646.08" height="480" /></p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(opP)</span>
 <span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>nseg</span></code></pre></div>
 <pre><code>[1] 3 2</code></pre>
@@ -1073,7 +1073,7 @@ Characteristics of the bursts:
 <span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a>   nseg <span class="ot">&lt;-</span> <span class="fu">chooseseg</span>(lv2,<span class="at">output=</span><span class="st">&quot;opt&quot;</span>,<span class="at">draw=</span><span class="cn">FALSE</span>)</span>
 <span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">findpath</span>(lv2,<span class="at">K=</span>nseg,<span class="at">plotit=</span><span class="cn">TRUE</span>)</span>
 <span id="cb123-5"><a href="#cb123-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson08/dd25-1.svg" width="646.08" height="470" /></p>
+<p class="centered-image"><img src="assets/lesson06/dd25-1.svg" width="646.08" height="470" /></p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(opP)</span></code></pre></div>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(lt6b))</span>
 <span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">attr</span>(lt6b[[i]],<span class="st">&quot;segments&quot;</span>) <span class="ot">&lt;-</span> fp[[i]]</span>
@@ -1098,7 +1098,7 @@ Characteristics of the bursts:
 <span id="cb125-21"><a href="#cb125-21" aria-hidden="true" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_along</span>(res),<span class="cf">function</span>(x) <span class="st">&quot;dt_mean&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>(m4 <span class="ot">&lt;-</span> <span class="fu">mapview</span>(res,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">color=</span>color,<span class="at">label=</span>label))</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_dd28_f6772b0d39ec83ebb161d8817095c589.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_dd28_f6772b0d39ec83ebb161d8817095c589.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 </div>
@@ -1115,18 +1115,18 @@ Characteristics of the bursts:
 <div id="plt" class="section level5">
 <h5>PLT</h5>
 <p>OziExprorer</p>
-<p class="centered-image"><img src="assets/lesson08/PLT-open.png" width="1092" /></p>
+<p class="centered-image"><img src="assets/lesson06/PLT-open.png" width="1092" /></p>
 <p>Формат *.PLT, используется драйвер GPSBabel.</p>
-<p class="centered-image"><img src="assets/lesson08/PLT-show.png" width="1096" /></p>
+<p class="centered-image"><img src="assets/lesson06/PLT-show.png" width="1096" /></p>
 </div>
 <div id="gpx" class="section level5">
 <h5>GPX</h5>
 <p>Garmin через Mapsource</p>
-<p class="centered-image"><img src="assets/lesson08/GPX-open.png" width="1092" /></p>
+<p class="centered-image"><img src="assets/lesson06/GPX-open.png" width="1092" /></p>
 <p><span id="QGIS-layer" class="hiddenanchor"> </span></p>
-<p class="centered-image"><img src="assets/lesson08/GPX-group.png" width="1085" /></p>
+<p class="centered-image"><img src="assets/lesson06/GPX-group.png" width="1085" /></p>
 <p>См. метаданные по слоям в <a href="#R-layer">R</a></p>
-<p class="centered-image"><img src="assets/lesson08/GPX-show.png" width="1096" /></p>
+<p class="centered-image"><img src="assets/lesson06/GPX-show.png" width="1096" /></p>
 </div>
 </div>
 </div>
@@ -1170,7 +1170,7 @@ Available layers:
 <pre><code>set PATH=%PATH%;%OSGEO4W%/apps/Qt5/bin
 where Qt5Core.dll
 Rscript -e &quot;sf::st_layers(&#39;Ozi/20090201_car.plt&#39;)&quot;</code></pre>
-<p class="centered-image"><img src="assets/lesson08/PLT-GPSbabel.png" width="539" height="430" /></p>
+<p class="centered-image"><img src="assets/lesson06/PLT-GPSbabel.png" width="539" height="430" /></p>
 </div>
 </div>
 <div id="gpx-1" class="section level5">
@@ -1250,7 +1250,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb148-15"><a href="#cb148-15" aria-hidden="true" tabindex="-1"></a>              )</span></code></pre></div>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>s3d</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_s3d-show_3c476bc0dc8a6187d1f82cd25d505a63.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_s3d-show_3c476bc0dc8a6187d1f82cd25d505a63.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(tr) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
@@ -1267,7 +1267,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb150-12"><a href="#cb150-12" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">coloraxis=</span><span class="fu">list</span>(<span class="at">colorscale =</span> <span class="st">&quot;Viridis&quot;</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>dm</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson08/widget_dm-plot_72f098a107a50769936c620f96fb7a24.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_dm-plot_72f098a107a50769936c620f96fb7a24.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <div id="refs" class="references csl-bib-body" entry-spacing="1">

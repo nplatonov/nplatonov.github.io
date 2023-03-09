@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Никита Платонов" />
+
+
+<title>Гамбузия</title>
+
+<link href="https://nplatonov.github.io/site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="https://nplatonov.github.io/site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="https://nplatonov.github.io/site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Анализ поедаемости гамбузией различных стадий развития серой жабы и травяной лягушки</h1>
+<h4 class="author">Никита Платонов</h4>
+<h4 class="date"><span class="when"> <span class="updated">Обновлено: 2023-02-28 19:25</span></span></h4>
+
+
+
+<p>Использовался лист “Мол. голов. темпорария”, диапазоны ячеек “A9:J40” и “A45:J76”.</p>
+<table>
+<caption><span class="caption-prefix" id="tab:tbl-data">Таблица 1<span class="caption-suffix"></span> </span>Данные эксперимента</caption>
+<thead>
+<tr class="header">
+<th align="right">fish</th>
+<th align="left">gender</th>
+<th align="left">round</th>
+<th align="left">result1</th>
+<th align="left">result2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">F</td>
+<td align="left">A</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">F</td>
+<td align="left">B</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">M</td>
+<td align="left">A</td>
+<td align="left">2</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">M</td>
+<td align="left">B</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">F</td>
+<td align="left">A</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">F</td>
+<td align="left">B</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">M</td>
+<td align="left">A</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">M</td>
+<td align="left">B</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="left">F</td>
+<td align="left">A</td>
+<td align="left">1</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="left">F</td>
+<td align="left">B</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="right">11</td>
+<td align="left">M</td>
+<td align="left">A</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="right">12</td>
+<td align="left">M</td>
+<td align="left">B</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="right">13</td>
+<td align="left">F</td>
+<td align="left">A</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="right">14</td>
+<td align="left">F</td>
+<td align="left">B</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="right">15</td>
+<td align="left">M</td>
+<td align="left">A</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="right">16</td>
+<td align="left">M</td>
+<td align="left">B</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="right">17</td>
+<td align="left">F</td>
+<td align="left">A</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="right">18</td>
+<td align="left">F</td>
+<td align="left">B</td>
+<td align="left">2</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="right">19</td>
+<td align="left">M</td>
+<td align="left">A</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="left">M</td>
+<td align="left">B</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="right">21</td>
+<td align="left">F</td>
+<td align="left">A</td>
+<td align="left">1</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="right">22</td>
+<td align="left">F</td>
+<td align="left">B</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="right">23</td>
+<td align="left">M</td>
+<td align="left">A</td>
+<td align="left">2</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="right">24</td>
+<td align="left">M</td>
+<td align="left">B</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="right">25</td>
+<td align="left">F</td>
+<td align="left">A</td>
+<td align="left">1</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="right">26</td>
+<td align="left">F</td>
+<td align="left">B</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="right">27</td>
+<td align="left">M</td>
+<td align="left">A</td>
+<td align="left">2</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="right">28</td>
+<td align="left">M</td>
+<td align="left">B</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="right">29</td>
+<td align="left">F</td>
+<td align="left">A</td>
+<td align="left">2</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="right">30</td>
+<td align="left">F</td>
+<td align="left">B</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<p>В табл. <a href="#tab:tbl-data">1</a> <code>result1</code> и <code>result2</code> означают результат в первый и второй день эксперимента.
+<!--
+Раунды 1 и 2 обозначены как раунды A и B, соответственно.
+Столбец `stat1` получен конкатенацией столбцов `result1`, `result2`.
+Столбец `stat2` получен конкатенацией столбцов `round`, `result1`, `result2`.
+Столбец `stat3` получен конкатенацией столбцов `gender`, `result1`, `result2`.
+--></p>
+<table>
+<caption><span class="caption-prefix" id="tab:tbl-stat1">Таблица 2<span class="caption-suffix"></span> </span>Перекрестные результаты первого (строки) и второго (столбцы) эксперимента без зависимости от пола и раунда</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+<th align="left">4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span style="font-weight: 600;">1</span></td>
+<td align="left">10</td>
+<td align="left">3</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr class="even">
+<td align="left"><span style="font-weight: 600;">2</span></td>
+<td align="left">4</td>
+<td align="left">12</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr class="odd">
+<td align="left"><span style="font-weight: 600;">3</span></td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr class="even">
+<td align="left"><span style="font-weight: 600;">4</span></td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span class="caption-prefix" id="tab:tbl-stat2">Таблица 3<span class="caption-suffix"></span> </span>Перекрестные результаты первого (строки) и второго (столбцы) эксперимента по раунду A/B</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+<th align="left">4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span style="font-weight: 600;">1</span></td>
+<td align="left">4/6</td>
+<td align="left">3/0</td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+</tr>
+<tr class="even">
+<td align="left"><span style="font-weight: 600;">2</span></td>
+<td align="left">3/1</td>
+<td align="left">4/8</td>
+<td align="left">1/0</td>
+<td align="left">0/0</td>
+</tr>
+<tr class="odd">
+<td align="left"><span style="font-weight: 600;">3</span></td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+</tr>
+<tr class="even">
+<td align="left"><span style="font-weight: 600;">4</span></td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span class="caption-prefix" id="tab:tbl-stat3">Таблица 4<span class="caption-suffix"></span> </span>Перекрестные результаты первого (строки) и второго (столбцы) эксперимента по полу F/M</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+<th align="left">4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span style="font-weight: 600;">1</span></td>
+<td align="left">9/1</td>
+<td align="left">3/0</td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+</tr>
+<tr class="even">
+<td align="left"><span style="font-weight: 600;">2</span></td>
+<td align="left">2/2</td>
+<td align="left">2/10</td>
+<td align="left">0/1</td>
+<td align="left">0/0</td>
+</tr>
+<tr class="odd">
+<td align="left"><span style="font-weight: 600;">3</span></td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+</tr>
+<tr class="even">
+<td align="left"><span style="font-weight: 600;">4</span></td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+<td align="left">0/0</td>
+</tr>
+</tbody>
+</table>
+<p>Результаты обобщенной линейной модели зависимости результатов (в порядковой шкале) первого дня от пола и раунда. Поедаемость зависит от пола, но не зависит от раунда:</p>
+<pre><code>
+Call:
+glm(formula = result1 ~ gender + round, family = &quot;binomial&quot;, 
+    data = res)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.4112  -0.6721   0.3352   0.4298   1.7881  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)   
+(Intercept)  -1.3727     0.8206  -1.673  0.09437 . 
+genderM       3.7084     1.2044   3.079  0.00208 **
+roundB        0.5150     1.0267   0.502  0.61595   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 41.054  on 29  degrees of freedom
+Residual deviance: 24.944  on 27  degrees of freedom
+AIC: 30.944
+
+Number of Fisher Scoring iterations: 5</code></pre>
+<p>Результаты линейной модели зависимости результатов (в шкале интервалов) первого дня от пола и раунда. Поедаемость зависит от пола и не зависит от раунда:</p>
+<pre><code>
+Call:
+lm(formula = as.numeric(result1) ~ gender + round, data = res)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.9619 -0.2167  0.0381  0.1048  0.7833 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.21667    0.11758  10.347 6.79e-11 ***
+genderM      0.67857    0.13900   4.882 4.19e-05 ***
+roundB       0.06667    0.13869   0.481    0.635    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.3798 on 27 degrees of freedom
+Multiple R-squared:  0.4712,    Adjusted R-squared:  0.4321 
+F-statistic: 12.03 on 2 and 27 DF,  p-value: 0.0001837</code></pre>
+<p>Результаты линейной модели зависимости результатов (в шкале интервалов) второго дня от пола и раунда. Поедаемость зависит от пола, но не зависит от раунда. И статистическая значимость зависимой переменной для второго дня меньше, чем для первого. То есть, во второй день интерес самок к лягушке чуть менее выражен:</p>
+<pre><code>
+Call:
+lm(formula = as.numeric(result2) ~ gender + round, data = res)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.8905 -0.3292  0.1095  0.1762  1.1095 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.34583    0.15895   8.467 4.44e-09 ***
+genderM      0.54464    0.18791   2.898  0.00736 ** 
+roundB      -0.06667    0.18749  -0.356  0.72492    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.5135 on 27 degrees of freedom
+Multiple R-squared:   0.24, Adjusted R-squared:  0.1837 
+F-statistic: 4.264 on 2 and 27 DF,  p-value: 0.02459</code></pre>
+<p>Результаты обобщенной линейной модели зависимости результатов (в порядковой шкале) второго дня от пола и раунда. Поедаемость зависит от пола, но не зависит от раунда:</p>
+<pre><code>
+Call:
+glm(formula = result2 ~ gender + round, family = &quot;binomial&quot;, 
+    data = res)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.7552  -0.8657   0.6945   0.6945   1.5252  
+
+Coefficients:
+              Estimate Std. Error z value Pr(&gt;|z|)  
+(Intercept) -7.885e-01  6.808e-01  -1.158   0.2468  
+genderM      2.088e+00  8.457e-01   2.469   0.0136 *
+roundB      -1.845e-16  8.308e-01   0.000   1.0000  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 41.455  on 29  degrees of freedom
+Residual deviance: 34.423  on 27  degrees of freedom
+AIC: 40.423
+
+Number of Fisher Scoring iterations: 4</code></pre>
+<p>Просуммируем результаты в интервальной шкале:</p>
+<pre><code>
+Call:
+lm(formula = as.numeric(result1) + as.numeric(result2) ~ gender + 
+    round, data = res)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.7857 -0.5625  0.2143  0.3817  1.4375 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 2.563e+00  2.252e-01  11.376 8.33e-12 ***
+genderM     1.223e+00  2.663e-01   4.594 9.08e-05 ***
+roundB      5.676e-16  2.657e-01   0.000        1    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.7276 on 27 degrees of freedom
+Multiple R-squared:  0.4387,    Adjusted R-squared:  0.3971 
+F-statistic: 10.55 on 2 and 27 DF,  p-value: 0.0004114</code></pre>
+<p>Можно попробовать в качестве предиктанда брать несъеденную массу или, наборот, съеденную массу корма.</p>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
