@@ -620,9 +620,8 @@ iframe:not([class]) {
    filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=.2);
   */
 }
-iframe.ursa-widgetize {
+iframe.ursa-widgetize, iframe.magnify, iframe[magnify] {
    border: 1px dashed #eee;
-   height: calc( 98% / var(--magnifier));
    zoom: var(--magnifier); 
    -ms-zoome: var(--magnifier);
    -moz-transform: scale(var(--magnifier)); 
@@ -632,6 +631,9 @@ iframe.ursa-widgetize {
    -webkit-transform: scale(var(--magnifier));
    -webkit-transform-origin: 0 0;
    max-width: calc(100% / var(--magnifier));
+}
+iframe.ursa-widgetize {
+   height: calc( 98% / var(--magnifier));
 }
 /*
 .left-column h2:not(:last-of-type), .left-column h3:not(:last-child) {
