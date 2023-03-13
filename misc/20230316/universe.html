@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Эгвекинот (15:29)</title>
+    <title>Egvekinot (02:14)</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Никита Платонов" />
     <script src="https://nplatonov.github.io/site_libs/header-attrs-2.20/header-attrs.js"></script>
     <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
@@ -17,7 +16,7 @@
   <body>
 <style>
 .remark-backdrop:after{
-   content: 'Никита Платонов \A \A Информационное обеспечение работ';
+   content: 'Nikita Platonov \A \A Sevin Dateware';
 }
 :root {--pointsize: 22pt;}
 </style>
@@ -42,7 +41,6 @@ layout: true
 <img src="assets/pbu-logo.jpg" width="78" />
 
 
-
 ]
 
 .shorttitle[
@@ -57,9 +55,9 @@ name: H3216
 <iframe width='220' height='220' class='timenow' src='https://www.timeanddate.com/worldclock/fullscreen.html?n=1440' frameborder='0' allow='encrypted-media' allowfullscreen></iframe>
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480)
-# [Коллаборация](#H5a5f)
+# [Researches](#H4a95)
+# [Field work](#H6e42)
+# [Office work](#H45d2)
 ]
 .mainbar.right-column[
 
@@ -67,39 +65,39 @@ name: H3216
 
 
 
-.author[Никита&nbsp;Платонов]
+.author[Nikita&nbsp;Platonov]
 
 
-.institute[Институт проблем экологии и эволюции им. А. Н. Северцова Российской академии наук]
+.institute[A. N. Severtsov Institute of Ecology and Evolution of Russian Academy of Sciences]
 
 
 
 
-.title[Информационное обеспечение исследований белого медведя]
+.title[Software and dataware integration to polar bear studies]
 
 
-.subtitle[Разработки и их применение в 2021-2023 гг.]
+.subtitle[Experiences of the Permanent Expedition of Russian Academy of Sciences]
 
 
-.what[VI<sup>ая</sup> научно-практическая конференция «Вселенная белого медведя», 15-16 марта 2023 г.]
+.what[VI<sup>th</sup> «Polar Bear Universe» Conference, 15-16 March 2023]
 
 
-.where[Анадырь, Чукотский АО]
+.where[Anadyr, Chukotka]
 
 
-.when[2023-03-16 .updated[Обновлено: 2023-03-12 15:29]]
+.when[2023-03-16 .updated[Updated: 2023-03-14 02:14]]
 
 
 
 ]
 ---
-class: scrollable
-name:  H6abe
+
+name: H4a95
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe).fg[].bg[]
-# [Полевые работы](#Hb480)
-# [Коллаборация](#H5a5f)
+# [Researches](#H4a95).fg[].bg[]
+# [Field work](#H6e42)
+# [Office work](#H45d2)
 ]
 .mainbar.right-column[
 
@@ -119,13 +117,38 @@ name:  H6abe
 
 
 
+ ### «The Program For Polar Bear Researches In The Russian Arctic»
+
+Performed by the Permanent Expedition of Russian Academy of Sciences
+
+Comprehensive polar bear study:
+
+.font90[
 
 
- ## «Программа изучения белого медведя в Российской Артике»
++ Estimating spatial-temporal distribution of polar bears
 
++ Evaluating polar bear movement patterns and habitat use parameters in the different temporal resolutions using satellite biotelemetry
+
++ Studying polar bear reproductive biology
+
++ Investigating feeding, provision by food resources, the dynamics of primary preys of polar bear
+
++ Detection natural and human-induced factors, which influence to polar bear reproduction and survival
+
++ Genetic identification of polar bears
+
++ Studying of intra-annual and inter-annual variability of sea ice and other habitat parameters
+
+]
+
+
+]
+???
 Цель: комплексное изучение белого медведя как вида
 
-.font70[
+
+
 
 + Изучение пространственно-временного размещения животных в зависимости от факторов окружающей среды.
 
@@ -145,7 +168,6 @@ name:  H6abe
 
 + Изучение сезонной и межгодовой динамики ледовых местообитаний
 
-]
 
 
 
@@ -155,24 +177,49 @@ name:  H6abe
 
 
 
-
-
-]
 ---
 
-name: Hb480
+name: H6e42
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480).fg[].bg[]
-## [Целостность припая](#H1231)
-## [Планирование авиаучетов](#H167c)
-# [Коллаборация](#H5a5f)
+# [Researches](#H4a95)
+# [Field work](#H6e42).fg[].bg[]
+## [Ice conditions](#H14ea)
+## [Weather forecast](#Hd14f)
+# [Office work](#H45d2)
 ]
 .mainbar.right-column[
 
 
-.font95[
+.font93[
+
+Issues:
+
++ Data traffic is limited by volume and speed, with interrupted sessions
+
++ Data are required to be near real-time.
+
+Solutions:
+
++ Tasks by schedule or requests on server, located with favorable traffic conditions. Output is text summary or lightweight figures.
+
++ Scripts for automatic data download during low traffic periods at night or outdoor works.
+
++ API usage instead of interactive and multi-step browser requests.
+
+   + Argos satellite biotelemetry data – SOAP requests, with additional profit in uniform date format.
+   
+   + Web map services (WMS) and tile map services (TMS) – data volume is defined by screen resolution
+
++ Emergency assistance – voice or messages via Iridium satellite phones
+
+]
+
+
+]
+???
+
+
 
 Проблема:
 
@@ -193,66 +240,64 @@ name: Hb480
    + Картографические интернет сервисы TMS и WMS – разрешение данных по размеру экрана
 
 + «Помощь друга» – голосовая спутниковая связь
-]
 
 
-]
 ---
 
-name: H1231
+name: H14ea
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480).fg[]
-## [Целостность припая](#H1231) <span class="bullet bullet-active">[&#8226;](#H1231)</span><span class="bullet mslide7m">[&#8226;](#H427c)</span>.fg[].bg[]
-## [Планирование авиаучетов](#H167c)
-# [Коллаборация](#H5a5f)
+# [Researches](#H4a95)
+# [Field work](#H6e42).fg[]
+## [Ice conditions](#H14ea) <span class="bullet bullet-active">[&#8226;](#H14ea)</span><span class="bullet mslide9m">[&#8226;](#Ha5c4)</span>.fg[].bg[]
+## [Weather forecast](#Hd14f)
+# [Office work](#H45d2)
 ]
 .mainbar.right-column[
 
 
-Радиолокационные изображения Sentinel-1
+Sentinel-1 active microwave data<sup><a href="#fn">1</a></sup><span id="ref1"></span>
 
 <div class="figure" style="text-align: center">
-<img src="assets/S1B_EW_GRDM_1SDH_20210419T042651_20210419T042751_026531_032B0C_C096-ql.jpg" alt="Исходный размер изображения около 200 МБ" width="1330" height="568" />
-<p class="caption centered">Исходный размер изображения около 200 МБ</p>
+<img src="assets/S1B_EW_GRDM_1SDH_20210419T042651_20210419T042751_026531_032B0C_C096-ql.jpg" alt="S1B_EW_GRDM_1SDH_20210419T042651_20210419T04… (~200 МB)" width="1330" height="568" />
+<p class="caption centered">S1B_EW_GRDM_1SDH_20210419T042651_20210419T04… (~200 МB)</p>
 </div>
 
 
 ]
 ---
 
-name: H427c
+name: Ha5c4
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480).fg[]
-## [Целостность припая](#H1231) <span class="bullet bullet">[&#8226;](#H1231)</span><span class="bullet bullet-active">[&#8226;](#H427c)</span>.fg[].bg[]
-## [Планирование авиаучетов](#H167c)
-# [Коллаборация](#H5a5f)
+# [Researches](#H4a95)
+# [Field work](#H6e42).fg[]
+## [Ice conditions](#H14ea) <span class="bullet bullet">[&#8226;](#H14ea)</span><span class="bullet bullet-active">[&#8226;](#Ha5c4)</span>.fg[].bg[]
+## [Weather forecast](#Hd14f)
+# [Office work](#H45d2)
 ]
 .mainbar.right-column[
 
 
-Визуальная оценка разрушения ледового покрова
+Visual control for landfast ice continuity
 
 <div class="figure" style="text-align: center">
-<img src="assets/hv-20210419-0426.png" alt="Необходимый для работы фрагмент около 200 КБ" width="1330" height="568" />
-<p class="caption centered">Необходимый для работы фрагмент около 200 КБ</p>
+<img src="assets/hv-20210419-0426.png" alt="Required figure/image size is 100-200 KB" width="1330" height="568" />
+<p class="caption centered">Required figure/image size is 100-200 KB</p>
 </div>
 
 
 ]
 ---
 
-name: H167c
+name: Hd14f
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480).fg[]
-## [Целостность припая](#H1231)
-## [Планирование авиаучетов](#H167c).fg[].bg[]
-# [Коллаборация](#H5a5f)
+# [Researches](#H4a95)
+# [Field work](#H6e42).fg[]
+## [Ice conditions](#H14ea)
+## [Weather forecast](#Hd14f).fg[].bg[]
+# [Office work](#H45d2)
 ]
 .mainbar.right-column[
 
@@ -263,28 +308,65 @@ name: H167c
 
 .scrollable[
 
-Данные GFS по атмосферной циркуляции: давление на уровне моря, фракция обласности и ветер по уровням геопотенциальных высот, горизонтальная видимость, осадки *и др.*
+Raw GFS atmosphere data in GRIB format: sea level pressure, cloud fraction and wind on geopotential height levels (aerial survey), horizontal visibility, precipitation rates, *etc*.
 
 <img src="assets/cloud-AeroVolga.png" width="1330" height="1340" bound style="display: block; margin: auto;" />
 ]
 
 
 ]
+???
+
+
+
+Данные GFS по атмосферной циркуляции: давление на уровне моря, фракция облачности и ветер по уровням геопотенциальных высот, горизонтальная видимость, осадки *и др.*
+
+
 ---
 
-name: H5a5f
+name: H45d2
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480)
-# [Коллаборация](#H5a5f).fg[].bg[]
-## [Обмен данными](#H4618)
-## [Обмен результатами](#H5eb9)
+# [Researches](#H4a95)
+# [Field work](#H6e42)
+# [Office work](#H45d2) <span class="bullet bullet-active">[&#8226;](#H45d2)</span><span class="bullet mslide15m">[&#8226;](#Hb9e9)</span>.fg[].bg[]
+## [Polar bear tracking](#Ha282)
+## [Trajectory analysis](#H4821)
+## [Environmental conditions](#He059)
 ]
 .mainbar.right-column[
 
 
- ## Воспроиз­во­ди­мые исследо­вания
+ ## Reproducible researces
+
+.font100[
+
++ Code (program)
+
+   + converts raw data to processed data
+   
+   + does data analysis
+   
+   + includes output (tables, figures, inline text) to report (*literate programming*)
+   
+   + gets results for a new data set
+
+Implementation: input  alt="R" class="inline" src=https://cran.rstudio.com/Rlogo.svg>code, integrated to extended (Rmarkdown   class="inline" src=https://github.com/rstudio/rmarkdown/raw/main/man/figures/logo.png>) markup language Markdown  class="inline" src=https://seeklogo.com/images/M/markdown-logo-102FDA095E-seeklogo.com.png?v=637829616810000000>, is converted by <img class="inline" altassets/957d4249~chunk=%22Pandoc" src="assets/pandoc.png"> tool to formatted documents in various formats. 
+
+Collaboration: web applications (<img alt="Shiny" class="inline" src=https://shiny.rstudio.com/images/shiny-solo.svg>)
+
++ Server avoids software (IDEs, GIS) installing
+
++ Client (GUI) avoids coding
+
+]
+
+
+]
+???
+Реализация: язык программирования  alt="R" class="inline" src=https://cran.rstudio.com/Rlogo.svg>, внедренный в язык текстовой разметки markdown  class="inline" src=https://seeklogo.com/images/M/markdown-logo-102FDA095E-seeklogo.com.png?v=637829616810000000> (Rmarkdown  class="inline" src=https://github.com/rstudio/rmarkdown/raw/main/man/figures/logo.png>), преобразуется утилитой <img class="inline" altassets/957d4249~chunk=%22Pandoc" src="assets/pandoc.png"> в документы различных форматов. 
+Популяризация: веб-приложения (например, <img alt="Shiny" class="inline" src=https://shiny.rstudio.com/images/shiny-solo.svg>)
+
 
 + Программный код
 
@@ -293,31 +375,48 @@ name: H5a5f
    + выполняет анализ данных
    
    + включает результаты анализа в отчет
+   
+   + позволяет получить результат на новом наборе данных
 
-Реализация: язык программирования R, внедренный в язык текстовой разметки markdown (Rmarkdown), преобразуется утилитой pandoc в документы различных форматов. 
 
-Популяризация: веб-приложения (например, Shiny)
+
+
 
 + Не нужно устанавливать программное обеспечение (ГИС, IDE)
 
 + Графическая оболочка скрывает программирование
 
-
-
-
-]
 ---
 
-name: H4618
+name: Hb9e9
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480)
-# [Коллаборация](#H5a5f).fg[]
-## [Обмен данными](#H4618).fg[].bg[]
-## [Обмен результатами](#H5eb9)
+# [Researches](#H4a95)
+# [Field work](#H6e42)
+# [Office work](#H45d2) <span class="bullet bullet">[&#8226;](#H45d2)</span><span class="bullet bullet-active">[&#8226;](#Hb9e9)</span>.fg[].bg[]
+## [Polar bear tracking](#Ha282)
+## [Trajectory analysis](#H4821)
+## [Environmental conditions](#He059)
 ]
 .mainbar.right-column[
+
+
+ ### Data exchange
+
+Exchangeable data formates
+
++ raster GIS data: GeoTIFF (~~ArcGIS database~~)
+
++ vector GIS data: ESRI Shapefile (~~ArcGIS database~~)
+
++ tables: CSV (~~Excel sheets with colored characters and cells~~)
+
++ GPS for routes, tracks and waypoints: GPX (~~raw files in device storage~~)
+
+
+]
+???
+
 
 
 Универсальные форматы данные
@@ -331,31 +430,17 @@ name: H4618
 + для треков, маршрутов и находок GPX (~~не во внутреннем формате прибора~~)
 
 
-
-
-
-
-
-
-
-
-
-
-
-]
 ---
 
-name: H5eb9
+name: Ha282
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480)
-# [Коллаборация](#H5a5f).fg[]
-## [Обмен данными](#H4618)
-## [Обмен результатами](#H5eb9).fg[]
-### [Спутниковая биотелеметрия](#H5eb9) <span class="bullet bullet-active">[&#8226;](#H5eb9)</span><span class="bullet mslide14m">[&#8226;](#Hceee)</span>.fg[].bg[]
-### [Анализ перемещений](#H8dfd)
-### [Просмотр MODIS](#H154b)
+# [Researches](#H4a95)
+# [Field work](#H6e42)
+# [Office work](#H45d2).fg[]
+## [Polar bear tracking](#Ha282) <span class="bullet bullet-active">[&#8226;](#Ha282)</span><span class="bullet mslide18m">[&#8226;](#Hc758)</span>.fg[].bg[]
+## [Trajectory analysis](#H4821)
+## [Environmental conditions](#He059)
 ]
 .mainbar.right-column[
 
@@ -365,22 +450,20 @@ name: H5eb9
 ]
 ---
 
-name: Hceee
+name: Hc758
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480)
-# [Коллаборация](#H5a5f).fg[]
-## [Обмен данными](#H4618)
-## [Обмен результатами](#H5eb9).fg[]
-### [Спутниковая биотелеметрия](#H5eb9) <span class="bullet bullet">[&#8226;](#H5eb9)</span><span class="bullet bullet-active">[&#8226;](#Hceee)</span>.fg[].bg[]
-### [Анализ перемещений](#H8dfd)
-### [Просмотр MODIS](#H154b)
+# [Researches](#H4a95)
+# [Field work](#H6e42)
+# [Office work](#H45d2).fg[]
+## [Polar bear tracking](#Ha282) <span class="bullet bullet">[&#8226;](#Ha282)</span><span class="bullet bullet-active">[&#8226;](#Hc758)</span>.fg[].bg[]
+## [Trajectory analysis](#H4821)
+## [Environmental conditions](#He059)
 ]
 .mainbar.right-column[
 
 
-<iframe src="https://nplatonov.shinyapps.io/argos?branch=somov" width="1330" height="620px" data-external="1" freeze></iframe>
+<iframe src="http://127.0.0.1:9990/?branch=somov" width="1330" height="650px" data-external="1" freeze></iframe>
 
 
 
@@ -389,17 +472,15 @@ name: Hceee
 ]
 ---
 
-name: H8dfd
+name: H4821
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480)
-# [Коллаборация](#H5a5f).fg[]
-## [Обмен данными](#H4618)
-## [Обмен результатами](#H5eb9).fg[]
-### [Спутниковая биотелеметрия](#H5eb9)
-### [Анализ перемещений](#H8dfd) <span class="bullet bullet-active">[&#8226;](#H8dfd)</span><span class="bullet mslide16m">[&#8226;](#H20e0)</span>.fg[].bg[]
-### [Просмотр MODIS](#H154b)
+# [Researches](#H4a95)
+# [Field work](#H6e42)
+# [Office work](#H45d2).fg[]
+## [Polar bear tracking](#Ha282)
+## [Trajectory analysis](#H4821) <span class="bullet bullet-active">[&#8226;](#H4821)</span><span class="bullet mslide20m">[&#8226;](#He2ae)</span>.fg[].bg[]
+## [Environmental conditions](#He059)
 ]
 .mainbar.right-column[
 
@@ -411,22 +492,20 @@ name: H8dfd
 ]
 ---
 
-name: H20e0
+name: He2ae
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480)
-# [Коллаборация](#H5a5f).fg[]
-## [Обмен данными](#H4618)
-## [Обмен результатами](#H5eb9).fg[]
-### [Спутниковая биотелеметрия](#H5eb9)
-### [Анализ перемещений](#H8dfd) <span class="bullet bullet">[&#8226;](#H8dfd)</span><span class="bullet bullet-active">[&#8226;](#H20e0)</span>.fg[].bg[]
-### [Просмотр MODIS](#H154b)
+# [Researches](#H4a95)
+# [Field work](#H6e42)
+# [Office work](#H45d2).fg[]
+## [Polar bear tracking](#Ha282)
+## [Trajectory analysis](#H4821) <span class="bullet bullet">[&#8226;](#H4821)</span><span class="bullet bullet-active">[&#8226;](#He2ae)</span>.fg[].bg[]
+## [Environmental conditions](#He059)
 ]
 .mainbar.right-column[
 
 
-<iframe src="https://nplatonov.shinyapps.io/openday/?showcase=0" width="1330" height="380px" data-external="1" magnify></iframe>
+<iframe src="http://127.0.0.1:9992/?showcase=0" width="1330" height="380px" data-external="1" magnify></iframe>
 
 
 
@@ -447,17 +526,15 @@ name: H20e0
 ]
 ---
 
-name: H154b
+name: He059
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480)
-# [Коллаборация](#H5a5f).fg[]
-## [Обмен данными](#H4618)
-## [Обмен результатами](#H5eb9).fg[]
-### [Спутниковая биотелеметрия](#H5eb9)
-### [Анализ перемещений](#H8dfd)
-### [Просмотр MODIS](#H154b) <span class="bullet bullet-active">[&#8226;](#H154b)</span><span class="bullet mslide18m">[&#8226;](#Hc758)</span>.fg[].bg[]
+# [Researches](#H4a95)
+# [Field work](#H6e42)
+# [Office work](#H45d2).fg[]
+## [Polar bear tracking](#Ha282)
+## [Trajectory analysis](#H4821)
+## [Environmental conditions](#He059) <span class="bullet bullet-active">[&#8226;](#He059)</span><span class="bullet mslide22m">[&#8226;](#H0ca0)</span>.fg[].bg[]
 ]
 .mainbar.right-column[
 
@@ -467,22 +544,20 @@ name: H154b
 ]
 ---
 
-name: Hc758
+name: H0ca0
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480)
-# [Коллаборация](#H5a5f).fg[]
-## [Обмен данными](#H4618)
-## [Обмен результатами](#H5eb9).fg[]
-### [Спутниковая биотелеметрия](#H5eb9)
-### [Анализ перемещений](#H8dfd)
-### [Просмотр MODIS](#H154b) <span class="bullet bullet">[&#8226;](#H154b)</span><span class="bullet bullet-active">[&#8226;](#Hc758)</span>.fg[].bg[]
+# [Researches](#H4a95)
+# [Field work](#H6e42)
+# [Office work](#H45d2).fg[]
+## [Polar bear tracking](#Ha282)
+## [Trajectory analysis](#H4821)
+## [Environmental conditions](#He059) <span class="bullet bullet">[&#8226;](#He059)</span><span class="bullet bullet-active">[&#8226;](#H0ca0)</span>.fg[].bg[]
 ]
 .mainbar.right-column[
 
 
-<iframe src="https://nplatonov.shinyapps.io/modis?lon=180.5&lat=71.2&zoom=7&date=2022-09-08" width="1330" height="620px" data-external="1"></iframe>
+<iframe src="http://127.0.0.1:9991/?lon=180.5&lat=71.2&zoom=7&date=2022-09-08" width="1330" height="650px" data-external="1"></iframe>
 
 
 
@@ -503,29 +578,35 @@ class: additional no-title break
 
 
 .footer.remarkonly[
-Возможно, нарушены права на эту картинку. [Отсюда](https://polarbearscience.com/2019/07/12/10-fallacies-about-arctic-sea-ice-polar-bear-survival-teachers-parents-take-note/)
+[Picture](https://polarbearscience.com/2019/07/12/10-fallacies-about-arctic-sea-ice-polar-bear-survival-teachers-parents-take-note/) with potential copyright violation
 ]
 
 ---
 
-name: He2ae
+name: He5c3
 
 .sidebar.left-column[
-# [Наши исследования](#H6abe)
-# [Полевые работы](#Hb480)
-# [Коллаборация](#H5a5f)
+# [Researches](#H4a95)
+# [Field work](#H6e42)
+# [Office work](#H45d2)
 ]
 .mainbar.right-column[
 
 
-.font95[
+.font92[
 
- ## Благодарности
+ ## Acknowledgement
+ 
+ ### «The Program For Polar Bear Researches In The Russian Arctic»
 
-+ Участники Постоянно действующей экспедиции РАН
+Performed by the Permanent Expedition of Russian Academy of Sciences
 
-   + «Программа изучения белого медведя в Российской Арктике»: Вячеслав Рожнов (руководитель), Илья Мордвинцев (зам.рук.), Евгений Иванов, Сергей Найденко
-   + Программы «Белуха», «Тюлени закрытых водоемов»
+
++ Permanent Expedition of Russian Academy of Sciences
+
+   + «The Program For Polar Bear Researches In The Russian Arctic»: Вячеслав Рожнов (руководитель), Илья Мордвинцев (зам.рук.), Евгений Иванов, Сергей Найденко  
+   
+   + Programs and projects for marine mammals studues 
 
 
 + Соучастники, соорганизаторы
@@ -551,6 +632,26 @@ name: He2ae
    --sidebar-pointsize: 63%;
 }
 </style>
+
+
+]
+---
+name: fn
+hide: true
+
+.sidebar.left-column[
+# [Researches](#H4a95)
+# [Field work](#H6e42)
+# [Office work](#H45d2)
+]
+.mainbar.right-column[
+
+
+
+.footnote.smallest[
+****
+1. Scene id is S1B_EW_GRDM_1SDH_20210419T042651_20210419T042751_026531_032B0C_C096
+]
 
 ]
 
