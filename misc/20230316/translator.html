@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Egvekinot (15:43)</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.20/header-attrs.js"></script>
+<link href="https://nplatonov.github.io/site_libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
+<script src="https://nplatonov.github.io/site_libs/panelset-0.2.6/panelset.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Software and dataware integration to polar bear studies</h1>
+<h3 class="subtitle">Experiences of the Permanent Expedition of Russian Academy of Sciences</h3>
+<h4 class="author">Nikita Platonov</h4>
+<address class="author_afil">
+A. N. Severtsov Institute of Ecology and Evolution of Russian Academy of Sciences</address><br><h4 class="date"><span class="what">VI<sup>th</sup> International Scientific and Practical Conference “Polar Bear Universe: Results of Researches 2012-2022, Plans for the Future”, March 15-17, 2023</span> <span class="where">Anadyr, Chukotka</span> <span class="when">16 March 2023 <span class="updated">Updated: 2023-03-14 15:43</span></span></h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#researches" id="toc-researches">Researches</a></li>
+<li><a href="#field-work" id="toc-field-work">Field work</a>
+<ul>
+<li><a href="#ice-conditions" id="toc-ice-conditions">Ice conditions</a></li>
+<li><a href="#weather-forecast" id="toc-weather-forecast">Weather forecast</a></li>
+</ul></li>
+<li><a href="#office-work" id="toc-office-work">Office work</a>
+<ul>
+<li><a href="#polar-bear-tracking" id="toc-polar-bear-tracking">Polar bear tracking</a></li>
+<li><a href="#trajectory-analysis" id="toc-trajectory-analysis">Trajectory analysis</a></li>
+<li><a href="#environmental-conditions" id="toc-environmental-conditions">Environmental conditions</a></li>
+</ul></li>
+<li style="display: none;"><a href="#section" id="toc-section"></a></li>
+</ul>
+</div>
+
+<div class="remarkonly">
+<p class="centered-image"><img src="assets/sevin.jpg" width="71" />
+<img src="assets/sevin-expedition.png" width="82" />
+<img src="assets/pbu-logo.jpg" width="78" /></p>
+</div>
+<div id="researches" class="section level1">
+<h1>Researches</h1>
+<h3 class="toc-ignore unnumbered unlisted">
+«The Program For Polar Bear Researches In The Russian Arctic»
+</h3>
+<p>Performed by the Permanent Expedition of Russian Academy of Sciences</p>
+<p>Comprehensive polar bear study:</p>
+<div class="font90">
+<ul>
+<li><p>Estimating spatial-temporal distribution of polar bears</p></li>
+<li><p>Evaluating polar bear movement patterns and habitat use parameters in the different temporal resolutions using satellite biotelemetry</p></li>
+<li><p>Studying polar bear reproductive biology</p></li>
+<li><p>Investigating feeding, provision by food resources, the dynamics of primary preys of polar bear</p></li>
+<li><p>Detection natural and human-induced factors, which influence to polar bear reproduction and survival</p></li>
+<li><p>Genetic identification of polar bears</p></li>
+<li><p>Studying of intra-annual and inter-annual variability of sea ice and other habitat parameters</p></li>
+</ul>
+</div>
+<div class="notes">
+<p>Цель: комплексное изучение белого медведя как вида</p>
+<ul>
+<li><p>Изучение пространственно-временного размещения животных в зависимости от факторов окружающей среды.</p></li>
+<li><p>Оценка перемещений белого медведя и характера использования им местообитаний.</p></li>
+<li><p>Изучение репродуктивной биологии белого медведя.</p></li>
+<li><p>Изучение половозрастной структуры и демографических показателей популяций.</p></li>
+<li><p>Изучение питания, кормовых ресурсов, распределения и динамики основных видов жертв белого медведя.</p></li>
+<li><p>Изучение взаимоотношений белого медведя с другими видами животных и человеком.</p></li>
+<li><p>Изучение роли природных и антропогенных факторов в динамике численности с особым вниманием к последствиям воздействия на популяции загрязняющих веществ, патогенных организмов и изменения климата.</p></li>
+<li><p>Уточнение популяционной структуры географических популяций белого медведя с применением молекулярно-генетического и других современных методов анализа.</p></li>
+<li><p>Изучение сезонной и межгодовой динамики ледовых местообитаний</p></li>
+</ul>
+<!--
+
+<h2 class="toc-ignore unnumbered unlisted">Данные</h2>
+
++ ДДЗ - "Вселенная белого медведя"-2017
+
++ Ледовые карты
+
+-->
+</div>
+</div>
+<div id="field-work" class="section level1">
+<h1>Field work</h1>
+<div class="font93">
+<p>Issues:</p>
+<ul>
+<li><p>Data traffic is limited by volume and speed, with interrupted sessions</p></li>
+<li><p>Data are required to be near real-time.</p></li>
+</ul>
+<p>Solutions:</p>
+<ul>
+<li><p>Tasks by schedule or requests on server, located with favorable traffic conditions. Output is text summary or lightweight figures.</p></li>
+<li><p>Scripts for automatic data download during low traffic periods of sleeping or outdoor activity.</p></li>
+<li><p>API usage instead of interactive and multi-step browser requests.</p>
+<ul>
+<li><p>Argos satellite biotelemetry data – SOAP requests, with additional profit in uniform date format.</p></li>
+<li><p>Web map services (WMS) and tile map services (TMS) – data volume is defined by screen resolution</p></li>
+</ul></li>
+<li><p>Emergency assistance – voice or messages via Iridium satellite phones</p></li>
+</ul>
+</div>
+<div class="notes">
+<p>Проблема:</p>
+<ul>
+<li><p>Ограничения объема и скорости передачи данных, нередки обрывы</p></li>
+<li><p>Необходимость получения данных в реальном времени</p></li>
+</ul>
+<p>Применяемые решения:</p>
+<ul>
+<li><p>Получение и обработке данных «хостом» (сервер или человек), на выходе сводка и легковесные картинки.</p></li>
+<li><p>Скрипты для автоматического получения данных ночью или во время «выезда в поле»</p></li>
+<li><p>Использование API вместо интерактивных запросов в браузере</p>
+<ul>
+<li><p>Спутниковая биотелеметрия Argos (SOAP) – стандартизация разделителей и формата данных</p></li>
+<li><p>Картографические интернет сервисы TMS и WMS – разрешение данных по размеру экрана</p></li>
+</ul></li>
+<li><p>«Помощь друга» – голосовая спутниковая связь</p></li>
+</ul>
+</div>
+<div id="ice-conditions" class="section level2">
+<h2>Ice conditions</h2>
+<p>Sentinel-1 active microwave data</p>
+<div class="figure">
+<img src="assets/S1B_EW_GRDM_1SDH_20210419T042651_20210419T042751_026531_032B0C_C096-ql.jpg" alt="Scene S1B_EW_GRDM_1SDH_20210419T042651_20210…^[S1B_EW_GRDM_1SDH_20210419T042651_20210419T042751_026531_032B0C_C096] (~200 МB)" width="427" />
+<p class="caption">
+Scene S1B_EW_GRDM_1SDH_20210419T042651_20210…<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> (~200 МB)
+</p>
+</div>
+<p>Visual control for landfast ice continuity</p>
+<div class="figure">
+<img src="assets/hv-20210419-0426.png" alt="Required figure/image size is 100-200 KB" width="440" />
+<p class="caption centered">
+Required figure/image size is 100-200 KB
+</p>
+</div>
+</div>
+<div id="weather-forecast" class="section level2">
+<h2>Weather forecast</h2>
+<div class="dontscrollable">
+<p>Raw GFS atmosphere data in GRIB format: sea level pressure, cloud fraction and wind on geopotential height levels (aerial survey), horizontal visibility, precipitation rates, <em>etc</em>.</p>
+<p class="centered-image"><img src="assets/cloud-AeroVolga.png" width="526" height="545" bound /></p>
+</div>
+<div class="notes">
+<p>Данные GFS по атмосферной циркуляции: давление на уровне моря, фракция облачности и ветер по уровням геопотенциальных высот, горизонтальная видимость, осадки <em>и др.</em></p>
+</div>
+<div class="remarkonly">
+<div class="panelset">
+<div class="panel">
+<span class="panel-name">SLP</span>
+<div class="figure">
+<img src="assets/cloud1-PRMSL0.png" alt="Sea level pressure" width="2000" style='height: auto;' />
+<p class="caption centered">
+Sea level pressure
+</p>
+</div>
+</div>
+<div class="panel">
+<span class="panel-name">GUST</span>
+<div class="figure">
+<img src="assets/cloud2-GUST0.png" alt="Wind gusts at surface level" width="2000" style='height: auto;' />
+<p class="caption centered">
+Wind gusts at surface level
+</p>
+</div>
+</div>
+<div class="panel">
+<span class="panel-name">H1000</span>
+<div class="figure">
+<img src="assets/cloud3-TCDC1000.png" alt="Total cloud fraction and wind at level 1000 mbar" width="2000" style='height: auto;' />
+<p class="caption centered">
+Total cloud fraction and wind at level 1000 mbar
+</p>
+</div>
+</div>
+<div class="panel">
+<span class="panel-name">H950</span>
+<div class="figure">
+<img src="assets/cloud5-TCDC950.png" alt="Total cloud fraction and wind at level 950 mbar" width="2000" style='height: auto;' />
+<p class="caption centered">
+Total cloud fraction and wind at level 950 mbar
+</p>
+</div>
+</div>
+<div class="panel">
+<span class="panel-name">VIS</span>
+<div class="figure">
+<img src="assets/cloud6-VIS0.png" alt="Visibility at surface level" width="2000" style='height: auto;' />
+<p class="caption centered">
+Visibility at surface level
+</p>
+</div>
+</div>
+<div class="panel">
+<span class="panel-name">PR</span>
+<div class="figure">
+<img src="assets/cloud7-PRATE0.png" alt="Precipitation rate at surface level" width="2000" style='height: auto;' />
+<p class="caption centered">
+Precipitation rate at surface level
+</p>
+</div>
+</div>
+<div class="panel">
+<span class="panel-name">CPR</span>
+<div class="figure">
+<img src="assets/cloud8-CPRAT0.png" alt="Convective precipitation rate at surface level and air temperature at level 2m above ground" width="2000" style='height: auto;' />
+<p class="caption centered">
+Convective precipitation rate at surface level and air temperature at level 2m above ground
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="office-work" class="section level1">
+<h1>Office work</h1>
+<h2 class="toc-ignore unnumbered unlisted">
+Reproducible researces
+</h2>
+<div class="font100">
+<p>Code (program):</p>
+<ul>
+<li><p>converts raw data to processed data</p></li>
+<li><p>does data analysis</p></li>
+<li><p>implements literate programming</p>
+<ul>
+<li>includes output (tables, figures, inline text)</li>
+</ul></li>
+<li><p>gets results for a new data set</p></li>
+</ul>
+<p>Implementation: input <img alt="R" class="inline" src=https://cran.rstudio.com/Rlogo.svg> code,
+integrated to extended
+(Rmarkdown <img class="inline" src=https://github.com/rstudio/rmarkdown/raw/main/man/figures/logo.png>)
+markup language Markdown <img class="inline" src=https://seeklogo.com/images/M/markdown-logo-102FDA095E-seeklogo.com.png?v=637829616810000000>,
+is converted by
+<img alt="Pandoc" class="inline" src="assets/pandoc.png">
+tool to formatted documents in various formats.</p>
+<p>Collaboration: web applications
+<img alt="Shiny" class="inline" src=https://shiny.rstudio.com/images/shiny-solo.svg></p>
+<ul>
+<li><p>Server avoids software (IDEs, GIS) installing</p></li>
+<li><p>Client (GUI) avoids coding</p></li>
+</ul>
+</div>
+<div class="notes">
+<ul>
+<li><p>Программный код</p>
+<ul>
+<li><p>преобразует необработанные данные в обработанные данные</p></li>
+<li><p>выполняет анализ данных</p></li>
+<li><p>включает результаты анализа в отчет</p></li>
+<li><p>позволяет получить результат на новом наборе данных</p></li>
+</ul></li>
+</ul>
+<p>Реализация:
+язык программирования R, внедренный в язык текстовой разметки markdown
+(Rmarkdown), преобразуется утилитой Pandoc в документы различных форматов.</p>
+<p>Популяризация: веб-приложения Shiny</p>
+<ul>
+<li><p>Не нужно устанавливать программное обеспечение (ГИС, IDE)</p></li>
+<li><p>Графическая оболочка скрывает программирование</p></li>
+</ul>
+</div>
+<!--
+
+<h3 class="toc-ignore unnumbered unlisted">Data exchange</h3>
+
+Exchangeable data formates
+
++ raster GIS data: **GeoTIFF** (~~ArcGIS database~~)
+
++ vector GIS data: **ESRI Shapefile** (~~ArcGIS database~~)
+
++ tables: **CSV** (~~Excel sheets with colored characters and cells~~)
+
++ GPS for routes, tracks and waypoints: **GPX** (~~raw files in device storage~~)
+
+:::notes
+
+Универсальные форматы данные
+
++ растровые ГИС данные: GeoTIFF (~~ArcGIS формат~~)
+
++ векторные ГИС данные: ESRI Shapefile (~~ArcGIS формат~~)
+
++ таблицы: CSV (~~Excel таблицы с раскрашиванием текста и ячеек~~)
+
++ для треков, маршрутов и находок GPX (~~не во внутреннем формате прибора~~)
+
+:::
+
+
+-->
+<div id="polar-bear-tracking" class="section level2">
+<h2>Polar bear tracking</h2>
+<p class="centered-image"><img src="assets/argos.png" width="766" image /></p>
+</div>
+<div id="trajectory-analysis" class="section level2">
+<h2>Trajectory analysis</h2>
+<p>Movement analysis, home range</p>
+<p class="centered-image"><img src="assets/openday.png" width="956" image /></p>
+<!--
+<iframe src="https://nplatonov.shinyapps.io/openday" width=100% height=620>
+</iframe>
+-->
+<!--
+
+
+<iframe width=100% height="920px" src1="https://nplatonov.shinyapps.io/openday"
+src="http://127.0.0.1:9992/" frameborder="0" class="magnify" >
+</iframe>
+-->
+</div>
+<div id="environmental-conditions" class="section level2">
+<h2>Environmental conditions</h2>
+<p>Sea ice, snow cover, vegetation growth using MODIS data</p>
+<p class="centered-image"><img src="assets/modis.png" width="584" image /></p>
+<!--
+# {#josh .additional .no-title .break background-image="https://i0.wp.com/polarbearscience.com/wp-content/uploads/2019/07/polar_bear_summer_2-final-2.jpg"} 
+
+:::onlyremark
+[Зато теперь известно, как белые медведи проводят лето?]{.r-fit-text}
+:::
+
+::: {.footer .remarkonly}
+[Picture](https://polarbearscience.com/2019/07/12/10-fallacies-about-arctic-sea-ice-polar-bear-survival-teachers-parents-take-note/) with potential copyright violation
+:::
+
+-->
+</div>
+</div>
+<div id="section" class="section level1 additional">
+<h1 class="additional"></h1>
+<div class="font82">
+<h2 class="toc-ignore unnumbered unlisted">
+Acknowledgement
+</h2>
+<ul>
+<li><p>Permanent Expedition of Russian Academy of Sciences</p>
+<ul>
+<li><p>«The Program For Polar Bear Researches In The Russian Arctic»: Viatcheslav Rozhnov (supervisor), Ilia Mordvintsev (expeditional leader), Eugeniy Ivanov, Sergey Naidenko, Nikita Platonov</p></li>
+<li><p>Programs and projects for marine mammals studies</p></li>
+</ul></li>
+<li><p>Collaboration, co-organization</p>
+<ul>
+<li><p>National park «Russian Arctic»</p></li>
+<li><p>National park «Lenskie Stolby», Institute of Biological Problems of the Cryoliptozone (Siberian branch of Russian Academy of Sciences)</p></li>
+<li><p>Sergey Kavry, Anatoly Kochnev</p></li>
+</ul></li>
+<li><p>Support</p>
+<ul>
+<li><p>The Arctic Research Center LLC, the scientific institute of PJSC NK Rosneft</p></li>
+<li><p>“Study of Rare Animal Species” project of the Russian Geographical Society</p></li>
+<li><p>“Master of the Arctic-2021” project of the International Environmental Foundation “Clean Seas”</p></li>
+<li><p>Chukotka Arctic Research Center</p></li>
+</ul></li>
+</ul>
+</div>
+<div class="notes">
+<h2 class="toc-ignore unnumbered unlisted">
+Благодарности
+</h2>
+<ul>
+<li><p>Участники Постоянно действующей экспедиции РАН</p>
+<ul>
+<li>«Программа изучения белого медведя в Российской Арктике»: Вячеслав Рожнов (руководитель), Илья Мордвинцев (зам.рук.), Евгений Иванов, Сергей Найденко</li>
+<li>Программы «Белуха», «Тюлени закрытых водоемов»</li>
+</ul></li>
+<li><p>Соучастники, соорганизаторы</p>
+<ul>
+<li><p>НП «Русская Арктика»</p></li>
+<li><p>НП «Ленские Столбы», ИБПК СО РАН</p></li>
+<li><p>Российский центр освоения Арктики</p></li>
+</ul></li>
+<li><p>Поддержка</p>
+<ul>
+<li><p>НК «Чукотский арктический научный центр»</p></li>
+<li><p>Русское географическое общество</p></li>
+<li><p>ООО «Арктический Научный Центр» – научный институт ПАО «НК «Роснефть»</p></li>
+</ul></li>
+</ul>
+</div>
+<style type="text/css">
+:root {
+   --sidebar-pointsize: 63%;
+}
+</style>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>S1B_EW_GRDM_1SDH_20210419T042651_20210419T042751_026531_032B0C_C096<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
