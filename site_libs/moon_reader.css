@@ -622,8 +622,10 @@ iframe:not([class]) {
 }
 iframe.ursa-widgetize, iframe.magnify, iframe[magnify] {
    border: 1px dashed #eee;
-   zoom: var(--magnifier); 
-   -ms-zoome: var(--magnifier);
+  /* zoom: var(--magnifier); */
+  /* -ms-zoome: var(--magnifier);*/
+   -ms-transform: scale(var(--magnifier));
+   -ms-transform-origin: 0 0;
    -moz-transform: scale(var(--magnifier)); 
    -moz-transform-origin: 0 0;
    -o-transform: scale(var(--magnifier));
