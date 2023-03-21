@@ -697,7 +697,9 @@ ul {
    margin-top: -0.2em;
    margin-right: -0.3em;
 }
-.scroll, .scrollable, .mainbar > .oversize { /* .mainbar:not[.break] */
+.scroll,
+.scrollable,
+.mainbar > .oversize { /* .mainbar:not[.break] */
    height: 656px;
    width: 100%;
    overflow-y: auto; 
@@ -705,6 +707,10 @@ ul {
   /* scrollbar-width: thin;*/
   /* background-color: orange;*/
   /* border: 3px solid #f5f5f5;*/
+}
+.scrollable > .mainbar {
+   overflow-y: auto; 
+   height: 656px;
 }
 .wide {
    display: block;
