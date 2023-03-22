@@ -174,7 +174,7 @@ div.csl-indent {
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 06</span> <span class="when">06 апреля 2023 г. <span class="updated">Обновлено: 2023-03-22 15:24</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 06</span> <span class="when">06 апреля 2023 г. <span class="updated">Обновлено: 2023-03-22 16:40</span></span></h4>
 
 
 <div id="TOC">
@@ -253,7 +253,7 @@ div.csl-indent {
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>fname <span class="ot">&lt;-</span> list1[<span class="fu">grep</span>(<span class="st">&quot;kernelUD&quot;</span>,<span class="fu">basename</span>(list1))]</span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">file.remove</span>(list1)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>fname</span></code></pre></div>
-<pre><code>[1] &quot;C:\\TEMP\\RtmpcvIJoc/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
+<pre><code>[1] &quot;C:\\TEMP\\RtmpCQjkr8/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
 <div id="подготовка-данных" class="section level3">
 <h3><span class="small">Подготовка данных</span></h3>
 <div class="oversize">
@@ -1015,16 +1015,28 @@ Characteristics of the bursts:
 <div id="map-lt4" class="section level5">
 <h5>шаг 3 суток, с пропусками</h5>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" tabindex="-1"></a>(m1 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt4[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson06/widget_dd17_8b599992fc2d21b1b5eaa841ef33d429.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
 <p><sup><a href="#data-lt4">См. исходные данные</a></sup></p>
 </div>
 <div id="map-lt6" class="section level5">
 <h5>шаг 50 км, без пропусков</h5>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a>(m2 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt6[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson06/widget_dd19_f2a524773cae9a6622310d037c2cd28f.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
 <p><sup><a href="#data-lt6">См. исходные данные</a></sup></p>
 </div>
 <div id="map-lt7" class="section level5">
 <h5>шаг 6 суток, без пропусков</h5>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" tabindex="-1"></a>(m3 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt7[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson06/widget_dd21_eebe1834ac18c18e502a4fe9c51bdc9e.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
 <p><sup><a href="#data-lt7">См. исходные данные</a></sup></p>
 </div>
 </div>
@@ -1089,6 +1101,10 @@ Characteristics of the bursts:
 <span id="cb125-20"><a href="#cb125-20" tabindex="-1"></a>   <span class="fu">lapply</span>(<span class="cf">function</span>(x) x)</span>
 <span id="cb125-21"><a href="#cb125-21" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_along</span>(res),<span class="cf">function</span>(x) <span class="st">&quot;dt_mean&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" tabindex="-1"></a>(m4 <span class="ot">&lt;-</span> <span class="fu">mapview</span>(res,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">color=</span>color,<span class="at">label=</span>label))</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson06/widget_dd28_b513395a663d4a2d19c411a6fd8e10a8.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
 </div>
 </div>
 </div>
@@ -1237,6 +1253,10 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb148-14"><a href="#cb148-14" tabindex="-1"></a>                        )</span>
 <span id="cb148-15"><a href="#cb148-15" tabindex="-1"></a>              )</span></code></pre></div>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" tabindex="-1"></a>s3d</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson06/widget_s3d-show_7b3be354f9da30c5d7dfe76f76f26895.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(tr) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
 <span id="cb150-2"><a href="#cb150-2" tabindex="-1"></a>center <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_coordinates</span>(sf<span class="sc">::</span><span class="fu">st_centroid</span>(tr))[<span class="dv">1</span>,]</span>
 <span id="cb150-3"><a href="#cb150-3" tabindex="-1"></a>dm <span class="ot">&lt;-</span> da <span class="sc">|&gt;</span></span>
@@ -1250,6 +1270,10 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb150-11"><a href="#cb150-11" tabindex="-1"></a>                     ,<span class="at">zoom=</span><span class="dv">15</span>)</span>
 <span id="cb150-12"><a href="#cb150-12" tabindex="-1"></a>         ,<span class="at">coloraxis=</span><span class="fu">list</span>(<span class="at">colorscale =</span> <span class="st">&quot;Viridis&quot;</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" tabindex="-1"></a>dm</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson06/widget_dm-plot_c895277581c7dffa0b77cef9b57c10eb.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
 <div id="refs" class="references csl-bib-body" entry-spacing="1">
 <div id="ref-Durner2019_data" class="csl-entry">
 Durner GM. 2019. <span class="nocase">Polar Bear Distribution and Habitat Resource Selection Data, Beaufort and Chukchi Seas</span>, 1985-2016. U.S. Geological Survey. <a href="https://alaska.usgs.gov/products/data.php?dataid=246">https://alaska.usgs.gov/products/data.php?dataid=246</a>. <a href="https://doi.org/10.5066/P9ZRJ3XU">10.5066/P9ZRJ3XU</a>.

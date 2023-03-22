@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when">30 марта 2023 г. <span class="updated">Обновлено: 2023-03-22 15:23</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when">30 марта 2023 г. <span class="updated">Обновлено: 2023-03-22 16:40</span></span></h4>
 <div class="abstract">
 <p class="abstract">Abstract</p>
 Демонстрация основ работы с интерфейсом командной строки в R, позволяющей создавать скрипты и получать воспроизводимые результаты. Показано, как пространственные векторные и растровые данные могут попасть в R и как они выглядят в R. С возможностью сделать обработку, анализ и визуализацию пространственных данных.
@@ -232,7 +232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#векторные-данные" id="toc-векторные-данные">Векторные данные</a>
 <ul>
 <li><a href="#rgdalsp" id="toc-rgdalsp"><code>rgdal/sp</code></a></li>
-<li><a href="#importExample" id="toc-importExample"><code>sf</code> {#importExampleM}</a></li>
+<li><a href="#importExample" id="toc-importExample"><code>sf</code></a></li>
 </ul></li>
 <li><a href="#растровые-данные" id="toc-растровые-данные">Растровые данные</a>
 <ul>
@@ -310,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="базовый-r" class="section level4">
 <h4>Базовый R</h4>
-<p>Установить или обновить R, например, <a href="https://cran.rstudio.org/">отсюда</a>. Актуальная версия 4.1.3. Не ниже версии 4.0.</p>
+<p>Установить или обновить R, например, <a href="https://cran.rstudio.org/">отсюда</a>. Актуальная версия 4.2.3. Не ниже версии 4.0.</p>
 </div>
 <div id="библиотеки" class="section level4">
 <h4>Библиотеки</h4>
@@ -938,7 +938,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="importExample" class="section level5">
-<h5><code>sf</code> {#importExampleM}</h5>
+<h5><code>sf</code></h5>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" tabindex="-1"></a>b.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(shpname)</span></code></pre></div>
 <pre><code>## Reading layer `scot_BNG&#39; from data source `C:\Software\Rlibs\rgdal\vectors\scot_BNG.shp&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 56 features and 13 fields
@@ -1412,7 +1412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="#cb245-1" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</span></code></pre></div>
 <pre><code>## tmap mode set to plotting</code></pre>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="#cb247-1" tabindex="-1"></a>(tm1 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(b.sf) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">&quot;COUNT&quot;</span>) <span class="sc">+</span> <span class="fu">tm_scale_bar</span>() <span class="sc">+</span></span>
-<span id="cb247-2"><a href="#cb247-2" tabindex="-1"></a>   <span class="fu">tm_compass</span>(<span class="at">position=</span><span class="fu">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;bottom&quot;</span>))) <span class="sc">+</span> <span class="fu">tm_graticules</span>()</span></code></pre></div>
+<span id="cb247-2"><a href="#cb247-2" tabindex="-1"></a>   <span class="fu">tm_compass</span>(<span class="at">position=</span><span class="fu">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;bottom&quot;</span>)) <span class="sc">+</span> <span class="fu">tm_graticules</span>())</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/tmap-plot-1.svg" width="646.08" height="445" /></p>
 </div>
 <div id="для-публикаций" class="section level5">
@@ -1434,6 +1434,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h5><code>mapview</code></h5>
 <div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="#cb251-1" tabindex="-1"></a>m <span class="ot">&lt;-</span> mapview<span class="sc">::</span><span class="fu">mapview</span>(b.sf) <span class="do">## Не отобразится в Jupyter R Notebook.</span></span>
 <span id="cb251-2"><a href="#cb251-2" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(m)</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson05/widget_mapview_67f487b6fb2216f8f1b4da9b9c891d99.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
 </div>
 <div id="leaflet" class="section level5">
 <h5><code>leaflet</code></h5>
@@ -1463,6 +1467,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb254-22"><a href="#cb254-22" tabindex="-1"></a>   <span class="fu">addLegend</span>(<span class="st">&quot;bottomright&quot;</span>,<span class="at">pal=</span>fpal,<span class="at">values=</span>b<span class="sc">$</span>category,<span class="at">opacity=</span><span class="fl">0.6</span></span>
 <span id="cb254-23"><a href="#cb254-23" tabindex="-1"></a>            ,<span class="at">title=</span><span class="st">&quot;AFF&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="#cb255-1" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(m) <span class="do">## Не отображается в Jupyter R Notebook.</span></span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson05/widget_leadletwidget_97c1d21d052f8a48e9daad9a2872f288.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
 </div>
 <div id="tmap-1" class="section level5">
 <h5><code>tmap</code></h5>
@@ -1470,6 +1478,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## tmap mode set to interactive viewing</code></pre>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="#cb258-1" tabindex="-1"></a>tm <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(b.sf) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">&quot;COUNT&quot;</span>)</span>
 <span id="cb258-2"><a href="#cb258-2" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(<span class="fu">tmap_leaflet</span>(tm),<span class="at">height=</span><span class="dv">510</span>)</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson05/widget_tmap-view_21d318d9983b318c7e4719476ef26700.html" width="646.08" height="510" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
 <p><a href="https://cran.rstudio.com/web/packages/tmap/vignettes/tmap-getstarted.html"><code>tmap</code> “Get Started” vignette</a></p>
 <iframe src="https://cran.rstudio.com/web/packages/tmap/vignettes/tmap-getstarted.html" width="646.08" height="610" data-external="1">
 </iframe>
@@ -1594,30 +1606,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] leaflet_2.1.2 tmap_3.3-3    ggplot2_3.4.1
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] sass_0.4.5              viridisLite_0.4.1       jsonlite_1.8.4          bslib_0.4.2            
-##  [5] shiny_1.7.4             highr_0.10              sp_1.6-0                stats4_4.2.3           
-##  [9] yaml_2.3.7              pillar_1.8.1            lattice_0.20-45         glue_1.6.2             
-## [13] uuid_1.1-0              digest_0.6.31           RColorBrewer_1.1-3      promises_1.2.0.1       
-## [17] leaflet.providers_1.9.0 colorspace_2.1-0        htmltools_0.5.4         httpuv_1.6.9           
-## [21] XML_3.99-0.13           pkgconfig_2.0.3         raster_3.6-20           stars_0.6-0            
-## [25] s2_1.1.2                xtable_1.8-4            scales_1.2.1            webshot_0.5.4          
-## [29] brew_1.0-8              svglite_2.1.1           terra_1.7-18            jpeg_0.1-10            
-## [33] satellite_1.0.4         later_1.3.0             mapedit_0.6.0           tibble_3.2.0           
-## [37] proxy_0.4-27            farver_2.1.1            generics_0.1.3          ellipsis_0.3.2         
-## [41] withr_2.5.0             cachem_1.0.7            leafsync_0.1.0          cli_3.6.0              
-## [45] mapview_2.11.0          magrittr_2.0.3          mime_0.12               evaluate_0.20          
-## [49] fansi_1.0.4             lwgeom_0.2-11           class_7.3-21            geojsonsf_2.0.3        
-## [53] tools_4.2.3             lifecycle_1.0.3         ursa_3.9.10             munsell_0.5.0          
-## [57] compiler_4.2.3          jquerylib_0.1.4         e1071_1.7-13            systemfonts_1.0.4      
-## [61] rlang_1.1.0             leafpop_0.1.0           classInt_0.4-9          units_0.8-1            
-## [65] grid_4.2.3              tmaptools_3.1-1         dichromat_2.0-0.1       htmlwidgets_1.6.2      
-## [69] crosstalk_1.2.0         labeling_0.4.2          tcltk_4.2.3             proj4_1.0-12           
-## [73] leafem_0.2.0            base64enc_0.1-3         rmarkdown_2.20          wk_0.7.2               
-## [77] xaringanExtra_0.7.0     gtable_0.3.2            codetools_0.2-19        abind_1.4-5            
-## [81] DBI_1.1.3               R6_2.5.1                knitr_1.42              dplyr_1.1.0            
-## [85] rgdal_1.6-5             fastmap_1.1.1           utf8_1.2.3              KernSmooth_2.23-20     
-## [89] parallel_4.2.3          Rcpp_1.0.10             vctrs_0.6.0             sf_1.0-11              
-## [93] png_0.1-8               tidyselect_1.2.0        xfun_0.37</code></pre>
+##  [1] sf_1.0-11               satellite_1.0.4         webshot_0.5.4           RColorBrewer_1.1-3     
+##  [5] mapview_2.11.0          tools_4.2.3             bslib_0.4.2             utf8_1.2.3             
+##  [9] rgdal_1.6-5             R6_2.5.1                KernSmooth_2.23-20      DBI_1.1.3              
+## [13] colorspace_2.1-0        raster_3.6-20           withr_2.5.0             sp_1.6-0               
+## [17] tidyselect_1.2.0        compiler_4.2.3          leafem_0.2.0            cli_3.6.0              
+## [21] geojsonsf_2.0.3         labeling_0.4.2          sass_0.4.5              scales_1.2.1           
+## [25] classInt_0.4-9          proxy_0.4-27            systemfonts_1.0.4       digest_0.6.31          
+## [29] rmarkdown_2.20          svglite_2.1.1           base64enc_0.1-3         dichromat_2.0-0.1      
+## [33] jpeg_0.1-10             pkgconfig_2.0.3         htmltools_0.5.4         ursa_3.9.10            
+## [37] fastmap_1.1.1           highr_0.10              htmlwidgets_1.6.2       rlang_1.1.0            
+## [41] shiny_1.7.4             jquerylib_0.1.4         generics_0.1.3          farver_2.1.1           
+## [45] jsonlite_1.8.4          crosstalk_1.2.0         dplyr_1.1.0             magrittr_2.0.3         
+## [49] s2_1.1.2                Rcpp_1.0.10             munsell_0.5.0           fansi_1.0.4            
+## [53] abind_1.4-5             lifecycle_1.0.3         terra_1.7-18            leafsync_0.1.0         
+## [57] yaml_2.3.7              tmaptools_3.1-1         grid_4.2.3              widgetframe_0.3.1      
+## [61] parallel_4.2.3          promises_1.2.0.1        lattice_0.20-45         stars_0.6-0            
+## [65] leafpop_0.1.0           knitr_1.42              pillar_1.8.1            tcltk_4.2.3            
+## [69] uuid_1.1-0              codetools_0.2-19        stats4_4.2.3            wk_0.7.2               
+## [73] XML_3.99-0.13           glue_1.6.2              evaluate_0.20           leaflet.providers_1.9.0
+## [77] png_0.1-8               vctrs_0.6.0             httpuv_1.6.9            gtable_0.3.2           
+## [81] cachem_1.0.7            xfun_0.37               mime_0.12               lwgeom_0.2-11          
+## [85] xtable_1.8-4            e1071_1.7-13            later_1.3.0             class_7.3-21           
+## [89] viridisLite_0.4.1       tibble_3.2.0            units_0.8-1             mapedit_0.6.0          
+## [93] plutil_0.9-7266         ellipsis_0.3.2          brew_1.0-8              xaringanExtra_0.7.0</code></pre>
 </div>
 </div>
 </div>

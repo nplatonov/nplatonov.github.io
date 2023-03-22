@@ -80,7 +80,7 @@ name: H3216
 .where[]
 
 
-.when[30 марта 2023 г. .updated[Обновлено: 2023-03-22 15:27]]
+.when[30 марта 2023 г. .updated[Обновлено: 2023-03-22 16:42]]
 
 
 
@@ -140,7 +140,7 @@ name: Hc1dc
 .mainbar.right-column[
 
 
-Установить или обновить R, например, [отсюда](https://cran.rstudio.org/). Актуальная версия 4.1.3. Не ниже версии 4.0.
+Установить или обновить R, например, [отсюда](https://cran.rstudio.org/). Актуальная версия 4.2.3. Не ниже версии 4.0.
 
 
 ]
@@ -1759,7 +1759,7 @@ name: H27f2
 #### [Источники для примера](#H26b3)
 #### [Векторные данные](#H27f2).fg[]
 ##### [<code>rgdal/sp</code>](#H27f2) <span class="bullet bullet-active">[&#8226;](#H27f2)</span><span class="bullet mslide59m">[&#8226;](#Hd433)</span><span class="bullet mslide60m">[&#8226;](#H86c2)</span>.fg[].bg[]
-##### [<code>sf</code>](#importExampleM)
+##### [<code>sf</code>](#importExample)
 #### [Растровые данные](#H8837)
 ### [Характеристики](#H0f29)
 ### [Создание](#Hf293)
@@ -1840,7 +1840,7 @@ name: Hd433
 #### [Источники для примера](#H26b3)
 #### [Векторные данные](#H27f2).fg[]
 ##### [<code>rgdal/sp</code>](#H27f2) <span class="bullet bullet">[&#8226;](#H27f2)</span><span class="bullet bullet-active">[&#8226;](#Hd433)</span><span class="bullet mslide60m">[&#8226;](#H86c2)</span>.fg[].bg[]
-##### [<code>sf</code>](#importExampleM)
+##### [<code>sf</code>](#importExample)
 #### [Растровые данные](#H8837)
 ### [Характеристики](#H0f29)
 ### [Создание](#Hf293)
@@ -1925,7 +1925,7 @@ name: H86c2
 #### [Источники для примера](#H26b3)
 #### [Векторные данные](#H27f2).fg[]
 ##### [<code>rgdal/sp</code>](#H27f2) <span class="bullet bullet">[&#8226;](#H27f2)</span><span class="bullet bullet">[&#8226;](#Hd433)</span><span class="bullet bullet-active">[&#8226;](#H86c2)</span>.fg[].bg[]
-##### [<code>sf</code>](#importExampleM)
+##### [<code>sf</code>](#importExample)
 #### [Растровые данные](#H8837)
 ### [Характеристики](#H0f29)
 ### [Создание](#Hf293)
@@ -2004,8 +2004,7 @@ str(head(b.sp,2))
 
 ]
 ---
-name: importExampleM
-NA: importExampleM
+name: importExample
 
 .sidebar.left-column[
 ## [Основы R](#H83cb)
@@ -2015,7 +2014,7 @@ NA: importExampleM
 #### [Источники для примера](#H26b3)
 #### [Векторные данные](#H27f2).fg[]
 ##### [<code>rgdal/sp</code>](#H27f2)
-##### [<code>sf</code>](#importExampleM) <span class="bullet bullet-active">[&#8226;](#importExampleM)</span><span class="bullet mslide63m">[&#8226;](#H1fcb)</span>.fg[].bg[]
+##### [<code>sf</code>](#importExample) <span class="bullet bullet-active">[&#8226;](#importExample)</span><span class="bullet mslide63m">[&#8226;](#H1fcb)</span>.fg[].bg[]
 #### [Растровые данные](#H8837)
 ### [Характеристики](#H0f29)
 ### [Создание](#Hf293)
@@ -2060,7 +2059,7 @@ name: H1fcb
 #### [Источники для примера](#H26b3)
 #### [Векторные данные](#H27f2).fg[]
 ##### [<code>rgdal/sp</code>](#H27f2)
-##### [<code>sf</code>](#importExampleM) <span class="bullet bullet">[&#8226;](#importExampleM)</span><span class="bullet bullet-active">[&#8226;](#H1fcb)</span>.fg[].bg[]
+##### [<code>sf</code>](#importExample) <span class="bullet bullet">[&#8226;](#importExample)</span><span class="bullet bullet-active">[&#8226;](#H1fcb)</span>.fg[].bg[]
 #### [Растровые данные](#H8837)
 ### [Характеристики](#H0f29)
 ### [Создание](#Hf293)
@@ -3725,7 +3724,7 @@ tmap_mode("plot")
 
 ```r
 (tm1 <- tm_shape(b.sf) + tm_polygons("COUNT") + tm_scale_bar() +
-   tm_compass(position=c("left","bottom"))) + tm_graticules()
+   tm_compass(position=c("left","bottom")) + tm_graticules())
 ```
 
 <img src="assets/lesson05/tmap-plot-1.svg" width="1330" height="445" style="display: block; margin: auto;" />
@@ -3811,6 +3810,12 @@ name: H6e7e
 m <- mapview::mapview(b.sf) ## Не отобразится в Jupyter R Notebook.
 ursa:::widgetize(m)
 ```
+
+<div class="figure">
+<div class="framed" style="height:588px; width=100%">
+<iframe src="assets/lesson05/widget_mapview_67f487b6fb2216f8f1b4da9b9c891d99.html" width="100%" height="588" class="ursa-widgetize"></iframe>
+</div>
+</div>
 
 
 
@@ -3908,6 +3913,12 @@ name: H88b8
 ursa:::widgetize(m) ## Не отображается в Jupyter R Notebook.
 ```
 
+<div class="figure">
+<div class="framed" style="height:588px; width=100%">
+<iframe src="assets/lesson05/widget_leadletwidget_97c1d21d052f8a48e9daad9a2872f288.html" width="100%" height="588" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
 
 ]
 ---
@@ -3948,6 +3959,12 @@ tmap_mode("view")
 tm <- tm_shape(b.sf) + tm_polygons("COUNT")
 ursa:::widgetize(tmap_leaflet(tm),height=510)
 ```
+
+<div class="figure">
+<div class="framed" style="height:510px; width=100%">
+<iframe src="assets/lesson05/widget_tmap-view_21d318d9983b318c7e4719476ef26700.html" width="100%" height="510" class="ursa-widgetize"></iframe>
+</div>
+</div>
 
 
 ]
@@ -4453,19 +4470,19 @@ sessionInfo()
 ## [16] sp_1.6-0                tidyselect_1.2.0        compiler_4.2.3         
 ## [19] leafem_0.2.0            cli_3.6.0               geojsonsf_2.0.3        
 ## [22] labeling_0.4.2          sass_0.4.5              scales_1.2.1           
-## [25] proj4_1.0-12            classInt_0.4-9          proxy_0.4-27           
-## [28] systemfonts_1.0.4       digest_0.6.31           rmarkdown_2.20         
-## [31] svglite_2.1.1           base64enc_0.1-3         dichromat_2.0-0.1      
-## [34] jpeg_0.1-10             pkgconfig_2.0.3         htmltools_0.5.4        
-## [37] ursa_3.9.10             fastmap_1.1.1           highr_0.10             
-## [40] htmlwidgets_1.6.2       rlang_1.1.0             xaringan_0.28          
-## [43] shiny_1.7.4             jquerylib_0.1.4         generics_0.1.3         
-## [46] farver_2.1.1            jsonlite_1.8.4          crosstalk_1.2.0        
-## [49] dplyr_1.1.0             magrittr_2.0.3          s2_1.1.2               
-## [52] Rcpp_1.0.10             munsell_0.5.0           fansi_1.0.4            
-## [55] abind_1.4-5             lifecycle_1.0.3         terra_1.7-18           
-## [58] leafsync_0.1.0          yaml_2.3.7              tmaptools_3.1-1        
-## [61] grid_4.2.3              parallel_4.2.3          promises_1.2.0.1       
+## [25] classInt_0.4-9          proxy_0.4-27            systemfonts_1.0.4      
+## [28] digest_0.6.31           rmarkdown_2.20          svglite_2.1.1          
+## [31] base64enc_0.1-3         dichromat_2.0-0.1       jpeg_0.1-10            
+## [34] pkgconfig_2.0.3         htmltools_0.5.4         ursa_3.9.10            
+## [37] fastmap_1.1.1           highr_0.10              htmlwidgets_1.6.2      
+## [40] rlang_1.1.0             xaringan_0.28           shiny_1.7.4            
+## [43] jquerylib_0.1.4         generics_0.1.3          farver_2.1.1           
+## [46] jsonlite_1.8.4          crosstalk_1.2.0         dplyr_1.1.0            
+## [49] magrittr_2.0.3          s2_1.1.2                Rcpp_1.0.10            
+## [52] munsell_0.5.0           fansi_1.0.4             abind_1.4-5            
+## [55] lifecycle_1.0.3         terra_1.7-18            leafsync_0.1.0         
+## [58] yaml_2.3.7              tmaptools_3.1-1         grid_4.2.3             
+## [61] widgetframe_0.3.1       parallel_4.2.3          promises_1.2.0.1       
 ## [64] lattice_0.20-45         stars_0.6-0             leafpop_0.1.0          
 ## [67] knitr_1.42              pillar_1.8.1            tcltk_4.2.3            
 ## [70] uuid_1.1-0              codetools_0.2-19        stats4_4.2.3           
@@ -4476,7 +4493,8 @@ sessionInfo()
 ## [85] lwgeom_0.2-11           xtable_1.8-4            e1071_1.7-13           
 ## [88] later_1.3.0             class_7.3-21            viridisLite_0.4.1      
 ## [91] tibble_3.2.0            units_0.8-1             mapedit_0.6.0          
-## [94] ellipsis_0.3.2          brew_1.0-8              xaringanExtra_0.7.0
+## [94] plutil_0.9-7266         ellipsis_0.3.2          brew_1.0-8             
+## [97] xaringanExtra_0.7.0
 ```
 
 ]
