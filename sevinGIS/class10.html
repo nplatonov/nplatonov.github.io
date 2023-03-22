@@ -16,7 +16,7 @@
   <body>
 <style>
 .remark-backdrop:after{
-   content: 'Никита Платонов \A \A [ГИС аспирантура](class.html)';
+   content: 'Никита Платонов \A \A [ГИС аспирантура](class.html#home)';
 }
 :root {--pointsize: 22pt;}
 </style>
@@ -34,7 +34,7 @@ layout: true
 .banner[
 
 .shorttitle[
-[ГИС аспирантура](class.html)
+[ГИС аспирантура](class.html#home)
 ]
 
 ]
@@ -75,7 +75,7 @@ name: H3216
 .where[]
 
 
-.when[27 апреля 2023 г. .updated[Обновлено: 2023-03-22 16:44]]
+.when[27 апреля 2023 г. .updated[Обновлено: 2023-03-22 17:41]]
 
 
 
@@ -492,7 +492,7 @@ name: H8e66
 ```
 
 ```
-[1] 297
+[1] 485
 ```
 
 ```r
@@ -550,7 +550,7 @@ str(group)
 ```
 
 ```
- int [1:116] 4 5 5 1 1 4 5 5 1 3 ...
+ int [1:116] 3 1 3 1 1 4 4 5 5 3 ...
 ```
 
 ```r
@@ -668,12 +668,12 @@ head(backg)
 
 ```
         lon    lat
-[1,] -55.75 -24.25
-[2,] -62.25 -20.25
-[3,] -52.25 -30.25
-[4,] -60.25 -26.75
-[5,] -46.25 -24.25
-[6,] -77.75  -5.25
+[1,] -53.75 -14.75
+[2,] -79.75  -6.75
+[3,] -64.25   1.75
+[4,] -91.25  18.25
+[5,] -90.25  17.25
+[6,] -67.25  10.25
 ```
 
 Присвоения номеров групп для отбора в тестовую группу
@@ -849,19 +849,19 @@ head(envtrain,24)
 8   1  275  2259   956   208  335  231  104  270     1
 9   1  271  2212   807   281  327  220  107  266     1
 10  1  274  2233   877   230  329  227  102  269     1
-11  1  266  2592   872   498  320  214  105  262     1
-12  1  274  2233   877   230  329  227  102  269     1
-13  1  266  2608   957   306  322  219  103  262     1
+11  1  274  2233   877   230  329  227  102  269     1
+12  1  266  2608   957   306  322  219  103  262     1
+13  1  239  1194   540   130  313  165  148  252     1
 14  1  251  1617   808    97  312  194  118  246     1
 15  1  271  2599  1250   136  325  224  101  267     1
-16  1  269  2211   981   196  333  219  114  263     1
-17  1  270  2274  1008   191  331  221  110  266     1
-18  1  254  2084  1011   137  317  197  119  251     1
-19  1  263  1842   818   176  326  204  121  257     1
-20  1  260  1945   880   143  324  204  120  256     1
-21  1  263  1878   893   122  324  212  112  259     1
-22  1  260  1882   845   170  324  203  121  255     1
-23  1  258  2677   879   419  313  200  113  259     1
+16  1  254  2084  1011   137  317  197  119  251     1
+17  1  263  1842   818   176  326  204  121  257     1
+18  1  263  1878   893   122  324  212  112  259     1
+19  1  263  1878   893   122  324  212  112  259     1
+20  1  260  1882   845   170  324  203  121  255     1
+21  1  260  1882   845   170  324  203  121  255     1
+22  1  270  2479  1277   154  331  214  117  267     1
+23  1  270  2487  1221   182  329  216  113  268     1
 24  1  216  2835   985   267  277  160  117  212     1
 ```
 
@@ -901,15 +901,15 @@ str(envtest)
 ```
 'data.frame':	223 obs. of  10 variables:
  $ pa   : int  1 1 1 1 1 1 1 1 1 1 ...
- $ bio1 : int  239 263 260 270 270 270 181 244 264 150 ...
- $ bio12: int  1194 1878 1882 2479 2487 2413 1372 1526 7682 1053 ...
- $ bio16: int  540 893 845 1277 1221 1286 650 631 2426 360 ...
- $ bio17: int  130 122 170 154 182 140 114 75 1496 151 ...
- $ bio5 : int  313 324 324 331 329 330 259 313 312 206 ...
- $ bio6 : int  165 212 203 214 216 214 86 174 218 91 ...
- $ bio7 : int  148 112 121 117 113 116 172 139 94 115 ...
- $ bio8 : int  252 259 255 267 268 268 206 240 263 148 ...
- $ biome: Factor w/ 13 levels "1","2","3","4",..: 1 1 1 1 1 1 1 2 1 1 ...
+ $ bio1 : int  266 269 270 260 270 181 258 264 263 224 ...
+ $ bio12: int  2592 2211 2274 1945 2413 1372 2677 7682 7091 2496 ...
+ $ bio16: int  872 981 1008 880 1286 650 879 2426 2065 859 ...
+ $ bio17: int  498 196 191 143 140 114 419 1496 1372 403 ...
+ $ bio5 : int  320 333 331 324 330 259 313 312 316 279 ...
+ $ bio6 : int  214 219 221 204 214 86 200 218 213 171 ...
+ $ bio7 : int  105 114 110 120 116 172 113 94 104 108 ...
+ $ bio8 : int  262 263 266 256 268 206 259 263 262 220 ...
+ $ biome: Factor w/ 13 levels "1","2","3","4",..: 1 1 1 1 1 1 1 1 1 1 ...
 ```
 
 Отдельно пригодятся точки присутствия и псевдоотсутствия тестовой выборки
@@ -1061,27 +1061,27 @@ glm(formula = pa ~ bio1 + bio5 + bio6 + bio7 + bio8 + bio12 +
 
 Deviance Residuals: 
      Min        1Q    Median        3Q       Max  
--1.80627  -0.47441  -0.23247  -0.04601   2.86996  
+-1.61880  -0.50596  -0.25193  -0.06519   2.71065  
 
 Coefficients:
-             Estimate Std. Error z value Pr(>|z|)   
-(Intercept)  1.991621   1.731446   1.150  0.25004   
-bio1         0.086633   0.057505   1.507  0.13193   
-bio5        -0.023591   0.266272  -0.089  0.92940   
-bio6        -0.058729   0.266319  -0.221  0.82546   
-bio7        -0.059479   0.265666  -0.224  0.82285   
-bio8        -0.005473   0.026431  -0.207  0.83596   
-bio12        0.002063   0.000711   2.902  0.00371 **
-bio16       -0.001806   0.001502  -1.202  0.22922   
-bio17       -0.005135   0.001566  -3.279  0.00104 **
+              Estimate Std. Error z value Pr(>|z|)   
+(Intercept)  3.8431746  1.5471561   2.484  0.01299 * 
+bio1         0.0726764  0.0573783   1.267  0.20529   
+bio5        -0.1399528  0.2698395  -0.519  0.60400   
+bio6         0.0612361  0.2698760   0.227  0.82050   
+bio7         0.0557679  0.2692065   0.207  0.83589   
+bio8         0.0012728  0.0249563   0.051  0.95932   
+bio12        0.0015354  0.0006412   2.395  0.01664 * 
+bio16       -0.0011793  0.0013805  -0.854  0.39295   
+bio17       -0.0048672  0.0015037  -3.237  0.00121 **
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
     Null deviance: 596.69  on 892  degrees of freedom
-Residual deviance: 434.99  on 884  degrees of freedom
-AIC: 452.99
+Residual deviance: 454.13  on 884  degrees of freedom
+AIC: 472.13
 
 Number of Fisher Scoring iterations: 8
 ```
@@ -1133,23 +1133,23 @@ glm(formula = pa ~ bio1 + bio12 + bio17 + bio5 + 1, family = binomial(link = "lo
 
 Deviance Residuals: 
      Min        1Q    Median        3Q       Max  
--1.69829  -0.47849  -0.23629  -0.04286   2.82050  
+-1.55551  -0.50771  -0.25093  -0.06327   2.72517  
 
 Coefficients:
               Estimate Std. Error z value Pr(>|z|)    
-(Intercept)  2.0645142  1.7092496   1.208 0.227106    
-bio1         0.0867819  0.0138668   6.258 3.89e-10 ***
-bio12        0.0012829  0.0002214   5.795 6.83e-09 ***
-bio17       -0.0038106  0.0010026  -3.801 0.000144 ***
-bio5        -0.0878609  0.0137022  -6.412 1.43e-10 ***
+(Intercept)  3.8877703  1.5327150   2.537   0.0112 *  
+bio1         0.0866360  0.0130386   6.645 3.04e-11 ***
+bio12        0.0010325  0.0002073   4.980 6.37e-07 ***
+bio17       -0.0039477  0.0009899  -3.988 6.66e-05 ***
+bio5        -0.0916279  0.0132454  -6.918 4.59e-12 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
     Null deviance: 596.69  on 892  degrees of freedom
-Residual deviance: 436.63  on 888  degrees of freedom
-AIC: 446.63
+Residual deviance: 455.02  on 888  degrees of freedom
+AIC: 465.02
 
 Number of Fisher Scoring iterations: 7
 ```
@@ -1187,9 +1187,9 @@ name: H15bb
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.8257609 
-cor            : 0.2738844 
-max TPR+TNR at : -2.595924 
+AUC            : 0.8375 
+cor            : 0.2968903 
+max TPR+TNR at : -1.845094 
 ```
 
 ```r
@@ -1197,13 +1197,13 @@ max TPR+TNR at : -2.595924
 ```
 
 ```
-                 thresholds
-kappa           -1.07843019
-spec_sens       -2.59592393
-no_omission     -3.65882672
-prevalence       0.01274647
-equal_sens_spec -2.07269561
-sensitivity     -2.58942332
+                thresholds
+kappa           -0.5273646
+spec_sens       -1.8450941
+no_omission     -3.1963049
+prevalence       0.1731947
+equal_sens_spec -1.8450941
+sensitivity     -2.7668311
 ```
 
 
@@ -1242,7 +1242,7 @@ extent     : -90, -32, -33, 23  (xmin, xmax, ymin, ymax)
 crs        : +proj=longlat +datum=WGS84 +no_defs 
 source     : memory
 names      : layer 
-values     : -12.48089, 3.465299  (min, max)
+values     : -11.97956, 2.23157  (min, max)
 ```
 
 
@@ -1334,25 +1334,25 @@ glm(formula = pa ~ bio1 + bio12 + bio16 + bio17 + bio6 + bio8 +
 
 Deviance Residuals: 
      Min        1Q    Median        3Q       Max  
--0.61703  -0.15142  -0.06086   0.01281   0.99224  
+-0.47022  -0.14789  -0.06938   0.00655   0.96582  
 
 Coefficients:
               Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  3.416e-01  9.531e-02   3.584 0.000357 ***
-bio1        -4.801e-03  1.206e-03  -3.980 7.46e-05 ***
-bio12        3.435e-04  6.693e-05   5.133 3.51e-07 ***
-bio16       -4.600e-04  1.373e-04  -3.351 0.000839 ***
-bio17       -6.277e-04  1.554e-04  -4.039 5.84e-05 ***
-bio6         2.624e-03  5.686e-04   4.615 4.50e-06 ***
-bio8         1.341e-03  6.386e-04   2.100 0.036043 *  
+(Intercept)  4.834e-01  9.453e-02   5.113 3.88e-07 ***
+bio1        -7.015e-03  1.348e-03  -5.202 2.44e-07 ***
+bio12        2.741e-04  6.522e-05   4.202 2.91e-05 ***
+bio16       -3.433e-04  1.353e-04  -2.537   0.0113 *  
+bio17       -6.370e-04  1.566e-04  -4.068 5.16e-05 ***
+bio6         3.769e-03  6.120e-04   6.158 1.12e-09 ***
+bio8         2.324e-03  7.203e-04   3.226   0.0013 ** 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-(Dispersion parameter for gaussian family taken to be 0.07915989)
+(Dispersion parameter for gaussian family taken to be 0.08171512)
 
     Null deviance: 83.315  on 892  degrees of freedom
-Residual deviance: 70.136  on 886  degrees of freedom
-AIC: 278.29
+Residual deviance: 72.400  on 886  degrees of freedom
+AIC: 306.66
 
 Number of Fisher Scoring iterations: 2
 ```
@@ -1390,9 +1390,9 @@ name: H12d6
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.766413 
-cor            : 0.3108152 
-max TPR+TNR at : 0.1031567 
+AUC            : 0.8251087 
+cor            : 0.3443033 
+max TPR+TNR at : 0.1143676 
 ```
 
 ```r
@@ -1400,13 +1400,13 @@ max TPR+TNR at : 0.1031567
 ```
 
 ```
-                 thresholds
-kappa            0.18300564
-spec_sens        0.10315674
-no_omission     -0.01497203
-prevalence       0.10315674
-equal_sens_spec  0.12194700
-sensitivity      0.07749203
+                thresholds
+kappa           0.34777055
+spec_sens       0.11436763
+no_omission     0.08545827
+prevalence      0.10363578
+equal_sens_spec 0.14657961
+sensitivity     0.11732282
 ```
 
 
@@ -1513,9 +1513,9 @@ name: H8269
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.6884783 
-cor            : 0.1496476 
-max TPR+TNR at : 0.01065269 
+AUC            : 0.7317391 
+cor            : 0.1922651 
+max TPR+TNR at : 0.08592151 
 ```
 
 ```r
@@ -1524,11 +1524,11 @@ max TPR+TNR at : 0.01065269
 
 ```
                  thresholds
-kappa            0.19344839
-spec_sens        0.01065269
+kappa            0.08592151
+spec_sens        0.08592151
 no_omission     -0.00010000
 prevalence       0.10742688
-equal_sens_spec  0.10742688
+equal_sens_spec  0.08592151
 sensitivity      0.01065269
 ```
 
@@ -1639,9 +1639,9 @@ dm <- domain(pred_nf,pres_train)
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.7304348 
-cor            : 0.2146017 
-max TPR+TNR at : 0.5957302 
+AUC            : 0.738913 
+cor            : 0.2433342 
+max TPR+TNR at : 0.6826957 
 ```
 
 ```r
@@ -1650,12 +1650,12 @@ max TPR+TNR at : 0.5957302
 
 ```
                 thresholds
-kappa           0.80156661
-spec_sens       0.59573021
-no_omission     0.08236928
-prevalence      0.09107841
-equal_sens_spec 0.68818176
-sensitivity     0.24413963
+kappa            0.6826957
+spec_sens        0.6826957
+no_omission      0.1582834
+prevalence       0.1107185
+equal_sens_spec  0.7006290
+sensitivity      0.2433716
 ```
 
 
@@ -1731,9 +1731,9 @@ mm <- mahal(pred_nf,pres_train)
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.8102174 
-cor            : 0.1446773 
-max TPR+TNR at : -0.1030652 
+AUC            : 0.8033696 
+cor            : 0.1380025 
+max TPR+TNR at : -0.00555874 
 ```
 
 ```r
@@ -1741,13 +1741,13 @@ max TPR+TNR at : -0.1030652
 ```
 
 ```
-                 thresholds
-kappa             0.2596767
-spec_sens        -0.1030652
-no_omission     -18.0385824
-prevalence        0.1035120
-equal_sens_spec  -2.0853245
-sensitivity      -6.7319023
+                  thresholds
+kappa             0.36783034
+spec_sens        -0.00555874
+no_omission     -16.39383099
+prevalence        0.06248527
+equal_sens_spec  -2.83783517
+sensitivity      -9.62816233
 ```
 
 
@@ -1888,9 +1888,9 @@ name: Hcd28
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.8083696 
-cor            : 0.3539966 
-max TPR+TNR at : 0.1940024 
+AUC            : 0.8453261 
+cor            : 0.3945256 
+max TPR+TNR at : 0.3247795 
 ```
 
 ```r
@@ -1899,12 +1899,12 @@ max TPR+TNR at : 0.1940024
 
 ```
                 thresholds
-kappa           0.71932633
-spec_sens       0.19400241
-no_omission     0.04584559
-prevalence      0.10072760
-equal_sens_spec 0.36309369
-sensitivity     0.16631685
+kappa            0.5711131
+spec_sens        0.3247795
+no_omission      0.1807562
+prevalence       0.1051885
+equal_sens_spec  0.3859119
+sensitivity      0.3258585
 ```
 
 
@@ -2006,8 +2006,8 @@ Call:
                      Number of trees: 500
 No. of variables tried at each split: 2
 
-          Mean of squared residuals: 0.07199953
-                    % Var explained: 22.83
+          Mean of squared residuals: 0.07002767
+                    % Var explained: 24.94
 ```
 
 
@@ -2045,11 +2045,11 @@ Call:
                      Number of trees: 500
 No. of variables tried at each split: 2
 
-        OOB estimate of  error rate: 9.41%
+        OOB estimate of  error rate: 9.52%
 Confusion matrix:
     0  1 class.error
-0 775 25   0.0312500
-1  59 34   0.6344086
+0 777 23   0.0287500
+1  62 31   0.6666667
 ```
 
 
@@ -2123,9 +2123,9 @@ name: Haa82
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.8120652 
-cor            : 0.4209477 
-max TPR+TNR at : 0.0525 
+AUC            : 0.8257609 
+cor            : 0.4597214 
+max TPR+TNR at : 0.04426667 
 ```
 
 ```r
@@ -2134,12 +2134,12 @@ max TPR+TNR at : 0.0525
 
 ```
                 thresholds
-kappa           0.24796667
-spec_sens       0.05250000
-no_omission     0.00190000
-prevalence      0.10326667
-equal_sens_spec 0.08706667
-sensitivity     0.02606667
+kappa           0.47123333
+spec_sens       0.04426667
+no_omission     0.00523333
+prevalence      0.10460476
+equal_sens_spec 0.10143333
+sensitivity     0.02736667
 ```
 
 
@@ -2236,9 +2236,9 @@ svm <- ksvm(pa ~ bio1+bio5+bio6+bio7+bio8+bio12+bio16+bio17, data=envtrain)
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.5642391 
-cor            : 0.2542168 
-max TPR+TNR at : 0.02569232 
+AUC            : 0.7307609 
+cor            : 0.3529518 
+max TPR+TNR at : 0.02649889 
 ```
 
 .font60[
@@ -2252,9 +2252,9 @@ max TPR+TNR at : 0.02569232
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.5642391 
-cor            : 0.2542168 
-max TPR+TNR at : 0.02569232 
+AUC            : 0.7307609 
+cor            : 0.3529518 
+max TPR+TNR at : 0.02649889 
 ```
 
 ]
@@ -2266,12 +2266,12 @@ max TPR+TNR at : 0.02569232
 
 ```
                  thresholds
-kappa            0.12960111
-spec_sens        0.02569232
-no_omission     -0.01564965
-prevalence       0.10606591
-equal_sens_spec  0.02580828
-sensitivity     -0.00243150
+kappa            0.03549890
+spec_sens        0.02649889
+no_omission     -0.00800244
+prevalence       0.10507833
+equal_sens_spec  0.02688132
+sensitivity      0.00780892
 ```
 
 
@@ -2628,7 +2628,7 @@ methods    :     AUC     |     COR     |     TSS     |     Deviance
 -------------------------------------------------------------------------
 glm        :     0.88    |     0.7     |     0.69    |     0.83     
 gam        :     0.88    |     0.71    |     0.7     |     0.82     
-brt        :     0.94    |     0.77    |     0.75    |     0.85     
+brt        :     0.94    |     0.77    |     0.76    |     0.85     
 ```
 
 ]
@@ -2692,11 +2692,11 @@ model Mean performance (per species), using test dataset (generated using partit
 
 methods    :     AUC     |     COR     |     TSS     |     Deviance 
 -------------------------------------------------------------------------
-rf         :     0.89    |     0.72    |     0.81    |     0.86     
-cart       :     0.88    |     0.66    |     0.67    |     0.92     
-fda        :     0.91    |     0.74    |     0.78    |     0.74     
-mars       :     0.91    |     0.74    |     0.76    |     0.85     
-svm        :     0.88    |     0.75    |     0.8     |     0.8      
+rf         :     0.84    |     0.65    |     0.7     |     1.04     
+cart       :     0.85    |     0.64    |     0.68    |     1.13     
+fda        :     0.86    |     0.66    |     0.67    |     0.97     
+mars       :     0.87    |     0.66    |     0.64    |     0.99     
+svm        :     0.83    |     0.68    |     0.7     |     0.91     
 ```
 
 ]
@@ -2847,10 +2847,10 @@ dimensions : 71, 124, 8804, 3  (nrow, ncol, ncell, nlayers)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : filefe83d546d6a.grd 
+source     : file359c4a953918.grd 
 names      : id_1.sp_1.m_glm, id_2.sp_1.m_gam, id_3.sp_1.m_brt 
-min values :      0.00376331,      0.00217490,      0.20679947 
-max values :       0.9957391,       0.9957009,       0.7830110 
+min values :      0.00376331,      0.00217490,      0.20755451 
+max values :       0.9957391,       0.9957009,       0.7834722 
 fullname   : id_1-species_Occurrence-method_glm, id_2-species_Occurrence-method_gam, id_3-species_Occurrence-method_brt 
 ```
 
@@ -2918,10 +2918,10 @@ dimensions : 71, 124, 8804, 10  (nrow, ncol, ncell, nlayers)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : filefe83fa42720.grd 
+source     : file359c11655738.grd 
 names      : id_1.sp_1.m_rf.re_subs, id_2.sp_1.m_rf.re_subs, id_3.sp_1.m_cart.re_subs, id_4.sp_1.m_cart.re_subs, id_5.sp_1.m_fda.re_subs, id_6.sp_1.m_fda.re_subs, id_7.sp_1.m_mars.re_subs, id_8.sp_1.m_mars.re_subs, id_9.sp_1.m_svm.re_subs, id_10.sp_1.m_svm.re_subs 
-min values :           1.090000e-02,           1.151667e-02,             0.000000e+00,             0.000000e+00,            1.741926e-03,            1.500418e-03,             2.220446e-16,             2.220446e-16,            6.649714e-02,             1.112411e-01 
-max values :              0.9980500,              0.9959667,                0.9722222,                0.9583333,               0.9979115,               0.9969112,                0.9961465,                0.9999620,               0.9550454,                0.9159105 
+min values :           8.583333e-03,           7.550000e-03,             0.000000e+00,             2.439024e-02,            5.369354e-04,            4.280531e-04,             2.220446e-16,             6.770673e-13,            9.444596e-02,             5.947098e-02 
+max values :              0.9955833,              1.0000000,                0.9722222,                1.0000000,               0.9981186,               0.9988430,                0.9973295,                0.9998639,               0.9105664,                0.9631858 
 fullname   : id_1-species_Occurrence-method_rf-replication_subsampling, id_2-species_Occurrence-method_rf-replication_subsampling, id_3-species_Occurrence-method_cart-replication_subsampling, id_4-species_Occurrence-method_cart-replication_subsampling, id_5-species_Occurrence-method_fda-replication_subsampling, id_6-species_Occurrence-method_fda-replication_subsampling, id_7-species_Occurrence-method_mars-replication_subsampling, id_8-species_Occurrence-method_mars-replication_subsampling, id_9-species_Occurrence-method_svm-replication_subsampling, id_10-species_Occurrence-method_svm-replication_subsampling 
 ```
 
@@ -2988,10 +2988,10 @@ dimensions : 71, 124, 8804, 5  (nrow, ncol, ncell, nlayers)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : filefe86a305c15.grd 
+source     : file359c640550d5.grd 
 names      : sp_1.m_rf.re_subs, sp_1.m_cart.re_subs, sp_1.m_fda.re_subs, sp_1.m_mars.re_subs, sp_1.m_svm.re_subs 
-min values :      1.184167e-02,        0.000000e+00,       1.621172e-03,        2.220446e-16,       9.689110e-02 
-max values :         0.9950167,           0.9652778,          0.9974113,           0.9980178,          0.9269748 
+min values :      1.045000e-02,        3.997290e-02,       4.824943e-04,        3.386447e-13,       7.854034e-02 
+max values :         0.9963917,           0.9861111,          0.9984808,           0.9978360,          0.9269880 
 fullname   : species_Occurrence-method_rf-replication (Mean)_subsampling, species_Occurrence-method_cart-replication (Mean)_subsampling, species_Occurrence-method_fda-replication (Mean)_subsampling, species_Occurrence-method_mars-replication (Mean)_subsampling, species_Occurrence-method_svm-replication (Mean)_subsampling 
 ```
 
@@ -3082,9 +3082,9 @@ dimensions : 71, 124, 8804  (nrow, ncol, ncell)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : filefe83b601e1e.grd 
+source     : file359c131f2361.grd 
 names      : layer 
-values     : 0.0831827, 0.9175893  (min, max)
+values     : 0.08405077, 0.9175592  (min, max)
 ```
 <img src="assets/lesson10//ursa13_e1.png" width="1330" height="320" bound style="display: block; margin: auto;" />
 
@@ -3120,9 +3120,9 @@ dimensions : 71, 124, 8804  (nrow, ncol, ncell)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : filefe86c453ebd.grd 
+source     : file359c59255e1d.grd 
 names      : layer 
-values     : 0.05340641, 0.9619915  (min, max)
+values     : 0.0482044, 0.9618725  (min, max)
 ```
 <img src="assets/lesson10//ursa14_e2.png" width="1330" height="320" bound style="display: block; margin: auto;" />
 
@@ -3158,9 +3158,9 @@ dimensions : 71, 124, 8804  (nrow, ncol, ncell)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : filefe8a22bcf.grd 
+source     : file359c57a95e3a.grd 
 names      : layer 
-values     : 0.05146206, 0.962908  (min, max)
+values     : 0.04758826, 0.9631332  (min, max)
 ```
 <img src="assets/lesson10//ursa15_e3.png" width="1330" height="320" bound style="display: block; margin: auto;" />
 
