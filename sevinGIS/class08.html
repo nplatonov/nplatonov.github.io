@@ -84,7 +84,7 @@ name: H3216
 .where[]
 
 
-.when[13 апреля 2023 г. .updated[Обновлено: 2023-03-21 21:10]]
+.when[13 апреля 2023 г. .updated[Обновлено: 2023-03-22 14:51]]
 
 
 
@@ -193,7 +193,7 @@ tmap mode set to interactive viewing
 
 [Шпаргалка](https://github.com/r-spatial/sf/wiki/Migrating) по миграции между `sp` и `sf`:
 
-<iframe src="https://github.com/r-spatial/sf/wiki/Migrating" width="1330" height="200" data-external="1"></iframe>
+<iframe src="https://github.com/r-spatial/sf/wiki/Migrating" width="1330" height="365" data-external="1"></iframe>
 
 
 ]
@@ -367,17 +367,13 @@ name: H508a
 
 
 ```r
-m1 <- tm_shape(hr2)+tm_polygons("group",alpha=0.5,group="Kernel levels")
+m1v <- tm_shape(hr2)+tm_polygons("group",alpha=0.5,group="Kernel levels")
 ```
 
 ```r
-m1
+m1v
 ```
-<div class="figure">
-<div class="framed" style="height:535px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-16_199617c9c0ec4f5b43dead10046266d8.html" width="100%" height="535" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 .indent[
@@ -645,11 +641,7 @@ m3 <- tm_shape(hr_mline)+tm_lines("group",alpha=1,lwd=3,group="Contour levels")
 ```r
 m3
 ```
-<div class="figure">
-<div class="framed" style="height:485px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-24_804dc582de0b3e8b6f8739382e89b04a.html" width="100%" height="485" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 ]
@@ -732,11 +724,7 @@ m4 <- tm_shape(hr_mpoint)+tm_dots("group",size=0.02,group="Points")
 ```r
 m4
 ```
-<div class="figure">
-<div class="framed" style="height:485px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-28_5cd95b1bf34164eb3c147bcc9e0d76c4.html" width="100%" height="485" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 ]
@@ -771,11 +759,7 @@ m2 <- tm_shape(hr2)+tm_polygons("group",alpha=0.5,group="Kernel levels")+
 ```r
 m2
 ```
-<div class="figure">
-<div class="framed" style="height:485px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-31_6905fcdc535370bcad255a6bf0795aea.html" width="100%" height="485" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 ]
@@ -810,11 +794,7 @@ m2 <- tm_shape(hr2)+tm_polygons("group",alpha=0.5,group="Kernel levels")+
 ```r
 m2
 ```
-<div class="figure">
-<div class="framed" style="height:485px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-34_2fde56e6337b5d055882e95d823e8c6f.html" width="100%" height="485" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 ]
@@ -850,11 +830,7 @@ m5 <- tm_shape(hr2)+tm_polygons("group",alpha=0.5,group="Kernel levels")+
 ```r
 m5
 ```
-<div class="figure">
-<div class="framed" style="height:460px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-37_e22376d4098fe4e3aca1f83300f35950.html" width="100%" height="460" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 
@@ -892,11 +868,7 @@ m6 <- tm_shape(intersection)+tm_polygons("group",alpha=0.5,group="Kernel levels"
 ```r
 m6
 ```
-<div class="figure">
-<div class="framed" style="height:460px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-40_ae18a6fe188f65b97fb89129a45419ee.html" width="100%" height="460" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 ]
@@ -1025,11 +997,7 @@ m7 <- tm_shape(intersection)+tm_polygons("group",alpha=0.5,group="Kernel levels"
 ```r
 m7
 ```
-<div class="figure">
-<div class="framed" style="height:460px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-45_eb510e9a7ce4fe61ca8065d2a289fd36.html" width="100%" height="460" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 ]
@@ -1118,11 +1086,7 @@ m13 <- tm_shape(overlaps)+tm_polygons("n.overlaps",alpha=0.5,group="Overlaps")
 ```r
 m13
 ```
-<div class="figure">
-<div class="framed" style="height:460px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-49_4229842db017da9b34d628ccbe1a7436.html" width="100%" height="460" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 ]
@@ -1157,11 +1121,7 @@ m8 <- tm_shape(hr2)+tm_polygons("group",alpha=0.5,group="Kernel levels")+
 ```r
 m8
 ```
-<div class="figure">
-<div class="framed" style="height:485px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-52_e53e5d11d9be45a000611fa66d09a98d.html" width="100%" height="485" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 ]
@@ -1197,11 +1157,7 @@ m9 <- tm_shape(hr2)+tm_polygons("group",alpha=0.5,group="Kernel levels")+
 ```r
 m9
 ```
-<div class="figure">
-<div class="framed" style="height:460px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-55_d2bc1ae5124fe4a32fce181c0782907e.html" width="100%" height="460" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 ]
@@ -1229,18 +1185,14 @@ name: H8bdf
 
 ```r
 cutted <- sf::st_intersection(hr2,sf::st_transform(inside,sf::st_crs(hr2)))
-m9 <- tm_shape(cutted)+tm_polygons("group",alpha=0.5,group="Kernel levels")+
+m14 <- tm_shape(cutted)+tm_polygons("group",alpha=0.5,group="Kernel levels")+
    tm_shape(inside)+tm_borders(group="Inside 100km",lty="dashed",lwd=3)
 ```
 
 ```r
-m9
+m14
 ```
-<div class="figure">
-<div class="framed" style="height:485px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-58_8869bac7e5f2dae586413c6a3aa43fa3.html" width="100%" height="485" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 ]
@@ -1275,11 +1227,7 @@ m10 <- tm_shape(bound)+tm_borders(col="red",group="Bound (n pts)",lty="dashed",l
 ```r
 m10
 ```
-<div class="figure">
-<div class="framed" style="height:485px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-61_02fcfaef5cde964744ae5d94d1b1e362.html" width="100%" height="485" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 ]
@@ -1314,11 +1262,7 @@ m11 <- tm_shape(within)+tm_polygons("group",alpha=0.5,group="Kernel levels")+
 ```r
 m11
 ```
-<div class="figure">
-<div class="framed" style="height:485px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-64_e12e06f6a2d0892ba9b1f469037b0d6b.html" width="100%" height="485" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 ]
@@ -1395,11 +1339,7 @@ name: Hb4f4
 ```r
 m12
 ```
-<div class="figure">
-<div class="framed" style="height:600px; width=100%">
-<iframe src="assets/lesson08/widget_unnamed-chunk-67_d5480eaee9e20c32a1ebf941ebee9723.html" width="100%" height="600" class="ursa-widgetize"></iframe>
-</div>
-</div>
+
 
 
 <style type="text/css">

@@ -75,7 +75,7 @@ name: H3216
 .where[]
 
 
-.when[27 апреля 2023 г. .updated[Обновлено: 2023-03-22 06:28]]
+.when[27 апреля 2023 г. .updated[Обновлено: 2023-03-22 14:51]]
 
 
 
@@ -240,7 +240,7 @@ head(bradypus)
 ]
 .pull-right-40[
 
-<img src="assets/lesson10//ursa01_unnamed-chunk-8.png" width="1330" height="300" bound style="display: block; margin: auto;" />
+<img src="assets/lesson10//ursa01_bradypus.png" width="1330" height="300" bound style="display: block; margin: auto;" />
 
 ]
 
@@ -273,7 +273,7 @@ op <- par(mar=rep(0,4))
 plot(wrld_simpl)
 ```
 
-<img src="assets/lesson10/unnamed-chunk-9-1.svg" width="1330" height="440" style="display: block; margin: auto;" />
+<img src="assets/lesson10/wrld-simpl-1.svg" width="1330" height="440" style="display: block; margin: auto;" />
 
 ```r
 par(op)
@@ -369,7 +369,7 @@ name: H508a
 plot(predictors)
 ```
 
-<img src="assets/lesson10/unnamed-chunk-11-1.svg" width="1330" height="568" style="display: block; margin: auto;" />
+<img src="assets/lesson10/predictors-1.svg" width="1330" height="568" style="display: block; margin: auto;" />
 
 
 ]
@@ -492,7 +492,7 @@ name: H8e66
 ```
 
 ```
-[1] 478
+[1] 850
 ```
 
 ```r
@@ -516,6 +516,7 @@ k <- 5L
 ```
 [1] 4
 ```
+
 
 
 ]
@@ -542,13 +543,14 @@ name: He931
 
 
 
+
 ```r
 group <- dismo::kfold(bradypus,k) ## group <- sample(seq(k),nrow(pres),replace=TRUE) ## альтернативное группирование
 str(group)
 ```
 
 ```
- int [1:116] 3 5 4 3 2 1 3 3 4 3 ...
+ int [1:116] 3 4 1 2 2 3 3 5 4 4 ...
 ```
 
 ```r
@@ -666,12 +668,12 @@ head(backg)
 
 ```
         lon    lat
-[1,] -52.75  -0.75
-[2,] -59.75 -25.25
-[3,] -76.25   6.25
-[4,] -85.25  14.25
-[5,] -43.75 -15.25
-[6,] -57.75 -24.25
+[1,] -63.25 -19.75
+[2,] -69.75  19.75
+[3,] -62.75 -27.75
+[4,] -62.75 -39.75
+[5,] -67.25  -8.75
+[6,] -69.75  -3.75
 ```
 
 Присвоения номеров групп для отбора в тестовую группу
@@ -795,14 +797,14 @@ str(envtrain)
 ```
 'data.frame':	893 obs. of  10 variables:
  $ pa   : int  1 1 1 1 1 1 1 1 1 1 ...
- $ bio1 : int  263 263 243 243 252 240 275 274 266 274 ...
- $ bio12: int  1639 1639 1693 1693 2501 1214 2259 2233 2592 2233 ...
- $ bio16: int  724 724 775 775 1081 516 956 877 872 877 ...
- $ bio17: int  62 62 186 186 280 146 208 230 498 230 ...
- $ bio5 : int  338 338 318 318 326 317 335 329 320 329 ...
- $ bio6 : int  191 191 150 150 154 150 231 227 214 227 ...
- $ bio7 : int  147 147 168 168 172 168 104 102 105 102 ...
- $ bio8 : int  261 261 264 264 270 261 270 269 262 269 ...
+ $ bio1 : int  263 253 243 243 252 240 275 266 274 266 ...
+ $ bio12: int  1639 3624 1693 1693 2501 1214 2259 2592 2233 2608 ...
+ $ bio16: int  724 1547 775 775 1081 516 956 872 877 957 ...
+ $ bio17: int  62 373 186 186 280 146 208 498 230 306 ...
+ $ bio5 : int  338 329 318 318 326 317 335 320 329 322 ...
+ $ bio6 : int  191 150 150 150 154 150 231 214 227 219 ...
+ $ bio7 : int  147 179 168 168 172 168 104 105 102 103 ...
+ $ bio8 : int  261 271 264 264 270 261 270 262 269 262 ...
  $ biome: Factor w/ 13 levels "1","2","3","4",..: 1 1 1 1 1 2 1 1 1 1 ...
 ```
 
@@ -838,29 +840,29 @@ head(envtrain,24)
 ```
    pa bio1 bio12 bio16 bio17 bio5 bio6 bio7 bio8 biome
 1   1  263  1639   724    62  338  191  147  261     1
-2   1  263  1639   724    62  338  191  147  261     1
+2   1  253  3624  1547   373  329  150  179  271     1
 3   1  243  1693   775   186  318  150  168  264     1
 4   1  243  1693   775   186  318  150  168  264     1
 5   1  252  2501  1081   280  326  154  172  270     1
 6   1  240  1214   516   146  317  150  168  261     2
 7   1  275  2259   956   208  335  231  104  270     1
-8   1  274  2233   877   230  329  227  102  269     1
-9   1  266  2592   872   498  320  214  105  262     1
-10  1  274  2233   877   230  329  227  102  269     1
-11  1  266  2608   957   306  322  219  103  262     1
-12  1  239  1194   540   130  313  165  148  252     1
+8   1  266  2592   872   498  320  214  105  262     1
+9   1  274  2233   877   230  329  227  102  269     1
+10  1  266  2608   957   306  322  219  103  262     1
+11  1  239  1194   540   130  313  165  148  252     1
+12  1  251  1617   808    97  312  194  118  246     1
 13  1  271  2599  1250   136  325  224  101  267     1
 14  1  269  2211   981   196  333  219  114  263     1
 15  1  270  2274  1008   191  331  221  110  266     1
 16  1  254  2084  1011   137  317  197  119  251     1
 17  1  263  1842   818   176  326  204  121  257     1
-18  1  260  1945   880   143  324  204  120  256     1
+18  1  263  1878   893   122  324  212  112  259     1
 19  1  263  1878   893   122  324  212  112  259     1
 20  1  260  1882   845   170  324  203  121  255     1
 21  1  260  1882   845   170  324  203  121  255     1
-22  1  270  2479  1277   154  331  214  117  267     1
-23  1  270  2487  1221   182  329  216  113  268     1
-24  1  270  2413  1286   140  330  214  116  268     1
+22  1  181  1372   650   114  259   86  172  206     1
+23  1  258  2677   879   419  313  200  113  259     1
+24  1  216  2835   985   267  277  160  117  212     1
 ```
 
 
@@ -899,15 +901,15 @@ str(envtest)
 ```
 'data.frame':	223 obs. of  10 variables:
  $ pa   : int  1 1 1 1 1 1 1 1 1 1 ...
- $ bio1 : int  253 271 251 263 268 254 246 261 257 251 ...
- $ bio12: int  3624 2212 1617 1878 1369 1499 2253 2945 3575 3727 ...
- $ bio16: int  1547 807 808 893 531 606 865 1040 1295 1550 ...
- $ bio17: int  373 281 97 122 88 90 314 405 359 256 ...
- $ bio5 : int  329 327 312 324 337 325 310 319 316 325 ...
- $ bio6 : int  150 220 194 212 199 185 182 205 202 187 ...
- $ bio7 : int  179 107 118 112 137 140 128 114 114 139 ...
- $ bio8 : int  271 266 246 259 265 251 248 255 258 246 ...
- $ biome: Factor w/ 13 levels "1","2","3","4",..: 1 1 1 1 12 12 1 1 1 1 ...
+ $ bio1 : int  263 271 274 260 270 270 270 268 264 251 ...
+ $ bio12: int  1639 2212 2233 1945 2479 2487 2413 1369 7682 3719 ...
+ $ bio16: int  724 807 877 880 1277 1221 1286 531 2426 1469 ...
+ $ bio17: int  62 281 230 143 154 182 140 88 1496 170 ...
+ $ bio5 : int  338 327 329 324 331 329 330 337 312 305 ...
+ $ bio6 : int  191 220 227 204 214 216 214 199 218 204 ...
+ $ bio7 : int  147 107 102 120 117 113 116 137 94 100 ...
+ $ bio8 : int  261 266 269 256 267 268 268 265 263 246 ...
+ $ biome: Factor w/ 13 levels "1","2","3","4",..: 1 1 1 1 1 1 1 12 1 1 ...
 ```
 
 Отдельно пригодятся точки присутствия и псевдоотсутствия тестовой выборки
@@ -1059,29 +1061,29 @@ glm(formula = pa ~ bio1 + bio5 + bio6 + bio7 + bio8 + bio12 +
 
 Deviance Residuals: 
      Min        1Q    Median        3Q       Max  
--1.82940  -0.47914  -0.20762  -0.05079   2.75610  
+-1.53661  -0.50183  -0.27059  -0.07981   2.71535  
 
 Coefficients:
-              Estimate Std. Error z value Pr(>|z|)  
-(Intercept)  3.7311135  1.6601713   2.247   0.0246 *
-bio1         0.0252324  0.0555456   0.454   0.6496  
-bio5         0.1187885  0.2443965   0.486   0.6269  
-bio6        -0.1805312  0.2443884  -0.739   0.4601  
-bio7        -0.1982581  0.2439340  -0.813   0.4164  
-bio8         0.0317980  0.0248873   1.278   0.2014  
-bio12        0.0013713  0.0006935   1.978   0.0480 *
-bio16       -0.0004357  0.0014859  -0.293   0.7694  
-bio17       -0.0039073  0.0015533  -2.515   0.0119 *
+              Estimate Std. Error z value Pr(>|z|)   
+(Intercept)  3.4622855  1.4532922   2.382  0.01720 * 
+bio1         0.0689291  0.0550477   1.252  0.21051   
+bio5         0.1023408  0.2701054   0.379  0.70477   
+bio6        -0.1839133  0.2698526  -0.682  0.49553   
+bio7        -0.1840470  0.2696303  -0.683  0.49487   
+bio8         0.0075184  0.0245974   0.306  0.75986   
+bio12        0.0022576  0.0007167   3.150  0.00163 **
+bio16       -0.0029285  0.0014847  -1.972  0.04856 * 
+bio17       -0.0054349  0.0016526  -3.289  0.00101 **
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
     Null deviance: 596.69  on 892  degrees of freedom
-Residual deviance: 431.51  on 884  degrees of freedom
-AIC: 449.51
+Residual deviance: 464.54  on 884  degrees of freedom
+AIC: 482.54
 
-Number of Fisher Scoring iterations: 8
+Number of Fisher Scoring iterations: 7
 ```
 
 ]
@@ -1126,28 +1128,29 @@ summary(gm1)
 ```
 
 Call:
-glm(formula = pa ~ bio1 + bio12 + bio17 + bio5 + 1, family = binomial(link = "logit"), 
+glm(formula = pa ~ bio1 + bio12 + bio16 + bio17 + bio5 + 1, family = binomial(link = "logit"), 
     data = envtrain, na.action = na.pass)
 
 Deviance Residuals: 
      Min        1Q    Median        3Q       Max  
--1.81598  -0.49157  -0.21694  -0.04247   2.79982  
+-1.52857  -0.50342  -0.27265  -0.07806   2.68767  
 
 Coefficients:
               Estimate Std. Error z value Pr(>|z|)    
-(Intercept)  3.6581256  1.6027342   2.282 0.022464 *  
-bio1         0.0881280  0.0139446   6.320 2.62e-10 ***
-bio12        0.0011539  0.0002178   5.299 1.16e-07 ***
-bio17       -0.0034712  0.0009915  -3.501 0.000464 ***
-bio5        -0.0933829  0.0140157  -6.663 2.69e-11 ***
+(Intercept)  3.4868646  1.4420352   2.418  0.01561 *  
+bio1         0.0747566  0.0127275   5.874 4.26e-09 ***
+bio12        0.0021689  0.0006975   3.109  0.00188 ** 
+bio16       -0.0027995  0.0014640  -1.912  0.05585 .  
+bio17       -0.0051619  0.0015891  -3.248  0.00116 ** 
+bio5        -0.0802768  0.0128368  -6.254 4.01e-10 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
     Null deviance: 596.69  on 892  degrees of freedom
-Residual deviance: 433.77  on 888  degrees of freedom
-AIC: 443.77
+Residual deviance: 465.11  on 887  degrees of freedom
+AIC: 477.11
 
 Number of Fisher Scoring iterations: 7
 ```
@@ -1185,9 +1188,9 @@ name: H15bb
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.8036957 
-cor            : 0.2463292 
-max TPR+TNR at : -3.041573 
+AUC            : 0.8658696 
+cor            : 0.3196986 
+max TPR+TNR at : -2.069361 
 ```
 
 ```r
@@ -1196,12 +1199,12 @@ max TPR+TNR at : -3.041573
 
 ```
                  thresholds
-kappa           -1.89605352
-spec_sens       -3.04157253
-no_omission     -3.04157253
-prevalence       0.04168925
-equal_sens_spec -2.25258613
-sensitivity     -2.87327537
+kappa           -0.39286865
+spec_sens       -2.06936104
+no_omission     -2.77781590
+prevalence      -0.01801586
+equal_sens_spec -1.94077121
+sensitivity     -2.49086048
 ```
 
 
@@ -1240,7 +1243,7 @@ extent     : -90, -32, -33, 23  (xmin, xmax, ymin, ymax)
 crs        : +proj=longlat +datum=WGS84 +no_defs 
 source     : memory
 names      : layer 
-values     : -12.52231, 3.181817  (min, max)
+values     : -10.6548, 2.341966  (min, max)
 ```
 
 
@@ -1277,7 +1280,7 @@ points(backg_train, pch='x', cex=0.4,col="lightblue")
 points(pres_train, pch='o',cex=0.6,col="blue")
 ```
 
-<img src="assets/lesson10/unnamed-chunk-46-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+<img src="assets/lesson10/pgplot-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
 
 ```r
 par(op)
@@ -1326,31 +1329,31 @@ summary(gm2)
 ```
 
 Call:
-glm(formula = pa ~ bio1 + bio12 + bio16 + bio17 + bio6 + bio8 + 
+glm(formula = pa ~ bio1 + bio12 + bio16 + bio17 + bio7 + bio8 + 
     1, family = gaussian(link = "identity"), data = envtrain, 
     na.action = na.pass)
 
 Deviance Residuals: 
      Min        1Q    Median        3Q       Max  
--0.50755  -0.14981  -0.06076   0.01132   1.00169  
+-0.53623  -0.15198  -0.06990  -0.00107   0.98408  
 
 Coefficients:
               Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  4.063e-01  9.708e-02   4.185 3.13e-05 ***
-bio1        -5.736e-03  1.241e-03  -4.623 4.35e-06 ***
-bio12        2.639e-04  6.731e-05   3.921 9.51e-05 ***
-bio16       -3.033e-04  1.386e-04  -2.188  0.02891 *  
-bio17       -4.775e-04  1.579e-04  -3.024  0.00257 ** 
-bio6         3.037e-03  5.858e-04   5.184 2.68e-07 ***
-bio8         1.727e-03  6.472e-04   2.668  0.00777 ** 
+(Intercept)  4.222e-01  9.777e-02   4.319 1.75e-05 ***
+bio1        -2.218e-03  7.665e-04  -2.893 0.003907 ** 
+bio12        3.176e-04  6.862e-05   4.629 4.23e-06 ***
+bio16       -4.704e-04  1.394e-04  -3.374 0.000773 ***
+bio17       -5.811e-04  1.632e-04  -3.561 0.000389 ***
+bio7        -1.570e-03  3.053e-04  -5.142 3.35e-07 ***
+bio8         1.378e-03  6.653e-04   2.071 0.038637 *  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-(Dispersion parameter for gaussian family taken to be 0.07936998)
+(Dispersion parameter for gaussian family taken to be 0.0824282)
 
     Null deviance: 83.315  on 892  degrees of freedom
-Residual deviance: 70.322  on 886  degrees of freedom
-AIC: 280.66
+Residual deviance: 73.031  on 886  degrees of freedom
+AIC: 314.42
 
 Number of Fisher Scoring iterations: 2
 ```
@@ -1388,9 +1391,9 @@ name: H12d6
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.788913 
-cor            : 0.2826972 
-max TPR+TNR at : 0.155061 
+AUC            : 0.8156522 
+cor            : 0.3906975 
+max TPR+TNR at : 0.08665409 
 ```
 
 ```r
@@ -1399,12 +1402,12 @@ max TPR+TNR at : 0.155061
 
 ```
                 thresholds
-kappa           0.15506101
-spec_sens       0.15506101
-no_omission     0.06676572
-prevalence      0.10469880
-equal_sens_spec 0.14568250
-sensitivity     0.09043271
+kappa           0.34280924
+spec_sens       0.08665409
+no_omission     0.08665409
+prevalence      0.10447476
+equal_sens_spec 0.12633643
+sensitivity     0.09582597
 ```
 
 
@@ -1442,7 +1445,7 @@ points(backg_train, pch='x', cex=0.4,col="lightblue")
 points(pres_train, pch='o',cex=0.6,col="blue")
 ```
 
-<img src="assets/lesson10/unnamed-chunk-51-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+<img src="assets/lesson10/gm2-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
 
 ```r
 par(op)
@@ -1479,7 +1482,7 @@ bc <- bioclim(x=pred_nf, p=pres_train)
 plot(bc) ## only two predictors
 ```
 
-<img src="assets/lesson10/unnamed-chunk-53-1.svg" width="1330" height="535" style="display: block; margin: auto;" />
+<img src="assets/lesson10/plotbc-1.svg" width="1330" height="535" style="display: block; margin: auto;" />
 
 
 ]
@@ -1511,9 +1514,9 @@ name: H8269
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.7595652 
-cor            : 0.2352586 
-max TPR+TNR at : 0.1289323 
+AUC            : 0.8086957 
+cor            : 0.3204236 
+max TPR+TNR at : 0.04291075 
 ```
 
 ```r
@@ -1521,13 +1524,13 @@ max TPR+TNR at : 0.1289323
 ```
 
 ```
-                 thresholds
-kappa            0.12893226
-spec_sens        0.12893226
-no_omission     -0.00010000
-prevalence       0.10742688
-equal_sens_spec  0.12893226
-sensitivity      0.06441613
+                thresholds
+kappa           0.19344839
+spec_sens       0.04291075
+no_omission     0.01065269
+prevalence      0.10742688
+equal_sens_spec 0.11817957
+sensitivity     0.05366344
 ```
 
 
@@ -1557,7 +1560,7 @@ op <- par(mar=c(4,4,1,1))
 response(bc) ## it's a plot
 ```
 
-<img src="assets/lesson10/unnamed-chunk-57-1.svg" width="1330" height="535" style="display: block; margin: auto;" />
+<img src="assets/lesson10/bcresponse-1.svg" width="1330" height="535" style="display: block; margin: auto;" />
 
 ```r
 par(op)
@@ -1600,7 +1603,7 @@ plot(wrld_simpl, add=TRUE, border='dark grey')
 points(pres_train, pch='+')
 ```
 
-<img src="assets/lesson10/unnamed-chunk-59-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+<img src="assets/lesson10/bcplot-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
 
 ```r
 par(op)
@@ -1637,9 +1640,9 @@ dm <- domain(pred_nf,pres_train)
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.7672826 
-cor            : 0.2834057 
-max TPR+TNR at : 0.6301558 
+AUC            : 0.803587 
+cor            : 0.2764363 
+max TPR+TNR at : 0.736898 
 ```
 
 ```r
@@ -1648,12 +1651,12 @@ max TPR+TNR at : 0.6301558
 
 ```
                 thresholds
-kappa           0.76085947
-spec_sens       0.63015584
-no_omission     0.29424007
-prevalence      0.09643787
-equal_sens_spec 0.70139178
-sensitivity     0.63714448
+kappa           0.73689803
+spec_sens       0.73689803
+no_omission     0.17402558
+prevalence      0.09316311
+equal_sens_spec 0.75199492
+sensitivity     0.67022440
 ```
 
 
@@ -1692,7 +1695,7 @@ plot(wrld_simpl, add=TRUE, border='dark grey')
 points(pres_train, pch='+')
 ```
 
-<img src="assets/lesson10/unnamed-chunk-64-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+<img src="assets/lesson10/domainmap-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
 
 ```r
 par(op)
@@ -1729,9 +1732,9 @@ mm <- mahal(pred_nf,pres_train)
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.8054348 
-cor            : 0.1396687 
-max TPR+TNR at : -2.061432 
+AUC            : 0.8347826 
+cor            : 0.143639 
+max TPR+TNR at : -1.471478 
 ```
 
 ```r
@@ -1740,12 +1743,12 @@ max TPR+TNR at : -2.061432
 
 ```
                  thresholds
-kappa            -0.0076898
-spec_sens        -2.0614321
-no_omission     -19.4526807
-prevalence        0.1043855
-equal_sens_spec  -2.0240744
-sensitivity      -4.7954016
+kappa            0.99990000
+spec_sens       -1.47147759
+no_omission     -9.31960131
+prevalence       0.08922553
+equal_sens_spec -1.37146474
+sensitivity     -3.25194028
 ```
 
 
@@ -1785,7 +1788,7 @@ plot(wrld_simpl, add=TRUE, border='dark grey')
 points(pres_train, pch='+')
 ```
 
-<img src="assets/lesson10/unnamed-chunk-70-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+<img src="assets/lesson10/malplot-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
 
 ```r
 par(op)
@@ -1813,7 +1816,6 @@ name: H87ad
 
 
 
-
 ```r
 # maxent(silent=F)
 xm <- maxent(predictors, pres_train, factors='biome',silent=TRUE)
@@ -1827,7 +1829,7 @@ Loading required namespace: rJava
 plot(xm)
 ```
 
-<img src="assets/lesson10/unnamed-chunk-73-1.svg" width="1330" height="422" style="display: block; margin: auto;" />
+<img src="assets/lesson10/plotxm-1.svg" width="1330" height="422" style="display: block; margin: auto;" />
 
 
 ]
@@ -1855,7 +1857,7 @@ name: Hba2f
 response(xm) ## it's a plot
 ```
 
-<img src="assets/lesson10/unnamed-chunk-74-1.svg" width="1330" height="568" style="display: block; margin: auto;" />
+<img src="assets/lesson10/meresp-1.svg" width="1330" height="568" style="display: block; margin: auto;" />
 
 
 ]
@@ -1887,9 +1889,9 @@ name: Hcd28
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.7852174 
-cor            : 0.2795553 
-max TPR+TNR at : 0.07704445 
+AUC            : 0.8808696 
+cor            : 0.4573069 
+max TPR+TNR at : 0.4979128 
 ```
 
 ```r
@@ -1898,12 +1900,12 @@ max TPR+TNR at : 0.07704445
 
 ```
                 thresholds
-kappa           0.37934838
-spec_sens       0.07704445
-no_omission     0.07704445
-prevalence      0.10132272
-equal_sens_spec 0.37934838
-sensitivity     0.10578579
+kappa            0.6223849
+spec_sens        0.4979128
+no_omission      0.2437790
+prevalence       0.1023303
+equal_sens_spec  0.5001322
+sensitivity      0.2995278
 ```
 
 
@@ -1943,7 +1945,7 @@ plot(wrld_simpl, add=TRUE, border='dark grey')
 points(pres_train, pch='+')
 ```
 
-<img src="assets/lesson10/unnamed-chunk-80-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+<img src="assets/lesson10/meplot-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
 
 ```r
 par(op)
@@ -2005,8 +2007,8 @@ Call:
                      Number of trees: 500
 No. of variables tried at each split: 2
 
-          Mean of squared residuals: 0.06461456
-                    % Var explained: 30.74
+          Mean of squared residuals: 0.08106849
+                    % Var explained: 13.11
 ```
 
 
@@ -2044,11 +2046,11 @@ Call:
                      Number of trees: 500
 No. of variables tried at each split: 2
 
-        OOB estimate of  error rate: 8.06%
+        OOB estimate of  error rate: 10.3%
 Confusion matrix:
     0  1 class.error
-0 783 17   0.0212500
-1  55 38   0.5913978
+0 777 23   0.0287500
+1  69 24   0.7419355
 ```
 
 
@@ -2122,9 +2124,9 @@ name: Haa82
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.7704348 
-cor            : 0.279644 
-max TPR+TNR at : 0.03626667 
+AUC            : 0.886087 
+cor            : 0.5099272 
+max TPR+TNR at : 0.1417 
 ```
 
 ```r
@@ -2133,12 +2135,12 @@ max TPR+TNR at : 0.03626667
 
 ```
                 thresholds
-kappa           0.41966667
-spec_sens       0.03626667
-no_omission     0.01246667
-prevalence      0.10423333
-equal_sens_spec 0.06690000
-sensitivity     0.03930000
+kappa           0.42526190
+spec_sens       0.14170000
+no_omission     0.02123333
+prevalence      0.10416667
+equal_sens_spec 0.14563333
+sensitivity     0.07340000
 ```
 
 
@@ -2177,7 +2179,7 @@ points(pres_train, pch='+')
 points(backg_train, pch='-',cex=0.4)
 ```
 
-<img src="assets/lesson10/unnamed-chunk-88-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+<img src="assets/lesson10/rf1plot-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
 
 ```r
 par(op)
@@ -2235,9 +2237,9 @@ svm <- ksvm(pa ~ bio1+bio5+bio6+bio7+bio8+bio12+bio16+bio17, data=envtrain)
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.601087 
-cor            : 0.07439865 
-max TPR+TNR at : 0.02834091 
+AUC            : 0.6941304 
+cor            : 0.3870767 
+max TPR+TNR at : 0.03038897 
 ```
 
 .font60[
@@ -2251,9 +2253,9 @@ max TPR+TNR at : 0.02834091
 class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.601087 
-cor            : 0.07439865 
-max TPR+TNR at : 0.02834091 
+AUC            : 0.6941304 
+cor            : 0.3870767 
+max TPR+TNR at : 0.03038897 
 ```
 
 ]
@@ -2265,12 +2267,12 @@ max TPR+TNR at : 0.02834091
 
 ```
                  thresholds
-kappa            0.05570064
-spec_sens        0.02834091
-no_omission     -0.02210021
-prevalence       0.10097926
-equal_sens_spec  0.02315966
-sensitivity      0.00590571
+kappa            0.13152671
+spec_sens        0.03038897
+no_omission     -0.01673107
+prevalence       0.10107430
+equal_sens_spec  0.02702243
+sensitivity     -0.00280395
 ```
 
 
@@ -2309,7 +2311,7 @@ points(pres_train, pch='+',cex=0.75)
 points(backg_train, pch='-', cex=0.25)
 ```
 
-<img src="assets/lesson10/unnamed-chunk-94-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
+<img src="assets/lesson10/svplot-1.svg" width="1330" height="360" style="display: block; margin: auto;" />
 
 ```r
 par(op)
@@ -2341,7 +2343,7 @@ name: H57f2
 fname <- system.file("external/species.shp", package="sdm") # get the location of the species shapefile
 species <- sf::st_read(fname,quiet=TRUE) |> sf::as_Spatial()
 ```
-<img src="assets/lesson10//ursa03_unnamed-chunk-96.png" width="1330" height="356" bound style="display: block; margin: auto;" />
+<img src="assets/lesson10//ursa03_species.png" width="1330" height="356" bound style="display: block; margin: auto;" />
 
 ```r
 table(species$Occurrence)
@@ -2378,7 +2380,7 @@ list1 <- list.files(path=system.file("external",package="sdm")
 preds <- stack(list1)
 crs(preds) <- crs(species)
 ```
-<img src="assets/lesson10//ursa05_unnamed-chunk-99.png" width="1330" height="500" bound style="display: block; margin: auto;" />
+<img src="assets/lesson10//ursa05_preds.png" width="1330" height="500" bound style="display: block; margin: auto;" />
 
 
 ]
@@ -2461,7 +2463,7 @@ The following object is masked from 'package:raster':
 ```
 
 ```
-This is mgcv 1.8-41. For overview type 'help("mgcv-package")'.
+This is mgcv 1.8-42. For overview type 'help("mgcv-package")'.
 ```
 
 ```
@@ -2627,7 +2629,7 @@ methods    :     AUC     |     COR     |     TSS     |     Deviance
 -------------------------------------------------------------------------
 glm        :     0.88    |     0.7     |     0.69    |     0.83     
 gam        :     0.88    |     0.71    |     0.7     |     0.82     
-brt        :     0.94    |     0.77    |     0.75    |     0.85     
+brt        :     0.94    |     0.77    |     0.76    |     0.85     
 ```
 
 ]
@@ -2691,11 +2693,11 @@ model Mean performance (per species), using test dataset (generated using partit
 
 methods    :     AUC     |     COR     |     TSS     |     Deviance 
 -------------------------------------------------------------------------
-rf         :     0.74    |     0.49    |     0.6     |     1.46     
-cart       :     0.75    |     0.47    |     0.53    |     1.72     
-fda        :     0.78    |     0.56    |     0.6     |     1.35     
-mars       :     0.77    |     0.53    |     0.56    |     1.75     
-svm        :     0.76    |     0.55    |     0.58    |     1.26     
+rf         :     0.86    |     0.67    |     0.69    |     0.97     
+cart       :     0.85    |     0.65    |     0.65    |     0.97     
+fda        :     0.89    |     0.71    |     0.74    |     0.78     
+mars       :     0.83    |     0.63    |     0.69    |     1.19     
+svm        :     0.83    |     0.68    |     0.73    |     0.96     
 ```
 
 ]
@@ -2774,7 +2776,7 @@ name: H18a6
 roc(m2)
 ```
 
-<img src="assets/lesson10/unnamed-chunk-105-1.svg" width="1330" height="568" style="display: block; margin: auto;" />
+<img src="assets/lesson10/roc-1.svg" width="1330" height="568" style="display: block; margin: auto;" />
 
 
 ]
@@ -2801,7 +2803,7 @@ name: H8819
 roc(m2,smooth=T)
 ```
 
-<img src="assets/lesson10/unnamed-chunk-106-1.svg" width="1330" height="568" style="display: block; margin: auto;" />
+<img src="assets/lesson10/rocs-1.svg" width="1330" height="568" style="display: block; margin: auto;" />
 
 
 
@@ -2846,10 +2848,10 @@ dimensions : 71, 124, 8804, 3  (nrow, ncol, ncell, nlayers)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : file3ab861d518b.grd 
+source     : file1274a5a7b3c.grd 
 names      : id_1.sp_1.m_glm, id_2.sp_1.m_gam, id_3.sp_1.m_brt 
-min values :      0.00376331,      0.00217490,      0.20658581 
-max values :       0.9957391,       0.9957009,       0.7832705 
+min values :      0.00376331,      0.00217490,      0.20911754 
+max values :       0.9957391,       0.9957009,       0.7829743 
 fullname   : id_1-species_Occurrence-method_glm, id_2-species_Occurrence-method_gam, id_3-species_Occurrence-method_brt 
 ```
 
@@ -2874,7 +2876,7 @@ name: He8de
 
 
 
-<img src="assets/lesson10//ursa07_unnamed-chunk-109.png" width="1330" height="568" bound style="display: block; margin: auto;" />
+<img src="assets/lesson10//ursa07_p1.png" width="1330" height="568" bound style="display: block; margin: auto;" />
 
 
 ]
@@ -2917,10 +2919,10 @@ dimensions : 71, 124, 8804, 10  (nrow, ncol, ncell, nlayers)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : file3ab8798a4657.grd 
+source     : file1274158c5e3c.grd 
 names      : id_1.sp_1.m_rf.re_subs, id_2.sp_1.m_rf.re_subs, id_3.sp_1.m_cart.re_subs, id_4.sp_1.m_cart.re_subs, id_5.sp_1.m_fda.re_subs, id_6.sp_1.m_fda.re_subs, id_7.sp_1.m_mars.re_subs, id_8.sp_1.m_mars.re_subs, id_9.sp_1.m_svm.re_subs, id_10.sp_1.m_svm.re_subs 
-min values :           8.633333e-03,           8.766667e-03,             0.000000e+00,             0.000000e+00,            5.599127e-04,            9.894803e-05,             1.484922e-08,             2.220446e-16,            4.277858e-02,             5.974432e-02 
-max values :              0.9986500,              0.9985000,                0.9230769,                1.0000000,               0.9990817,               0.9996642,                0.9904645,                0.9999973,               0.9837874,                0.9620183 
+min values :           9.650000e-03,           1.218333e-02,             0.000000e+00,             0.000000e+00,            2.482037e-03,            9.681896e-04,             4.422845e-06,             2.220446e-16,            8.627897e-02,             5.873026e-02 
+max values :              0.9987000,              0.9982000,                1.0000000,                0.9242424,               0.9966147,               0.9984998,                0.9990417,                0.9999884,               0.9568556,                0.9711557 
 fullname   : id_1-species_Occurrence-method_rf-replication_subsampling, id_2-species_Occurrence-method_rf-replication_subsampling, id_3-species_Occurrence-method_cart-replication_subsampling, id_4-species_Occurrence-method_cart-replication_subsampling, id_5-species_Occurrence-method_fda-replication_subsampling, id_6-species_Occurrence-method_fda-replication_subsampling, id_7-species_Occurrence-method_mars-replication_subsampling, id_8-species_Occurrence-method_mars-replication_subsampling, id_9-species_Occurrence-method_svm-replication_subsampling, id_10-species_Occurrence-method_svm-replication_subsampling 
 ```
 
@@ -2944,7 +2946,7 @@ name: H06d0
 .mainbar.right-column[
 
 
-<img src="assets/lesson10//ursa09_unnamed-chunk-111.png" width="1330" height="568" bound style="display: block; margin: auto;" />
+<img src="assets/lesson10//ursa09_p2.png" width="1330" height="568" bound style="display: block; margin: auto;" />
 
 
 ]
@@ -2987,10 +2989,10 @@ dimensions : 71, 124, 8804, 5  (nrow, ncol, ncell, nlayers)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : file3ab81db53e63.grd 
+source     : file12747b805021.grd 
 names      : sp_1.m_rf.re_subs, sp_1.m_cart.re_subs, sp_1.m_fda.re_subs, sp_1.m_mars.re_subs, sp_1.m_svm.re_subs 
-min values :      1.237500e-02,        0.000000e+00,       3.294303e-04,        2.438797e-05,       5.670612e-02 
-max values :         0.9968500,           0.9509002,          0.9993729,           0.9939230,          0.9728105 
+min values :      0.0113750002,        0.0465116277,       0.0017251132,        0.0007630539,       0.0729211941 
+max values :         0.9963083,           0.9621212,          0.9975572,           0.9920193,          0.9628561 
 fullname   : species_Occurrence-method_rf-replication (Mean)_subsampling, species_Occurrence-method_cart-replication (Mean)_subsampling, species_Occurrence-method_fda-replication (Mean)_subsampling, species_Occurrence-method_mars-replication (Mean)_subsampling, species_Occurrence-method_svm-replication (Mean)_subsampling 
 ```
 
@@ -3014,7 +3016,7 @@ name: Hefb3
 .mainbar.right-column[
 
 
-<img src="assets/lesson10//ursa11_unnamed-chunk-113.png" width="1330" height="568" bound style="display: block; margin: auto;" />
+<img src="assets/lesson10//ursa11_p2m.png" width="1330" height="568" bound style="display: block; margin: auto;" />
 
 
 ]
@@ -3081,11 +3083,11 @@ dimensions : 71, 124, 8804  (nrow, ncol, ncell)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : file3ab8135750f2.grd 
+source     : file12747d20183f.grd 
 names      : layer 
-values     : 0.08287374, 0.9179116  (min, max)
+values     : 0.08244843, 0.9173845  (min, max)
 ```
-<img src="assets/lesson10//ursa13_unnamed-chunk-116.png" width="1330" height="320" bound style="display: block; margin: auto;" />
+<img src="assets/lesson10//ursa13_e1.png" width="1330" height="320" bound style="display: block; margin: auto;" />
 
 
 ]
@@ -3119,11 +3121,11 @@ dimensions : 71, 124, 8804  (nrow, ncol, ncell)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : file3ab82e374845.grd 
+source     : file127471007245.grd 
 names      : layer 
-values     : 0.040146, 0.9768044  (min, max)
+values     : 0.05900275, 0.9648752  (min, max)
 ```
-<img src="assets/lesson10//ursa14_unnamed-chunk-118.png" width="1330" height="320" bound style="display: block; margin: auto;" />
+<img src="assets/lesson10//ursa14_e2.png" width="1330" height="320" bound style="display: block; margin: auto;" />
 
 
 ]
@@ -3157,11 +3159,11 @@ dimensions : 71, 124, 8804  (nrow, ncol, ncell)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : file3ab87cf528ea.grd 
+source     : file127434a03a61.grd 
 names      : layer 
-values     : 0.04032428, 0.9762064  (min, max)
+values     : 0.05802387, 0.9640764  (min, max)
 ```
-<img src="assets/lesson10//ursa15_unnamed-chunk-120.png" width="1330" height="320" bound style="display: block; margin: auto;" />
+<img src="assets/lesson10//ursa15_e3.png" width="1330" height="320" bound style="display: block; margin: auto;" />
 
 
 

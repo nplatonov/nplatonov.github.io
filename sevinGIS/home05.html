@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when">30 марта 2023 г. <span class="updated">Обновлено: 2023-03-21 21:01</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when">30 марта 2023 г. <span class="updated">Обновлено: 2023-03-22 14:47</span></span></h4>
 <div class="abstract">
 <p class="abstract">Abstract</p>
 Демонстрация основ работы с интерфейсом командной строки в R, позволяющей создавать скрипты и получать воспроизводимые результаты. Показано, как пространственные векторные и растровые данные могут попасть в R и как они выглядят в R. С возможностью сделать обработку, анализ и визуализацию пространственных данных.
@@ -451,20 +451,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> a1</span>
 <span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">names</span>(a2) <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">Sys.Date</span>()<span class="sc">+</span>a1<span class="dv">-1</span>,<span class="st">&quot;%A&quot;</span>)</span>
 <span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>a2</span></code></pre></div>
-<pre><code>##   Tuesday Wednesday  Thursday    Friday  Saturday    Sunday    Monday 
+<pre><code>## Wednesday  Thursday    Friday  Saturday    Sunday    Monday   Tuesday 
 ##         1         2         3         4         5         6         7</code></pre>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">str</span>(a2)</span></code></pre></div>
 <pre><code>##  Named int [1:7] 1 2 3 4 5 6 7
-##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Tuesday&quot; &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; ...</code></pre>
+##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; ...</code></pre>
 </div>
 <div id="целые-числа-числа-с-плавающей-точкой" class="section level5">
 <h5>Целые числа, числа с плавающей точкой</h5>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">str</span>(a2<span class="sc">+</span>0L)</span></code></pre></div>
 <pre><code>##  Named int [1:7] 1 2 3 4 5 6 7
-##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Tuesday&quot; &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; ...</code></pre>
+##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; ...</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="fu">str</span>(a2<span class="sc">+</span><span class="dv">0</span>)</span></code></pre></div>
 <pre><code>##  Named num [1:7] 1 2 3 4 5 6 7
-##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Tuesday&quot; &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; ...</code></pre>
+##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; ...</code></pre>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">typeof</span>(a2<span class="sc">+</span>0L)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="fu">typeof</span>(a2<span class="sc">+</span><span class="dv">0</span>)</span></code></pre></div>
@@ -485,11 +485,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Строки
 </h5>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a>(a4 <span class="ot">&lt;-</span> <span class="fu">names</span>(a2))</span></code></pre></div>
-<pre><code>## [1] &quot;Tuesday&quot;   &quot;Wednesday&quot; &quot;Thursday&quot;  &quot;Friday&quot;    &quot;Saturday&quot;  &quot;Sunday&quot;    &quot;Monday&quot;</code></pre>
+<pre><code>## [1] &quot;Wednesday&quot; &quot;Thursday&quot;  &quot;Friday&quot;    &quot;Saturday&quot;  &quot;Sunday&quot;    &quot;Monday&quot;    &quot;Tuesday&quot;</code></pre>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="fu">class</span>(a4)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a><span class="fu">str</span>(a4)</span></code></pre></div>
-<pre><code>##  chr [1:7] &quot;Tuesday&quot; &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; &quot;Monday&quot;</code></pre>
+<pre><code>##  chr [1:7] &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; &quot;Monday&quot; &quot;Tuesday&quot;</code></pre>
 </div>
 </div>
 <div id="составные-типы" class="section level4">
@@ -501,11 +501,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] 1 3 4 5 6 7
 ## 
 ## $char
-## [1] &quot;Tuesday&quot;  &quot;Thursday&quot; &quot;Friday&quot;   &quot;Saturday&quot; &quot;Sunday&quot;   &quot;Monday&quot;</code></pre>
+## [1] &quot;Wednesday&quot; &quot;Friday&quot;    &quot;Saturday&quot;  &quot;Sunday&quot;    &quot;Monday&quot;    &quot;Tuesday&quot;</code></pre>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a><span class="fu">str</span>(a5)</span></code></pre></div>
 <pre><code>## List of 2
 ##  $ num : int [1:6] 1 3 4 5 6 7
-##  $ char: chr [1:6] &quot;Tuesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; ...</code></pre>
+##  $ char: chr [1:6] &quot;Wednesday&quot; &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; ...</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a><span class="fu">class</span>(a5)</span></code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a><span class="fu">length</span>(a5)</span></code></pre></div>
@@ -517,17 +517,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="таблицы" class="section level5">
 <h5>Таблицы</h5>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a>(a6 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">num=</span>a1[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)],<span class="at">char=</span>a4[<span class="sc">-</span><span class="dv">2</span>]))</span></code></pre></div>
-<pre><code>##   num     char
-## 1   1  Tuesday
-## 2   3 Thursday
-## 3   4   Friday
-## 4   5 Saturday
-## 5   6   Sunday
-## 6   7   Monday</code></pre>
+<pre><code>##   num      char
+## 1   1 Wednesday
+## 2   3    Friday
+## 3   4  Saturday
+## 4   5    Sunday
+## 5   6    Monday
+## 6   7   Tuesday</code></pre>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="fu">str</span>(a6)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    6 obs. of  2 variables:
 ##  $ num : int  1 3 4 5 6 7
-##  $ char: chr  &quot;Tuesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; ...</code></pre>
+##  $ char: chr  &quot;Wednesday&quot; &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; ...</code></pre>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="fu">class</span>(a6)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a><span class="fu">dim</span>(a6)</span></code></pre></div>
@@ -594,17 +594,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="факторы" class="section level4">
 <h4>Факторы</h4>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" tabindex="-1"></a>(a9 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(a4),<span class="at">levels=</span>a4))</span></code></pre></div>
-<pre><code>## [1] Wednesday Tuesday   Thursday  Saturday  Friday    Monday    Sunday   
-## Levels: Tuesday Wednesday Thursday Friday Saturday Sunday Monday</code></pre>
+<pre><code>## [1] Thursday  Wednesday Friday    Sunday    Saturday  Tuesday   Monday   
+## Levels: Wednesday Thursday Friday Saturday Sunday Monday Tuesday</code></pre>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" tabindex="-1"></a><span class="fu">str</span>(a9)</span></code></pre></div>
-<pre><code>##  Factor w/ 7 levels &quot;Tuesday&quot;,&quot;Wednesday&quot;,..: 2 1 3 5 4 7 6</code></pre>
+<pre><code>##  Factor w/ 7 levels &quot;Wednesday&quot;,&quot;Thursday&quot;,..: 2 1 3 5 4 7 6</code></pre>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" tabindex="-1"></a><span class="fu">class</span>(a9)</span></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" tabindex="-1"></a>(a10 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(a4),<span class="at">levels=</span>a4,<span class="at">ordered=</span><span class="cn">TRUE</span>))</span></code></pre></div>
-<pre><code>## [1] Friday    Saturday  Monday    Tuesday   Thursday  Sunday    Wednesday
-## Levels: Tuesday &lt; Wednesday &lt; Thursday &lt; Friday &lt; Saturday &lt; Sunday &lt; Monday</code></pre>
+<pre><code>## [1] Saturday  Sunday    Tuesday   Wednesday Friday    Monday    Thursday 
+## Levels: Wednesday &lt; Thursday &lt; Friday &lt; Saturday &lt; Sunday &lt; Monday &lt; Tuesday</code></pre>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" tabindex="-1"></a><span class="fu">str</span>(a10)</span></code></pre></div>
-<pre><code>##  Ord.factor w/ 7 levels &quot;Tuesday&quot;&lt;&quot;Wednesday&quot;&lt;..: 4 5 7 1 3 6 2</code></pre>
+<pre><code>##  Ord.factor w/ 7 levels &quot;Wednesday&quot;&lt;&quot;Thursday&quot;&lt;..: 4 5 7 1 3 6 2</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" tabindex="-1"></a><span class="fu">class</span>(a10)</span></code></pre></div>
 <pre><code>## [1] &quot;ordered&quot; &quot;factor&quot;</code></pre>
 </div>
@@ -817,11 +817,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="источники-для-примера" class="section level4">
 <h4>Источники для примера</h4>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a>(shpname <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;vectors&quot;</span>,<span class="st">&quot;scot_BNG.shp&quot;</span>,<span class="at">package=</span><span class="st">&quot;rgdal&quot;</span>))</span></code></pre></div>
-<pre><code>## [1] &quot;C:/Software/Rlibs4/rgdal/vectors/scot_BNG.shp&quot;</code></pre>
+<pre><code>## [1] &quot;C:/Software/Rlibs/rgdal/vectors/scot_BNG.shp&quot;</code></pre>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" tabindex="-1"></a><span class="fu">file.exists</span>(shpname)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" tabindex="-1"></a>(tifname <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;pictures/cea.tif&quot;</span>,<span class="at">package=</span><span class="st">&quot;rgdal&quot;</span>))</span></code></pre></div>
-<pre><code>## [1] &quot;C:/Software/Rlibs4/rgdal/pictures/cea.tif&quot;</code></pre>
+<pre><code>## [1] &quot;C:/Software/Rlibs/rgdal/pictures/cea.tif&quot;</code></pre>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" tabindex="-1"></a><span class="fu">file.exists</span>(tifname)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
@@ -844,7 +844,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
-<pre><code>## Source: &quot;C:\Software\Rlibs4\rgdal\vectors\scot_BNG.shp&quot;, layer: &quot;scot_BNG&quot;
+<pre><code>## Source: &quot;C:\Software\Rlibs\rgdal\vectors\scot_BNG.shp&quot;, layer: &quot;scot_BNG&quot;
 ## Driver: ESRI Shapefile; number of rows: 56 
 ## Feature type: wkbPolygon with 2 dimensions
 ## Extent: (7094.552 529495) - (468285.5 1218342)
@@ -875,7 +875,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: &quot;C:\Software\Rlibs4\rgdal\vectors\scot_BNG.shp&quot;, layer: &quot;scot_BNG&quot;
+## Source: &quot;C:\Software\Rlibs\rgdal\vectors\scot_BNG.shp&quot;, layer: &quot;scot_BNG&quot;
 ## with 56 features
 ## It has 13 fields</code></pre>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" tabindex="-1"></a><span class="fu">isS4</span>(b.sp)</span></code></pre></div>
@@ -942,7 +942,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="importExample" class="section level5">
 <h5><code>sf</code> {#importExampleM}</h5>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" tabindex="-1"></a>b.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(shpname)</span></code></pre></div>
-<pre><code>## Reading layer `scot_BNG&#39; from data source `C:\Software\Rlibs4\rgdal\vectors\scot_BNG.shp&#39; using driver `ESRI Shapefile&#39;
+<pre><code>## Reading layer `scot_BNG&#39; from data source `C:\Software\Rlibs\rgdal\vectors\scot_BNG.shp&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 56 features and 13 fields
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
@@ -980,7 +980,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Получение данных напрямую</p>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">readGDAL</span>(tifname)</span></code></pre></div>
 <pre><code>## Warning: GDAL support is provided by the sf and terra packages among others</code></pre>
-<pre><code>## C:/Software/Rlibs4/rgdal/pictures/cea.tif has GDAL driver GTiff 
+<pre><code>## C:/Software/Rlibs/rgdal/pictures/cea.tif has GDAL driver GTiff 
 ## and has 515 rows and 514 columns</code></pre>
 <pre><code>## Warning: GDAL support is provided by the sf and terra packages among others</code></pre>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="#cb158-1" tabindex="-1"></a><span class="fu">str</span>(d1)</span></code></pre></div>
@@ -1035,16 +1035,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## extent     : -28493.17, 2358.212, 4224973, 4255885  (xmin, xmax, ymin, ymax)
 ## crs        : +proj=cea +lat_ts=33.75 +lon_0=-117.333333333333 +x_0=0 +y_0=0 +datum=NAD27 +units=m +no_defs 
 ## source     : cea.tif 
-## names      : cea</code></pre>
+## names      : layer</code></pre>
 <div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="#cb174-1" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> d3[] <span class="do">## &#39;d3[]&#39; то же, что и &#39;raster::getValues(d3)&#39;</span></span>
 <span id="cb174-2"><a href="#cb174-2" tabindex="-1"></a><span class="fu">c</span>(<span class="at">d3=</span><span class="fu">object.size</span>(d3),<span class="at">v3=</span><span class="fu">object.size</span>(v3))</span></code></pre></div>
 <pre><code>##      d3      v3 
-##   15280 2118184</code></pre>
+##   15096 2118184</code></pre>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="#cb176-1" tabindex="-1"></a><span class="fu">str</span>(v3)</span></code></pre></div>
 <pre><code>##  num [1:264710, 1] 0 0 0 0 0 0 0 0 0 0 ...
 ##  - attr(*, &quot;dimnames&quot;)=List of 2
 ##   ..$ : NULL
-##   ..$ : chr &quot;cea&quot;</code></pre>
+##   ..$ : chr &quot;layer&quot;</code></pre>
 <div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="#cb178-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">c</span>(v3))</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     0.0    58.0    99.0   103.1   140.0   255.0</code></pre>
@@ -1436,10 +1436,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h5><code>mapview</code></h5>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="#cb253-1" tabindex="-1"></a>m <span class="ot">&lt;-</span> mapview<span class="sc">::</span><span class="fu">mapview</span>(b.sf) <span class="do">## Не отобразится в Jupyter R Notebook.</span></span>
 <span id="cb253-2"><a href="#cb253-2" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(m)</span></code></pre></div>
-<div class="framed">
-<iframe src="assets/lesson05/widget_mapview_67f487b6fb2216f8f1b4da9b9c891d99.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
-</iframe>
-</div>
 </div>
 <div id="leaflet" class="section level5">
 <h5><code>leaflet</code></h5>
@@ -1469,10 +1465,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb256-22"><a href="#cb256-22" tabindex="-1"></a>   <span class="fu">addLegend</span>(<span class="st">&quot;bottomright&quot;</span>,<span class="at">pal=</span>fpal,<span class="at">values=</span>b<span class="sc">$</span>category,<span class="at">opacity=</span><span class="fl">0.6</span></span>
 <span id="cb256-23"><a href="#cb256-23" tabindex="-1"></a>            ,<span class="at">title=</span><span class="st">&quot;AFF&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="#cb257-1" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(m) <span class="do">## Не отображается в Jupyter R Notebook.</span></span></code></pre></div>
-<div class="framed">
-<iframe src="assets/lesson05/widget_leadletwidget_97c1d21d052f8a48e9daad9a2872f288.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
-</iframe>
-</div>
 </div>
 <div id="tmap-1" class="section level5">
 <h5><code>tmap</code></h5>
@@ -1480,10 +1472,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## tmap mode set to interactive viewing</code></pre>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="#cb260-1" tabindex="-1"></a>tm <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(b.sf) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">&quot;COUNT&quot;</span>)</span>
 <span id="cb260-2"><a href="#cb260-2" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(<span class="fu">tmap_leaflet</span>(tm),<span class="at">height=</span><span class="dv">510</span>)</span></code></pre></div>
-<div class="framed">
-<iframe src="assets/lesson05/widget_tmap-view_21d318d9983b318c7e4719476ef26700.html" width="646.08" height="510" data-external="1" class="ursa-widgetize">
-</iframe>
-</div>
 <p><a href="https://cran.rstudio.com/web/packages/tmap/vignettes/tmap-getstarted.html"><code>tmap</code> “Get Started” vignette</a></p>
 <iframe src="https://cran.rstudio.com/web/packages/tmap/vignettes/tmap-getstarted.html" width="646.08" height="610" data-external="1">
 </iframe>
@@ -1589,9 +1577,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>Параметры сессии</h4>
 <div class="oversize">
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="#cb282-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.2.3 Patched (2023-03-15 r84006 ucrt)
+<pre><code>## R version 4.2.2 Patched (2023-03-01 r83924 ucrt)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 19045)
+## Running under: Windows 10 x64 (build 19044)
 ## 
 ## Matrix products: default
 ## 
@@ -1605,33 +1593,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] leaflet_2.1.2 tmap_3.3-3    ggplot2_3.4.1
+## [1] leaflet_2.1.1 tmap_3.3-3    ggplot2_3.4.1
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] sf_1.0-11               satellite_1.0.4         webshot_0.5.4           RColorBrewer_1.1-3     
-##  [5] mapview_2.11.0          tools_4.2.3             bslib_0.4.2             utf8_1.2.3             
-##  [9] rgdal_1.6-5             R6_2.5.1                KernSmooth_2.23-20      DBI_1.1.3              
-## [13] colorspace_2.1-0        raster_3.6-20           withr_2.5.0             sp_1.6-0               
-## [17] tidyselect_1.2.0        compiler_4.2.3          leafem_0.2.0            cli_3.6.0              
-## [21] geojsonsf_2.0.3         labeling_0.4.2          sass_0.4.5              scales_1.2.1           
-## [25] proj4_1.0-12            classInt_0.4-9          proxy_0.4-27            systemfonts_1.0.4      
-## [29] digest_0.6.31           rmarkdown_2.20          svglite_2.1.1           base64enc_0.1-3        
-## [33] dichromat_2.0-0.1       jpeg_0.1-10             pkgconfig_2.0.3         htmltools_0.5.4        
-## [37] ursa_3.9.10             fastmap_1.1.1           highr_0.10              htmlwidgets_1.6.2      
-## [41] rlang_1.1.0             shiny_1.7.4             jquerylib_0.1.4         generics_0.1.3         
-## [45] farver_2.1.1            jsonlite_1.8.4          crosstalk_1.2.0         dplyr_1.1.0            
-## [49] magrittr_2.0.3          s2_1.1.2                Rcpp_1.0.10             munsell_0.5.0          
-## [53] fansi_1.0.4             abind_1.4-5             lifecycle_1.0.3         terra_1.7-18           
-## [57] leafsync_0.1.0          yaml_2.3.7              tmaptools_3.1-1         grid_4.2.3             
-## [61] widgetframe_0.3.1       parallel_4.2.3          promises_1.2.0.1        lattice_0.20-45        
-## [65] stars_0.6-0             leafpop_0.1.0           knitr_1.42              pillar_1.8.1           
-## [69] tcltk_4.2.3             uuid_1.1-0              codetools_0.2-19        stats4_4.2.3           
-## [73] wk_0.7.2                XML_3.99-0.13           glue_1.6.2              evaluate_0.20          
-## [77] leaflet.providers_1.9.0 png_0.1-8               vctrs_0.6.0             httpuv_1.6.9           
-## [81] gtable_0.3.2            cachem_1.0.7            xfun_0.37               mime_0.12              
-## [85] lwgeom_0.2-11           xtable_1.8-4            e1071_1.7-13            later_1.3.0            
-## [89] class_7.3-21            viridisLite_0.4.1       tibble_3.2.1            units_0.8-1            
-## [93] mapedit_0.6.0           ellipsis_0.3.2          brew_1.0-8              xaringanExtra_0.7.0</code></pre>
+##  [1] sass_0.4.5              viridisLite_0.4.1       jsonlite_1.8.4          bslib_0.4.2            
+##  [5] shiny_1.7.4             highr_0.10              sp_1.6-0                stats4_4.2.2           
+##  [9] yaml_2.3.7              pillar_1.8.1            lattice_0.20-45         glue_1.6.2             
+## [13] uuid_1.1-0              digest_0.6.31           RColorBrewer_1.1-3      promises_1.2.0.1       
+## [17] leaflet.providers_1.9.0 colorspace_2.1-0        htmltools_0.5.4         httpuv_1.6.9           
+## [21] XML_3.99-0.13           pkgconfig_2.0.3         raster_3.6-14           stars_0.6-0            
+## [25] s2_1.1.2                xtable_1.8-4            scales_1.2.1            webshot_0.5.4          
+## [29] brew_1.0-8              svglite_2.1.1           terra_1.7-3             jpeg_0.1-10            
+## [33] satellite_1.0.4         later_1.3.0             mapedit_0.6.0           tibble_3.1.8           
+## [37] proxy_0.4-27            farver_2.1.1            generics_0.1.3          ellipsis_0.3.2         
+## [41] withr_2.5.0             cachem_1.0.7            leafsync_0.1.0          cli_3.6.0              
+## [45] mapview_2.11.0          magrittr_2.0.3          mime_0.12               evaluate_0.20          
+## [49] fansi_1.0.4             lwgeom_0.2-11           class_7.3-21            geojsonsf_2.0.3        
+## [53] tools_4.2.2             lifecycle_1.0.3         ursa_3.9.10             munsell_0.5.0          
+## [57] compiler_4.2.2          jquerylib_0.1.4         e1071_1.7-13            systemfonts_1.0.4      
+## [61] rlang_1.0.6             leafpop_0.1.0           classInt_0.4-9          units_0.8-1            
+## [65] grid_4.2.2              tmaptools_3.1-1         dichromat_2.0-0.1       htmlwidgets_1.6.1      
+## [69] crosstalk_1.2.0         labeling_0.4.2          tcltk_4.2.2             proj4_1.0-12           
+## [73] leafem_0.2.0            base64enc_0.1-3         rmarkdown_2.20          wk_0.7.1               
+## [77] xaringanExtra_0.7.0     gtable_0.3.1            codetools_0.2-19        abind_1.4-5            
+## [81] DBI_1.1.3               R6_2.5.1                knitr_1.42              dplyr_1.1.0            
+## [85] rgdal_1.6-5             fastmap_1.1.1           utf8_1.2.3              KernSmooth_2.23-20     
+## [89] parallel_4.2.2          Rcpp_1.0.10             vctrs_0.5.2             sf_1.0-9               
+## [93] png_0.1-8               tidyselect_1.2.0        xfun_0.37</code></pre>
 </div>
 </div>
 </div>
