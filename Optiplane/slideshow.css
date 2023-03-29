@@ -1,10 +1,10 @@
 :root {
-   --pos: 3px;
-   --neg: -3px;
+   --pos: 2px;
+   --neg: -2px;
    --color: #300;
    --r-main-font-size: 50px;
 }
-.reveal * {
+.reveal *, .reveal h1 {
    text-shadow: var(--pos) var(--pos) var(--pos) var(--color),
                 var(--neg) var(--pos) var(--pos) var(--color),
                 var(--neg) var(--neg) var(--pos) var(--color),
@@ -14,11 +14,12 @@
    color: #FF9;
    font-weight: bold;
 }
-.reveal .from {
+.reveal .from, .reveal .actor {
    color: #999;
 }
-.reveal .about, .reveal .talk {
+.reveal .about, .reveal .talk, .reveal .actor {
    display: block;
+   margin-top: 0.2em;
 }
 .reveal .about {
    font-style: italic;
