@@ -18,7 +18,7 @@
 .remark-backdrop:after{
    content: 'Никита Платонов \A \A [Online Code Editor](https://rdrr.io/snippets/)
 
-[ГИС аспирантура](class.html)';
+[ГИС аспирантура](class.html#home)';
 }
 :root {--pointsize: 22pt;}
 </style>
@@ -38,7 +38,7 @@ layout: true
 .shorttitle[
 [Online Code Editor](https://rdrr.io/snippets/)
 
-[ГИС аспирантура](class.html)
+[ГИС аспирантура](class.html#home)
 ]
 
 ]
@@ -80,7 +80,7 @@ name: H3216
 .where[]
 
 
-.when[30 марта 2023 г. .updated[Обновлено: 2023-03-21 21:08]]
+.when[30 марта 2023 г., 06 апреля 2023 г. .updated[Обновлено: 2023-03-23 20:46]]
 
 
 
@@ -140,7 +140,7 @@ name: Hc1dc
 .mainbar.right-column[
 
 
-Установить или обновить R, например, [отсюда](https://cran.rstudio.org/). Актуальная версия 4.1.3. Не ниже версии 4.0.
+Установить или обновить R, например, [отсюда](https://cran.rstudio.org/). Актуальная версия 4.2.3. Не ниже версии 4.0.
 
 
 ]
@@ -271,7 +271,7 @@ c('Everything is ready?'=all(whoisready))
 
 ]
 ---
-class: middle
+class: middle center
 name: H1d16
 
 .sidebar.left-column[
@@ -589,7 +589,7 @@ a2
 ```
 
 ```
-##   Tuesday Wednesday  Thursday    Friday  Saturday    Sunday    Monday 
+##  Thursday    Friday  Saturday    Sunday    Monday   Tuesday Wednesday 
 ##         1         2         3         4         5         6         7
 ```
 
@@ -599,7 +599,7 @@ str(a2)
 
 ```
 ##  Named int [1:7] 1 2 3 4 5 6 7
-##  - attr(*, "names")= chr [1:7] "Tuesday" "Wednesday" "Thursday" "Friday" ...
+##  - attr(*, "names")= chr [1:7] "Thursday" "Friday" "Saturday" "Sunday" ...
 ```
 
 
@@ -636,7 +636,7 @@ str(a2+0L)
 
 ```
 ##  Named int [1:7] 1 2 3 4 5 6 7
-##  - attr(*, "names")= chr [1:7] "Tuesday" "Wednesday" "Thursday" "Friday" ...
+##  - attr(*, "names")= chr [1:7] "Thursday" "Friday" "Saturday" "Sunday" ...
 ```
 
 ```r
@@ -645,7 +645,7 @@ str(a2+0)
 
 ```
 ##  Named num [1:7] 1 2 3 4 5 6 7
-##  - attr(*, "names")= chr [1:7] "Tuesday" "Wednesday" "Thursday" "Friday" ...
+##  - attr(*, "names")= chr [1:7] "Thursday" "Friday" "Saturday" "Sunday" ...
 ```
 
 ```r
@@ -725,8 +725,8 @@ str(a3)
 ```
 
 ```
-## [1] "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday"  "Sunday"   
-## [7] "Monday"
+## [1] "Thursday"  "Friday"    "Saturday"  "Sunday"    "Monday"    "Tuesday"  
+## [7] "Wednesday"
 ```
 
 ```r
@@ -742,7 +742,7 @@ str(a4)
 ```
 
 ```
-##  chr [1:7] "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" "Sunday" ...
+##  chr [1:7] "Thursday" "Friday" "Saturday" "Sunday" "Monday" "Tuesday" ...
 ```
 
 
@@ -784,7 +784,7 @@ name: Hf45b
 ## [1] 1 3 4 5 6 7
 ## 
 ## $char
-## [1] "Tuesday"  "Thursday" "Friday"   "Saturday" "Sunday"   "Monday"
+## [1] "Thursday"  "Saturday"  "Sunday"    "Monday"    "Tuesday"   "Wednesday"
 ```
 
 ```r
@@ -794,7 +794,7 @@ str(a5)
 ```
 ## List of 2
 ##  $ num : int [1:6] 1 3 4 5 6 7
-##  $ char: chr [1:6] "Tuesday" "Thursday" "Friday" "Saturday" ...
+##  $ char: chr [1:6] "Thursday" "Saturday" "Sunday" "Monday" ...
 ```
 
 ```r
@@ -857,13 +857,13 @@ name: H0a21
 ```
 
 ```
-##   num     char
-## 1   1  Tuesday
-## 2   3 Thursday
-## 3   4   Friday
-## 4   5 Saturday
-## 5   6   Sunday
-## 6   7   Monday
+##   num      char
+## 1   1  Thursday
+## 2   3  Saturday
+## 3   4    Sunday
+## 4   5    Monday
+## 5   6   Tuesday
+## 6   7 Wednesday
 ```
 
 ```r
@@ -873,7 +873,7 @@ str(a6)
 ```
 ## 'data.frame':	6 obs. of  2 variables:
 ##  $ num : int  1 3 4 5 6 7
-##  $ char: chr  "Tuesday" "Thursday" "Friday" "Saturday" ...
+##  $ char: chr  "Thursday" "Saturday" "Sunday" "Monday" ...
 ```
 
 ```r
@@ -1127,8 +1127,8 @@ name: H9e7e
 ```
 
 ```
-## [1] Wednesday Tuesday   Thursday  Saturday  Friday    Monday    Sunday   
-## Levels: Tuesday Wednesday Thursday Friday Saturday Sunday Monday
+## [1] Friday    Thursday  Saturday  Monday    Sunday    Wednesday Tuesday  
+## Levels: Thursday Friday Saturday Sunday Monday Tuesday Wednesday
 ```
 
 ```r
@@ -1136,7 +1136,7 @@ str(a9)
 ```
 
 ```
-##  Factor w/ 7 levels "Tuesday","Wednesday",..: 2 1 3 5 4 7 6
+##  Factor w/ 7 levels "Thursday","Friday",..: 2 1 3 5 4 7 6
 ```
 
 ```r
@@ -1152,8 +1152,8 @@ class(a9)
 ```
 
 ```
-## [1] Friday    Saturday  Monday    Tuesday   Thursday  Sunday    Wednesday
-## 7 Levels: Tuesday < Wednesday < Thursday < Friday < Saturday < ... < Monday
+## [1] Sunday    Monday    Wednesday Thursday  Saturday  Tuesday   Friday   
+## 7 Levels: Thursday < Friday < Saturday < Sunday < Monday < ... < Wednesday
 ```
 
 ```r
@@ -1161,7 +1161,7 @@ str(a10)
 ```
 
 ```
-##  Ord.factor w/ 7 levels "Tuesday"<"Wednesday"<..: 4 5 7 1 3 6 2
+##  Ord.factor w/ 7 levels "Thursday"<"Friday"<..: 4 5 7 1 3 6 2
 ```
 
 ```r
@@ -1642,7 +1642,7 @@ name: H26b3
 ```
 
 ```
-## [1] "C:/Software/Rlibs4/rgdal/vectors/scot_BNG.shp"
+## [1] "C:/Software/Rlibs/rgdal/vectors/scot_BNG.shp"
 ```
 
 ```r
@@ -1661,7 +1661,7 @@ file.exists(shpname)
 ```
 
 ```
-## [1] "C:/Software/Rlibs4/rgdal/pictures/cea.tif"
+## [1] "C:/Software/Rlibs/rgdal/pictures/cea.tif"
 ```
 
 ```r
@@ -1759,7 +1759,7 @@ name: H27f2
 #### [Источники для примера](#H26b3)
 #### [Векторные данные](#H27f2).fg[]
 ##### [<code>rgdal/sp</code>](#H27f2) <span class="bullet bullet-active">[&#8226;](#H27f2)</span><span class="bullet mslide59m">[&#8226;](#Hd433)</span><span class="bullet mslide60m">[&#8226;](#H86c2)</span>.fg[].bg[]
-##### [<code>sf</code>](#importExampleM)
+##### [<code>sf</code>](#importExample)
 #### [Растровые данные](#H8837)
 ### [Характеристики](#H0f29)
 ### [Создание](#Hf293)
@@ -1802,7 +1802,7 @@ rgdal::ogrInfo(shpname)
 ```
 
 ```
-## Source: "C:\Software\Rlibs4\rgdal\vectors\scot_BNG.shp", layer: "scot_BNG"
+## Source: "C:\Software\Rlibs\rgdal\vectors\scot_BNG.shp", layer: "scot_BNG"
 ## Driver: ESRI Shapefile; number of rows: 56 
 ## Feature type: wkbPolygon with 2 dimensions
 ## Extent: (7094.552 529495) - (468285.5 1218342)
@@ -1840,7 +1840,7 @@ name: Hd433
 #### [Источники для примера](#H26b3)
 #### [Векторные данные](#H27f2).fg[]
 ##### [<code>rgdal/sp</code>](#H27f2) <span class="bullet bullet">[&#8226;](#H27f2)</span><span class="bullet bullet-active">[&#8226;](#Hd433)</span><span class="bullet mslide60m">[&#8226;](#H86c2)</span>.fg[].bg[]
-##### [<code>sf</code>](#importExampleM)
+##### [<code>sf</code>](#importExample)
 #### [Растровые данные](#H8837)
 ### [Характеристики](#H0f29)
 ### [Создание](#Hf293)
@@ -1887,7 +1887,7 @@ b.sp <- rgdal::readOGR(shpname)
 
 ```
 ## OGR data source with driver: ESRI Shapefile 
-## Source: "C:\Software\Rlibs4\rgdal\vectors\scot_BNG.shp", layer: "scot_BNG"
+## Source: "C:\Software\Rlibs\rgdal\vectors\scot_BNG.shp", layer: "scot_BNG"
 ## with 56 features
 ## It has 13 fields
 ```
@@ -1925,7 +1925,7 @@ name: H86c2
 #### [Источники для примера](#H26b3)
 #### [Векторные данные](#H27f2).fg[]
 ##### [<code>rgdal/sp</code>](#H27f2) <span class="bullet bullet">[&#8226;](#H27f2)</span><span class="bullet bullet">[&#8226;](#Hd433)</span><span class="bullet bullet-active">[&#8226;](#H86c2)</span>.fg[].bg[]
-##### [<code>sf</code>](#importExampleM)
+##### [<code>sf</code>](#importExample)
 #### [Растровые данные](#H8837)
 ### [Характеристики](#H0f29)
 ### [Создание](#Hf293)
@@ -1939,13 +1939,6 @@ name: H86c2
 .oversize[
 
 
-```r
-knitr::current_input()
-```
-
-```
-## [1] "lesson05~~~.Rmd"
-```
 
 
 ```r
@@ -2011,8 +2004,7 @@ str(head(b.sp,2))
 
 ]
 ---
-name: importExampleM
-NA: importExampleM
+name: importExample
 
 .sidebar.left-column[
 ## [Основы R](#H83cb)
@@ -2022,7 +2014,7 @@ NA: importExampleM
 #### [Источники для примера](#H26b3)
 #### [Векторные данные](#H27f2).fg[]
 ##### [<code>rgdal/sp</code>](#H27f2)
-##### [<code>sf</code>](#importExampleM) <span class="bullet bullet-active">[&#8226;](#importExampleM)</span><span class="bullet mslide63m">[&#8226;](#H1fcb)</span>.fg[].bg[]
+##### [<code>sf</code>](#importExample) <span class="bullet bullet-active">[&#8226;](#importExample)</span><span class="bullet mslide63m">[&#8226;](#H1fcb)</span>.fg[].bg[]
 #### [Растровые данные](#H8837)
 ### [Характеристики](#H0f29)
 ### [Создание](#Hf293)
@@ -2044,7 +2036,7 @@ b.sf <- sf::st_read(shpname)
 
 ```
 ## Reading layer `scot_BNG' from data source 
-##   `C:\Software\Rlibs4\rgdal\vectors\scot_BNG.shp' using driver `ESRI Shapefile'
+##   `C:\Software\Rlibs\rgdal\vectors\scot_BNG.shp' using driver `ESRI Shapefile'
 ## Simple feature collection with 56 features and 13 fields
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
@@ -2067,7 +2059,7 @@ name: H1fcb
 #### [Источники для примера](#H26b3)
 #### [Векторные данные](#H27f2).fg[]
 ##### [<code>rgdal/sp</code>](#H27f2)
-##### [<code>sf</code>](#importExampleM) <span class="bullet bullet">[&#8226;](#importExampleM)</span><span class="bullet bullet-active">[&#8226;](#H1fcb)</span>.fg[].bg[]
+##### [<code>sf</code>](#importExample) <span class="bullet bullet">[&#8226;](#importExample)</span><span class="bullet bullet-active">[&#8226;](#H1fcb)</span>.fg[].bg[]
 #### [Растровые данные](#H8837)
 ### [Характеристики](#H0f29)
 ### [Создание](#Hf293)
@@ -2150,7 +2142,7 @@ d1 <- rgdal::readGDAL(tifname)
 ```
 
 ```
-## C:/Software/Rlibs4/rgdal/pictures/cea.tif has GDAL driver GTiff 
+## C:/Software/Rlibs/rgdal/pictures/cea.tif has GDAL driver GTiff 
 ## and has 515 rows and 514 columns
 ```
 
@@ -3732,7 +3724,7 @@ tmap_mode("plot")
 
 ```r
 (tm1 <- tm_shape(b.sf) + tm_polygons("COUNT") + tm_scale_bar() +
-   tm_compass(position=c("left","bottom"))) + tm_graticules()
+   tm_compass(position=c("left","bottom")) + tm_graticules())
 ```
 
 <img src="assets/lesson05/tmap-plot-1.svg" width="1330" height="445" style="display: block; margin: auto;" />
@@ -4449,9 +4441,9 @@ sessionInfo()
 ```
 
 ```
-## R version 4.2.3 Patched (2023-03-15 r84006 ucrt)
+## R version 4.2.3 Patched (2023-03-15 r84023 ucrt)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 19045)
+## Running under: Windows 10 x64 (build 19044)
 ## 
 ## Matrix products: default
 ## 
@@ -4470,7 +4462,7 @@ sessionInfo()
 ## [1] leaflet_2.1.2 tmap_3.3-3    ggplot2_3.4.1
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] sf_1.0-11               satellite_1.0.4         webshot_0.5.4          
+##  [1] sf_1.0-12               satellite_1.0.4         webshot_0.5.4          
 ##  [4] RColorBrewer_1.1-3      mapview_2.11.0          tools_4.2.3            
 ##  [7] bslib_0.4.2             utf8_1.2.3              rgdal_1.6-5            
 ## [10] R6_2.5.1                KernSmooth_2.23-20      DBI_1.1.3              
@@ -4478,30 +4470,30 @@ sessionInfo()
 ## [16] sp_1.6-0                tidyselect_1.2.0        compiler_4.2.3         
 ## [19] leafem_0.2.0            cli_3.6.0               geojsonsf_2.0.3        
 ## [22] labeling_0.4.2          sass_0.4.5              scales_1.2.1           
-## [25] proj4_1.0-12            classInt_0.4-9          proxy_0.4-27           
-## [28] systemfonts_1.0.4       digest_0.6.31           rmarkdown_2.20         
-## [31] svglite_2.1.1           base64enc_0.1-3         dichromat_2.0-0.1      
-## [34] jpeg_0.1-10             pkgconfig_2.0.3         htmltools_0.5.4        
-## [37] ursa_3.9.10             fastmap_1.1.1           highr_0.10             
-## [40] htmlwidgets_1.6.2       rlang_1.1.0             xaringan_0.28          
-## [43] shiny_1.7.4             jquerylib_0.1.4         generics_0.1.3         
-## [46] farver_2.1.1            jsonlite_1.8.4          crosstalk_1.2.0        
-## [49] dplyr_1.1.0             magrittr_2.0.3          s2_1.1.2               
-## [52] Rcpp_1.0.10             munsell_0.5.0           fansi_1.0.4            
-## [55] abind_1.4-5             lifecycle_1.0.3         terra_1.7-18           
-## [58] leafsync_0.1.0          yaml_2.3.7              tmaptools_3.1-1        
-## [61] grid_4.2.3              widgetframe_0.3.1       parallel_4.2.3         
-## [64] promises_1.2.0.1        lattice_0.20-45         stars_0.6-0            
-## [67] leafpop_0.1.0           knitr_1.42              pillar_1.8.1           
-## [70] tcltk_4.2.3             uuid_1.1-0              codetools_0.2-19       
-## [73] stats4_4.2.3            wk_0.7.2                XML_3.99-0.13          
-## [76] glue_1.6.2              evaluate_0.20           leaflet.providers_1.9.0
-## [79] png_0.1-8               vctrs_0.6.0             httpuv_1.6.9           
-## [82] gtable_0.3.2            cachem_1.0.7            xfun_0.37              
-## [85] mime_0.12               lwgeom_0.2-11           xtable_1.8-4           
-## [88] e1071_1.7-13            later_1.3.0             class_7.3-21           
-## [91] viridisLite_0.4.1       tibble_3.2.1            units_0.8-1            
-## [94] mapedit_0.6.0           ellipsis_0.3.2          brew_1.0-8             
+## [25] classInt_0.4-9          proxy_0.4-27            systemfonts_1.0.4      
+## [28] digest_0.6.31           rmarkdown_2.20          svglite_2.1.1          
+## [31] base64enc_0.1-3         dichromat_2.0-0.1       jpeg_0.1-10            
+## [34] pkgconfig_2.0.3         htmltools_0.5.4         ursa_3.9.10            
+## [37] fastmap_1.1.1           highr_0.10              htmlwidgets_1.6.2      
+## [40] rlang_1.1.0             xaringan_0.28           shiny_1.7.4            
+## [43] jquerylib_0.1.4         generics_0.1.3          farver_2.1.1           
+## [46] jsonlite_1.8.4          crosstalk_1.2.0         dplyr_1.1.1            
+## [49] magrittr_2.0.3          s2_1.1.2                Rcpp_1.0.10            
+## [52] munsell_0.5.0           fansi_1.0.4             abind_1.4-5            
+## [55] lifecycle_1.0.3         terra_1.7-18            leafsync_0.1.0         
+## [58] yaml_2.3.7              tmaptools_3.1-1         grid_4.2.3             
+## [61] widgetframe_0.3.1       parallel_4.2.3          promises_1.2.0.1       
+## [64] lattice_0.20-45         stars_0.6-0             leafpop_0.1.0          
+## [67] knitr_1.42              pillar_1.9.0            tcltk_4.2.3            
+## [70] uuid_1.1-0              codetools_0.2-19        stats4_4.2.3           
+## [73] wk_0.7.2                XML_3.99-0.14           glue_1.6.2             
+## [76] evaluate_0.20           leaflet.providers_1.9.0 png_0.1-8              
+## [79] vctrs_0.6.1             httpuv_1.6.9            gtable_0.3.3           
+## [82] cachem_1.0.7            xfun_0.37               mime_0.12              
+## [85] lwgeom_0.2-11           xtable_1.8-4            e1071_1.7-13           
+## [88] later_1.3.0             class_7.3-21            viridisLite_0.4.1      
+## [91] tibble_3.2.1            units_0.8-1             mapedit_0.6.0          
+## [94] plutil_0.9-7266         ellipsis_0.3.2          brew_1.0-8             
 ## [97] xaringanExtra_0.7.0
 ```
 

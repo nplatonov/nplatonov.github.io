@@ -16,7 +16,7 @@
   <body>
 <style>
 .remark-backdrop:after{
-   content: 'Никита Платонов \A \A [ГИС аспирантура](class.html)';
+   content: 'Никита Платонов \A \A [ГИС аспирантура](class.html#home)';
 }
 :root {--pointsize: 22pt;}
 </style>
@@ -34,7 +34,7 @@ layout: true
 .banner[
 
 .shorttitle[
-[ГИС аспирантура](class.html)
+[ГИС аспирантура](class.html#home)
 ]
 
 ]
@@ -74,7 +74,7 @@ name: H3216
 .where[]
 
 
-.when[23 марта 2023 г. .updated[Обновлено: 2023-03-22 06:26]]
+.when[23 марта 2023 г. .updated[Обновлено: 2023-03-22 19:36]]
 
 
 
@@ -100,8 +100,8 @@ name: H3e07
 ## [Растровые и векторные данные](#H3e07).fg[]
 ### [Вектор](#H3e07).fg[].bg[]
 #### [Исходные данные](#Hbea7)
-#### [Вместе](#Hfc7f)
-#### [Раздельно](#H322f)
+#### [Вместе](#point-together)
+#### [Раздельно](#point-separate)
 #### [\{geom\} vs MULTI\{geom\}](#Ha724)
 ### [Растр](#Hd741)
 ## [Проекции](#Heb3c)
@@ -127,8 +127,8 @@ name: Hbea7
 ## [Растровые и векторные данные](#H3e07).fg[]
 ### [Вектор](#H3e07).fg[]
 #### [Исходные данные](#Hbea7) <span class="bullet bullet-active">[&#8226;](#Hbea7)</span><span class="bullet mslide9m">[&#8226;](#Ha5c4)</span>.fg[].bg[]
-#### [Вместе](#Hfc7f)
-#### [Раздельно](#H322f)
+#### [Вместе](#point-together)
+#### [Раздельно](#point-separate)
 #### [\{geom\} vs MULTI\{geom\}](#Ha724)
 ### [Растр](#Hd741)
 ## [Проекции](#Heb3c)
@@ -171,8 +171,8 @@ name: Ha5c4
 ## [Растровые и векторные данные](#H3e07).fg[]
 ### [Вектор](#H3e07).fg[]
 #### [Исходные данные](#Hbea7) <span class="bullet bullet">[&#8226;](#Hbea7)</span><span class="bullet bullet-active">[&#8226;](#Ha5c4)</span>.fg[].bg[]
-#### [Вместе](#Hfc7f)
-#### [Раздельно](#H322f)
+#### [Вместе](#point-together)
+#### [Раздельно](#point-separate)
 #### [\{geom\} vs MULTI\{geom\}](#Ha724)
 ### [Растр](#Hd741)
 ## [Проекции](#Heb3c)
@@ -188,18 +188,17 @@ name: Ha5c4
 
 ]
 ---
-
-name: Hfc7f
+name: point-together
 
 .sidebar.left-column[
 ## [Растровые и векторные данные](#H3e07).fg[]
 ### [Вектор](#H3e07).fg[]
 #### [Исходные данные](#Hbea7)
-#### [Вместе](#Hfc7f).fg[]
-##### [POINT (точки)](#Hfc7f).fg[].bg[]
-##### [LINESTRING (линии)](#Hef85)
-##### [POLYGON (полигоны)](#H3d36)
-#### [Раздельно](#H322f)
+#### [Вместе](#point-together).fg[]
+##### [POINT (точки)](#point-together).fg[].bg[]
+##### [LINESTRING (линии)](#line-together)
+##### [POLYGON (полигоны)](#poly-together)
+#### [Раздельно](#point-separate)
 #### [\{geom\} vs MULTI\{geom\}](#Ha724)
 ### [Растр](#Hd741)
 ## [Проекции](#Heb3c)
@@ -209,23 +208,22 @@ name: Hfc7f
 
 <img src="assets/lesson03/ee1409e9~chunk.png" width="1330" height="568" style="display: block; margin: auto;" />
 
-Выборка по четырем случайным особям.
+Выборка по четырем случайным особям. См. ["раздельно"](#point-separate).
 
 
 ]
 ---
-
-name: Hef85
+name: line-together
 
 .sidebar.left-column[
 ## [Растровые и векторные данные](#H3e07).fg[]
 ### [Вектор](#H3e07).fg[]
 #### [Исходные данные](#Hbea7)
-#### [Вместе](#Hfc7f).fg[]
-##### [POINT (точки)](#Hfc7f)
-##### [LINESTRING (линии)](#Hef85).fg[].bg[]
-##### [POLYGON (полигоны)](#H3d36)
-#### [Раздельно](#H322f)
+#### [Вместе](#point-together).fg[]
+##### [POINT (точки)](#point-together)
+##### [LINESTRING (линии)](#line-together).fg[].bg[]
+##### [POLYGON (полигоны)](#poly-together)
+#### [Раздельно](#point-separate)
 #### [\{geom\} vs MULTI\{geom\}](#Ha724)
 ### [Растр](#Hd741)
 ## [Проекции](#Heb3c)
@@ -235,23 +233,22 @@ name: Hef85
 
 <img src="assets/lesson03/9e0edbb4~chunk.png" width="1330" height="568" style="display: block; margin: auto;" />
 
-Линии - соединение точек.
+Линии - соединение точек. См. [раздельно](#line-separate).
 
 
 ]
 ---
-
-name: H3d36
+name: poly-together
 
 .sidebar.left-column[
 ## [Растровые и векторные данные](#H3e07).fg[]
 ### [Вектор](#H3e07).fg[]
 #### [Исходные данные](#Hbea7)
-#### [Вместе](#Hfc7f).fg[]
-##### [POINT (точки)](#Hfc7f)
-##### [LINESTRING (линии)](#Hef85)
-##### [POLYGON (полигоны)](#H3d36).fg[].bg[]
-#### [Раздельно](#H322f)
+#### [Вместе](#point-together).fg[]
+##### [POINT (точки)](#point-together)
+##### [LINESTRING (линии)](#line-together)
+##### [POLYGON (полигоны)](#poly-together).fg[].bg[]
+#### [Раздельно](#point-separate)
 #### [\{geom\} vs MULTI\{geom\}](#Ha724)
 ### [Растр](#Hd741)
 ## [Проекции](#Heb3c)
@@ -261,25 +258,24 @@ name: H3d36
 
 <img src="assets/lesson03/e6ab3d79~chunk.png" width="1330" height="568" style="display: block; margin: auto;" />
 
-Полигоны - буфер вокруг точек.
+Полигоны - буфер вокруг точек. См. [раздельно](#poly-separate).
 
 
 
 
 ]
 ---
-
-name: H322f
+name: point-separate
 
 .sidebar.left-column[
 ## [Растровые и векторные данные](#H3e07).fg[]
 ### [Вектор](#H3e07).fg[]
 #### [Исходные данные](#Hbea7)
-#### [Вместе](#Hfc7f)
-#### [Раздельно](#H322f).fg[]
-##### [POINT (точки)](#H322f).fg[].bg[]
-##### [LINESTRING (линии)](#H2266)
-##### [POLYGON (полигоны)](#H0ba7)
+#### [Вместе](#point-together)
+#### [Раздельно](#point-separate).fg[]
+##### [POINT (точки)](#point-separate).fg[].bg[]
+##### [LINESTRING (линии)](#line-separate)
+##### [POLYGON (полигоны)](#poly-separate)
 #### [\{geom\} vs MULTI\{geom\}](#Ha724)
 ### [Растр](#Hd741)
 ## [Проекции](#Heb3c)
@@ -289,22 +285,23 @@ name: H322f
 
 <img src="assets/lesson03/7b2785dd~chunk.png" width="1330" height="568" style="display: block; margin: auto;" />
 
+См [вместе](#point-together).
+
 <!-- Отображение локаций для каждой особи в отдельной панели. -->
 
 ]
 ---
-
-name: H2266
+name: line-separate
 
 .sidebar.left-column[
 ## [Растровые и векторные данные](#H3e07).fg[]
 ### [Вектор](#H3e07).fg[]
 #### [Исходные данные](#Hbea7)
-#### [Вместе](#Hfc7f)
-#### [Раздельно](#H322f).fg[]
-##### [POINT (точки)](#H322f)
-##### [LINESTRING (линии)](#H2266).fg[].bg[]
-##### [POLYGON (полигоны)](#H0ba7)
+#### [Вместе](#point-together)
+#### [Раздельно](#point-separate).fg[]
+##### [POINT (точки)](#point-separate)
+##### [LINESTRING (линии)](#line-separate).fg[].bg[]
+##### [POLYGON (полигоны)](#poly-separate)
 #### [\{geom\} vs MULTI\{geom\}](#Ha724)
 ### [Растр](#Hd741)
 ## [Проекции](#Heb3c)
@@ -318,22 +315,22 @@ name: H2266
 
 
 <img src="assets/lesson03/ce88590a~chunk.png" width="1330" height="568" style="display: block; margin: auto;" />
+См [вместе](#line-together).
 
 
 ]
 ---
-
-name: H0ba7
+name: poly-separate
 
 .sidebar.left-column[
 ## [Растровые и векторные данные](#H3e07).fg[]
 ### [Вектор](#H3e07).fg[]
 #### [Исходные данные](#Hbea7)
-#### [Вместе](#Hfc7f)
-#### [Раздельно](#H322f).fg[]
-##### [POINT (точки)](#H322f)
-##### [LINESTRING (линии)](#H2266)
-##### [POLYGON (полигоны)](#H0ba7).fg[].bg[]
+#### [Вместе](#point-together)
+#### [Раздельно](#point-separate).fg[]
+##### [POINT (точки)](#point-separate)
+##### [LINESTRING (линии)](#line-separate)
+##### [POLYGON (полигоны)](#poly-separate).fg[].bg[]
 #### [\{geom\} vs MULTI\{geom\}](#Ha724)
 ### [Растр](#Hd741)
 ## [Проекции](#Heb3c)
@@ -343,6 +340,7 @@ name: H0ba7
 
 
 <img src="assets/lesson03/a165a12b~chunk.png" width="1330" height="568" style="display: block; margin: auto;" />
+См [вместе](#poly-together).
 
 
 ]
@@ -354,8 +352,8 @@ name: Ha724
 ## [Растровые и векторные данные](#H3e07).fg[]
 ### [Вектор](#H3e07).fg[]
 #### [Исходные данные](#Hbea7)
-#### [Вместе](#Hfc7f)
-#### [Раздельно](#H322f)
+#### [Вместе](#point-together)
+#### [Раздельно](#point-separate)
 #### [\{geom\} vs MULTI\{geom\}](#Ha724).fg[].bg[]
 ##### [POINT vs MULTIPOINT:](#H613f)
 ### [Растр](#Hd741)
@@ -382,8 +380,8 @@ name: H613f
 ## [Растровые и векторные данные](#H3e07).fg[]
 ### [Вектор](#H3e07).fg[]
 #### [Исходные данные](#Hbea7)
-#### [Вместе](#Hfc7f)
-#### [Раздельно](#H322f)
+#### [Вместе](#point-together)
+#### [Раздельно](#point-separate)
 #### [\{geom\} vs MULTI\{geom\}](#Ha724).fg[]
 ##### [POINT vs MULTIPOINT:](#H613f) <span class="bullet bullet-active">[&#8226;](#H613f)</span><span class="bullet mslide25m">[&#8226;](#H92c4)</span>.fg[].bg[]
 ### [Растр](#Hd741)
@@ -425,8 +423,8 @@ name: H92c4
 ## [Растровые и векторные данные](#H3e07).fg[]
 ### [Вектор](#H3e07).fg[]
 #### [Исходные данные](#Hbea7)
-#### [Вместе](#Hfc7f)
-#### [Раздельно](#H322f)
+#### [Вместе](#point-together)
+#### [Раздельно](#point-separate)
 #### [\{geom\} vs MULTI\{geom\}](#Ha724).fg[]
 ##### [POINT vs MULTIPOINT:](#H613f) <span class="bullet bullet">[&#8226;](#H613f)</span><span class="bullet bullet-active">[&#8226;](#H92c4)</span>.fg[].bg[]
 ### [Растр](#Hd741)

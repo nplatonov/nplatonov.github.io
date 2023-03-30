@@ -72,7 +72,7 @@ div.csl-indent {
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 03</span> <span class="when">23 марта 2023 г. <span class="updated">Обновлено: 2023-03-22 06:21</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 03</span> <span class="when">23 марта 2023 г. <span class="updated">Обновлено: 2023-03-22 19:33</span></span></h4>
 
 
 <div id="TOC">
@@ -84,15 +84,15 @@ div.csl-indent {
 <li><a href="#исходные-данные" id="toc-исходные-данные">Исходные данные</a></li>
 <li><a href="#вместе" id="toc-вместе">Вместе</a>
 <ul>
-<li><a href="#point-точки" id="toc-point-точки">POINT (точки)</a></li>
-<li><a href="#linestring-линии" id="toc-linestring-линии">LINESTRING (линии)</a></li>
-<li><a href="#polygon-полигоны" id="toc-polygon-полигоны">POLYGON (полигоны)</a></li>
+<li><a href="#point-together" id="toc-point-together">POINT (точки)</a></li>
+<li><a href="#line-together" id="toc-line-together">LINESTRING (линии)</a></li>
+<li><a href="#poly-together" id="toc-poly-together">POLYGON (полигоны)</a></li>
 </ul></li>
 <li><a href="#раздельно" id="toc-раздельно">Раздельно</a>
 <ul>
-<li><a href="#point-точки-1" id="toc-point-точки-1">POINT (точки)</a></li>
-<li><a href="#linestring-линии-1" id="toc-linestring-линии-1">LINESTRING (линии)</a></li>
-<li><a href="#polygon-полигоны-1" id="toc-polygon-полигоны-1">POLYGON (полигоны)</a></li>
+<li><a href="#point-separate" id="toc-point-separate">POINT (точки)</a></li>
+<li><a href="#line-separate" id="toc-line-separate">LINESTRING (линии)</a></li>
+<li><a href="#poly-separate" id="toc-poly-separate">POLYGON (полигоны)</a></li>
 </ul></li>
 <li><a href="#geom-vs-multigeom" id="toc-geom-vs-multigeom">{geom} vs MULTI{geom}</a>
 <ul>
@@ -231,36 +231,39 @@ div.csl-indent {
 </div>
 <div id="вместе" class="section level4">
 <h4>Вместе</h4>
-<div id="point-точки" class="section level5">
+<div id="point-together" class="section level5">
 <h5>POINT (точки)</h5>
 <p class="centered-image"><img src="assets/lesson03/ee1409e9~chunk.png" width="494" /></p>
-<p>Выборка по четырем случайным особям.</p>
+<p>Выборка по четырем случайным особям. См. <a href="#point-separate">“раздельно”</a>.</p>
 </div>
-<div id="linestring-линии" class="section level5">
+<div id="line-together" class="section level5">
 <h5>LINESTRING (линии)</h5>
 <p class="centered-image"><img src="assets/lesson03/9e0edbb4~chunk.png" width="494" /></p>
-<p>Линии - соединение точек.</p>
+<p>Линии - соединение точек. См. <a href="#line-separate">раздельно</a>.</p>
 </div>
-<div id="polygon-полигоны" class="section level5">
+<div id="poly-together" class="section level5">
 <h5>POLYGON (полигоны)</h5>
 <p class="centered-image"><img src="assets/lesson03/e6ab3d79~chunk.png" width="494" /></p>
-<p>Полигоны - буфер вокруг точек.</p>
+<p>Полигоны - буфер вокруг точек. См. <a href="#poly-separate">раздельно</a>.</p>
 </div>
 </div>
 <div id="раздельно" class="section level4">
 <h4>Раздельно</h4>
-<div id="point-точки-1" class="section level5">
+<div id="point-separate" class="section level5">
 <h5>POINT (точки)</h5>
 <p class="centered-image"><img src="assets/lesson03/7b2785dd~chunk.png" width="448" /></p>
+<p>См <a href="#point-together">вместе</a>.</p>
 <!-- Отображение локаций для каждой особи в отдельной панели. -->
 </div>
-<div id="linestring-линии-1" class="section level5">
+<div id="line-separate" class="section level5">
 <h5>LINESTRING (линии)</h5>
-<p class="centered-image"><img src="assets/lesson03/ce88590a~chunk.png" width="448" /></p>
+<p class="centered-image"><img src="assets/lesson03/ce88590a~chunk.png" width="448" />
+См <a href="#line-together">вместе</a>.</p>
 </div>
-<div id="polygon-полигоны-1" class="section level5">
+<div id="poly-separate" class="section level5">
 <h5>POLYGON (полигоны)</h5>
-<p class="centered-image"><img src="assets/lesson03/a165a12b~chunk.png" width="448" /></p>
+<p class="centered-image"><img src="assets/lesson03/a165a12b~chunk.png" width="448" />
+См <a href="#poly-together">вместе</a>.</p>
 </div>
 </div>
 <div id="geom-vs-multigeom" class="section level4">
