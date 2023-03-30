@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when">30 марта 2023 г., 06 апреля 2023 г. <span class="updated">Обновлено: 2023-03-23 20:46</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when">30 марта 2023 г., 06 апреля 2023 г. <span class="updated">Обновлено: 2023-03-30 21:22</span></span></h4>
 <div class="abstract">
 <p class="abstract">Abstract</p>
 Демонстрация основ работы с интерфейсом командной строки в R, позволяющей создавать скрипты и получать воспроизводимые результаты. Показано, как пространственные векторные и растровые данные могут попасть в R и как они выглядят в R. С возможностью сделать обработку, анализ и визуализацию пространственных данных.
@@ -270,6 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="#статическая" id="toc-статическая">Статическая</a>
 <ul>
+<li><a href="#ggplot2" id="toc-ggplot2"><code>ggplot2</code></a></li>
 <li><a href="#tmap" id="toc-tmap"><code>tmap</code></a></li>
 <li><a href="#для-публикаций" id="toc-для-публикаций">Для публикаций</a></li>
 </ul></li>
@@ -1397,14 +1398,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="#cb239-1" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(b.sf),<span class="at">col=</span>sf<span class="sc">::</span><span class="fu">sf.colors</span>(<span class="dv">12</span>,<span class="at">categorical=</span><span class="cn">TRUE</span>)</span>
 <span id="cb239-2"><a href="#cb239-2" tabindex="-1"></a>    ,<span class="at">border=</span><span class="st">&#39;grey&#39;</span>,<span class="at">axes=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/scotplotgeom-1.svg" width="646.08" height="550" /></p>
-<p>Для оформления карт можно использовать функционал других библиотек.
-##### <code>ggplot2</code></p>
+<p>Для оформления карт можно использовать функционал других библиотек.</p>
+<div id="ggplot2" class="section level5">
+<h5><code>ggplot2</code></h5>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="#cb240-1" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span></code></pre></div>
 <pre><code>## Loading required package: ggplot2</code></pre>
 <div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="#cb242-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb242-2"><a href="#cb242-2" tabindex="-1"></a>   <span class="fu">geom_sf</span>(<span class="at">data=</span>b.sf,<span class="fu">aes</span>(<span class="at">fill=</span>AFF))<span class="sc">+</span></span>
 <span id="cb242-3"><a href="#cb242-3" tabindex="-1"></a>   <span class="fu">coord_sf</span>(<span class="at">crs=</span>sf<span class="sc">::</span><span class="fu">st_crs</span>(<span class="dv">3857</span>))</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/geomsf-1.svg" width="646.08" height="420" /></p>
+</div>
 <div id="tmap" class="section level5">
 <h5><code>tmap</code></h5>
 <div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="#cb243-1" tabindex="-1"></a><span class="fu">require</span>(tmap)</span></code></pre></div>
@@ -1587,7 +1590,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>Параметры сессии</h4>
 <div class="oversize">
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="#cb280-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.2.3 Patched (2023-03-15 r84023 ucrt)
+<pre><code>## R version 4.2.3 Patched (2023-03-25 r84066 ucrt)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 19044)
 ## 
@@ -1610,11 +1613,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [5] mapview_2.11.0          tools_4.2.3             bslib_0.4.2             utf8_1.2.3             
 ##  [9] rgdal_1.6-5             R6_2.5.1                KernSmooth_2.23-20      DBI_1.1.3              
 ## [13] colorspace_2.1-0        raster_3.6-20           withr_2.5.0             sp_1.6-0               
-## [17] tidyselect_1.2.0        compiler_4.2.3          leafem_0.2.0            cli_3.6.0              
+## [17] tidyselect_1.2.0        compiler_4.2.3          leafem_0.2.0            cli_3.6.1              
 ## [21] geojsonsf_2.0.3         labeling_0.4.2          sass_0.4.5              scales_1.2.1           
 ## [25] classInt_0.4-9          proxy_0.4-27            systemfonts_1.0.4       digest_0.6.31          
 ## [29] rmarkdown_2.20          svglite_2.1.1           base64enc_0.1-3         dichromat_2.0-0.1      
-## [33] jpeg_0.1-10             pkgconfig_2.0.3         htmltools_0.5.4         ursa_3.9.10            
+## [33] jpeg_0.1-10             pkgconfig_2.0.3         htmltools_0.5.5         ursa_3.9.10            
 ## [37] fastmap_1.1.1           highr_0.10              htmlwidgets_1.6.2       rlang_1.1.0            
 ## [41] shiny_1.7.4             jquerylib_0.1.4         generics_0.1.3          farver_2.1.1           
 ## [45] jsonlite_1.8.4          crosstalk_1.2.0         dplyr_1.1.1             magrittr_2.0.3         
@@ -1626,10 +1629,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [69] uuid_1.1-0              codetools_0.2-19        stats4_4.2.3            wk_0.7.2               
 ## [73] XML_3.99-0.14           glue_1.6.2              evaluate_0.20           leaflet.providers_1.9.0
 ## [77] png_0.1-8               vctrs_0.6.1             httpuv_1.6.9            gtable_0.3.3           
-## [81] cachem_1.0.7            xfun_0.37               mime_0.12               lwgeom_0.2-11          
+## [81] cachem_1.0.7            xfun_0.38               mime_0.12               lwgeom_0.2-11          
 ## [85] xtable_1.8-4            e1071_1.7-13            later_1.3.0             class_7.3-21           
 ## [89] viridisLite_0.4.1       tibble_3.2.1            units_0.8-1             mapedit_0.6.0          
-## [93] plutil_0.9-7266         ellipsis_0.3.2          brew_1.0-8              xaringanExtra_0.7.0</code></pre>
+## [93] plutil_0.9-7269         ellipsis_0.3.2          brew_1.0-8              xaringanExtra_0.7.0</code></pre>
 </div>
 </div>
 </div>
