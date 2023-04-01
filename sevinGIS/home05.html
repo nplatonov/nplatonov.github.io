@@ -14,7 +14,7 @@
 
 <title>ГИС 05</title>
 
-<script src="https://nplatonov.github.io/site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.21/header-attrs.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when">30 марта 2023 г., 06 апреля 2023 г. <span class="updated">Обновлено: 2023-03-31 11:21</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when">30 марта 2023 г., 06 апреля 2023 г. <span class="updated">Обновлено: 2023-04-01 22:24</span></span></h4>
 <div class="abstract">
 <p class="abstract">Abstract</p>
 Демонстрация основ работы с интерфейсом командной строки в R, позволяющей создавать скрипты и получать воспроизводимые результаты. Показано, как пространственные векторные и растровые данные могут попасть в R и как они выглядят в R. С возможностью сделать обработку, анализ и визуализацию пространственных данных.
@@ -238,6 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="#rgdalsp-1" id="toc-rgdalsp-1"><code>rgdal/sp</code></a></li>
 <li><a href="#raster" id="toc-raster"><code>raster</code></a></li>
+<li><a href="#terra" id="toc-terra"><code>terra</code></a></li>
 </ul></li>
 </ul></li>
 <li><a href="#характеристики" id="toc-характеристики">Характеристики</a>
@@ -315,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="библиотеки" class="section level4">
 <h4>Библиотеки</h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>pkgList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;rgdal&quot;</span>,<span class="st">&quot;sf&quot;</span>,<span class="st">&quot;raster&quot;</span>,<span class="st">&quot;ggplot2&quot;</span>,<span class="st">&quot;leaflet&quot;</span>,<span class="st">&quot;mapview&quot;</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>pkgList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;rgdal&quot;</span>,<span class="st">&quot;sf&quot;</span>,<span class="st">&quot;terra&quot;</span>,<span class="st">&quot;raster&quot;</span>,<span class="st">&quot;ggplot2&quot;</span>,<span class="st">&quot;leaflet&quot;</span>,<span class="st">&quot;mapview&quot;</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>            ,<span class="st">&quot;mapedit&quot;</span>,<span class="st">&quot;knitr&quot;</span>,<span class="st">&quot;rmarkdown&quot;</span>,<span class="st">&quot;jpeg&quot;</span>,<span class="st">&quot;png&quot;</span>,<span class="st">&quot;ursa&quot;</span>,<span class="st">&quot;tmap&quot;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>whoisready <span class="ot">&lt;-</span> <span class="fu">sapply</span>(pkgList,<span class="cf">function</span>(pkg) {</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">requireNamespace</span>(pkg))</span>
@@ -325,6 +326,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>})</span></code></pre></div>
 <pre><code>## Loading required namespace: rgdal</code></pre>
 <pre><code>## Loading required namespace: sf</code></pre>
+<pre><code>## Loading required namespace: terra</code></pre>
 <pre><code>## Loading required namespace: raster</code></pre>
 <pre><code>## Loading required namespace: ggplot2</code></pre>
 <pre><code>## Loading required namespace: leaflet</code></pre>
@@ -332,21 +334,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Loading required namespace: mapedit</code></pre>
 <pre><code>## Loading required namespace: jpeg</code></pre>
 <pre><code>## Loading required namespace: tmap</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>whoisready</span></code></pre></div>
-<pre><code>##     rgdal        sf    raster   ggplot2   leaflet   mapview   mapedit     knitr rmarkdown      jpeg 
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>whoisready</span></code></pre></div>
+<pre><code>##     rgdal        sf     terra    raster   ggplot2   leaflet   mapview   mapedit     knitr rmarkdown 
 ##      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE 
-##       png      ursa      tmap 
-##      TRUE      TRUE      TRUE</code></pre>
+##      jpeg       png      ursa      tmap 
+##      TRUE      TRUE      TRUE      TRUE</code></pre>
 <p>Если отображается <code>TRUE</code> для всех библиотек, то подготовка к занятию осуществлена успешно.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&#39;Everything is ready?&#39;</span><span class="ot">=</span><span class="fu">all</span>(whoisready))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&#39;Everything is ready?&#39;</span><span class="ot">=</span><span class="fu">all</span>(whoisready))</span></code></pre></div>
 <pre><code>## Everything is ready? 
 ##                 TRUE</code></pre>
 <p>Если где-то выскочило <code>FALSE</code> (например, для библиотеки “foo”), то можно попробовать его установить заново функцией <code>install.packages("foo")</code>.</p>
 </div>
 <div id="дополнительное-по" class="section level4">
 <h4>Дополнительное ПО</h4>
-<div id="rstudio-ide" class="section level5">
-<h5>RStudio IDE</h5>
+<div id="rstudio-ide" class="section level5 middle center">
+<h5 class="middle center">RStudio IDE</h5>
 <p><sup>факультативно</sup></p>
 </div>
 <div id="pandoc" class="section level5">
@@ -355,7 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Pandoc необходим для создания воспроизводимого результата. Этот шаг опциональный, и может быть пропущен, но в этом случае на занятии будет пропущен раздел по <a href="#report1">публикации результатов</a>.</p>
 <p><a href="https://pandoc.org/installing.html">Ссылка</a> на страницу для скачивания. Для пользователей Windows достаточно перейти к <a href="https://github.com/jgm/pandoc/releases/latest">скачиванию актуального релиза</a>, и выбрать либо установщик (<code>*.msi</code>), либо архив (<code>*.zip</code>). Запомнить путь, куда произведена установка и где находится файл <code>pandoc.exe</code> и добавить этот путь в переменную окружения <code>%PATH%</code>, например: WindowsKey+Q, ввести “Переменные среды/Environment Variables”, попасть в окошко “Свойства Системы/System Properties”, нажать на кнопку “Переменные среды/Environment Variables” и отредактировать пользовательскую или системную переменную PATH, добавив путь к <code>pandoc.exe</code>.</p>
 <p>Чтобы проверить правильно ли установлен Pandoc, в новой R-сессии:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">pandoc_available</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">pandoc_available</span>()</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 </div>
@@ -405,29 +407,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Предполагается, что во время занятий будет использоваться интерактивный режим: либо простая среда R (R, запущенный без команд), либо графическая среда R GUI, либо RStudio.</p>
 <p>Блок исходного кода выделен моноширинным шрифтом с подсветкой синтаксиса, после которого либо приведен текстовый вывод (более бледный цвет шрифта), либо графический вывод (рисунок, таблица). В среде R нужно вводить код из верхнего блока и сравнивать полученный вывод с содержимым нижнего блока.</p>
 <p>К примеру, ниже приведен пример вывода числа <span class="math inline">\(\pi\)</span>: сверху – команда, снизу – выход.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>pi</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>pi</span></code></pre></div>
 <pre><code>## [1] 3.141593</code></pre>
 </div>
 </div>
 <div id="начало-работы" class="section level3">
 <h3>Начало работы</h3>
 <p>Текущий путь, где мы находимся. Здесь появятся файлы, созданные в процессе занятия.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;C:/platt/education/202204-GIS&quot;</code></pre>
 <p>Его можно поменять через меню RGui/RStudio или с помощью <code>setwd()</code>.</p>
 <p>Зафиксируем генератор псевдослучайных чисел на определенную последовательность</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">353</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">353</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##  [1]  2  7 10  6  4  1  3  9  5  8</code></pre>
 <div class="font90">
 <p>Команда для проверки кириллицы:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&#39;Здесь кириллица?&#39;</span><span class="ot">=</span><span class="st">&quot;Да!&quot;</span>),<span class="at">quote=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&#39;Здесь кириллица?&#39;</span><span class="ot">=</span><span class="st">&quot;Да!&quot;</span>),<span class="at">quote=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Здесь кириллица? 
 ##              Да!</code></pre>
 <p>Если вывод не читаемый, то возможные пути решения:</p>
 <p>1. Задать кириллицу для символьной локали:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="cf">if</span> (.Platform<span class="sc">$</span>OS.type<span class="sc">==</span><span class="st">&quot;windows&quot;</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>   <span class="fu">Sys.setlocale</span>(<span class="st">&quot;LC_CTYPE&quot;</span>,<span class="st">&quot;Russian&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="cf">if</span> (.Platform<span class="sc">$</span>OS.type<span class="sc">==</span><span class="st">&quot;windows&quot;</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>   <span class="fu">Sys.setlocale</span>(<span class="st">&quot;LC_CTYPE&quot;</span>,<span class="st">&quot;Russian&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning in Sys.setlocale(&quot;LC_CTYPE&quot;, &quot;Russian&quot;): using locale code page other than 65001 (&quot;UTF-8&quot;) may
 ## cause problems</code></pre>
 <p>2. Если скрипты подключаются через <code>source()</code>, то можно настроить запуск R через конфигурационные файлы. Например, скачать <a href="./.Rprofile">.Rprofile</a>, разместить в рабочей директории, перегрузить R. Файл имеет следующую структуру:</p>
@@ -445,30 +447,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>Простые типы</h4>
 <div id="числа-и-имена-значений" class="section level5">
 <h5>Числа и имена значений</h5>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>(a1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">7</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>(a1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">7</span>))</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5 6 7</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="fu">str</span>(a1)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">str</span>(a1)</span></code></pre></div>
 <pre><code>##  int [1:7] 1 2 3 4 5 6 7</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> a1</span>
-<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">names</span>(a2) <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">Sys.Date</span>()<span class="sc">+</span>a1<span class="dv">-1</span>,<span class="st">&quot;%A&quot;</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>a2</span></code></pre></div>
-<pre><code>##    Friday  Saturday    Sunday    Monday   Tuesday Wednesday  Thursday 
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> a1</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="fu">names</span>(a2) <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">Sys.Date</span>()<span class="sc">+</span>a1<span class="dv">-1</span>,<span class="st">&quot;%A&quot;</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>a2</span></code></pre></div>
+<pre><code>##  Saturday    Sunday    Monday   Tuesday Wednesday  Thursday    Friday 
 ##         1         2         3         4         5         6         7</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">str</span>(a2)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">str</span>(a2)</span></code></pre></div>
 <pre><code>##  Named int [1:7] 1 2 3 4 5 6 7
-##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; &quot;Monday&quot; ...</code></pre>
+##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Saturday&quot; &quot;Sunday&quot; &quot;Monday&quot; &quot;Tuesday&quot; ...</code></pre>
 </div>
 <div id="целые-числа-числа-с-плавающей-точкой" class="section level5">
 <h5>Целые числа, числа с плавающей точкой</h5>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">str</span>(a2<span class="sc">+</span>0L)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="fu">str</span>(a2<span class="sc">+</span>0L)</span></code></pre></div>
 <pre><code>##  Named int [1:7] 1 2 3 4 5 6 7
-##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; &quot;Monday&quot; ...</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="fu">str</span>(a2<span class="sc">+</span><span class="dv">0</span>)</span></code></pre></div>
+##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Saturday&quot; &quot;Sunday&quot; &quot;Monday&quot; &quot;Tuesday&quot; ...</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="fu">str</span>(a2<span class="sc">+</span><span class="dv">0</span>)</span></code></pre></div>
 <pre><code>##  Named num [1:7] 1 2 3 4 5 6 7
-##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; &quot;Monday&quot; ...</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">typeof</span>(a2<span class="sc">+</span>0L)</span></code></pre></div>
+##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Saturday&quot; &quot;Sunday&quot; &quot;Monday&quot; &quot;Tuesday&quot; ...</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="fu">typeof</span>(a2<span class="sc">+</span>0L)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="fu">typeof</span>(a2<span class="sc">+</span><span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">typeof</span>(a2<span class="sc">+</span><span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
 </div>
 <div id="логические-значения-строки" class="section level5">
@@ -476,88 +478,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h5 class="toc-ignore unnumbered unlisted">
 Логические значения
 </h5>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a>(a3 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">FALSE</span>),<span class="fu">length</span>(a2),<span class="at">replace=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>(a3 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">FALSE</span>),<span class="fu">length</span>(a2),<span class="at">replace=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="fu">class</span>(a3)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="fu">class</span>(a3)</span></code></pre></div>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="fu">str</span>(a3)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="fu">str</span>(a3)</span></code></pre></div>
 <pre><code>##  logi [1:7] FALSE FALSE TRUE FALSE FALSE TRUE ...</code></pre>
 <h5 class="toc-ignore unnumbered unlisted">
 Строки
 </h5>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a>(a4 <span class="ot">&lt;-</span> <span class="fu">names</span>(a2))</span></code></pre></div>
-<pre><code>## [1] &quot;Friday&quot;    &quot;Saturday&quot;  &quot;Sunday&quot;    &quot;Monday&quot;    &quot;Tuesday&quot;   &quot;Wednesday&quot; &quot;Thursday&quot;</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="fu">class</span>(a4)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>(a4 <span class="ot">&lt;-</span> <span class="fu">names</span>(a2))</span></code></pre></div>
+<pre><code>## [1] &quot;Saturday&quot;  &quot;Sunday&quot;    &quot;Monday&quot;    &quot;Tuesday&quot;   &quot;Wednesday&quot; &quot;Thursday&quot;  &quot;Friday&quot;</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="fu">class</span>(a4)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a><span class="fu">str</span>(a4)</span></code></pre></div>
-<pre><code>##  chr [1:7] &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; &quot;Monday&quot; &quot;Tuesday&quot; &quot;Wednesday&quot; &quot;Thursday&quot;</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="fu">str</span>(a4)</span></code></pre></div>
+<pre><code>##  chr [1:7] &quot;Saturday&quot; &quot;Sunday&quot; &quot;Monday&quot; &quot;Tuesday&quot; &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot;</code></pre>
 </div>
 </div>
 <div id="составные-типы" class="section level4">
 <h4>Составные типы</h4>
 <div id="списки-одинаковой-длины" class="section level5">
 <h5>Списки одинаковой длины</h5>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a>(a5 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">num=</span>a1[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)],<span class="at">char=</span>a4[<span class="sc">-</span><span class="dv">2</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a>(a5 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">num=</span>a1[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)],<span class="at">char=</span>a4[<span class="sc">-</span><span class="dv">2</span>]))</span></code></pre></div>
 <pre><code>## $num
 ## [1] 1 3 4 5 6 7
 ## 
 ## $char
-## [1] &quot;Friday&quot;    &quot;Sunday&quot;    &quot;Monday&quot;    &quot;Tuesday&quot;   &quot;Wednesday&quot; &quot;Thursday&quot;</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a><span class="fu">str</span>(a5)</span></code></pre></div>
+## [1] &quot;Saturday&quot;  &quot;Monday&quot;    &quot;Tuesday&quot;   &quot;Wednesday&quot; &quot;Thursday&quot;  &quot;Friday&quot;</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a><span class="fu">str</span>(a5)</span></code></pre></div>
 <pre><code>## List of 2
 ##  $ num : int [1:6] 1 3 4 5 6 7
-##  $ char: chr [1:6] &quot;Friday&quot; &quot;Sunday&quot; &quot;Monday&quot; &quot;Tuesday&quot; ...</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a><span class="fu">class</span>(a5)</span></code></pre></div>
+##  $ char: chr [1:6] &quot;Saturday&quot; &quot;Monday&quot; &quot;Tuesday&quot; &quot;Wednesday&quot; ...</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a><span class="fu">class</span>(a5)</span></code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a><span class="fu">length</span>(a5)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a><span class="fu">length</span>(a5)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a><span class="fu">sapply</span>(a5,length)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a><span class="fu">sapply</span>(a5,length)</span></code></pre></div>
 <pre><code>##  num char 
 ##    6    6</code></pre>
 </div>
 <div id="таблицы" class="section level5">
 <h5>Таблицы</h5>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a>(a6 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">num=</span>a1[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)],<span class="at">char=</span>a4[<span class="sc">-</span><span class="dv">2</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a>(a6 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">num=</span>a1[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)],<span class="at">char=</span>a4[<span class="sc">-</span><span class="dv">2</span>]))</span></code></pre></div>
 <pre><code>##   num      char
-## 1   1    Friday
-## 2   3    Sunday
-## 3   4    Monday
-## 4   5   Tuesday
-## 5   6 Wednesday
-## 6   7  Thursday</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="fu">str</span>(a6)</span></code></pre></div>
+## 1   1  Saturday
+## 2   3    Monday
+## 3   4   Tuesday
+## 4   5 Wednesday
+## 5   6  Thursday
+## 6   7    Friday</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a><span class="fu">str</span>(a6)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    6 obs. of  2 variables:
 ##  $ num : int  1 3 4 5 6 7
-##  $ char: chr  &quot;Friday&quot; &quot;Sunday&quot; &quot;Monday&quot; &quot;Tuesday&quot; ...</code></pre>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="fu">class</span>(a6)</span></code></pre></div>
+##  $ char: chr  &quot;Saturday&quot; &quot;Monday&quot; &quot;Tuesday&quot; &quot;Wednesday&quot; ...</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a><span class="fu">class</span>(a6)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a><span class="fu">dim</span>(a6)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" tabindex="-1"></a><span class="fu">dim</span>(a6)</span></code></pre></div>
 <pre><code>## [1] 6 2</code></pre>
 </div>
 <div id="списки-различной-длины" class="section level5">
 <h5>Списки различной длины</h5>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a>(a7 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x=</span><span class="fu">sample</span>(a1,<span class="dv">3</span>),<span class="at">y=</span><span class="fu">sample</span>(a1,<span class="dv">5</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" tabindex="-1"></a>(a7 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x=</span><span class="fu">sample</span>(a1,<span class="dv">3</span>),<span class="at">y=</span><span class="fu">sample</span>(a1,<span class="dv">5</span>)))</span></code></pre></div>
 <pre><code>## $x
 ## [1] 7 2 3
 ## 
 ## $y
 ## [1] 7 3 2 4 6</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a><span class="fu">str</span>(a7)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" tabindex="-1"></a><span class="fu">str</span>(a7)</span></code></pre></div>
 <pre><code>## List of 2
 ##  $ x: int [1:3] 7 2 3
 ##  $ y: int [1:5] 7 3 2 4 6</code></pre>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" tabindex="-1"></a><span class="fu">class</span>(a7)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" tabindex="-1"></a><span class="fu">class</span>(a7)</span></code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" tabindex="-1"></a><span class="fu">length</span>(a7)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" tabindex="-1"></a><span class="fu">length</span>(a7)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" tabindex="-1"></a><span class="fu">sapply</span>(a7,length)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" tabindex="-1"></a><span class="fu">sapply</span>(a7,length)</span></code></pre></div>
 <pre><code>## x y 
 ## 3 5</code></pre>
 </div>
 </div>
 <div id="матрицы" class="section level4">
 <h4>Матрицы</h4>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" tabindex="-1"></a>(a11 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="fu">seq</span>(<span class="dv">24</span>)),<span class="at">ncol=</span><span class="dv">4</span>,<span class="at">nrow=</span><span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" tabindex="-1"></a>(a11 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="fu">seq</span>(<span class="dv">24</span>)),<span class="at">ncol=</span><span class="dv">4</span>,<span class="at">nrow=</span><span class="dv">3</span>))</span></code></pre></div>
 <pre><code>## Warning in matrix(sample(seq(24)), ncol = 4, nrow = 3): data length differs from size of matrix: [24 != 3
 ## x 4]</code></pre>
 <pre><code>##      [,1] [,2] [,3] [,4]
@@ -565,15 +567,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [2,]    8   23    2   13
 ## [3,]   22    1   21   10</code></pre>
 <p>Размерность массива</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" tabindex="-1"></a><span class="fu">dim</span>(a11)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" tabindex="-1"></a><span class="fu">dim</span>(a11)</span></code></pre></div>
 <pre><code>## [1] 3 4</code></pre>
 <p>Структура данных массива</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" tabindex="-1"></a><span class="fu">str</span>(a11)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" tabindex="-1"></a><span class="fu">str</span>(a11)</span></code></pre></div>
 <pre><code>##  int [1:3, 1:4] 20 8 22 24 23 1 6 2 21 17 ...</code></pre>
 </div>
 <div id="массивы" class="section level4">
 <h4>Массивы</h4>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" tabindex="-1"></a>(a8 <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">sample</span>(<span class="dv">24</span>),<span class="at">dim=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" tabindex="-1"></a>(a8 <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">sample</span>(<span class="dv">24</span>),<span class="at">dim=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>)))</span></code></pre></div>
 <pre><code>## , , 1
 ## 
 ##      [,1] [,2] [,3] [,4]
@@ -587,26 +589,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1,]   20   23    7   21
 ## [2,]   11    6   13   12
 ## [3,]    3    8   24    1</code></pre>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" tabindex="-1"></a><span class="fu">str</span>(a8)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" tabindex="-1"></a><span class="fu">str</span>(a8)</span></code></pre></div>
 <pre><code>##  int [1:3, 1:4, 1:2] 10 9 14 4 5 15 2 16 18 17 ...</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" tabindex="-1"></a><span class="fu">class</span>(a8)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" tabindex="-1"></a><span class="fu">class</span>(a8)</span></code></pre></div>
 <pre><code>## [1] &quot;array&quot;</code></pre>
 </div>
 <div id="факторы" class="section level4">
 <h4>Факторы</h4>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" tabindex="-1"></a>(a9 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(a4),<span class="at">levels=</span>a4))</span></code></pre></div>
-<pre><code>## [1] Saturday  Friday    Sunday    Tuesday   Monday    Thursday  Wednesday
-## Levels: Friday Saturday Sunday Monday Tuesday Wednesday Thursday</code></pre>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" tabindex="-1"></a><span class="fu">str</span>(a9)</span></code></pre></div>
-<pre><code>##  Factor w/ 7 levels &quot;Friday&quot;,&quot;Saturday&quot;,..: 2 1 3 5 4 7 6</code></pre>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" tabindex="-1"></a><span class="fu">class</span>(a9)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" tabindex="-1"></a>(a9 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(a4),<span class="at">levels=</span>a4))</span></code></pre></div>
+<pre><code>## [1] Sunday    Saturday  Monday    Wednesday Tuesday   Friday    Thursday 
+## Levels: Saturday Sunday Monday Tuesday Wednesday Thursday Friday</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" tabindex="-1"></a><span class="fu">str</span>(a9)</span></code></pre></div>
+<pre><code>##  Factor w/ 7 levels &quot;Saturday&quot;,&quot;Sunday&quot;,..: 2 1 3 5 4 7 6</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" tabindex="-1"></a><span class="fu">class</span>(a9)</span></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" tabindex="-1"></a>(a10 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(a4),<span class="at">levels=</span>a4,<span class="at">ordered=</span><span class="cn">TRUE</span>))</span></code></pre></div>
-<pre><code>## [1] Monday    Tuesday   Thursday  Friday    Sunday    Wednesday Saturday 
-## Levels: Friday &lt; Saturday &lt; Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" tabindex="-1"></a><span class="fu">str</span>(a10)</span></code></pre></div>
-<pre><code>##  Ord.factor w/ 7 levels &quot;Friday&quot;&lt;&quot;Saturday&quot;&lt;..: 4 5 7 1 3 6 2</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" tabindex="-1"></a><span class="fu">class</span>(a10)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" tabindex="-1"></a>(a10 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(a4),<span class="at">levels=</span>a4,<span class="at">ordered=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## [1] Tuesday   Wednesday Friday    Saturday  Monday    Thursday  Sunday   
+## Levels: Saturday &lt; Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; Friday</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" tabindex="-1"></a><span class="fu">str</span>(a10)</span></code></pre></div>
+<pre><code>##  Ord.factor w/ 7 levels &quot;Saturday&quot;&lt;&quot;Sunday&quot;&lt;..: 4 5 7 1 3 6 2</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" tabindex="-1"></a><span class="fu">class</span>(a10)</span></code></pre></div>
 <pre><code>## [1] &quot;ordered&quot; &quot;factor&quot;</code></pre>
 </div>
 </div>
@@ -633,31 +635,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="пример-путешествия-мимочерез-спб" class="section level4">
 <h4>Пример путешествия мимо/через Спб</h4>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">60</span></span>
-<span id="cb110-2"><a href="#cb110-2" tabindex="-1"></a>seqx <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">20</span>,<span class="dv">40</span>,<span class="at">by=</span><span class="dv">5</span>)</span>
-<span id="cb110-3"><a href="#cb110-3" tabindex="-1"></a>seqy <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">55</span>,<span class="dv">65</span>,<span class="at">by=</span><span class="dv">2</span>)</span>
-<span id="cb110-4"><a href="#cb110-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(n,<span class="at">min=</span><span class="fu">min</span>(seqx),<span class="at">max=</span><span class="fu">max</span>(seqx)))</span>
-<span id="cb110-5"><a href="#cb110-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(n,<span class="at">min=</span><span class="fu">min</span>(seqy),<span class="at">max=</span><span class="fu">max</span>(seqy)))</span></code></pre></div>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">&quot;n&quot;</span>,<span class="at">asp=</span><span class="cn">NA</span>,<span class="at">axes=</span><span class="cn">FALSE</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb111-2"><a href="#cb111-2" tabindex="-1"></a><span class="fu">lines</span>(x,y,<span class="at">lwd=</span><span class="dv">4</span>,<span class="at">col=</span><span class="st">&quot;black&quot;</span>)</span>
-<span id="cb111-3"><a href="#cb111-3" tabindex="-1"></a><span class="fu">lines</span>(x,y,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb111-4"><a href="#cb111-4" tabindex="-1"></a><span class="fu">box</span>()</span>
-<span id="cb111-5"><a href="#cb111-5" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>,<span class="at">at=</span>seqx,<span class="at">lab=</span><span class="fu">paste0</span>(seqx,<span class="st">&quot;°E&quot;</span>),<span class="at">lwd=</span><span class="dv">0</span>,<span class="at">lwd.ticks=</span><span class="dv">1</span>,<span class="at">las=</span><span class="dv">1</span>)</span>
-<span id="cb111-6"><a href="#cb111-6" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>,<span class="at">at=</span>seqy,<span class="at">lab=</span><span class="fu">paste0</span>(seqy,<span class="st">&quot;°N&quot;</span>),<span class="at">lwd=</span><span class="dv">0</span>,<span class="at">lwd.ticks=</span><span class="dv">1</span>,<span class="at">las=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">60</span></span>
+<span id="cb111-2"><a href="#cb111-2" tabindex="-1"></a>seqx <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">20</span>,<span class="dv">40</span>,<span class="at">by=</span><span class="dv">5</span>)</span>
+<span id="cb111-3"><a href="#cb111-3" tabindex="-1"></a>seqy <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">55</span>,<span class="dv">65</span>,<span class="at">by=</span><span class="dv">2</span>)</span>
+<span id="cb111-4"><a href="#cb111-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(n,<span class="at">min=</span><span class="fu">min</span>(seqx),<span class="at">max=</span><span class="fu">max</span>(seqx)))</span>
+<span id="cb111-5"><a href="#cb111-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(n,<span class="at">min=</span><span class="fu">min</span>(seqy),<span class="at">max=</span><span class="fu">max</span>(seqy)))</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">&quot;n&quot;</span>,<span class="at">asp=</span><span class="cn">NA</span>,<span class="at">axes=</span><span class="cn">FALSE</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb112-2"><a href="#cb112-2" tabindex="-1"></a><span class="fu">lines</span>(x,y,<span class="at">lwd=</span><span class="dv">4</span>,<span class="at">col=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb112-3"><a href="#cb112-3" tabindex="-1"></a><span class="fu">lines</span>(x,y,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb112-4"><a href="#cb112-4" tabindex="-1"></a><span class="fu">box</span>()</span>
+<span id="cb112-5"><a href="#cb112-5" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>,<span class="at">at=</span>seqx,<span class="at">lab=</span><span class="fu">paste0</span>(seqx,<span class="st">&quot;°E&quot;</span>),<span class="at">lwd=</span><span class="dv">0</span>,<span class="at">lwd.ticks=</span><span class="dv">1</span>,<span class="at">las=</span><span class="dv">1</span>)</span>
+<span id="cb112-6"><a href="#cb112-6" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>,<span class="at">at=</span>seqy,<span class="at">lab=</span><span class="fu">paste0</span>(seqy,<span class="st">&quot;°N&quot;</span>),<span class="at">lwd=</span><span class="dv">0</span>,<span class="at">lwd.ticks=</span><span class="dv">1</span>,<span class="at">las=</span><span class="dv">1</span>)</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/spb1-1.svg" width="600px" height="450px" /></p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" tabindex="-1"></a>e <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(sf<span class="sc">::</span><span class="fu">st_linestring</span>(<span class="fu">cbind</span>(x,y)),<span class="at">crs=</span><span class="dv">4326</span>)</span>
-<span id="cb112-2"><a href="#cb112-2" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
-<span id="cb112-3"><a href="#cb112-3" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(e,<span class="at">blank=</span><span class="st">&quot;white&quot;</span>,<span class="at">coast.fill=</span><span class="st">&quot;#00000010&quot;</span>,<span class="at">pointsize=</span><span class="dv">12</span></span>
-<span id="cb112-4"><a href="#cb112-4" tabindex="-1"></a>            ,<span class="at">col=</span><span class="st">&quot;black&quot;</span>,<span class="at">plot.lwd=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" tabindex="-1"></a>e <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(sf<span class="sc">::</span><span class="fu">st_linestring</span>(<span class="fu">cbind</span>(x,y)),<span class="at">crs=</span><span class="dv">4326</span>)</span>
+<span id="cb113-2"><a href="#cb113-2" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
+<span id="cb113-3"><a href="#cb113-3" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(e,<span class="at">blank=</span><span class="st">&quot;white&quot;</span>,<span class="at">coast.fill=</span><span class="st">&quot;#00000010&quot;</span>,<span class="at">pointsize=</span><span class="dv">12</span></span>
+<span id="cb113-4"><a href="#cb113-4" tabindex="-1"></a>            ,<span class="at">col=</span><span class="st">&quot;black&quot;</span>,<span class="at">plot.lwd=</span><span class="dv">5</span>)</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/ursa01_spb2.png" width="396" height="500" /></p>
 </div>
 <div id="datavolcano" class="section level4">
 <h4><code>data(volcano)</code></h4>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" tabindex="-1"></a><span class="fu">image</span>(volcano)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" tabindex="-1"></a><span class="fu">image</span>(volcano)</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/imgvolcano-1.svg" width="768" /></p>
 <p>Это вулкан Maunga Whau (Mt Eden).</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">spatialize</span>(<span class="st">&quot;Mount Eden&quot;</span>,<span class="at">place=</span><span class="st">&quot;park&quot;</span>,<span class="at">style=</span><span class="st">&quot;web&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb114-2"><a href="#cb114-2" tabindex="-1"></a>   ursa<span class="sc">::</span><span class="fu">glance</span>(<span class="at">basemap.alpha=</span><span class="dv">1</span>,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">spatialize</span>(<span class="st">&quot;Mount Eden&quot;</span>,<span class="at">place=</span><span class="st">&quot;park&quot;</span>,<span class="at">style=</span><span class="st">&quot;web&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb115-2"><a href="#cb115-2" tabindex="-1"></a>   ursa<span class="sc">::</span><span class="fu">glance</span>(<span class="at">basemap.alpha=</span><span class="dv">1</span>,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>)</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/ursa03_glancevolcano.png" width="247" height="550" /></p>
 </div>
 </div>
@@ -812,25 +814,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="манипуляции-с-пространственными-данными" class="section level2">
 <h2>Манипуляции с пространст­вен­ными данными</h2>
-<div id="импорт" class="section level3">
-<h3>Импорт</h3>
+<div id="импорт" class="section level3 middle">
+<h3 class="middle">Импорт</h3>
 <p>Загрузить пространственные данные из файла</p>
 <div id="источники-для-примера" class="section level4">
 <h4>Источники для примера</h4>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a>(shpname <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;vectors&quot;</span>,<span class="st">&quot;scot_BNG.shp&quot;</span>,<span class="at">package=</span><span class="st">&quot;rgdal&quot;</span>))</span></code></pre></div>
-<pre><code>## [1] &quot;C:/Software/Rlibs/rgdal/vectors/scot_BNG.shp&quot;</code></pre>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" tabindex="-1"></a><span class="fu">file.exists</span>(shpname)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" tabindex="-1"></a>(shpname <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;vectors&quot;</span>,<span class="st">&quot;scot_BNG.shp&quot;</span>,<span class="at">package=</span><span class="st">&quot;rgdal&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;C:/Software/Rlibs4/rgdal/vectors/scot_BNG.shp&quot;</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" tabindex="-1"></a><span class="fu">file.exists</span>(shpname)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" tabindex="-1"></a>(tifname <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;pictures/cea.tif&quot;</span>,<span class="at">package=</span><span class="st">&quot;rgdal&quot;</span>))</span></code></pre></div>
-<pre><code>## [1] &quot;C:/Software/Rlibs/rgdal/pictures/cea.tif&quot;</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" tabindex="-1"></a><span class="fu">file.exists</span>(tifname)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" tabindex="-1"></a>(tifname <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;pictures/cea.tif&quot;</span>,<span class="at">package=</span><span class="st">&quot;rgdal&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;C:/Software/Rlibs4/rgdal/pictures/cea.tif&quot;</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" tabindex="-1"></a><span class="fu">file.exists</span>(tifname)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
-<span id="cb123-2"><a href="#cb123-2" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(shpname,<span class="at">coast=</span><span class="cn">FALSE</span>,<span class="at">field=</span><span class="st">&quot;(NAME|AFF)&quot;</span>,<span class="at">blank=</span><span class="st">&quot;white&quot;</span></span>
-<span id="cb123-3"><a href="#cb123-3" tabindex="-1"></a>            ,<span class="at">legend=</span><span class="fu">list</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;right&quot;</span>),<span class="at">dpi=</span><span class="dv">88</span>)</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson05/ursa05_scotBNG.png" width="1943" height="500" bound /></p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
-<span id="cb124-2"><a href="#cb124-2" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(tifname,<span class="at">coast=</span><span class="cn">FALSE</span>,<span class="at">pal.from=</span><span class="dv">0</span>,<span class="at">pal=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;white&quot;</span>),<span class="at">dpi=</span><span class="dv">96</span>)</span></code></pre></div>
+<span id="cb124-2"><a href="#cb124-2" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(shpname,<span class="at">coast=</span><span class="cn">FALSE</span>,<span class="at">field=</span><span class="st">&quot;(NAME|AFF)&quot;</span>,<span class="at">blank=</span><span class="st">&quot;white&quot;</span></span>
+<span id="cb124-3"><a href="#cb124-3" tabindex="-1"></a>            ,<span class="at">legend=</span><span class="fu">list</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;right&quot;</span>),<span class="at">dpi=</span><span class="dv">88</span>)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson05/ursa05_scotBNG.png" width="1943" height="500" bound /></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
+<span id="cb125-2"><a href="#cb125-2" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(tifname,<span class="at">coast=</span><span class="cn">FALSE</span>,<span class="at">pal.from=</span><span class="dv">0</span>,<span class="at">pal=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;white&quot;</span>),<span class="at">dpi=</span><span class="dv">96</span>)</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/ursa07_cea.png" width="1341" height="550" bound /></p>
 </div>
 <div id="векторные-данные" class="section level4">
@@ -838,14 +840,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="rgdalsp" class="section level5">
 <h5><code>rgdal/sp</code></h5>
 <div class="oversize h650">
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" tabindex="-1"></a>rgdal<span class="sc">::</span><span class="fu">ogrInfo</span>(shpname)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" tabindex="-1"></a>rgdal<span class="sc">::</span><span class="fu">ogrInfo</span>(shpname)</span></code></pre></div>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
-<pre><code>## Source: &quot;C:\Software\Rlibs\rgdal\vectors\scot_BNG.shp&quot;, layer: &quot;scot_BNG&quot;
+<pre><code>## Source: &quot;C:\Software\Rlibs4\rgdal\vectors\scot_BNG.shp&quot;, layer: &quot;scot_BNG&quot;
 ## Driver: ESRI Shapefile; number of rows: 56 
 ## Feature type: wkbPolygon with 2 dimensions
 ## Extent: (7094.552 529495) - (468285.5 1218342)
@@ -867,7 +869,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 12 Y_COOR    2     19     Real
 ## 13   ID_y    2     19     Real</code></pre>
 </div>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" tabindex="-1"></a>b.sp <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">readOGR</span>(shpname)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" tabindex="-1"></a>b.sp <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">readOGR</span>(shpname)</span></code></pre></div>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
@@ -876,15 +878,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: &quot;C:\Software\Rlibs\rgdal\vectors\scot_BNG.shp&quot;, layer: &quot;scot_BNG&quot;
+## Source: &quot;C:\Software\Rlibs4\rgdal\vectors\scot_BNG.shp&quot;, layer: &quot;scot_BNG&quot;
 ## with 56 features
 ## It has 13 fields</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" tabindex="-1"></a><span class="fu">isS4</span>(b.sp)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" tabindex="-1"></a><span class="fu">isS4</span>(b.sp)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" tabindex="-1"></a><span class="fu">slotNames</span>(b.sp)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" tabindex="-1"></a><span class="fu">slotNames</span>(b.sp)</span></code></pre></div>
 <pre><code>## [1] &quot;data&quot;        &quot;polygons&quot;    &quot;plotOrder&quot;   &quot;bbox&quot;        &quot;proj4string&quot;</code></pre>
 <div class="oversize">
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">head</span>(b.sp,<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">head</span>(b.sp,<span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## Formal class &#39;SpatialPolygonsDataFrame&#39; [package &quot;sp&quot;] with 5 slots
 ##   ..@ data       :&#39;data.frame&#39;:  2 obs. of  13 variables:
 ##   .. ..$ SP_ID : chr [1:2] &quot;0&quot; &quot;1&quot;
@@ -940,14 +942,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="importExample" class="section level5">
 <h5><code>sf</code></h5>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" tabindex="-1"></a>b.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(shpname)</span></code></pre></div>
-<pre><code>## Reading layer `scot_BNG&#39; from data source `C:\Software\Rlibs\rgdal\vectors\scot_BNG.shp&#39; using driver `ESRI Shapefile&#39;
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" tabindex="-1"></a>b.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(shpname)</span></code></pre></div>
+<pre><code>## Reading layer `scot_BNG&#39; from data source `C:\Software\Rlibs4\rgdal\vectors\scot_BNG.shp&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 56 features and 13 fields
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
 ## Bounding box:  xmin: 7094.552 ymin: 529495 xmax: 468285.5 ymax: 1218342
 ## Projected CRS: OSGB36 / British National Grid</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" tabindex="-1"></a><span class="fu">str</span>(b.sf)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" tabindex="-1"></a><span class="fu">str</span>(b.sf)</span></code></pre></div>
 <pre><code>## Classes &#39;sf&#39; and &#39;data.frame&#39;:   56 obs. of  14 variables:
 ##  $ SP_ID   : chr  &quot;0&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; ...
 ##  $ NAME    : chr  &quot;Sutherland&quot; &quot;Nairn&quot; &quot;Inverness&quot; &quot;Banff-Buchan&quot; ...
@@ -977,12 +979,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h5><code>rgdal/sp</code></h5>
 <div class="font92">
 <p>Получение данных напрямую</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">readGDAL</span>(tifname)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">readGDAL</span>(tifname)</span></code></pre></div>
 <pre><code>## Warning: GDAL support is provided by the sf and terra packages among others</code></pre>
-<pre><code>## C:/Software/Rlibs/rgdal/pictures/cea.tif has GDAL driver GTiff 
+<pre><code>## C:/Software/Rlibs4/rgdal/pictures/cea.tif has GDAL driver GTiff 
 ## and has 515 rows and 514 columns</code></pre>
 <pre><code>## Warning: GDAL support is provided by the sf and terra packages among others</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" tabindex="-1"></a><span class="fu">str</span>(d1)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="#cb157-1" tabindex="-1"></a><span class="fu">str</span>(d1)</span></code></pre></div>
 <pre><code>## Formal class &#39;SpatialGridDataFrame&#39; [package &quot;sp&quot;] with 4 slots
 ##   ..@ data       :&#39;data.frame&#39;:  264710 obs. of  1 variable:
 ##   .. ..$ band1: int [1:264710] 0 0 0 0 0 0 0 0 0 0 ...
@@ -998,36 +1000,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   ..@ proj4string:Formal class &#39;CRS&#39; [package &quot;sp&quot;] with 1 slot
 ##   .. .. ..@ projargs: chr &quot;+proj=cea +lat_ts=33.75 +lon_0=-117.333333333333 +x_0=0 +y_0=0 +datum=NAD27 +units=m +no_defs&quot;
 ##   .. .. ..$ comment: chr &quot;PROJCRS[\&quot;unnamed\&quot;,\n    BASEGEOGCRS[\&quot;NAD27\&quot;,\n        DATUM[\&quot;North American Datum 1927\&quot;,\n            ELL&quot;| __truncated__</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="#cb158-1" tabindex="-1"></a><span class="fu">summary</span>(d1<span class="sc">@</span>data[[<span class="dv">1</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="#cb159-1" tabindex="-1"></a><span class="fu">summary</span>(d1<span class="sc">@</span>data[[<span class="dv">1</span>]])</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     0.0    58.0    99.0   103.1   140.0   255.0</code></pre>
 </div>
 <p>Получение данных более гибким способом</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" tabindex="-1"></a>md <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">GDALinfo</span>(tifname)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="#cb161-1" tabindex="-1"></a>md <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">GDALinfo</span>(tifname)</span></code></pre></div>
 <pre><code>## Warning: GDAL support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: GDAL support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning in rgdal::GDALinfo(tifname): statistics not supported by this driver</code></pre>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="#cb164-1" tabindex="-1"></a>mdname <span class="ot">&lt;-</span> <span class="fu">names</span>(md)</span>
-<span id="cb164-2"><a href="#cb164-2" tabindex="-1"></a><span class="fu">attributes</span>(md) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb164-3"><a href="#cb164-3" tabindex="-1"></a><span class="fu">names</span>(md) <span class="ot">&lt;-</span> mdname</span>
-<span id="cb164-4"><a href="#cb164-4" tabindex="-1"></a>md</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="#cb165-1" tabindex="-1"></a>mdname <span class="ot">&lt;-</span> <span class="fu">names</span>(md)</span>
+<span id="cb165-2"><a href="#cb165-2" tabindex="-1"></a><span class="fu">attributes</span>(md) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb165-3"><a href="#cb165-3" tabindex="-1"></a><span class="fu">names</span>(md) <span class="ot">&lt;-</span> mdname</span>
+<span id="cb165-4"><a href="#cb165-4" tabindex="-1"></a>md</span></code></pre></div>
 <pre><code>##          rows       columns         bands          ll.x          ll.y         res.x         res.y 
 ##     515.00000     514.00000       1.00000  -28493.16678 4224973.14326      60.02214      60.02214 
 ##     oblique.x     oblique.y 
 ##       0.00000       0.00000</code></pre>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="#cb166-1" tabindex="-1"></a>dset <span class="ot">&lt;-</span> methods<span class="sc">::</span><span class="fu">new</span>(<span class="st">&quot;GDALReadOnlyDataset&quot;</span>,tifname)</span>
-<span id="cb166-2"><a href="#cb166-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">getRasterData</span>(dset,<span class="at">offset=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)</span>
-<span id="cb166-3"><a href="#cb166-3" tabindex="-1"></a>                          ,<span class="at">region.dim=</span>md[<span class="fu">c</span>(<span class="st">&quot;rows&quot;</span>,<span class="st">&quot;columns&quot;</span>)])</span>
-<span id="cb166-4"><a href="#cb166-4" tabindex="-1"></a><span class="fu">str</span>(d2)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="#cb167-1" tabindex="-1"></a>dset <span class="ot">&lt;-</span> methods<span class="sc">::</span><span class="fu">new</span>(<span class="st">&quot;GDALReadOnlyDataset&quot;</span>,tifname)</span>
+<span id="cb167-2"><a href="#cb167-2" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> rgdal<span class="sc">::</span><span class="fu">getRasterData</span>(dset,<span class="at">offset=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)</span>
+<span id="cb167-3"><a href="#cb167-3" tabindex="-1"></a>                          ,<span class="at">region.dim=</span>md[<span class="fu">c</span>(<span class="st">&quot;rows&quot;</span>,<span class="st">&quot;columns&quot;</span>)])</span>
+<span id="cb167-4"><a href="#cb167-4" tabindex="-1"></a><span class="fu">str</span>(d2)</span></code></pre></div>
 <pre><code>##  int [1:514, 1:515] 0 0 0 0 0 0 0 0 0 0 ...</code></pre>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="#cb168-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">c</span>(d2))</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="#cb169-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">c</span>(d2))</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     0.0    58.0    99.0   103.1   140.0   255.0</code></pre>
 </div>
 <div id="raster" class="section level5">
 <h5><code>raster</code></h5>
-<div class="font95">
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="#cb170-1" tabindex="-1"></a>(d3 <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">brick</span>(tifname))</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="#cb171-1" tabindex="-1"></a>(d3 <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">brick</span>(tifname))</span></code></pre></div>
 <pre><code>## class      : RasterBrick 
 ## dimensions : 515, 514, 264710, 1  (nrow, ncol, ncell, nlayers)
 ## resolution : 60.02214, 60.02214  (x, y)
@@ -1035,52 +1036,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## crs        : +proj=cea +lat_ts=33.75 +lon_0=-117.333333333333 +x_0=0 +y_0=0 +datum=NAD27 +units=m +no_defs 
 ## source     : cea.tif 
 ## names      : cea</code></pre>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="#cb172-1" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> d3[] <span class="do">## &#39;d3[]&#39; то же, что и &#39;raster::getValues(d3)&#39;</span></span>
-<span id="cb172-2"><a href="#cb172-2" tabindex="-1"></a><span class="fu">c</span>(<span class="at">d3=</span><span class="fu">object.size</span>(d3),<span class="at">v3=</span><span class="fu">object.size</span>(v3))</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="#cb173-1" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> d3[] <span class="do">## &#39;d3[]&#39; то же, что и &#39;raster::getValues(d3)&#39;</span></span>
+<span id="cb173-2"><a href="#cb173-2" tabindex="-1"></a><span class="fu">c</span>(<span class="at">d3=</span><span class="fu">object.size</span>(d3),<span class="at">v3=</span><span class="fu">object.size</span>(v3))</span></code></pre></div>
 <pre><code>##      d3      v3 
 ##   15280 2118184</code></pre>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="#cb174-1" tabindex="-1"></a><span class="fu">str</span>(v3)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="#cb175-1" tabindex="-1"></a><span class="fu">str</span>(v3)</span></code></pre></div>
 <pre><code>##  num [1:264710, 1] 0 0 0 0 0 0 0 0 0 0 ...
 ##  - attr(*, &quot;dimnames&quot;)=List of 2
 ##   ..$ : NULL
 ##   ..$ : chr &quot;cea&quot;</code></pre>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="#cb176-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">c</span>(v3))</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="#cb177-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">c</span>(v3))</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     0.0    58.0    99.0   103.1   140.0   255.0</code></pre>
+</div>
+<div id="terra" class="section level5">
+<h5><code>terra</code></h5>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="#cb179-1" tabindex="-1"></a>(d4 <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(tifname))</span></code></pre></div>
+<pre><code>## class       : SpatRaster 
+## dimensions  : 515, 514, 1  (nrow, ncol, nlyr)
+## resolution  : 60.02214, 60.02214  (x, y)
+## extent      : -28493.17, 2358.212, 4224973, 4255885  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=cea +lat_ts=33.75 +lon_0=-117.333333333333 +x_0=0 +y_0=0 +datum=NAD27 +units=m +no_defs 
+## source      : cea.tif 
+## name        : cea</code></pre>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="#cb181-1" tabindex="-1"></a>v4 <span class="ot">&lt;-</span> d4[] <span class="do">## &#39;d4[]&#39; то же, что и &#39;terra::values(d3)&#39;</span></span>
+<span id="cb181-2"><a href="#cb181-2" tabindex="-1"></a><span class="fu">c</span>(<span class="at">d4=</span><span class="fu">object.size</span>(d4),<span class="at">v3=</span><span class="fu">object.size</span>(v4))</span></code></pre></div>
+<pre><code>##      d4      v3 
+##    1304 1059344</code></pre>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="#cb183-1" tabindex="-1"></a><span class="fu">str</span>(v4)</span></code></pre></div>
+<pre><code>##  int [1:264710, 1] 0 0 0 0 0 0 0 0 0 0 ...
+##  - attr(*, &quot;dimnames&quot;)=List of 2
+##   ..$ : NULL
+##   ..$ : chr &quot;cea&quot;</code></pre>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="#cb185-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">c</span>(v4))</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     0.0    58.0    99.0   103.1   140.0   255.0</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div id="характеристики" class="section level3">
-<h3>Характеристики</h3>
+<div id="характеристики" class="section level3 middle">
+<h3 class="middle">Характеристики</h3>
 <h4 class="toc-ignore unnumbered unlisted">
 Характеристики, свойства и компоненты пространственных данных
 </h4>
 <div id="sp" class="section level5">
 <h5><code>sp</code></h5>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="#cb178-1" tabindex="-1"></a><span class="fu">class</span>(b.sp<span class="sc">$</span>NAME)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="#cb187-1" tabindex="-1"></a><span class="fu">class</span>(b.sp<span class="sc">$</span>NAME)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="#cb180-1" tabindex="-1"></a><span class="fu">class</span>(b.sp[[<span class="st">&quot;NAME&quot;</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="#cb189-1" tabindex="-1"></a><span class="fu">class</span>(b.sp[[<span class="st">&quot;NAME&quot;</span>]])</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="#cb182-1" tabindex="-1"></a><span class="fu">class</span>(b.sp[<span class="st">&quot;NAME&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="#cb191-1" tabindex="-1"></a><span class="fu">class</span>(b.sp[<span class="st">&quot;NAME&quot;</span>])</span></code></pre></div>
 <pre><code>## [1] &quot;SpatialPolygonsDataFrame&quot;
 ## attr(,&quot;package&quot;)
 ## [1] &quot;sp&quot;</code></pre>
 </div>
 <div id="sf" class="section level5">
 <h5><code>sf</code></h5>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="#cb184-1" tabindex="-1"></a><span class="fu">class</span>(b.sf<span class="sc">$</span>NAME)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="#cb193-1" tabindex="-1"></a><span class="fu">class</span>(b.sf<span class="sc">$</span>NAME)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="#cb186-1" tabindex="-1"></a><span class="fu">class</span>(b.sf[[<span class="st">&quot;NAME&quot;</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="#cb195-1" tabindex="-1"></a><span class="fu">class</span>(b.sf[[<span class="st">&quot;NAME&quot;</span>]])</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="#cb188-1" tabindex="-1"></a><span class="fu">class</span>(b.sf[<span class="st">&quot;NAME&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="#cb197-1" tabindex="-1"></a><span class="fu">class</span>(b.sf[<span class="st">&quot;NAME&quot;</span>])</span></code></pre></div>
 <pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
 </div>
 <div id="таблица-атрибутов" class="section level4">
 <h4>Таблица атрибутов</h4>
 <div id="sp-1" class="section level5">
 <h5><code>sp</code></h5>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="#cb190-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">slot</span>(b.sp,<span class="st">&quot;data&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="#cb199-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">slot</span>(b.sp,<span class="st">&quot;data&quot;</span>))</span></code></pre></div>
 <pre><code>##   SP_ID         NAME ID_x COUNT   SMR  LONG  LAT     PY EXP_ AFF   X_COOR   Y_COOR ID_y
 ## 0     0   Sutherland   12     5 279.3 58.06 4.64  37521  1.8  16 247756.6 924953.6   12
 ## 1     1        Nairn   13     3 277.8 57.47 3.98  29374  1.1  10 289592.2 842305.2   13
@@ -1091,7 +1114,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="sf-1" class="section level5">
 <h5><code>sf</code></h5>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="#cb192-1" tabindex="-1"></a><span class="fu">head</span>(sf<span class="sc">::</span><span class="fu">st_set_geometry</span>(b.sf,<span class="cn">NULL</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="#cb201-1" tabindex="-1"></a><span class="fu">head</span>(sf<span class="sc">::</span><span class="fu">st_set_geometry</span>(b.sf,<span class="cn">NULL</span>))</span></code></pre></div>
 <pre><code>##   SP_ID         NAME ID_x COUNT   SMR  LONG  LAT     PY EXP_ AFF   X_COOR   Y_COOR ID_y
 ## 1     0   Sutherland   12     5 279.3 58.06 4.64  37521  1.8  16 247756.6 924953.6   12
 ## 2     1        Nairn   13     3 277.8 57.47 3.98  29374  1.1  10 289592.2 842305.2   13
@@ -1106,8 +1129,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="sp-2" class="section level5">
 <h5><code>sp</code></h5>
 <div class="oversize">
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="#cb194-1" tabindex="-1"></a>g.sp <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">geometry</span>(b.sp)</span></code></pre></div>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="#cb195-1" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">head</span>(g.sp,<span class="dv">2</span>)) <span class="do">## много строк; выведем первые две записи</span></span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="#cb203-1" tabindex="-1"></a>g.sp <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">geometry</span>(b.sp)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="#cb204-1" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">head</span>(g.sp,<span class="dv">2</span>)) <span class="do">## много строк; выведем первые две записи</span></span></code></pre></div>
 <pre><code>## Formal class &#39;SpatialPolygons&#39; [package &quot;sp&quot;] with 4 slots
 ##   ..@ polygons   :List of 2
 ##   .. ..$ :Formal class &#39;Polygons&#39; [package &quot;sp&quot;] with 5 slots
@@ -1149,7 +1172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="sf-2" class="section level5">
 <h5><code>sf</code></h5>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="#cb197-1" tabindex="-1"></a>(<span class="fu">head</span>(g.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_geometry</span>(b.sf),<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="#cb206-1" tabindex="-1"></a>(<span class="fu">head</span>(g.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_geometry</span>(b.sf),<span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## Geometry set for 2 features 
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
@@ -1157,26 +1180,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Projected CRS: OSGB36 / British National Grid</code></pre>
 <pre><code>## MULTIPOLYGON (((254218.3 967027, 254358.6 96696...</code></pre>
 <pre><code>## MULTIPOLYGON (((292542.2 859596.3, 301398.8 836...</code></pre>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="#cb201-1" tabindex="-1"></a><span class="fu">str</span>(g.sf)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="#cb210-1" tabindex="-1"></a><span class="fu">str</span>(g.sf)</span></code></pre></div>
 <pre><code>## sfc_MULTIPOLYGON of length 56; first list element: List of 1
 ##  $ :List of 1
 ##   ..$ : num [1:73, 1:2] 254218 254359 252991 244974 259133 ...
 ##  - attr(*, &quot;class&quot;)= chr [1:3] &quot;XY&quot; &quot;MULTIPOLYGON&quot; &quot;sfg&quot;</code></pre>
 </div>
 </div>
-<div id="проекция" class="section level4">
-<h4>Проекция</h4>
+<div id="проекция" class="section level4 middle">
+<h4 class="middle">Проекция</h4>
 <p>В современных пакетах R данные проекции представляются в виде WKT;
 по возможножности, сохраняется связь с EPSG и PROJ.</p>
 <div id="sp-3" class="section level5">
 <h5><code>sp</code></h5>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="#cb203-1" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">proj4string</span>(b.sp)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="#cb212-1" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">proj4string</span>(b.sp)</span></code></pre></div>
 <pre><code>## [1] &quot;+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs&quot;</code></pre>
 </div>
 <div id="sf-3" class="section level5">
 <h5><code>sf</code></h5>
 <div class="oversize">
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="#cb205-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b.sf)</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="#cb214-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b.sf)</span></code></pre></div>
 <pre><code>## Coordinate Reference System:
 ##   User input: OSGB36 / British National Grid 
 ##   wkt:
@@ -1219,7 +1242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         BBOX[49.75,-9,61.01,2.01]],
 ##     ID[&quot;EPSG&quot;,27700]]</code></pre>
 </div>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="#cb207-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b.sf)<span class="sc">$</span>proj4string</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="#cb216-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b.sf)<span class="sc">$</span>proj4string</span></code></pre></div>
 <pre><code>## [1] &quot;+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +units=m +no_defs&quot;</code></pre>
 </div>
 </div>
@@ -1227,31 +1250,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>Пространственный охват</h4>
 <div id="sp-4" class="section level5">
 <h5><code>sp</code></h5>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="#cb209-1" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">bbox</span>(b.sp)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="#cb218-1" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">bbox</span>(b.sp)</span></code></pre></div>
 <pre><code>##          min       max
 ## x   7094.552  468285.5
 ## y 529495.039 1218342.5</code></pre>
 </div>
 <div id="sf-4" class="section level5">
 <h5><code>sf</code></h5>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="#cb211-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_bbox</span>(b.sf)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="#cb220-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_bbox</span>(b.sf)</span></code></pre></div>
 <pre><code>##        xmin        ymin        xmax        ymax 
 ##    7094.552  529495.039  468285.495 1218342.493</code></pre>
 </div>
 </div>
 </div>
-<div id="создание" class="section level3">
-<h3>Создание</h3>
+<div id="создание" class="section level3 middle">
+<h3 class="middle">Создание</h3>
 <p>Создание пространственных данных, например, новый слой ГИС</p>
 <p>Выйдем из здания вокзала ст. Валдай и создадим точечный <code>Spatial</code>-объект:</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="#cb213-1" tabindex="-1"></a>pt0 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">lon=</span><span class="fl">33.24529</span>,<span class="at">lat=</span><span class="fl">57.97012</span>)</span>
-<span id="cb213-2"><a href="#cb213-2" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">coordinates</span>(pt0) <span class="ot">&lt;-</span> <span class="er">~</span>lon<span class="sc">+</span>lat</span>
-<span id="cb213-3"><a href="#cb213-3" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">proj4string</span>(pt0) <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">CRS</span>(<span class="st">&quot;+init=epsg:4326&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="#cb214-1" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(pt0,<span class="at">resetProj=</span><span class="cn">TRUE</span>,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span></span>
-<span id="cb214-2"><a href="#cb214-2" tabindex="-1"></a>            ,<span class="at">basemap.order=</span><span class="st">&quot;before&quot;</span>,<span class="at">basemap.alpha=</span><span class="dv">1</span>,<span class="at">dpi=</span><span class="dv">91</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="#cb222-1" tabindex="-1"></a>pt0 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">lon=</span><span class="fl">33.24529</span>,<span class="at">lat=</span><span class="fl">57.97012</span>)</span>
+<span id="cb222-2"><a href="#cb222-2" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">coordinates</span>(pt0) <span class="ot">&lt;-</span> <span class="er">~</span>lon<span class="sc">+</span>lat</span>
+<span id="cb222-3"><a href="#cb222-3" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">proj4string</span>(pt0) <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">CRS</span>(<span class="st">&quot;+init=epsg:4326&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="#cb223-1" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(pt0,<span class="at">resetProj=</span><span class="cn">TRUE</span>,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span></span>
+<span id="cb223-2"><a href="#cb223-2" tabindex="-1"></a>            ,<span class="at">basemap.order=</span><span class="st">&quot;before&quot;</span>,<span class="at">basemap.alpha=</span><span class="dv">1</span>,<span class="at">dpi=</span><span class="dv">91</span>)</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/ursa08_Valdai.png" width="440" /></p>
 <p>Смотрим на структуру данных:</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="#cb215-1" tabindex="-1"></a><span class="fu">str</span>(pt0)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="#cb224-1" tabindex="-1"></a><span class="fu">str</span>(pt0)</span></code></pre></div>
 <pre><code>## Formal class &#39;SpatialPoints&#39; [package &quot;sp&quot;] with 3 slots
 ##   ..@ coords     : num [1, 1:2] 33.2 58
 ##   .. ..- attr(*, &quot;dimnames&quot;)=List of 2
@@ -1265,28 +1288,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   .. .. ..@ projargs: chr &quot;+proj=longlat +datum=WGS84 +no_defs&quot;
 ##   .. .. ..$ comment: chr &quot;GEOGCRS[\&quot;WGS 84\&quot;,\n    ENSEMBLE[\&quot;World Geodetic System 1984 ensemble\&quot;,\n        MEMBER[\&quot;World Geodetic Sys&quot;| __truncated__</code></pre>
 <p>Изменим проекцию для расчета расстояний по координатам:</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="#cb217-1" tabindex="-1"></a>pt0 <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">spTransform</span>(pt0,<span class="st">&quot;+proj=laea +lat_0=58 +lon_0=35 +datum=WGS84&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="#cb226-1" tabindex="-1"></a>pt0 <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">spTransform</span>(pt0,<span class="st">&quot;+proj=laea +lat_0=58 +lon_0=35 +datum=WGS84&quot;</span>)</span></code></pre></div>
 <p>Извлечем координаты:</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="#cb218-1" tabindex="-1"></a>xy <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">coordinates</span>(pt0)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="#cb227-1" tabindex="-1"></a>xy <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">coordinates</span>(pt0)</span></code></pre></div>
 <p>Решаем перемещаться минутными сегментами в течение часа:</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="#cb219-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">60</span></span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="#cb228-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">60</span></span></code></pre></div>
 <p>На основе координат создаем таблицу перемещения. По умолчанию весь период стоим на месте и смотрим на север:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="#cb220-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">step=</span><span class="fu">seq</span>(<span class="dv">0</span>,n),<span class="at">look=</span>pi<span class="sc">/</span><span class="dv">2</span>,<span class="at">x=</span>xy[,<span class="dv">1</span>],<span class="at">y=</span>xy[,<span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="#cb229-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">step=</span><span class="fu">seq</span>(<span class="dv">0</span>,n),<span class="at">look=</span>pi<span class="sc">/</span><span class="dv">2</span>,<span class="at">x=</span>xy[,<span class="dv">1</span>],<span class="at">y=</span>xy[,<span class="dv">2</span>])</span></code></pre></div>
 <p>Скорость перемещений (в м мин<sup>-1</sup>) в течение минуты случайна:</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="#cb221-1" tabindex="-1"></a>segment <span class="ot">&lt;-</span> <span class="fu">runif</span>(n,<span class="at">min=</span><span class="dv">5</span>,<span class="at">max=</span><span class="dv">80</span>)</span>
-<span id="cb221-2"><a href="#cb221-2" tabindex="-1"></a><span class="fu">str</span>(segment)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="#cb230-1" tabindex="-1"></a>segment <span class="ot">&lt;-</span> <span class="fu">runif</span>(n,<span class="at">min=</span><span class="dv">5</span>,<span class="at">max=</span><span class="dv">80</span>)</span>
+<span id="cb230-2"><a href="#cb230-2" tabindex="-1"></a><span class="fu">str</span>(segment)</span></code></pre></div>
 <pre><code>##  num [1:60] 41.3 80 51.4 57.7 64.6 ...</code></pre>
 <p>Задаем, что если следующий сегмент длинный, то отклонение направления от предыдущего сегмента будет меньше:</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="#cb223-1" tabindex="-1"></a>angle <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">-</span>segment<span class="sc">/</span><span class="dv">100</span>,<span class="cf">function</span>(x) <span class="fu">runif</span>(<span class="dv">1</span>,<span class="at">min=</span><span class="sc">-</span>x<span class="sc">*</span>pi,<span class="at">max=</span>x<span class="sc">*</span>pi))</span>
-<span id="cb223-2"><a href="#cb223-2" tabindex="-1"></a><span class="fu">str</span>(angle)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="#cb232-1" tabindex="-1"></a>angle <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">-</span>segment<span class="sc">/</span><span class="dv">100</span>,<span class="cf">function</span>(x) <span class="fu">runif</span>(<span class="dv">1</span>,<span class="at">min=</span><span class="sc">-</span>x<span class="sc">*</span>pi,<span class="at">max=</span>x<span class="sc">*</span>pi))</span>
+<span id="cb232-2"><a href="#cb232-2" tabindex="-1"></a><span class="fu">str</span>(angle)</span></code></pre></div>
 <pre><code>##  num [1:60] 0.0668 0.2761 -0.4628 0.7868 0.7046 ...</code></pre>
 <p>Заполняем последующие шаги на основе предыдущих:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="#cb225-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(n)) {</span>
-<span id="cb225-2"><a href="#cb225-2" tabindex="-1"></a>   loc<span class="sc">$</span>look[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> (loc<span class="sc">$</span>look[i]<span class="sc">+</span>angle[i]) <span class="sc">%%</span> (<span class="dv">2</span><span class="sc">*</span>pi)</span>
-<span id="cb225-3"><a href="#cb225-3" tabindex="-1"></a>   loc<span class="sc">$</span>x[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> loc<span class="sc">$</span>x[i]<span class="sc">+</span>segment[i]<span class="sc">*</span><span class="fu">cos</span>(loc<span class="sc">$</span>look[i<span class="sc">+</span><span class="dv">1</span>])</span>
-<span id="cb225-4"><a href="#cb225-4" tabindex="-1"></a>   loc<span class="sc">$</span>y[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> loc<span class="sc">$</span>y[i]<span class="sc">+</span>segment[i]<span class="sc">*</span><span class="fu">sin</span>(loc<span class="sc">$</span>look[i<span class="sc">+</span><span class="dv">1</span>])</span>
-<span id="cb225-5"><a href="#cb225-5" tabindex="-1"></a>}</span>
-<span id="cb225-6"><a href="#cb225-6" tabindex="-1"></a><span class="fu">head</span>(loc)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="#cb234-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(n)) {</span>
+<span id="cb234-2"><a href="#cb234-2" tabindex="-1"></a>   loc<span class="sc">$</span>look[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> (loc<span class="sc">$</span>look[i]<span class="sc">+</span>angle[i]) <span class="sc">%%</span> (<span class="dv">2</span><span class="sc">*</span>pi)</span>
+<span id="cb234-3"><a href="#cb234-3" tabindex="-1"></a>   loc<span class="sc">$</span>x[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> loc<span class="sc">$</span>x[i]<span class="sc">+</span>segment[i]<span class="sc">*</span><span class="fu">cos</span>(loc<span class="sc">$</span>look[i<span class="sc">+</span><span class="dv">1</span>])</span>
+<span id="cb234-4"><a href="#cb234-4" tabindex="-1"></a>   loc<span class="sc">$</span>y[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> loc<span class="sc">$</span>y[i]<span class="sc">+</span>segment[i]<span class="sc">*</span><span class="fu">sin</span>(loc<span class="sc">$</span>look[i<span class="sc">+</span><span class="dv">1</span>])</span>
+<span id="cb234-5"><a href="#cb234-5" tabindex="-1"></a>}</span>
+<span id="cb234-6"><a href="#cb234-6" tabindex="-1"></a><span class="fu">head</span>(loc)</span></code></pre></div>
 <pre><code>##   step     look         x         y
 ## 1    0 1.570796 -103834.6 -1982.122
 ## 2    1 1.637558 -103837.4 -1940.908
@@ -1295,13 +1318,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5    4 2.237702 -103893.8 -1769.165
 ## 6    5 2.942329 -103957.2 -1756.369</code></pre>
 <p>Создадим линейный <code>sf</code>-объект</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="#cb227-1" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;list&quot;</span>,n)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="#cb236-1" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;list&quot;</span>,n)</span></code></pre></div>
 <p>Матрица (с двумя столбцами) координат задается как LINESTRING:</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="#cb228-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(n))</span>
-<span id="cb228-2"><a href="#cb228-2" tabindex="-1"></a>   tr[[i]] <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_linestring</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(loc<span class="sc">$</span>x[i],loc<span class="sc">$</span>y[i],loc<span class="sc">$</span>x[i<span class="sc">+</span><span class="dv">1</span>],loc<span class="sc">$</span>y[i<span class="sc">+</span><span class="dv">1</span>])</span>
-<span id="cb228-3"><a href="#cb228-3" tabindex="-1"></a>                               ,<span class="at">ncol=</span><span class="dv">2</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="#cb237-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(n))</span>
+<span id="cb237-2"><a href="#cb237-2" tabindex="-1"></a>   tr[[i]] <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_linestring</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(loc<span class="sc">$</span>x[i],loc<span class="sc">$</span>y[i],loc<span class="sc">$</span>x[i<span class="sc">+</span><span class="dv">1</span>],loc<span class="sc">$</span>y[i<span class="sc">+</span><span class="dv">1</span>])</span>
+<span id="cb237-3"><a href="#cb237-3" tabindex="-1"></a>                               ,<span class="at">ncol=</span><span class="dv">2</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 <div class="oversize">
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="#cb229-1" tabindex="-1"></a><span class="fu">str</span>(tr)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="#cb238-1" tabindex="-1"></a><span class="fu">str</span>(tr)</span></code></pre></div>
 <pre><code>## List of 60
 ##  $ : &#39;XY&#39; num [1:2, 1:2] -103835 -103837 -1982 -1941
 ##  $ : &#39;XY&#39; num [1:2, 1:2] -103837 -103864 -1941 -1866
@@ -1365,12 +1388,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ : &#39;XY&#39; num [1:2, 1:2] -103882 -103838 -2073 -2046</code></pre>
 </div>
 <p>Набор сегментов объединяем в геометрию:</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="#cb231-1" tabindex="-1"></a>tr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(tr,<span class="at">crs=</span>sp<span class="sc">::</span><span class="fu">proj4string</span>(pt0))</span>
-<span id="cb231-2"><a href="#cb231-2" tabindex="-1"></a><span class="fu">str</span>(tr)</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="#cb240-1" tabindex="-1"></a>tr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(tr,<span class="at">crs=</span>sp<span class="sc">::</span><span class="fu">proj4string</span>(pt0))</span>
+<span id="cb240-2"><a href="#cb240-2" tabindex="-1"></a><span class="fu">str</span>(tr)</span></code></pre></div>
 <pre><code>## sfc_LINESTRING of length 60; first list element:  &#39;XY&#39; num [1:2, 1:2] -103835 -103837 -1982 -1941</code></pre>
 <p>С геометрией связываем атрибутивную таблицу.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="#cb233-1" tabindex="-1"></a>tr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="at">step=</span><span class="fu">seq</span>(n),<span class="at">segment=</span>segment,<span class="at">geometry=</span>tr)</span>
-<span id="cb233-2"><a href="#cb233-2" tabindex="-1"></a><span class="fu">str</span>(tr)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="#cb242-1" tabindex="-1"></a>tr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="at">step=</span><span class="fu">seq</span>(n),<span class="at">segment=</span>segment,<span class="at">geometry=</span>tr)</span>
+<span id="cb242-2"><a href="#cb242-2" tabindex="-1"></a><span class="fu">str</span>(tr)</span></code></pre></div>
 <pre><code>## Classes &#39;sf&#39; and &#39;data.frame&#39;:   60 obs. of  3 variables:
 ##  $ step    : int  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ segment : num  41.3 80 51.4 57.7 64.6 ...
@@ -1383,60 +1406,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Визуализация</h3>
 <div id="статическая" class="section level4">
 <h4>Статическая</h4>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="#cb235-1" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
-<span id="cb235-2"><a href="#cb235-2" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(tr,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>,<span class="at">plot.lwd=</span><span class="dv">5</span></span>
-<span id="cb235-3"><a href="#cb235-3" tabindex="-1"></a>            ,<span class="at">layout=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">legend=</span><span class="fu">list</span>(<span class="st">&quot;left&quot;</span>,<span class="fu">list</span>(<span class="st">&quot;bottom&quot;</span>,<span class="dv">2</span>)),<span class="at">las=</span><span class="dv">1</span>,<span class="at">dpi=</span><span class="dv">96</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="#cb244-1" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
+<span id="cb244-2"><a href="#cb244-2" tabindex="-1"></a>ursa<span class="sc">::</span><span class="fu">glance</span>(tr,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>,<span class="at">plot.lwd=</span><span class="dv">5</span></span>
+<span id="cb244-3"><a href="#cb244-3" tabindex="-1"></a>            ,<span class="at">layout=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">legend=</span><span class="fu">list</span>(<span class="st">&quot;left&quot;</span>,<span class="fu">list</span>(<span class="st">&quot;bottom&quot;</span>,<span class="dv">2</span>)),<span class="at">las=</span><span class="dv">1</span>,<span class="at">dpi=</span><span class="dv">96</span>)</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/ursa10_route.png" width="869" height="500" bound /></p>
+<div class="middle">
 <p>Графическое отображение переопределенной под класс объекта функцией <code>plot()</code> средствами библиотеки <code>sp</code> и <code>sf</code> развито слабо…</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="#cb236-1" tabindex="-1"></a><span class="fu">plot</span>(tr,<span class="at">lwd=</span><span class="dv">5</span>) <span class="do">## &#39;sf&#39;-object</span></span></code></pre></div>
+</div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="#cb245-1" tabindex="-1"></a><span class="fu">plot</span>(tr,<span class="at">lwd=</span><span class="dv">5</span>) <span class="do">## &#39;sf&#39;-object</span></span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/trplot-sf-1.svg" width="646.08" bound /></p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="#cb237-1" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">as_Spatial</span>(tr),<span class="at">lwd=</span><span class="dv">5</span>) <span class="do">## &#39;sp&#39;-object (&#39;SpatialPointsDataFrame&#39;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="#cb246-1" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">as_Spatial</span>(tr),<span class="at">lwd=</span><span class="dv">5</span>) <span class="do">## &#39;sp&#39;-object (&#39;SpatialPointsDataFrame&#39;)</span></span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/trplot-sp-1.svg" width="646.08" bound /></p>
 <p><a href="#importExample">Возвращаясь</a> к ранее загруженным данным</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="#cb238-1" tabindex="-1"></a><span class="fu">plot</span>(b.sf[<span class="st">&quot;AFF&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="#cb247-1" tabindex="-1"></a><span class="fu">plot</span>(b.sf[<span class="st">&quot;AFF&quot;</span>])</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/scotplot-1.svg" width="646.08" height="550" /></p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="#cb239-1" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(b.sf),<span class="at">col=</span>sf<span class="sc">::</span><span class="fu">sf.colors</span>(<span class="dv">12</span>,<span class="at">categorical=</span><span class="cn">TRUE</span>)</span>
-<span id="cb239-2"><a href="#cb239-2" tabindex="-1"></a>    ,<span class="at">border=</span><span class="st">&#39;grey&#39;</span>,<span class="at">axes=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="#cb248-1" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(b.sf),<span class="at">col=</span>sf<span class="sc">::</span><span class="fu">sf.colors</span>(<span class="dv">12</span>,<span class="at">categorical=</span><span class="cn">TRUE</span>)</span>
+<span id="cb248-2"><a href="#cb248-2" tabindex="-1"></a>    ,<span class="at">border=</span><span class="st">&#39;grey&#39;</span>,<span class="at">axes=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/scotplotgeom-1.svg" width="646.08" height="550" /></p>
+<div class="middle">
 <p>Для оформления карт можно использовать функционал других библиотек.</p>
+</div>
 <div id="ggplot2" class="section level5">
 <h5><code>ggplot2</code></h5>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="#cb240-1" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="#cb249-1" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span></code></pre></div>
 <pre><code>## Loading required package: ggplot2</code></pre>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="#cb242-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb242-2"><a href="#cb242-2" tabindex="-1"></a>   <span class="fu">geom_sf</span>(<span class="at">data=</span>b.sf,<span class="fu">aes</span>(<span class="at">fill=</span>AFF))<span class="sc">+</span></span>
-<span id="cb242-3"><a href="#cb242-3" tabindex="-1"></a>   <span class="fu">coord_sf</span>(<span class="at">crs=</span>sf<span class="sc">::</span><span class="fu">st_crs</span>(<span class="dv">3857</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="#cb251-1" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb251-2"><a href="#cb251-2" tabindex="-1"></a>   <span class="fu">geom_sf</span>(<span class="at">data=</span>b.sf,<span class="fu">aes</span>(<span class="at">fill=</span>AFF))<span class="sc">+</span></span>
+<span id="cb251-3"><a href="#cb251-3" tabindex="-1"></a>   <span class="fu">coord_sf</span>(<span class="at">crs=</span>sf<span class="sc">::</span><span class="fu">st_crs</span>(<span class="dv">3857</span>))</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/geomsf-1.svg" width="646.08" height="420" /></p>
 </div>
 <div id="tmap" class="section level5">
 <h5><code>tmap</code></h5>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="#cb243-1" tabindex="-1"></a><span class="fu">require</span>(tmap)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="#cb252-1" tabindex="-1"></a><span class="fu">require</span>(tmap)</span></code></pre></div>
 <pre><code>## Loading required package: tmap</code></pre>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="#cb245-1" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="#cb254-1" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</span></code></pre></div>
 <pre><code>## tmap mode set to plotting</code></pre>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="#cb247-1" tabindex="-1"></a>(tm1 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(b.sf) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">&quot;COUNT&quot;</span>) <span class="sc">+</span> <span class="fu">tm_scale_bar</span>() <span class="sc">+</span></span>
-<span id="cb247-2"><a href="#cb247-2" tabindex="-1"></a>   <span class="fu">tm_compass</span>(<span class="at">position=</span><span class="fu">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;bottom&quot;</span>)) <span class="sc">+</span> <span class="fu">tm_graticules</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="#cb256-1" tabindex="-1"></a>(tm1 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(b.sf) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">&quot;COUNT&quot;</span>) <span class="sc">+</span> <span class="fu">tm_scale_bar</span>() <span class="sc">+</span></span>
+<span id="cb256-2"><a href="#cb256-2" tabindex="-1"></a>   <span class="fu">tm_compass</span>(<span class="at">position=</span><span class="fu">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;bottom&quot;</span>)) <span class="sc">+</span> <span class="fu">tm_graticules</span>())</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/tmap-plot-1.svg" width="646.08" height="445" /></p>
 </div>
 <div id="для-публикаций" class="section level5">
 <h5>Для публикаций</h5>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="#cb248-1" tabindex="-1"></a>fileout4 <span class="ot">&lt;-</span> <span class="st">&quot;assets/lesson05/firstmap.png&quot;</span></span>
-<span id="cb248-2"><a href="#cb248-2" tabindex="-1"></a><span class="fu">png</span>(fileout4, <span class="at">res=</span><span class="dv">300</span>, <span class="at">width=</span><span class="dv">1600</span>, <span class="at">height=</span><span class="dv">1200</span>,</span>
-<span id="cb248-3"><a href="#cb248-3" tabindex="-1"></a>    <span class="at">type=</span><span class="st">&quot;cairo&quot;</span>, <span class="at">pointsize=</span><span class="dv">12</span>, <span class="at">family=</span><span class="st">&quot;sans&quot;</span>)</span>
-<span id="cb248-4"><a href="#cb248-4" tabindex="-1"></a><span class="fu">print</span>(tm1)</span>
-<span id="cb248-5"><a href="#cb248-5" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="#cb257-1" tabindex="-1"></a>fileout4 <span class="ot">&lt;-</span> <span class="st">&quot;assets/general/firstmap.png&quot;</span></span>
+<span id="cb257-2"><a href="#cb257-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="fu">dirname</span>(fileout4)))</span>
+<span id="cb257-3"><a href="#cb257-3" tabindex="-1"></a>   <span class="fu">dir.create</span>(<span class="fu">dirname</span>(fileout4),<span class="at">recursive=</span><span class="cn">TRUE</span>)</span>
+<span id="cb257-4"><a href="#cb257-4" tabindex="-1"></a><span class="fu">png</span>(fileout4, <span class="at">res=</span><span class="dv">300</span>, <span class="at">width=</span><span class="dv">1600</span>, <span class="at">height=</span><span class="dv">1200</span>,</span>
+<span id="cb257-5"><a href="#cb257-5" tabindex="-1"></a>    <span class="at">type=</span><span class="st">&quot;cairo&quot;</span>, <span class="at">pointsize=</span><span class="dv">12</span>, <span class="at">family=</span><span class="st">&quot;sans&quot;</span>)</span>
+<span id="cb257-6"><a href="#cb257-6" tabindex="-1"></a><span class="fu">print</span>(tm1)</span>
+<span id="cb257-7"><a href="#cb257-7" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <pre><code>## pdf 
 ##   2</code></pre>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="#cb250-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(fileout4) <span class="do">## try &#39;browseURL(fileout4)&#39;</span></span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson05/firstmap.png" width="800" height="400" bound /></p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="#cb259-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(fileout4) <span class="do">## try &#39;browseURL(fileout4)&#39;</span></span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson05/57762a52~chunk.png" width="800" bound /></p>
 </div>
 </div>
 <div id="интерактивная" class="section level4">
 <h4>Интерактивная</h4>
 <div id="mapview" class="section level5">
 <h5><code>mapview</code></h5>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="#cb251-1" tabindex="-1"></a>m <span class="ot">&lt;-</span> mapview<span class="sc">::</span><span class="fu">mapview</span>(b.sf) <span class="do">## Не отобразится в Jupyter R Notebook.</span></span>
-<span id="cb251-2"><a href="#cb251-2" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(m)</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="#cb260-1" tabindex="-1"></a>m <span class="ot">&lt;-</span> mapview<span class="sc">::</span><span class="fu">mapview</span>(b.sf) <span class="do">## Не отобразится в Jupyter R Notebook.</span></span>
+<span id="cb260-2"><a href="#cb260-2" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(m)</span></code></pre></div>
 <div class="framed">
 <iframe src="assets/lesson05/widget_mapview_67f487b6fb2216f8f1b4da9b9c891d99.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
@@ -1444,32 +1473,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="leaflet" class="section level5">
 <h5><code>leaflet</code></h5>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="#cb252-1" tabindex="-1"></a><span class="fu">require</span>(leaflet)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="#cb261-1" tabindex="-1"></a><span class="fu">require</span>(leaflet)</span></code></pre></div>
 <pre><code>## Loading required package: leaflet</code></pre>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="#cb254-1" tabindex="-1"></a>b <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(b.sf,<span class="dv">4326</span>)</span>
-<span id="cb254-2"><a href="#cb254-2" tabindex="-1"></a>b<span class="sc">$</span>category <span class="ot">&lt;-</span> <span class="fu">factor</span>(b<span class="sc">$</span>AFF,<span class="at">ordered=</span><span class="cn">TRUE</span>)</span>
-<span id="cb254-3"><a href="#cb254-3" tabindex="-1"></a>fpal <span class="ot">&lt;-</span> <span class="fu">colorFactor</span>(<span class="fu">topo.colors</span>(<span class="dv">5</span>),b<span class="sc">$</span>category)</span>
-<span id="cb254-4"><a href="#cb254-4" tabindex="-1"></a>provList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;CartoDB.Positron&quot;</span>,<span class="st">&quot;CartoDB.DarkMatter&quot;</span>,<span class="st">&quot;Esri.OceanBasemap&quot;</span>)</span>
-<span id="cb254-5"><a href="#cb254-5" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">leaflet</span>()</span>
-<span id="cb254-6"><a href="#cb254-6" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="fu">c</span>(provList)) m <span class="ot">&lt;-</span> <span class="fu">addProviderTiles</span>(m,providers[[p]],<span class="at">group=</span>p)</span>
-<span id="cb254-7"><a href="#cb254-7" tabindex="-1"></a>m <span class="ot">&lt;-</span> m <span class="sc">%&gt;%</span> </span>
-<span id="cb254-8"><a href="#cb254-8" tabindex="-1"></a>   <span class="fu">addPolygons</span>(<span class="at">data=</span>b,<span class="at">fillColor=</span><span class="sc">~</span><span class="fu">fpal</span>(category),<span class="at">fillOpacity=</span><span class="fl">0.5</span></span>
-<span id="cb254-9"><a href="#cb254-9" tabindex="-1"></a>              ,<span class="at">weight=</span><span class="fl">1.6</span>,<span class="at">color=</span><span class="sc">~</span><span class="fu">fpal</span>(category),<span class="at">opacity=</span><span class="fl">0.75</span></span>
-<span id="cb254-10"><a href="#cb254-10" tabindex="-1"></a>              ,<span class="at">label=</span><span class="sc">~</span><span class="fu">paste0</span>(<span class="st">&quot;AFF: &quot;</span>,AFF,<span class="st">&quot; (&quot;</span>,NAME,<span class="st">&quot;)&quot;</span>)</span>
-<span id="cb254-11"><a href="#cb254-11" tabindex="-1"></a>              ,<span class="at">popup=</span><span class="sc">~</span><span class="fu">sprintf</span>(<span class="st">&quot;Например, поле COUNT, равное %.1f&quot;</span>,COUNT)</span>
-<span id="cb254-12"><a href="#cb254-12" tabindex="-1"></a>              ) <span class="sc">%&gt;%</span></span>
-<span id="cb254-13"><a href="#cb254-13" tabindex="-1"></a>   <span class="fu">addMeasure</span>(<span class="st">&quot;topright&quot;</span>,<span class="at">primaryLengthUnit=</span><span class="st">&quot;meters&quot;</span></span>
-<span id="cb254-14"><a href="#cb254-14" tabindex="-1"></a>             ,<span class="at">primaryAreaUnit=</span><span class="st">&quot;sqmeters&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb254-15"><a href="#cb254-15" tabindex="-1"></a>   <span class="fu">addScaleBar</span>(<span class="st">&quot;bottomright&quot;</span></span>
-<span id="cb254-16"><a href="#cb254-16" tabindex="-1"></a>             <span class="co"># ,options = scaleBarOptions(imperial=FALSE,maxWidth=400)</span></span>
-<span id="cb254-17"><a href="#cb254-17" tabindex="-1"></a>              ) <span class="sc">%&gt;%</span></span>
-<span id="cb254-18"><a href="#cb254-18" tabindex="-1"></a>   <span class="fu">addLayersControl</span>(<span class="at">position=</span><span class="st">&quot;topleft&quot;</span></span>
-<span id="cb254-19"><a href="#cb254-19" tabindex="-1"></a>                   ,<span class="at">baseGroups=</span><span class="fu">c</span>(provList)</span>
-<span id="cb254-20"><a href="#cb254-20" tabindex="-1"></a>                   ,<span class="at">options=</span><span class="fu">layersControlOptions</span>(<span class="at">collapsed=</span><span class="cn">TRUE</span>)</span>
-<span id="cb254-21"><a href="#cb254-21" tabindex="-1"></a>                   ) <span class="sc">%&gt;%</span></span>
-<span id="cb254-22"><a href="#cb254-22" tabindex="-1"></a>   <span class="fu">addLegend</span>(<span class="st">&quot;bottomright&quot;</span>,<span class="at">pal=</span>fpal,<span class="at">values=</span>b<span class="sc">$</span>category,<span class="at">opacity=</span><span class="fl">0.6</span></span>
-<span id="cb254-23"><a href="#cb254-23" tabindex="-1"></a>            ,<span class="at">title=</span><span class="st">&quot;AFF&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="#cb255-1" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(m) <span class="do">## Не отображается в Jupyter R Notebook.</span></span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="#cb263-1" tabindex="-1"></a>b <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(b.sf,<span class="dv">4326</span>)</span>
+<span id="cb263-2"><a href="#cb263-2" tabindex="-1"></a>b<span class="sc">$</span>category <span class="ot">&lt;-</span> <span class="fu">factor</span>(b<span class="sc">$</span>AFF,<span class="at">ordered=</span><span class="cn">TRUE</span>)</span>
+<span id="cb263-3"><a href="#cb263-3" tabindex="-1"></a>fpal <span class="ot">&lt;-</span> <span class="fu">colorFactor</span>(<span class="fu">topo.colors</span>(<span class="dv">5</span>),b<span class="sc">$</span>category)</span>
+<span id="cb263-4"><a href="#cb263-4" tabindex="-1"></a>provList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;CartoDB.Positron&quot;</span>,<span class="st">&quot;CartoDB.DarkMatter&quot;</span>,<span class="st">&quot;Esri.OceanBasemap&quot;</span>)</span>
+<span id="cb263-5"><a href="#cb263-5" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">leaflet</span>()</span>
+<span id="cb263-6"><a href="#cb263-6" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="fu">c</span>(provList)) m <span class="ot">&lt;-</span> <span class="fu">addProviderTiles</span>(m,providers[[p]],<span class="at">group=</span>p)</span>
+<span id="cb263-7"><a href="#cb263-7" tabindex="-1"></a>m <span class="ot">&lt;-</span> m <span class="sc">%&gt;%</span> </span>
+<span id="cb263-8"><a href="#cb263-8" tabindex="-1"></a>   <span class="fu">addPolygons</span>(<span class="at">data=</span>b,<span class="at">fillColor=</span><span class="sc">~</span><span class="fu">fpal</span>(category),<span class="at">fillOpacity=</span><span class="fl">0.5</span></span>
+<span id="cb263-9"><a href="#cb263-9" tabindex="-1"></a>              ,<span class="at">weight=</span><span class="fl">1.6</span>,<span class="at">color=</span><span class="sc">~</span><span class="fu">fpal</span>(category),<span class="at">opacity=</span><span class="fl">0.75</span></span>
+<span id="cb263-10"><a href="#cb263-10" tabindex="-1"></a>              ,<span class="at">label=</span><span class="sc">~</span><span class="fu">paste0</span>(<span class="st">&quot;AFF: &quot;</span>,AFF,<span class="st">&quot; (&quot;</span>,NAME,<span class="st">&quot;)&quot;</span>)</span>
+<span id="cb263-11"><a href="#cb263-11" tabindex="-1"></a>              ,<span class="at">popup=</span><span class="sc">~</span><span class="fu">sprintf</span>(<span class="st">&quot;Например, поле COUNT, равное %.1f&quot;</span>,COUNT)</span>
+<span id="cb263-12"><a href="#cb263-12" tabindex="-1"></a>              ) <span class="sc">%&gt;%</span></span>
+<span id="cb263-13"><a href="#cb263-13" tabindex="-1"></a>   <span class="fu">addMeasure</span>(<span class="st">&quot;topright&quot;</span>,<span class="at">primaryLengthUnit=</span><span class="st">&quot;meters&quot;</span></span>
+<span id="cb263-14"><a href="#cb263-14" tabindex="-1"></a>             ,<span class="at">primaryAreaUnit=</span><span class="st">&quot;sqmeters&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb263-15"><a href="#cb263-15" tabindex="-1"></a>   <span class="fu">addScaleBar</span>(<span class="st">&quot;bottomright&quot;</span></span>
+<span id="cb263-16"><a href="#cb263-16" tabindex="-1"></a>             <span class="co"># ,options = scaleBarOptions(imperial=FALSE,maxWidth=400)</span></span>
+<span id="cb263-17"><a href="#cb263-17" tabindex="-1"></a>              ) <span class="sc">%&gt;%</span></span>
+<span id="cb263-18"><a href="#cb263-18" tabindex="-1"></a>   <span class="fu">addLayersControl</span>(<span class="at">position=</span><span class="st">&quot;topleft&quot;</span></span>
+<span id="cb263-19"><a href="#cb263-19" tabindex="-1"></a>                   ,<span class="at">baseGroups=</span><span class="fu">c</span>(provList)</span>
+<span id="cb263-20"><a href="#cb263-20" tabindex="-1"></a>                   ,<span class="at">options=</span><span class="fu">layersControlOptions</span>(<span class="at">collapsed=</span><span class="cn">TRUE</span>)</span>
+<span id="cb263-21"><a href="#cb263-21" tabindex="-1"></a>                   ) <span class="sc">%&gt;%</span></span>
+<span id="cb263-22"><a href="#cb263-22" tabindex="-1"></a>   <span class="fu">addLegend</span>(<span class="st">&quot;bottomright&quot;</span>,<span class="at">pal=</span>fpal,<span class="at">values=</span>b<span class="sc">$</span>category,<span class="at">opacity=</span><span class="fl">0.6</span></span>
+<span id="cb263-23"><a href="#cb263-23" tabindex="-1"></a>            ,<span class="at">title=</span><span class="st">&quot;AFF&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="#cb264-1" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(m) <span class="do">## Не отображается в Jupyter R Notebook.</span></span></code></pre></div>
 <div class="framed">
 <iframe src="assets/lesson05/widget_leadletwidget_97c1d21d052f8a48e9daad9a2872f288.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
@@ -1477,10 +1506,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="tmap-1" class="section level5">
 <h5><code>tmap</code></h5>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="#cb256-1" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="#cb265-1" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</span></code></pre></div>
 <pre><code>## tmap mode set to interactive viewing</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="#cb258-1" tabindex="-1"></a>tm <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(b.sf) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">&quot;COUNT&quot;</span>)</span>
-<span id="cb258-2"><a href="#cb258-2" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(<span class="fu">tmap_leaflet</span>(tm),<span class="at">height=</span><span class="dv">510</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="#cb267-1" tabindex="-1"></a>tm <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(b.sf) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">&quot;COUNT&quot;</span>)</span>
+<span id="cb267-2"><a href="#cb267-2" tabindex="-1"></a>ursa<span class="sc">:::</span><span class="fu">widgetize</span>(<span class="fu">tmap_leaflet</span>(tm),<span class="at">height=</span><span class="dv">510</span>)</span></code></pre></div>
 <div class="framed">
 <iframe src="assets/lesson05/widget_tmap-view_21d318d9983b318c7e4719476ef26700.html" width="646.08" height="510" data-external="1" class="ursa-widgetize">
 </iframe>
@@ -1497,66 +1526,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div id="экспорт" class="section level3">
-<h3>Экспорт</h3>
+<div id="экспорт" class="section level3 middle">
+<h3 class="middle">Экспорт</h3>
 <p>Сохранить пространственные данные в файл</p>
 <div id="sprgdal" class="section level5">
 <h5><code>sp/rgdal</code></h5>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="#cb259-1" tabindex="-1"></a>pt <span class="ot">&lt;-</span> loc</span>
-<span id="cb259-2"><a href="#cb259-2" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">coordinates</span>(pt) <span class="ot">&lt;-</span> <span class="er">~</span>x<span class="sc">+</span>y</span>
-<span id="cb259-3"><a href="#cb259-3" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">proj4string</span>(pt) <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">proj4string</span>(pt0)</span>
-<span id="cb259-4"><a href="#cb259-4" tabindex="-1"></a>pt <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">spTransform</span>(pt,<span class="st">&quot;EPSG:4326&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="#cb268-1" tabindex="-1"></a>pt <span class="ot">&lt;-</span> loc</span>
+<span id="cb268-2"><a href="#cb268-2" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">coordinates</span>(pt) <span class="ot">&lt;-</span> <span class="er">~</span>x<span class="sc">+</span>y</span>
+<span id="cb268-3"><a href="#cb268-3" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">proj4string</span>(pt) <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">proj4string</span>(pt0)</span>
+<span id="cb268-4"><a href="#cb268-4" tabindex="-1"></a>pt <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">spTransform</span>(pt,<span class="st">&quot;EPSG:4326&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: PROJ support is provided by the sf and terra packages among others</code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="#cb261-1" tabindex="-1"></a>fileout1 <span class="ot">&lt;-</span> <span class="st">&quot;afterTrain.geojson&quot;</span></span>
-<span id="cb261-2"><a href="#cb261-2" tabindex="-1"></a>rgdal<span class="sc">::</span><span class="fu">writeOGR</span>(pt,fileout1,<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout1)),<span class="at">driver=</span><span class="st">&quot;GeoJSON&quot;</span></span>
-<span id="cb261-3"><a href="#cb261-3" tabindex="-1"></a>                 ,<span class="at">overwrite_layer=</span><span class="cn">TRUE</span>,<span class="at">morphToESRI=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="#cb270-1" tabindex="-1"></a>fileout1 <span class="ot">&lt;-</span> <span class="st">&quot;afterTrain.geojson&quot;</span></span>
+<span id="cb270-2"><a href="#cb270-2" tabindex="-1"></a>rgdal<span class="sc">::</span><span class="fu">writeOGR</span>(pt,fileout1,<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout1)),<span class="at">driver=</span><span class="st">&quot;GeoJSON&quot;</span></span>
+<span id="cb270-3"><a href="#cb270-3" tabindex="-1"></a>                 ,<span class="at">overwrite_layer=</span><span class="cn">TRUE</span>,<span class="at">morphToESRI=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <pre><code>## Warning: OGR support is provided by the sf and terra packages among others</code></pre>
 <p>Проверим, появился ли файл:</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="#cb264-1" tabindex="-1"></a><span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout1),<span class="st">&quot;.*&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="#cb273-1" tabindex="-1"></a><span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout1),<span class="st">&quot;.*&quot;</span>)))</span></code></pre></div>
 <pre><code>## [1] &quot;afterTrain.geojson&quot;</code></pre>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="#cb266-1" tabindex="-1"></a><span class="fu">try</span>(ursa<span class="sc">::</span><span class="fu">glance</span>(fileout1,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>,<span class="at">las=</span><span class="dv">1</span>,<span class="at">size=</span><span class="dv">480</span>,<span class="at">dpi=</span><span class="dv">192</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="#cb275-1" tabindex="-1"></a><span class="fu">try</span>(ursa<span class="sc">::</span><span class="fu">glance</span>(fileout1,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>,<span class="at">las=</span><span class="dv">1</span>,<span class="at">size=</span><span class="dv">480</span>,<span class="at">dpi=</span><span class="dv">192</span>))</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/ursa12_glancept.png" width="467" bound /></p>
 </div>
 <div id="sf-5" class="section level5">
 <h5><code>sf</code></h5>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="#cb267-1" tabindex="-1"></a>b.sf <span class="ot">&lt;-</span> b.sf[,<span class="fu">c</span>(<span class="st">&quot;NAME&quot;</span>,<span class="st">&quot;COUNT&quot;</span>)]</span>
-<span id="cb267-2"><a href="#cb267-2" tabindex="-1"></a>b.sf<span class="sc">$</span><span class="st">&#39;категория&#39;</span> <span class="ot">&lt;-</span> b<span class="sc">$</span>category</span>
-<span id="cb267-3"><a href="#cb267-3" tabindex="-1"></a>b.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(b.sf,<span class="dv">3857</span>)</span>
-<span id="cb267-4"><a href="#cb267-4" tabindex="-1"></a>fileout2 <span class="ot">&lt;-</span> <span class="st">&quot;scotland.sqlite&quot;</span></span>
-<span id="cb267-5"><a href="#cb267-5" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(b.sf,<span class="at">dsn=</span>fileout2,<span class="at">layer=</span><span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout2))</span>
-<span id="cb267-6"><a href="#cb267-6" tabindex="-1"></a>            ,<span class="at">driver=</span><span class="st">&quot;SQLite&quot;</span>,<span class="at">layer_options=</span><span class="fu">c</span>(<span class="st">&quot;LAUNDER=NO&quot;</span>),<span class="at">quiet=</span><span class="cn">TRUE</span></span>
-<span id="cb267-7"><a href="#cb267-7" tabindex="-1"></a>            ,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(fileout2),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(fileout2))</span></code></pre></div>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="#cb268-1" tabindex="-1"></a><span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout2),<span class="st">&quot;.*&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="#cb276-1" tabindex="-1"></a>b.sf <span class="ot">&lt;-</span> b.sf[,<span class="fu">c</span>(<span class="st">&quot;NAME&quot;</span>,<span class="st">&quot;COUNT&quot;</span>)]</span>
+<span id="cb276-2"><a href="#cb276-2" tabindex="-1"></a>b.sf<span class="sc">$</span><span class="st">&#39;категория&#39;</span> <span class="ot">&lt;-</span> b<span class="sc">$</span>category</span>
+<span id="cb276-3"><a href="#cb276-3" tabindex="-1"></a>b.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(b.sf,<span class="dv">3857</span>)</span>
+<span id="cb276-4"><a href="#cb276-4" tabindex="-1"></a>fileout2 <span class="ot">&lt;-</span> <span class="st">&quot;scotland.sqlite&quot;</span></span>
+<span id="cb276-5"><a href="#cb276-5" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(b.sf,<span class="at">dsn=</span>fileout2,<span class="at">layer=</span><span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout2))</span>
+<span id="cb276-6"><a href="#cb276-6" tabindex="-1"></a>            ,<span class="at">driver=</span><span class="st">&quot;SQLite&quot;</span>,<span class="at">layer_options=</span><span class="fu">c</span>(<span class="st">&quot;LAUNDER=NO&quot;</span>),<span class="at">quiet=</span><span class="cn">TRUE</span></span>
+<span id="cb276-7"><a href="#cb276-7" tabindex="-1"></a>            ,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(fileout2),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(fileout2))</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="#cb277-1" tabindex="-1"></a><span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout2),<span class="st">&quot;.*&quot;</span>)))</span></code></pre></div>
 <pre><code>## [1] &quot;scotland.sqlite&quot;</code></pre>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="#cb270-1" tabindex="-1"></a><span class="fu">try</span>(ursa<span class="sc">::</span><span class="fu">glance</span>(fileout2,<span class="at">resetGrid=</span><span class="cn">TRUE</span></span>
-<span id="cb270-2"><a href="#cb270-2" tabindex="-1"></a>                ,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>,<span class="at">las=</span><span class="dv">1</span>,<span class="at">dpi=</span><span class="dv">192</span>,<span class="at">size=</span><span class="dv">480</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="#cb279-1" tabindex="-1"></a><span class="fu">try</span>(ursa<span class="sc">::</span><span class="fu">glance</span>(fileout2,<span class="at">resetGrid=</span><span class="cn">TRUE</span></span>
+<span id="cb279-2"><a href="#cb279-2" tabindex="-1"></a>                ,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>,<span class="at">las=</span><span class="dv">1</span>,<span class="at">dpi=</span><span class="dv">192</span>,<span class="at">size=</span><span class="dv">480</span>))</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/ursa14_glancescot.png" width="377" bound /></p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="#cb271-1" tabindex="-1"></a>fileout3 <span class="ot">&lt;-</span> <span class="st">&quot;track.shp&quot;</span></span>
-<span id="cb271-2"><a href="#cb271-2" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(tr,<span class="at">dsn=</span>fileout3,<span class="at">layer=</span><span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout2))</span>
-<span id="cb271-3"><a href="#cb271-3" tabindex="-1"></a>            ,<span class="at">driver=</span><span class="st">&quot;ESRI Shapefile&quot;</span>,<span class="at">quiet=</span><span class="cn">TRUE</span></span>
-<span id="cb271-4"><a href="#cb271-4" tabindex="-1"></a>            ,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(fileout3),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(fileout3))</span></code></pre></div>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="#cb272-1" tabindex="-1"></a><span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout3),<span class="st">&quot;.*&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="#cb280-1" tabindex="-1"></a>fileout3 <span class="ot">&lt;-</span> <span class="st">&quot;track.shp&quot;</span></span>
+<span id="cb280-2"><a href="#cb280-2" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(tr,<span class="at">dsn=</span>fileout3,<span class="at">layer=</span><span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout2))</span>
+<span id="cb280-3"><a href="#cb280-3" tabindex="-1"></a>            ,<span class="at">driver=</span><span class="st">&quot;ESRI Shapefile&quot;</span>,<span class="at">quiet=</span><span class="cn">TRUE</span></span>
+<span id="cb280-4"><a href="#cb280-4" tabindex="-1"></a>            ,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(fileout3),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(fileout3))</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="#cb281-1" tabindex="-1"></a><span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout3),<span class="st">&quot;.*&quot;</span>)))</span></code></pre></div>
 <pre><code>## [1] &quot;track.dbf&quot; &quot;track.prj&quot; &quot;track.shp&quot; &quot;track.shx&quot;</code></pre>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="#cb274-1" tabindex="-1"></a><span class="fu">try</span>(ursa<span class="sc">::</span><span class="fu">glance</span>(fileout3,<span class="at">resetGrid=</span><span class="cn">TRUE</span></span>
-<span id="cb274-2"><a href="#cb274-2" tabindex="-1"></a>                ,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>,<span class="at">las=</span><span class="dv">1</span>,<span class="at">dpi=</span><span class="dv">192</span>,<span class="at">size=</span><span class="dv">480</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="#cb283-1" tabindex="-1"></a><span class="fu">try</span>(ursa<span class="sc">::</span><span class="fu">glance</span>(fileout3,<span class="at">resetGrid=</span><span class="cn">TRUE</span></span>
+<span id="cb283-2"><a href="#cb283-2" tabindex="-1"></a>                ,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>,<span class="at">las=</span><span class="dv">1</span>,<span class="at">dpi=</span><span class="dv">192</span>,<span class="at">size=</span><span class="dv">480</span>))</span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson05/ursa16_glancetrack.png" width="413" bound /></p>
 </div>
 </div>
 <div id="рисование" class="section level3">
 <h3>Рисование</h3>
 <p>Этот раздел предлагается пройти самостоятельно</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="#cb275-1" tabindex="-1"></a>track <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_linestring</span>(<span class="fu">cbind</span>(loc<span class="sc">$</span>x,loc<span class="sc">$</span>y))</span>
-<span id="cb275-2"><a href="#cb275-2" tabindex="-1"></a>track <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="fu">data.frame</span>(<span class="at">desc=</span><span class="st">&quot;walk&quot;</span></span>
-<span id="cb275-3"><a href="#cb275-3" tabindex="-1"></a>                  ,sf<span class="sc">::</span><span class="fu">st_sfc</span>(track,<span class="at">crs=</span>sp<span class="sc">::</span><span class="fu">proj4string</span>(pt0))))</span>
-<span id="cb275-4"><a href="#cb275-4" tabindex="-1"></a>paint <span class="ot">&lt;-</span> mapview<span class="sc">::</span><span class="fu">viewExtent</span>(track,<span class="at">alpha=</span><span class="fl">0.01</span>) <span class="sc">%&gt;%</span> mapedit<span class="sc">::</span><span class="fu">editMap</span>(<span class="st">&quot;track&quot;</span>)</span>
-<span id="cb275-5"><a href="#cb275-5" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb275-6"><a href="#cb275-6" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(paint<span class="sc">$</span>finished)) {</span>
-<span id="cb275-7"><a href="#cb275-7" tabindex="-1"></a>   result <span class="ot">&lt;-</span> paint<span class="sc">$</span>finished</span>
-<span id="cb275-8"><a href="#cb275-8" tabindex="-1"></a>   mapview<span class="sc">::</span><span class="fu">mapview</span>(result)</span>
-<span id="cb275-9"><a href="#cb275-9" tabindex="-1"></a>   ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
-<span id="cb275-10"><a href="#cb275-10" tabindex="-1"></a>   ursa<span class="sc">::</span><span class="fu">glance</span>(result,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>)</span>
-<span id="cb275-11"><a href="#cb275-11" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="#cb284-1" tabindex="-1"></a>track <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_linestring</span>(<span class="fu">cbind</span>(loc<span class="sc">$</span>x,loc<span class="sc">$</span>y))</span>
+<span id="cb284-2"><a href="#cb284-2" tabindex="-1"></a>track <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="fu">data.frame</span>(<span class="at">desc=</span><span class="st">&quot;walk&quot;</span></span>
+<span id="cb284-3"><a href="#cb284-3" tabindex="-1"></a>                  ,sf<span class="sc">::</span><span class="fu">st_sfc</span>(track,<span class="at">crs=</span>sp<span class="sc">::</span><span class="fu">proj4string</span>(pt0))))</span>
+<span id="cb284-4"><a href="#cb284-4" tabindex="-1"></a>paint <span class="ot">&lt;-</span> mapview<span class="sc">::</span><span class="fu">viewExtent</span>(track,<span class="at">alpha=</span><span class="fl">0.01</span>) <span class="sc">%&gt;%</span> mapedit<span class="sc">::</span><span class="fu">editMap</span>(<span class="st">&quot;track&quot;</span>)</span>
+<span id="cb284-5"><a href="#cb284-5" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb284-6"><a href="#cb284-6" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(paint<span class="sc">$</span>finished)) {</span>
+<span id="cb284-7"><a href="#cb284-7" tabindex="-1"></a>   result <span class="ot">&lt;-</span> paint<span class="sc">$</span>finished</span>
+<span id="cb284-8"><a href="#cb284-8" tabindex="-1"></a>   mapview<span class="sc">::</span><span class="fu">mapview</span>(result)</span>
+<span id="cb284-9"><a href="#cb284-9" tabindex="-1"></a>   ursa<span class="sc">::</span><span class="fu">session_grid</span>(<span class="cn">NULL</span>)</span>
+<span id="cb284-10"><a href="#cb284-10" tabindex="-1"></a>   ursa<span class="sc">::</span><span class="fu">glance</span>(result,<span class="at">style=</span><span class="st">&quot;mapnik&quot;</span>)</span>
+<span id="cb284-11"><a href="#cb284-11" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 <div id="дополнительно-по-r" class="section level2">
@@ -1565,36 +1594,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Воспроизво­ди­мость</h3>
 <p>Ниже приведены фрагмента кода, которые не были выполнены при составлении программы занятия. Их предлагается выполнить самостоятельно. Также необходимо <a href="#pandoc">установленный Pandoc</a>.</p>
 <p>Содержимое занятия сгенерировано из файла <code>lesson04.R</code>. Загрузим его, переименовав:</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="#cb276-1" tabindex="-1"></a>sfile <span class="ot">&lt;-</span> <span class="st">&quot;lesson04.R&quot;</span></span>
-<span id="cb276-2"><a href="#cb276-2" tabindex="-1"></a>rfile <span class="ot">&lt;-</span> <span class="st">&quot;lesson04-reproduced.R&quot;</span></span>
-<span id="cb276-3"><a href="#cb276-3" tabindex="-1"></a>{</span>
-<span id="cb276-4"><a href="#cb276-4" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">file.exists</span>(sfile))</span>
-<span id="cb276-5"><a href="#cb276-5" tabindex="-1"></a>      <span class="fu">file.copy</span>(sfile,rfile,<span class="at">overwrite=</span><span class="cn">TRUE</span>,<span class="at">copy.date=</span><span class="cn">TRUE</span>)</span>
-<span id="cb276-6"><a href="#cb276-6" tabindex="-1"></a>   <span class="cf">else</span></span>
-<span id="cb276-7"><a href="#cb276-7" tabindex="-1"></a>      <span class="fu">download.file</span>(<span class="fu">file.path</span>(<span class="st">&quot;https://nplatonov.github.io/sevinGIS&quot;</span>,sfile)</span>
-<span id="cb276-8"><a href="#cb276-8" tabindex="-1"></a>                   ,rfile)</span>
-<span id="cb276-9"><a href="#cb276-9" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="#cb285-1" tabindex="-1"></a>sfile <span class="ot">&lt;-</span> <span class="st">&quot;lesson05.R&quot;</span></span>
+<span id="cb285-2"><a href="#cb285-2" tabindex="-1"></a>rfile <span class="ot">&lt;-</span> <span class="st">&quot;lesson05-reproduced.R&quot;</span></span>
+<span id="cb285-3"><a href="#cb285-3" tabindex="-1"></a>{</span>
+<span id="cb285-4"><a href="#cb285-4" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">file.exists</span>(sfile))</span>
+<span id="cb285-5"><a href="#cb285-5" tabindex="-1"></a>      <span class="fu">file.copy</span>(sfile,rfile,<span class="at">overwrite=</span><span class="cn">TRUE</span>,<span class="at">copy.date=</span><span class="cn">TRUE</span>)</span>
+<span id="cb285-6"><a href="#cb285-6" tabindex="-1"></a>   <span class="cf">else</span></span>
+<span id="cb285-7"><a href="#cb285-7" tabindex="-1"></a>      <span class="fu">download.file</span>(<span class="fu">file.path</span>(<span class="st">&quot;https://nplatonov.github.io/sevinGIS&quot;</span>,sfile)</span>
+<span id="cb285-8"><a href="#cb285-8" tabindex="-1"></a>                   ,rfile)</span>
+<span id="cb285-9"><a href="#cb285-9" tabindex="-1"></a>}</span></code></pre></div>
 <!-- file.copy("main.R","lesson.R",overwrite=TRUE,copy.date=TRUE) -->
 <p>На основе этого файла создадим markdown-документ:</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="#cb277-1" tabindex="-1"></a>mdfile <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">spin</span>(rfile,<span class="at">knit=</span><span class="cn">FALSE</span>)</span>
-<span id="cb277-2"><a href="#cb277-2" tabindex="-1"></a>mdfile</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="#cb286-1" tabindex="-1"></a>mdfile <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">spin</span>(rfile,<span class="at">knit=</span><span class="cn">FALSE</span>)</span>
+<span id="cb286-2"><a href="#cb286-2" tabindex="-1"></a>mdfile</span></code></pre></div>
 <p>Затем из markdown-документа сформируем html-документ:</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="#cb278-1" tabindex="-1"></a><span class="cf">if</span> (rmarkdown<span class="sc">::</span><span class="fu">pandoc_available</span>()) {</span>
-<span id="cb278-2"><a href="#cb278-2" tabindex="-1"></a>   htmlfile <span class="ot">&lt;-</span> rmarkdown<span class="sc">::</span><span class="fu">render</span>(mdfile,<span class="at">output_format=</span><span class="st">&quot;html_document&quot;</span></span>
-<span id="cb278-3"><a href="#cb278-3" tabindex="-1"></a>                                ,<span class="at">output_options=</span><span class="fu">list</span>(<span class="at">toc=</span><span class="cn">TRUE</span>))</span>
-<span id="cb278-4"><a href="#cb278-4" tabindex="-1"></a>   <span class="fu">print</span>(<span class="fu">basename</span>(htmlfile))</span>
-<span id="cb278-5"><a href="#cb278-5" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="#cb287-1" tabindex="-1"></a><span class="cf">if</span> (rmarkdown<span class="sc">::</span><span class="fu">pandoc_available</span>()) {</span>
+<span id="cb287-2"><a href="#cb287-2" tabindex="-1"></a>   htmlfile <span class="ot">&lt;-</span> rmarkdown<span class="sc">::</span><span class="fu">render</span>(mdfile,<span class="at">output_format=</span><span class="st">&quot;html_document&quot;</span></span>
+<span id="cb287-3"><a href="#cb287-3" tabindex="-1"></a>                                ,<span class="at">output_options=</span><span class="fu">list</span>(<span class="at">toc=</span><span class="cn">TRUE</span>))</span>
+<span id="cb287-4"><a href="#cb287-4" tabindex="-1"></a>   <span class="fu">print</span>(<span class="fu">basename</span>(htmlfile))</span>
+<span id="cb287-5"><a href="#cb287-5" tabindex="-1"></a>}</span></code></pre></div>
 <p>Полученный html-документ можно открыть в браузере.</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="#cb279-1" tabindex="-1"></a><span class="cf">if</span> ((rmarkdown<span class="sc">::</span><span class="fu">pandoc_available</span>())<span class="sc">&amp;&amp;</span>(<span class="fu">file.exists</span>(htmlfile))) </span>
-<span id="cb279-2"><a href="#cb279-2" tabindex="-1"></a>   <span class="fu">browseURL</span>(<span class="fu">basename</span>(htmlfile))</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="#cb288-1" tabindex="-1"></a><span class="cf">if</span> ((rmarkdown<span class="sc">::</span><span class="fu">pandoc_available</span>())<span class="sc">&amp;&amp;</span>(<span class="fu">file.exists</span>(htmlfile))) </span>
+<span id="cb288-2"><a href="#cb288-2" tabindex="-1"></a>   <span class="fu">browseURL</span>(<span class="fu">basename</span>(htmlfile))</span></code></pre></div>
 <p>И можно скопировать/переименовать/удалить</p>
 <div id="параметры-сессии" class="section level4">
 <h4>Параметры сессии</h4>
 <div class="oversize">
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="#cb280-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.2.3 Patched (2023-03-25 r84066 ucrt)
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="#cb289-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.2.3 Patched (2023-03-29 r84123 ucrt)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 19044)
+## Running under: Windows 10 x64 (build 19045)
 ## 
 ## Matrix products: default
 ## 
@@ -1618,7 +1647,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [17] tidyselect_1.2.0        compiler_4.2.3          leafem_0.2.0            cli_3.6.1              
 ## [21] geojsonsf_2.0.3         labeling_0.4.2          sass_0.4.5              scales_1.2.1           
 ## [25] classInt_0.4-9          proxy_0.4-27            systemfonts_1.0.4       digest_0.6.31          
-## [29] rmarkdown_2.20          svglite_2.1.1           base64enc_0.1-3         dichromat_2.0-0.1      
+## [29] rmarkdown_2.21          svglite_2.1.1           base64enc_0.1-3         dichromat_2.0-0.1      
 ## [33] jpeg_0.1-10             pkgconfig_2.0.3         htmltools_0.5.5         ursa_3.9.10            
 ## [37] fastmap_1.1.1           highr_0.10              htmlwidgets_1.6.2       rlang_1.1.0            
 ## [41] shiny_1.7.4             jquerylib_0.1.4         generics_0.1.3          farver_2.1.1           
@@ -1653,13 +1682,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="section" class="section level1 additional">
 <h1 class="additional"></h1>
-<div class="small">
+<div class="small bottom">
 <p>Данные после занятия остались на диске. Если не нужны, выполнить следующее:</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="#cb282-1" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout1),<span class="st">&quot;.*&quot;</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="#cb291-1" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout1),<span class="st">&quot;.*&quot;</span>))))</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="#cb284-1" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout2),<span class="st">&quot;.*&quot;</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="#cb293-1" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout2),<span class="st">&quot;.*&quot;</span>))))</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="#cb286-1" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout3),<span class="st">&quot;.*&quot;</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="#cb295-1" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">dir</span>(<span class="at">pattern=</span><span class="fu">paste0</span>(<span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">..+&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="fu">basename</span>(fileout3),<span class="st">&quot;.*&quot;</span>))))</span></code></pre></div>
 <pre><code>## [1] TRUE TRUE TRUE TRUE</code></pre>
 </div>
 <style type="text/css">

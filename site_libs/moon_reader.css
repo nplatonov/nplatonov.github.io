@@ -1136,6 +1136,20 @@ code.remark-code:not(.hljs) {
 .xe-scribble__tools.minimized {
    opacity: 0;
 }
+/*
+.remark-slide-container {
+   background-color: red;
+   background-image: linear-gradient(to right,
+                                     var(--sidebar-background),
+                                     var(--sidebar-background),
+                                     var(--light),
+                                     var(--light),
+                                     var(--light)); /* #ff35 #0254 */
+}
+*/
+.remark-slide-scaler {
+   box-shadow: none !important;
+}
 .zzz-remark-slide-container::after {
    color: orange;
    content: "Lorem ipsum full-screen";
@@ -1472,6 +1486,29 @@ table tr th:empty {
    height: 656px;
    padding-right: 0em;
 }
+.remark-slide-content > .top,
+.remark-slide-content > .middle,
+.remark-slide-content > .bottom {
+   width: 0.1%; /* 100%; */
+   display: table-cell;
+   height: 656px;   
+}
+.remark-slide-content > .mainbar > .top,
+.remark-slide-content > .mainbar > .middle,
+.remark-slide-content > .mainbar > .bottom {
+   width: 0.1%; /*calc(100% - 3% - var(--sidebar));*/
+   display: table-cell;
+   height: 656px;   
+}
+.top {
+   vertical-align: top;
+}
+.middle {
+   vertical-align: middle;
+}
+.bottom {
+   vertical-align: bottom;
+}
 @media only screen {
    .remark-slides-area .remark-fading { z-index: 9; } 
    .remark-slides-area .remark-slide-container {transition: opacity 0.4s ease-out;opacity: 0;}
@@ -1532,14 +1569,14 @@ table tr th:empty {
 
 }
 @media only screen and (min-width: 1600vh) {
-  /* background-image: url(https://picsum.photos/768/1090);*/
+   background-image: url(https://picsum.photos/768/1090);
    .remark-slide-container {
       background-image: linear-gradient(to right, indigo, white, white, indigo);
       background-repeat: no-repeat;
       background-size: cover;
    }
 }
-@media only screen and (max-width: 1500vh) {
+@media only screen and (max-width: 1500px) {
    .remark-slide-container:fullscreen {
       background-image: linear-gradient(to bottom, indigo, white, indigo);
       background-repeat: no-repeat;

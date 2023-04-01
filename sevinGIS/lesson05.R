@@ -2,26 +2,20 @@
 #' params:
 #'   lesson: "05"
 #' pagetitle: ГИС `r params$lesson`
-#' assets: "assets/lesson05"
 #' output:
-#'    xaringan::moon_reader: default
-#'    html_document: default
-#' toc: true
-#' mathjax: true
-#' toc_depth: 5
-#' echo: true
+#'    html_document:
+#'       toc: true
+#'       toc_depth: 5
 #' title: Возможности R для работы с пространственными данными
 #' subtitle: ГИС технологии в биологических исследованиях
 #' meeting: Занятие `r params$lesson`
 #' author:
 #'  - name: Никита Платонов
 #'    affiliation: с.н.с. ИПЭЭ РАН
-#' date0: сегодня
-#' date1: 31 марта 2022 г.
-#' date: 30 марта 2023 г., 06 апреля 2023 г.
+#' date: today
+#' format-date: "DD MMMM YYYY"
+#' lang: ru
 #' abstract: Демонстрация основ работы с интерфейсом командной строки в R, позволяющей создавать скрипты и получать воспроизводимые результаты. Показано, как пространственные векторные и растровые данные могут попасть в R и как они выглядят в R. С возможностью сделать обработку, анализ и визуализацию пространственных данных.
-#' shorttitle1: <a href=https://rdrr.io/snippets/>Online Code Editor</a>
-#' shorttitle: "[WebR](https://webr.r-wasm.org/latest/) [Online Code Editor](https://rdrr.io/snippets/)\n\n[ГИС аспирантура](class.html#home)"
 #' ---
 
 #+ hprint, include=FALSE
@@ -54,6 +48,7 @@ whoisready <- sapply(pkgList,function(pkg) {
 })
 #'
 #' ---
+#'
 #+ ok
 whoisready
 #'
@@ -65,16 +60,13 @@ c('Everything is ready?'=all(whoisready))
 #'
 #' #### Дополнительное ПО
 #'
-#' ---
-#' class: middle center
-#'
-#' ##### RStudio IDE
+#' ##### RStudio IDE {.middle .center}
 #' <sup>факультативно</sup>
 #+ echo=FALSE
 # knitr::include_url("https://www.rstudio.com/products/rstudio/download/",height=480)
 #'
-#' ##### Pandoc
-#' .font90[
+#' ##### Pandoc {#pandoc}
+#' :::font90
 #' Pandoc необходим для создания воспроизводимого результата. Этот шаг опциональный, и может быть пропущен, но в этом случае на занятии будет пропущен раздел по [публикации результатов](#report1).
 #'
 #' [Ссылка](https://pandoc.org/installing.html) на страницу для скачивания. Для пользователей Windows достаточно перейти к [скачиванию актуального релиза](https://github.com/jgm/pandoc/releases/latest), и выбрать либо установщик (`*.msi`), либо архив (`*.zip`). Запомнить путь, куда произведена установка и где находится файл `pandoc.exe` и добавить этот путь в переменную окружения `%PATH%`, например: WindowsKey+Q, ввести "Переменные среды/Environment Variables", попасть в окошко "Свойства Системы/System Properties", нажать на кнопку "Переменные среды/Environment Variables" и отредактировать пользовательскую или системную переменную PATH, добавив путь к `pandoc.exe`.
@@ -83,7 +75,7 @@ c('Everything is ready?'=all(whoisready))
 #'
 #+ pandoc
 rmarkdown::pandoc_available()
-#' ]
+#' :::
 #' ##### Jupyter
 #'
 #' Jupyter Notebook для работы с R кодом в браузере.
@@ -131,7 +123,8 @@ set.seed(353)
 sample(10)
 #'
 #' ---
-#' .font90[
+#'
+#' :::font90
 #' Команда для проверки кириллицы:
 #+ russian, echo=TRUE
 print(c('Здесь кириллица?'="Да!"),quote=FALSE)
@@ -154,7 +147,7 @@ if (.Platform$OS.type=="windows")
 #' 3\. Если скрипт `bar.R` с кириллицей в кодировке UTF-8 запускается из командной строки, то использовать следующие параметры запуска.
 #'    
 #'      R --encoding UTF-8 -f bar.R
-#' ]
+#' :::
 #'
 #' ### Представление данных
 #'
@@ -183,6 +176,7 @@ typeof(a2+0L)
 typeof(a2+0)
 #'
 #' ##### Логические значения, строки
+#'
 #'  ##### Логические значения
 #+ a3
 (a3 <- sample(c(TRUE,FALSE),length(a2),replace=TRUE))
@@ -190,7 +184,9 @@ typeof(a2+0)
 class(a3)
 #+ stra3
 str(a3)
+#'
 #'  ##### Строки
+#'
 #+ a4
 (a4 <- names(a2))
 #+ classa4
@@ -319,9 +315,10 @@ lines(x,y,lwd=3,col="orange")
 box()
 axis(1,at=seqx,lab=paste0(seqx,"°E"),lwd=0,lwd.ticks=1,las=1)
 axis(2,at=seqy,lab=paste0(seqy,"°N"),lwd=0,lwd.ticks=1,las=1)
+#'
 #' ---
 #'
-#+ spb2, out.height=500
+#+ spb2
 e <- sf::st_sfc(sf::st_linestring(cbind(x,y)),crs=4326)
 ursa::session_grid(NULL)
 ursa::glance(e,blank="white",coast.fill="#00000010",pointsize=12
@@ -340,7 +337,7 @@ image(volcano)
 #'
 #+ include=FALSE
 ursa::session_grid(NULL)
-#+ glancevolcano, out.height=550
+#+ glancevolcano
 ursa:::spatialize("Mount Eden",place="park",style="web") |>
    ursa::glance(basemap.alpha=1,style="mapnik")
 #+ eval=F, echo=F
@@ -405,7 +402,7 @@ try(ursa::glance("Mount Eden",place="park",dpi=90))
 #'
 #' #### <code>sf</code> или <code>sp</code>?
 #'
-#' + В пользу .large[`sf`] больше аргументов:
+#' + В пользу [`sf`]{.large} больше аргументов:
 #'
 #'    + удобнее, активно развивается, поддерживается
 #'
@@ -421,9 +418,10 @@ try(ursa::glance("Mount Eden",place="park",dpi=90))
 #' [`sdm`](https://cran.rstudio.com/web/packages/sdm/).
 #'
 #' ## Манипуляции с пространст&shy;вен&shy;ными данными
+#'
 #' ---
-#' class: middle
-#' ### Импорт
+#'
+#' ### Импорт {.middle}
 #' Загрузить пространственные данные из файла
 #'
 #' #### Источники для примера
@@ -437,26 +435,29 @@ file.exists(tifname)
 #'
 #' ---
 #'
-#+ scotBNG, out.height=500, out.extra="bound"
+#+ scotBNG
 ursa::session_grid(NULL)
 ursa::glance(shpname,coast=FALSE,field="(NAME|AFF)",blank="white"
             ,legend=list("left","right"),dpi=88)
 #'
 #' ---
 #'
-#+ cea, out.height=550, out.extra="bound"
+#+ cea
 ursa::session_grid(NULL)
 ursa::glance(tifname,coast=FALSE,pal.from=0,pal=c("black","white"),dpi=96)
 #'
 #' ---
+#'
 #' #### Векторные данные
 #'
 #' ##### <code>rgdal/sp</code>
-#' .oversize.h650[
+#' ::: {.oversize .h650}
 #+ ogrinfo
 rgdal::ogrInfo(shpname)
-#' ]
+#' :::
+#'
 #' ---
+#'
 #+ readogr
 b.sp <- rgdal::readOGR(shpname)
 #'
@@ -464,8 +465,10 @@ b.sp <- rgdal::readOGR(shpname)
 isS4(b.sp)
 #+ slotnames
 slotNames(b.sp)
+#'
 #' ---
-#' .oversize[
+#'
+#' :::oversize
 #+ eval=FALSE, include=FALSE
 knitr::current_input()
 
@@ -476,23 +479,22 @@ if (isTRUE(try(ursa:::.isRemark()))) {
 }
 #+ sp
 str(head(b.sp,2))
-#' ]
+#' :::
 #'
-#' ---
-#' name: importExample
-#' ##### <code>sf</code>
+#' ##### <code>sf</code> {#importExample}
 #'
 #+ stread
 b.sf <- sf::st_read(shpname)
 #'
 #' ---
+#'
 #+ strsf
 str(b.sf)
 #'
 #' #### Растровые данные
 #'
 #' ##### <code>rgdal/sp</code>
-#' .font92[
+#' :::font92
 #' Получение данных напрямую
 #'
 #+ readgdal
@@ -504,8 +506,10 @@ if (isTRUE(try(ursa:::.isRemark())))
 str(d1)
 #+ summaryd1
 summary(d1@data[[1]])
-#' ]
+#' :::
+#'
 #' ---
+#'
 #' Получение данных более гибким способом
 #'
 #+ gdalinfo
@@ -522,7 +526,8 @@ str(d2)
 summary(c(d2))
 #'
 #' ---
-#' ##### <code>raster</code>
+#'
+#' ##### `raster`
 #+ raster
 (d3 <- raster::brick(tifname))
 #+ sizev3
@@ -532,8 +537,10 @@ c(d3=object.size(d3),v3=object.size(v3))
 str(v3)
 #+ summaryv3
 summary(c(v3))
+#'
 #' ---
-#' ##### <code>terra</code>
+#'
+#' ##### `terra`
 #+ terra
 (d4 <- terra::rast(tifname))
 #+ sizev4
@@ -543,11 +550,12 @@ c(d4=object.size(d4),v3=object.size(v4))
 str(v4)
 #+ summaryv4
 summary(c(v4))
-#' ---
-#' class: middle
-#' ### Характеристики
 #'
-#'  #### Характеристики, свойства и компоненты пространственных данных
+#' ---
+#'
+#' ### Характеристики {.middle}
+#'
+#' Характеристики, свойства и компоненты пространственных данных
 #'
 #' ##### `sp`
 #+
@@ -571,27 +579,22 @@ head(slot(b.sp,"data"))
 #+ sfdata
 head(sf::st_set_geometry(b.sf,NULL))
 #'
-#' ---
-#'
 #' #### Геометрия
 #'
 #' ##### `sp`
-#' .oversize[
+#' :::oversize
 #+ spgeom
 g.sp <- sp::geometry(b.sp)
 #+ strspgeom
 str(head(g.sp,2)) ## много строк; выведем первые две записи
-#' ]
+#' :::
 #' ##### `sf`
 #+ headsfgeom
 (head(g.sf <- sf::st_geometry(b.sf),2))
 #+ strsfgeom
 str(g.sf)
 #'
-#' ---
-#' class: middle
-#'
-#' #### Проекция
+#' #### Проекция {.middle}
 #'
 #' В современных пакетах R данные проекции представляются в виде WKT;
 #' по возможножности, сохраняется связь с EPSG и PROJ.
@@ -603,11 +606,14 @@ if (isTRUE(try(ursa:::.isRemark())))
 #+ projsp
 sp::proj4string(b.sp)
 #' ##### `sf`
-#' .oversize[
+#' :::oversize
 #+ projsf
 sf::st_crs(b.sf)
-#' ]
+#' :::
+#'
 #' ---
+#'
+#+ sfproj4
 sf::st_crs(b.sf)$proj4string
 #'
 #' #### Пространственный охват
@@ -619,19 +625,20 @@ sp::bbox(b.sp)
 #+ bboxsf
 sf::st_bbox(b.sf)
 #'
-#' ---
-#' class: middle
-#' ### Создание
+#' ### Создание {.middle}
 #'
 #'  Создание пространственных данных, например, новый слой ГИС
 #'
 #' ---
+#'
 #' Выйдем из здания вокзала ст. Валдай и создадим точечный `Spatial`-объект:
 #+ railway
 pt0 <- data.frame(lon=33.24529,lat=57.97012)
 sp::coordinates(pt0) <- ~lon+lat
 sp::proj4string(pt0) <- sp::CRS("+init=epsg:4326")
+#'
 #' ---
+#'
 #+ Valdai
 ursa::glance(pt0,resetProj=TRUE,style="mapnik"
             ,basemap.order="before",basemap.alpha=1,dpi=91)
@@ -668,7 +675,9 @@ loc <- data.frame(step=seq(0,n),look=pi/2,x=xy[,1],y=xy[,2])
 #+ segment
 segment <- runif(n,min=5,max=80)
 str(segment)
+#'
 #' ---
+#'
 #' Задаем, что если следующий сегмент длинный, то отклонение направления от предыдущего сегмента будет меньше:
 #+ angle
 angle <- sapply(1-segment/100,function(x) runif(1,min=-x*pi,max=x*pi))
@@ -692,11 +701,12 @@ tr <- vector("list",n)
 for (i in seq(n))
    tr[[i]] <- sf::st_linestring(matrix(c(loc$x[i],loc$y[i],loc$x[i+1],loc$y[i+1])
                                ,ncol=2,byrow=TRUE))
+#'
 #' ---
-
-#' .oversize[
+#'
+#' :::oversize
 str(tr)
-#' ]
+#' :::
 #'
 #' ---
 #'
@@ -713,64 +723,79 @@ str(tr)
 #'
 #' #### Статическая
 #'
-#+ route, out.extra="bound", out.height=500
+#+ route
 ursa::session_grid(NULL)
 ursa::glance(tr,style="mapnik",plot.lwd=5
             ,layout=c(1,2),legend=list("left",list("bottom",2)),las=1,dpi=96)
 #'
 #' ---
-#' class: middle
+#'
+#' :::middle
 #' Графическое отображение переопределенной под класс объекта функцией `plot()` средствами библиотеки `sp` и `sf` развито слабо...
+#' :::
+#'
 #' ---
-#+ trplot-sf, out.extra="bound"
+#'
+#+ trplot-sf
 plot(tr,lwd=5) ## 'sf'-object
+#'
 #' ---
-#+ trplot-sp, out.extra="bound"
+#'
+#+ trplot-sp
 sp::plot(sf::as_Spatial(tr),lwd=5) ## 'sp'-object ('SpatialPointsDataFrame')
 #'
 #' ---
 #'
 #' [Возвращаясь](#importExample) к ранее загруженным данным
-#+ scotplot, out.height=550
+#+ scotplot
 plot(b.sf["AFF"])
 #'
 #' ---
-#+ scotplotgeom, out.height=550
+#'
+#+ scotplotgeom
 plot(sf::st_geometry(b.sf),col=sf::sf.colors(12,categorical=TRUE)
     ,border='grey',axes=TRUE)
 #'
 #' ---
-#' class: middle
+#'
+#' :::middle
 #' Для оформления карт можно использовать функционал других библиотек.
+#' :::
 #'
 #' ##### `ggplot2`
 #+ ggplot
 require(ggplot2)
-#+ geomsf, out.height=420
+#+ geomsf
 ggplot()+
    geom_sf(data=b.sf,aes(fill=AFF))+
    coord_sf(crs=sf::st_crs(3857))
 #' ##### `tmap`
-#+ tmap-plot, out.height=445
+#+ tmap-plot
 require(tmap)
 tmap_mode("plot")
 (tm1 <- tm_shape(b.sf) + tm_polygons("COUNT") + tm_scale_bar() +
    tm_compass(position=c("left","bottom")) + tm_graticules())
 #' ##### Для публикаций
-#+ paper, eval=T, out.height=400, out.extra="bound"
-fileout4 <- "assets/lesson05/firstmap.png"
+#+ paper-create, eval=T
+fileout4 <- "assets/general/firstmap.png"
+if (!dir.exists(dirname(fileout4)))
+   dir.create(dirname(fileout4),recursive=TRUE)
 png(fileout4, res=300, width=1600, height=1200,
     type="cairo", pointsize=12, family="sans")
 print(tm1)
 dev.off()
+#'
+#' ---
+#'
+#+ paper-view
 knitr::include_graphics(fileout4) ## try 'browseURL(fileout4)'
 #'
 #' #### Интерактивная
 #'
 #' ##### `mapview`
-#+ mapview, out.height=588, results='asis'
+#+ mapview
 m <- mapview::mapview(b.sf) ## Не отобразится в Jupyter R Notebook.
-ursa:::widgetize(m)
+m
 #'
 #' ##### `leaflet`
 #+ leafletload
@@ -801,14 +826,17 @@ m <- m %>%
             ,title="AFF")
 #'
 #' ---
-#+ leadletwidget, out.height=588, results='asis'
-ursa:::widgetize(m) ## Не отображается в Jupyter R Notebook.
+#'
+#+ leadletwidget
+m ## Не отображается в Jupyter R Notebook.
 #' ##### `tmap`
 #+ tmap-view, results='asis'
 tmap_mode("view")
 tm <- tm_shape(b.sf) + tm_polygons("COUNT")
-ursa:::widgetize(tmap_leaflet(tm),height=510)
+tmap_leaflet(tm)
+#'
 #' ---
+#'
 #' [`tmap` `r dQuote("Get Started")` vignette](https://cran.rstudio.com/web/packages/tmap/vignettes/tmap-getstarted.html)
 #+ tmap-vignette, echo=FALSE
 knitr::include_url("https://cran.rstudio.com/web/packages/tmap/vignettes/tmap-getstarted.html"
@@ -819,9 +847,7 @@ knitr::include_url("https://cran.rstudio.com/web/packages/tmap/vignettes/tmap-ge
 #+ geodataviz, echo=FALSE
 knitr::include_url("https://bhaskarvk.github.io/user2017.geodataviz/",height=610)
 #'
-#' ---
-#' class: middle
-#' ### Экспорт
+#' ### Экспорт {.middle}
 #'
 #' Сохранить пространственные данные в файл
 #'
@@ -839,8 +865,10 @@ rgdal::writeOGR(pt,fileout1,gsub("\\..+","",basename(fileout1)),driver="GeoJSON"
 #' Проверим, появился ли файл:
 #+ ptexists
 dir(pattern=paste0(gsub("\\..+","",basename(fileout1),".*")))
+#'
 #' ---
-#+ glancept, out.extra="bound"
+#'
+#+ glancept
 try(ursa::glance(fileout1,style="mapnik",las=1,size=480,dpi=192))
 #'
 #' ##### `sf`
@@ -855,10 +883,13 @@ sf::st_write(b.sf,dsn=fileout2,layer=gsub("\\..+","",basename(fileout2))
             ,delete_layer=file.exists(fileout2),delete_dsn=file.exists(fileout2))
 #+ scotexists
 dir(pattern=paste0(gsub("\\..+","",basename(fileout2),".*")))
+#'
 #' ---
-#+ glancescot, out.extra="bound"
+#'
+#+ glancescot
 try(ursa::glance(fileout2,resetGrid=TRUE
                 ,style="mapnik",las=1,dpi=192,size=480))
+#'
 #' ---
 #'
 #+ track
@@ -868,8 +899,10 @@ sf::st_write(tr,dsn=fileout3,layer=gsub("\\..+","",basename(fileout2))
             ,delete_layer=file.exists(fileout3),delete_dsn=file.exists(fileout3))
 #+ trackexists
 dir(pattern=paste0(gsub("\\..+","",basename(fileout3),".*")))
+#'
 #' ---
-#+ glancetrack, out.extra="bound"
+#'
+#+ glancetrack
 try(ursa::glance(fileout3,resetGrid=TRUE
                 ,style="mapnik",las=1,dpi=192,size=480))
 #'
@@ -896,7 +929,7 @@ if (!is.null(paint$finished)) {
 #'
 #' Ниже приведены фрагмента кода, которые не были выполнены при составлении программы занятия. Их предлагается выполнить самостоятельно. Также необходимо [установленный Pandoc](#pandoc).
 #'
-#' Содержимое занятия сгенерировано из файла `lesson04.R`. Загрузим его, переименовав:
+#' Содержимое занятия сгенерировано из файла `lesson05.R`. Загрузим его, переименовав:
 #+ download, eval=FALSE
 sfile <- "lesson05.R"
 rfile <- "lesson05-reproduced.R"
@@ -929,10 +962,10 @@ if ((rmarkdown::pandoc_available())&&(file.exists(htmlfile)))
 #' И можно скопировать/переименовать/удалить
 #'
 #' #### Параметры сессии
-#' .oversize[
+#' :::oversize
 #+ session
 sessionInfo()
-#' ]
+#' :::
 #'
 #' ### Узнать больше об R
 #'
@@ -950,17 +983,15 @@ sessionInfo()
 #'
 #' + Package's vignettes -- обобщенное знакомство с библиотекой. Обычно содержат воспроизводимый код.
 #'
-#' ---
-#' class: bottom
 #' ######
 #'
-#' .small[
+#' ::: {.small .bottom}
 #' Данные после занятия остались на диске. Если не нужны, выполнить следующее: 
 #+ clear, eval=TRUE
 file.remove(dir(pattern=paste0(gsub("\\..+","",basename(fileout1),".*"))))
 file.remove(dir(pattern=paste0(gsub("\\..+","",basename(fileout2),".*"))))
 file.remove(dir(pattern=paste0(gsub("\\..+","",basename(fileout3),".*"))))
-#' ]
+#' :::
 #'
 #' ```{css, echo=F, eval=T}
 #' :root {
@@ -969,5 +1000,3 @@ file.remove(dir(pattern=paste0(gsub("\\..+","",basename(fileout3),".*"))))
 #'    --sidebar: 25%;
 #' }
 #' ```
-#' ---
-#'
