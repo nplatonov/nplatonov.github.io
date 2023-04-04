@@ -161,6 +161,19 @@ body {
 .break .footer {
    display: none;
 }
+.countdown {
+   display: none;
+}
+@media screen and (min-width: 1355px) {
+   .countdown {
+      margin-top: -1.2em;
+      float: right;
+      display: block;
+      position: absolute;
+      bottom: revert !important;
+      font-size: 14pt;
+   }
+}
 @media only dummy and (min-width: 20px) and (max-width: 930px) {
    .aside, .marginnote, .footer {
       display: block;
@@ -232,6 +245,9 @@ body {
        left: calc(max(0px,(100% - 790px - 90px)*0.5 + 790px + 55px));
       /* right: 0.5em;*/
        width: calc((100% - 790px - 90px)*0.5);
+   }
+   .aside:empty, .marginnote:empty, .footer:empty {
+      border: 1px solid red;
    }
    .asideTufte {
        float: right;
@@ -877,6 +893,9 @@ iframe:not([class]), iframe.ursa-widgetize {
    border: 2px solid red;
 }
 */
+.centered-image img, strong + img {
+   display: block;
+}
 img.centeredfigure {
    display: block;
    margin-bottom: 1em !important;
@@ -1416,6 +1435,14 @@ h5 + .references:before, h4 + .references:before, h3 + .references:before, h2 + 
    font-size: 90% !important;
   /* color: #000 !important;*/ /* #666 figure */
 }
+.figcaption {
+   font-size: 90% !important;
+   opacity: 0.6;
+}
+.figcaption::before {
+   content: 'alt: ';
+   font-style: italic;
+}
 caption { /* tables */
    margin-top: 0pt; /* -2pt*/
    margin-bottom: 0.3em;
@@ -1517,7 +1544,16 @@ br + .math.display {
 .pdflink {
    display: none;
 }
-.note, .notes, .comment, .aside2 {
+span.note, span.notes {
+   color: #888;
+}
+span.note::before, span.notes::before {
+   content: '(📝 ';
+}
+span.note::after, span.notes::after {
+   content: ')';
+}
+div.note, div.notes, .comment, .aside2 {
    font-size: 92%;
    margin-top: 0.6em;
    margin-bottom: 0.6em;
@@ -1778,6 +1814,22 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
 .comment-start, .comment-end {
    display: block;
    color: green;
+   font-size: 90%;
+}
+.comment-end {
+   margin-left: 2em;
+}
+.comment-start {
+   margin-left: 2em;
+}
+.comment-start + .comment-start {
+   margin-left: 4em;
+}
+.comment-start + .comment-start + .comment-start {
+   margin-left: 6em;
+}
+.comment-start + .comment-start + .comment-start + .comment-start {
+   margin-left: 8em;
 }
 .deletion {
    text-decoration-line: line-through;
@@ -1786,28 +1838,70 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
 .insertion {
    color: blue;
 }
-.comment-start::before, .deletion::before {
-   content: '<' attr(id) ': ' attr(author) ', ' attr(date) ': ';
+.comment-start[id]::before {
+  /* content: '<' attr(id) ': ' attr(author) ', ' attr(date) ': ';*/
+   content: '<' attr(id) ': ';
    text-decoration-line: unset !imprortant;
+   font-size: 80%;
+   opacity: 0.5;
 }
-.comment-start::after {
-   content: '> ';
+.deletion:before {
+  /* content: '<' attr(id) ': ' attr(author) ', ' attr(date) ': ';*/
+   content: '';
+   text-decoration-line: unset !imprortant;
+   font-size: 180%;
+   opacity: 0.5;
 }
-.deletion::after {
-   content: ' </>';
+.comment-start[author]::after {
+   content: ' -- ' attr(author) ', ' attr(date) '>';
+   font-style: italic;
+   font-size: 80%;
+   opacity: 0.5;
+  /* content: '> ';*/
 }
-.comment-end::after {
+.deletion[author]::after {
+   text-decoration-line: unset !important;
+   content: ' -- ' attr(author) ', ' attr(date);
+   font-size: 72%;
+   font-style: italic;
+   opacity: 0.5;
+}
+.comment-end[id]::after {
+   font-style: italic;
+   font-size: 80%;
    content: ' </' attr(id) '> ';
+   opacity: 0.5;
 }
-.insertion::before, .deletion::before {
-   content: '<' attr(author) ', ' attr(date) '> ';
+.insertion::before {
+  /* content: '<' attr(author) ', ' attr(date) '> ';*/
 }
-.insertion::after {
-   content: '</>';
+.insertion[author]::after {
+   content: ' // ' attr(author) ', ' attr(date);
+   font-size: 80%;
+   opacity: 0.5;
 }
 .deletion u {
    text-decoration: line-through;
 }
+/*
+.comment-start:after *  {
+   border: 1px solid green;
+}
+.comment-start > span {
+   content: 'HHH';
+}
+.comment-start:only-of-type {
+   border: solid red 1px;
+}
+.comment-start::before {
+   display: block !important;
+   content: '['
+}
+.comment-start::after {
+   display: block;
+   content: ']'
+}
+*/
 .hiddenanchor {
    display: none; /* none table-column */
 }
@@ -1817,6 +1911,10 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
 .columns > .column {
    display: table-cell;
    width: unset;
+}
+#TOC ul li img {
+   border: 1px solid red;
+   display: none;
 }
 @media only screen and (max-width: 856px) {
    html {background: inherit;}
