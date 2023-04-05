@@ -791,6 +791,7 @@ img {
   display: inline-block; /* 'inline-block'(selected), 'block; (alt) */
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0.4em;
  /**/
   -webkit-filter: grayscale(0);
   filter: none;
@@ -1902,6 +1903,14 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
    content: ']'
 }
 */
+/*
+span.comment-start ~ * {
+  border: 1px solid red;
+}
+*/
+.comment-start, .comment-end, .insertion, .deletion {
+  /* display: none;*/
+}
 .hiddenanchor {
    display: none; /* none table-column */
 }
