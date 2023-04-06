@@ -170,11 +170,11 @@ div.csl-indent {
 
 
 
-<h1 class="title toc-ignore">Пространственные данные в качестве учебного материала</h1>
+<h1 class="title toc-ignore">Пространственные данные: примеры и обработка</h1>
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 06</span> <span class="when">06 апреля 2023 г. <span class="updated">Обновлено: 2023-03-23 13:48</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 06</span> <span class="when">06 апреля 2023 г., 13 апреля 2023 г. <span class="updated">Обновлено: 2023-03-31 11:47</span></span></h4>
 
 
 <div id="TOC">
@@ -253,7 +253,7 @@ div.csl-indent {
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>fname <span class="ot">&lt;-</span> list1[<span class="fu">grep</span>(<span class="st">&quot;kernelUD&quot;</span>,<span class="fu">basename</span>(list1))]</span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">file.remove</span>(list1)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>fname</span></code></pre></div>
-<pre><code>[1] &quot;C:\\TEMP\\RtmpecRx69/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
+<pre><code>[1] &quot;C:\\TEMP\\RtmpCSSJS1/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
 <div id="подготовка-данных" class="section level3">
 <h3><span class="small">Подготовка данных</span></h3>
 <div class="oversize">
@@ -821,7 +821,7 @@ Characteristics of the bursts:
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" tabindex="-1"></a><span class="co"># plotltr(lt1,&quot;dt/3600/24&quot;)</span></span></code></pre></div>
 <p>Установим точку отсчета</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" tabindex="-1"></a>(refda <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">strptime</span>(<span class="st">&quot;12:00&quot;</span>,<span class="st">&quot;%H:%M&quot;</span>,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))))</span></code></pre></div>
-<pre><code>[1] &quot;2023-03-23 12:00:00 UTC&quot;</code></pre>
+<pre><code>[1] &quot;2023-03-31 12:00:00 UTC&quot;</code></pre>
 <p>Заполним пропуски значениями <code>NA</code></p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" tabindex="-1"></a>lt3 <span class="ot">&lt;-</span> <span class="fu">setNA</span>(lt2,refda,<span class="dv">3</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span>)</span>
 <span id="cb94-2"><a href="#cb94-2" tabindex="-1"></a>lt3</span></code></pre></div>
@@ -834,15 +834,15 @@ Irregular traject. Variable time lag between two locs
 
 Characteristics of the bursts:
    id burst nb.reloc NAs          date.begin            date.end
-1 145 145.1       16   4 2008-05-14 03:54:00 2008-06-26 18:57:00
+1 145 145.1       15   3 2008-05-14 03:54:00 2008-06-26 18:57:00
 2 145 145.3       36   9 2009-03-17 20:15:00 2009-06-30 18:29:00
 3 145 145.4       80  17 2009-11-03 18:26:00 2010-06-28 18:58:00
 4 145 145.5       71  24 2010-12-01 20:34:00 2011-06-29 16:51:00
 5 145 145.6       17  12 2012-03-28 20:20:00 2012-05-15 18:27:00
-6 168 168.1       27   1 2012-04-12 21:45:00 2012-06-30 10:00:00
-7 168 168.2       80   7 2012-11-05 00:00:00 2013-06-28 14:17:00
+6 168 168.1       27   3 2012-04-12 21:45:00 2012-06-30 10:00:00
+7 168 168.2       80   1 2012-11-02 00:00:00 2013-06-28 14:17:00
 8 168 168.3       27   0 2014-04-13 21:27:00 2014-06-30 22:00:00
-9 168 168.4       61  10 2014-12-03 00:00:00 2015-05-30 04:00:00
+9 168 168.4       61  13 2014-12-03 00:00:00 2015-05-30 04:00:00
 
 
  infolocs provided. The following variables are available:
@@ -860,15 +860,15 @@ Regular traject. Time lag between two locs: 259200 seconds
 
 Characteristics of the bursts:
    id burst nb.reloc NAs          date.begin            date.end
-1 145 145.1       16   4 2008-05-13 12:00:00 2008-06-27 12:00:00
-2 145 145.3       36   9 2009-03-18 12:00:00 2009-07-01 12:00:00
-3 145 145.4       80  17 2009-11-04 12:00:00 2010-06-29 12:00:00
-4 145 145.5       71  24 2010-12-02 12:00:00 2011-06-30 12:00:00
-5 145 145.6       17  12 2012-03-29 12:00:00 2012-05-16 12:00:00
-6 168 168.1       27   1 2012-04-13 12:00:00 2012-06-30 12:00:00
-7 168 168.2       80   7 2012-11-03 12:00:00 2013-06-28 12:00:00
-8 168 168.3       27   0 2014-04-12 12:00:00 2014-06-29 12:00:00
-9 168 168.4       61  10 2014-12-02 12:00:00 2015-05-31 12:00:00
+1 145 145.1       15   3 2008-05-15 12:00:00 2008-06-26 12:00:00
+2 145 145.3       36   9 2009-03-17 12:00:00 2009-06-30 12:00:00
+3 145 145.4       80  17 2009-11-03 12:00:00 2010-06-28 12:00:00
+4 145 145.5       71  24 2010-12-01 12:00:00 2011-06-29 12:00:00
+5 145 145.6       17  12 2012-03-28 12:00:00 2012-05-15 12:00:00
+6 168 168.1       27   3 2012-04-12 12:00:00 2012-06-29 12:00:00
+7 168 168.2       80   1 2012-11-02 12:00:00 2013-06-27 12:00:00
+8 168 168.3       27   0 2014-04-14 12:00:00 2014-07-01 12:00:00
+9 168 168.4       61  13 2014-12-01 12:00:00 2015-05-30 12:00:00
 
 
  infolocs provided. The following variables are available:
@@ -918,15 +918,15 @@ Irregular traject. Variable time lag between two locs
 
 Characteristics of the bursts:
    id        burst nb.reloc NAs          date.begin            date.end
-1 145 145.1.R50000        6   0 2008-05-13 12:00:00 2008-06-27 05:12:02
-2 145 145.3.R50000       19   0 2009-03-18 12:00:00 2009-07-01 08:29:14
-3 145 145.4.R50000       32   0 2009-11-04 12:00:00 2010-06-28 09:31:12
-4 145 145.5.R50000       21   0 2010-12-02 12:00:00 2011-06-28 04:20:19
-5 145 145.6.R50000        4   0 2012-03-29 12:00:00 2012-05-11 23:37:20
-6 168 168.1.R50000        9   0 2012-04-13 12:00:00 2012-06-28 17:09:24
-7 168 168.2.R50000       38   0 2012-11-03 12:00:00 2013-06-28 07:21:26
-8 168 168.3.R50000        3   0 2014-04-12 12:00:00 2014-06-29 06:11:42
-9 168 168.4.R50000       16   0 2014-12-02 12:00:00 2015-05-19 11:29:34
+1 145 145.1.R50000        6   0 2008-05-15 12:00:00 2008-06-26 05:12:02
+2 145 145.3.R50000       19   0 2009-03-17 12:00:00 2009-06-30 08:29:14
+3 145 145.4.R50000       32   0 2009-11-03 12:00:00 2010-06-27 09:31:12
+4 145 145.5.R50000       21   0 2010-12-01 12:00:00 2011-06-27 04:20:19
+5 145 145.6.R50000        4   0 2012-03-28 12:00:00 2012-05-10 23:37:20
+6 168 168.1.R50000        9   0 2012-04-12 12:00:00 2012-06-28 07:51:23
+7 168 168.2.R50000       44   0 2012-11-02 12:00:00 2013-06-27 07:26:02
+8 168 168.3.R50000        3   0 2014-04-14 12:00:00 2014-07-01 06:11:42
+9 168 168.4.R50000       16   0 2014-12-01 12:00:00 2015-05-18 11:18:11
 
 
  infolocs provided. The following variables are available:
@@ -946,15 +946,15 @@ Regular traject. Time lag between two locs: 518400 seconds
 
 Characteristics of the bursts:
    id burst nb.reloc NAs          date.begin            date.end
-1 145 145.1        8   3 2008-05-13 12:00:00 2008-06-24 12:00:00
-2 145 145.3       18   8 2009-03-18 12:00:00 2009-06-28 12:00:00
-3 145 145.4       40  17 2009-11-04 12:00:00 2010-06-26 12:00:00
-4 145 145.5       35  19 2010-12-02 12:00:00 2011-06-24 12:00:00
-5 145 145.6        8   7 2012-03-29 12:00:00 2012-05-10 12:00:00
-6 168 168.1       13   1 2012-04-13 12:00:00 2012-06-24 12:00:00
-7 168 168.2       40   6 2012-11-03 12:00:00 2013-06-25 12:00:00
-8 168 168.3       13   0 2014-04-12 12:00:00 2014-06-23 12:00:00
-9 168 168.4       30   8 2014-12-02 12:00:00 2015-05-25 12:00:00
+1 145 145.1        7   3 2008-05-15 12:00:00 2008-06-20 12:00:00
+2 145 145.3       18   8 2009-03-17 12:00:00 2009-06-27 12:00:00
+3 145 145.4       40  17 2009-11-03 12:00:00 2010-06-25 12:00:00
+4 145 145.5       35  19 2010-12-01 12:00:00 2011-06-23 12:00:00
+5 145 145.6        8   7 2012-03-28 12:00:00 2012-05-09 12:00:00
+6 168 168.1       13   3 2012-04-12 12:00:00 2012-06-23 12:00:00
+7 168 168.2       40   1 2012-11-02 12:00:00 2013-06-24 12:00:00
+8 168 168.3       13   0 2014-04-14 12:00:00 2014-06-25 12:00:00
+9 168 168.4       30   9 2014-12-01 12:00:00 2015-05-24 12:00:00
 
 
  infolocs provided. The following variables are available:
@@ -1016,7 +1016,7 @@ Characteristics of the bursts:
 <h5>шаг 3 суток, с пропусками</h5>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" tabindex="-1"></a>(m1 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt4[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson06/widget_dd17_fb689c4c1e31a417ed485e463b5244d7.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_dd17_8b599992fc2d21b1b5eaa841ef33d429.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <p><sup><a href="#data-lt4">См. исходные данные</a></sup></p>
@@ -1025,7 +1025,7 @@ Characteristics of the bursts:
 <h5>шаг 50 км, без пропусков</h5>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a>(m2 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt6[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson06/widget_dd19_8083843fe12a3619a6e474020640071f.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_dd19_f2a524773cae9a6622310d037c2cd28f.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <p><sup><a href="#data-lt6">См. исходные данные</a></sup></p>
@@ -1034,7 +1034,7 @@ Characteristics of the bursts:
 <h5>шаг 6 суток, без пропусков</h5>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" tabindex="-1"></a>(m3 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt7[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson06/widget_dd21_f344a232fc98f53ae5b94e0e7bf50e01.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_dd21_eebe1834ac18c18e502a4fe9c51bdc9e.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <p><sup><a href="#data-lt7">См. исходные данные</a></sup></p>
@@ -1056,8 +1056,8 @@ Irregular traject. Variable time lag between two locs
 
 Characteristics of the bursts:
    id        burst nb.reloc NAs          date.begin            date.end
-1 168 168.2.R15000      156   0 2012-11-03 12:00:00 2013-06-27 22:52:44
-2 168 168.3.R15000       22   0 2014-04-12 12:00:00 2014-06-28 18:06:23
+1 168 168.2.R15000      165   0 2012-11-02 12:00:00 2013-06-26 22:52:44
+2 168 168.3.R15000       22   0 2014-04-14 12:00:00 2014-06-30 18:06:23
 
 
  infolocs provided. The following variables are available:
@@ -1102,7 +1102,7 @@ Characteristics of the bursts:
 <span id="cb125-21"><a href="#cb125-21" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_along</span>(res),<span class="cf">function</span>(x) <span class="st">&quot;dt_mean&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" tabindex="-1"></a>(m4 <span class="ot">&lt;-</span> <span class="fu">mapview</span>(res,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">color=</span>color,<span class="at">label=</span>label))</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson06/widget_dd28_ba69885f1a18f167244f107a5c7de9b1.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_dd28_61c6b65d4ce99d36764b1b01b0b5700c.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 </div>
@@ -1225,7 +1225,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <p>Как с пространственными данными</p>
 <div class="note">
 <h2 class="toc-ignore unnumbered unlisted">
-Домашнее задание на 13 апреля 2023 г.
+Домашнее задание на 20 апреля 2023 г.
 </h2>
 <ul>
 <li><p>Исходные данные: “<code>data/2022-01-09_14-00_Sun.gpx</code>” (“Лыжная прогулка”)</p></li>
@@ -1254,7 +1254,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb148-15"><a href="#cb148-15" tabindex="-1"></a>              )</span></code></pre></div>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" tabindex="-1"></a>s3d</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson06/widget_s3d-show_45edd8ca9c5ded445420e7cb3c0d2a5e.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_s3d-show_19acad530219638c8d2191310facc42f.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(tr) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
@@ -1271,7 +1271,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb150-12"><a href="#cb150-12" tabindex="-1"></a>         ,<span class="at">coloraxis=</span><span class="fu">list</span>(<span class="at">colorscale =</span> <span class="st">&quot;Viridis&quot;</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" tabindex="-1"></a>dm</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson06/widget_dm-plot_e9c633dfbd75d2df6e7bccf80691e0e6.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_dm-plot_0964f333d6b20ada59a7eb2f3d22033d.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <div id="refs" class="references csl-bib-body" entry-spacing="1">
