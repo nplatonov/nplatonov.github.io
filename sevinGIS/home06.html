@@ -14,7 +14,7 @@
 
 <title>ГИС 06</title>
 
-<script src="https://nplatonov.github.io/site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.21/header-attrs.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -174,7 +174,7 @@ div.csl-indent {
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 06</span> <span class="when">06 апреля 2023 г., 13 апреля 2023 г. <span class="updated">Обновлено: 2023-03-31 11:47</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 06</span> <span class="when">13 апреля 2023 г. <span class="updated">Обновлено: 2023-04-06 20:18</span></span></h4>
 
 
 <div id="TOC">
@@ -253,7 +253,7 @@ div.csl-indent {
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>fname <span class="ot">&lt;-</span> list1[<span class="fu">grep</span>(<span class="st">&quot;kernelUD&quot;</span>,<span class="fu">basename</span>(list1))]</span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">file.remove</span>(list1)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>fname</span></code></pre></div>
-<pre><code>[1] &quot;C:\\TEMP\\RtmpCSSJS1/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
+<pre><code>[1] &quot;C:\\TEMP\\RtmpYRcpwG/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
 <div id="подготовка-данных" class="section level3">
 <h3><span class="small">Подготовка данных</span></h3>
 <div class="oversize">
@@ -821,7 +821,7 @@ Characteristics of the bursts:
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" tabindex="-1"></a><span class="co"># plotltr(lt1,&quot;dt/3600/24&quot;)</span></span></code></pre></div>
 <p>Установим точку отсчета</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" tabindex="-1"></a>(refda <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">strptime</span>(<span class="st">&quot;12:00&quot;</span>,<span class="st">&quot;%H:%M&quot;</span>,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))))</span></code></pre></div>
-<pre><code>[1] &quot;2023-03-31 12:00:00 UTC&quot;</code></pre>
+<pre><code>[1] &quot;2023-04-06 12:00:00 UTC&quot;</code></pre>
 <p>Заполним пропуски значениями <code>NA</code></p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" tabindex="-1"></a>lt3 <span class="ot">&lt;-</span> <span class="fu">setNA</span>(lt2,refda,<span class="dv">3</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span>)</span>
 <span id="cb94-2"><a href="#cb94-2" tabindex="-1"></a>lt3</span></code></pre></div>
@@ -1254,7 +1254,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb148-15"><a href="#cb148-15" tabindex="-1"></a>              )</span></code></pre></div>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" tabindex="-1"></a>s3d</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson06/widget_s3d-show_19acad530219638c8d2191310facc42f.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_s3d-show_3a9ae084f1315d42db17ca6b1ac38e0d.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(tr) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
@@ -1271,7 +1271,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <span id="cb150-12"><a href="#cb150-12" tabindex="-1"></a>         ,<span class="at">coloraxis=</span><span class="fu">list</span>(<span class="at">colorscale =</span> <span class="st">&quot;Viridis&quot;</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" tabindex="-1"></a>dm</span></code></pre></div>
 <div class="framed">
-<iframe src="assets/lesson06/widget_dm-plot_0964f333d6b20ada59a7eb2f3d22033d.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
+<iframe src="assets/lesson06/widget_dm-plot_7b960562ca8d2b97b8889369d736878e.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
 <div id="refs" class="references csl-bib-body" entry-spacing="1">
