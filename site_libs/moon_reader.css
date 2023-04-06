@@ -6,7 +6,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 */
 :root {
-   --accent: #1D6D8C; /* #268  #0084D7;*/
+   --accent: #000 ; /* #1D6D8C #268  #0084D7;*/
    --inverse-accent: #ee9;
    --magnifier: 1.7;
    --pointsize: 22pt;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
@@ -1512,6 +1512,10 @@ table tr th:empty {
 }
 .bottom {
    vertical-align: bottom;
+}
+html[data-darkreader-scheme="dark"] body img:hover,
+html[data-darkreader-scheme="dark"] body .html-widget:hover {
+   filter: invert();
 }
 @media only screen {
    .remark-slides-area .remark-fading { z-index: 9; } 

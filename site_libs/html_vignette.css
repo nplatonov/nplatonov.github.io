@@ -1854,7 +1854,7 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
    opacity: 0.5;
 }
 .comment-start[author]::after {
-   content: ' -- ' attr(author) ', ' attr(date) '>';
+   content: ' ' attr(author) ', ' attr(date) '>';
    font-style: italic;
    font-size: 80%;
    opacity: 0.5;
@@ -1862,7 +1862,7 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
 }
 .deletion[author]::after {
    text-decoration-line: unset !important;
-   content: ' -- ' attr(author) ', ' attr(date);
+   content: ' Removed by ' attr(author) ' on ' attr(date);
    font-size: 72%;
    font-style: italic;
    opacity: 0.5;
@@ -1877,7 +1877,7 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
   /* content: '<' attr(author) ', ' attr(date) '> ';*/
 }
 .insertion[author]::after {
-   content: ' // ' attr(author) ', ' attr(date);
+   content: ' Added by ' attr(author) ' on ' attr(date);
    font-size: 80%;
    opacity: 0.5;
 }
@@ -1908,8 +1908,11 @@ span.comment-start ~ * {
   border: 1px solid red;
 }
 */
-.comment-start, .comment-end, .insertion, .deletion {
+.comment-start, .comment-end, .insertion::after, .deletion {
   /* display: none;*/
+}
+.insertion {
+  /* color: unset;*/
 }
 .hiddenanchor {
    display: none; /* none table-column */
@@ -1924,6 +1927,10 @@ span.comment-start ~ * {
 #TOC ul li img {
    border: 1px solid red;
    display: none;
+}
+html[data-darkreader-scheme="dark"] body img:hover,
+html[data-darkreader-scheme="dark"] body .html-widget:hover {
+   filter: invert();
 }
 @media only screen and (max-width: 856px) {
    html {background: inherit;}
@@ -2226,6 +2233,9 @@ span.comment-start ~ * {
       width: auto;
      */
      /* display: inline-block;*/
+   }
+   .column img {
+      max-width: 7.5cm !important;
    }
    .zzzplotly {
       width: 10cm !important;
