@@ -6,7 +6,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 */
 :root {
-   --accent: #000 ; /* #1D6D8C #268  #0084D7;*/
+   --accent: #248 ; /* #1D6D8C #268  #0084D7;*/
    --inverse-accent: #ee9;
    --magnifier: 1.7;
    --pointsize: 22pt;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
@@ -211,6 +211,7 @@ body:not(:fullscreen) .title-slide iframe {
 #slide-bib .remark-slide-number,
 #slide-fn .remark-slide-number,
 .break .remark-slide-number,
+.notable .remark-slide-number,
 .metadata .remark-slide-number,
 .picsum .remark-slide-number,
 .title-slide .remark-slide-number {
@@ -751,7 +752,7 @@ ul {
    left: 0;
    height: 100%;
   /* background-image: linear-gradient(to right, #0000, #0000, #0000000A);*/
-   background-image: linear-gradient(to right, var(--sidebar-background), var(--sidebar-background)); /* #ff35 #0254 */
+   background-image: linear-gradient(to right, var(--sidebar-background), var(--light)); /* #ff35 #0254 */
   /* background-color: #0001;*/
    margin-left: -16px;
    margin-top: -24px;
@@ -1100,6 +1101,15 @@ ol li {
 sup {
    font-size: 55%;
 }
+sup a[href^="#fn"] {
+   padding-left: 0.2em;
+}
+sup a[href^="#fn"]::before {
+   content: '{';
+}
+sup a[href^="#fn"]::after {
+   content: '}';
+}
 pre {
    margin-top: 0.1em;
    margin-bottom: 0.1em;
@@ -1219,7 +1229,8 @@ code.remark-code:not(.hljs) {
    box-shadow: none;
    z-index: 98;
 }
-.break > .banner {
+.break > .banner,
+.notable > .banner {
    display: none;
 }
 .shorttitle {

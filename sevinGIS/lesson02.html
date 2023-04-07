@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>ГИС 02</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.21/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Начало работы с QGIS</h1>
+<h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
+<h4 class="author">Никита Платонов</h4>
+<address class="author_afil">
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 02</span> <span class="when">09 марта 2023 г. <span class="updated">Обновлено: 2023-04-07 14:22</span></span></h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#установка" id="toc-установка">Установка</a>
+<ul>
+<li><a href="#standalone" id="toc-standalone">Standalone</a></li>
+<li><a href="#osgeo4w" id="toc-osgeo4w">OSGeo4W</a></li>
+<li><a href="#nextgis-qgis" id="toc-nextgis-qgis">NextGIS QGIS</a></li>
+<li><a href="#good-practice" id="toc-good-practice">Good practice</a></li>
+</ul></li>
+<li><a href="#интерфейс-пользователя" id="toc-интерфейс-пользователя">Интерфейс пользователя</a>
+<ul>
+<li><a href="#menu" id="toc-menu">Menu</a>
+<ul>
+<li><a href="#project" id="toc-project">Project</a></li>
+<li><a href="#edit" id="toc-edit">Edit</a></li>
+<li><a href="#view" id="toc-view">View</a></li>
+<li><a href="#layer" id="toc-layer">Layer</a></li>
+<li><a href="#settings" id="toc-settings">Settings</a></li>
+<li><a href="#plugins" id="toc-plugins">Plugins</a></li>
+<li><a href="#vector" id="toc-vector">Vector</a></li>
+<li><a href="#raster" id="toc-raster">Raster</a></li>
+<li><a href="#web" id="toc-web">Web</a></li>
+<li><a href="#processing" id="toc-processing">Processing</a></li>
+</ul></li>
+<li><a href="#options" id="toc-options">Options</a>
+<ul>
+<li><a href="#general" id="toc-general">General</a></li>
+<li><a href="#crs-handling" id="toc-crs-handling">CRS Handling</a></li>
+<li><a href="#custom-crs" id="toc-custom-crs">Custom CRS</a></li>
+<li><a href="#gdal-raster" id="toc-gdal-raster">GDAL Raster</a></li>
+<li><a href="#gdal-vector" id="toc-gdal-vector">GDAL Vector</a></li>
+<li><a href="#rendering" id="toc-rendering">Rendering</a></li>
+<li><a href="#map-tools" id="toc-map-tools">Map Tools</a></li>
+<li><a href="#digitizing" id="toc-digitizing">Digitizing</a></li>
+<li><a href="#gps-support" id="toc-gps-support">GPS Support</a></li>
+</ul></li>
+<li><a href="#specific" id="toc-specific">Specific</a>
+<ul>
+<li><a href="#panels" id="toc-panels">Panels</a></li>
+<li><a href="#toolbars" id="toc-toolbars">Toolbars</a></li>
+<li><a href="#shortcuts" id="toc-shortcuts">Shortcuts</a></li>
+<li><a href="#style-manager" id="toc-style-manager">Style Manager</a></li>
+<li><a href="#plugins-1" id="toc-plugins-1">Plugins</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#ведение-проекта" id="toc-ведение-проекта">Ведение проекта</a>
+<ul>
+<li><a href="#options-1" id="toc-options-1">Options</a>
+<ul>
+<li><a href="#crs" id="toc-crs">CRS</a></li>
+<li><a href="#decoration-scalebar" id="toc-decoration-scalebar">Decoration Scalebar</a></li>
+<li><a href="#decoration-north-arrow" id="toc-decoration-north-arrow">Decoration North Arrow</a></li>
+<li><a href="#decoration-copyright-label" id="toc-decoration-copyright-label">Decoration Copyright Label</a></li>
+<li><a href="#basemap-qms" id="toc-basemap-qms">Basemap (QMS)</a></li>
+<li><a href="#esri-satellite" id="toc-esri-satellite">ESRI Satellite</a></li>
+</ul></li>
+<li><a href="#layer-1" id="toc-layer-1">Layer</a>
+<ul>
+<li><a href="#add" id="toc-add">Add</a></li>
+<li><a href="#properties" id="toc-properties">Properties</a></li>
+<li><a href="#information" id="toc-information">Information</a></li>
+<li><a href="#information-fields" id="toc-information-fields">Information (Fields)</a></li>
+<li><a href="#symbology" id="toc-symbology">Symbology</a></li>
+<li><a href="#symbol-settings" id="toc-symbol-settings">Symbol Settings</a></li>
+<li><a href="#query" id="toc-query">Query</a></li>
+<li><a href="#attribute-table" id="toc-attribute-table">Attribute Table</a></li>
+<li><a href="#rendering-1" id="toc-rendering-1">Rendering</a></li>
+</ul></li>
+<li><a href="#labelling" id="toc-labelling">Labelling</a>
+<ul>
+<li><a href="#text" id="toc-text">Text</a></li>
+<li><a href="#text-buffer" id="toc-text-buffer">Text Buffer</a></li>
+<li><a href="#placement" id="toc-placement">Placement</a></li>
+<li><a href="#rendering-2" id="toc-rendering-2">Rendering</a></li>
+</ul></li>
+<li><a href="#digitizing-1" id="toc-digitizing-1">Digitizing</a>
+<ul>
+<li><a href="#create" id="toc-create">Create</a></li>
+<li><a href="#new-shapefile" id="toc-new-shapefile">New Shapefile</a></li>
+<li><a href="#feature-attrubute" id="toc-feature-attrubute">Feature Attrubute</a></li>
+<li><a href="#add-ring" id="toc-add-ring">Add Ring</a></li>
+<li><a href="#результат" id="toc-результат">Результат</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#анализ" id="toc-анализ">Анализ</a>
+<ul>
+<li><a href="#извлечение-характеристик" id="toc-извлечение-характеристик">Извлечение характеристик</a>
+<ul>
+<li><a href="#extract-perimeter" id="toc-extract-perimeter">Extract Perimeter</a></li>
+<li><a href="#builder" id="toc-builder">Builder</a></li>
+<li><a href="#as-new-field" id="toc-as-new-field">as New Field</a></li>
+</ul></li>
+</ul></li>
+<li style="display: none;"><a href="#section" id="toc-section"></a></li>
+</ul>
+</div>
+
+<div id="установка" class="section level2">
+<h2>Установка</h2>
+<div id="standalone" class="section level3">
+<h3>Standalone</h3>
+<!-- [QGIS Web](https://qgis.org/en/site/) -->
+<p><a href="https://qgis.org/en/site/" class="uri">https://qgis.org/en/site/</a></p>
+<iframe src="https://qgis.org/en/site/" width="100%" height="550">
+</iframe>
+<p>Находим “Download Now”</p>
+<hr />
+<p><a href="https://qgis.org/en/site/forusers/download.html" class="uri">https://qgis.org/en/site/forusers/download.html</a></p>
+<iframe src="https://qgis.org/en/site/forusers/download.html" width="100%" height="550">
+</iframe>
+</div>
+<div id="osgeo4w" class="section level3">
+<h3>OSGeo4W</h3>
+<p>Программное обеспечение с открытым исходным кодом для Windows <a href="https://trac.osgeo.org/osgeo4w/" class="uri">https://trac.osgeo.org/osgeo4w/</a></p>
+<iframe src="https://trac.osgeo.org/osgeo4w/" width="100%" height="530">
+</iframe>
+<p>Находим “Download the ​OSGeo4W network installer”</p>
+<hr />
+<p class="centered-image"><img src="assets/lesson02/3c444ffb~chunk.png" width="521" /></p>
+</div>
+<div id="nextgis-qgis" class="section level3">
+<h3>NextGIS QGIS</h3>
+<p><a href="https://nextgis.com/nextgis-qgis/" class="uri">https://nextgis.com/nextgis-qgis/</a> (Windows)</p>
+<iframe src="https://nextgis.com/nextgis-qgis/" width="100%" height="530">
+</iframe>
+<p>Находим “Download NextGIS QGIS installer”</p>
+</div>
+<div id="good-practice" class="section level3">
+<h3>Good practice</h3>
+<p>Используем поисковые системы, ссылки могут устареть.</p>
+</div>
+</div>
+<div id="интерфейс-пользователя" class="section level2">
+<h2>Интерфейс пользователя</h2>
+<div id="menu" class="section level3">
+<h3>Menu</h3>
+<div id="project" class="section level4">
+<h4>Project</h4>
+<p class="centered-image"><img src="assets/lesson02/7a11f37f~chunk.png" width="702" /></p>
+</div>
+<div id="edit" class="section level4">
+<h4>Edit</h4>
+<p class="centered-image"><img src="assets/lesson02/84239afd~chunk.png" width="702" /></p>
+</div>
+<div id="view" class="section level4">
+<h4>View</h4>
+<p class="centered-image"><img src="assets/lesson02/c8601c60~chunk.png" width="702" /></p>
+</div>
+<div id="layer" class="section level4">
+<h4>Layer</h4>
+<p class="centered-image"><img src="assets/lesson02/93b2d1d6~chunk.png" width="702" /></p>
+</div>
+<div id="settings" class="section level4">
+<h4>Settings</h4>
+<p class="centered-image"><img src="assets/lesson02/62ad0b1b~chunk.png" width="702" /></p>
+</div>
+<div id="plugins" class="section level4">
+<h4>Plugins</h4>
+<p class="centered-image"><img src="assets/lesson02/55f03cf8~chunk.png" width="702" /></p>
+</div>
+<div id="vector" class="section level4">
+<h4>Vector</h4>
+<p class="centered-image"><img src="assets/lesson02/6d4232c0~chunk.png" width="702" /></p>
+</div>
+<div id="raster" class="section level4">
+<h4>Raster</h4>
+<p class="centered-image"><img src="assets/lesson02/96f14e8a~chunk.png" width="702" /></p>
+</div>
+<div id="web" class="section level4">
+<h4>Web</h4>
+<p class="centered-image"><img src="assets/lesson02/9cb47dde~chunk.png" width="702" /></p>
+</div>
+<div id="processing" class="section level4">
+<h4>Processing</h4>
+<p class="centered-image"><img src="assets/lesson02/a49d5c22~chunk.png" width="702" /></p>
+</div>
+</div>
+<div id="options" class="section level3">
+<h3>Options</h3>
+<div id="general" class="section level4">
+<h4>General</h4>
+<p class="centered-image"><img src="assets/lesson02/0bbd510b~chunk.png" width="749" /></p>
+</div>
+<div id="crs-handling" class="section level4">
+<h4>CRS Handling</h4>
+<p class="centered-image"><img src="assets/lesson02/c49ea9e5~chunk.png" width="749" /></p>
+</div>
+<div id="custom-crs" class="section level4">
+<h4>Custom CRS</h4>
+<p class="centered-image"><img src="assets/lesson02/5877d742~chunk.png" width="749" /></p>
+</div>
+<div id="gdal-raster" class="section level4">
+<h4>GDAL Raster</h4>
+<p class="centered-image"><img src="assets/lesson02/033353af~chunk.png" width="749" /></p>
+</div>
+<div id="gdal-vector" class="section level4">
+<h4>GDAL Vector</h4>
+<p class="centered-image"><img src="assets/lesson02/0db27bd7~chunk.png" width="749" /></p>
+</div>
+<div id="rendering" class="section level4">
+<h4>Rendering</h4>
+<p class="centered-image"><img src="assets/lesson02/9775750f~chunk.png" width="749" /></p>
+</div>
+<div id="map-tools" class="section level4">
+<h4>Map Tools</h4>
+<p class="centered-image"><img src="assets/lesson02/b0a2fb78~chunk.png" width="749" /></p>
+</div>
+<div id="digitizing" class="section level4">
+<h4>Digitizing</h4>
+<p class="centered-image"><img src="assets/lesson02/b23578df~chunk.png" width="749" /></p>
+</div>
+<div id="gps-support" class="section level4">
+<h4>GPS Support</h4>
+<p class="centered-image"><img src="assets/lesson02/c9944f06~chunk.png" width="749" /></p>
+</div>
+</div>
+<div id="specific" class="section level3">
+<h3>Specific</h3>
+<div id="panels" class="section level4">
+<h4>Panels</h4>
+<p class="centered-image"><img src="assets/lesson02/cb9f12b1~chunk.png" width="748" /></p>
+</div>
+<div id="toolbars" class="section level4">
+<h4>Toolbars</h4>
+<p class="centered-image"><img src="assets/lesson02/c2658185~chunk.png" width="748" /></p>
+</div>
+<div id="shortcuts" class="section level4">
+<h4>Shortcuts</h4>
+<p class="centered-image"><img src="assets/lesson02/ca2d1e19~chunk.png" width="749" /></p>
+</div>
+<div id="style-manager" class="section level4">
+<h4>Style Manager</h4>
+<p class="centered-image"><img src="assets/lesson02/b9c9a3a4~chunk.png" width="748" /></p>
+</div>
+<div id="plugins-1" class="section level4">
+<h4>Plugins</h4>
+<p class="centered-image"><img src="assets/lesson02/504a832e~chunk.png" width="749" /></p>
+</div>
+</div>
+</div>
+<div id="ведение-проекта" class="section level2">
+<h2>Ведение проекта</h2>
+<div id="options-1" class="section level3">
+<h3>Options</h3>
+<div id="crs" class="section level4">
+<h4>CRS</h4>
+<p class="centered-image"><img src="assets/lesson02/f1240c33~chunk.png" width="748" /></p>
+</div>
+<div id="decoration-scalebar" class="section level4">
+<h4>Decoration Scalebar</h4>
+<p class="centered-image"><img src="assets/lesson02/b0cc4022~chunk.png" width="750" /></p>
+</div>
+<div id="decoration-north-arrow" class="section level4">
+<h4>Decoration North Arrow</h4>
+<p class="centered-image"><img src="assets/lesson02/8be613d8~chunk.png" width="748" /></p>
+</div>
+<div id="decoration-copyright-label" class="section level4">
+<h4>Decoration Copyright Label</h4>
+<p class="centered-image"><img src="assets/lesson02/37b223ab~chunk.png" width="750" /></p>
+</div>
+<div id="basemap-qms" class="section level4">
+<h4>Basemap (QMS)</h4>
+<p class="centered-image"><img src="assets/lesson02/ef036c14~chunk.png" width="749" /></p>
+</div>
+<div id="esri-satellite" class="section level4">
+<h4>ESRI Satellite</h4>
+<p class="centered-image"><img src="assets/lesson02/01be0753~chunk.png" width="749" /></p>
+</div>
+</div>
+<div id="layer-1" class="section level3">
+<h3>Layer</h3>
+<div id="add" class="section level4">
+<h4>Add</h4>
+<p class="centered-image"><img src="assets/lesson02/86fe049d~chunk.png" width="748" /></p>
+</div>
+<div id="properties" class="section level4">
+<h4>Properties</h4>
+<p class="centered-image"><img src="assets/lesson02/c5f3312c~chunk.png" width="748" /></p>
+</div>
+<div id="information" class="section level4">
+<h4>Information</h4>
+<p class="centered-image"><img src="assets/lesson02/3e4c27ba~chunk.png" width="750" /></p>
+</div>
+<div id="information-fields" class="section level4">
+<h4>Information (Fields)</h4>
+<p class="centered-image"><img src="assets/lesson02/16a19a70~chunk.png" width="750" /></p>
+</div>
+<div id="symbology" class="section level4">
+<h4>Symbology</h4>
+<p class="centered-image"><img src="assets/lesson02/1ed9c147~chunk.png" width="750" /></p>
+</div>
+<div id="symbol-settings" class="section level4">
+<h4>Symbol Settings</h4>
+<p class="centered-image"><img src="assets/lesson02/ff5cc523~chunk.png" width="749" /></p>
+</div>
+<div id="query" class="section level4">
+<h4>Query</h4>
+<p class="centered-image"><img src="assets/lesson02/6c989d86~chunk.png" width="749" /></p>
+</div>
+<div id="attribute-table" class="section level4">
+<h4>Attribute Table</h4>
+<p class="centered-image"><img src="assets/lesson02/c2b98b8b~chunk.png" width="750" /></p>
+</div>
+<div id="rendering-1" class="section level4">
+<h4>Rendering</h4>
+<p class="centered-image"><img src="assets/lesson02/a45e6575~chunk.png" width="749" /></p>
+</div>
+</div>
+<div id="labelling" class="section level3">
+<h3>Labelling</h3>
+<div id="text" class="section level4">
+<h4>Text</h4>
+<p class="centered-image"><img src="assets/lesson02/8af1e249~chunk.png" width="750" /></p>
+</div>
+<div id="text-buffer" class="section level4">
+<h4>Text Buffer</h4>
+<p class="centered-image"><img src="assets/lesson02/90782253~chunk.png" width="750" /></p>
+</div>
+<div id="placement" class="section level4">
+<h4>Placement</h4>
+<p class="centered-image"><img src="assets/lesson02/7d111096~chunk.png" width="750" /></p>
+</div>
+<div id="rendering-2" class="section level4">
+<h4>Rendering</h4>
+<p class="centered-image"><img src="assets/lesson02/2fbadb48~chunk.png" width="750" /></p>
+</div>
+</div>
+<div id="digitizing-1" class="section level3">
+<h3>Digitizing</h3>
+<div id="create" class="section level4">
+<h4>Create</h4>
+<p class="centered-image"><img src="assets/lesson02/39c1c7ed~chunk.png" width="748" /></p>
+</div>
+<div id="new-shapefile" class="section level4">
+<h4>New Shapefile</h4>
+<p class="centered-image"><img src="assets/lesson02/a02f43b6~chunk.png" width="748" /></p>
+</div>
+<div id="feature-attrubute" class="section level4">
+<h4>Feature Attrubute</h4>
+<p class="centered-image"><img src="assets/lesson02/25453b04~chunk.png" width="748" /></p>
+</div>
+<div id="add-ring" class="section level4">
+<h4>Add Ring</h4>
+<p class="centered-image"><img src="assets/lesson02/82815aef~chunk.png" width="759" /></p>
+</div>
+<div id="результат" class="section level4">
+<h4>Результат</h4>
+<p class="centered-image"><img src="assets/lesson02/c8415059~chunk.png" width="428" /></p>
+</div>
+</div>
+</div>
+<div id="анализ" class="section level2">
+<h2>Анализ</h2>
+<div id="извлечение-характеристик" class="section level3">
+<h3>Извлечение характеристик</h3>
+<div id="extract-perimeter" class="section level4">
+<h4>Extract Perimeter</h4>
+<p class="centered-image"><img src="assets/lesson02/3da4e74e~chunk.png" width="738" /></p>
+<div class="note">
+<p>Для получения периметр полигона можно открыть таблицу данных и выбрать калькулятор полей.</p>
+</div>
+</div>
+<div id="builder" class="section level4">
+<h4>Builder</h4>
+<p class="centered-image"><img src="assets/lesson02/49cca11f~chunk.png" width="750" /></p>
+<div class="note">
+<p>Создадим виртуальный столбец <code>checkPerim</code>, в который запишем периметр</p>
+</div>
+</div>
+<div id="as-new-field" class="section level4">
+<h4>as New Field</h4>
+<p class="centered-image"><img src="assets/lesson02/51313060~chunk.png" width="748" /></p>
+<div class="note">
+<p>Значение столбцов <code>PERIMETER</code> и <code>checkPerim</code> отличаются, но, в целом, близки друг к другу.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="section" class="section level1 additional">
+<h1 class="additional"></h1>
+</div>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
