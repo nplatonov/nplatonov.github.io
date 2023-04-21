@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>_2k-iceconc</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.21/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+<p>Рассмотрим CF 5045 и отрасль “FBT”.
+Если разложить таблицу “compatibility assessment_all_2022-11-18.xlsx”
+в “длинный формат”, то получаается такая таблица для выбраныых industry и CF.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">CF_code</th>
+<th align="left">industry</th>
+<th align="right">value</th>
+<th align="right">month</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">12</td>
+</tr>
+</tbody>
+</table>
+<p>Применяем отрасли “FBT”
+фильтры по глубине и береговой линии из “industry_conditions.csv”.
+Получаем маску, где эта деятельность возможна.</p>
+<table style="width:100%;">
+<colgroup>
+<col width="12%" />
+<col width="21%" />
+<col width="6%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">activity</th>
+<th align="left">industry</th>
+<th align="left">abbr</th>
+<th align="right">minCoast</th>
+<th align="right">maxCoast</th>
+<th align="right">minDepth</th>
+<th align="right">maxDepth</th>
+<th align="left">iceFree</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Fishery</td>
+<td align="left">bottom trawling</td>
+<td align="left">FBT</td>
+<td align="right">-999</td>
+<td align="right">999</td>
+<td align="right">0</td>
+<td align="right">500</td>
+<td align="left">YES</td>
+</tr>
+</tbody>
+</table>
+<p class="centered-image"><img src="assets/ursa01_unnamed-chunk-8.png" width="421" /></p>
+<p>Инвертируем концентрацию льда, так как деятельность в отсутствие ледового покрова.</p>
+<p class="centered-image"><img src="assets/ursa03_unnamed-chunk-10.png" width="863" /></p>
+<p>Наложим маску industry “FBT” на предпочтительность отсутствия льда.
+Похоже на предыдущую картинку, но в море Баффина действие маски заметно.</p>
+<p class="centered-image"><img src="assets/ursa05_unnamed-chunk-12.png" width="863" /></p>
+<p>По CF есть нормированный Amount:</p>
+<p class="centered-image"><img src="assets/ursa07_unnamed-chunk-14.png" width="494" /></p>
+<p>Наложим Amount на пересечения инвертированной концентрации и маску условий отрасли.</p>
+<p class="centered-image"><img src="assets/ursa09_unnamed-chunk-16.png" width="1017" /></p>
+<p>Создадим столбец <code>available</code>. Он от 0 до 1.
+Если 1, то у отрасли нет ограничения влияния на CF.
+Если 0, то отрасль ограничена влиянием на CF.
+В столбец <code>available</code> запишем суммарное наложение Amount, отсутствия льда и ограничение отрасли по глубине и береговой линии, деленное на Amount.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">CF_code</th>
+<th align="left">industry</th>
+<th align="right">value</th>
+<th align="right">month</th>
+<th align="right">available</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">0.130</td>
+</tr>
+<tr class="even">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0.118</td>
+</tr>
+<tr class="odd">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">0.096</td>
+</tr>
+<tr class="even">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">0.086</td>
+</tr>
+<tr class="odd">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">0.130</td>
+</tr>
+<tr class="even">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">0.226</td>
+</tr>
+<tr class="odd">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">0.382</td>
+</tr>
+<tr class="even">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">8</td>
+<td align="right">0.524</td>
+</tr>
+<tr class="odd">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">9</td>
+<td align="right">0.530</td>
+</tr>
+<tr class="even">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">10</td>
+<td align="right">0.391</td>
+</tr>
+<tr class="odd">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">11</td>
+<td align="right">0.234</td>
+</tr>
+<tr class="even">
+<td align="right">5045</td>
+<td align="left">FBT</td>
+<td align="right">2</td>
+<td align="right">12</td>
+<td align="right">0.152</td>
+</tr>
+</tbody>
+</table>
+<p>Теперь смотрим на оценки экспертов и ломаем голову, как их изменить.
+Стоят значения: 2.
+Если все значения <code>available</code> близки к 1, то мы их не меняем.
+Если все значения <code>available</code> около 0, то <code>value</code> можем менять на 0.
+Если значения <code>available</code> меняются от
+0.09 до 0.53,
+то садимся и чешем репу.</p>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
