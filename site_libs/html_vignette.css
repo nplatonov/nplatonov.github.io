@@ -1835,6 +1835,10 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
 .comment-start + .comment-start + .comment-start + .comment-start {
    margin-left: 8em;
 }
+.insertion, .deletion {
+  /* display: none; */
+   display: inline;
+}
 .deletion {
    text-decoration-line: line-through;
    color: red;
@@ -1855,6 +1859,7 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
    text-decoration-line: unset !imprortant;
    font-size: 180%;
    opacity: 0.5;
+   display: inline-block;
 }
 .comment-start[author]::after {
    content: ' ' attr(author) ', ' attr(date) '>';
