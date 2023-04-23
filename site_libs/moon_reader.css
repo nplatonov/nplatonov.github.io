@@ -732,10 +732,10 @@ ul {
    left: calc(21px + var(--sidebar));;
    bottom: -4px;
   /* height: 20px;*/
-   width: calc(95% - var(--sidebar));;
+   width: calc(94% - var(--sidebar));;
    text-align: left;
    text-transform: uppercase;
-   letter-spacing: 3px;
+   letter-spacing: 2px;
    font-size: 12px;
    opacity: 0.6;
   /* border: 1px solid red;*/
@@ -918,6 +918,11 @@ ul {
    border-left-color: var(--inverse-accent);
    background-image: linear-gradient(to right, var(--sidebar-strip-inverse), var(--sidebar-strip-inverse), var(--sidebar-strip-inverse));
 }
+.remark-slide-content.picsum .sidebar h1[id*=bg][id*=fg],
+.remark-slide-content.picsum .sidebar h2[id*=bg][id*=bg],
+.remark-slide-content.picsum .sidebar h3[id*=bg][id*=fg],
+.remark-slide-content.picsum .sidebar h4[id*=bg][id*=fg],
+.remark-slide-content.picsum .sidebar h5[id*=bg][id*=fg],
 .remark-slide-content[style*=background] .sidebar h1[id*=bg][id*=fg],
 .remark-slide-content[style*=background] .sidebar h2[id*=bg][id*=bg],
 .remark-slide-content[style*=background] .sidebar h3[id*=bg][id*=fg],
@@ -925,6 +930,10 @@ ul {
 .remark-slide-content[style*=background] .sidebar h5[id*=bg][id*=fg] {
    background-image: none;
 }
+.remark-slide-content[style*=background] .sidebar,
+.remark-slide-content.picsum .sidebar {
+   background-image: none !important;
+} 
 /*
 .sidebar h1[id*="fg"]:before {
    content: '\23F7';
