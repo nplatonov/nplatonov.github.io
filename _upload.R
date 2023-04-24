@@ -3,14 +3,14 @@ for (libs in c("site_libs","quarto_libs")) {
    src <- file.path(getOption("ursaCacheDir"),"knit",libs)
    dst <- file.path(".",basename(src))
    invisible(lapply(dir(src,recursive=TRUE),function(x) {
-      if (!grepl("widget",x))
-         return(40L)
+     # if (!grepl("widget",x))
+     #    return(40L)
       dst0 <- file.path(dst,x)
       dpath <- dirname(dst0)
       if (!dir.exists(dpath))
          dir.create(dpath,recursive=TRUE)
       file.copy(file.path(src,x),dst0,overwrite=overwrite,copy.date=TRUE)
-     # message(x)
+      message(x)
    }))
 }
 patt <- "file\\:///C:/platt/R/style/"
