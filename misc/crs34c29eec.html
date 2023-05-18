@@ -195,31 +195,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[1] &quot;unknown&quot;</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">spatial_length</span>(b2)<span class="sc">*</span><span class="fl">1e-3</span></span></code></pre></div>
 <pre><code>[1] 946.6308</code></pre>
+<p>В равноплощадной проекции Лабмерта с нулевыми искажениями на полюсе:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>b6 <span class="ot">&lt;-</span> ursa<span class="sc">:::</span><span class="fu">spatialize</span>(a,<span class="at">resetProj=</span><span class="cn">TRUE</span>,<span class="at">style=</span><span class="st">&quot;laea&quot;</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b6)<span class="sc">$</span>proj4string</span></code></pre></div>
+<pre><code>[1] &quot;+proj=laea +lat_0=68.7944 +lon_0=56.8025 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b6)<span class="sc">$</span>Name</span></code></pre></div>
+<pre><code>[1] &quot;unknown&quot;</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="fu">spatial_length</span>(b6)<span class="sc">*</span><span class="fl">1e-3</span></span></code></pre></div>
+<pre><code>[1] 946.7534</code></pre>
 <p>В “Sphere Equidistant Cylindrical” со стандартной параллелью 60N.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>b3 <span class="ot">&lt;-</span> <span class="fu">spatial_transform</span>(a,crs3)</span>
-<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b3)<span class="sc">$</span>proj4string</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>b3 <span class="ot">&lt;-</span> <span class="fu">spatial_transform</span>(a,crs3)</span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b3)<span class="sc">$</span>proj4string</span></code></pre></div>
 <pre><code>[1] &quot;+proj=eqc +lat_ts=60 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +R=6371000 +units=m +no_defs&quot;</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b3)<span class="sc">$</span>Name</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b3)<span class="sc">$</span>Name</span></code></pre></div>
 <pre><code>[1] &quot;Sphere_Equidistant_Cylindrical&quot;</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="fu">spatial_length</span>(b3)<span class="sc">*</span><span class="fl">1e-3</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">spatial_length</span>(b3)<span class="sc">*</span><span class="fl">1e-3</span></span></code></pre></div>
 <pre><code>[1] 1155.226</code></pre>
 <p>В “Transverse Mercator”.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>b4 <span class="ot">&lt;-</span> ursa<span class="sc">:::</span><span class="fu">spatialize</span>(a,<span class="at">resetProj=</span><span class="cn">TRUE</span>,<span class="at">style=</span><span class="st">&quot;merc&quot;</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b4)<span class="sc">$</span>proj4string</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>b4 <span class="ot">&lt;-</span> ursa<span class="sc">:::</span><span class="fu">spatialize</span>(a,<span class="at">resetProj=</span><span class="cn">TRUE</span>,<span class="at">style=</span><span class="st">&quot;merc&quot;</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b4)<span class="sc">$</span>proj4string</span></code></pre></div>
 <pre><code>[1] &quot;+proj=merc +lat_ts=0 +lon_0=56.8025 +x_0=0 +y_0=0 +R=6378137 +units=m +no_defs&quot;</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b4)<span class="sc">$</span>Name</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b4)<span class="sc">$</span>Name</span></code></pre></div>
 <pre><code>[1] &quot;unknown&quot;</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">spatial_length</span>(b4)<span class="sc">*</span><span class="fl">1e-3</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="fu">spatial_length</span>(b4)<span class="sc">*</span><span class="fl">1e-3</span></span></code></pre></div>
 <pre><code>[1] 2617.833</code></pre>
 <p>Для “Transverse Mercator” можно учесть искажения по широте X мультипликатором cos(X) хотя бы для усредненой широты.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="fu">spatial_length</span>(b4)<span class="sc">*</span><span class="fl">1e-3</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">68</span><span class="sc">*</span>pi<span class="sc">/</span><span class="dv">180</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="fu">spatial_length</span>(b4)<span class="sc">*</span><span class="fl">1e-3</span><span class="sc">*</span><span class="fu">cos</span>(<span class="dv">68</span><span class="sc">*</span>pi<span class="sc">/</span><span class="dv">180</span>)</span></code></pre></div>
 <pre><code>[1] 980.6575</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a>b5 <span class="ot">&lt;-</span> <span class="fu">spatial_transform</span>(a,crs5)</span>
-<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b5)<span class="sc">$</span>proj4string</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a>b5 <span class="ot">&lt;-</span> <span class="fu">spatial_transform</span>(a,crs5)</span>
+<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b5)<span class="sc">$</span>proj4string</span></code></pre></div>
 <pre><code>[1] &quot;+proj=utm +zone=40 +datum=WGS84 +units=m +no_defs&quot;</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b5)<span class="sc">$</span>Name</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(b5)<span class="sc">$</span>Name</span></code></pre></div>
 <pre><code>[1] &quot;WGS 84 / UTM zone 40N&quot;</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="fu">spatial_length</span>(b5)<span class="sc">*</span><span class="fl">1e-3</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a><span class="fu">spatial_length</span>(b5)<span class="sc">*</span><span class="fl">1e-3</span></span></code></pre></div>
 <pre><code>[1] 946.5017</code></pre>
 
 
