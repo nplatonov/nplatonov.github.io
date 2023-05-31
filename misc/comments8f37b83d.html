@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Nikita Platonov</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.21/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+<div id="TOC">
+<ul>
+<li><a href="#red-cells" id="toc-red-cells">Red cells</a>
+<ul>
+<li><a href="#f100" id="toc-f100">F100</a></li>
+<li><a href="#f84" id="toc-f84">F84</a></li>
+<li><a href="#f124" id="toc-f124">F124</a></li>
+<li><a href="#f20" id="toc-f20">F20</a></li>
+<li><a href="#f14" id="toc-f14">F14</a></li>
+<li><a href="#f23" id="toc-f23">F23</a></li>
+<li><a href="#f82" id="toc-f82">F82</a></li>
+<li><a href="#f376" id="toc-f376">F376</a></li>
+<li><a href="#f783" id="toc-f783">F783</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="red-cells" class="section level2">
+<h2>Red cells</h2>
+<blockquote>
+<p>[Threaded comment]</p>
+<p>Your version of Excel allows you to read this threaded comment; however, any edits to it will get removed if the file is opened in a newer version of Excel. Learn more: <a href="https://go.microsoft.com/fwlink/?linkid=870924" class="uri">https://go.microsoft.com/fwlink/?linkid=870924</a></p>
+</blockquote>
+<p>Because of my version of Excel is “LibreOffice Calc” without supporting of threaded comments, my replies are in separate document with reference to cells with red text or/and comments.</p>
+<div id="f100" class="section level3">
+<h3>F100</h3>
+<h3 class="toc-ignore unnumbered unlisted">
+and other with “Comiso 2017”
+</h3>
+<blockquote>
+<p>There’s conflicting info online whether this is 2017 or 2019; <a href="https://arcticdata.io/catalog/view/doi%3A10.5067%2F7Q8HCCWS4I0R" class="uri">https://arcticdata.io/catalog/view/doi%3A10.5067%2F7Q8HCCWS4I0R</a></p>
+</blockquote>
+<p>Quick answer is 2017.</p>
+<p>I specified DOI “10.5067/7Q8HCCWS4I0R” in <code>Ext_Data_Table1_ArcNet_CFs_02052023-CF3000.xlsx</code> in email dated 2023-05-23. To approaches to get 2017:</p>
+<ol style="list-style-type: decimal">
+<li>Here is R-script to get BibTex record by DOI.</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">require</span>(httr)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="st">&#39;getDOI&#39;</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(doi) {   </span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>   req <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;https://dx.doi.org/&quot;</span>,doi)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>   temp <span class="ot">&lt;-</span> <span class="fu">GET</span>(req,<span class="fu">add_headers</span>(<span class="at">Accept=</span><span class="st">&quot;application/x-bibtex&quot;</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">http_error</span>(temp))</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>      <span class="fu">return</span>(1L)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>   temp <span class="ot">&lt;-</span> <span class="fu">content</span>(temp,<span class="at">as=</span><span class="st">&quot;text&quot;</span>,<span class="at">encoding=</span><span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>   <span class="fu">cat</span>(temp)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>   <span class="fu">invisible</span>(0L)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>}</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">getDOI</span>(<span class="st">&quot;10.5067/7Q8HCCWS4I0R&quot;</span>)</span></code></pre></div>
+<pre><code>@misc{https://doi.org/10.5067/7q8hccws4i0r,
+  doi = {10.5067/7Q8HCCWS4I0R},
+  url = {https://nsidc.org/data/nsidc-0079/versions/3},
+  author = {Comiso,  J.C.},
+  title = {Bootstrap Sea Ice Concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS, Version 3},
+  publisher = {NASA National Snow and Ice Data Center DAAC},
+  year = {2017}
+}</code></pre>
+<p>This request returns year of publication 2017.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>“<a href="https://doi.org/10.5067/7Q8HCCWS4I0R" class="uri">https://doi.org/10.5067/7Q8HCCWS4I0R</a>” redirects to “<a href="https://nsidc.org/data/nsidc-0079/versions/3" class="uri">https://nsidc.org/data/nsidc-0079/versions/3</a>”.</li>
+</ol>
+<p>On this “Bootstrap Sea Ice Concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS, Version 3” page there is a “Citation” clickable widget with opening record, where year of publication is 2017.</p>
+</div>
+<div id="f84" class="section level3">
+<h3>F84</h3>
+<h3 class="toc-ignore unnumbered unlisted">
+and other with “AARI 2018”
+</h3>
+<blockquote>
+<p>The link is dead for AARI, 2018 - <a href="http://www.aari.ru/odata/_d0015.php?lang=1" class="uri">http://www.aari.ru/odata/_d0015.php?lang=1</a></p>
+</blockquote>
+<p>Original reference <span class="citation">(<a href="#ref-AARI2018_en">AARI, 2018</a>)</span>, where URL was valid on the 23 November 2018, at the moment of metadata preparation. Here is new reference <span class="citation">(<a href="#ref-AARI_en">AARI, 2023</a>)</span>. Corrected URL is “<a href="http://old.aari.ru/odata/_d0015.php?lang=1" class="uri">http://old.aari.ru/odata/_d0015.php?lang=1</a>”.</p>
+</div>
+<div id="f124" class="section level3">
+<h3>F124</h3>
+<blockquote>
+<p>This is a mix of methods and source. Also, is AARI ice charts the same as AARI, 2018?</p>
+</blockquote>
+<p>Correct. Please replace <span class="citation">(<a href="#ref-AARI2018_en">AARI, 2018</a>)</span> to <span class="citation">(<a href="#ref-AARI_en">AARI, 2023</a>)</span>.</p>
+</div>
+<div id="f20" class="section level3">
+<h3>F20</h3>
+<h3 class="toc-ignore unnumbered unlisted">
+referred to Maria Solovyova
+</h3>
+<p>Suppose to replace <span class="citation">(<a href="#ref-AARI2018_en">AARI, 2018</a>)</span> to <span class="citation">(<a href="#ref-AARI_en">AARI, 2023</a>)</span>.</p>
+</div>
+<div id="f14" class="section level3">
+<h3>F14</h3>
+<h3 class="toc-ignore unnumbered unlisted">
+referred to Maria Solovyova
+</h3>
+<blockquote>
+<p>We need an access date for the GEBCO data sets and which dataset was used? Is it the gridded bathymetry?</p>
+</blockquote>
+<p>I can help with one reference to GEBCO gridded data <span class="citation">(<a href="#ref-GEBCO_2014">GEBCO, 2014</a>)</span> prior to 2019.</p>
+</div>
+<div id="f23" class="section level3">
+<h3>F23</h3>
+<h3 class="toc-ignore unnumbered unlisted">
+referred to Irina Trukhanova
+</h3>
+<p>Natural Earthdata current version is 5.1.2. In the end of 2021 was 5.0.0. In the end of 2012 was 2.0.0.</p>
+</div>
+<div id="f82" class="section level3">
+<h3>F82</h3>
+<h3 class="toc-ignore unnumbered unlisted">
+referred to Irina Trukhanova
+</h3>
+<p>“Platonov (MIZ data)” are probably CFs in range 3017-3041.</p>
+</div>
+<div id="f376" class="section level3">
+<h3>F376</h3>
+<h3 class="toc-ignore unnumbered unlisted">
+referred to Nikita Platonov, Boris Solovyev, Olga Shpak
+</h3>
+<p>“Platonov (MIZ data)” are probably CFs in range 3017-3041.</p>
+</div>
+<div id="f783" class="section level3">
+<h3>F783</h3>
+<h3 class="toc-ignore unnumbered unlisted">
+referred to Evgeniya Melikhova, Stanislav Belikov
+</h3>
+<blockquote>
+<p>I need more info for the Platonov citation. Is this a report for WWF Russia? Also, is the Platonov doc here a bit like the Romanenko doc above? If so we should treat them the same. Is there a report?</p>
+</blockquote>
+<p>This is report for WWF Russia <span class="citation">(<a href="#ref-Platonov2018_RSF">Platonov, 2018</a>)</span>.</p>
+</div>
+</div>
+<div id="refs" class="section level1 unnumbered toc-ignore unlisted">
+<h1 class="unnumbered toc-ignore unlisted"></h1>
+<div id="refs" class="references csl-bib-body" entry-spacing="1">
+<div id="ref-AARI2018_en" class="csl-entry">
+AARI. 2018. Review ice charts of the <span>A</span>rctic <span>O</span>cean. Center "Sever", Arctic <span>and</span> Antarctic Research Institute, St. Petersburg. <a href="http://www.aari.ru/odata/_d0015.php?lang=1">http://www.aari.ru/odata/_d0015.php?lang=1</a> (accessed 23 November 2018).
+</div>
+<div id="ref-AARI_en" class="csl-entry">
+AARI. 2023. Review ice charts of the <span>A</span>rctic <span>O</span>cean. Center "Sever", Arctic <span>and</span> Antarctic Research Institute, St. Petersburg. <a href="http://old.aari.ru/odata/_d0015.php?lang=1">http://old.aari.ru/odata/_d0015.php?lang=1</a> (accessed 31 May 2023).
+</div>
+<div id="ref-GEBCO_2014" class="csl-entry">
+GEBCO. 2014 (11 March). <span class="nocase">GEBCO 30 arc-second grid</span>. GEBCO. GEBCO_2014 - Version <a href="https://www.gebco.net/data_and_products/gridded_bathymetry_data/version_20141103/">20141103</a>. <a href="https://www.gebco.net/data_and_products/gridded_bathymetry_data/gebco_30_second_grid/">https://www.gebco.net/data_and_products/gridded_bathymetry_data/gebco_30_second_grid/</a> (accessed 07 December 2018).
+</div>
+<div id="ref-Platonov2018_RSF" class="csl-entry">
+Platonov N. 2018. Preferable seasonal sea ice habitats of polar bears. WWF Russia, PAMPAN Project: Report for Olga Shpak's research team on request of Maria Solovyeva.
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
