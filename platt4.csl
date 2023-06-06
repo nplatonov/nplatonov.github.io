@@ -268,6 +268,9 @@
       </else>
     </choose>    
   </macro>
+  <macro name="citation-number">
+    <text variable="citation-number" suffix=". "/>
+  </macro>
   <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year">
     <sort>
       <key variable="issued"/>
@@ -290,6 +293,7 @@
     <layout suffix=".">
       <group delimiter=". ">
         <group delimiter=". ">
+          <text macro="citation-number"/>
           <!-- <text macro="title-short"/> -->
           <text macro="author"/>
           <!-- <text macro="author-short"/> -->
