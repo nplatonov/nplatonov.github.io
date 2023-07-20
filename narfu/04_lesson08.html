@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Занятие 04</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.22/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Инструменты геобработки в R</h1>
+<h3 class="subtitle"><img src="assets/lesson08/00201da6~chunk.jpg" /></h3>
+<h4 class="author">Никита Платонов</h4>
+<address class="author_afil">
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 04</span> <span class="when">20 июля 2023 г. <span class="updated">Обновлено: 10:40</span></span></h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#данные-и-методы" id="toc-данные-и-методы">Данные и методы</a></li>
+<li><a href="#валидность" id="toc-валидность">Валидность</a></li>
+<li><a href="#связь-атрибут-геометрия" id="toc-связь-атрибут-геометрия">Связь “Атрибут-геометрия”</a></li>
+<li><a href="#преобразование" id="toc-преобразование">Преобразование</a>
+<ul>
+<li><a href="#в-полигоны" id="toc-в-полигоны">В полигоны</a></li>
+<li><a href="#в-мультиполигоны" id="toc-в-мультиполигоны">В мультиполигоны</a></li>
+<li><a href="#в-линии" id="toc-в-линии">В линии</a></li>
+<li><a href="#в-точки" id="toc-в-точки">В точки</a></li>
+</ul></li>
+<li><a href="#объединение" id="toc-объединение">Объединение</a></li>
+<li><a href="#центроид" id="toc-центроид">Центроид</a></li>
+<li><a href="#буфер" id="toc-буфер">Буфер</a></li>
+<li><a href="#пересечение" id="toc-пересечение">Пересечение</a>
+<ul>
+<li><a href="#бинарное" id="toc-бинарное">Бинарное</a></li>
+<li><a href="#унарное" id="toc-унарное">Унарное</a></li>
+</ul></li>
+<li><a href="#охват" id="toc-охват">Охват</a></li>
+<li><a href="#сегментация" id="toc-сегментация">Сегментация</a></li>
+<li><a href="#упрощение" id="toc-упрощение">Упрощение</a></li>
+<li style="display: none;"><a href="#section" id="toc-section"></a></li>
+</ul>
+</div>
+
+<div id="данные-и-методы" class="section level2">
+<h2>Данные и методы</h2>
+<p>Библиотека для визуализации: <code>tmap</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">require</span>(tmap)</span></code></pre></div>
+<pre><code>Loading required package: tmap</code></pre>
+<pre><code>The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,
+which was just loaded, will retire in October 2023.
+Please refer to R-spatial evolution reports for details, especially
+https://r-spatial.org/r/2023/05/15/evolution4.html.
+It may be desirable to make the sf package available;
+package maintainers should consider adding sf to Suggests:.
+The sp package is now running under evolution status 2
+     (status 2 uses the sf package in place of rgdal)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;view&quot;</span>) <span class="do">## plot view</span></span></code></pre></div>
+<pre><code>tmap mode set to interactive viewing</code></pre>
+<p>Библиотека для геообработки: <code>sf</code>.</p>
+<p><a href="https://github.com/r-spatial/sf/wiki/Migrating">Шпаргалка</a> по миграции между <code>sp</code> и <code>sf</code>:</p>
+<iframe src="https://github.com/r-spatial/sf/wiki/Migrating" width="646.08" height="365" data-external="1">
+</iframe>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>hr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="st">&quot;data/hr.geojson&quot;</span>,<span class="at">quiet=</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>   sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="dv">3572</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(hr) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>hr2 <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">unique</span>(hr<span class="sc">$</span>id),<span class="cf">function</span>(id) {</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>   hr2 <span class="ot">&lt;-</span> hr[hr<span class="sc">$</span>id<span class="sc">==</span>id,]</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>   ulevel <span class="ot">&lt;-</span> <span class="fu">unique</span>(hr2<span class="sc">$</span>level)</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>   hr3 <span class="ot">&lt;-</span> <span class="fu">lapply</span>(ulevel,<span class="cf">function</span>(level) hr2[hr2<span class="sc">$</span>level<span class="sc">==</span>level,])</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>   <span class="fu">names</span>(hr3) <span class="ot">&lt;-</span> ulevel</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>   hr4 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&#39;50-95&#39;</span><span class="ot">=</span>sf<span class="sc">::</span><span class="fu">st_difference</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(hr3[[<span class="st">&quot;95&quot;</span>]])</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>                                        ,sf<span class="sc">::</span><span class="fu">st_geometry</span>(hr3[[<span class="st">&quot;50&quot;</span>]]))</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>              ,<span class="st">&#39;0-50&#39;</span><span class="ot">=</span>sf<span class="sc">::</span><span class="fu">st_geometry</span>(hr3[[<span class="st">&quot;50&quot;</span>]])</span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>              )</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a>   sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="at">id=</span>id,<span class="at">level=</span><span class="fu">names</span>(hr4)</span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>            ,<span class="at">geometry=</span><span class="fu">do.call</span>(rbind,hr4),<span class="at">crs=</span>sf<span class="sc">::</span><span class="fu">st_crs</span>(hr))</span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>})</span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a>hr2 <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,hr2)</span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a>hr2 <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(hr2,<span class="dv">4326</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a>hr2<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">paste</span>(hr2<span class="sc">$</span>id,hr2<span class="sc">$</span>level,<span class="at">sep=</span><span class="st">&quot;:&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(hr2)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">try</span>(<span class="fu">print</span>(m1))</span></code></pre></div>
+<pre><code>Linking to GEOS 3.11.2, GDAL 3.6.2, PROJ 9.2.0; sf_use_s2() is TRUE</code></pre>
+<pre><code>Error : Shape contains invalid polygons. Please fix it or set tmap_options(check.and.fix = TRUE) and rerun the plot</code></pre>
+</div>
+<div id="валидность" class="section level2">
+<h2>Валидность</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_is_valid</span>(hr2)</span></code></pre></div>
+<pre><code>[1]  TRUE FALSE  TRUE FALSE</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(ind <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span>sf<span class="sc">::</span><span class="fu">st_is_valid</span>(hr2))))</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>   hr2[ind,] <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_make_valid</span>(hr2[ind,])</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_is_valid</span>(hr2)</span></code></pre></div>
+<pre><code>[1] TRUE TRUE TRUE TRUE</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>hr2</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">id</th>
+<th align="left">level</th>
+<th align="left">geometry</th>
+<th align="left">group</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">145</td>
+<td align="left">50-95</td>
+<td align="left">MULTIPOLYGON (((-152.9586 7…</td>
+<td align="left">145:50-95</td>
+</tr>
+<tr class="even">
+<td align="left">145</td>
+<td align="left">0-50</td>
+<td align="left">POLYGON ((-138.281 70.63453…</td>
+<td align="left">145:0-50</td>
+</tr>
+<tr class="odd">
+<td align="left">168</td>
+<td align="left">50-95</td>
+<td align="left">POLYGON ((-152.4999 71.1491…</td>
+<td align="left">168:50-95</td>
+</tr>
+<tr class="even">
+<td align="left">168</td>
+<td align="left">0-50</td>
+<td align="left">POLYGON ((-150.1846 70.6716…</td>
+<td align="left">168:0-50</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>m1v <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(hr2)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>m1v</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_wm1v_ce41a26b585a3594547008478f9ff810.html" width="646.08" height="535" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+<div class="indent">
+
+</div>
+</div>
+<div id="связь-атрибут-геометрия" class="section level2">
+<h2>Связь “Атрибут-геометрия”</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(hr2) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">attr</span>(hr2,<span class="st">&quot;agr&quot;</span>)</span></code></pre></div>
+<pre><code>      id    level    group 
+constant constant constant 
+Levels: constant aggregate identity</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">levels</span>(<span class="fu">attr</span>(hr2,<span class="st">&quot;agr&quot;</span>))</span></code></pre></div>
+<pre><code>[1] &quot;constant&quot;  &quot;aggregate&quot; &quot;identity&quot; </code></pre>
+<ul>
+<li><code>"constant"</code> - атрибут постоянны по всей геометрии (землепользование)<br />
+</li>
+<li><code>"aggregate"</code> - атрибут агрегированы по геометрии (плотность населения)</li>
+<li><code>"identity"</code> - однозначное идентифицирование (название города)</li>
+</ul>
+</div>
+<div id="преобразование" class="section level2">
+<h2>Преобразование</h2>
+<div id="в-полигоны" class="section level3">
+<h3>В полигоны</h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>(hr_poly <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_cast</span>(hr,<span class="st">&quot;POLYGON&quot;</span>))</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">id</th>
+<th align="right">area</th>
+<th align="right">level</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">145</td>
+<td align="right">200163.21</td>
+<td align="right">95</td>
+<td align="left">POLYGON ((-109626 -2021301,…</td>
+</tr>
+<tr class="even">
+<td align="left">1.1</td>
+<td align="left">145</td>
+<td align="right">200163.21</td>
+<td align="right">95</td>
+<td align="left">POLYGON ((545079.1 -1448190…</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">145</td>
+<td align="right">35748.68</td>
+<td align="right">50</td>
+<td align="left">POLYGON ((437079.1 -2107065…</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">168</td>
+<td align="right">73098.40</td>
+<td align="right">95</td>
+<td align="left">POLYGON ((-90920.86 -210402…</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">168</td>
+<td align="right">17253.45</td>
+<td align="right">50</td>
+<td align="left">POLYGON ((-6920.856 -214782…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>units<span class="sc">::</span><span class="fu">set_units</span>(<span class="fu">sum</span>(sf<span class="sc">::</span><span class="fu">st_area</span>(hr_poly)),km<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>326263.7 [km^2]</code></pre>
+</div>
+<div id="в-мультиполигоны" class="section level3">
+<h3>В мультиполигоны</h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>(hr_mpoly <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_cast</span>(hr,<span class="st">&quot;MULTIPOLYGON&quot;</span>))</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">id</th>
+<th align="right">area</th>
+<th align="right">level</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">145</td>
+<td align="right">200163.21</td>
+<td align="right">95</td>
+<td align="left">MULTIPOLYGON (((-109626 -20…</td>
+</tr>
+<tr class="even">
+<td align="left">145</td>
+<td align="right">35748.68</td>
+<td align="right">50</td>
+<td align="left">MULTIPOLYGON (((437079.1 -2…</td>
+</tr>
+<tr class="odd">
+<td align="left">168</td>
+<td align="right">73098.40</td>
+<td align="right">95</td>
+<td align="left">MULTIPOLYGON (((-90920.86 -…</td>
+</tr>
+<tr class="even">
+<td align="left">168</td>
+<td align="right">17253.45</td>
+<td align="right">50</td>
+<td align="left">MULTIPOLYGON (((-6920.856 -…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>units<span class="sc">::</span><span class="fu">set_units</span>(<span class="fu">sum</span>(sf<span class="sc">::</span><span class="fu">st_area</span>(hr_mpoly)),km<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>326263.7 [km^2]</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>units<span class="sc">::</span><span class="fu">set_units</span>(<span class="fu">sum</span>(sf<span class="sc">::</span><span class="fu">st_length</span>(hr_mpoly)),km)</span></code></pre></div>
+<pre><code>0 [km]</code></pre>
+</div>
+<div id="в-линии" class="section level3">
+<h3>В линии</h3>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>(hr_mline <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_cast</span>(hr2,<span class="st">&quot;MULTILINESTRING&quot;</span>)) <span class="do">## sf::st_boundary()</span></span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">id</th>
+<th align="left">level</th>
+<th align="left">group</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">145</td>
+<td align="left">50-95</td>
+<td align="left">145:50-95</td>
+<td align="left">MULTILINESTRING ((-152.9586…</td>
+</tr>
+<tr class="even">
+<td align="left">145</td>
+<td align="left">0-50</td>
+<td align="left">145:0-50</td>
+<td align="left">MULTILINESTRING ((-138.281 …</td>
+</tr>
+<tr class="odd">
+<td align="left">168</td>
+<td align="left">50-95</td>
+<td align="left">168:50-95</td>
+<td align="left">MULTILINESTRING ((-152.4999…</td>
+</tr>
+<tr class="even">
+<td align="left">168</td>
+<td align="left">0-50</td>
+<td align="left">168:0-50</td>
+<td align="left">MULTILINESTRING ((-150.1846…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>units<span class="sc">::</span><span class="fu">set_units</span>(<span class="fu">sum</span>(sf<span class="sc">::</span><span class="fu">st_area</span>(hr_mline)),km<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>0 [km^2]</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>units<span class="sc">::</span><span class="fu">set_units</span>(<span class="fu">sum</span>(sf<span class="sc">::</span><span class="fu">st_length</span>(hr_mline)),km)</span></code></pre></div>
+<pre><code>6748.012 [km]</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(hr_mline)<span class="sc">+</span><span class="fu">tm_lines</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="dv">1</span>,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">group=</span><span class="st">&quot;Contour levels&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>m3</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w3_971fafc94670de16d5cf9849d1766689.html" width="646.08" height="485" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+</div>
+<div id="в-точки" class="section level3">
+<h3>В точки</h3>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a>(hr_mpoint <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_cast</span>(hr2,<span class="st">&quot;MULTIPOINT&quot;</span>))</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">id</th>
+<th align="left">level</th>
+<th align="left">group</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">145</td>
+<td align="left">50-95</td>
+<td align="left">145:50-95</td>
+<td align="left">MULTIPOINT ((-152.9586 71.9…</td>
+</tr>
+<tr class="even">
+<td align="left">145</td>
+<td align="left">0-50</td>
+<td align="left">145:0-50</td>
+<td align="left">MULTIPOINT ((-138.281 70.63…</td>
+</tr>
+<tr class="odd">
+<td align="left">168</td>
+<td align="left">50-95</td>
+<td align="left">168:50-95</td>
+<td align="left">MULTIPOINT ((-152.4999 71.1…</td>
+</tr>
+<tr class="even">
+<td align="left">168</td>
+<td align="left">0-50</td>
+<td align="left">168:0-50</td>
+<td align="left">MULTIPOINT ((-150.1846 70.6…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(hr_mpoint)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="st">&quot;group&quot;</span>,<span class="at">size=</span><span class="fl">0.02</span>,<span class="at">group=</span><span class="st">&quot;Points&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>m4</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w4_6055e8734f229d8a451db7f47c46ee95.html" width="646.08" height="485" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+</div>
+</div>
+<div id="объединение" class="section level2">
+<h2>Объединение</h2>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>union <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_union</span>(hr)</span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(hr2)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)<span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a>   <span class="fu">tm_shape</span>(union)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">col=</span><span class="st">&quot;black&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">alpha=</span><span class="dv">1</span>,<span class="at">group=</span><span class="st">&quot;Join&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a>m2</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w2_62bfecb9d7ab6f0721439e04ff606b38.html" width="646.08" height="485" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+</div>
+<div id="центроид" class="section level2">
+<h2>Центроид</h2>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>centroid <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_centroid</span>(hr2)</span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(hr2)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)<span class="sc">+</span></span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a>   <span class="fu">tm_shape</span>(centroid)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">id=</span><span class="st">&quot;group&quot;</span>,<span class="at">group=</span><span class="st">&quot;Centroid&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a>m2</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w2c_4dc9d902480693c868d81e74ce5457f5.html" width="646.08" height="485" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+</div>
+<div id="буфер" class="section level2">
+<h2>Буфер</h2>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>buffer <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_buffer</span>(centroid,units<span class="sc">::</span><span class="fu">set_units</span>(<span class="dv">150</span>,km))</span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(hr2)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)<span class="sc">+</span></span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a>   <span class="fu">tm_shape</span>(centroid)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">id=</span><span class="st">&quot;group&quot;</span>,<span class="at">group=</span><span class="st">&quot;Centroid&quot;</span>)<span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a>   <span class="fu">tm_shape</span>(buffer)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Buffer&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a>m5</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w5_783bb1c991e5d6b058a66b98715aa3ad.html" width="646.08" height="460" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+</div>
+<div id="пересечение" class="section level2">
+<h2>Пересечение</h2>
+<div id="бинарное" class="section level3">
+<h3>Бинарное</h3>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>intersection <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_intersection</span>(hr2,buffer)</span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(intersection)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a>m6</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w6_e367439b67ed28a26365fc9ab4837594.html" width="646.08" height="460" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="fu">print</span>(intersection)</span></code></pre></div>
+<pre><code>Simple feature collection with 11 features and 6 fields
+Geometry type: GEOMETRY
+Dimension:     XY
+Bounding box:  xmin: -151.0912 ymin: 69.42322 xmax: -130.283 ymax: 72.47304
+Geodetic CRS:  WGS 84
+First 10 features:
+     id level     group id.1 level.1   group.1                       geometry
+1   145 50-95 145:50-95  145   50-95 145:50-95 POLYGON ((-142.45 70.80287,...
+2   145  0-50  145:0-50  145   50-95 145:50-95 POLYGON ((-135.7036 71.0320...
+3   168 50-95 168:50-95  145   50-95 145:50-95 MULTIPOLYGON (((-143.4902 7...
+1.1 145 50-95 145:50-95  145    0-50  145:0-50 MULTIPOLYGON (((-130.3065 7...
+2.1 145  0-50  145:0-50  145    0-50  145:0-50 POLYGON ((-130.6021 71.0781...
+1.2 145 50-95 145:50-95  168   50-95 168:50-95 POLYGON ((-149.9768 71.0956...
+3.1 168 50-95 168:50-95  168   50-95 168:50-95 POLYGON ((-149.7604 70.0269...
+4   168  0-50  168:0-50  168   50-95 168:50-95 POLYGON ((-150.168 70.6638,...
+1.3 145 50-95 145:50-95  168    0-50  168:0-50 POLYGON ((-150.6205 71.2267...
+3.2 168 50-95 168:50-95  168    0-50  168:0-50 POLYGON ((-150.896 70.27866...</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a>(intersection <span class="ot">&lt;-</span> intersection[intersection<span class="sc">$</span>group<span class="sc">==</span>intersection<span class="sc">$</span>group<span class="fl">.1</span>,])</span></code></pre></div>
+<div class="kable-table">
+<table>
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col width="7%" />
+<col width="12%" />
+<col width="6%" />
+<col width="10%" />
+<col width="12%" />
+<col width="39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">id</th>
+<th align="left">level</th>
+<th align="left">group</th>
+<th align="left">id.1</th>
+<th align="left">level.1</th>
+<th align="left">group.1</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">145</td>
+<td align="left">50-95</td>
+<td align="left">145:50-95</td>
+<td align="left">145</td>
+<td align="left">50-95</td>
+<td align="left">145:50-95</td>
+<td align="left">POLYGON ((-142.45 70.80287,…</td>
+</tr>
+<tr class="even">
+<td align="left">2.1</td>
+<td align="left">145</td>
+<td align="left">0-50</td>
+<td align="left">145:0-50</td>
+<td align="left">145</td>
+<td align="left">0-50</td>
+<td align="left">145:0-50</td>
+<td align="left">POLYGON ((-130.6021 71.0781…</td>
+</tr>
+<tr class="odd">
+<td align="left">3.1</td>
+<td align="left">168</td>
+<td align="left">50-95</td>
+<td align="left">168:50-95</td>
+<td align="left">168</td>
+<td align="left">50-95</td>
+<td align="left">168:50-95</td>
+<td align="left">POLYGON ((-149.7604 70.0269…</td>
+</tr>
+<tr class="even">
+<td align="left">4.1</td>
+<td align="left">168</td>
+<td align="left">0-50</td>
+<td align="left">168:0-50</td>
+<td align="left">168</td>
+<td align="left">0-50</td>
+<td align="left">168:0-50</td>
+<td align="left">POLYGON ((-150.1846 70.6716…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a>m7 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(intersection)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)<span class="sc">+</span></span>
+<span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a>   <span class="fu">tm_shape</span>(buffer)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Buffer&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>m7</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w7_f9750f2b10f0e09e893f02da1183b168.html" width="646.08" height="460" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+</div>
+<div id="унарное" class="section level3">
+<h3>Унарное</h3>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a>overlaps <span class="ot">&lt;-</span> hr2 <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="dv">3572</span>) <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_intersection</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a>   sf<span class="sc">::</span><span class="fu">st_collection_extract</span>() <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="dv">4326</span>)</span>
+<span id="cb53-3"><a href="#cb53-3" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(ind <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span>sf<span class="sc">::</span><span class="fu">st_is_valid</span>(overlaps))))</span>
+<span id="cb53-4"><a href="#cb53-4" tabindex="-1"></a>   overlaps[ind,] <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_make_valid</span>(overlaps[ind,])</span>
+<span id="cb53-5"><a href="#cb53-5" tabindex="-1"></a>overlaps <span class="ot">&lt;-</span> overlaps[sf<span class="sc">::</span><span class="fu">st_is_valid</span>(overlaps),]</span>
+<span id="cb53-6"><a href="#cb53-6" tabindex="-1"></a>overlaps <span class="ot">&lt;-</span> overlaps[sf<span class="sc">::</span><span class="fu">st_area</span>(overlaps)<span class="sc">&gt;</span>units<span class="sc">::</span><span class="fu">set_units</span>(<span class="dv">100</span>,m<span class="sc">^</span><span class="dv">2</span>),]</span>
+<span id="cb53-7"><a href="#cb53-7" tabindex="-1"></a>overlaps</span></code></pre></div>
+<div class="kable-table">
+<table>
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col width="8%" />
+<col width="13%" />
+<col width="14%" />
+<col width="10%" />
+<col width="41%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">id</th>
+<th align="left">level</th>
+<th align="left">group</th>
+<th align="right">n.overlaps</th>
+<th align="left">origins</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">145</td>
+<td align="left">50-95</td>
+<td align="left">145:50-95</td>
+<td align="right">1</td>
+<td align="left">1</td>
+<td align="left">MULTIPOLYGON (((-152.6013 7…</td>
+</tr>
+<tr class="even">
+<td align="left">1.1</td>
+<td align="left">145</td>
+<td align="left">50-95</td>
+<td align="left">145:50-95</td>
+<td align="right">2</td>
+<td align="left">1, 2</td>
+<td align="left">MULTIPOLYGON (((-138.1358 7…</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">145</td>
+<td align="left">0-50</td>
+<td align="left">145:0-50</td>
+<td align="right">1</td>
+<td align="left">2</td>
+<td align="left">MULTIPOLYGON (((-138.2497 7…</td>
+</tr>
+<tr class="even">
+<td align="left">1.2</td>
+<td align="left">145</td>
+<td align="left">50-95</td>
+<td align="left">145:50-95</td>
+<td align="right">2</td>
+<td align="left">1, 3</td>
+<td align="left">MULTIPOLYGON (((-142.4289 7…</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">168</td>
+<td align="left">50-95</td>
+<td align="left">168:50-95</td>
+<td align="right">1</td>
+<td align="left">3</td>
+<td align="left">MULTIPOLYGON (((-152.4775 7…</td>
+</tr>
+<tr class="even">
+<td align="left">3.2</td>
+<td align="left">168</td>
+<td align="left">50-95</td>
+<td align="left">168:50-95</td>
+<td align="right">1</td>
+<td align="left">3</td>
+<td align="left">MULTIPOLYGON (((-146.6688 7…</td>
+</tr>
+<tr class="odd">
+<td align="left">3.1</td>
+<td align="left">168</td>
+<td align="left">50-95</td>
+<td align="left">168:50-95</td>
+<td align="right">2</td>
+<td align="left">3, 4</td>
+<td align="left">MULTIPOLYGON (((-149.9249 7…</td>
+</tr>
+<tr class="even">
+<td align="left">1.4</td>
+<td align="left">145</td>
+<td align="left">50-95</td>
+<td align="left">145:50-95</td>
+<td align="right">2</td>
+<td align="left">1, 4</td>
+<td align="left">MULTIPOLYGON (((-143.8433 7…</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">168</td>
+<td align="left">0-50</td>
+<td align="left">168:0-50</td>
+<td align="right">1</td>
+<td align="left">4</td>
+<td align="left">MULTIPOLYGON (((-149.7741 7…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a>m13 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(overlaps)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;n.overlaps&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Overlaps&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a>m13</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w13_165d8700cce5aea6364effcb8ab158ec.html" width="646.08" height="460" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+</div>
+</div>
+<div id="охват" class="section level2">
+<h2>Охват</h2>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a>extent <span class="ot">&lt;-</span> hr2 <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_bbox</span>(hr2) <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_as_sfc</span>()</span>
+<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a>m8 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(hr2)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)<span class="sc">+</span></span>
+<span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a>   <span class="fu">tm_shape</span>(extent)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Extent, boudary box&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dotted&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a>m8</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w8_533234960c0badb25713352738fd8064.html" width="646.08" height="485" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a>inside <span class="ot">&lt;-</span> extent <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="dv">3572</span>) <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_buffer</span>(<span class="sc">-</span><span class="dv">100</span><span class="sc">*</span><span class="fl">1e3</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a>m9 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(hr2)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)<span class="sc">+</span></span>
+<span id="cb58-3"><a href="#cb58-3" tabindex="-1"></a>   <span class="fu">tm_shape</span>(extent)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Extent&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dotted&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb58-4"><a href="#cb58-4" tabindex="-1"></a>   <span class="fu">tm_shape</span>(inside)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Inside 100km&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a>m9</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w9_95ba1a6e3aa24ac22e47ea19a03e0dee.html" width="646.08" height="460" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a>cutted <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_intersection</span>(hr2,sf<span class="sc">::</span><span class="fu">st_transform</span>(inside,sf<span class="sc">::</span><span class="fu">st_crs</span>(hr2)))</span>
+<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a>m14 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(cutted)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)<span class="sc">+</span></span>
+<span id="cb60-3"><a href="#cb60-3" tabindex="-1"></a>   <span class="fu">tm_shape</span>(inside)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Inside 100km&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a>m14</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w14_95ba1a6e3aa24ac22e47ea19a03e0dee.html" width="646.08" height="485" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+</div>
+<div id="сегментация" class="section level2">
+<h2>Сегментация</h2>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a>bound <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_segmentize</span>(inside,<span class="dv">3000</span>)</span>
+<span id="cb62-2"><a href="#cb62-2" tabindex="-1"></a>m10 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(bound)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">group=</span><span class="st">&quot;Bound (n pts)&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb62-3"><a href="#cb62-3" tabindex="-1"></a>   <span class="fu">tm_shape</span>(inside)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">group=</span><span class="st">&quot;Extent (4 pts)&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a>m10</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w10_a4d99df731d4c071932e9b9d73f3d9a2.html" width="646.08" height="485" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a>within <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_intersection</span>(hr2,sf<span class="sc">::</span><span class="fu">st_transform</span>(bound,sf<span class="sc">::</span><span class="fu">st_crs</span>(hr2)))</span>
+<span id="cb64-2"><a href="#cb64-2" tabindex="-1"></a>m11 <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(within)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="st">&quot;group&quot;</span>,<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">group=</span><span class="st">&quot;Kernel levels&quot;</span>)<span class="sc">+</span></span>
+<span id="cb64-3"><a href="#cb64-3" tabindex="-1"></a>   <span class="fu">tm_shape</span>(bound)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Within 100km&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dashed&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a>m11</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w11_94351bb3a89c2066f0a70c49d20898fe.html" width="646.08" height="485" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+<div class="note">
+<p>Пересечение геометрически корректно, но отображение линий между точками по плоскости, а не по поверхности</p>
+</div>
+</div>
+<div id="упрощение" class="section level2">
+<h2>Упрощение</h2>
+<p>Для ускорения скорости обработки и прорисовки</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> hr2 <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">st_cast</span>(<span class="st">&quot;MULTIPOLYGON&quot;</span>)</span>
+<span id="cb66-2"><a href="#cb66-2" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_simplify</span>(hr2,<span class="dv">3000</span>,<span class="at">preserveTopology=</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb66-3"><a href="#cb66-3" tabindex="-1"></a>   sf<span class="sc">::</span><span class="fu">st_cast</span>(<span class="st">&quot;MULTIPOLYGON&quot;</span>)</span>
+<span id="cb66-4"><a href="#cb66-4" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(s1) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
+<span id="cb66-5"><a href="#cb66-5" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(s2) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
+<span id="cb66-6"><a href="#cb66-6" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_cast</span>(s1,<span class="st">&quot;POINT&quot;</span>)</span>
+<span id="cb66-7"><a href="#cb66-7" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_cast</span>(s2,<span class="st">&quot;POINT&quot;</span>)</span>
+<span id="cb66-8"><a href="#cb66-8" tabindex="-1"></a>m12 <span class="ot">&lt;-</span> <span class="cn">NULL</span><span class="sc">+</span></span>
+<span id="cb66-9"><a href="#cb66-9" tabindex="-1"></a>   <span class="fu">tm_shape</span>(s1)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Original border&quot;</span>,<span class="at">col=</span><span class="st">&quot;grey60&quot;</span>)<span class="sc">+</span></span>
+<span id="cb66-10"><a href="#cb66-10" tabindex="-1"></a>   <span class="fu">tm_shape</span>(s2)<span class="sc">+</span><span class="fu">tm_borders</span>(<span class="at">group=</span><span class="st">&quot;Simplified border&quot;</span>,<span class="at">col=</span><span class="st">&quot;grey20&quot;</span>)<span class="sc">+</span></span>
+<span id="cb66-11"><a href="#cb66-11" tabindex="-1"></a>   <span class="fu">tm_shape</span>(p1)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">size=</span><span class="fl">0.01</span>,<span class="at">group=</span><span class="st">&quot;Original vertexes&quot;</span>,<span class="at">col=</span><span class="st">&quot;grey60&quot;</span>)<span class="sc">+</span></span>
+<span id="cb66-12"><a href="#cb66-12" tabindex="-1"></a>   <span class="fu">tm_shape</span>(p2)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">size=</span><span class="fl">0.06</span>,<span class="at">group=</span><span class="st">&quot;Simplified vertexes&quot;</span>,<span class="at">col=</span><span class="st">&quot;grey20&quot;</span>)<span class="sc">+</span></span>
+<span id="cb66-13"><a href="#cb66-13" tabindex="-1"></a>   <span class="cn">NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a>m12</span></code></pre></div>
+<div class="framed">
+<iframe src="assets/lesson08/widget_w12_5ffb7737721d73d8891755aa4cca3222.html" width="646.08" height="600" data-external="1" class="ursa-widgetize">
+</iframe>
+</div>
+<style type="text/css">
+:root {--sidebar: 25%; --pointsize: 21.5pt;}
+</style>
+</div>
+<div id="section" class="section level1 additional">
+<h1 class="additional"></h1>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
