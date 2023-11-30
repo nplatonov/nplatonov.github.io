@@ -652,7 +652,7 @@ iframe.ursa-widgetize {
 .column img {
   /* position: fixed;*/
 }
-img[width="1330"]:not([image]):not([bound]):not([aspect]) {
+img[width="1330"]:not([image]):not(.image):not([bound]):not(.bound):not([aspect]):not(.aspect) {
    width: unset;
   /* max-width: max(600px, 100%);*/
   /* height: auto;*/
@@ -668,7 +668,7 @@ img[width$="%"] {
    flex: 0 0 auto;
    object-fit: scale-down;
 }
-img[image], img[bound] {
+img[image], img[bound], img.bound {
    max-width: 100%;
   /* height: auto;*/
    max-height: 100%; /*calc(100% / var(--magnifier));*/
