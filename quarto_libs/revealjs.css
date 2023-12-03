@@ -89,7 +89,7 @@
    z-index: 2 !important;
 }
 .reveal.has-dark-background .footer {
-   color: #444 !important;
+   color: #666 !important;
 }
 .quarto-light .reveal .footer {
    color: black;
@@ -475,6 +475,7 @@ section.thankyou {
 h2 {
    break-after: avoid;
 }
+.reveal .notreveal,
 .reveal .remarkonly,
 .reveal .vignetonly {
    display: none;
@@ -505,4 +506,9 @@ h2 {
 }
 .reveal .hiddenanchor {
    display: table-column;
+}
+@media screen and (min-width: 1600px) {
+  .reveal .speaker-notes {
+    font-size: 80%;
+  }
 }
