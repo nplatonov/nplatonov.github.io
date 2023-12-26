@@ -13,7 +13,7 @@
    --sidebar: 23%;
    --sidebar-pointsize: 70%;
    --sidebar-margin: 18px;
-   --sidebar-background: #ffffe6; /* #00000017 #FAFAFA #ffc */
+   --sidebar-background: #fff; /*#ffffe6 #00000017 #FAFAFA #ffc */
    --sidebar-background-inverse: #FFFFFF1A;
    --sidebar-color: var(--accent);
    --sidebar-strip: #FFFFFFFE; 
@@ -26,8 +26,14 @@
    --dark: #000; /* #149 */
    --gap: 0.8em;
    --darkreader-text--accent: #ee9;
-   --darkreader-border--accent: revert;
-   --darkreader-bg--sidebar-background: #123;
+   --darkreader-border--accent: var(--inverse-accent);
+   --darkreader-bg--sidebar-background: #red; /*#123;*/
+}
+.remark-slides-area {
+   background-image: linear-gradient(to right, var(--light), var(--light));
+}
+.remark-slide-scaler {
+   box-shadow: none;
 }
 body.remark-container.dev:before {
    content: 'nplatonov';
@@ -909,6 +915,8 @@ ul {
 .sidebar h4[id*=bg][id*=fg],
 .sidebar h5[id*=bg][id*=fg] {
    border-left-color: var(--accent); /*#5386;*/
+   border-bottom: 1px solid var(--accent);
+   border-top: 1px solid var(--accent);
   /* border-left-width: 0px;*/
   /* background-color: white !important;*/
    background-image: linear-gradient(to right, var(--sidebar-strip), var(--sidebar-strip), var(--sidebar-strip)); /* #FFFF, #FFF9, #FFF0 ; white #FFFCE1;*/
@@ -919,6 +927,8 @@ ul {
 .inverse:not(.revert) .sidebar h4[id*=bg][id*=fg],
 .inverse:not(.revert) .sidebar h5[id*=bg][id*=fg] {
    border-left-color: var(--inverse-accent);
+   border-bottom: 1px solid var(--inverse-accent);
+   border-top: 1px solid var(--inverse-accent);
    background-image: linear-gradient(to right, var(--sidebar-strip-inverse), var(--sidebar-strip-inverse), var(--sidebar-strip-inverse));
 }
 .remark-slide-content.picsum .sidebar h1[id*=bg][id*=fg],
