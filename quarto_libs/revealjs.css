@@ -77,7 +77,7 @@
    margin-bottom: 0.4em !important;
 }
 .reveal .footer {
-   font-size: 2.9vh !important;
+   font-size: 1.8vw !important;
    bottom: 3px !important;
   /*
    background-color: #FFF2;
@@ -347,18 +347,21 @@ img+.caption {
    font-size: 80%;
 }
 .reveal div.slidingheader {
-   text-align: left;
+   text-align: right;
+   margin-right: -48px;
+   width: 100%;
    display: block;
    position: fixed;
-   right: 28px;
+   right: 0px;
    top: -18px;
    opacity: 0.7;
    font-size: calc(var(--r-main-font-size) * 0.74);
-   color: #8884;
+   color: #8884; /* #8884 */
   /* border-bottom: 1px solid #8884;*/
   /* background-color: #8882;*/
+   background-image: linear-gradient(to right,#8880,#8880);
   /* transition: all 2.3s ease;*/
-   padding: 0 0 0.05em 0em;
+   padding: 0 1em 0.05em 0em;
    line-height: 1.15;
 }
 .reveal span.slidingheader {
@@ -440,7 +443,7 @@ section.thankyou {
 .reveal h1:empty+h2,
 .reveal h2:empty+h2,
 .reveal .dummy div ~ h2:first-of-type {
-  /* margin-top: 0;*/
+   margin-top: 12px;
   /* border: 1px solid red;*/
 }
 .reveal .slides section .zfragment.semi-fade-out.visible,
