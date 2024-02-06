@@ -1,0 +1,2840 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.514">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Никита Платонов">
+
+<title>ГИС 10</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://nplatonov.github.io/quarto_libs/clipboard/clipboard.min.js"></script>
+<script src="https://nplatonov.github.io/quarto_libs/quarto-html/quarto.js"></script>
+<script src="https://nplatonov.github.io/quarto_libs/quarto-html/popper.min.js"></script>
+<script src="https://nplatonov.github.io/quarto_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="https://nplatonov.github.io/quarto_libs/quarto-html/anchor.min.js"></script>
+<link href="https://nplatonov.github.io/quarto_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="https://nplatonov.github.io/quarto_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="https://nplatonov.github.io/quarto_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="https://nplatonov.github.io/quarto_libs/bootstrap/bootstrap.min.js"></script>
+<link href="https://nplatonov.github.io/quarto_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="https://nplatonov.github.io/quarto_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="https://nplatonov.github.io/quarto_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/quarto_libs/common.css">
+<link rel="stylesheet" href="https://nplatonov.github.io/quarto_libs/html.css">
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Моделирование ареалов</h1>
+            <p class="subtitle lead">ГИС технологии в биологических исследованиях</p>
+                      </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Автор</div>
+    <div class="quarto-title-meta-heading">Организация</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author">Никита Платонов </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              с.н.с. ИПЭЭ РАН
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Содержание</h2>
+   
+  <ul>
+  <li><a href="#подготовка" id="toc-подготовка" class="nav-link active" data-scroll-target="#подготовка">Подготовка</a>
+  <ul>
+  <li><a href="#некоторые-определения" id="toc-некоторые-определения" class="nav-link" data-scroll-target="#некоторые-определения">Некоторые определения</a></li>
+  <li><a href="#требуемые-пакеты" id="toc-требуемые-пакеты" class="nav-link" data-scroll-target="#требуемые-пакеты">Требуемые пакеты</a></li>
+  <li><a href="#находки" id="toc-находки" class="nav-link" data-scroll-target="#находки">Находки</a></li>
+  <li><a href="#картооснова" id="toc-картооснова" class="nav-link" data-scroll-target="#картооснова">Картооснова</a></li>
+  <li><a href="#среда-обитания" id="toc-среда-обитания" class="nav-link" data-scroll-target="#среда-обитания">Среда обитания</a></li>
+  <li><a href="#подвыборки" id="toc-подвыборки" class="nav-link" data-scroll-target="#подвыборки">Подвыборки</a>
+  <ul>
+  <li><a href="#присутствие" id="toc-присутствие" class="nav-link" data-scroll-target="#присутствие">Присутствие</a></li>
+  <li><a href="#псевдоотсутствие" id="toc-псевдоотсутствие" class="nav-link" data-scroll-target="#псевдоотсутствие">Псевдоотсутствие</a></li>
+  <li><a href="#обучение-и-тестирование" id="toc-обучение-и-тестирование" class="nav-link" data-scroll-target="#обучение-и-тестирование">Обучение и тестирование</a></li>
+  </ul></li>
+  <li><a href="#в-итоге" id="toc-в-итоге" class="nav-link" data-scroll-target="#в-итоге">В итоге</a></li>
+  </ul></li>
+  <li><a href="#моделирование" id="toc-моделирование" class="nav-link" data-scroll-target="#моделирование">Моделирование</a>
+  <ul>
+  <li><a href="#gml" id="toc-gml" class="nav-link" data-scroll-target="#gml">GML</a>
+  <ul>
+  <li><a href="#binomilallogit" id="toc-binomilallogit" class="nav-link" data-scroll-target="#binomilallogit">Binomilal/logit</a></li>
+  <li><a href="#gaussianidentity" id="toc-gaussianidentity" class="nav-link" data-scroll-target="#gaussianidentity">Gaussian/identity</a></li>
+  </ul></li>
+  <li><a href="#bioclim" id="toc-bioclim" class="nav-link" data-scroll-target="#bioclim">Bioclim</a></li>
+  <li><a href="#domain" id="toc-domain" class="nav-link" data-scroll-target="#domain">Domain</a></li>
+  <li><a href="#mahalanobis" id="toc-mahalanobis" class="nav-link" data-scroll-target="#mahalanobis">Mahalanobis</a></li>
+  <li><a href="#maxent" id="toc-maxent" class="nav-link" data-scroll-target="#maxent">MaxEnt</a></li>
+  <li><a href="#random-forests" id="toc-random-forests" class="nav-link" data-scroll-target="#random-forests">Random Forests</a></li>
+  <li><a href="#svm" id="toc-svm" class="nav-link" data-scroll-target="#svm">SVM</a></li>
+  </ul></li>
+  <li><a href="#пакет-sdm" id="toc-пакет-sdm" class="nav-link" data-scroll-target="#пакет-sdm">Пакет <strong><code>sdm</code></strong></a>
+  <ul>
+  <li><a href="#находки-1" id="toc-находки-1" class="nav-link" data-scroll-target="#находки-1">Находки</a></li>
+  <li><a href="#среда-обитания-1" id="toc-среда-обитания-1" class="nav-link" data-scroll-target="#среда-обитания-1">Среда обитания</a></li>
+  <li><a href="#модели" id="toc-модели" class="nav-link" data-scroll-target="#модели">Модели</a>
+  <ul>
+  <li><a href="#построение" id="toc-построение" class="nav-link" data-scroll-target="#построение">Построение</a></li>
+  <li><a href="#характеристики" id="toc-характеристики" class="nav-link" data-scroll-target="#характеристики">Характеристики</a></li>
+  </ul></li>
+  <li><a href="#прогноз" id="toc-прогноз" class="nav-link" data-scroll-target="#прогноз">Прогноз</a>
+  <ul>
+  <li><a href="#индивидуальный" id="toc-индивидуальный" class="nav-link" data-scroll-target="#индивидуальный">Индивидуальный</a></li>
+  <li><a href="#ансамбли" id="toc-ансамбли" class="nav-link" data-scroll-target="#ансамбли">Ансамбли</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="подготовка" class="level2">
+<h2 class="anchored" data-anchor-id="подготовка">Подготовка</h2>
+<section id="некоторые-определения" class="level3">
+<h3 class="anchored" data-anchor-id="некоторые-определения">Некоторые определения</h3>
+<p>https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.1365-2664.2006.01214.x</p>
+<p>AUC - Area Under the Receiver Operator Curve (ROC)</p>
+<p>TSS - True Skill Statistics</p>
+<p>https://cran.rstudio.com/web/packages/ENMTools/</p>
+</section>
+<section id="требуемые-пакеты" class="level3">
+<h3 class="anchored" data-anchor-id="требуемые-пакеты">Требуемые пакеты</h3>
+<div class="scrollable">
+<p>Основной <strong><code>dismo</code></strong>. Он подгружает <strong><code>sp</code></strong> для работы с векторными пространственными данными и <strong><code>raster</code></strong> для работы с растровыми пространственными данными.</p>
+<p>Данные из пакета <strong><code>maptools</code></strong> используются для картоосновы.</p>
+<p>Пакет <strong><code>MuMIn</code></strong> - для определения оптимального числа независимых переменных</p>
+<p>Пакет <strong><code>kernlab</code></strong> - для моделирования методом опорных векторов (SVM)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">lapply</span>(<span class="fu">c</span>(<span class="st">"dismo"</span>,<span class="st">"maptools"</span>,<span class="st">"MuMIn"</span>,<span class="st">"kernlab"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   ,<span class="cf">function</span>(pkg)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(pkg)) <span class="fu">install.packages</span>(pkg) <span class="cf">else</span> <span class="dv">0</span>L</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required namespace: dismo</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required namespace: maptools</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Please note that 'maptools' will be retired during October 2023,
+plan transition at your earliest convenience (see
+https://r-spatial.org/r/2023/05/15/evolution4.html and earlier blogs
+for guidance);some functionality will be moved to 'sp'.
+ Checking rgeos availability: TRUE</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required namespace: MuMIn</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required namespace: kernlab</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(dismo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: dismo</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: raster</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: sp</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="находки" class="level3">
+<h3 class="anchored" data-anchor-id="находки">Находки</h3>
+<p>Данные по бурогорлому ленивцу <a href="https://ru.wikipedia.org/wiki/Бурогорлый_ленивец"><svg aria-hidden="true" role="img" viewbox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M640 51.2l-.3 12.2c-28.1.8-45 15.8-55.8 40.3-25 57.8-103.3 240-155.3 358.6H415l-81.9-193.1c-32.5 63.6-68.3 130-99.2 193.1-.3.3-15 0-15-.3C172 352.3 122.8 243.4 75.8 133.4 64.4 106.7 26.4 63.4.2 63.7c0-3.1-.3-10-.3-14.2h161.9v13.9c-19.2 1.1-52.8 13.3-43.3 34.2 21.9 49.7 103.6 240.3 125.6 288.6 15-29.7 57.8-109.2 75.3-142.8-13.9-28.3-58.6-133.9-72.8-160-9.7-17.8-36.1-19.4-55.8-19.7V49.8l142.5.3v13.1c-19.4.6-38.1 7.8-29.4 26.1 18.9 40 30.6 68.1 48.1 104.7 5.6-10.8 34.7-69.4 48.1-100.8 8.9-20.6-3.9-28.6-38.6-29.4.3-3.6 0-10.3.3-13.6 44.4-.3 111.1-.3 123.1-.6v13.6c-22.5.8-45.8 12.8-58.1 31.7l-59.2 122.8c6.4 16.1 63.3 142.8 69.2 156.7L559.2 91.8c-8.6-23.1-36.4-28.1-47.2-28.3V49.6l127.8 1.1.2.5z"></path></svg></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bradypus <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">file.path</span>(<span class="fu">system.file</span>(<span class="at">package=</span><span class="st">"dismo"</span>),<span class="st">"ex/bradypus.csv"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                      ,<span class="at">header=</span><span class="cn">TRUE</span>,<span class="at">sep=</span><span class="st">','</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(bradypus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   116 obs. of  3 variables:
+ $ species: chr  "Bradypus variegatus" "Bradypus variegatus" "Bradypus variegatus" "Bradypus variegatus" ...
+ $ lon    : num  -65.4 -65.4 -65.1 -63.7 -63.9 ...
+ $ lat    : num  -10.4 -10.4 -16.8 -17.4 -17.4 ...</code></pre>
+</div>
+</div>
+<div class="pull-left-60">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(bradypus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">species</th>
+<th style="text-align: right;">lon</th>
+<th style="text-align: right;">lat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Bradypus variegatus</td>
+<td style="text-align: right;">-65.4000</td>
+<td style="text-align: right;">-10.3833</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bradypus variegatus</td>
+<td style="text-align: right;">-65.3833</td>
+<td style="text-align: right;">-10.3833</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bradypus variegatus</td>
+<td style="text-align: right;">-65.1333</td>
+<td style="text-align: right;">-16.8000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bradypus variegatus</td>
+<td style="text-align: right;">-63.6667</td>
+<td style="text-align: right;">-17.4500</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bradypus variegatus</td>
+<td style="text-align: right;">-63.8500</td>
+<td style="text-align: right;">-17.4000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bradypus variegatus</td>
+<td style="text-align: right;">-64.4167</td>
+<td style="text-align: right;">-16.0000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="pull-right-40">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10//ursa01_bradypus.png" class="img-fluid figure-img">{width=229 height=300 bound}</p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="картооснова" class="level3">
+<h3 class="anchored" data-anchor-id="картооснова">Картооснова</h3>
+<p>Использование векторной карты границ государств в качестве картографической основы</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(wrld_simpl,<span class="at">package=</span><span class="st">"maptools"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mar=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/wrld-simpl-1.svg" width="576" height="440" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="среда-обитания" class="level3">
+<h3 class="anchored" data-anchor-id="среда-обитания">Среда обитания</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(predictnames <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="fu">file.path</span>(<span class="fu">system.file</span>(<span class="at">package=</span><span class="st">"dismo"</span>),<span class="st">'ex'</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                       ,<span class="at">pattern=</span><span class="st">'grd$'</span>,<span class="at">full.names=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Software/Rlibs43/dismo/ex/bio1.grd" 
+[2] "C:/Software/Rlibs43/dismo/ex/bio12.grd"
+[3] "C:/Software/Rlibs43/dismo/ex/bio16.grd"
+[4] "C:/Software/Rlibs43/dismo/ex/bio17.grd"
+[5] "C:/Software/Rlibs43/dismo/ex/bio5.grd" 
+[6] "C:/Software/Rlibs43/dismo/ex/bio6.grd" 
+[7] "C:/Software/Rlibs43/dismo/ex/bio7.grd" 
+[8] "C:/Software/Rlibs43/dismo/ex/bio8.grd" 
+[9] "C:/Software/Rlibs43/dismo/ex/biome.grd"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(predictors <span class="ot">&lt;-</span> <span class="fu">stack</span>(predictnames) <span class="sc">|&gt;</span> <span class="fu">brick</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class      : RasterBrick 
+dimensions : 192, 186, 35712, 9  (nrow, ncol, ncell, nlayers)
+resolution : 0.5, 0.5  (x, y)
+extent     : -125, -32, -56, 40  (xmin, xmax, ymin, ymax)
+crs        : +proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +no_defs 
+source     : memory
+names      : bio1, bio12, bio16, bio17, bio5, bio6, bio7, bio8, biome 
+min values :  -23,     0,     0,     0,   61, -212,   60,  -66,     1 
+max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(levels <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">na.omit</span>(predictors[[<span class="st">"biome"</span>]][]))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  7  8  9 10 11 12 13 14</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(predictors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/predictors-1.svg" class="img-fluid figure-img" width="787"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Биоклиматические переменные WorldClim (<a href="https://www.worldclim.org/data/bioclim.html">полный список</a>)</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>BIO1</td>
+<td>Annual Mean Temperature</td>
+</tr>
+<tr class="even">
+<td>BIO5</td>
+<td>Max Temperature of Warmest Month</td>
+</tr>
+<tr class="odd">
+<td>BIO6</td>
+<td>Min Temperature of Coldest Month</td>
+</tr>
+<tr class="even">
+<td>BIO7</td>
+<td>Temperature Annual Range (BIO5-BIO6)</td>
+</tr>
+<tr class="odd">
+<td>BIO8</td>
+<td>Mean Temperature of Wettest Quarter</td>
+</tr>
+<tr class="even">
+<td>BIO12</td>
+<td>Annual Precipitation</td>
+</tr>
+<tr class="odd">
+<td>BIO16</td>
+<td>Precipitation of Wettest Quarter</td>
+</tr>
+<tr class="even">
+<td>BIO17</td>
+<td>Precipitation of Driest Quarter</td>
+</tr>
+</tbody>
+</table>
+<p>Данные можно получить с помощью функции <code>getData()</code> из пакета <strong><code>raster</code></strong>, например:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>raster<span class="sc">::</span><span class="fu">getData</span>(<span class="st">'worldclim'</span>,<span class="at">var=</span><span class="st">'bio'</span>,<span class="at">res=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Наземные биомы (<a href="https://www.worldwildlife.org/pages/conservation-science-data-and-tools">данные</a>)</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>BIOME</td>
+<td>Terrestrial biome</td>
+</tr>
+</tbody>
+</table>
+<p>В растре <code>biome</code> записаны номинальные характеристики:</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Tropical &amp; Subtropical Moist Broadleaf Forests</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Tropical &amp; Subtropical Dry Broadleaf Forests</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Tropical &amp; Subtropical Coniferous Forests</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Temperate Broadleaf &amp; Mixed Forests</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Temperate Conifer Forests</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Boreal Forests/Taiga</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Tropical &amp; Subtropical Grasslands, Savannas &amp; Shrublands</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Temperate Grasslands, Savannas &amp; Shrublands</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Flooded Grasslands &amp; Savannas</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Montane Grasslands &amp; Shrublands</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>Tundra</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>Mediterranean Forests, Woodlands &amp; Scrub</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>Deserts &amp; Xeric Shrublands</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>Mangroves</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="подвыборки" class="level3">
+<h3 class="anchored" data-anchor-id="подвыборки">Подвыборки</h3>
+<p>Используемый параметр для генератора псевдослучайных чисел. Зафиксированное значение обеспечивает воспроизводимость вычислений.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(seed <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">100</span><span class="sc">:</span><span class="dv">999</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 418</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(seed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Число <code>1/k</code> характеризует долю тестовых данных. Разбиваем данные на <code>k</code> групп, одна из которых будет тестовая.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">5</span>L</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Выбор номера тестовой группы:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(g <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq</span>(k),<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<section id="присутствие" class="level4">
+<h4 class="anchored" data-anchor-id="присутствие">Присутствие</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> dismo<span class="sc">::</span><span class="fu">kfold</span>(bradypus,k) <span class="do">## group &lt;- sample(seq(k),nrow(pres),replace=TRUE) ## альтернативное группирование</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> int [1:116] 3 1 1 5 2 5 2 3 3 3 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>group
+ 1  2  3  4  5 
+23 23 24 23 23 </code></pre>
+</div>
+</div>
+<p>Формирование точек присутствия и разбиение их на группы для обучения и тестирования</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pres <span class="ot">&lt;-</span> bradypus[,<span class="sc">-</span><span class="dv">1</span>] <span class="do">## presence</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>pres_train <span class="ot">&lt;-</span> pres[group<span class="sc">!=</span>g,]</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>pres_test <span class="ot">&lt;-</span> pres[group<span class="sc">==</span>g,]</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pres_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 93</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pres_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23</code></pre>
+</div>
+</div>
+</section>
+<section id="псевдоотсутствие" class="level4">
+<h4 class="anchored" data-anchor-id="псевдоотсутствие">Псевдоотсутствие</h4>
+<p>Используемый пространственный охват</p>
+<div class="notpull-left">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ext <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">extent</span>(<span class="sc">-</span><span class="dv">90</span>, <span class="sc">-</span><span class="dv">32</span>, <span class="sc">-</span><span class="dv">33</span>, <span class="dv">23</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>opP <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ext,<span class="at">col=</span><span class="st">"brown"</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl,<span class="at">col=</span><span class="st">"#FFFFA080"</span>,<span class="at">border=</span><span class="st">"orange"</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(opP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="notpull-right">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/ext-code-1.svg" height="450" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Формирование набора точек псевдоотсутствия</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>backg <span class="ot">&lt;-</span> <span class="fu">randomPoints</span>(predictors, <span class="at">n=</span><span class="dv">1000</span>, <span class="at">ext=</span>ext, <span class="at">extf =</span> <span class="fl">1.25</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(backg) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'lon'</span>, <span class="st">'lat'</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(backg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        lon    lat
+[1,] -48.25  -1.75
+[2,] -92.25  17.25
+[3,] -51.25 -25.25
+[4,] -73.25 -15.75
+[5,] -56.25  -6.75
+[6,] -64.75  -1.75</code></pre>
+</div>
+</div>
+<p>Присвоения номеров групп для отбора в тестовую группу</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">kfold</span>(backg,k)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>group
+  1   2   3   4   5 
+200 200 200 200 200 </code></pre>
+</div>
+</div>
+</section>
+<section id="обучение-и-тестирование" class="level4">
+<h4 class="anchored" data-anchor-id="обучение-и-тестирование">Обучение и тестирование</h4>
+<p>Формирование группы для обучения и группы для тестирования для точек псевдоотсутствия</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>backg_train <span class="ot">&lt;-</span> backg[group<span class="sc">!=</span>g,]</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>backg_test <span class="ot">&lt;-</span> backg[group<span class="sc">==</span>g,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Формирование группы для обучения из точек присутствия и точек псевдоотсутствия</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> <span class="fu">rbind</span>(pres_train, backg_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Формирование группы для тестирования из точек присутствия и точек псевдоотсутствия</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">rbind</span>(pres_test, backg_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Вектор присутствия (значение 1) и отсутствия (значения 0) для обучающей выборки</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>pb_train <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>L, <span class="fu">nrow</span>(pres_train)), <span class="fu">rep</span>(<span class="dv">0</span>L, <span class="fu">nrow</span>(backg_train)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Вектор присутствия (значение 1) и отсутствия (значения 0) для тестовой выборки</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>pb_test <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>L, <span class="fu">nrow</span>(pres_test)), <span class="fu">rep</span>(<span class="dv">0</span>L, <span class="fu">nrow</span>(backg_test)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Получение характеристик из растров для точек обучающей выборки</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>envtrain <span class="ot">&lt;-</span> <span class="fu">extract</span>(predictors, train) <span class="sc">|&gt;</span> <span class="fu">data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Новый столбец присутствия/отсутствия</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>envtrain <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">pa=</span>pb_train,envtrain)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Зададим биом категорией (фактором)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>envtrain<span class="sc">$</span>biome <span class="ot">=</span> <span class="fu">factor</span>(envtrain<span class="sc">$</span>biome,<span class="at">levels=</span>levels)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(envtrain)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   893 obs. of  10 variables:
+ $ pa   : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ bio1 : int  263 263 253 243 243 252 240 275 271 274 ...
+ $ bio12: int  1639 1639 3624 1693 1693 2501 1214 2259 2212 2233 ...
+ $ bio16: int  724 724 1547 775 775 1081 516 956 807 877 ...
+ $ bio17: int  62 62 373 186 186 280 146 208 281 230 ...
+ $ bio5 : int  338 338 329 318 318 326 317 335 327 329 ...
+ $ bio6 : int  191 191 150 150 150 154 150 231 220 227 ...
+ $ bio7 : int  147 147 179 168 168 172 168 104 107 102 ...
+ $ bio8 : int  261 261 271 264 264 270 261 270 266 269 ...
+ $ biome: Factor w/ 13 levels "1","2","3","4",..: 1 1 1 1 1 1 2 1 1 1 ...</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(envtrain,<span class="dv">24</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">pa</th>
+<th style="text-align: right;">bio1</th>
+<th style="text-align: right;">bio12</th>
+<th style="text-align: right;">bio16</th>
+<th style="text-align: right;">bio17</th>
+<th style="text-align: right;">bio5</th>
+<th style="text-align: right;">bio6</th>
+<th style="text-align: right;">bio7</th>
+<th style="text-align: right;">bio8</th>
+<th style="text-align: left;">biome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">263</td>
+<td style="text-align: right;">1639</td>
+<td style="text-align: right;">724</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">338</td>
+<td style="text-align: right;">191</td>
+<td style="text-align: right;">147</td>
+<td style="text-align: right;">261</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">263</td>
+<td style="text-align: right;">1639</td>
+<td style="text-align: right;">724</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">338</td>
+<td style="text-align: right;">191</td>
+<td style="text-align: right;">147</td>
+<td style="text-align: right;">261</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">253</td>
+<td style="text-align: right;">3624</td>
+<td style="text-align: right;">1547</td>
+<td style="text-align: right;">373</td>
+<td style="text-align: right;">329</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">179</td>
+<td style="text-align: right;">271</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">243</td>
+<td style="text-align: right;">1693</td>
+<td style="text-align: right;">775</td>
+<td style="text-align: right;">186</td>
+<td style="text-align: right;">318</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">168</td>
+<td style="text-align: right;">264</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">243</td>
+<td style="text-align: right;">1693</td>
+<td style="text-align: right;">775</td>
+<td style="text-align: right;">186</td>
+<td style="text-align: right;">318</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">168</td>
+<td style="text-align: right;">264</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">252</td>
+<td style="text-align: right;">2501</td>
+<td style="text-align: right;">1081</td>
+<td style="text-align: right;">280</td>
+<td style="text-align: right;">326</td>
+<td style="text-align: right;">154</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">270</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">240</td>
+<td style="text-align: right;">1214</td>
+<td style="text-align: right;">516</td>
+<td style="text-align: right;">146</td>
+<td style="text-align: right;">317</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">168</td>
+<td style="text-align: right;">261</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">275</td>
+<td style="text-align: right;">2259</td>
+<td style="text-align: right;">956</td>
+<td style="text-align: right;">208</td>
+<td style="text-align: right;">335</td>
+<td style="text-align: right;">231</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">270</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">271</td>
+<td style="text-align: right;">2212</td>
+<td style="text-align: right;">807</td>
+<td style="text-align: right;">281</td>
+<td style="text-align: right;">327</td>
+<td style="text-align: right;">220</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">266</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">274</td>
+<td style="text-align: right;">2233</td>
+<td style="text-align: right;">877</td>
+<td style="text-align: right;">230</td>
+<td style="text-align: right;">329</td>
+<td style="text-align: right;">227</td>
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">269</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">266</td>
+<td style="text-align: right;">2592</td>
+<td style="text-align: right;">872</td>
+<td style="text-align: right;">498</td>
+<td style="text-align: right;">320</td>
+<td style="text-align: right;">214</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">239</td>
+<td style="text-align: right;">1194</td>
+<td style="text-align: right;">540</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">313</td>
+<td style="text-align: right;">165</td>
+<td style="text-align: right;">148</td>
+<td style="text-align: right;">252</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">271</td>
+<td style="text-align: right;">2599</td>
+<td style="text-align: right;">1250</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: right;">325</td>
+<td style="text-align: right;">224</td>
+<td style="text-align: right;">101</td>
+<td style="text-align: right;">267</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">269</td>
+<td style="text-align: right;">2211</td>
+<td style="text-align: right;">981</td>
+<td style="text-align: right;">196</td>
+<td style="text-align: right;">333</td>
+<td style="text-align: right;">219</td>
+<td style="text-align: right;">114</td>
+<td style="text-align: right;">263</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">270</td>
+<td style="text-align: right;">2274</td>
+<td style="text-align: right;">1008</td>
+<td style="text-align: right;">191</td>
+<td style="text-align: right;">331</td>
+<td style="text-align: right;">221</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">266</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">263</td>
+<td style="text-align: right;">1842</td>
+<td style="text-align: right;">818</td>
+<td style="text-align: right;">176</td>
+<td style="text-align: right;">326</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: right;">121</td>
+<td style="text-align: right;">257</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">260</td>
+<td style="text-align: right;">1945</td>
+<td style="text-align: right;">880</td>
+<td style="text-align: right;">143</td>
+<td style="text-align: right;">324</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">263</td>
+<td style="text-align: right;">1878</td>
+<td style="text-align: right;">893</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">324</td>
+<td style="text-align: right;">212</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">259</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">263</td>
+<td style="text-align: right;">1878</td>
+<td style="text-align: right;">893</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">324</td>
+<td style="text-align: right;">212</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">259</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">260</td>
+<td style="text-align: right;">1882</td>
+<td style="text-align: right;">845</td>
+<td style="text-align: right;">170</td>
+<td style="text-align: right;">324</td>
+<td style="text-align: right;">203</td>
+<td style="text-align: right;">121</td>
+<td style="text-align: right;">255</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">260</td>
+<td style="text-align: right;">1882</td>
+<td style="text-align: right;">845</td>
+<td style="text-align: right;">170</td>
+<td style="text-align: right;">324</td>
+<td style="text-align: right;">203</td>
+<td style="text-align: right;">121</td>
+<td style="text-align: right;">255</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">270</td>
+<td style="text-align: right;">2479</td>
+<td style="text-align: right;">1277</td>
+<td style="text-align: right;">154</td>
+<td style="text-align: right;">331</td>
+<td style="text-align: right;">214</td>
+<td style="text-align: right;">117</td>
+<td style="text-align: right;">267</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">270</td>
+<td style="text-align: right;">2487</td>
+<td style="text-align: right;">1221</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">329</td>
+<td style="text-align: right;">216</td>
+<td style="text-align: right;">113</td>
+<td style="text-align: right;">268</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">270</td>
+<td style="text-align: right;">2413</td>
+<td style="text-align: right;">1286</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: right;">330</td>
+<td style="text-align: right;">214</td>
+<td style="text-align: right;">116</td>
+<td style="text-align: right;">268</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Получение характеристик из растров для точек тестовой выборки</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>envtest <span class="ot">&lt;-</span> <span class="fu">extract</span>(predictors, test) <span class="sc">|&gt;</span> <span class="fu">data.frame</span>()</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>envtest <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">pa=</span>pb_test,envtest)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>envtest<span class="sc">$</span>biome <span class="ot">=</span> <span class="fu">factor</span>(envtest<span class="sc">$</span>biome, <span class="at">levels=</span>levels)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(envtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   223 obs. of  10 variables:
+ $ pa   : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ bio1 : int  274 266 251 254 232 242 250 246 188 282 ...
+ $ bio12: int  2233 2608 1617 2084 3921 2233 2651 2253 1449 2768 ...
+ $ bio16: int  877 957 808 1011 1364 793 926 865 559 1072 ...
+ $ bio17: int  230 306 97 137 365 176 213 314 182 207 ...
+ $ bio5 : int  329 322 312 317 290 290 308 310 247 342 ...
+ $ bio6 : int  227 219 194 197 171 198 197 182 125 227 ...
+ $ bio7 : int  102 103 118 119 119 93 110 128 123 115 ...
+ $ bio8 : int  269 262 246 251 229 242 247 248 189 278 ...
+ $ biome: Factor w/ 13 levels "1","2","3","4",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+</div>
+</div>
+<p>Отдельно пригодятся точки присутствия и псевдоотсутствия тестовой выборки</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>testpres <span class="ot">&lt;-</span> envtest[envtest<span class="sc">$</span>pa<span class="sc">==</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>testbackg <span class="ot">&lt;-</span> envtest[envtest<span class="sc">$</span>pa<span class="sc">==</span><span class="dv">0</span>,<span class="sc">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="в-итоге" class="level3">
+<h3 class="anchored" data-anchor-id="в-итоге">В итоге</h3>
+<p>Обзор размеров выборок</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">pres_train=</span><span class="fu">nrow</span>(pres_train),<span class="at">pres_test=</span><span class="fu">nrow</span>(pres_test),<span class="at">pres=</span><span class="fu">nrow</span>(pres)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a> ,<span class="at">backg_train=</span><span class="fu">nrow</span>(backg_train),<span class="at">backg_test=</span><span class="fu">nrow</span>(backg_test)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a> ,<span class="at">train=</span><span class="fu">nrow</span>(train),<span class="at">envtrain=</span><span class="fu">nrow</span>(envtrain)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a> ,<span class="at">test=</span><span class="fu">nrow</span>(test),<span class="at">envtest=</span><span class="fu">nrow</span>(envtest)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a> ,<span class="at">row.names=</span><span class="st">"size"</span>) <span class="sc">|&gt;</span> <span class="fu">t</span>() <span class="sc">|&gt;</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">pres_train</td>
+<td style="text-align: right;">93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pres_test</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pres</td>
+<td style="text-align: right;">116</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">backg_train</td>
+<td style="text-align: right;">800</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">backg_test</td>
+<td style="text-align: right;">200</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">train</td>
+<td style="text-align: right;">893</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">envtrain</td>
+<td style="text-align: right;">893</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">test</td>
+<td style="text-align: right;">223</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">envtest</td>
+<td style="text-align: right;">223</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="notpull-left">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>opP <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="sc">!</span><span class="fu">is.na</span>(predictors[[<span class="dv">1</span>]]), <span class="at">col=</span><span class="fu">c</span>(<span class="st">'white'</span>, <span class="st">'light grey'</span>), <span class="at">legend=</span><span class="cn">FALSE</span>)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ext, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">'red'</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(backg_train, <span class="at">pch=</span><span class="st">'b'</span>, <span class="at">cex=</span><span class="fl">0.5</span>, <span class="at">col=</span><span class="st">'yellow'</span>)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(backg_test, <span class="at">pch=</span><span class="st">'b'</span>,  <span class="at">cex=</span><span class="fl">0.5</span>, <span class="at">col=</span><span class="st">'black'</span>)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_train, <span class="at">pch=</span> <span class="st">'p'</span>, <span class="at">col=</span><span class="st">'forestgreen'</span>)</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_test, <span class="at">pch=</span><span class="st">'p'</span>, <span class="at">col=</span><span class="st">'blue'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(opP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="notpull-right">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/loc-code-1.svg" height="405" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="моделирование" class="level2">
+<h2 class="anchored" data-anchor-id="моделирование">Моделирование</h2>
+<section id="gml" class="level3">
+<h3 class="anchored" data-anchor-id="gml">GML</h3>
+<section id="binomilallogit" class="level4">
+<h4 class="anchored" data-anchor-id="binomilallogit">Binomilal/logit</h4>
+<div class="font90">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>gm1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(pa <span class="sc">~</span> bio1 <span class="sc">+</span> bio5 <span class="sc">+</span> bio6 <span class="sc">+</span> bio7 <span class="sc">+</span> bio8 <span class="sc">+</span> bio12 <span class="sc">+</span> bio16 <span class="sc">+</span> bio17,</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data=</span>envtrain, <span class="at">na.action=</span>na.pass)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gm1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = pa ~ bio1 + bio5 + bio6 + bio7 + bio8 + bio12 + 
+    bio16 + bio17, family = binomial(link = "logit"), data = envtrain, 
+    na.action = na.pass)
+
+Coefficients:
+              Estimate Std. Error z value Pr(&gt;|z|)  
+(Intercept)  1.8525588  1.5245702   1.215   0.2243  
+bio1         0.0576376  0.0549895   1.048   0.2946  
+bio5        -0.0682385  0.2537978  -0.269   0.7880  
+bio6         0.0018211  0.2530107   0.007   0.9943  
+bio7         0.0011538  0.2525361   0.005   0.9964  
+bio8         0.0041311  0.0233657   0.177   0.8597  
+bio12        0.0016730  0.0006795   2.462   0.0138 *
+bio16       -0.0011810  0.0014294  -0.826   0.4087  
+bio17       -0.0038651  0.0015128  -2.555   0.0106 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 596.69  on 892  degrees of freedom
+Residual deviance: 466.82  on 884  degrees of freedom
+AIC: 484.82
+
+Number of Fisher Scoring iterations: 7</code></pre>
+</div>
+</div>
+</div>
+<div class="font95">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> MuMIn<span class="sc">::</span><span class="fu">get.models</span>(MuMIn<span class="sc">::</span><span class="fu">dredge</span>(gm1),<span class="at">subset=</span><span class="fu">seq</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Fixed term is "(Intercept)"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>gm1 <span class="ot">&lt;-</span> res[[<span class="dv">1</span>]]</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gm1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = pa ~ bio1 + bio12 + bio17 + bio5 + 1, family = binomial(link = "logit"), 
+    data = envtrain, na.action = na.pass)
+
+Coefficients:
+              Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  1.9843482  1.4961722   1.326  0.18475    
+bio1         0.0633230  0.0120360   5.261 1.43e-07 ***
+bio12        0.0011336  0.0002146   5.283 1.27e-07 ***
+bio17       -0.0028949  0.0009794  -2.956  0.00312 ** 
+bio5        -0.0685816  0.0123371  -5.559 2.71e-08 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 596.69  on 892  degrees of freedom
+Residual deviance: 467.55  on 888  degrees of freedom
+AIC: 477.55
+
+Number of Fisher Scoring iterations: 7</code></pre>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>(e1 <span class="ot">&lt;-</span> <span class="fu">evaluate</span>(<span class="at">p=</span>testpres,<span class="at">a=</span>testbackg,<span class="at">model=</span>gm1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.8471739 
+cor            : 0.3183602 
+max TPR+TNR at : -2.053682 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(e1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                thresholds
+kappa           -1.3911056
+spec_sens       -2.0536825
+no_omission     -2.9040456
+prevalence       0.1745841
+equal_sens_spec -1.9256580
+sensitivity     -2.3454636</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>(pg <span class="ot">&lt;-</span> <span class="fu">predict</span>(predictors, gm1, <span class="at">ext=</span>ext))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class      : RasterLayer 
+dimensions : 112, 116, 12992  (nrow, ncol, ncell)
+resolution : 0.5, 0.5  (x, y)
+extent     : -90, -32, -33, 23  (xmin, xmax, ymin, ymax)
+crs        : +proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +no_defs 
+source     : memory
+names      : layer 
+values     : -10.10151, 2.944964  (min, max)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pg, <span class="at">main=</span><span class="st">'Binomial/logit, raw values'</span>)</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pg <span class="sc">&gt;</span> tr<span class="sc">$</span>spec_sens, <span class="at">main=</span><span class="st">'presence/absence'</span>)</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(backg_train, <span class="at">pch=</span><span class="st">'x'</span>, <span class="at">cex=</span><span class="fl">0.4</span>,<span class="at">col=</span><span class="st">"lightblue"</span>)</span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_train, <span class="at">pch=</span><span class="st">'o'</span>,<span class="at">cex=</span><span class="fl">0.6</span>,<span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/pgplot-1.svg" width="768" height="360" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="gaussianidentity" class="level4">
+<h4 class="anchored" data-anchor-id="gaussianidentity">Gaussian/identity</h4>
+<div class="font85">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>gm2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(pa <span class="sc">~</span> bio1 <span class="sc">+</span> bio5 <span class="sc">+</span> bio6 <span class="sc">+</span> bio7 <span class="sc">+</span> bio8 <span class="sc">+</span> bio12 <span class="sc">+</span> bio16 <span class="sc">+</span> bio17,</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="fu">gaussian</span>(<span class="at">link =</span> <span class="st">"identity"</span>), <span class="at">data=</span>envtrain, <span class="at">na.action=</span>na.pass)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> MuMIn<span class="sc">::</span><span class="fu">get.models</span>(MuMIn<span class="sc">::</span><span class="fu">dredge</span>(gm2) ,<span class="at">subset=</span><span class="fu">seq</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Fixed term is "(Intercept)"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>gm2 <span class="ot">&lt;-</span> res[[<span class="dv">1</span>]]</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = pa ~ bio1 + bio12 + bio16 + bio17 + bio7 + bio8 + 
+    1, family = gaussian(link = "identity"), data = envtrain, 
+    na.action = na.pass)
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.3605416  0.1032139   3.493 0.000501 ***
+bio1        -0.0021353  0.0008005  -2.667 0.007786 ** 
+bio12        0.0002589  0.0000682   3.796 0.000157 ***
+bio16       -0.0003075  0.0001390  -2.212 0.027242 *  
+bio17       -0.0004202  0.0001589  -2.645 0.008302 ** 
+bio7        -0.0013580  0.0003235  -4.198 2.96e-05 ***
+bio8         0.0012477  0.0006663   1.873 0.061456 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for gaussian family taken to be 0.08177743)
+
+    Null deviance: 83.315  on 892  degrees of freedom
+Residual deviance: 72.455  on 886  degrees of freedom
+AIC: 307.34
+
+Number of Fisher Scoring iterations: 2</code></pre>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>(e2 <span class="ot">&lt;-</span> <span class="fu">evaluate</span>(<span class="at">p=</span>testpres,<span class="at">a=</span>testbackg,<span class="at">model=</span>gm2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.8154348 
+cor            : 0.3421896 
+max TPR+TNR at : 0.1408236 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(e2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                thresholds
+kappa           0.23100087
+spec_sens       0.14082360
+no_omission     0.06956769
+prevalence      0.10065799
+equal_sens_spec 0.15621452
+sensitivity     0.09175005</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>pg <span class="ot">&lt;-</span> <span class="fu">predict</span>(predictors, gm2, <span class="at">ext=</span>ext)</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pg, <span class="at">main=</span><span class="st">'GLM/gaussian, raw values'</span>) </span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pg <span class="sc">&gt;</span> tr<span class="sc">$</span>spec_sens, <span class="at">main=</span><span class="st">'presence/absence'</span>) </span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(backg_train, <span class="at">pch=</span><span class="st">'x'</span>, <span class="at">cex=</span><span class="fl">0.4</span>,<span class="at">col=</span><span class="st">"lightblue"</span>)</span>
+<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_train, <span class="at">pch=</span><span class="st">'o'</span>,<span class="at">cex=</span><span class="fl">0.6</span>,<span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/gm2-1.svg" width="768" height="360" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="bioclim" class="level3">
+<h3 class="anchored" data-anchor-id="bioclim">Bioclim</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>pred_nf <span class="ot">&lt;-</span> <span class="fu">dropLayer</span>(predictors,<span class="st">'biome'</span>)</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>bc <span class="ot">&lt;-</span> <span class="fu">bioclim</span>(<span class="at">x=</span>pred_nf, <span class="at">p=</span>pres_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bc) <span class="do">## only two predictors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/plotbc-1.svg" width="480" height="535" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>(e <span class="ot">&lt;-</span> <span class="fu">evaluate</span>(<span class="at">p=</span>pres_test, <span class="at">a=</span>backg_test, <span class="at">model=</span>bc, <span class="at">x=</span>pred_nf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.7216304 
+cor            : 0.1985976 
+max TPR+TNR at : 0.03215806 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(e))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                 thresholds
+kappa            0.16119032
+spec_sens        0.03215806
+no_omission     -0.00010000
+prevalence       0.10742688
+equal_sens_spec  0.09667419
+sensitivity      0.02140538</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">response</span>(bc) <span class="do">## it's a plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/bcresponse-1.svg" width="768" height="535" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>pb <span class="ot">&lt;-</span> <span class="fu">predict</span>(predictors, bc, <span class="at">ext=</span>ext, <span class="at">progress=</span><span class="st">''</span>)</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pb, <span class="at">main=</span><span class="st">'Bioclim, raw values'</span>)</span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_train, <span class="at">pch=</span><span class="st">'+'</span>)</span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pb <span class="sc">&gt;</span> tr<span class="sc">$</span>spec_sens, <span class="at">main=</span><span class="st">'presence/absence'</span>)</span>
+<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_train, <span class="at">pch=</span><span class="st">'+'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/bcplot-1.svg" width="768" height="360" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="domain" class="level3">
+<h3 class="anchored" data-anchor-id="domain">Domain</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>dm <span class="ot">&lt;-</span> <span class="fu">domain</span>(pred_nf,pres_train)</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>(e <span class="ot">&lt;-</span> <span class="fu">evaluate</span>(pres_test, backg_test, dm, pred_nf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.7746739 
+cor            : 0.2888014 
+max TPR+TNR at : 0.7385438 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(e))<span class="co">#, 'spec_sens')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                thresholds
+kappa            0.7385438
+spec_sens        0.7385438
+no_omission      0.3415738
+prevalence       0.1046838
+equal_sens_spec  0.7550243
+sensitivity      0.6942046</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>pm <span class="ot">&lt;-</span> <span class="fu">predict</span>(pred_nf,dm,<span class="at">ext=</span>ext,<span class="at">progress=</span><span class="st">''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pm, <span class="at">main=</span><span class="st">'Domain, raw values'</span>)</span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_train, <span class="at">pch=</span><span class="st">'+'</span>)</span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pm <span class="sc">&gt;</span> tr<span class="sc">$</span>spec_sens, <span class="at">main=</span><span class="st">'presence/absence'</span>)</span>
+<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb99-7"><a href="#cb99-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_train, <span class="at">pch=</span><span class="st">'+'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/domainmap-1.svg" width="768" height="360" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mahalanobis" class="level3">
+<h3 class="anchored" data-anchor-id="mahalanobis">Mahalanobis</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>mm <span class="ot">&lt;-</span> <span class="fu">mahal</span>(pred_nf,pres_train)  </span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>(e <span class="ot">&lt;-</span> <span class="fu">evaluate</span>(pres_test, backg_test, mm, pred_nf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.8073913 
+cor            : 0.1127962 
+max TPR+TNR at : -2.014517 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(e))<span class="co">#, 'spec_sens')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                 thresholds
+kappa            0.31412185
+spec_sens       -2.01451662
+no_omission     -8.50369936
+prevalence       0.08997169
+equal_sens_spec -1.64400432
+sensitivity     -6.26367357</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>pm <span class="ot">&lt;-</span> <span class="fu">predict</span>(pred_nf,mm,<span class="at">ext=</span>ext,<span class="at">progress=</span><span class="st">''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pm, <span class="at">main=</span><span class="st">'Mahalanobis, raw values'</span>)</span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_train, <span class="at">pch=</span><span class="st">'+'</span>)</span>
+<span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pm <span class="sc">&gt;</span> tr<span class="sc">$</span>spec_sens, <span class="at">main=</span><span class="st">'presence/absence'</span>)</span>
+<span id="cb106-6"><a href="#cb106-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb106-7"><a href="#cb106-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_train, <span class="at">pch=</span><span class="st">'+'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/malplot-1.svg" width="768" height="360" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="maxent" class="level3">
+<h3 class="anchored" data-anchor-id="maxent">MaxEnt</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># maxent(silent=F)</span></span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>xm <span class="ot">&lt;-</span> <span class="fu">maxent</span>(predictors, pres_train, <span class="at">factors=</span><span class="st">'biome'</span>,<span class="at">silent=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required namespace: rJava</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/plotxm-1.svg" width="480" height="422" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">response</span>(xm) <span class="do">## it's a plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/meresp-1.svg" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>(e <span class="ot">&lt;-</span> <span class="fu">evaluate</span>(<span class="at">p=</span>pres_test, <span class="at">a=</span>backg_test, <span class="at">model=</span>xm, <span class="at">x=</span>predictors))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.8634783 
+cor            : 0.4254743 
+max TPR+TNR at : 0.5033373 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(e)) <span class="co">#, 'spec_sens')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                thresholds
+kappa            0.7438286
+spec_sens        0.5033373
+no_omission      0.2623276
+prevalence       0.1027941
+equal_sens_spec  0.5330244
+sensitivity      0.3034991</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>px <span class="ot">&lt;-</span> <span class="fu">predict</span>(predictors,xm,<span class="at">ext=</span>ext,<span class="at">progress=</span><span class="st">''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(px, <span class="at">main=</span><span class="st">'Maxent, raw values'</span>)</span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_train, <span class="at">pch=</span><span class="st">'+'</span>)</span>
+<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(px <span class="sc">&gt;</span> tr<span class="sc">$</span>spec_sens, <span class="at">main=</span><span class="st">'presence/absence'</span>)</span>
+<span id="cb117-6"><a href="#cb117-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb117-7"><a href="#cb117-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_train, <span class="at">pch=</span><span class="st">'+'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/meplot-1.svg" width="768" height="360" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="random-forests" class="level3">
+<h3 class="anchored" data-anchor-id="random-forests">Random Forests</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(randomForest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: randomForest</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>randomForest 4.7-1.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Type rfNews() to see new features/changes/bug fixes.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> pa <span class="sc">~</span> bio1 <span class="sc">+</span> bio5 <span class="sc">+</span> bio6 <span class="sc">+</span> bio7 <span class="sc">+</span> bio8 <span class="sc">+</span> bio12 <span class="sc">+</span> bio16 <span class="sc">+</span> bio17</span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>(rf1 <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(model, <span class="at">data=</span>envtrain))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in randomForest.default(m, y, ...): The response has five or
+fewer unique values.  Are you sure you want to do regression?</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+ randomForest(formula = model, data = envtrain) 
+               Type of random forest: regression
+                     Number of trees: 500
+No. of variables tried at each split: 2
+
+          Mean of squared residuals: 0.06876673
+                    % Var explained: 26.29</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(pa) <span class="sc">~</span> bio1 <span class="sc">+</span> bio5 <span class="sc">+</span> bio6 <span class="sc">+</span> bio7 <span class="sc">+</span> bio8 <span class="sc">+</span> bio12 <span class="sc">+</span> bio16 <span class="sc">+</span> bio17</span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>(rf2 <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(model, <span class="at">data=</span>envtrain))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+ randomForest(formula = model, data = envtrain) 
+               Type of random forest: classification
+                     Number of trees: 500
+No. of variables tried at each split: 2
+
+        OOB estimate of  error rate: 8.4%
+Confusion matrix:
+    0  1 class.error
+0 785 15   0.0187500
+1  60 33   0.6451613</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>(rf3 <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(envtrain[,<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="fu">factor</span>(pb_train)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+ randomForest(x = envtrain[, 1:8], y = factor(pb_train)) 
+               Type of random forest: classification
+                     Number of trees: 500
+No. of variables tried at each split: 2
+
+        OOB estimate of  error rate: 0%
+Confusion matrix:
+    0  1 class.error
+0 800  0           0
+1   0 93           0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>(erf <span class="ot">&lt;-</span> <span class="fu">evaluate</span>(testpres, testbackg, rf1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.8284783 
+cor            : 0.4373042 
+max TPR+TNR at : 0.03923333 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(erf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                thresholds
+kappa           0.27380000
+spec_sens       0.03923333
+no_omission     0.02593333
+prevalence      0.10206667
+equal_sens_spec 0.07616667
+sensitivity     0.04626667</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>pr <span class="ot">&lt;-</span> <span class="fu">predict</span>(predictors, rf1, <span class="at">ext=</span>ext)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pr, <span class="at">main=</span><span class="st">'Random Forest, regression'</span>)</span>
+<span id="cb135-3"><a href="#cb135-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb135-4"><a href="#cb135-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pr <span class="sc">&gt;</span> tr<span class="sc">$</span>spec_sens, <span class="at">main=</span><span class="st">'presence/absence'</span>)</span>
+<span id="cb135-5"><a href="#cb135-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb135-6"><a href="#cb135-6" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_train, <span class="at">pch=</span><span class="st">'+'</span>)</span>
+<span id="cb135-7"><a href="#cb135-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(backg_train, <span class="at">pch=</span><span class="st">'-'</span>,<span class="at">cex=</span><span class="fl">0.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/rf1plot-1.svg" width="768" height="360" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="svm" class="level3">
+<h3 class="anchored" data-anchor-id="svm">SVM</h3>
+<h3 class="toc-ignore unnumbered unlisted anchored">
+Support Vector Machine (SVM)
+</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(kernlab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: kernlab</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'kernlab'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:raster':
+
+    buffer, rotated</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>svm <span class="ot">&lt;-</span> <span class="fu">ksvm</span>(pa <span class="sc">~</span> bio1<span class="sc">+</span>bio5<span class="sc">+</span>bio6<span class="sc">+</span>bio7<span class="sc">+</span>bio8<span class="sc">+</span>bio12<span class="sc">+</span>bio16<span class="sc">+</span>bio17, <span class="at">data=</span>envtrain)</span>
+<span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a>(esv <span class="ot">&lt;-</span> <span class="fu">evaluate</span>(<span class="at">p=</span>testpres, <span class="at">a=</span>testbackg, <span class="at">model=</span>svm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.7326087 
+cor            : 0.1778796 
+max TPR+TNR at : 0.03150185 </code></pre>
+</div>
+</div>
+<div class="font60">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>(esv <span class="ot">&lt;-</span> <span class="fu">evaluate</span>(<span class="at">p=</span>pres_test, <span class="at">a=</span>backg_test, <span class="at">model=</span>svm,<span class="at">x=</span>pred_nf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class          : ModelEvaluation 
+n presences    : 23 
+n absences     : 200 
+AUC            : 0.7326087 
+cor            : 0.1778796 
+max TPR+TNR at : 0.03150185 </code></pre>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(esv))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                 thresholds
+kappa            0.03150185
+spec_sens        0.03150185
+no_omission     -0.00463589
+prevalence       0.10299074
+equal_sens_spec  0.02885659
+sensitivity      0.01690007</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>ps <span class="ot">&lt;-</span> <span class="fu">predict</span>(predictors, svm, <span class="at">ext=</span>ext)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb148-2"><a href="#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ps, <span class="at">main=</span><span class="st">'Support Vector Machine'</span>)</span>
+<span id="cb148-3"><a href="#cb148-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb148-4"><a href="#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ps <span class="sc">&gt;</span> tr<span class="sc">$</span>spec_sens, <span class="at">main=</span><span class="st">'presence/absence'</span>)</span>
+<span id="cb148-5"><a href="#cb148-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">'dark grey'</span>)</span>
+<span id="cb148-6"><a href="#cb148-6" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pres_train, <span class="at">pch=</span><span class="st">'+'</span>,<span class="at">cex=</span><span class="fl">0.75</span>)</span>
+<span id="cb148-7"><a href="#cb148-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(backg_train, <span class="at">pch=</span><span class="st">'-'</span>, <span class="at">cex=</span><span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/svplot-1.svg" width="768" height="360" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="пакет-sdm" class="level2">
+<h2 class="anchored" data-anchor-id="пакет-sdm">Пакет <strong><code>sdm</code></strong></h2>
+<section id="находки-1" class="level3">
+<h3 class="anchored" data-anchor-id="находки-1">Находки</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># require(raster)</span></span>
+<span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a>fname <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">"external/species.shp"</span>, <span class="at">package=</span><span class="st">"sdm"</span>) <span class="co"># get the location of the species shapefile</span></span>
+<span id="cb150-3"><a href="#cb150-3" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(fname,<span class="at">quiet=</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span> sf<span class="sc">::</span><span class="fu">as_Spatial</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p class="centered-image"><img src="assets/lesson10//ursa03_species.png" class="img-fluid">{width=223 height=356 bound}</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(species<span class="sc">$</span>Occurrence)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  0   1 
+106  94 </code></pre>
+</div>
+</div>
+</section>
+<section id="среда-обитания-1" class="level3">
+<h3 class="anchored" data-anchor-id="среда-обитания-1">Среда обитания</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a>list1 <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path=</span><span class="fu">system.file</span>(<span class="st">"external"</span>,<span class="at">package=</span><span class="st">"sdm"</span>)</span>
+<span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a>                   ,<span class="at">pattern=</span><span class="st">'</span><span class="sc">\\</span><span class="st">.asc$'</span>,<span class="at">full.names=</span> T) </span>
+<span id="cb153-3"><a href="#cb153-3" aria-hidden="true" tabindex="-1"></a>preds <span class="ot">&lt;-</span> <span class="fu">stack</span>(list1)</span>
+<span id="cb153-4"><a href="#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="fu">crs</span>(preds) <span class="ot">&lt;-</span> <span class="fu">crs</span>(species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10//ursa05_preds.png" class="img-fluid figure-img">{width=1013 height=500 bound}</p>
+</figure>
+</div>
+</div>
+</div>
+<div class="oversize">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb154"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(sdm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: sdm</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>sdm 1.1-8 (2021-11-11)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb157"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># d &lt;- sdmData(formula=Occurrence~., train=species, predictors=preds)</span></span>
+<span id="cb157-2"><a href="#cb157-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">sdmData</span>(<span class="at">train=</span>species, <span class="at">predictors=</span>preds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: gbm</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loaded gbm 2.1.9</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>This version of gbm is no longer under development. Consider transitioning to gbm3, https://github.com/gbm-developers/gbm3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: tree</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: mda</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: class</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loaded mda 0.5-4</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: mgcv</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: nlme</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'nlme'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:raster':
+
+    getData</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>This is mgcv 1.9-1. For overview type 'help("mgcv-package")'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: glmnet</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: Matrix</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loaded glmnet 4.1-8</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: earth</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: Formula</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: plotmo</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: plotrix</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: TeachingDemos</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: rJava</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: RSNNS</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: Rcpp</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: ranger</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'ranger'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:randomForest':
+
+    importance</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: rpart</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb185"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb185-1"><a href="#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="co"># d &lt;- sdmData(formula=Occurrence~precipitation+temperature,train=species,predictors=preds)</span></span>
+<span id="cb185-2"><a href="#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="co"># d &lt;- sdmData(formula= ~., train=species, predictors=preds)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb186"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class                                 : sdmdata 
+=========================================================== 
+number of species                     :  1 
+species names                         :  Occurrence 
+number of features                    :  4 
+feature names                         :  elevation, precipitation, temperature, ... 
+type                                  :  Presence-Absence 
+has independet test data?             :  FALSE 
+number of records                     :  200 
+has Coordinates?                      :  TRUE </code></pre>
+</div>
+</div>
+</section>
+<section id="модели" class="level3">
+<h3 class="anchored" data-anchor-id="модели">Модели</h3>
+<section id="построение" class="level4">
+<h4 class="anchored" data-anchor-id="построение">Построение</h4>
+<div class="font95">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb188"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a>(m1 <span class="ot">&lt;-</span> <span class="fu">sdm</span>(Occurrence<span class="sc">~</span>.,<span class="at">data=</span>d,<span class="at">methods=</span><span class="fu">c</span>(<span class="st">'glm'</span>,<span class="st">'gam'</span>,<span class="st">'brt'</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: parallel</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class                                 : sdmModels 
+======================================================== 
+number of species                     :  1 
+number of modelling methods           :  3 
+names of modelling methods            :  glm, gam, brt 
+------------------------------------------
+model run success percentage (per species)  :
+------------------------------------------
+method          Occurrence       
+---------------------- 
+glm        :        100   %
+gam        :        100   %
+brt        :        100   %
+
+###################################################################
+model performance (per species), using training test dataset:
+-------------------------------------------------------------------------------
+
+ ## species   :  Occurrence 
+=========================
+
+methods    :     AUC     |     COR     |     TSS     |     Deviance 
+-------------------------------------------------------------------------
+glm        :     0.88    |     0.7     |     0.69    |     0.83     
+gam        :     0.88    |     0.71    |     0.7     |     0.82     
+brt        :     0.94    |     0.77    |     0.75    |     0.85     </code></pre>
+</div>
+</div>
+</div>
+<div class="font95 oversize">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb191"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb191-1"><a href="#cb191-1" aria-hidden="true" tabindex="-1"></a>(m2 <span class="ot">&lt;-</span> <span class="fu">sdm</span>(Occurrence<span class="sc">~</span>.,<span class="at">data=</span>d</span>
+<span id="cb191-2"><a href="#cb191-2" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">methods=</span><span class="fu">c</span>(<span class="st">'rf'</span>,<span class="st">'tree'</span>,<span class="st">'fda'</span>,<span class="st">'mars'</span>,<span class="st">'svm'</span>)</span>
+<span id="cb191-3"><a href="#cb191-3" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">replicatin=</span><span class="st">'sub'</span> <span class="co"># replicate.methods (data partitioning)</span></span>
+<span id="cb191-4"><a href="#cb191-4" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">test.percent=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">5</span><span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb191-5"><a href="#cb191-5" aria-hidden="true" tabindex="-1"></a>         ,<span class="at">n=</span><span class="dv">2</span>)) <span class="co"># number of replicates (each method) </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class                                 : sdmModels 
+======================================================== 
+number of species                     :  1 
+number of modelling methods           :  5 
+names of modelling methods            :  rf, cart, fda, mars, svm 
+replicate.methods (data partitioning) :  subsampling 
+number of replicates (each method)    :  2 
+toral number of replicates per model  :  2 (per species) 
+test percentage (in subsampling)      :  20 
+------------------------------------------
+model run success percentage (per species)  :
+------------------------------------------
+method          Occurrence       
+---------------------- 
+rf         :        100   %
+cart       :        100   %
+fda        :        100   %
+mars       :        100   %
+svm        :        100   %
+
+###################################################################
+model Mean performance (per species), using test dataset (generated using partitioning):
+-------------------------------------------------------------------------------
+
+ ## species   :  Occurrence 
+=========================
+
+methods    :     AUC     |     COR     |     TSS     |     Deviance 
+-------------------------------------------------------------------------
+rf         :     0.92    |     0.74    |     0.8     |     0.81     
+cart       :     0.88    |     0.67    |     0.76    |     1.04     
+fda        :     0.91    |     0.76    |     0.77    |     0.72     
+mars       :     0.88    |     0.71    |     0.74    |     0.92     
+svm        :     0.88    |     0.79    |     0.83    |     0.74     </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="характеристики" class="level4">
+<h4 class="anchored" data-anchor-id="характеристики">Характеристики</h4>
+<div class="font79">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb193"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb193-1"><a href="#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getModelInfo</span>(m2) <span class="sc">|&gt;</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 7%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">modelID</th>
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">method</th>
+<th style="text-align: left;">replication</th>
+<th style="text-align: right;">replicationID</th>
+<th style="text-align: left;">success</th>
+<th style="text-align: left;">training</th>
+<th style="text-align: left;">test.dep</th>
+<th style="text-align: left;">test.indep</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Occurrence</td>
+<td style="text-align: left;">rf</td>
+<td style="text-align: left;">subsampling</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Occurrence</td>
+<td style="text-align: left;">rf</td>
+<td style="text-align: left;">subsampling</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Occurrence</td>
+<td style="text-align: left;">cart</td>
+<td style="text-align: left;">subsampling</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Occurrence</td>
+<td style="text-align: left;">cart</td>
+<td style="text-align: left;">subsampling</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Occurrence</td>
+<td style="text-align: left;">fda</td>
+<td style="text-align: left;">subsampling</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Occurrence</td>
+<td style="text-align: left;">fda</td>
+<td style="text-align: left;">subsampling</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Occurrence</td>
+<td style="text-align: left;">mars</td>
+<td style="text-align: left;">subsampling</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Occurrence</td>
+<td style="text-align: left;">mars</td>
+<td style="text-align: left;">subsampling</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Occurrence</td>
+<td style="text-align: left;">svm</td>
+<td style="text-align: left;">subsampling</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Occurrence</td>
+<td style="text-align: left;">svm</td>
+<td style="text-align: left;">subsampling</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb194"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb194-1"><a href="#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">roc</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/roc-1.svg" class="img-fluid figure-img" width="787"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb195"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb195-1"><a href="#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">roc</span>(m2,<span class="at">smooth=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10/rocs-1.svg" class="img-fluid figure-img" width="787"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="прогноз" class="level3">
+<h3 class="anchored" data-anchor-id="прогноз">Прогноз</h3>
+<section id="индивидуальный" class="level4">
+<h4 class="anchored" data-anchor-id="индивидуальный">Индивидуальный</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb196"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb196-1"><a href="#cb196-1" aria-hidden="true" tabindex="-1"></a>(p1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1,<span class="at">newdata=</span>preds,<span class="at">filename=</span><span class="fu">tempfile</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in .rasterFromRasterFile(grdfile, band = band, objecttype,
+...): size of values file does not match the number of cells (given
+the data type)
+
+Warning in .rasterFromRasterFile(grdfile, band = band, objecttype,
+...): size of values file does not match the number of cells (given
+the data type)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class      : RasterBrick 
+dimensions : 71, 124, 8804, 3  (nrow, ncol, ncell, nlayers)
+resolution : 4219.223, 4219.223  (x, y)
+extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
+crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
+source     : file24b83c66fda.grd 
+names      : id_1.sp_1.m_glm, id_2.sp_1.m_gam, id_3.sp_1.m_brt 
+min values :      0.00376331,      0.00217490,      0.20843588 
+max values :       0.9957391,       0.9957009,       0.7823209 
+fullname   : id_1-species_Occurrence-method_glm, id_2-species_Occurrence-method_gam, id_3-species_Occurrence-method_brt </code></pre>
+</div>
+</div>
+<div class="cell" data-zout.height="336">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10//ursa07_p1.png" class="img-fluid figure-img">{width=956 bound}</p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb199"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb199-1"><a href="#cb199-1" aria-hidden="true" tabindex="-1"></a>(p2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(m2,<span class="at">newdata=</span>preds,<span class="at">filename=</span><span class="fu">tempfile</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in .rasterFromRasterFile(grdfile, band = band, objecttype,
+...): size of values file does not match the number of cells (given
+the data type)
+
+Warning in .rasterFromRasterFile(grdfile, band = band, objecttype,
+...): size of values file does not match the number of cells (given
+the data type)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class      : RasterBrick 
+dimensions : 71, 124, 8804, 10  (nrow, ncol, ncell, nlayers)
+resolution : 4219.223, 4219.223  (x, y)
+extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
+crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
+source     : file24b84f51cc.grd 
+names      : id_1.sp_1.m_rf.re_subs, id_2.sp_1.m_rf.re_subs, id_3.sp_1.m_cart.re_subs, id_4.sp_1.m_cart.re_subs, id_5.sp_1.m_fda.re_subs, id_6.sp_1.m_fda.re_subs, id_7.sp_1.m_mars.re_subs, id_8.sp_1.m_mars.re_subs, id_9.sp_1.m_svm.re_subs, id_10.sp_1.m_svm.re_subs 
+min values :           1.900000e-03,           4.583333e-03,             7.017544e-02,             0.000000e+00,            9.374275e-04,            3.402129e-03,             2.220446e-16,             2.220446e-16,            6.240272e-02,             1.252288e-01 
+max values :              0.9906500,              0.9973500,                1.0000000,                0.9523810,               0.9983141,               0.9960951,                0.9992451,                1.0000000,               0.9476732,                0.9200969 
+fullname   : id_1-species_Occurrence-method_rf-replication_subsampling, id_2-species_Occurrence-method_rf-replication_subsampling, id_3-species_Occurrence-method_cart-replication_subsampling, id_4-species_Occurrence-method_cart-replication_subsampling, id_5-species_Occurrence-method_fda-replication_subsampling, id_6-species_Occurrence-method_fda-replication_subsampling, id_7-species_Occurrence-method_mars-replication_subsampling, id_8-species_Occurrence-method_mars-replication_subsampling, id_9-species_Occurrence-method_svm-replication_subsampling, id_10-species_Occurrence-method_svm-replication_subsampling </code></pre>
+</div>
+</div>
+<div class="cell" data-zout.height="336">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10//ursa09_p2.png" class="img-fluid figure-img">{width=1390 bound}</p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb202"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb202-1"><a href="#cb202-1" aria-hidden="true" tabindex="-1"></a>(p2m <span class="ot">&lt;-</span> <span class="fu">predict</span>(m2,<span class="at">newdata=</span>preds,<span class="at">mean=</span>T,<span class="at">filename=</span><span class="fu">tempfile</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in .rasterFromRasterFile(grdfile, band = band, objecttype,
+...): size of values file does not match the number of cells (given
+the data type)
+
+Warning in .rasterFromRasterFile(grdfile, band = band, objecttype,
+...): size of values file does not match the number of cells (given
+the data type)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class      : RasterBrick 
+dimensions : 71, 124, 8804, 5  (nrow, ncol, ncell, nlayers)
+resolution : 4219.223, 4219.223  (x, y)
+extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
+crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
+source     : file24b863903ee5.grd 
+names      : sp_1.m_rf.re_subs, sp_1.m_cart.re_subs, sp_1.m_fda.re_subs, sp_1.m_mars.re_subs, sp_1.m_svm.re_subs 
+min values :      3.966667e-03,        6.666667e-02,       2.668815e-03,        8.990065e-10,       9.890734e-02 
+max values :         0.9940000,           0.9539683,          0.9972046,           0.9917532,          0.9228734 
+fullname   : species_Occurrence-method_rf-replication (Mean)_subsampling, species_Occurrence-method_cart-replication (Mean)_subsampling, species_Occurrence-method_fda-replication (Mean)_subsampling, species_Occurrence-method_mars-replication (Mean)_subsampling, species_Occurrence-method_svm-replication (Mean)_subsampling </code></pre>
+</div>
+</div>
+<div class="cell" data-zout.height="320">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10//ursa11_p2m.png" class="img-fluid figure-img">{width=1242 bound}</p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb205"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb205-1"><a href="#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getZ</span>(p2m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "species_Occurrence-method_rf-replication (Mean)_subsampling"  
+[2] "species_Occurrence-method_cart-replication (Mean)_subsampling"
+[3] "species_Occurrence-method_fda-replication (Mean)_subsampling" 
+[4] "species_Occurrence-method_mars-replication (Mean)_subsampling"
+[5] "species_Occurrence-method_svm-replication (Mean)_subsampling" </code></pre>
+</div>
+</div>
+</section>
+<section id="ансамбли" class="level4">
+<h4 class="anchored" data-anchor-id="ансамбли">Ансамбли</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb207"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb207-1"><a href="#cb207-1" aria-hidden="true" tabindex="-1"></a>(e1 <span class="ot">&lt;-</span> <span class="fu">ensemble</span>(m1,<span class="at">newdata=</span>preds,<span class="at">filename=</span><span class="fu">tempfile</span>()</span>
+<span id="cb207-2"><a href="#cb207-2" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">setting=</span><span class="fu">list</span>(<span class="at">method=</span><span class="st">'weighted'</span>,<span class="at">stat=</span><span class="st">'AUC'</span>))) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class      : RasterLayer 
+dimensions : 71, 124, 8804  (nrow, ncol, ncell)
+resolution : 4219.223, 4219.223  (x, y)
+extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
+crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
+source     : file24b83fa0757a.grd 
+names      : layer 
+values     : 0.08271505, 0.9170572  (min, max)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10//ursa13_e1.png" class="img-fluid figure-img">{width=650 height=320 bound}</p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb209"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb209-1"><a href="#cb209-1" aria-hidden="true" tabindex="-1"></a>(e2 <span class="ot">&lt;-</span> <span class="fu">ensemble</span>(m2,<span class="at">newdata=</span>preds,<span class="at">filename=</span><span class="fu">tempfile</span>()</span>
+<span id="cb209-2"><a href="#cb209-2" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">setting=</span><span class="fu">list</span>(<span class="at">method=</span><span class="st">'weighted'</span>,<span class="at">stat=</span><span class="st">'TSS'</span>,<span class="at">opt=</span><span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class      : RasterLayer 
+dimensions : 71, 124, 8804  (nrow, ncol, ncell)
+resolution : 4219.223, 4219.223  (x, y)
+extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
+crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
+source     : file24b856f16319.grd 
+names      : layer 
+values     : 0.06287177, 0.9530246  (min, max)</code></pre>
+</div>
+</div>
+<p class="centered-image"><img src="assets/lesson10//ursa14_e2.png" class="img-fluid">{width=650 height=320 bound}</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb211"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a>(e3 <span class="ot">&lt;-</span> <span class="fu">ensemble</span>(m2,<span class="at">newdata=</span>preds,<span class="at">filename=</span><span class="fu">tempfile</span>()</span>
+<span id="cb211-2"><a href="#cb211-2" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">setting=</span><span class="fu">list</span>(<span class="at">method=</span><span class="st">'unweighted'</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class      : RasterLayer 
+dimensions : 71, 124, 8804  (nrow, ncol, ncell)
+resolution : 4219.223, 4219.223  (x, y)
+extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
+crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
+source     : file24b843426c8b.grd 
+names      : layer 
+values     : 0.06062553, 0.9544493  (min, max)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p class="centered-image"><img src="assets/lesson10//ursa15_e3.png" class="img-fluid figure-img">{width=650 height=320 bound}</p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="section" class="level1 thankyou centre unlisted unnumbered" data-visibility="counted">
+<h1 class="thankyou centre unlisted unnumbered" data-visibility="counted">&nbsp;</h1>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
