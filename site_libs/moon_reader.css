@@ -6,7 +6,9 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 */
 :root {
-   --accent: slateblue; /* #A52 #248 #1D6D8C #268  #0084D7;*/
+   --accent: maroon; /* #A52 #248 #1D6D8C #268  #0084D7;*/
+   --light: #FFFFFFFE;
+   --dark: #00000001; /* #149 */
    --inverse-accent: #ee9;
    --magnifier: 1.7;
    --pointsize: 22pt;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
@@ -16,18 +18,18 @@
    --sidebar-background: --var(light); /*#ffffe6 #00000017 #FAFAFA #ffc */
    --sidebar-background-inverse: var(--dark);
    --sidebar-color: var(--accent);
-   --sidebar-strip: #FFFFFFFE; 
+   --sidebar-strip: #FFFFFFFE; /* #FFFFFFFE;  var(--light);*/
    --sidebar-strip-inverse: var(--inverse-bg); 
    --sidebar-select: var(--accent);
    --bg: #37A;
    --inverse-bg: #000; /*#222E3A #3B0863 #2C3E50*/
    --blur: 0.2em;
-   --light: #fff;
-   --dark: #000; /* #149 */
    --gap: 0.8em;
    --darkreader-text--accent: #ee9;
    --darkreader-border--accent: var(--inverse-accent);
-   --darkreader-bg--sidebar-background: #red; /*#123;*/
+   --darkreader-bg--sidebar-background: blue; /*#123;*/
+   --darkreader-bg--sidebar-strip: var(--inverse-bg);
+   --darkreader-text--sidebar-select: var(--inverse-accent);
 }
 .remark-slides-area {
    background-image: linear-gradient(to right, var(--dark), var(--dark));
@@ -43,8 +45,8 @@ body:fullscreen .remark-slides-area:before {
   /* border: 0px solid red;*/
    width: 4.5vw; /* 31px */ /* 4.5 */
    height: 4.5vw; /* 32px */
-   bottom: 0px;
-   right:  -2px;
+   bottom: -1px;
+   right:  -3px;
    background-image: url(https://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico);
    background-size: contain;
    background-repeat: no-repeat;
@@ -442,7 +444,7 @@ a, a:visited, a > code {
    text-decoration: none;
 }
 a:hover {
-   color: initial;
+  /* color: initial;*/
   /* text-decoration: underline dotted;*/
 }
 .break a, .break a:visited,
@@ -849,6 +851,7 @@ ul {
    border-top: 1px solid transparent;
    border-bottom: 1px solid transparent;
    border-left: 0.15em solid transparent;
+  /* border-right: 1px solid var(--accent);*/
    margin: 5px -16px -5px -16px;
    padding: 4px 16px 6px 8px;
   /* padding: 0.15em 0.35em 0.15em 0.3em;*/
@@ -933,8 +936,8 @@ ul {
    border-left-color: var(--accent); /*#5386;*/
    border-bottom: 1px solid var(--accent);
    border-top: 1px solid var(--accent);
+  /* border-right-color: transparent;*/
   /* border-left-width: 0px;*/
-  /* background-color: white !important;*/
    background-image: linear-gradient(to right, var(--sidebar-strip), var(--sidebar-strip), var(--sidebar-strip)); /* #FFFF, #FFF9, #FFF0 ; white #FFFCE1;*/
 }
 .inverse:not(.revert) .sidebar h1[id*=bg][id*=fg],
@@ -1564,6 +1567,10 @@ table tr th:empty {
 html[data-darkreader-scheme="dark"] body img:hover,
 html[data-darkreader-scheme="dark"] body .html-widget:hover {
    filter: invert();
+}
+.countdown {
+   left: 0 !important;
+   right: unset !important;
 }
 @media only screen {
    .remark-slides-area .remark-fading { z-index: 9; } 
