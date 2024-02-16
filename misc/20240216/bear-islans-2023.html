@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Медвежьи о-ва</title>
+
+<link href="https://nplatonov.github.io/site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="https://nplatonov.github.io/site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="https://nplatonov.github.io/site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+<p class="noscreen" style="text-align:center; text-indent:0;white-space:pre">
+Институт проблем экологии и эволюции им. А.&nbsp;Н.&nbsp;Северцова
+Российской академии наук
+(ИПЭЭ&nbsp;РАН)
+</p>
+
+<p class="noscreen" style="text-align:center; text-indent:0; position:absolute; left:0; right:0; bottom:0;">
+Москва <script>document.write(new Date().getFullYear());</script>
+</p>
+
+<p class="decoration" style="text-align:right;display:block; position:fixed; width:200%; right:1em; bottom:0;opacity: 0.25;">
+<!--
+Физическая печать: Microsoft Edge, Firefox<br>
+Сохранить в PDF: Google Chrome<br>
+-->
+<a href="#" id="print-button" onclick="window.print();return false;">&#128438</a>
+</p>
+
+<style>
+  .references:before {
+     margin-left: 0pt;
+     content: 'Используемые источники';
+     font-size: 140%;
+     line-height: 1.8;
+  }
+  h5 + .references:before, h4 + .references:before, h3 + .references:before, h2 + .references:before, h1 + .references:before {
+     content: '';
+  }
+  .footnotes:before {
+     content: 'Контекстные примечания';
+     font-size: 110%;
+  }
+  @media print {
+     body {
+        font-family: "Georgia", "Times New Roman", Times, serif;
+     }
+     .title {
+        font-size: 22pt;
+        margin-top: 4em !important;
+     }
+     .subtitle {
+        padding-top: 3em !important;
+        font-size: 18pt;
+     }
+     .author:first-of-type {
+        margin-top: 4em !important;
+     }
+     .author {
+        font-size: 14pt;
+        margin-top: 1em !important;
+     }
+     .date {
+        font-size: 10pt;
+        color: #999 !important;
+       /*
+        position: absolute;
+        bottom: 2em;
+       */
+        margin-top: 6em !important;
+       /*
+        display: block;
+        position: absolute;
+        bottom: 0em;
+        right: 0em;
+       */
+     }
+     .date, .author:last-of-type {
+        page-break-after: always;
+     }
+     .author:last-of-type > .zzzdate {
+        page-break-after: avoid;
+     }
+     @page { 
+        size: A4;
+        orphans:4;
+        widows:2;
+     }
+  }
+</style>
+
+
+<h1 class="title toc-ignore">Ледовая обстановка в районе Медвежьих островов осенью 2023 г.</h1>
+<h4 class="author">Платонов Н. Г.</h4>
+<address class="author_afil">
+с. н. с. ИПЭЭ РАН</address><br><h4 class="date"><span class="when">16 февраля 2024 г. <span class="updated">Обновлено: 13:01</span></span></h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#введение" id="toc-введение">Введение</a></li>
+<li><a href="#результаты" id="toc-результаты">Результаты</a>
+<ul>
+<li><a href="#bremen" id="toc-bremen">MODIS + AMSR2</a></li>
+<li><a href="#aari" id="toc-aari">ААНИИ</a></li>
+<li><a href="#modis" id="toc-modis">MODIS</a></li>
+<li><a href="#sar" id="toc-sar">Sentinel</a></li>
+</ul></li>
+<li><a href="#выводы" id="toc-выводы">Выводы</a></li>
+</ul>
+</div>
+
+<div id="введение" class="section level2 hasAnchor">
+<h2>Введение<a href="#введение" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Для интерпретации полученных результатов по авиаучетам белого медведя и его пространственного распределения поставлена задача оценить ледовую обстановку в районе Медвежьих островов осенью 2023 г., преимущественно в периоды 15-21 сентября, 6-7 и 27 октября.</p>
+</div>
+<div id="результаты" class="section level2 hasAnchor">
+<h2>Результаты<a href="#результаты" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bremen" class="section level3 hasAnchor">
+<h3>MODIS + AMSR2<a href="#bremen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Исходные данные в сетке с ячейкой 1 км по результатам обработки изображений со спутников MODIS (инфракрасный диапазон) и AMSR2 (микроволновый диапазон) <span class="citation">(<a href="#ref-Ludwig2020">Ludwig <em>et al.</em>, 2020</a>)</span>. В условиях облачности фактическое разрешение изображения ухудшается до 5 км, что соответствует разрешению канала 89 ГГц микроволнового радиометра AMSR2. Данные недоступны в период с 01 июня по 30 сентября включительно.
+Результаты представлены на рисунке <a href="#fig:fig-bremen">1</a>.</p>
+<div class="figure"><span style="display:block;" id="fig:fig-bremen"></span>
+<img src="assets/bremen.png" alt="Концентрация льда по данным MODIS &amp; AMSR2" width="759" />
+<p class="caption">
+<span class="caption-prefix">Рисунок 1</span><span class="caption-suffix"></span> Концентрация льда по данным MODIS &amp; AMSR2
+</p>
+</div>
+</div>
+<div id="aari" class="section level3 hasAnchor">
+<h3>ААНИИ<a href="#aari" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Еженедельные ледовые карты ААНИИ <span class="citation">(<a href="#ref-AARI_ru">ААНИИ, 2018</a>)</span>. Рассмотрено 8 карт с 09 сентября по 31 октября 2023 г. в формате SIGRID-3. Выделены атрибуты толщины или стадии развития «SA» и характеристик ледяных форм «FA», которые объединены для интерпретации. Остальные атрибуты либо малоинформативные, либо предоставляют ту же интерпретацию. Для «SA» значение -9 означает неприменимость оценки стадии развития, что соответствует открытой воде, 82 – ниласу, ледяной корке, 83 – молодому льду, 99 – неизвестно или невозможно оценить. Для «FA» значение -9 означает неприменимость оценки форм льда, что соответствует открытой воде, 03 – небольшие льдины (20-100 м в поперечнике), 08 – припайный лёд.
+Результаты представлены на рисунке <a href="#fig:fig-aari">2</a>.
+За исследуемый период в регионе выделяются четыре класса (см. цветовую легенду
+на рисунке <a href="#fig:fig-aari">2</a>,
+слева направо):
+открытая вода (SA-9 FA-9), небольшие льдины молодого льда (SA83 FA03), припайный лед (SA99 FA08), сплошные поля ниласа или ледяной корки (SA82 FA-9).</p>
+<div class="figure"><span style="display:block;" id="fig:fig-aari"></span>
+<img src="assets/aari-summary.png" alt="Интегральная оценка стадии развития и формы ледовых полей по данным ААНИИ" width="690" />
+<p class="caption">
+<span class="caption-prefix">Рисунок 2</span><span class="caption-suffix"></span> Интегральная оценка стадии развития и формы ледовых полей по данным ААНИИ
+</p>
+</div>
+</div>
+<div id="modis" class="section level3 hasAnchor">
+<h3>MODIS<a href="#modis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>RGB-композит изображений в комбинации каналов 1-4-3 «True color» (рисунок <a href="#fig:fig-modisaqua143">3</a>, рисунок <a href="#fig:fig-modisterra143">4</a>) и 7-2-1 (рисунок <a href="#fig:fig-modisaqua721">5</a>, рисунок <a href="#fig:fig-modisterra721">6</a>) со спутников Aqua (рисунок <a href="#fig:fig-modisaqua143">3</a>, рисунок <a href="#fig:fig-modisaqua721">5</a>) и Terra (рисунок <a href="#fig:fig-modisterra143">4</a>, рисунок <a href="#fig:fig-modisterra721">6</a>). Изображения <em>как есть</em> <span class="citation">(<a href="#ref-Earthdata"><span>Earthdata Search</span>, 2022</a>; <a href="#ref-GIBS"><span class="nocase">NASA’s Global Imagery Browse Services</span>, 2022</a>)</span>, без маскирования облачности, представлены лишь для визуализации или верификации результатов по концентрации льда <a href="#bremen">AMRS2+MODIS</a> и ледовых карт <a href="#aari">ААНИИ</a>.</p>
+<div class="figure"><span style="display:block;" id="fig:fig-modisaqua143"></span>
+<img src="assets/modis-aqua-color.png" alt="Цветовой композит каналов 1-4-3 инструмента MODIS со спутника Aqua" width="1108" />
+<p class="caption">
+<span class="caption-prefix">Рисунок 3</span><span class="caption-suffix"></span> Цветовой композит каналов 1-4-3 инструмента MODIS со спутника Aqua
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:fig-modisterra143"></span>
+<img src="assets/modis-terra-color.png" alt="Цветовой композит каналов 1-4-3 инструмента MODIS со спутника Terra" width="1108" />
+<p class="caption">
+<span class="caption-prefix">Рисунок 4</span><span class="caption-suffix"></span> Цветовой композит каналов 1-4-3 инструмента MODIS со спутника Terra
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:fig-modisaqua721"></span>
+<img src="assets/modis-aqua-721.png" alt="Цветовой композит каналов 7-2-1 инструмента MODIS со спутника Aqua" width="1108" />
+<p class="caption">
+<span class="caption-prefix">Рисунок 5</span><span class="caption-suffix"></span> Цветовой композит каналов 7-2-1 инструмента MODIS со спутника Aqua
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:fig-modisterra721"></span>
+<img src="assets/modis-terra-721.png" alt="Цветовой композит каналов 7-2-1 инструмента MODIS со спутника Terra" width="1108" />
+<p class="caption">
+<span class="caption-prefix">Рисунок 6</span><span class="caption-suffix"></span> Цветовой композит каналов 7-2-1 инструмента MODIS со спутника Terra
+</p>
+</div>
+</div>
+<div id="sar" class="section level3 hasAnchor">
+<h3>Sentinel<a href="#sar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Изображения с радара с синтезированной апертурой со спутника Sentinel-1A. Для получения данных использован сервис <span class="citation">Copernicus <span>S</span>entinel data (<a href="#ref-ASF-Sentinel">2021</a>)</span>. Иллюстрации разбиты на группы по стадиям развития ледового покрова: безо льда (рисунок <a href="#fig:fig-sentinelA">7</a>), начальное формирование льда (рисунок <a href="#fig:fig-sentinelB">8</a>), устойчивое формирование льда (рисунок <a href="#fig:fig-sentinelC">9</a>).</p>
+<div class="figure"><span style="display:block;" id="fig:fig-sentinelA"></span>
+<img src="assets/sentinel-1a.png" alt="Изображения Sentinel-1A в безледный период" width="552" />
+<p class="caption">
+<span class="caption-prefix">Рисунок 7</span><span class="caption-suffix"></span> Изображения Sentinel-1A в безледный период
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:fig-sentinelB"></span>
+<img src="assets/sentinel-1b.png" alt="Изображения Sentinel-1A в период начала формирования льда" width="730" />
+<p class="caption">
+<span class="caption-prefix">Рисунок 8</span><span class="caption-suffix"></span> Изображения Sentinel-1A в период начала формирования льда
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:fig-sentinelC"></span>
+<img src="assets/sentinel-1c.png" alt="Изображения Sentinel-1A в ледовый период" width="552" />
+<p class="caption">
+<span class="caption-prefix">Рисунок 9</span><span class="caption-suffix"></span> Изображения Sentinel-1A в ледовый период
+</p>
+</div>
+</div>
+</div>
+<div id="выводы" class="section level2 hasAnchor">
+<h2>Выводы<a href="#выводы" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>В Колымском заливе формирование льда началось около 06-07 октября (см. безоблачные изображения MODIS на эти даты, например, рисунок <a href="#fig:fig-modisaqua143">3</a>). К югу от м. Крестовский устойчивый припай сформирровался не позднее 13 октября. Пролив Колымский полностью покрылся льдом не позднее 18 октября.</p>
+</div>
+<div id="refs" class="section level1 unnumbered toc-ignore unlisted">
+<h1 class="unnumbered toc-ignore unlisted"></h1>
+<div id="refs" class="references csl-bib-body" entry-spacing="1">
+<div id="ref-AARI_ru" data-number="1" class="csl-entry">
+ААНИИ. 2018. Обзорные ледовые карты <span>С</span>еверного <span>Л</span>едовитого океана <span>ЕСИМО</span>. Центр "Север", Арктический и Антарктический научно-исследовательский институт, С-Петербург. <a href="http://www.aari.ru/odata/_d0015.php?lang=0">http://www.aari.ru/odata/_d0015.php?lang=0</a> (дата обращения 23 ноября 2018 г.).
+</div>
+<div id="ref-ASF-Sentinel" data-number="2" class="csl-entry">
+Copernicus <span>S</span>entinel data. 2021. ASF DAAC, processed by ESA. <a href="https://asf.alaska.edu/data-sets/sar-data-sets/sentinel-1/">https://asf.alaska.edu/data-sets/sar-data-sets/sentinel-1/</a> (accessed 03 June 2022).
+</div>
+<div id="ref-Earthdata" data-number="3" class="csl-entry">
+<span>Earthdata Search</span>. 2022. NASA. Earth science data from Distributed Active Archive Centers (DAACs) that comprise NASA’s Earth Observing System Data and Information System (EOSDIS). <a href="https://search.earthdata.nasa.gov/">https://search.earthdata.nasa.gov/</a> (accessed 03 June 2022).
+</div>
+<div id="ref-Ludwig2020" data-number="4" class="csl-entry">
+Ludwig V, Spreen G and Pedersen LT. 2020. <span class="nocase">Evaluation of a New Merged Sea-Ice Concentration Dataset at 1 km Resolution from Thermal Infrared and Passive Microwave Satellite Data in the Arctic</span>. <em>Remote Sensing</em>, 12(19): 3183. Data available at <a href="https://data.seaice.uni-bremen.de/modis_amsr2/" class="uri">https://data.seaice.uni-bremen.de/modis_amsr2/</a>. ISSN: 2072-4292. <a href="https://doi.org/10.3390/rs12193183">10.3390/rs12193183</a>.
+</div>
+<div id="ref-GIBS" data-number="5" class="csl-entry">
+<span class="nocase">NASA’s Global Imagery Browse Services</span>. 2022. NASA’s Global Imagery Browse Services (GIBS), part of NASA’s Earth Observing System Data; Information System (EOSDIS). <a href="https://www.earthdata.nasa.gov/eosdis/science-system-description/eosdis-components/gibs">https://www.earthdata.nasa.gov/eosdis/science-system-description/eosdis-components/gibs</a> (accessed 02 June 2022).
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
