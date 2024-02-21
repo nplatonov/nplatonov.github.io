@@ -6,28 +6,31 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 */
 :root {
-   --accent: maroon; /* #A52 #248 #1D6D8C #268  #0084D7;*/
    --light: #FFFFFFFE;
    --dark: #00000001; /* #149 */
+   --accent: #038; /* maroon #A52 #248 #1D6D8C #268  #0084D7;*/
    --inverse-accent: #ee9;
    --magnifier: 1.7;
    --pointsize: 22pt;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
    --sidebar: 23%;
    --sidebar-pointsize: 70%;
    --sidebar-margin: 18px;
-   --sidebar-background: --var(light); /*#ffffe6 #00000017 #FAFAFA #ffc */
-   --sidebar-background-inverse: var(--dark);
+   --sidebar-background: #ffffd6; /*#ffffe6 #00000017 #FAFAFA #ffc */
+   --sidebar-background-right: var(--light); /* var(--sidebar-background); */
+   --sidebar-background-inverse: var(--accent); /* var(--dark);*/
    --sidebar-color: var(--accent);
    --sidebar-strip: #FFFFFFFE; /* #FFFFFFFE;  var(--light);*/
    --sidebar-strip-inverse: var(--inverse-bg); 
    --sidebar-select: var(--accent);
+   --sidebar-border: var(--accent); /* transparent; */
+   --sidebar-border-inverse: var(--inverse-accent);
    --bg: #37A;
    --inverse-bg: #000; /*#222E3A #3B0863 #2C3E50*/
    --blur: 0.2em;
    --gap: 0.8em;
    --darkreader-text--accent: #ee9;
    --darkreader-border--accent: var(--inverse-accent);
-   --darkreader-bg--sidebar-background: blue; /*#123;*/
+   --darkreader-bg--sidebar-background: var(--sidebar-background-inverse); /*#123;*/
    --darkreader-bg--sidebar-strip: var(--inverse-bg);
    --darkreader-text--sidebar-select: var(--inverse-accent);
 }
@@ -777,7 +780,7 @@ ul {
    left: 0;
    height: 100%;
   /* background-image: linear-gradient(to right, #0000, #0000, #0000000A);*/
-   background-image: linear-gradient(to right, var(--sidebar-background), var(--light)); /* #ff35 #0254 */
+   background-image: linear-gradient(to right, var(--sidebar-background), var(--sidebar-background-right)); /* #ff35 #0254 */
   /* background-color: #0001;*/
    margin-left: -16px;
    margin-top: -24px;
@@ -799,7 +802,7 @@ ul {
 }
 .inverse:not(.revert) .left-column.sidebar {
   /* filter: invert(100%);*/
-   background-image: linear-gradient(to right, var(--sidebar-background-inverse), var(--sidebar-background-inverse)); /*#2589 #fff2->#fff0*/
+   background-image: linear-gradient(to right, var(--sidebar-background-inverse), var(--inverse-bg)); /*#2589 #fff2->#fff0*/
 }
 .remark-slide-content[style*=background] > .sidebar {
    background-color: none !important;
@@ -841,7 +844,7 @@ ul {
 }
 .inverse .sidebar h1, .inverse .sidebar h2, .inverse .sidebar h3, .inverse .sidebar h4, .inverse .sidebar h5,
 .inverse .sidebar h1 a, .inverse .sidebar h2 a, .inverse .sidebar h3 a, .inverse .sidebar h4 a, .inverse .sidebar h5 a {
-   color: #999;
+   color: #FFF;
 }
 .sidebar.left-column h5,
 .sidebar.left-column h4,
@@ -933,9 +936,10 @@ ul {
 .sidebar h3[id*=bg][id*=fg],
 .sidebar h4[id*=bg][id*=fg],
 .sidebar h5[id*=bg][id*=fg] {
-   border-left-color: var(--accent); /*#5386;*/
-   border-bottom: 1px solid var(--accent);
-   border-top: 1px solid var(--accent);
+  /* border-image: linear-gradient(to right,var(--sidebar-border),transparent) 1 0%; */
+   border-left-color: transparent; /* var(--accent); transparent; #5386;*/
+   border-bottom: 1px solid var(--sidebar-border);
+   border-top: 1px solid var(--sidebar-border);
   /* border-right-color: transparent;*/
   /* border-left-width: 0px;*/
    background-image: linear-gradient(to right, var(--sidebar-strip), var(--sidebar-strip), var(--sidebar-strip)); /* #FFFF, #FFF9, #FFF0 ; white #FFFCE1;*/
@@ -945,9 +949,9 @@ ul {
 .inverse:not(.revert) .sidebar h3[id*=bg][id*=fg],
 .inverse:not(.revert) .sidebar h4[id*=bg][id*=fg],
 .inverse:not(.revert) .sidebar h5[id*=bg][id*=fg] {
-   border-left-color: var(--inverse-accent);
-   border-bottom: 1px solid var(--inverse-accent);
-   border-top: 1px solid var(--inverse-accent);
+   border-left-color: transparent; /* var(--inverse-accent);*/
+   border-bottom: 1px solid var(--sidebar-border-inverse);
+   border-top: 1px solid var(--sidebar-border-inverse);
    background-image: linear-gradient(to right, var(--sidebar-strip-inverse), var(--sidebar-strip-inverse), var(--sidebar-strip-inverse));
 }
 .remark-slide-content.picsum .sidebar h1[id*=bg][id*=fg],
