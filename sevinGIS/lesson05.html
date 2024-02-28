@@ -179,13 +179,150 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when"> <span class="updated">Обновлено: 2024-02-28 20:53</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when"> <span class="updated">Обновлено: 2024-02-28 21:35</span></span></h4>
 <div class="abstract">
 <p class="abstract">Abstract</p>
 Демонстрация основ работы с интерфейсом командной строки в R, позволяющей создавать скрипты и получать воспроизводимые результаты. Показано, как пространственные векторные и растровые данные могут попасть в R и как они выглядят в R. С возможностью сделать обработку, анализ и визуализацию пространственных данных.
 </div>
 
 
+<div id="TOC">
+<ul>
+<li><a href="#основы-r" id="toc-основы-r">Основы R</a>
+<ul>
+<li><a href="#установка-r" id="toc-установка-r">Установка R</a>
+<ul>
+<li><a href="#oперационные-системы" id="toc-oперационные-системы">Oперационные системы</a></li>
+<li><a href="#базовый-r" id="toc-базовый-r">Базовый R</a></li>
+<li><a href="#библиотеки" id="toc-библиотеки">Библиотеки</a></li>
+<li><a href="#дополнительное-по" id="toc-дополнительное-по">Дополнительное ПО</a>
+<ul>
+<li><a href="#rstudio-ide" id="toc-rstudio-ide">RStudio IDE</a></li>
+<li><a href="#pandoc" id="toc-pandoc">Pandoc</a></li>
+<li><a href="#jupyter" id="toc-jupyter">Jupyter</a></li>
+</ul></li>
+<li><a href="#как-использовать-материал" id="toc-как-использовать-материал">Как использовать материал</a></li>
+</ul></li>
+<li><a href="#начало-работы" id="toc-начало-работы">Начало работы</a></li>
+<li><a href="#представление-данных" id="toc-представление-данных">Представление данных</a>
+<ul>
+<li><a href="#простые-типы" id="toc-простые-типы">Простые типы</a>
+<ul>
+<li><a href="#числа-и-имена-значений" id="toc-числа-и-имена-значений">Числа и имена значений</a></li>
+<li><a href="#целые-числа-числа-с-плавающей-точкой" id="toc-целые-числа-числа-с-плавающей-точкой">Целые числа, числа с плавающей точкой</a></li>
+<li><a href="#логические-значения-строки" id="toc-логические-значения-строки">Логические значения, строки</a></li>
+</ul></li>
+<li><a href="#составные-типы" id="toc-составные-типы">Составные типы</a>
+<ul>
+<li><a href="#списки-одинаковой-длины" id="toc-списки-одинаковой-длины">Списки одинаковой длины</a></li>
+<li><a href="#таблицы" id="toc-таблицы">Таблицы</a></li>
+<li><a href="#списки-различной-длины" id="toc-списки-различной-длины">Списки различной длины</a></li>
+</ul></li>
+<li><a href="#матрицы" id="toc-матрицы">Матрицы</a></li>
+<li><a href="#массивы" id="toc-массивы">Массивы</a></li>
+<li><a href="#факторы" id="toc-факторы">Факторы</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#r-как-гис" id="toc-r-как-гис">R как ГИС?</a>
+<ul>
+<li><a href="#средства-визуализации" id="toc-средства-визуализации">Средства визуализации</a>
+<ul>
+<li><a href="#пример-путешествия-мимочерез-спб" id="toc-пример-путешествия-мимочерез-спб">Пример путешествия мимо/через Спб</a></li>
+<li><a href="#datavolcano" id="toc-datavolcano"><code>data(volcano)</code></a></li>
+</ul></li>
+<li><a href="#пространственные-данные" id="toc-пространственные-данные">Пространст­вен­ные данные</a>
+<ul>
+<li><a href="#векторы" id="toc-векторы">Векторы</a></li>
+<li><a href="#растры" id="toc-растры">Растры</a></li>
+<li><a href="#визуализация" id="toc-визуализация">Визуализация</a></li>
+</ul></li>
+<li><a href="#по-форматам" id="toc-по-форматам">По форматам</a>
+<ul>
+<li><a href="#растры-1" id="toc-растры-1">Растры</a></li>
+<li><a href="#векторы-1" id="toc-векторы-1">Векторы</a></li>
+<li><a href="#sf-или-sp" id="toc-sf-или-sp"><code>sf</code> или <code>sp</code>?</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#манипуляции-с-пространственными-данными" id="toc-манипуляции-с-пространственными-данными">Манипуляции с пространст­вен­ными данными</a>
+<ul>
+<li><a href="#импорт" id="toc-импорт">Импорт</a>
+<ul>
+<li><a href="#источники-для-примера" id="toc-источники-для-примера">Источники для примера</a></li>
+<li><a href="#векторные-данные" id="toc-векторные-данные">Векторные данные</a>
+<ul>
+<li><a href="#rgdalsp" id="toc-rgdalsp"><code>rgdal/sp</code></a></li>
+<li><a href="#importExample" id="toc-importExample"><code>sf</code></a></li>
+</ul></li>
+<li><a href="#растровые-данные" id="toc-растровые-данные">Растровые данные</a>
+<ul>
+<li><a href="#rgdalsp-1" id="toc-rgdalsp-1"><code>rgdal/sp</code></a></li>
+<li><a href="#raster" id="toc-raster"><code>raster</code></a></li>
+<li><a href="#terra" id="toc-terra"><code>terra</code></a></li>
+</ul></li>
+</ul></li>
+<li><a href="#характеристики" id="toc-характеристики">Характеристики</a>
+<ul>
+<li><a href="#sp" id="toc-sp"><code>sp</code></a></li>
+<li><a href="#sf" id="toc-sf"><code>sf</code></a></li>
+<li><a href="#таблица-атрибутов" id="toc-таблица-атрибутов">Таблица атрибутов</a>
+<ul>
+<li><a href="#sp-1" id="toc-sp-1"><code>sp</code></a></li>
+<li><a href="#sf-1" id="toc-sf-1"><code>sf</code></a></li>
+</ul></li>
+<li><a href="#геометрия" id="toc-геометрия">Геометрия</a>
+<ul>
+<li><a href="#sp-2" id="toc-sp-2"><code>sp</code></a></li>
+<li><a href="#sf-2" id="toc-sf-2"><code>sf</code></a></li>
+</ul></li>
+<li><a href="#проекция" id="toc-проекция">Проекция</a>
+<ul>
+<li><a href="#sp-3" id="toc-sp-3"><code>sp</code></a></li>
+<li><a href="#sf-3" id="toc-sf-3"><code>sf</code></a></li>
+</ul></li>
+<li><a href="#пространственный-охват" id="toc-пространственный-охват">Пространственный охват</a>
+<ul>
+<li><a href="#sp-4" id="toc-sp-4"><code>sp</code></a></li>
+<li><a href="#sf-4" id="toc-sf-4"><code>sf</code></a></li>
+</ul></li>
+</ul></li>
+<li><a href="#создание" id="toc-создание">Создание</a></li>
+<li><a href="#визуализация-1" id="toc-визуализация-1">Визуализация</a>
+<ul>
+<li><a href="#статическая" id="toc-статическая">Статическая</a>
+<ul>
+<li><a href="#ggplot2" id="toc-ggplot2"><code>ggplot2</code></a></li>
+<li><a href="#tmap" id="toc-tmap"><code>tmap</code></a></li>
+<li><a href="#для-публикаций" id="toc-для-публикаций">Для публикаций</a></li>
+</ul></li>
+<li><a href="#интерактивная" id="toc-интерактивная">Интерактивная</a>
+<ul>
+<li><a href="#mapview" id="toc-mapview"><code>mapview</code></a></li>
+<li><a href="#leaflet" id="toc-leaflet"><code>leaflet</code></a></li>
+<li><a href="#tmap-1" id="toc-tmap-1"><code>tmap</code></a></li>
+<li><a href="#примеры" id="toc-примеры">Примеры</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#экспорт" id="toc-экспорт">Экспорт</a>
+<ul>
+<li><a href="#sprgdal" id="toc-sprgdal"><code>sp/rgdal</code></a></li>
+<li><a href="#sf-5" id="toc-sf-5"><code>sf</code></a></li>
+</ul></li>
+<li><a href="#рисование" id="toc-рисование">Рисование</a></li>
+</ul></li>
+<li><a href="#дополнительно-по-r" id="toc-дополнительно-по-r">Дополнительно по R</a>
+<ul>
+<li><a href="#воспроизводимость" id="toc-воспроизводимость">Воспроизво­ди­мость</a>
+<ul>
+<li><a href="#параметры-сессии" id="toc-параметры-сессии">Параметры сессии</a></li>
+</ul></li>
+<li><a href="#узнать-больше-об-r" id="toc-узнать-больше-об-r">Узнать больше об R</a>
+<ul>
+<li><a href="#книги" id="toc-книги">Книги</a></li>
+</ul></li>
+</ul></li>
+<li style="display: none;"><a href="#section" id="toc-section"></a></li>
+</ul>
+</div>
 
 <div id="основы-r" class="section level2">
 <h2>Основы R</h2>
