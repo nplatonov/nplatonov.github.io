@@ -2,20 +2,30 @@
 #' params:
 #'   lesson: "05"
 #' pagetitle: ГИС `r params$lesson`
+#' assets: "assets/lesson05"
 #' output:
 #'    html_document:
 #'       toc: true
 #'       toc_depth: 5
+#'    xaringan::moon_reader:
+#'       toc: true
+#'       toc_depth: 5
+#' mathjax: true
+#' echo: true
 #' title: Возможности R для работы с пространственными данными
 #' subtitle: ГИС технологии в биологических исследованиях
 #' meeting: Занятие `r params$lesson`
 #' author:
 #'  - name: Никита Платонов
 #'    affiliation: с.н.с. ИПЭЭ РАН
-#' date: today
-#' format-date: "DD MMMM YYYY"
-#' lang: ru
+#' ratio: 29:18
+#' date0: сегодня
+#' date1: 31 марта 2022 г.
+#' date2: 30 марта 2023 г., 06 апреля 2023 г.
+#' date3: 29 февраля 2024 г., 07 марта 2023 г.
 #' abstract: Демонстрация основ работы с интерфейсом командной строки в R, позволяющей создавать скрипты и получать воспроизводимые результаты. Показано, как пространственные векторные и растровые данные могут попасть в R и как они выглядят в R. С возможностью сделать обработку, анализ и визуализацию пространственных данных.
+#' shorttitle1: <a href=https://rdrr.io/snippets/>Online Code Editor</a>
+#' shorttitle: "[WebR](https://webr.r-wasm.org/latest/) [Online Code Editor](https://rdrr.io/snippets/)\n\n[ГИС аспирантура](class.html#home)"
 #' ---
 
 #+ hprint, include=FALSE
@@ -33,19 +43,25 @@ baseURL <- ifelse(T,".","https://nplatonov.github.io/SCGIS2019")
 #'
 #' #### Базовый R
 #'
-#' Установить или обновить R, например, [отсюда](https://cran.rstudio.org/). Актуальная версия 4.2.3. Не ниже версии 4.0.
+#' Установить или обновить R, например, [отсюда](https://cran.rstudio.org/).
+#'
+#' Актуальная версия 4.3.2. Нативные пайпы с версии 4.1. Пакеты не обновляются для старых версий R.
+#'
+#' При переходе с версии 3.6 на версию 4.0 пришлось переустановить все пакеты (библиотеки, модули).
 #'
 #' #### Библиотеки
 #'
+#' :::scrollable
 #+ require
-pkgList <- c("rgdal","sf","terra","raster","ggplot2","leaflet","mapview"
-            ,"mapedit","knitr","rmarkdown","jpeg","png","ursa","tmap")
+pkgList <- c("sf","terra","raster","ggplot2","leaflet","mapview"
+            ,"mapedit","knitr","rmarkdown","gdalUtils","tmap","ursa")
 whoisready <- sapply(pkgList,function(pkg) {
    if (requireNamespace(pkg))
       return(TRUE)
    install.packages(pkg,repos="https://cran.rstudio.com")
    requireNamespace(pkg)
 })
+#' :::
 #'
 #' ---
 #'
@@ -176,7 +192,6 @@ typeof(a2+0L)
 typeof(a2+0)
 #'
 #' ##### Логические значения, строки
-#'
 #'  ##### Логические значения
 #+ a3
 (a3 <- sample(c(TRUE,FALSE),length(a2),replace=TRUE))
@@ -184,9 +199,7 @@ typeof(a2+0)
 class(a3)
 #+ stra3
 str(a3)
-#'
 #'  ##### Строки
-#'
 #+ a4
 (a4 <- names(a2))
 #+ classa4
@@ -318,7 +331,7 @@ axis(2,at=seqy,lab=paste0(seqy,"°N"),lwd=0,lwd.ticks=1,las=1)
 #'
 #' ---
 #'
-#+ spb2
+#+ spb2, out.height=500
 e <- sf::st_sfc(sf::st_linestring(cbind(x,y)),crs=4326)
 ursa::session_grid(NULL)
 ursa::glance(e,blank="white",coast.fill="#00000010",pointsize=12
@@ -337,9 +350,9 @@ image(volcano)
 #'
 #+ include=FALSE
 ursa::session_grid(NULL)
-#+ glancevolcano
+#+ glancevolcano, out.height=550
 ursa:::spatialize("Mount Eden",place="park",style="web") |>
-   ursa::glance(basemap.alpha=1,style="mapnik")
+   ursa::glance(basemap.alpha=1,style="opentopomap")
 #+ eval=F, echo=F
 try(ursa::glance("Mount Eden",place="park",dpi=90))
 #'
@@ -349,21 +362,34 @@ try(ursa::glance("Mount Eden",place="park",dpi=90))
 #'
 #' Библиотека | Формат | Импорт | Экспорт 
 #' -----|------|-----|---
-#' `sp` | [GDAL vector drivers](https://gdal.org/drivers/vector/index.html) | **`rgdal`**`::readOGR()` | **`rgdal`**`::writeOGR()`
+#' [`sp`](https://edzer.github.io/sp/) | [GDAL vector drivers](https://gdal.org/drivers/vector/index.html) | `sf::st_read() ǀ> sf::as_Spatial()` ^1^ | `sf::st_as_sf() ǀ> sf::st_write` ^2^
 #' [`sf`](https://r-spatial.github.io/sf/) | [GDAL vector drivers](https://gdal.org/drivers/vector/index.html) | `st_read()` | `st_write()`
-#' [`gdalUtuls`](https://cran.rstudio.com/web/packages/gdalUtils/)<sup>*факультативно*<sup> | [GDAL vector drivers](https://gdal.org/drivers/vector/index.html) | | оболочка системного GDAL
+#' [`gdalUtilities`](https://cran.rstudio.com/web/packages/gdalUtilities/) <sup>*факультативно*<sup> | [GDAL vector drivers](https://gdal.org/drivers/vector/index.html) | | оболочка системного GDAL
+#' <!--
+#' -->
 #'
+#' ^1^: `ursa::spatial_read(fname,engine="sp")` <br> **`rgdal`**`::readOGR()`
+#'
+#' ^2^: `ursa::spatial_write(obj,fname)` <br> **`rgdal`**`::writeOGR()`
 #'
 #' #### Растры
 #'
+#' :::font95
+#'
 #' Библиотека | Формат | Импорт | Экспорт
 #' ---|----|--------|----
-#' `sp` | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | **`rgdal`**`::readGDAL()` | **`rgdal`**`::writeGDAL()`
-#' `raster` | [RRASTER – R Raster](https://gdal.org/drivers/raster/rraster.html) | `raster()`, `brick()`, `stack()` | `writeRaster()`
+#' `sp` | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `raster::raster() ǀ> as("SpatialGridDataFrame")` ^1^ | `ursa::as_ursa(b) ǀ> ursa::as.Raster() ǀ> raster::writeRaster()` ^2^
+#' `raster` | [RRASTER – R Raster](https://gdal.org/drivers/raster/rraster.html), [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `raster()`, `brick()`, `stack()` | `writeRaster()`
 #' `terra` | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `rast()` | `writeRaster()`
 #' `stars` | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `read_stars()` | `write_stars()`
 #' [`ncdf4`](https://cran.rstudio.com/web/packages/ncdf4/) | [NetCDF](https://gdal.org/drivers/raster/netcdf.html) | `nc_open()` | `nc_create()`
 #' `ursa`| [ENVI - ENVI .hdr Labelled Raster](https://gdal.org/drivers/raster/envi.html) | `read_envi()` | `write_envi()`
+#'
+#' ^1^: **`rgdal`**`::readGDAL()`
+#'
+#' ^2^: **`rgdal`**`::writeGDAL()`
+#'
+#' :::
 #'
 #' #### Визуализация
 #'
@@ -386,17 +412,22 @@ try(ursa::glance("Mount Eden",place="park",dpi=90))
 #' #### Растры
 #'
 #' + Для хранения многослойные растров используется BSQ/BIL/BIP чередование слоев/строк/пикелей. Самый неэффективный - это BIP. При пространственно-временном анализе можно выбрать BIL, для большинства случаев - BSQ.
+#'
 #' + Целочисленный GeoTIFF быстро пишется и читается при использовании функций из библиотеки `rgdal`
+#'
+#' + [GeoTIFF](https://gdal.org/drivers/raster/gtiff.html) часто используется при обмене данными.
 #'
 #' #### Векторы
 #'
-#' + Хорошую скорость чтения и записи демонстрирует формат "SpatiaLite" при использовании библиотеки `sf`.
+#' + Хорошую скорость чтения и записи демонстрирует формат ["SQLite"](https://gdal.org/drivers/vector/sqlite.html) ("SpatiaLite" RDBMS) при использовании библиотеки `sf`.
 #'
-#' + "GeoJSON" не очень быстрый, но можно использовать библиотеку [`geojsonf`](https://cran.rstudio.com/web/packages/geojsonsf/).
+#' + ["GeoJSON"](https://gdal.org/drivers/vector/geojson.html) не очень быстрый, но можно использовать библиотеку [`geojsonf`](https://cran.rstudio.com/web/packages/geojsonsf/).
 #'
 #' + При записи использовать опции, предусмотренные для выбранного формата данных
 #'
-#' + При записи "ESRI Shapefile" обращать внимания на *.prj, так как у QGIS и ESRI-продуктов разные восприятия файлов проекций.
+#' + При записи ["ESRI Shapefile"](https://gdal.org/drivers/vector/shapefile.html) обращать внимания на *.prj, так как у QGIS и ESRI-продуктов разные восприятия файлов проекций.
+#'
+#' + "ESRI Shapefile" преобладающий формат при обмене данными.
 #'
 #' ---
 #'
@@ -404,11 +435,11 @@ try(ursa::glance("Mount Eden",place="park",dpi=90))
 #'
 #' + В пользу [`sf`]{.large} больше аргументов:
 #'
-#'    + удобнее, активно развивается, поддерживается
+#'    + удобнее, развивается, поддерживается
 #'
 #'    + в `sf` объекты класса S3, в `sp` объекты класса S4 (строже, но медленнее)
 #'
-#'    + есть `sf::as_Spatial()` для преобразования в объекты `sp`. Обратное преобразование: `sf::st_as_sf()`.
+#'    + есть `sf::as_Spatial()` (или `as(...,"Spatial")`) для преобразования в объекты `sp`. Обратное преобразование: `sf::st_as_sf()`.
 #'
 #' + Эффективность с геометрией POINT выше у `sp` из-за представления атрибутивной таблицы и геометрии в одной таблице.
 #'
@@ -426,25 +457,31 @@ try(ursa::glance("Mount Eden",place="park",dpi=90))
 #'
 #' #### Источники для примера
 #+ shpfile
-(shpname <- system.file("vectors","scot_BNG.shp",package="rgdal"))
+(shpname <- system.file("shape","nc.shp",package="sf"))
 file.exists(shpname)
 #'
 #+ tiffile
-(tifname <- system.file("pictures/cea.tif",package="rgdal"))
+(tifname <- system.file("extdata/tahoe.tif",package="gdalUtilities"))
 file.exists(tifname)
 #'
 #' ---
 #'
-#+ scotBNG
+#+ scotBNG, out.height=566, out.extra="bound"
 ursa::session_grid(NULL)
-ursa::glance(shpname,coast=FALSE,field="(NAME|AFF)",blank="white"
-            ,legend=list("left","right"),dpi=88)
+ursa::glance(shpname,coast=FALSE,field="(NAME|SID79)",blank="white"
+            ,legend=list(list(1,"left"),list(2,"left")),dpi=88)
 #'
 #' ---
 #'
-#+ cea
+#+ tahoe-rgb, out.height=550, out.extra="bound"
 ursa::session_grid(NULL)
-ursa::glance(tifname,coast=FALSE,pal.from=0,pal=c("black","white"),dpi=96)
+ursa::glance(tifname,dpi=96)
+#'
+#' ---
+#'
+#+ tahoe-channels, out.height=550, out.extra="bound"
+ursa::session_grid(NULL)
+ursa::display_brick(tifname,dpi=96)
 #'
 #' ---
 #'
@@ -453,14 +490,16 @@ ursa::glance(tifname,coast=FALSE,pal.from=0,pal=c("black","white"),dpi=96)
 #' ##### <code>rgdal/sp</code>
 #' ::: {.oversize .h650}
 #+ ogrinfo
-rgdal::ogrInfo(shpname)
+try(rgdal::ogrInfo(shpname)) ## Будет ошибка, если пакета 'rgdal' нет
 #' :::
 #'
 #' ---
 #'
 #+ readogr
-b.sp <- rgdal::readOGR(shpname)
+b.sp <- sf::st_read(shpname) |> as("Spatial") ## rgdal::readOGR(shpname)
 #'
+#+ classSADF
+class(b.sp)
 #+ iss4
 isS4(b.sp)
 #+ slotnames
@@ -498,7 +537,7 @@ str(b.sf)
 #' Получение данных напрямую
 #'
 #+ readgdal
-d1 <- rgdal::readGDAL(tifname)
+d1 <- raster::raster(tifname) |> as("SpatialGridDataFrame") ## rgdal::readGDAL(tifname)
 #+ d1patch, include=FALSE
 if (isTRUE(try(ursa:::.isRemark())))
    comment(d1@proj4string) <- "| __truncated__"
@@ -510,20 +549,31 @@ summary(d1@data[[1]])
 #'
 #' ---
 #'
+#' :::font85
+#'
 #' Получение данных более гибким способом
 #'
 #+ gdalinfo
-md <- rgdal::GDALinfo(tifname)
-mdname <- names(md)
-attributes(md) <- NULL
-names(md) <- mdname
-md
+md <- try(rgdal::GDALinfo(tifname))
+if (!inherits(md,"try-error")) {
+   mdname <- names(md)
+   attributes(md) <- NULL
+   names(md) <- mdname
+   print(md)
+}
 #+ getrasterdata
-dset <- methods::new("GDALReadOnlyDataset",tifname)
-d2 <- rgdal::getRasterData(dset,offset=c(0,0)
-                          ,region.dim=md[c("rows","columns")])
-str(d2)
-summary(c(d2))
+if (!inherits(md,"try-error")) {
+   dset <- methods::new("GDALReadOnlyDataset",tifname)
+   d2 <- rgdal::getRasterData(dset,offset=c(0,0)
+                             ,region.dim=md[c("rows","columns")])
+}
+#+ getrasterdata-str
+if (!inherits(md,"try-error"))
+   str(d2)
+#+ getrasterdata-summary
+if (!inherits(md,"try-error"))
+   summary(c(d2))
+#':::
 #'
 #' ---
 #'
@@ -555,7 +605,7 @@ summary(c(v4))
 #'
 #' ### Характеристики {.middle}
 #'
-#' Характеристики, свойства и компоненты пространственных данных
+#'  #### Характеристики, свойства и компоненты пространственных данных
 #'
 #' ##### `sp`
 #+
@@ -635,12 +685,13 @@ sf::st_bbox(b.sf)
 #+ railway
 pt0 <- data.frame(lon=33.24529,lat=57.97012)
 sp::coordinates(pt0) <- ~lon+lat
-sp::proj4string(pt0) <- sp::CRS("+init=epsg:4326")
+try(sp::proj4string(pt0) <- sp::CRS("+init=epsg:4326"))
+sp::proj4string(pt0) <- sp::CRS("EPSG:4326")
 #'
 #' ---
 #'
 #+ Valdai
-ursa::glance(pt0,resetProj=TRUE,style="mapnik"
+ursa::glance(pt0,resetProj=TRUE,style="Stadia.OSMBright"
             ,basemap.order="before",basemap.alpha=1,dpi=91)
 #'
 #' ---
@@ -723,9 +774,9 @@ str(tr)
 #'
 #' #### Статическая
 #'
-#+ route
+#+ route, out.extra="bound", out.height=500
 ursa::session_grid(NULL)
-ursa::glance(tr,style="mapnik",plot.lwd=5
+ursa::glance(tr,style="opentopomap",plot.lwd=5
             ,layout=c(1,2),legend=list("left",list("bottom",2)),las=1,dpi=96)
 #'
 #' ---
@@ -736,23 +787,23 @@ ursa::glance(tr,style="mapnik",plot.lwd=5
 #'
 #' ---
 #'
-#+ trplot-sf
+#+ trplot-sf, out.extra="bound"
 plot(tr,lwd=5) ## 'sf'-object
 #'
 #' ---
 #'
-#+ trplot-sp
+#+ trplot-sp, out.extra="bound"
 sp::plot(sf::as_Spatial(tr),lwd=5) ## 'sp'-object ('SpatialPointsDataFrame')
 #'
 #' ---
 #'
 #' [Возвращаясь](#importExample) к ранее загруженным данным
-#+ scotplot
-plot(b.sf["AFF"])
+#+ scotplot, out.height=550
+plot(b.sf["SID79"])
 #'
 #' ---
 #'
-#+ scotplotgeom
+#+ scotplotgeom, out.height=550
 plot(sf::st_geometry(b.sf),col=sf::sf.colors(12,categorical=TRUE)
     ,border='grey',axes=TRUE)
 #'
@@ -765,15 +816,15 @@ plot(sf::st_geometry(b.sf),col=sf::sf.colors(12,categorical=TRUE)
 #' ##### `ggplot2`
 #+ ggplot
 require(ggplot2)
-#+ geomsf
+#+ geomsf, out.height=500
 ggplot()+
-   geom_sf(data=b.sf,aes(fill=AFF))+
+   geom_sf(data=b.sf,aes(fill=SID79))+
    coord_sf(crs=sf::st_crs(3857))
 #' ##### `tmap`
-#+ tmap-plot
+#+ tmap-plot, out.height=445
 require(tmap)
 tmap_mode("plot")
-(tm1 <- tm_shape(b.sf) + tm_polygons("COUNT") + tm_scale_bar() +
+(tm1 <- tm_shape(b.sf) + tm_polygons("FIPSNO") + tm_scale_bar() +
    tm_compass(position=c("left","bottom")) + tm_graticules())
 #' ##### Для публикаций
 #+ paper-create, eval=T
@@ -787,22 +838,22 @@ dev.off()
 #'
 #' ---
 #'
-#+ paper-view
+#+ paper-view, out.extra="bound"
 knitr::include_graphics(fileout4) ## try 'browseURL(fileout4)'
 #'
 #' #### Интерактивная
 #'
 #' ##### `mapview`
-#+ mapview
+#+ mapview, out.height=588, results='asis'
 m <- mapview::mapview(b.sf) ## Не отобразится в Jupyter R Notebook.
-m
+ursa:::widgetize(m@map)
 #'
 #' ##### `leaflet`
 #+ leafletload
 require(leaflet)
 #+ leaflet
 b <- sf::st_transform(b.sf,4326)
-b$category <- factor(b$AFF,ordered=TRUE)
+b$category <- factor(b$SID79,ordered=TRUE)
 fpal <- colorFactor(topo.colors(5),b$category)
 provList <- c("CartoDB.Positron","CartoDB.DarkMatter","Esri.OceanBasemap")
 m <- leaflet()
@@ -810,8 +861,8 @@ for (p in c(provList)) m <- addProviderTiles(m,providers[[p]],group=p)
 m <- m %>% 
    addPolygons(data=b,fillColor=~fpal(category),fillOpacity=0.5
               ,weight=1.6,color=~fpal(category),opacity=0.75
-              ,label=~paste0("AFF: ",AFF," (",NAME,")")
-              ,popup=~sprintf("Например, поле COUNT, равное %.1f",COUNT)
+              ,label=~paste0("SID79: ",SID79," (",NAME,")")
+              ,popup=~sprintf("Например, поле AREA, равное %.3f",AREA)
               ) %>%
    addMeasure("topright",primaryLengthUnit="meters"
              ,primaryAreaUnit="sqmeters") %>%
@@ -823,17 +874,17 @@ m <- m %>%
                    ,options=layersControlOptions(collapsed=TRUE)
                    ) %>%
    addLegend("bottomright",pal=fpal,values=b$category,opacity=0.6
-            ,title="AFF")
+            ,title="SID79")
 #'
 #' ---
 #'
-#+ leadletwidget
-m ## Не отображается в Jupyter R Notebook.
+#+ leadletwidget, out.height=588, results='asis'
+ursa:::widgetize(m) ## Не отображается в Jupyter R Notebook.
 #' ##### `tmap`
 #+ tmap-view, results='asis'
 tmap_mode("view")
-tm <- tm_shape(b.sf) + tm_polygons("COUNT")
-tmap_leaflet(tm)
+tm <- tm_shape(b.sf) + tm_polygons("FIPSNO")
+ursa:::widgetize(tmap_leaflet(tm),height=510)
 #'
 #' ---
 #'
@@ -859,8 +910,13 @@ sp::coordinates(pt) <- ~x+y
 sp::proj4string(pt) <- sp::proj4string(pt0)
 pt <- sp::spTransform(pt,"EPSG:4326")
 fileout1 <- "afterTrain.geojson"
-rgdal::writeOGR(pt,fileout1,gsub("\\..+","",basename(fileout1)),driver="GeoJSON"
-                 ,overwrite_layer=TRUE,morphToESRI=FALSE)
+ret <- try(rgdal::writeOGR(pt,fileout1,gsub("\\..+","",basename(fileout1))
+                          ,driver="GeoJSON",overwrite_layer=TRUE,morphToESRI=FALSE))
+if (inherits(ret,"try-error"))
+   pt |>
+     sf::st_as_sf() |>
+     sf::st_write(fileout1,driver="GeoJSON"
+                 ,delete_layer=file.exists(fileout1),delete_dsn=file.exists(fileout1))
 #'
 #' Проверим, появился ли файл:
 #+ ptexists
@@ -868,16 +924,16 @@ dir(pattern=paste0(gsub("\\..+","",basename(fileout1),".*")))
 #'
 #' ---
 #'
-#+ glancept
-try(ursa::glance(fileout1,style="mapnik",las=1,size=480,dpi=192))
+#+ glancept, out.extra="bound"
+try(ursa::glance(fileout1,style="CartoDB",las=1,size=480,dpi=192))
 #'
 #' ##### `sf`
 #'
 #+ stwrite
-b.sf <- b.sf[,c("NAME","COUNT")]
+b.sf <- b.sf[,c("NAME","SID79")]
 b.sf$'категория' <- b$category
 b.sf <- sf::st_transform(b.sf,3857)
-fileout2 <- "scotland.sqlite"
+fileout2 <- "tahoe.sqlite"
 sf::st_write(b.sf,dsn=fileout2,layer=gsub("\\..+","",basename(fileout2))
             ,driver="SQLite",layer_options=c("LAUNDER=NO"),quiet=TRUE
             ,delete_layer=file.exists(fileout2),delete_dsn=file.exists(fileout2))
@@ -886,9 +942,9 @@ dir(pattern=paste0(gsub("\\..+","",basename(fileout2),".*")))
 #'
 #' ---
 #'
-#+ glancescot
-try(ursa::glance(fileout2,resetGrid=TRUE
-                ,style="mapnik",las=1,dpi=192,size=480))
+#+ glancescot, out.extra="bound"
+try(ursa::glance(fileout2,resetGrid=TRUE,layout=c(NA,1)
+                ,style="opentopomap",las=1,dpi=192,size=480))
 #'
 #' ---
 #'
@@ -902,9 +958,9 @@ dir(pattern=paste0(gsub("\\..+","",basename(fileout3),".*")))
 #'
 #' ---
 #'
-#+ glancetrack
+#+ glancetrack, out.extra="bound"
 try(ursa::glance(fileout3,resetGrid=TRUE
-                ,style="mapnik",las=1,dpi=192,size=480))
+                ,style="CartoDB",las=1,dpi=192,size=480))
 #'
 #' ### Рисование
 #'
@@ -920,7 +976,7 @@ if (!is.null(paint$finished)) {
    result <- paint$finished
    mapview::mapview(result)
    ursa::session_grid(NULL)
-   ursa::glance(result,style="mapnik")
+   ursa::glance(result,style="CartoDB")
 }
 #'
 #' ## Дополнительно по R
@@ -962,7 +1018,7 @@ if ((rmarkdown::pandoc_available())&&(file.exists(htmlfile)))
 #' И можно скопировать/переименовать/удалить
 #'
 #' #### Параметры сессии
-#' :::oversize
+#' :::{.oversize .font85}
 #+ session
 sessionInfo()
 #' :::
@@ -970,6 +1026,8 @@ sessionInfo()
 #' ### Узнать больше об R
 #'
 #' + [R-Bloggers](https://www.r-bloggers.com/) -- современные тенденции R
+#'
+#' + [R-Weekly](https://rweekly.org/) -- еженедельные новости из мира R: блог, новые пакеты, предсоящие мероприятия
 #'
 #' + R's [Spatial](https://cran.rstudio.com/web/views/Spatial.html) and [SpatioTemporal](https://cran.rstudio.com/web/views/SpatioTemporal.html) Task Views 
 #'
@@ -982,6 +1040,10 @@ sessionInfo()
 #' + [Stackexchange](https://gis.stackexchange.com/questions) о ГИС, в т.ч. с использованием R.
 #'
 #' + Package's vignettes -- обобщенное знакомство с библиотекой. Обычно содержат воспроизводимый код.
+#'
+#' #### Книги
+#'
+#' + [A Crash Course in Geographic Information Systems (GIS) using R](https://bookdown.org/michael_bcalles/gis-crash-course-in-r/)
 #'
 #' ######
 #'
