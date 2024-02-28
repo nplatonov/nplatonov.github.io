@@ -54,7 +54,7 @@ baseURL <- ifelse(T,".","https://nplatonov.github.io/SCGIS2019")
 #' :::scrollable
 #+ require
 pkgList <- c("sf","terra","raster","ggplot2","leaflet","mapview"
-            ,"mapedit","knitr","rmarkdown","gdalUtils","tmap","ursa")
+            ,"mapedit","knitr","rmarkdown","gdalUtilities","tmap","ursa")
 whoisready <- sapply(pkgList,function(pkg) {
    if (requireNamespace(pkg))
       return(TRUE)
@@ -378,12 +378,12 @@ try(ursa::glance("Mount Eden",place="park",dpi=90))
 #'
 #' Библиотека | Формат | Импорт | Экспорт
 #' ---|----|--------|----
-#' `sp` | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `raster::raster() ǀ> as("SpatialGridDataFrame")` ^1^ | `ursa::as_ursa(b) ǀ> ursa::as.Raster() ǀ> raster::writeRaster()` ^2^
-#' `raster` | [RRASTER – R Raster](https://gdal.org/drivers/raster/rraster.html), [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `raster()`, `brick()`, `stack()` | `writeRaster()`
-#' `terra` | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `rast()` | `writeRaster()`
-#' `stars` | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `read_stars()` | `write_stars()`
+#' [`sp`](https://cran.rstudio.com/web/packages/sp/) | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `raster::raster() ǀ> as("SpatialGridDataFrame")` ^1^ | `ursa::as_ursa(b) ǀ> ursa::as.Raster() ǀ> raster::writeRaster()` ^2^
+#' [`raster`](https://cran.rstudio.com/web/packages/raster/) | [RRASTER – R Raster](https://gdal.org/drivers/raster/rraster.html), [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `raster()`, `brick()`, `stack()` | `writeRaster()`
+#' [`terra`](https://cran.rstudio.com/web/packages/terra/) | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `rast()` | `writeRaster()`
+#' [`stars`](https://cran.rstudio.com/web/packages/stars/) | [GDAL raster drivers](https://gdal.org/drivers/raster/index.html) | `read_stars()` | `write_stars()`
 #' [`ncdf4`](https://cran.rstudio.com/web/packages/ncdf4/) | [NetCDF](https://gdal.org/drivers/raster/netcdf.html) | `nc_open()` | `nc_create()`
-#' `ursa`| [ENVI - ENVI .hdr Labelled Raster](https://gdal.org/drivers/raster/envi.html) | `read_envi()` | `write_envi()`
+#' [`ursa`](https://cran.rstudio.com/web/packages/ursa/) | [ENVI - ENVI .hdr Labelled Raster](https://gdal.org/drivers/raster/envi.html) | `read_envi()` | `write_envi()`
 #'
 #' ^1^: **`rgdal`**`::readGDAL()`
 #'
@@ -774,10 +774,10 @@ str(tr)
 #'
 #' #### Статическая
 #'
-#+ route, out.extra="bound", out.height=500
+#+ route, out.extra="bound", out.height=550
 ursa::session_grid(NULL)
-ursa::glance(tr,style="opentopomap",plot.lwd=5
-            ,layout=c(1,2),legend=list("left",list("bottom",2)),las=1,dpi=96)
+ursa::glance(tr,style="CartoDB",plot.lwd=5,layout=c(2,1)
+            ,legend=list(list(1,"left"),list(2,"left")),las=1,dpi=96)
 #'
 #' ---
 #'
@@ -844,9 +844,11 @@ knitr::include_graphics(fileout4) ## try 'browseURL(fileout4)'
 #' #### Интерактивная
 #'
 #' ##### `mapview`
-#+ mapview, out.height=588, results='asis'
-m <- mapview::mapview(b.sf) ## Не отобразится в Jupyter R Notebook.
-ursa:::widgetize(m@map)
+#+ mapview, out.height=588, eval=!ursa:::.isRemark()
+m <- mapview::mapview(b.sf)
+m@map
+#+ mapview-remark, echo=FALSE, out.height=588, eval=ursa:::.isRemark(), results='asis'
+ursa:::widgetize(mapview::mapview(b.sf))
 #'
 #' ##### `leaflet`
 #+ leafletload
@@ -864,7 +866,7 @@ m <- m %>%
               ,label=~paste0("SID79: ",SID79," (",NAME,")")
               ,popup=~sprintf("Например, поле AREA, равное %.3f",AREA)
               ) %>%
-   addMeasure("topright",primaryLengthUnit="meters"
+   addMeasure("topleft",primaryLengthUnit="meters"
              ,primaryAreaUnit="sqmeters") %>%
    addScaleBar("bottomright"
              # ,options = scaleBarOptions(imperial=FALSE,maxWidth=400)
@@ -878,13 +880,18 @@ m <- m %>%
 #'
 #' ---
 #'
-#+ leadletwidget, out.height=588, results='asis'
-ursa:::widgetize(m) ## Не отображается в Jupyter R Notebook.
+#+ leafletwidget, out.height=588, eval=!ursa:::.isRemark()
+m
+#+ leafletwidget-widgetize, echo=FALSE, out.height=588, eval=ursa:::.isRemark(), results='asis'
+ursa:::widgetize(m)
 #' ##### `tmap`
 #+ tmap-view, results='asis'
-tmap_mode("view")
 tm <- tm_shape(b.sf) + tm_polygons("FIPSNO")
-ursa:::widgetize(tmap_leaflet(tm),height=510)
+#+ tmap-view-html, eval=!ursa:::.isRemark()
+tmap_mode("view")
+tmap_leaflet(tm)
+#+ tmap-view-remark, echo=FALSE, results='asis', eval=ursa:::.isRemark(), out.height=564
+ursa:::widgetize(tmap_leaflet(tm))
 #'
 #' ---
 #'
