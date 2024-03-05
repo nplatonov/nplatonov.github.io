@@ -192,14 +192,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Уровень береговой линии по значениям GEBCO. То, что меньше <code>coast</code> – это море; то, что вышел <code>coast</code> – это суша.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>coast <span class="ot">&lt;-</span> <span class="dv">2</span></span></code></pre></div>
 <p>Используется версия пакета <strong><code>ursa</code></strong>, которой нет в CRAN.
-Как вариант (Windows), можно создать в <code>root</code> директорию <code>libs</code> и распаковать туда <code>ursa_3.11.0-1072.zip</code>. Должно быть что-то наподобие <code>D:/ongoing/byk/libs/ursa</code> и внутри распакованный пакет.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>opW <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">warn=</span><span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">require</span>(ursa,<span class="at">lib.loc=</span><span class="fu">file.path</span>(root,<span class="st">&quot;libs&quot;</span>))</span></code></pre></div>
+Как вариант (Windows), можно создать в <code>root</code> директорию <code>libs</code> и распаковать туда <code>ursa_3.11.0-1078.zip</code>. Должно быть что-то наподобие <code>D:/ongoing/byk/libs/ursa</code> и внутри распакованный пакет.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">&quot;ursa&quot;</span>)) {</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>   opW <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">warn=</span><span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   <span class="fu">require</span>(ursa,<span class="at">lib.loc=</span><span class="fu">file.path</span>(root,<span class="st">&quot;libs&quot;</span>))</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>   <span class="fu">options</span>(opW)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>Loading required package: ursa</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">options</span>(opW)</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">&quot;ursa&quot;</span>))</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>   <span class="fu">require</span>(ursa)</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">packageVersion</span>(<span class="st">&quot;ursa&quot;</span>)<span class="sc">&gt;</span><span class="st">&quot;3.11&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">&quot;ursa&quot;</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>   <span class="fu">require</span>(ursa)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">packageVersion</span>(<span class="st">&quot;ursa&quot;</span>)<span class="sc">&gt;</span><span class="st">&quot;3.11&quot;</span>)</span></code></pre></div>
 </div>
 <div id="функции" class="section level3">
 <h3>Функции</h3>
@@ -294,23 +296,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>seed <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="dv">100</span>,<span class="dv">999</span>),<span class="dv">1</span>) <span class="do">## 933</span></span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">c</span>(<span class="at">seed=</span>seed)</span></code></pre></div>
 <pre><code>seed 
- 561 </code></pre>
+ 221 </code></pre>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">set.seed</span>(seed)</span></code></pre></div>
 <p>Чтение исходной таблицы и ее преобразование в пространственные данные.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">file.path</span>(root,<span class="st">&quot;Bowhead_whale.csv&quot;</span>),<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="at">dec=</span><span class="st">&quot;.&quot;</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>loc <span class="ot">&lt;-</span> ursa<span class="sc">:::</span><span class="fu">spatialize</span>(loc,<span class="at">style=</span><span class="st">&quot;laea&quot;</span>,<span class="at">lon0=</span><span class="dv">70</span>,<span class="at">lat0=</span><span class="dv">80</span>)</span></code></pre></div>
-<pre><code>Error in st_crs.character(crsNow) : invalid crs: laea</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>loc<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(loc<span class="sc">$</span>date,<span class="at">format=</span><span class="st">&quot;%d.%m.%Y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># getOption(&quot;error&quot;)</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">file.path</span>(root,<span class="st">&quot;Bowhead_whale.csv&quot;</span>),<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="at">dec=</span><span class="st">&quot;.&quot;</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>loc <span class="ot">&lt;-</span> ursa<span class="sc">:::</span><span class="fu">spatialize</span>(loc,<span class="at">style=</span><span class="st">&quot;laea&quot;</span>,<span class="at">lon0=</span><span class="dv">70</span>,<span class="at">lat0=</span><span class="dv">80</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>loc<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(loc<span class="sc">$</span>date,<span class="at">format=</span><span class="st">&quot;%d.%m.%Y&quot;</span>)</span></code></pre></div>
 <p>Уберем лишние столбцы</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>loc<span class="sc">$</span>year <span class="ot">&lt;-</span> loc<span class="sc">$</span>month <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(<span class="fu">table</span>(loc<span class="sc">$</span>Species))<span class="sc">==</span><span class="dv">1</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>   loc<span class="sc">$</span>Species <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>loc<span class="sc">$</span>year <span class="ot">&lt;-</span> loc<span class="sc">$</span>month <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(<span class="fu">table</span>(loc<span class="sc">$</span>Species))<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>   loc<span class="sc">$</span>Species <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div>
 <p>В поле <code>pa</code> присутствие - 1, псевдоотсутствие - 0</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>loc<span class="sc">$</span>pa <span class="ot">&lt;-</span> <span class="dv">1</span><span class="dt">L</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>loc<span class="sc">$</span>pa <span class="ot">&lt;-</span> <span class="dv">1</span><span class="dt">L</span></span></code></pre></div>
 <p>Сформируем координатную сетку и сделаем ее сессионной. В дальнейшем преобразование координатных сеток будет осуществляться к сессионной координатной сетке. Размер ячейки 10 км, а пространственный охват расширен в полтора раза.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">regrid</span>(<span class="fu">spatial_grid</span>(loc),<span class="at">expand=</span><span class="fl">1.5</span>,<span class="at">res=</span><span class="dv">10000</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">session_grid</span>(g1)</span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>g1</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">regrid</span>(<span class="fu">spatial_grid</span>(loc),<span class="at">expand=</span><span class="fl">1.5</span>,<span class="at">res=</span><span class="dv">10000</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">session_grid</span>(g1)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>g1</span></code></pre></div>
 <pre><code>List of 9
  $ columns: int 189
  $ rows   : int 104
@@ -325,291 +327,331 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="прореживание" class="section level3">
 <h3>Прореживание</h3>
 <p>Сделаем прореживание точек, расположенных близко друг к другу. Тут несколько упрощено, так как прореживать нужно точки за близкие даты, когда условия окружающей среды, даже распределение льда, схожие.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="cf">if</span> (T) {</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>   loc <span class="ot">&lt;-</span> ursa<span class="sc">:::</span><span class="fu">spatialize</span>(loc,<span class="at">engine=</span><span class="st">&quot;sp&quot;</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>   gr <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(g1)</span>
-<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>   sp<span class="sc">::</span><span class="fu">coordinates</span>(gr) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>)</span>
-<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>   sp<span class="sc">::</span><span class="fu">proj4string</span>(gr) <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">proj4string</span>(loc) <span class="co"># sf::st_crs(spatial_crs(loc))$proj4string</span></span>
-<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>   sp<span class="sc">::</span><span class="fu">gridded</span>(gr) <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>   opW <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">warn=</span><span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>   hr <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernelUD</span>(loc</span>
-<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>                               ,<span class="at">grid=</span>gr</span>
-<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>                               ,<span class="at">h=</span><span class="fu">list</span>(<span class="st">&quot;href&quot;</span>,<span class="st">&quot;LSCV&quot;</span>,<span class="dv">10000</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a>                               ,<span class="at">kern=</span><span class="fu">c</span>(<span class="st">&quot;bivnorm&quot;</span>,<span class="st">&quot;epa&quot;</span>)[<span class="dv">1</span>] <span class="do">## 1$1 2$1 1$2</span></span>
-<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a>                               ,<span class="at">hlim=</span><span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">1.5</span>) <span class="do">## for h=LSCV, default</span></span>
-<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a>                              <span class="co"># ,hlim=c(0.4,1.2) ## for h=LSCV</span></span>
-<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a>                              <span class="co"># ,extent=2 ## ignored if !missing(grid)</span></span>
-<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a>                               )</span>
-<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a>   <span class="fu">options</span>(opW)</span>
-<span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a>   h <span class="ot">&lt;-</span> hr<span class="sc">@</span>data[[<span class="dv">1</span>]]</span>
-<span id="cb23-18"><a href="#cb23-18" tabindex="-1"></a>   <span class="fu">dim</span>(h) <span class="ot">&lt;-</span> <span class="fu">dim</span>(g1)</span>
-<span id="cb23-19"><a href="#cb23-19" tabindex="-1"></a>   h <span class="ot">&lt;-</span> <span class="fu">ursa_new</span>(<span class="fu">t</span>(h)<span class="sc">*</span><span class="fl">1e12</span>,<span class="at">flip=</span><span class="cn">TRUE</span>)<span class="sc">^</span><span class="fl">0.5</span></span>
-<span id="cb23-20"><a href="#cb23-20" tabindex="-1"></a>   kd <span class="ot">&lt;-</span> <span class="fu">value_xy</span>(h,<span class="fu">spatial_coordinates</span>(loc))[<span class="dv">1</span>,] <span class="sc">|&gt;</span> <span class="fu">ceiling</span>()</span>
-<span id="cb23-21"><a href="#cb23-21" tabindex="-1"></a>   omit <span class="ot">&lt;-</span> <span class="fu">sapply</span>(kd,\(x) <span class="fu">sample</span>(<span class="fu">seq</span>(x))[<span class="dv">1</span>]<span class="sc">!=</span><span class="dv">1</span>)</span>
-<span id="cb23-22"><a href="#cb23-22" tabindex="-1"></a>   <span class="fu">print</span>(<span class="fu">table</span>(omit))</span>
-<span id="cb23-23"><a href="#cb23-23" tabindex="-1"></a>   loc <span class="ot">&lt;-</span> ursa<span class="sc">:::</span><span class="fu">spatialize</span>(loc[<span class="sc">!</span>omit,],<span class="at">engine=</span><span class="st">&quot;sf&quot;</span>)</span>
-<span id="cb23-24"><a href="#cb23-24" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="cf">if</span> (T) {</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>   loc <span class="ot">&lt;-</span> ursa<span class="sc">:::</span><span class="fu">spatialize</span>(loc,<span class="at">engine=</span><span class="st">&quot;sp&quot;</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>   gr <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(g1)</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>   sp<span class="sc">::</span><span class="fu">coordinates</span>(gr) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>   sp<span class="sc">::</span><span class="fu">proj4string</span>(gr) <span class="ot">&lt;-</span> sp<span class="sc">::</span><span class="fu">proj4string</span>(loc) <span class="co"># sf::st_crs(spatial_crs(loc))$proj4string</span></span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>   sp<span class="sc">::</span><span class="fu">gridded</span>(gr) <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>   opW <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">warn=</span><span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a>   hr <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernelUD</span>(loc</span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>                               ,<span class="at">grid=</span>gr</span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a>                               ,<span class="at">h=</span><span class="fu">list</span>(<span class="st">&quot;href&quot;</span>,<span class="st">&quot;LSCV&quot;</span>,<span class="dv">10000</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a>                               ,<span class="at">kern=</span><span class="fu">c</span>(<span class="st">&quot;bivnorm&quot;</span>,<span class="st">&quot;epa&quot;</span>)[<span class="dv">1</span>] <span class="do">## 1$1 2$1 1$2</span></span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a>                               ,<span class="at">hlim=</span><span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">1.5</span>) <span class="do">## for h=LSCV, default</span></span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a>                              <span class="co"># ,hlim=c(0.4,1.2) ## for h=LSCV</span></span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a>                              <span class="co"># ,extent=2 ## ignored if !missing(grid)</span></span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a>                               )</span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a>   <span class="fu">options</span>(opW)</span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a>   h <span class="ot">&lt;-</span> hr<span class="sc">@</span>data[[<span class="dv">1</span>]]</span>
+<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a>   <span class="fu">dim</span>(h) <span class="ot">&lt;-</span> <span class="fu">dim</span>(g1)</span>
+<span id="cb21-19"><a href="#cb21-19" tabindex="-1"></a>   h <span class="ot">&lt;-</span> <span class="fu">ursa_new</span>(<span class="fu">t</span>(h)<span class="sc">*</span><span class="fl">1e12</span>,<span class="at">flip=</span><span class="cn">TRUE</span>)<span class="sc">^</span><span class="fl">0.5</span></span>
+<span id="cb21-20"><a href="#cb21-20" tabindex="-1"></a>   kd <span class="ot">&lt;-</span> <span class="fu">value_xy</span>(h,<span class="fu">spatial_coordinates</span>(loc))[<span class="dv">1</span>,] <span class="sc">|&gt;</span> <span class="fu">ceiling</span>()</span>
+<span id="cb21-21"><a href="#cb21-21" tabindex="-1"></a>   omit <span class="ot">&lt;-</span> <span class="fu">sapply</span>(kd,\(x) <span class="fu">sample</span>(<span class="fu">seq</span>(x))[<span class="dv">1</span>]<span class="sc">!=</span><span class="dv">1</span>)</span>
+<span id="cb21-22"><a href="#cb21-22" tabindex="-1"></a>   <span class="fu">print</span>(<span class="fu">table</span>(omit))</span>
+<span id="cb21-23"><a href="#cb21-23" tabindex="-1"></a>   loc <span class="ot">&lt;-</span> ursa<span class="sc">:::</span><span class="fu">spatialize</span>(loc[<span class="sc">!</span>omit,],<span class="at">engine=</span><span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb21-24"><a href="#cb21-24" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>Registered S3 methods overwritten by &#39;adehabitatMA&#39;:
   method                       from
   print.SpatialPixelsDataFrame sp  
   print.SpatialPixels          sp  </code></pre>
 <pre><code>omit
 FALSE  TRUE 
-   73   118 </code></pre>
+   68   123 </code></pre>
 </div>
 <div id="добавление-точек-псевдоотсутствия" class="section level3">
 <h3>Добавление точек псевдоотсутствия</h3>
 <p>Преобразуем данные GEBCO в нашу сетку. Точки будет формировать лишь для тех ячеек, для которых GEBCO менее двух метров</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>gebco <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">gebco=</span><span class="st">&#39;изИсходников&#39;</span>(<span class="st">&quot;gebco_depth.tif&quot;</span>,<span class="at">resample=</span><span class="st">&quot;bilinear&quot;</span>))</span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="fu">print</span>(gebco)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>gebco <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">gebco=</span><span class="st">&#39;изИсходников&#39;</span>(<span class="st">&quot;gebco_depth.tif&quot;</span>,<span class="at">resample=</span><span class="st">&quot;bilinear&quot;</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">print</span>(gebco)</span></code></pre></div>
 <pre><code>     name     mean      sd      sum   min max     n nNA
 [1] gebco -450.709 901.917 -8859133 -3688 869 19656   0</code></pre>
-<pre><code>Warning in CPL_gdalwarp(source, destination, options, oo, doo, config_options, : GDAL Message 1: for band
-1, destination nodata value has been clamped to 0, the original value being out of range.</code></pre>
-<p class="centered-image"><img src="assets/ursa02_unnamed-chunk-19.png" width="628" /></p>
+<p class="centered-image"><img src="assets/ursa02_unnamed-chunk-20.png" width="628" /></p>
 <p>На каждую дату добавим семь точек псевдоотсутствия</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>sea <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(gebco<span class="sc">&lt;</span>coast)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">nrow</span>(sea))</span>
-<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>absence <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">unique</span>(loc<span class="sc">$</span>date),\(d) {</span>
-<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>   <span class="fu">data.frame</span>(<span class="at">date=</span>d,<span class="at">pa=</span><span class="dv">0</span><span class="dt">L</span>,sea[<span class="fu">sample</span>(ind,<span class="dv">7</span>),])</span>
-<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>}) <span class="sc">|&gt;</span> <span class="fu">do.call</span>(rbind,<span class="at">args=</span>_) <span class="sc">|&gt;</span> ursa<span class="sc">:::</span><span class="fu">spatialize</span>(<span class="at">crs=</span><span class="fu">spatial_crs</span>(loc))</span>
-<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a><span class="fu">session_grid</span>(g1) <span class="do">## восстановление сессионной сетки</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>sea <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(gebco<span class="sc">&lt;</span>coast)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">nrow</span>(sea))</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>absence <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">unique</span>(loc<span class="sc">$</span>date),\(d) {</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>   <span class="fu">data.frame</span>(<span class="at">date=</span>d,<span class="at">pa=</span><span class="dv">0</span><span class="dt">L</span>,sea[<span class="fu">sample</span>(ind,<span class="dv">7</span>),])</span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>}) <span class="sc">|&gt;</span> <span class="fu">do.call</span>(rbind,<span class="at">args=</span>_) <span class="sc">|&gt;</span> ursa<span class="sc">:::</span><span class="fu">spatialize</span>(<span class="at">crs=</span><span class="fu">spatial_crs</span>(loc))</span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="fu">session_grid</span>(g1) <span class="do">## восстановление сессионной сетки</span></span></code></pre></div>
 <p>Объединим присутствие и псевдоотсутствие</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="fu">spatial_bind</span>(loc,absence)</span>
-<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">table</span>(loc<span class="sc">$</span>pa)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="fu">spatial_bind</span>(loc,absence)</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">table</span>(loc<span class="sc">$</span>pa)</span></code></pre></div>
 <pre><code>
   0   1 
-112  73 </code></pre>
+105  68 </code></pre>
 </div>
 <div id="добавление-предикторов" class="section level3">
 <h3>Добавление предикторов</h3>
 <div id="gebco" class="section level4">
 <h4>GEBCO</h4>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>loc<span class="sc">$</span>gebco <span class="ot">&lt;-</span> <span class="fu">environ</span>(loc,gebco)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>loc<span class="sc">$</span>gebco <span class="ot">&lt;-</span> <span class="fu">environ</span>(loc,gebco)</span></code></pre></div>
 </div>
 <div id="расстояние-до-берега" class="section level4">
 <h4>Расстояние до берега</h4>
 <p>Расстояние до берега по значениям GEBCO, превышающих +2 метра.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>land <span class="ot">&lt;-</span> gebco<span class="sc">&gt;=</span>coast</span>
-<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>sea <span class="ot">&lt;-</span> gebco<span class="sc">&lt;</span>coast</span>
-<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a><span class="cf">if</span> (F) <span class="co"># если только для модели, то можно так</span></span>
-<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>   loc<span class="sc">$</span>dist2land <span class="ot">&lt;-</span> (ursa<span class="sc">:::</span><span class="fu">.dist2</span>(loc,land,<span class="at">summarize=</span><span class="cn">FALSE</span>,<span class="at">verbose=</span><span class="cn">FALSE</span>)<span class="sc">$</span>dist<span class="sc">*</span><span class="fl">1e-3</span>)<span class="sc">^</span>distpower</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>land <span class="ot">&lt;-</span> gebco<span class="sc">&gt;=</span>coast</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>sea <span class="ot">&lt;-</span> gebco<span class="sc">&lt;</span>coast</span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a><span class="cf">if</span> (F) <span class="co"># если только для модели, то можно так</span></span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>   loc<span class="sc">$</span>dist2land <span class="ot">&lt;-</span> (ursa<span class="sc">:::</span><span class="fu">.dist2</span>(loc,land,<span class="at">summarize=</span><span class="cn">FALSE</span>,<span class="at">verbose=</span><span class="cn">FALSE</span>)<span class="sc">$</span>dist<span class="sc">*</span><span class="fl">1e-3</span>)<span class="sc">^</span>distpower</span></code></pre></div>
 <p>Растр необходим, если по модели будем строить предсказание</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>dist2land <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">dist2land=</span><span class="sc">-</span><span class="fu">dist2border</span>(gebco,coast))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>dist2land <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">dist2land=</span><span class="sc">-</span><span class="fu">dist2border</span>(gebco,coast))</span></code></pre></div>
 <p>Расстояние до берега as is</p>
-<p class="centered-image"><img src="assets/ursa05_unnamed-chunk-25.png" width="634" /></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a>dist2land <span class="ot">&lt;-</span> <span class="fu">sign</span>(dist2land)<span class="sc">*</span><span class="fu">abs</span>(dist2land<span class="sc">*</span><span class="fl">1e-3</span>)<span class="sc">^</span>distpower</span></code></pre></div>
+<p class="centered-image"><img src="assets/ursa03_unnamed-chunk-26.png" width="634" /></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>dist2land <span class="ot">&lt;-</span> <span class="fu">sign</span>(dist2land)<span class="sc">*</span><span class="fu">abs</span>(dist2land<span class="sc">*</span><span class="fl">1e-3</span>)<span class="sc">^</span>distpower</span></code></pre></div>
 <p>Преобразованное расстояние до берега, используемое в модели</p>
-<p class="centered-image"><img src="assets/ursa06_unnamed-chunk-27.png" width="616" /></p>
+<p class="centered-image"><img src="assets/ursa04_unnamed-chunk-28.png" width="616" /></p>
 </div>
 <div id="концентрация-льда" class="section level4">
 <h4>Концентрация льда</h4>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>conc <span class="ot">&lt;-</span> <span class="st">&#39;изИсходников&#39;</span>(<span class="st">&quot;AMSR2.+</span><span class="sc">\\</span><span class="st">.tif$&quot;</span>,<span class="st">&quot;%Y%m%d&quot;</span>,<span class="at">nodata=</span><span class="dv">100</span>,<span class="at">resample=</span><span class="st">&quot;bilinear&quot;</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>loc<span class="sc">$</span>conc <span class="ot">&lt;-</span> <span class="fu">environ</span>(loc,conc)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>conc <span class="ot">&lt;-</span> <span class="st">&#39;изИсходников&#39;</span>(<span class="st">&quot;AMSR2.+</span><span class="sc">\\</span><span class="st">.tif$&quot;</span>,<span class="st">&quot;%Y%m%d&quot;</span>,<span class="at">nodata=</span><span class="dv">100</span>,<span class="at">resample=</span><span class="st">&quot;bilinear&quot;</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>loc<span class="sc">$</span>conc <span class="ot">&lt;-</span> <span class="fu">environ</span>(loc,conc)</span></code></pre></div>
 </div>
 <div id="расстояние-до-кромки-льда." class="section level4">
 <h4>Расстояние до кромки льда.</h4>
 <p>Кромку льда определим по различным уровням концентрации – 15, 30, 50 и 75%.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a>edge15 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(conc,<span class="dv">15</span>)</span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>loc<span class="sc">$</span>edge15 <span class="ot">&lt;-</span> <span class="fu">environ</span>(loc,edge15)</span>
-<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a><span class="cf">if</span> (F) {</span>
-<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a>   edge30 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(conc,<span class="dv">30</span>)</span>
-<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a>   edge50 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(conc,<span class="dv">50</span>)</span>
-<span id="cb37-6"><a href="#cb37-6" tabindex="-1"></a>   edge75 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(conc,<span class="dv">75</span>)</span>
-<span id="cb37-7"><a href="#cb37-7" tabindex="-1"></a>   loc<span class="sc">$</span>edge30 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(loc,edge30)</span>
-<span id="cb37-8"><a href="#cb37-8" tabindex="-1"></a>   loc<span class="sc">$</span>edge50 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(loc,edge50)</span>
-<span id="cb37-9"><a href="#cb37-9" tabindex="-1"></a>   loc<span class="sc">$</span>edge75 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(loc,edge75)</span>
-<span id="cb37-10"><a href="#cb37-10" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>edge15 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(conc,<span class="dv">15</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>loc<span class="sc">$</span>edge15 <span class="ot">&lt;-</span> <span class="fu">environ</span>(loc,edge15)</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a><span class="cf">if</span> (F) {</span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>   edge30 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(conc,<span class="dv">30</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>   edge50 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(conc,<span class="dv">50</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>   edge75 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(conc,<span class="dv">75</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a>   loc<span class="sc">$</span>edge30 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(loc,edge30)</span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a>   loc<span class="sc">$</span>edge50 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(loc,edge50)</span>
+<span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a>   loc<span class="sc">$</span>edge75 <span class="ot">&lt;-</span> <span class="fu">dist2edge</span>(loc,edge75)</span>
+<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="характеристики-поверхности-океана" class="section level4">
 <h4>Характеристики поверхности океана</h4>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="cf">if</span> (T) {</span>
-<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>   chlo <span class="ot">&lt;-</span> <span class="st">&#39;изИсходников&#39;</span>(<span class="st">&quot;CHLORA.+</span><span class="sc">\\</span><span class="st">.TIFF$&quot;</span>,<span class="st">&quot;%Y-%m-%d&quot;</span>,<span class="at">nodata=</span><span class="dv">90000</span>,<span class="at">resample=</span><span class="st">&quot;near&quot;</span>)</span>
-<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>   loc<span class="sc">$</span>chlo <span class="ot">&lt;-</span> <span class="fu">environ</span>(loc,chlo,<span class="dv">300</span>)</span>
-<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a>   salt <span class="ot">&lt;-</span> <span class="st">&#39;изИсходников&#39;</span>(<span class="st">&quot;salt.+</span><span class="sc">\\</span><span class="st">.tif$&quot;</span>,<span class="st">&quot;%y%m%d&quot;</span>,<span class="at">nodata=</span><span class="dv">0</span>,<span class="at">resample=</span><span class="st">&quot;near&quot;</span>)</span>
-<span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a>   loc<span class="sc">$</span>salt <span class="ot">&lt;-</span> <span class="fu">environ</span>(loc,salt,<span class="dv">200</span>)</span>
-<span id="cb38-6"><a href="#cb38-6" tabindex="-1"></a>   temp <span class="ot">&lt;-</span> <span class="st">&#39;изИсходников&#39;</span>(<span class="st">&quot;temp.+</span><span class="sc">\\</span><span class="st">.tif$&quot;</span>,<span class="st">&quot;%y%m%d&quot;</span>,<span class="at">nodata=</span><span class="cn">NA</span>,<span class="at">resample=</span><span class="st">&quot;near&quot;</span>)</span>
-<span id="cb38-7"><a href="#cb38-7" tabindex="-1"></a>   loc<span class="sc">$</span>temp <span class="ot">&lt;-</span> <span class="fu">environ</span>(loc,temp,<span class="dv">100</span>)</span>
-<span id="cb38-8"><a href="#cb38-8" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="cf">if</span> (T) {</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>   chlo <span class="ot">&lt;-</span> <span class="st">&#39;изИсходников&#39;</span>(<span class="st">&quot;CHLORA.+</span><span class="sc">\\</span><span class="st">.TIFF$&quot;</span>,<span class="st">&quot;%Y-%m-%d&quot;</span>,<span class="at">nodata=</span><span class="dv">90000</span>,<span class="at">resample=</span><span class="st">&quot;near&quot;</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>   loc<span class="sc">$</span>chlo <span class="ot">&lt;-</span> <span class="fu">environ</span>(loc,chlo,<span class="dv">300</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a>   salt <span class="ot">&lt;-</span> <span class="st">&#39;изИсходников&#39;</span>(<span class="st">&quot;salt.+</span><span class="sc">\\</span><span class="st">.tif$&quot;</span>,<span class="st">&quot;%y%m%d&quot;</span>,<span class="at">nodata=</span><span class="dv">0</span>,<span class="at">resample=</span><span class="st">&quot;near&quot;</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>   loc<span class="sc">$</span>salt <span class="ot">&lt;-</span> <span class="fu">environ</span>(loc,salt,<span class="dv">200</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a>   temp <span class="ot">&lt;-</span> <span class="st">&#39;изИсходников&#39;</span>(<span class="st">&quot;temp.+</span><span class="sc">\\</span><span class="st">.tif$&quot;</span>,<span class="st">&quot;%y%m%d&quot;</span>,<span class="at">nodata=</span><span class="cn">NA</span>,<span class="at">resample=</span><span class="st">&quot;near&quot;</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a>   loc<span class="sc">$</span>temp <span class="ot">&lt;-</span> <span class="fu">environ</span>(loc,temp,<span class="dv">100</span>)</span>
+<span id="cb35-8"><a href="#cb35-8" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 </div>
 <div id="построение-модели" class="section level2">
 <h2>Построение модели</h2>
 <p>В модели не используются пространственный координаты, поэтому их отсекаем.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>da <span class="ot">&lt;-</span> <span class="fu">spatial_data</span>(loc)</span></code></pre></div>
-<p>Если захочется сохранить таблицу с находками, псевдонаходками и предикторами, то установить <code>needToSaveThisData</code> в <code>TRUE</code>. Суффиксом указано значение <code>seed</code>, на основе которого задан генератор псевдослучайных чисел.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="cf">if</span> (needToSaveThisData <span class="ot">&lt;-</span> <span class="cn">FALSE</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>   <span class="fu">write.table</span>(da,<span class="fu">paste0</span>(<span class="st">&quot;balaena&quot;</span>,seed,<span class="st">&quot;.csv&quot;</span>),<span class="at">row.names=</span><span class="cn">FALSE</span>,<span class="at">quote=</span><span class="cn">FALSE</span>,<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="at">dec=</span><span class="st">&quot;.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>da <span class="ot">&lt;-</span> <span class="fu">spatial_data</span>(loc)</span></code></pre></div>
+<p>Если захочется сохранить таблицу с находками, псевдонаходками и предикторами, то установить <code>needToSaveThisData</code> в <code>TRUE</code>. Суффиксом указано значение <code>seed</code>, на основе которого задан генератор псевдослучайных чисел. Чтобы сохранить предикторы, использовать функцию <code>ursa_write()</code>, которая есть в пакете <strong><code>ursa</code></strong>. В имени файла указать расширение <code>*.tif</code> (один многослойный растр) или <code>*.zip</code> (архив однослойных растров).</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="cf">if</span> (needToSaveThisData <span class="ot">&lt;-</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>   <span class="fu">write.table</span>(da,<span class="fu">paste0</span>(<span class="st">&quot;balaena&quot;</span>,seed,<span class="st">&quot;.csv&quot;</span>),<span class="at">row.names=</span><span class="cn">FALSE</span>,<span class="at">quote=</span><span class="cn">FALSE</span>,<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="at">dec=</span><span class="st">&quot;.&quot;</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>  <span class="co"># ursa_write(conc,&quot;conc.tif&quot;)</span></span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a>  <span class="co"># ursa_write(conc,&quot;conc.zip&quot;)</span></span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a>}</span></code></pre></div>
 <p>И даты тоже не нужны.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a>da<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>da<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div>
 <p>Уберем стоки, в которых есть <code>NA</code>. Это, по-моему, из-за хлорофилла. Если не подгружать хлорофилл, то строчки останутся, но в модели будет на один предиктор меньше.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="co"># da &lt;- da[!apply(da,1,anyNA),]</span></span>
-<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a><span class="fu">summary</span>(da)</span></code></pre></div>
-<pre><code>       pa             gebco           dist2land           conc            edge15              chlo       
- Min.   :0.0000   Min.   :-3492.0   Min.   : 3.162   Min.   :  0.00   Min.   :-18.4391   Min.   :0.0297  
- 1st Qu.:0.0000   1st Qu.: -355.0   1st Qu.: 7.071   1st Qu.:  0.00   1st Qu.: -7.3384   1st Qu.:0.2804  
- Median :0.0000   Median : -271.0   Median :10.400   Median :  0.00   Median : -4.4721   Median :0.4916  
- Mean   :0.3946   Mean   : -491.1   Mean   :10.331   Mean   : 29.71   Mean   : -0.9901   Mean   :1.1658  
- 3rd Qu.:1.0000   3rd Qu.: -129.0   3rd Qu.:13.301   3rd Qu.: 84.00   3rd Qu.:  7.0711   3rd Qu.:1.4591  
- Max.   :1.0000   Max.   :   -7.0   Max.   :19.385   Max.   :100.00   Max.   : 29.7639   Max.   :7.3303  
-                                                                                         NA&#39;s   :16      
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="co"># da &lt;- da[!apply(da,1,anyNA),]</span></span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="fu">summary</span>(da)</span></code></pre></div>
+<pre><code>       pa             gebco           dist2land           conc           edge15             chlo        
+ Min.   :0.0000   Min.   :-3467.0   Min.   : 3.162   Min.   :  0.0   Min.   :-20.506   Min.   : 0.0297  
+ 1st Qu.:0.0000   1st Qu.: -349.0   1st Qu.: 6.687   1st Qu.:  0.0   1st Qu.: -7.746   1st Qu.: 0.2524  
+ Median :0.0000   Median : -218.0   Median : 9.516   Median :  0.0   Median : -4.472   Median : 0.5657  
+ Mean   :0.3931   Mean   : -380.5   Mean   : 9.895   Mean   : 25.2   Mean   : -1.992   Mean   : 1.3176  
+ 3rd Qu.:1.0000   3rd Qu.: -105.0   3rd Qu.:13.038   3rd Qu.: 40.0   3rd Qu.:  4.472   3rd Qu.: 1.5517  
+ Max.   :1.0000   Max.   :   -7.0   Max.   :21.996   Max.   :100.0   Max.   : 32.374   Max.   :13.3107  
+                                                                                       NA&#39;s   :15       
       salt            temp        
- Min.   :23.57   Min.   :-1.9131  
- 1st Qu.:32.15   1st Qu.:-1.7028  
- Median :33.80   Median :-0.1669  
- Mean   :33.17   Mean   : 0.1327  
- 3rd Qu.:34.50   3rd Qu.: 0.6710  
- Max.   :34.99   Max.   : 7.2132  
+ Min.   :24.92   Min.   :-2.0266  
+ 1st Qu.:32.59   1st Qu.:-1.6984  
+ Median :34.00   Median : 0.1612  
+ Mean   :33.27   Mean   : 0.5542  
+ 3rd Qu.:34.50   3rd Qu.: 1.5873  
+ Max.   :34.95   Max.   : 8.7696  
                                   </code></pre>
 <div id="glm" class="section level3">
 <h3>GLM</h3>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(pa<span class="sc">~</span>.,<span class="at">data=</span>da)</span>
-<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(pa<span class="sc">~</span>.,<span class="at">data=</span>da)</span>
+<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>
 Call:
 glm(formula = pa ~ ., data = da)
 
 Coefficients:
-              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) -7.236e-01  6.668e-01  -1.085  0.27948    
-gebco       -9.919e-06  5.108e-05  -0.194  0.84626    
-dist2land   -3.270e-02  1.026e-02  -3.187  0.00173 ** 
-conc        -9.709e-03  2.019e-03  -4.808 3.48e-06 ***
-edge15       1.874e-02  9.095e-03   2.060  0.04100 *  
-chlo         7.821e-03  2.429e-02   0.322  0.74789    
-salt         5.317e-02  1.904e-02   2.792  0.00587 ** 
-temp        -2.694e-02  2.032e-02  -1.326  0.18676    
+              Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept) -1.389e+00  8.501e-01  -1.634  0.10429   
+gebco       -6.256e-05  6.668e-05  -0.938  0.34964   
+dist2land   -2.979e-02  1.017e-02  -2.929  0.00393 **
+conc        -6.508e-03  2.130e-03  -3.055  0.00266 **
+edge15       3.807e-03  1.026e-02   0.371  0.71110   
+chlo         3.322e-02  2.327e-02   1.428  0.15539   
+salt         6.665e-02  2.407e-02   2.769  0.00633 **
+temp        -3.982e-02  1.943e-02  -2.050  0.04215 * 
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-(Dispersion parameter for gaussian family taken to be 0.1524327)
+(Dispersion parameter for gaussian family taken to be 0.1766972)
 
-    Null deviance: 40.828  on 168  degrees of freedom
-Residual deviance: 24.542  on 161  degrees of freedom
-  (16 observations deleted due to missingness)
-AIC: 171.51
+    Null deviance: 38.076  on 157  degrees of freedom
+Residual deviance: 26.505  on 150  degrees of freedom
+  (15 observations deleted due to missingness)
+AIC: 184.31
 
 Number of Fisher Scoring iterations: 2</code></pre>
 </div>
 <div id="lm" class="section level3">
 <h3>LM</h3>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pa<span class="sc">~</span>.,<span class="at">data=</span>da)</span>
-<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pa<span class="sc">~</span>.,<span class="at">data=</span>da)</span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = pa ~ ., data = da)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.85737 -0.30783  0.02279  0.23846  0.88014 
+-0.80597 -0.34251 -0.02026  0.28475  0.96942 
 
 Coefficients:
-              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) -7.236e-01  6.668e-01  -1.085  0.27948    
-gebco       -9.919e-06  5.108e-05  -0.194  0.84626    
-dist2land   -3.270e-02  1.026e-02  -3.187  0.00173 ** 
-conc        -9.709e-03  2.019e-03  -4.808 3.48e-06 ***
-edge15       1.874e-02  9.095e-03   2.060  0.04100 *  
-chlo         7.821e-03  2.429e-02   0.322  0.74789    
-salt         5.317e-02  1.904e-02   2.792  0.00587 ** 
-temp        -2.694e-02  2.032e-02  -1.326  0.18676    
+              Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept) -1.389e+00  8.501e-01  -1.634  0.10429   
+gebco       -6.256e-05  6.668e-05  -0.938  0.34964   
+dist2land   -2.979e-02  1.017e-02  -2.929  0.00393 **
+conc        -6.508e-03  2.130e-03  -3.055  0.00266 **
+edge15       3.807e-03  1.026e-02   0.371  0.71110   
+chlo         3.322e-02  2.327e-02   1.428  0.15539   
+salt         6.665e-02  2.407e-02   2.769  0.00633 **
+temp        -3.982e-02  1.943e-02  -2.050  0.04215 * 
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.3904 on 161 degrees of freedom
-  (16 observations deleted due to missingness)
-Multiple R-squared:  0.3989,    Adjusted R-squared:  0.3728 
-F-statistic: 15.26 on 7 and 161 DF,  p-value: 3.114e-15</code></pre>
+Residual standard error: 0.4204 on 150 degrees of freedom
+  (15 observations deleted due to missingness)
+Multiple R-squared:  0.3039,    Adjusted R-squared:  0.2714 
+F-statistic: 9.355 on 7 and 150 DF,  p-value: 1.352e-09</code></pre>
 </div>
 <div id="логистическая-линейная" class="section level3">
 <h3>Логистическая линейная</h3>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">try</span>(<span class="fu">nls</span>(pa<span class="sc">~</span><span class="fu">exp</span>(a0<span class="sc">+</span></span>
-<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>                  a_conc<span class="sc">*</span>conc<span class="sc">+</span></span>
-<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a>                  a_gebco<span class="sc">*</span>gebco<span class="sc">+</span></span>
-<span id="cb48-4"><a href="#cb48-4" tabindex="-1"></a>                  a_dist2land<span class="sc">*</span>dist2land<span class="sc">+</span></span>
-<span id="cb48-5"><a href="#cb48-5" tabindex="-1"></a>                  a_edge15<span class="sc">*</span>edge15<span class="sc">+</span></span>
-<span id="cb48-6"><a href="#cb48-6" tabindex="-1"></a>                  a_salt<span class="sc">*</span>salt<span class="sc">+</span></span>
-<span id="cb48-7"><a href="#cb48-7" tabindex="-1"></a>                  a_temp<span class="sc">*</span>temp<span class="sc">+</span></span>
-<span id="cb48-8"><a href="#cb48-8" tabindex="-1"></a>                 <span class="co"># a_chlo*chlo+</span></span>
-<span id="cb48-9"><a href="#cb48-9" tabindex="-1"></a>                  <span class="dv">0</span>)</span>
-<span id="cb48-10"><a href="#cb48-10" tabindex="-1"></a>          ,<span class="at">data=</span>da</span>
-<span id="cb48-11"><a href="#cb48-11" tabindex="-1"></a>          ,<span class="at">start=</span><span class="fu">list</span>(<span class="at">a0=</span><span class="fl">1e-4</span></span>
-<span id="cb48-12"><a href="#cb48-12" tabindex="-1"></a>                     ,<span class="at">a_conc=</span><span class="fl">1e-4</span></span>
-<span id="cb48-13"><a href="#cb48-13" tabindex="-1"></a>                     ,<span class="at">a_gebco=</span><span class="fl">1e-4</span></span>
-<span id="cb48-14"><a href="#cb48-14" tabindex="-1"></a>                     ,<span class="at">a_dist2land=</span><span class="fl">1e-4</span></span>
-<span id="cb48-15"><a href="#cb48-15" tabindex="-1"></a>                     ,<span class="at">a_edge15=</span><span class="fl">1e-4</span></span>
-<span id="cb48-16"><a href="#cb48-16" tabindex="-1"></a>                     ,<span class="at">a_salt=</span><span class="fl">1e-4</span></span>
-<span id="cb48-17"><a href="#cb48-17" tabindex="-1"></a>                     ,<span class="at">a_temp=</span><span class="fl">1e-4</span></span>
-<span id="cb48-18"><a href="#cb48-18" tabindex="-1"></a>                    <span class="co"># ,a_chlo=1e-4</span></span>
-<span id="cb48-19"><a href="#cb48-19" tabindex="-1"></a>                     )</span>
-<span id="cb48-20"><a href="#cb48-20" tabindex="-1"></a>          ,<span class="at">control=</span><span class="fu">nls.control</span>(<span class="at">maxiter=</span><span class="dv">150</span>)</span>
-<span id="cb48-21"><a href="#cb48-21" tabindex="-1"></a>          ))</span>
-<span id="cb48-22"><a href="#cb48-22" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">try</span>(<span class="fu">nls</span>(pa<span class="sc">~</span><span class="fu">exp</span>(a0<span class="sc">+</span></span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a>                  a_conc<span class="sc">*</span>conc<span class="sc">+</span></span>
+<span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a>                  a_gebco<span class="sc">*</span>gebco<span class="sc">+</span></span>
+<span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a>                  a_dist2land<span class="sc">*</span>dist2land<span class="sc">+</span></span>
+<span id="cb45-5"><a href="#cb45-5" tabindex="-1"></a>                  a_edge15<span class="sc">*</span>edge15<span class="sc">+</span></span>
+<span id="cb45-6"><a href="#cb45-6" tabindex="-1"></a>                  a_salt<span class="sc">*</span>salt<span class="sc">+</span></span>
+<span id="cb45-7"><a href="#cb45-7" tabindex="-1"></a>                  a_temp<span class="sc">*</span>temp<span class="sc">+</span></span>
+<span id="cb45-8"><a href="#cb45-8" tabindex="-1"></a>                 <span class="co"># a_chlo*chlo+</span></span>
+<span id="cb45-9"><a href="#cb45-9" tabindex="-1"></a>                  <span class="dv">0</span>)</span>
+<span id="cb45-10"><a href="#cb45-10" tabindex="-1"></a>          ,<span class="at">data=</span>da</span>
+<span id="cb45-11"><a href="#cb45-11" tabindex="-1"></a>          ,<span class="at">start=</span><span class="fu">list</span>(<span class="at">a0=</span><span class="fl">1e-4</span></span>
+<span id="cb45-12"><a href="#cb45-12" tabindex="-1"></a>                     ,<span class="at">a_conc=</span><span class="fl">1e-4</span></span>
+<span id="cb45-13"><a href="#cb45-13" tabindex="-1"></a>                     ,<span class="at">a_gebco=</span><span class="fl">1e-4</span></span>
+<span id="cb45-14"><a href="#cb45-14" tabindex="-1"></a>                     ,<span class="at">a_dist2land=</span><span class="fl">1e-4</span></span>
+<span id="cb45-15"><a href="#cb45-15" tabindex="-1"></a>                     ,<span class="at">a_edge15=</span><span class="fl">1e-4</span></span>
+<span id="cb45-16"><a href="#cb45-16" tabindex="-1"></a>                     ,<span class="at">a_salt=</span><span class="fl">1e-4</span></span>
+<span id="cb45-17"><a href="#cb45-17" tabindex="-1"></a>                     ,<span class="at">a_temp=</span><span class="fl">1e-4</span></span>
+<span id="cb45-18"><a href="#cb45-18" tabindex="-1"></a>                    <span class="co"># ,a_chlo=1e-4</span></span>
+<span id="cb45-19"><a href="#cb45-19" tabindex="-1"></a>                     )</span>
+<span id="cb45-20"><a href="#cb45-20" tabindex="-1"></a>          ,<span class="at">control=</span><span class="fu">nls.control</span>(<span class="at">maxiter=</span><span class="dv">150</span>)</span>
+<span id="cb45-21"><a href="#cb45-21" tabindex="-1"></a>          ))</span>
+<span id="cb45-22"><a href="#cb45-22" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
 <pre><code>
 Formula: pa ~ exp(a0 + a_conc * conc + a_gebco * gebco + a_dist2land * 
     dist2land + a_edge15 * edge15 + a_salt * salt + a_temp * 
     temp + 0)
 
 Parameters:
-              Estimate Std. Error t value Pr(&gt;|t|)    
-a0          -5.6365513  2.0946459  -2.691  0.00780 ** 
-a_conc      -0.0490932  0.0118191  -4.154 5.07e-05 ***
-a_gebco      0.0001051  0.0003346   0.314  0.75387    
-a_dist2land -0.0355128  0.0273936  -1.296  0.19652    
-a_edge15     0.1151737  0.0351001   3.281  0.00124 ** 
-a_salt       0.1849693  0.0615226   3.007  0.00302 ** 
-a_temp      -0.0353800  0.0520946  -0.679  0.49792    
+              Estimate Std. Error t value Pr(&gt;|t|)   
+a0          -8.8916879  2.8859585  -3.081  0.00242 **
+a_conc      -0.0160572  0.0071708  -2.239  0.02647 * 
+a_gebco     -0.0001256  0.0003571  -0.352  0.72543   
+a_dist2land -0.0763516  0.0314697  -2.426  0.01633 * 
+a_edge15     0.0051006  0.0353632   0.144  0.88549   
+a_salt       0.2673671  0.0847189   3.156  0.00190 **
+a_temp      -0.1591768  0.0595640  -2.672  0.00828 **
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.3787 on 178 degrees of freedom
+Residual standard error: 0.4154 on 166 degrees of freedom
 
-Number of iterations to convergence: 30 
-Achieved convergence tolerance: 9.549e-06</code></pre>
+Number of iterations to convergence: 82 
+Achieved convergence tolerance: 9.487e-06</code></pre>
 </div>
 </div>
 <div id="предсказание" class="section level2">
 <h2>Предсказание</h2>
 <p>Выберем одну из моделей, например, <code>m3</code></p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a>opW <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">warn=</span><span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a>cname <span class="ot">&lt;-</span> <span class="fu">names</span>(conc)</span>
-<span id="cb50-3"><a href="#cb50-3" tabindex="-1"></a>preferred <span class="ot">&lt;-</span> <span class="fu">ursa</span>(<span class="at">bandname=</span>cname,<span class="at">nodata=</span><span class="sc">-</span><span class="dv">99</span>)</span>
-<span id="cb50-4"><a href="#cb50-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(conc) <span class="sc">|&gt;</span> <span class="fu">sample</span>()) {</span>
-<span id="cb50-5"><a href="#cb50-5" tabindex="-1"></a>   j <span class="ot">&lt;-</span> <span class="fu">matchDate</span>(salt,cname[i])</span>
-<span id="cb50-6"><a href="#cb50-6" tabindex="-1"></a>   b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">result=</span><span class="fu">ursa</span>()</span>
-<span id="cb50-7"><a href="#cb50-7" tabindex="-1"></a>         ,<span class="at">gebco=</span>gebco</span>
-<span id="cb50-8"><a href="#cb50-8" tabindex="-1"></a>         ,<span class="at">dist2land=</span>dist2land</span>
-<span id="cb50-9"><a href="#cb50-9" tabindex="-1"></a>         ,<span class="at">conc=</span>conc[cname[i]]</span>
-<span id="cb50-10"><a href="#cb50-10" tabindex="-1"></a>         ,<span class="at">edge15=</span>edge15[cname[i]]</span>
-<span id="cb50-11"><a href="#cb50-11" tabindex="-1"></a>         ,<span class="at">salt=</span>salt[<span class="fu">matchDate</span>(salt,cname[i])]</span>
-<span id="cb50-12"><a href="#cb50-12" tabindex="-1"></a>         ,<span class="at">temp=</span>temp[<span class="fu">matchDate</span>(temp,cname[i])]</span>
-<span id="cb50-13"><a href="#cb50-13" tabindex="-1"></a>         ,<span class="at">chlo=</span>chlo[<span class="fu">matchDate</span>(chlo,cname[i])]</span>
-<span id="cb50-14"><a href="#cb50-14" tabindex="-1"></a>         )</span>
-<span id="cb50-15"><a href="#cb50-15" tabindex="-1"></a>   p <span class="ot">&lt;-</span> <span class="fu">try</span>(<span class="fu">predict</span>(m3,<span class="at">newdata=</span><span class="fu">as.data.frame</span>(b)))</span>
-<span id="cb50-16"><a href="#cb50-16" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">inherits</span>(p,<span class="st">&quot;try-error&quot;</span>))</span>
-<span id="cb50-17"><a href="#cb50-17" tabindex="-1"></a>      <span class="cf">next</span></span>
-<span id="cb50-18"><a href="#cb50-18" tabindex="-1"></a>   preferred[i] <span class="ot">&lt;-</span> p</span>
-<span id="cb50-19"><a href="#cb50-19" tabindex="-1"></a>}</span>
-<span id="cb50-20"><a href="#cb50-20" tabindex="-1"></a><span class="fu">options</span>(opW)</span>
-<span id="cb50-21"><a href="#cb50-21" tabindex="-1"></a>preferred <span class="sc">|&gt;</span> <span class="fu">print</span>()</span></code></pre></div>
-<pre><code>           name     mean       sd     sum         min     max     n  nNA
-[01] 2015-05-14 0.188556 0.217761 2867.18 0.005469245 1.47669 15206 4450
-[02] 2015-08-27 0.298827 0.208869 4794.09 0.001280078 1.22940 16043 3613
-[03] 2015-10-18 0.299394 0.251038 4760.66 0.004259217 1.40282 15901 3755
-[04] 2016-09-18 0.317669 0.218832 5101.12 0.000320478 1.15281 16058 3598
-[05] 2016-09-26 0.314369 0.237732 5050.65 0.000359217 1.29955 16066 3590
-[06] 2017-08-26 0.287763 0.214607 4608.24 0.000792221 1.26280 16014 3642
-[07] 2017-09-29 0.304793 0.246038 4865.11 0.001054899 1.57997 15962 3694
-[08] 2019-05-25 0.187389 0.247814 2859.36 0.005995086 2.91152 15259 4397
-[09] 2019-05-29 0.181531 0.246807 2766.16 0.003796924 1.39974 15238 4418
-[10] 2019-05-31 0.198915 0.255872 3027.09 0.004847044 2.23060 15218 4438
-[11] 2019-06-01 0.194284 0.254946 2949.43 0.004519353 3.51258 15181 4475
-[12] 2019-06-05 0.194752 0.248417 2971.71 0.004737403 2.06185 15259 4397
-[13] 2023-07-22 0.188361 0.200651 2959.72 0.000482389 1.14567 15713 3943
-[14] 2023-07-27 0.187921 0.194785 2963.51 0.000358611 1.97513 15770 3886
-[15] 2023-08-09 0.211873 0.188193 3391.46 0.000379452 1.51515 16007 3649</code></pre>
-<p class="centered-image"><img src="assets/ursa62_unnamed-chunk-39.png" width="1229" /></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a>opW <span class="ot">&lt;-</span> <span class="fu">options</span>(<span class="at">warn=</span><span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a>cname <span class="ot">&lt;-</span> <span class="fu">names</span>(conc)</span>
+<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a>preferred <span class="ot">&lt;-</span> <span class="fu">ursa</span>(<span class="at">bandname=</span>cname,<span class="at">nodata=</span><span class="sc">-</span><span class="dv">99</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(conc) <span class="sc">|&gt;</span> <span class="fu">sample</span>()) {</span>
+<span id="cb47-5"><a href="#cb47-5" tabindex="-1"></a>   j <span class="ot">&lt;-</span> <span class="fu">matchDate</span>(salt,cname[i])</span>
+<span id="cb47-6"><a href="#cb47-6" tabindex="-1"></a>   b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">result=</span><span class="fu">ursa</span>()</span>
+<span id="cb47-7"><a href="#cb47-7" tabindex="-1"></a>         ,<span class="at">gebco=</span>gebco</span>
+<span id="cb47-8"><a href="#cb47-8" tabindex="-1"></a>         ,<span class="at">dist2land=</span>dist2land</span>
+<span id="cb47-9"><a href="#cb47-9" tabindex="-1"></a>         ,<span class="at">conc=</span>conc[cname[i]]</span>
+<span id="cb47-10"><a href="#cb47-10" tabindex="-1"></a>         ,<span class="at">edge15=</span>edge15[cname[i]]</span>
+<span id="cb47-11"><a href="#cb47-11" tabindex="-1"></a>         ,<span class="at">salt=</span>salt[<span class="fu">matchDate</span>(salt,cname[i])]</span>
+<span id="cb47-12"><a href="#cb47-12" tabindex="-1"></a>         ,<span class="at">temp=</span>temp[<span class="fu">matchDate</span>(temp,cname[i])]</span>
+<span id="cb47-13"><a href="#cb47-13" tabindex="-1"></a>         ,<span class="at">chlo=</span>chlo[<span class="fu">matchDate</span>(chlo,cname[i])]</span>
+<span id="cb47-14"><a href="#cb47-14" tabindex="-1"></a>         )</span>
+<span id="cb47-15"><a href="#cb47-15" tabindex="-1"></a>   p <span class="ot">&lt;-</span> <span class="fu">try</span>(<span class="fu">predict</span>(m3,<span class="at">newdata=</span><span class="fu">as.data.frame</span>(b)))</span>
+<span id="cb47-16"><a href="#cb47-16" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">inherits</span>(p,<span class="st">&quot;try-error&quot;</span>))</span>
+<span id="cb47-17"><a href="#cb47-17" tabindex="-1"></a>      <span class="cf">next</span></span>
+<span id="cb47-18"><a href="#cb47-18" tabindex="-1"></a>   preferred[i] <span class="ot">&lt;-</span> p</span>
+<span id="cb47-19"><a href="#cb47-19" tabindex="-1"></a>}</span>
+<span id="cb47-20"><a href="#cb47-20" tabindex="-1"></a><span class="fu">options</span>(opW)</span>
+<span id="cb47-21"><a href="#cb47-21" tabindex="-1"></a>preferred <span class="sc">|&gt;</span> <span class="fu">print</span>()</span></code></pre></div>
+<pre><code>           name     mean        sd     sum         min      max     n  nNA
+[01] 2015-05-14 0.267924 0.1984181 4074.05 0.013750920 1.379196 15206 4450
+[02] 2015-08-27 0.239543 0.1362627 3842.99 0.001596471 1.010491 16043 3613
+[03] 2015-10-18 0.334859 0.2065778 5324.59 0.002788165 1.289254 15901 3755
+[04] 2016-09-18 0.262815 0.1452488 4220.28 0.000210802 1.063287 16058 3598
+[05] 2016-09-26 0.278994 0.1721685 4482.32 0.000271837 1.100844 16066 3590
+[06] 2017-08-26 0.253834 0.1351478 4064.89 0.000696563 0.768951 16014 3642
+[07] 2017-09-29 0.318835 0.1914427 5089.24 0.001742193 1.219975 15962 3694
+[08] 2019-05-25 0.279898 0.1951928 4270.96 0.013156507 1.629628 15259 4397
+[09] 2019-05-29 0.265185 0.1891428 4040.89 0.006834633 1.283023 15238 4418
+[10] 2019-05-31 0.275340 0.1882625 4190.12 0.009196532 1.322038 15218 4438
+[11] 2019-06-01 0.271068 0.1865865 4115.08 0.007779874 1.174125 15181 4475
+[12] 2019-06-05 0.264593 0.1731290 4037.42 0.008742157 1.079309 15259 4397
+[13] 2023-07-22 0.173835 0.1076962 2731.47 0.000259737 0.672277 15713 3943
+[14] 2023-07-27 0.158052 0.0974415 2492.47 0.000182422 0.642313 15770 3886
+[15] 2023-08-09 0.163011 0.0979155 2609.31 0.000162895 0.628242 16007 3649</code></pre>
+<p class="centered-image"><img src="assets/ursa60_unnamed-chunk-40.png" width="1229" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>R version 4.3.3 Patched (2024-02-29 r86034 ucrt)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 19045)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=English_United Kingdom.utf8  LC_CTYPE=English_United Kingdom.utf8   
+[3] LC_MONETARY=English_United Kingdom.utf8 LC_NUMERIC=C                           
+[5] LC_TIME=English_United Kingdom.utf8    
+
+time zone: Europe/Moscow
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] ursa_3.11.0-1078
+
+loaded via a namespace (and not attached):
+ [1] sass_0.4.8              utf8_1.2.4              generics_0.1.3          tcltk_4.3.3            
+ [5] class_7.3-22            KernSmooth_2.23-22      lattice_0.22-5          digest_0.6.34          
+ [9] magrittr_2.0.3          evaluate_0.23           grid_4.3.3              plutil_0.9-7312        
+[13] fastmap_1.1.1           jsonlite_1.8.8          e1071_1.7-14            DBI_1.2.2              
+[17] fansi_1.0.6             crosstalk_1.2.1         CircStats_0.2-6         jquerylib_0.1.4        
+[21] ade4_1.7-22             cli_3.6.2               rlang_1.1.3             units_0.8-5            
+[25] cachem_1.0.8            yaml_2.3.8              tools_4.3.3             dplyr_1.1.4            
+[29] locfit_1.5-9.9          boot_1.3-30             png_0.1-8               adehabitatHR_0.4.21    
+[33] vctrs_0.6.5             R6_2.5.1                proxy_0.4-27            lifecycle_1.0.4        
+[37] classInt_0.4-10         leaflet_2.2.1           adehabitatMA_0.3.16     leaflet.providers_2.0.0
+[41] htmlwidgets_1.6.4       MASS_7.3-60.0.1         adehabitatLT_0.3.27     pkgconfig_2.0.3        
+[45] xaringanExtra_0.7.0     pillar_1.9.0            bslib_0.6.1             glue_1.7.0             
+[49] Rcpp_1.0.12             sf_1.0-15               systemfonts_1.0.5       highr_0.10             
+[53] xfun_0.42               tibble_3.2.1            tidyselect_1.2.0        knitr_1.45             
+[57] htmltools_0.5.7         rmarkdown_2.25          svglite_2.1.3           compiler_4.3.3         
+[61] sp_2.1-3               </code></pre>
 </div>
 
 
