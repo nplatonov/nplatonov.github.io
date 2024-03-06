@@ -179,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when"> <span class="updated">Обновлено: 2024-03-05 09:30</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when"> <span class="updated">Обновлено: 2024-03-06 07:54</span></span></h4>
 <div class="abstract">
 <p class="abstract">Abstract</p>
 Демонстрация основ работы с интерфейсом командной строки в R, позволяющей создавать скрипты и получать воспроизводимые результаты. Показано, как пространственные векторные и растровые данные могут попасть в R и как они выглядят в R. С возможностью сделать обработку, анализ и визуализацию пространственных данных.
@@ -344,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="базовый-r" class="section level4">
 <h4>Базовый R</h4>
 <p>Установить или обновить R, например, <a href="https://cran.rstudio.org/">отсюда</a>.</p>
-<p>Актуальная версия 4.3.2. Нативные пайпы с версии 4.1. Пакеты не обновляются для старых версий R.</p>
+<p>По состоянию на 06 марта 2024 г. актуальная версия 4.3.3. Нативные пайпы с версии 4.1. Пакеты не обновляются для старых версий R.</p>
 <p>При переходе с версии 3.6 на версию 4.0 пришлось переустановить все пакеты (библиотеки, модули).</p>
 </div>
 <div id="библиотеки" class="section level4">
@@ -481,20 +481,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> a1</span>
 <span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="fu">names</span>(a2) <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">Sys.Date</span>()<span class="sc">+</span>a1<span class="dv">-1</span>,<span class="st">&quot;%A&quot;</span>)</span>
 <span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>a2</span></code></pre></div>
-<pre><code>##   Tuesday Wednesday  Thursday    Friday  Saturday    Sunday    Monday 
+<pre><code>## Wednesday  Thursday    Friday  Saturday    Sunday    Monday   Tuesday 
 ##         1         2         3         4         5         6         7</code></pre>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">str</span>(a2)</span></code></pre></div>
 <pre><code>##  Named int [1:7] 1 2 3 4 5 6 7
-##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Tuesday&quot; &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; ...</code></pre>
+##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; ...</code></pre>
 </div>
 <div id="целые-числа-числа-с-плавающей-точкой" class="section level5">
 <h5>Целые числа, числа с плавающей точкой</h5>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="fu">str</span>(a2<span class="sc">+</span><span class="dv">0</span><span class="dt">L</span>)</span></code></pre></div>
 <pre><code>##  Named int [1:7] 1 2 3 4 5 6 7
-##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Tuesday&quot; &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; ...</code></pre>
+##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; ...</code></pre>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="fu">str</span>(a2<span class="sc">+</span><span class="dv">0</span>)</span></code></pre></div>
 <pre><code>##  Named num [1:7] 1 2 3 4 5 6 7
-##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Tuesday&quot; &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; ...</code></pre>
+##  - attr(*, &quot;names&quot;)= chr [1:7] &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; ...</code></pre>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="fu">typeof</span>(a2<span class="sc">+</span><span class="dv">0</span><span class="dt">L</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">typeof</span>(a2<span class="sc">+</span><span class="dv">0</span>)</span></code></pre></div>
@@ -515,11 +515,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Строки
 </h5>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>(a4 <span class="ot">&lt;-</span> <span class="fu">names</span>(a2))</span></code></pre></div>
-<pre><code>## [1] &quot;Tuesday&quot;   &quot;Wednesday&quot; &quot;Thursday&quot;  &quot;Friday&quot;    &quot;Saturday&quot;  &quot;Sunday&quot;    &quot;Monday&quot;</code></pre>
+<pre><code>## [1] &quot;Wednesday&quot; &quot;Thursday&quot;  &quot;Friday&quot;    &quot;Saturday&quot;  &quot;Sunday&quot;    &quot;Monday&quot;    &quot;Tuesday&quot;</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="fu">class</span>(a4)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="fu">str</span>(a4)</span></code></pre></div>
-<pre><code>##  chr [1:7] &quot;Tuesday&quot; &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; &quot;Monday&quot;</code></pre>
+<pre><code>##  chr [1:7] &quot;Wednesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; &quot;Monday&quot; &quot;Tuesday&quot;</code></pre>
 </div>
 </div>
 <div id="составные-типы" class="section level4">
@@ -531,11 +531,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] 1 3 4 5 6 7
 ## 
 ## $char
-## [1] &quot;Tuesday&quot;  &quot;Thursday&quot; &quot;Friday&quot;   &quot;Saturday&quot; &quot;Sunday&quot;   &quot;Monday&quot;</code></pre>
+## [1] &quot;Wednesday&quot; &quot;Friday&quot;    &quot;Saturday&quot;  &quot;Sunday&quot;    &quot;Monday&quot;    &quot;Tuesday&quot;</code></pre>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a><span class="fu">str</span>(a5)</span></code></pre></div>
 <pre><code>## List of 2
 ##  $ num : int [1:6] 1 3 4 5 6 7
-##  $ char: chr [1:6] &quot;Tuesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; ...</code></pre>
+##  $ char: chr [1:6] &quot;Wednesday&quot; &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; ...</code></pre>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a><span class="fu">class</span>(a5)</span></code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a><span class="fu">length</span>(a5)</span></code></pre></div>
@@ -558,27 +558,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">Tuesday</td>
+<td align="left">Wednesday</td>
 </tr>
 <tr class="even">
 <td align="right">3</td>
-<td align="left">Thursday</td>
+<td align="left">Friday</td>
 </tr>
 <tr class="odd">
 <td align="right">4</td>
-<td align="left">Friday</td>
+<td align="left">Saturday</td>
 </tr>
 <tr class="even">
 <td align="right">5</td>
-<td align="left">Saturday</td>
+<td align="left">Sunday</td>
 </tr>
 <tr class="odd">
 <td align="right">6</td>
-<td align="left">Sunday</td>
+<td align="left">Monday</td>
 </tr>
 <tr class="even">
 <td align="right">7</td>
-<td align="left">Monday</td>
+<td align="left">Tuesday</td>
 </tr>
 </tbody>
 </table>
@@ -586,7 +586,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="fu">str</span>(a6)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    6 obs. of  2 variables:
 ##  $ num : int  1 3 4 5 6 7
-##  $ char: chr  &quot;Tuesday&quot; &quot;Thursday&quot; &quot;Friday&quot; &quot;Saturday&quot; ...</code></pre>
+##  $ char: chr  &quot;Wednesday&quot; &quot;Friday&quot; &quot;Saturday&quot; &quot;Sunday&quot; ...</code></pre>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="fu">class</span>(a6)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a><span class="fu">dim</span>(a6)</span></code></pre></div>
@@ -654,17 +654,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="факторы" class="section level4">
 <h4>Факторы</h4>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" tabindex="-1"></a>(a9 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(a4),<span class="at">levels=</span>a4))</span></code></pre></div>
-<pre><code>## [1] Wednesday Tuesday   Thursday  Saturday  Friday    Monday    Sunday   
-## Levels: Tuesday Wednesday Thursday Friday Saturday Sunday Monday</code></pre>
+<pre><code>## [1] Thursday  Wednesday Friday    Sunday    Saturday  Tuesday   Monday   
+## Levels: Wednesday Thursday Friday Saturday Sunday Monday Tuesday</code></pre>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" tabindex="-1"></a><span class="fu">str</span>(a9)</span></code></pre></div>
-<pre><code>##  Factor w/ 7 levels &quot;Tuesday&quot;,&quot;Wednesday&quot;,..: 2 1 3 5 4 7 6</code></pre>
+<pre><code>##  Factor w/ 7 levels &quot;Wednesday&quot;,&quot;Thursday&quot;,..: 2 1 3 5 4 7 6</code></pre>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" tabindex="-1"></a><span class="fu">class</span>(a9)</span></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" tabindex="-1"></a>(a10 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(a4),<span class="at">levels=</span>a4,<span class="at">ordered=</span><span class="cn">TRUE</span>))</span></code></pre></div>
-<pre><code>## [1] Friday    Saturday  Monday    Tuesday   Thursday  Sunday    Wednesday
-## Levels: Tuesday &lt; Wednesday &lt; Thursday &lt; Friday &lt; Saturday &lt; Sunday &lt; Monday</code></pre>
+<pre><code>## [1] Saturday  Sunday    Tuesday   Wednesday Friday    Monday    Thursday 
+## Levels: Wednesday &lt; Thursday &lt; Friday &lt; Saturday &lt; Sunday &lt; Monday &lt; Tuesday</code></pre>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" tabindex="-1"></a><span class="fu">str</span>(a10)</span></code></pre></div>
-<pre><code>##  Ord.factor w/ 7 levels &quot;Tuesday&quot;&lt;&quot;Wednesday&quot;&lt;..: 4 5 7 1 3 6 2</code></pre>
+<pre><code>##  Ord.factor w/ 7 levels &quot;Wednesday&quot;&lt;&quot;Thursday&quot;&lt;..: 4 5 7 1 3 6 2</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" tabindex="-1"></a><span class="fu">class</span>(a10)</span></code></pre></div>
 <pre><code>## [1] &quot;ordered&quot; &quot;factor&quot;</code></pre>
 </div>
@@ -684,27 +684,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">Tuesday</td>
+<td align="left">Wednesday</td>
 </tr>
 <tr class="even">
 <td align="right">3</td>
-<td align="left">Thursday</td>
+<td align="left">Friday</td>
 </tr>
 <tr class="odd">
 <td align="right">4</td>
-<td align="left">Friday</td>
+<td align="left">Saturday</td>
 </tr>
 <tr class="even">
 <td align="right">5</td>
-<td align="left">Saturday</td>
+<td align="left">Sunday</td>
 </tr>
 <tr class="odd">
 <td align="right">6</td>
-<td align="left">Sunday</td>
+<td align="left">Monday</td>
 </tr>
 <tr class="even">
 <td align="right">7</td>
-<td align="left">Monday</td>
+<td align="left">Tuesday</td>
 </tr>
 </tbody>
 </table>
@@ -724,21 +724,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td align="left">5</td>
 <td align="right">6</td>
-<td align="left">Sunday</td>
+<td align="left">Monday</td>
 </tr>
 <tr class="even">
 <td align="left">6</td>
 <td align="right">7</td>
-<td align="left">Monday</td>
+<td align="left">Tuesday</td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>Выбрать отдельные столбцы</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" tabindex="-1"></a>a6[,<span class="dv">2</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;Tuesday&quot;  &quot;Thursday&quot; &quot;Friday&quot;   &quot;Saturday&quot; &quot;Sunday&quot;   &quot;Monday&quot;</code></pre>
+<pre><code>## [1] &quot;Wednesday&quot; &quot;Friday&quot;    &quot;Saturday&quot;  &quot;Sunday&quot;    &quot;Monday&quot;    &quot;Tuesday&quot;</code></pre>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" tabindex="-1"></a>a6[[<span class="dv">2</span>]]</span></code></pre></div>
-<pre><code>## [1] &quot;Tuesday&quot;  &quot;Thursday&quot; &quot;Friday&quot;   &quot;Saturday&quot; &quot;Sunday&quot;   &quot;Monday&quot;</code></pre>
+<pre><code>## [1] &quot;Wednesday&quot; &quot;Friday&quot;    &quot;Saturday&quot;  &quot;Sunday&quot;    &quot;Monday&quot;    &quot;Tuesday&quot;</code></pre>
 <p>Использовать фунцию <code>subset()</code></p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" tabindex="-1"></a><span class="fu">subset</span>(a6,char <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Hrus Hrus&quot;</span>,<span class="st">&quot;Monday&quot;</span>,<span class="st">&quot;Tuesday&quot;</span>,<span class="st">&quot;Wednesday&quot;</span>))</span></code></pre></div>
 <div class="kable-table">
@@ -754,12 +754,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td align="left">1</td>
 <td align="right">1</td>
-<td align="left">Tuesday</td>
+<td align="left">Wednesday</td>
 </tr>
 <tr class="even">
+<td align="left">5</td>
+<td align="right">6</td>
+<td align="left">Monday</td>
+</tr>
+<tr class="odd">
 <td align="left">6</td>
 <td align="right">7</td>
-<td align="left">Monday</td>
+<td align="left">Tuesday</td>
 </tr>
 </tbody>
 </table>
@@ -2104,7 +2109,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>Параметры сессии</h4>
 <div class="oversize font85">
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="#cb292-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.3.3 Patched (2024-02-29 r86034 ucrt)
+<pre><code>## R version 4.3.3 Patched (2024-02-29 r86036 ucrt)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 19045)
 ## 
@@ -2135,7 +2140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [25] knitr_1.45              brew_1.0-10             labeling_0.4.3          htmlwidgets_1.6.4      
 ## [29] sp_2.1-3                classInt_0.4-10         RColorBrewer_1.1-3      abind_1.4-5            
 ## [33] KernSmooth_2.23-22      withr_3.0.0             leafsync_0.1.0          grid_4.3.3             
-## [37] stats4_4.3.3            ursa_3.11.0-1076        fansi_1.0.6             mapedit_0.6.0          
+## [37] stats4_4.3.3            ursa_3.11.0-1078        fansi_1.0.6             mapedit_0.6.0          
 ## [41] xtable_1.8-4            e1071_1.7-14            leafem_0.2.3            colorspace_2.1-0       
 ## [45] scales_1.3.0            dichromat_2.0-0.1       cli_3.6.2               rmarkdown_2.25         
 ## [49] generics_0.1.3          tmaptools_3.1-1         readxl_1.4.3            DBI_1.2.2              
