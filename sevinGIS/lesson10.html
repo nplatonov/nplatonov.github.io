@@ -151,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 10</span> <span class="when"> <span class="updated">Обновлено: 2024-03-06 11:43</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 10</span> <span class="when"> <span class="updated">Обновлено: 2024-03-07 08:30</span></span></h4>
 
 
 <div id="TOC">
@@ -449,7 +449,7 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 <h3>Подвыборки</h3>
 <p>Используемый параметр для генератора псевдослучайных чисел. Зафиксированное значение обеспечивает воспроизводимость вычислений.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>(seed <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">100</span><span class="sc">:</span><span class="dv">999</span>,<span class="dv">1</span>))</span></code></pre></div>
-<pre><code>[1] 312</code></pre>
+<pre><code>[1] 897</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">set.seed</span>(seed)</span></code></pre></div>
 <p>Число <code>1/k</code> характеризует долю тестовых данных. Разбиваем данные на <code>k</code> групп, одна из которых будет тестовая.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">5</span><span class="dt">L</span></span></code></pre></div>
@@ -460,7 +460,7 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 <h4>Присутствие</h4>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>group <span class="ot">&lt;-</span> dismo<span class="sc">::</span><span class="fu">kfold</span>(bradypus,k) <span class="do">## group &lt;- sample(seq(k),nrow(pres),replace=TRUE) ## альтернативное группирование</span></span>
 <span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">str</span>(group)</span></code></pre></div>
-<pre><code> int [1:116] 1 2 5 2 1 5 3 4 1 4 ...</code></pre>
+<pre><code> int [1:116] 1 2 5 2 3 2 3 2 2 4 ...</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">table</span>(group)</span></code></pre></div>
 <pre><code>group
  1  2  3  4  5 
@@ -492,12 +492,12 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 <span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a><span class="fu">colnames</span>(backg) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&#39;lon&#39;</span>, <span class="st">&#39;lat&#39;</span>)</span>
 <span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a><span class="fu">head</span>(backg)</span></code></pre></div>
 <pre><code>        lon    lat
-[1,] -44.75  -8.75
-[2,] -57.25 -23.25
-[3,] -69.25  18.25
-[4,] -69.75 -28.25
-[5,] -67.75 -36.25
-[6,] -79.25  -2.25</code></pre>
+[1,] -58.75 -10.25
+[2,] -68.25  18.75
+[3,] -74.75  22.75
+[4,] -57.75 -34.75
+[5,] -54.75 -14.25
+[6,] -65.75  -7.75</code></pre>
 <p>Присвоения номеров групп для отбора в тестовую группу</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">kfold</span>(backg,k)</span>
 <span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a><span class="fu">table</span>(group)</span></code></pre></div>
@@ -527,15 +527,15 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 <span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a><span class="fu">str</span>(envtrain)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   893 obs. of  10 variables:
  $ pa   : int  1 1 1 1 1 1 1 1 1 1 ...
- $ bio1 : int  263 253 243 252 240 275 271 274 266 274 ...
- $ bio12: int  1639 3624 1693 2501 1214 2259 2212 2233 2592 2233 ...
- $ bio16: int  724 1547 775 1081 516 956 807 877 872 877 ...
- $ bio17: int  62 373 186 280 146 208 281 230 498 230 ...
- $ bio5 : int  338 329 318 326 317 335 327 329 320 329 ...
- $ bio6 : int  191 150 150 154 150 231 220 227 214 227 ...
- $ bio7 : int  147 179 168 172 168 104 107 102 105 102 ...
- $ bio8 : int  261 271 264 270 261 270 266 269 262 269 ...
- $ biome: Factor w/ 13 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 1 2 1 1 1 1 1 ...</code></pre>
+ $ bio1 : int  263 253 243 240 274 274 239 251 271 269 ...
+ $ bio12: int  1639 3624 1693 1214 2233 2233 1194 1617 2599 2211 ...
+ $ bio16: int  724 1547 775 516 877 877 540 808 1250 981 ...
+ $ bio17: int  62 373 186 146 230 230 130 97 136 196 ...
+ $ bio5 : int  338 329 318 317 329 329 313 312 325 333 ...
+ $ bio6 : int  191 150 150 150 227 227 165 194 224 219 ...
+ $ bio7 : int  147 179 168 168 102 102 148 118 101 114 ...
+ $ bio8 : int  261 271 264 261 269 269 252 246 267 263 ...
+ $ biome: Factor w/ 13 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 2 1 1 1 1 1 1 ...</code></pre>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="fu">head</span>(envtrain,<span class="dv">24</span>)</span></code></pre></div>
 <div class="kable-table">
 <table>
@@ -592,18 +592,6 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 </tr>
 <tr class="even">
 <td align="right">1</td>
-<td align="right">252</td>
-<td align="right">2501</td>
-<td align="right">1081</td>
-<td align="right">280</td>
-<td align="right">326</td>
-<td align="right">154</td>
-<td align="right">172</td>
-<td align="right">270</td>
-<td align="left">1</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
 <td align="right">240</td>
 <td align="right">1214</td>
 <td align="right">516</td>
@@ -614,31 +602,7 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 <td align="right">261</td>
 <td align="left">2</td>
 </tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">275</td>
-<td align="right">2259</td>
-<td align="right">956</td>
-<td align="right">208</td>
-<td align="right">335</td>
-<td align="right">231</td>
-<td align="right">104</td>
-<td align="right">270</td>
-<td align="left">1</td>
-</tr>
 <tr class="odd">
-<td align="right">1</td>
-<td align="right">271</td>
-<td align="right">2212</td>
-<td align="right">807</td>
-<td align="right">281</td>
-<td align="right">327</td>
-<td align="right">220</td>
-<td align="right">107</td>
-<td align="right">266</td>
-<td align="left">1</td>
-</tr>
-<tr class="even">
 <td align="right">1</td>
 <td align="right">274</td>
 <td align="right">2233</td>
@@ -648,18 +612,6 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 <td align="right">227</td>
 <td align="right">102</td>
 <td align="right">269</td>
-<td align="left">1</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">266</td>
-<td align="right">2592</td>
-<td align="right">872</td>
-<td align="right">498</td>
-<td align="right">320</td>
-<td align="right">214</td>
-<td align="right">105</td>
-<td align="right">262</td>
 <td align="left">1</td>
 </tr>
 <tr class="even">
@@ -712,17 +664,29 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 </tr>
 <tr class="even">
 <td align="right">1</td>
-<td align="right">270</td>
-<td align="right">2274</td>
-<td align="right">1008</td>
-<td align="right">191</td>
-<td align="right">331</td>
-<td align="right">221</td>
-<td align="right">110</td>
-<td align="right">266</td>
+<td align="right">269</td>
+<td align="right">2211</td>
+<td align="right">981</td>
+<td align="right">196</td>
+<td align="right">333</td>
+<td align="right">219</td>
+<td align="right">114</td>
+<td align="right">263</td>
 <td align="left">1</td>
 </tr>
 <tr class="odd">
+<td align="right">1</td>
+<td align="right">254</td>
+<td align="right">2084</td>
+<td align="right">1011</td>
+<td align="right">137</td>
+<td align="right">317</td>
+<td align="right">197</td>
+<td align="right">119</td>
+<td align="right">251</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
 <td align="right">1</td>
 <td align="right">263</td>
 <td align="right">1842</td>
@@ -734,7 +698,7 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 <td align="right">257</td>
 <td align="left">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">1</td>
 <td align="right">260</td>
 <td align="right">1945</td>
@@ -744,6 +708,18 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 <td align="right">204</td>
 <td align="right">120</td>
 <td align="right">256</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">263</td>
+<td align="right">1878</td>
+<td align="right">893</td>
+<td align="right">122</td>
+<td align="right">324</td>
+<td align="right">212</td>
+<td align="right">112</td>
+<td align="right">259</td>
 <td align="left">1</td>
 </tr>
 <tr class="odd">
@@ -784,18 +760,6 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 </tr>
 <tr class="even">
 <td align="right">1</td>
-<td align="right">270</td>
-<td align="right">2487</td>
-<td align="right">1221</td>
-<td align="right">182</td>
-<td align="right">329</td>
-<td align="right">216</td>
-<td align="right">113</td>
-<td align="right">268</td>
-<td align="left">1</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
 <td align="right">181</td>
 <td align="right">1372</td>
 <td align="right">650</td>
@@ -804,6 +768,18 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 <td align="right">86</td>
 <td align="right">172</td>
 <td align="right">206</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">258</td>
+<td align="right">2677</td>
+<td align="right">879</td>
+<td align="right">419</td>
+<td align="right">313</td>
+<td align="right">200</td>
+<td align="right">113</td>
+<td align="right">259</td>
 <td align="left">1</td>
 </tr>
 <tr class="even">
@@ -832,6 +808,18 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 </tr>
 <tr class="even">
 <td align="right">1</td>
+<td align="right">268</td>
+<td align="right">1369</td>
+<td align="right">531</td>
+<td align="right">88</td>
+<td align="right">337</td>
+<td align="right">199</td>
+<td align="right">137</td>
+<td align="right">265</td>
+<td align="left">13</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
 <td align="right">244</td>
 <td align="right">1526</td>
 <td align="right">631</td>
@@ -841,6 +829,18 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 <td align="right">139</td>
 <td align="right">240</td>
 <td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">254</td>
+<td align="right">1499</td>
+<td align="right">606</td>
+<td align="right">90</td>
+<td align="right">325</td>
+<td align="right">185</td>
+<td align="right">140</td>
+<td align="right">251</td>
+<td align="left">13</td>
 </tr>
 </tbody>
 </table>
@@ -852,14 +852,14 @@ max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14 </code></p
 <span id="cb54-4"><a href="#cb54-4" tabindex="-1"></a><span class="fu">str</span>(envtest)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   223 obs. of  10 variables:
  $ pa   : int  1 1 1 1 1 1 1 1 1 1 ...
- $ bio1 : int  263 243 266 269 254 263 263 270 258 216 ...
- $ bio12: int  1639 1693 2608 2211 2084 1878 1878 2413 2677 2835 ...
- $ bio16: int  724 775 957 981 1011 893 893 1286 879 985 ...
- $ bio17: int  62 186 306 196 137 122 122 140 419 267 ...
- $ bio5 : int  338 318 322 333 317 324 324 330 313 277 ...
- $ bio6 : int  191 150 219 219 197 212 212 214 200 160 ...
- $ bio7 : int  147 168 103 114 119 112 112 116 113 117 ...
- $ bio8 : int  261 264 262 263 251 259 259 268 259 212 ...
+ $ bio1 : int  263 243 252 275 271 266 266 270 263 270 ...
+ $ bio12: int  1639 1693 2501 2259 2212 2592 2608 2274 1878 2487 ...
+ $ bio16: int  724 775 1081 956 807 872 957 1008 893 1221 ...
+ $ bio17: int  62 186 280 208 281 498 306 191 122 182 ...
+ $ bio5 : int  338 318 326 335 327 320 322 331 324 329 ...
+ $ bio6 : int  191 150 154 231 220 214 219 221 212 216 ...
+ $ bio7 : int  147 168 172 104 107 105 103 110 112 113 ...
+ $ bio8 : int  261 264 270 270 266 262 262 266 259 268 ...
  $ biome: Factor w/ 13 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 <p>Отдельно пригодятся точки присутствия и псевдоотсутствия тестовой выборки</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a>testpres <span class="ot">&lt;-</span> envtest[envtest<span class="sc">$</span>pa<span class="sc">==</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>]</span>
@@ -952,26 +952,26 @@ glm(formula = pa ~ bio1 + bio5 + bio6 + bio7 + bio8 + bio12 +
     na.action = na.pass)
 
 Coefficients:
-              Estimate Std. Error z value Pr(&gt;|z|)  
-(Intercept)  3.7918985  1.4794086   2.563   0.0104 *
-bio1         0.0875509  0.0582142   1.504   0.1326  
-bio5        -0.0991753  0.2616099  -0.379   0.7046  
-bio6         0.0004334  0.2605324   0.002   0.9987  
-bio7         0.0026750  0.2601140   0.010   0.9918  
-bio8         0.0068313  0.0255851   0.267   0.7895  
-bio12        0.0009692  0.0006605   1.467   0.1422  
-bio16        0.0001010  0.0014229   0.071   0.9434  
-bio17       -0.0031661  0.0015218  -2.081   0.0375 *
+              Estimate Std. Error z value Pr(&gt;|z|)   
+(Intercept)  3.2665507  1.4984102   2.180  0.02926 * 
+bio1         0.0373811  0.0547136   0.683  0.49447   
+bio5         0.0974834  0.2582779   0.377  0.70585   
+bio6        -0.1506062  0.2600527  -0.579  0.56250   
+bio7        -0.1640944  0.2584561  -0.635  0.52549   
+bio8         0.0092008  0.0243701   0.378  0.70577   
+bio12        0.0014509  0.0006787   2.138  0.03255 * 
+bio16       -0.0006644  0.0014596  -0.455  0.64899   
+bio17       -0.0043012  0.0015032  -2.861  0.00422 **
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
     Null deviance: 596.69  on 892  degrees of freedom
-Residual deviance: 446.85  on 884  degrees of freedom
-AIC: 464.85
+Residual deviance: 448.51  on 884  degrees of freedom
+AIC: 466.51
 
-Number of Fisher Scoring iterations: 7</code></pre>
+Number of Fisher Scoring iterations: 8</code></pre>
 </div>
 <div class="font95">
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> MuMIn<span class="sc">::</span><span class="fu">get.models</span>(MuMIn<span class="sc">::</span><span class="fu">dredge</span>(gm1),<span class="at">subset=</span><span class="fu">seq</span>(<span class="dv">2</span>))</span></code></pre></div>
@@ -985,19 +985,19 @@ glm(formula = pa ~ bio1 + bio12 + bio17 + bio5 + 1, family = binomial(link = &qu
 
 Coefficients:
               Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  3.8287452  1.4475548   2.645  0.00817 ** 
-bio1         0.0877302  0.0132238   6.634 3.26e-11 ***
-bio12        0.0009854  0.0002154   4.575 4.76e-06 ***
-bio17       -0.0031389  0.0009993  -3.141  0.00168 ** 
-bio5        -0.0925048  0.0133350  -6.937 4.01e-12 ***
+(Intercept)  3.2183930  1.4710487   2.188   0.0287 *  
+bio1         0.0751610  0.0126373   5.948 2.72e-09 ***
+bio12        0.0011678  0.0002155   5.420 5.97e-08 ***
+bio17       -0.0038177  0.0009697  -3.937 8.25e-05 ***
+bio5        -0.0813786  0.0129109  -6.303 2.92e-10 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
     Null deviance: 596.69  on 892  degrees of freedom
-Residual deviance: 447.04  on 888  degrees of freedom
-AIC: 457.04
+Residual deviance: 449.63  on 888  degrees of freedom
+AIC: 459.63
 
 Number of Fisher Scoring iterations: 7</code></pre>
 </div>
@@ -1005,17 +1005,17 @@ Number of Fisher Scoring iterations: 7</code></pre>
 <pre><code>class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.8676087 
-cor            : 0.3089923 
-max TPR+TNR at : -1.81243 </code></pre>
+AUC            : 0.8595652 
+cor            : 0.2873548 
+max TPR+TNR at : -1.781755 </code></pre>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(e1))</span></code></pre></div>
-<pre><code>                thresholds
-kappa           -1.2791581
-spec_sens       -1.8124295
-no_omission     -3.1849116
-prevalence       0.1640941
-equal_sens_spec -1.7291391
-sensitivity     -2.7491343</code></pre>
+<pre><code>                 thresholds
+kappa           -1.11538647
+spec_sens       -1.78175540
+no_omission     -3.12899126
+prevalence      -0.03777678
+equal_sens_spec -1.75629090
+sensitivity     -2.79368404</code></pre>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a>(pg <span class="ot">&lt;-</span> <span class="fu">predict</span>(predictors, gm1, <span class="at">ext=</span>ext))</span></code></pre></div>
 <pre><code>class      : RasterLayer 
 dimensions : 112, 116, 12992  (nrow, ncol, ncell)
@@ -1024,7 +1024,7 @@ extent     : -90, -32, -33, 23  (xmin, xmax, ymin, ymax)
 crs        : +proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +no_defs 
 source     : memory
 names      : layer 
-values     : -12.14457, 2.653948  (min, max)</code></pre>
+values     : -11.1466, 2.744014  (min, max)</code></pre>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>))</span>
 <span id="cb72-2"><a href="#cb72-2" tabindex="-1"></a><span class="fu">plot</span>(pg, <span class="at">main=</span><span class="st">&#39;Binomial/logit, raw values&#39;</span>)</span>
 <span id="cb72-3"><a href="#cb72-3" tabindex="-1"></a><span class="fu">plot</span>(wrld_simpl, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">border=</span><span class="st">&#39;dark grey&#39;</span>)</span>
@@ -1046,27 +1046,27 @@ values     : -12.14457, 2.653948  (min, max)</code></pre>
 <span id="cb76-2"><a href="#cb76-2" tabindex="-1"></a><span class="fu">summary</span>(gm2)</span></code></pre></div>
 <pre><code>
 Call:
-glm(formula = pa ~ bio1 + bio12 + bio16 + bio17 + bio7 + bio8 + 
+glm(formula = pa ~ bio1 + bio12 + bio16 + bio17 + bio6 + bio8 + 
     1, family = gaussian(link = &quot;identity&quot;), data = envtrain, 
     na.action = na.pass)
 
 Coefficients:
               Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  4.297e-01  9.549e-02   4.500 7.69e-06 ***
-bio1        -2.491e-03  7.853e-04  -3.172  0.00157 ** 
-bio12        2.106e-04  6.627e-05   3.178  0.00153 ** 
-bio16       -2.346e-04  1.363e-04  -1.722  0.08551 .  
-bio17       -3.320e-04  1.588e-04  -2.091  0.03684 *  
-bio7        -1.677e-03  3.095e-04  -5.417 7.81e-08 ***
-bio8         1.597e-03  6.559e-04   2.435  0.01507 *  
+(Intercept)  3.893e-01  9.130e-02   4.264 2.23e-05 ***
+bio1        -5.691e-03  1.275e-03  -4.464 9.10e-06 ***
+bio12        2.906e-04  6.858e-05   4.237 2.51e-05 ***
+bio16       -3.463e-04  1.400e-04  -2.474  0.01356 *  
+bio17       -5.989e-04  1.592e-04  -3.761  0.00018 ***
+bio6         2.958e-03  5.794e-04   5.106 4.03e-07 ***
+bio8         1.824e-03  6.741e-04   2.706  0.00694 ** 
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-(Dispersion parameter for gaussian family taken to be 0.08101856)
+(Dispersion parameter for gaussian family taken to be 0.08031446)
 
     Null deviance: 83.315  on 892  degrees of freedom
-Residual deviance: 71.782  on 886  degrees of freedom
-AIC: 299.02
+Residual deviance: 71.159  on 886  degrees of freedom
+AIC: 291.22
 
 Number of Fisher Scoring iterations: 2</code></pre>
 </div>
@@ -1074,17 +1074,17 @@ Number of Fisher Scoring iterations: 2</code></pre>
 <pre><code>class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.8413043 
-cor            : 0.3838461 
-max TPR+TNR at : 0.1460432 </code></pre>
+AUC            : 0.8273913 
+cor            : 0.3596697 
+max TPR+TNR at : 0.1394055 </code></pre>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(e2))</span></code></pre></div>
 <pre><code>                thresholds
-kappa           0.22388888
-spec_sens       0.14604315
-no_omission     0.07741565
-prevalence      0.10300712
-equal_sens_spec 0.15466852
-sensitivity     0.10300712</code></pre>
+kappa           0.17136683
+spec_sens       0.13940545
+no_omission     0.04382481
+prevalence      0.10350571
+equal_sens_spec 0.14884134
+sensitivity     0.08920877</code></pre>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" tabindex="-1"></a>pg <span class="ot">&lt;-</span> <span class="fu">predict</span>(predictors, gm2, <span class="at">ext=</span>ext)</span>
 <span id="cb82-2"><a href="#cb82-2" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>))</span>
 <span id="cb82-3"><a href="#cb82-3" tabindex="-1"></a><span class="fu">plot</span>(pg, <span class="at">main=</span><span class="st">&#39;GLM/gaussian, raw values&#39;</span>) </span>
@@ -1107,17 +1107,17 @@ sensitivity     0.10300712</code></pre>
 <pre><code>class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.8342391 
-cor            : 0.3240564 
-max TPR+TNR at : 0.08592151 </code></pre>
+AUC            : 0.7490217 
+cor            : 0.1656379 
+max TPR+TNR at : 0.06441613 </code></pre>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(e))</span></code></pre></div>
-<pre><code>                thresholds
-kappa           0.20420108
-spec_sens       0.08592151
-no_omission     0.08592151
-prevalence      0.10742688
-equal_sens_spec 0.16119032
-sensitivity     0.13968495</code></pre>
+<pre><code>                 thresholds
+kappa            0.09667419
+spec_sens        0.06441613
+no_omission     -0.00010000
+prevalence       0.10742688
+equal_sens_spec  0.09667419
+sensitivity      0.04291075</code></pre>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
 <span id="cb90-2"><a href="#cb90-2" tabindex="-1"></a><span class="fu">response</span>(bc) <span class="do">## it&#39;s a plot</span></span></code></pre></div>
 <p class="centered-image"><img src="assets/lesson10/bcresponse-1.svg" width="768" height="535" /></p>
@@ -1140,17 +1140,17 @@ sensitivity     0.13968495</code></pre>
 <pre><code>class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.7956522 
-cor            : 0.3017522 
-max TPR+TNR at : 0.6614098 </code></pre>
+AUC            : 0.7411957 
+cor            : 0.2633509 
+max TPR+TNR at : 0.6619584 </code></pre>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(e))<span class="co">#, &#39;spec_sens&#39;)</span></span></code></pre></div>
 <pre><code>                thresholds
-kappa           0.76566205
-spec_sens       0.66140977
-no_omission     0.47192107
-prevalence      0.09104971
-equal_sens_spec 0.74960158
-sensitivity     0.66888263</code></pre>
+kappa            0.7626973
+spec_sens        0.6619584
+no_omission      0.4288006
+prevalence       0.0936020
+equal_sens_spec  0.7070175
+sensitivity      0.4865140</code></pre>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" tabindex="-1"></a>pm <span class="ot">&lt;-</span> <span class="fu">predict</span>(pred_nf,dm,<span class="at">ext=</span>ext,<span class="at">progress=</span><span class="st">&#39;&#39;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
 <span id="cb99-2"><a href="#cb99-2" tabindex="-1"></a><span class="fu">plot</span>(pm, <span class="at">main=</span><span class="st">&#39;Domain, raw values&#39;</span>)</span>
@@ -1169,17 +1169,17 @@ sensitivity     0.66888263</code></pre>
 <pre><code>class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.8652174 
-cor            : 0.1223677 
-max TPR+TNR at : 0.05489953 </code></pre>
+AUC            : 0.9030435 
+cor            : 0.1375602 
+max TPR+TNR at : -0.2997939 </code></pre>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(e))<span class="co">#, &#39;spec_sens&#39;)</span></span></code></pre></div>
 <pre><code>                 thresholds
-kappa            0.05489953
-spec_sens        0.05489953
-no_omission     -7.84025960
-prevalence       0.10683347
-equal_sens_spec -0.90592833
-sensitivity     -2.85624177</code></pre>
+kappa            0.08450802
+spec_sens       -0.29979394
+no_omission     -6.42410396
+prevalence       0.09567531
+equal_sens_spec -0.90032365
+sensitivity     -2.49745816</code></pre>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" tabindex="-1"></a>pm <span class="ot">&lt;-</span> <span class="fu">predict</span>(pred_nf,mm,<span class="at">ext=</span>ext,<span class="at">progress=</span><span class="st">&#39;&#39;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
 <span id="cb106-2"><a href="#cb106-2" tabindex="-1"></a><span class="fu">plot</span>(pm, <span class="at">main=</span><span class="st">&#39;Mahalanobis, raw values&#39;</span>)</span>
@@ -1204,17 +1204,17 @@ sensitivity     -2.85624177</code></pre>
 <pre><code>class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.8797826 
-cor            : 0.4304689 
-max TPR+TNR at : 0.5127322 </code></pre>
+AUC            : 0.8580435 
+cor            : 0.424941 
+max TPR+TNR at : 0.1867102 </code></pre>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(e)) <span class="co">#, &#39;spec_sens&#39;)</span></span></code></pre></div>
 <pre><code>                thresholds
-kappa            0.5535764
-spec_sens        0.5127322
-no_omission      0.2540502
-prevalence       0.1068248
-equal_sens_spec  0.5231821
-sensitivity      0.5146560</code></pre>
+kappa            0.6913800
+spec_sens        0.1867102
+no_omission      0.1867102
+prevalence       0.1121975
+equal_sens_spec  0.4596397
+sensitivity      0.2763110</code></pre>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" tabindex="-1"></a>px <span class="ot">&lt;-</span> <span class="fu">predict</span>(predictors,xm,<span class="at">ext=</span>ext,<span class="at">progress=</span><span class="st">&#39;&#39;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
 <span id="cb117-2"><a href="#cb117-2" tabindex="-1"></a><span class="fu">plot</span>(px, <span class="at">main=</span><span class="st">&#39;Maxent, raw values&#39;</span>)</span>
@@ -1243,8 +1243,8 @@ Call:
                      Number of trees: 500
 No. of variables tried at each split: 2
 
-          Mean of squared residuals: 0.07115338
-                    % Var explained: 23.73</code></pre>
+          Mean of squared residuals: 0.07268116
+                    % Var explained: 22.1</code></pre>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(pa) <span class="sc">~</span> bio1 <span class="sc">+</span> bio5 <span class="sc">+</span> bio6 <span class="sc">+</span> bio7 <span class="sc">+</span> bio8 <span class="sc">+</span> bio12 <span class="sc">+</span> bio16 <span class="sc">+</span> bio17</span>
 <span id="cb126-2"><a href="#cb126-2" tabindex="-1"></a>(rf2 <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(model, <span class="at">data=</span>envtrain))</span></code></pre></div>
 <pre><code>
@@ -1254,11 +1254,11 @@ Call:
                      Number of trees: 500
 No. of variables tried at each split: 2
 
-        OOB estimate of  error rate: 8.85%
+        OOB estimate of  error rate: 9.07%
 Confusion matrix:
     0  1 class.error
 0 778 22   0.0275000
-1  57 36   0.6129032</code></pre>
+1  59 34   0.6344086</code></pre>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" tabindex="-1"></a>(rf3 <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(envtrain[,<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="fu">factor</span>(pb_train)))</span></code></pre></div>
 <pre><code>
 Call:
@@ -1276,17 +1276,17 @@ Confusion matrix:
 <pre><code>class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.8473913 
-cor            : 0.4386746 
-max TPR+TNR at : 0.02906667 </code></pre>
+AUC            : 0.8805435 
+cor            : 0.5278727 
+max TPR+TNR at : 0.04106667 </code></pre>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(erf))</span></code></pre></div>
 <pre><code>                thresholds
-kappa           0.40033333
-spec_sens       0.02906667
-no_omission     0.02906667
-prevalence      0.10493333
-equal_sens_spec 0.09566667
-sensitivity     0.04010000</code></pre>
+kappa           0.52576667
+spec_sens       0.04106667
+no_omission     0.04106667
+prevalence      0.10263333
+equal_sens_spec 0.12086667
+sensitivity     0.06476667</code></pre>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" tabindex="-1"></a>pr <span class="ot">&lt;-</span> <span class="fu">predict</span>(predictors, rf1, <span class="at">ext=</span>ext)</span></code></pre></div>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
 <span id="cb135-2"><a href="#cb135-2" tabindex="-1"></a><span class="fu">plot</span>(pr, <span class="at">main=</span><span class="st">&#39;Random Forest, regression&#39;</span>)</span>
@@ -1315,26 +1315,26 @@ Attaching package: &#39;kernlab&#39;</code></pre>
 <pre><code>class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.7373913 
-cor            : 0.3809329 
-max TPR+TNR at : 0.02673779 </code></pre>
+AUC            : 0.6647826 
+cor            : 0.1895282 
+max TPR+TNR at : 0.02800318 </code></pre>
 <div class="font60">
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" tabindex="-1"></a>(esv <span class="ot">&lt;-</span> <span class="fu">evaluate</span>(<span class="at">p=</span>pres_test, <span class="at">a=</span>backg_test, <span class="at">model=</span>svm,<span class="at">x=</span>pred_nf))</span></code></pre></div>
 <pre><code>class          : ModelEvaluation 
 n presences    : 23 
 n absences     : 200 
-AUC            : 0.7373913 
-cor            : 0.3809329 
-max TPR+TNR at : 0.02673779 </code></pre>
+AUC            : 0.6647826 
+cor            : 0.1895282 
+max TPR+TNR at : 0.02800318 </code></pre>
 </div>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" tabindex="-1"></a>(tr <span class="ot">&lt;-</span> <span class="fu">threshold</span>(esv))</span></code></pre></div>
 <pre><code>                 thresholds
-kappa            0.06923651
-spec_sens        0.02673779
-no_omission     -0.01488580
-prevalence       0.10378391
-equal_sens_spec  0.02673779
-sensitivity      0.01763334</code></pre>
+kappa            0.03516047
+spec_sens        0.02800318
+no_omission     -0.00587914
+prevalence       0.10134026
+equal_sens_spec  0.02800318
+sensitivity      0.00192295</code></pre>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" tabindex="-1"></a>ps <span class="ot">&lt;-</span> <span class="fu">predict</span>(predictors, svm, <span class="at">ext=</span>ext)</span></code></pre></div>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
 <span id="cb148-2"><a href="#cb148-2" tabindex="-1"></a><span class="fu">plot</span>(ps, <span class="at">main=</span><span class="st">&#39;Support Vector Machine&#39;</span>)</span>
@@ -1463,11 +1463,11 @@ model Mean performance (per species), using test dataset (generated using partit
 
 methods    :     AUC     |     COR     |     TSS     |     Deviance 
 -------------------------------------------------------------------------
-rf         :     0.79    |     0.58    |     0.68    |     1.26     
-cart       :     0.76    |     0.49    |     0.52    |     1.73     
-fda        :     0.81    |     0.57    |     0.54    |     1.16     
-mars       :     0.77    |     0.53    |     0.57    |     3.42     
-svm        :     0.8     |     0.64    |     0.68    |     1.02     </code></pre>
+rf         :     0.9     |     0.71    |     0.8     |     0.84     
+cart       :     0.79    |     0.56    |     0.58    |     1.46     
+fda        :     0.91    |     0.76    |     0.77    |     0.7      
+mars       :     0.91    |     0.74    |     0.82    |     0.95     
+svm        :     0.89    |     0.77    |     0.82    |     0.75     </code></pre>
 </div>
 </div>
 <div id="характеристики" class="section level4">
@@ -1629,10 +1629,10 @@ dimensions  : 71, 124, 3  (nrow, ncol, nlyr)
 resolution  : 4219.223, 4219.223  (x, y)
 extent      : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 30N (EPSG:32630) 
-source      : file4f419a62f91.grd 
+source      : filef30318f1568.grd 
 names       : id_1__sp_O~nce__m_glm, id_2__sp_O~nce__m_gam, id_3__sp_O~nce__m_brt 
-min values  :            0.00376331,           0.002174899,             0.2090624 
-max values  :            0.99573916,           0.995700896,             0.7820167 </code></pre>
+min values  :            0.00376331,           0.002174899,             0.2084337 
+max values  :            0.99573916,           0.995700896,             0.7830164 </code></pre>
 <p class="centered-image"><img src="assets/lesson10/ursa07_p1.png" width="956" bound /></p>
 <div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="#cb173-1" tabindex="-1"></a>(p2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(m2,<span class="at">newdata=</span>preds,<span class="at">filename=</span><span class="fu">tempfile</span>(<span class="at">fileext=</span><span class="st">&quot;.grd&quot;</span>)))</span></code></pre></div>
 <pre><code>class       : SpatRaster 
@@ -1640,10 +1640,10 @@ dimensions  : 71, 124, 10  (nrow, ncol, nlyr)
 resolution  : 4219.223, 4219.223  (x, y)
 extent      : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 30N (EPSG:32630) 
-source      : file4f4361e115f.grd 
-names       : id_1_~_subs, id_2_~_subs, id_3_~_subs, id_4_~_subs,  id_5_~_subs,  id_6_~_subs, ... 
-min values  : 0.007333333,   0.0089000,           0,   0.0000000, 0.0002280169, 0.0009065695, ... 
-max values  : 0.998749971,   0.9975833,           1,   0.9365079, 0.9993575215, 0.9982200265, ... </code></pre>
+source      : filef30592164cd.grd 
+names       : id_1_~_subs, id_2_~_subs, id_3_~_subs, id_4_~_subs, id_5_~_subs, id_6_~_subs, ... 
+min values  : 0.007933334, 0.005616667,           0,  0.07142857, 0.001580826, 0.001211044, ... 
+max values  : 0.991333306, 0.996200025,           1,  1.00000000, 0.995822966, 0.997836113, ... </code></pre>
 <p class="centered-image"><img src="assets/lesson10/ursa09_p2.png" width="1390" bound /></p>
 <div class="font94">
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="#cb175-1" tabindex="-1"></a>(p2m <span class="ot">&lt;-</span> <span class="fu">predict</span>(m2,<span class="at">newdata=</span>preds,<span class="at">mean=</span>T,<span class="at">filename=</span><span class="fu">tempfile</span>(<span class="at">fileext=</span><span class="st">&quot;.grd&quot;</span>)))</span></code></pre></div>
@@ -1652,20 +1652,20 @@ dimensions  : 71, 124, 5  (nrow, ncol, nlyr)
 resolution  : 4219.223, 4219.223  (x, y)
 extent      : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 coord. ref. : WGS 84 / UTM zone 30N (EPSG:32630) 
-source      : file4f455ef5f71.grd 
+source      : filef305709490b.grd 
 names       : sp_Occ~e_subs, sp_Occ~e_subs, sp_Occ~e_subs, sp_Occ~e_subs, sp_Occ~e_subs 
-min values  :     0.0564009,     0.0564009,     0.0564009,     0.0564009,     0.0564009 
-max values  :     0.9699941,     0.9699941,     0.9699941,     0.9699941,     0.9699941 </code></pre>
+min values  :    0.05043761,    0.05043761,    0.05043761,    0.05043761,    0.05043761 
+max values  :    0.96063137,    0.96063137,    0.96063137,    0.96063137,    0.96063137 </code></pre>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="#cb177-1" tabindex="-1"></a>(u2m <span class="ot">&lt;-</span> ursa<span class="sc">::</span><span class="fu">as_ursa</span>(p2m))</span></code></pre></div>
-<pre><code>                             name mean   sd  sum   min  max    n  nNA
-[1] sp_Occurrence__m_rf__re_subs  0.51 0.32 2585 0.056 0.97 5108 3696
-[2] sp_Occurrence__m_cart__re_su… 0.51 0.32 2585 0.056 0.97 5108 3696
-[3] sp_Occurrence__m_fda__re_subs 0.51 0.32 2585 0.056 0.97 5108 3696
-[4] sp_Occurrence__m_mars__re_su… 0.51 0.32 2585 0.056 0.97 5108 3696
-[5] sp_Occurrence__m_svm__re_subs 0.51 0.32 2585 0.056 0.97 5108 3696</code></pre>
+<pre><code>                              name mean  sd  sum  min  max    n  nNA
+[1] sp_Occurrence__m_rf__re_subs    0.5 0.3 2541 0.05 0.96 5108 3696
+[2] sp_Occurrence__m_cart__re_subs  0.5 0.3 2541 0.05 0.96 5108 3696
+[3] sp_Occurrence__m_fda__re_subs   0.5 0.3 2541 0.05 0.96 5108 3696
+[4] sp_Occurrence__m_mars__re_subs  0.5 0.3 2541 0.05 0.96 5108 3696
+[5] sp_Occurrence__m_svm__re_subs   0.5 0.3 2541 0.05 0.96 5108 3696</code></pre>
 </div>
 <div class="footer">
-<p>По состоянию на 06 марта 2024 г. пакет <strong><code>sdm</code></strong> версии выше 1.1-8 некорректно выдаёт результат с аргументом <code>mean=TRUE</code> функции <code>predict()</code> для оъектов класса <code>sdmModels</code>.</p>
+<p>По состоянию на 07 марта 2024 г. пакет <strong><code>sdm</code></strong> версии выше 1.1-8 некорректно выдаёт результат с аргументом <code>mean=TRUE</code> функции <code>predict()</code> для оъектов класса <code>sdmModels</code>.</p>
 </div>
 <p class="centered-image"><img src="assets/lesson10/ursa11_p2m.png" width="1242" bound /></p>
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="#cb179-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">inherits</span>(p2m,<span class="st">&quot;RasterBrick&quot;</span>)) raster<span class="sc">::</span><span class="fu">getZ</span>(p2m) <span class="cf">else</span> <span class="fu">names</span>(p2m)</span></code></pre></div>
@@ -1682,9 +1682,9 @@ dimensions : 71, 124, 8804  (nrow, ncol, ncell)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : file4f413971ff6.grd 
+source     : filef3034704e86.grd 
 names      : ensemble_weighted 
-values     : -3.386578e+38, 3.381588e+38  (min, max)</code></pre>
+values     : -3.293039e+38, 3.263058e+38  (min, max)</code></pre>
 <p class="centered-image"><img src="assets/lesson10/ursa13_e1.png" width="650" height="320" bound /></p>
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="#cb183-1" tabindex="-1"></a>(e2 <span class="ot">&lt;-</span> <span class="fu">ensemble</span>(m2,<span class="at">newdata=</span>preds,<span class="at">filename=</span><span class="fu">tempfile</span>(<span class="at">fileext=</span><span class="st">&quot;.grd&quot;</span>)</span>
 <span id="cb183-2"><a href="#cb183-2" tabindex="-1"></a>              ,<span class="at">setting=</span><span class="fu">list</span>(<span class="at">method=</span><span class="st">&#39;weighted&#39;</span>,<span class="at">stat=</span><span class="st">&#39;TSS&#39;</span>,<span class="at">opt=</span><span class="dv">2</span>)))</span></code></pre></div>
@@ -1693,9 +1693,9 @@ dimensions : 71, 124, 8804  (nrow, ncol, ncell)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : file4f44d0c7b98.grd 
+source     : filef30ba9180f.grd 
 names      : ensemble_weighted 
-values     : -2.947591e+38, 3.223053e+38  (min, max)</code></pre>
+values     : -3.275382e+38, 3.393524e+38  (min, max)</code></pre>
 <p class="centered-image"><img src="assets/lesson10/ursa14_e2.png" width="650" height="320" bound /></p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="#cb185-1" tabindex="-1"></a>(e3 <span class="ot">&lt;-</span> <span class="fu">ensemble</span>(m2,<span class="at">newdata=</span>preds,<span class="at">filename=</span><span class="fu">tempfile</span>(<span class="at">fileext=</span><span class="st">&quot;.grd&quot;</span>)</span>
 <span id="cb185-2"><a href="#cb185-2" tabindex="-1"></a>              ,<span class="at">setting=</span><span class="fu">list</span>(<span class="at">method=</span><span class="st">&#39;unweighted&#39;</span>)))</span></code></pre></div>
@@ -1704,9 +1704,9 @@ dimensions : 71, 124, 8804  (nrow, ncol, ncell)
 resolution : 4219.223, 4219.223  (x, y)
 extent     : 100975.3, 624159, 3988830, 4288395  (xmin, xmax, ymin, ymax)
 crs        : +proj=utm +zone=30 +datum=WGS84 +units=m +no_defs 
-source     : file4f47bc42eb0.grd 
+source     : filef301437144d.grd 
 names      : ensemble_unweighted 
-values     : -3.299089e+38, 3.295828e+38  (min, max)</code></pre>
+values     : -3.320523e+38, 2.335469e+38  (min, max)</code></pre>
 <p class="centered-image"><img src="assets/lesson10/ursa15_e3.png" width="650" height="320" bound /></p>
 </div>
 </div>
