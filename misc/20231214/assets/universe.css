@@ -1,0 +1,110 @@
+:root {
+   --sidebar: 25%;
+   --sidebar-pointsize: 72.5%;
+   --sidebar-margin: 15px;
+   --accent: #185698
+}
+.sidebar {
+   background-image: none !important;
+}
+.customtitle .sidebar,
+#slide-bib .sidebar {
+   opacity: 0;
+}
+.customtitle .mainbar {
+   width: calc(100% - var(--sidebar) - var(--sidebar-margin) - 120px);
+   margin-top: 1em;
+}
+.customtitle {
+}
+.customtitle .title {
+   line-height: 1.1;
+   font-size: 190%;
+   position: absolute;
+   top: 12vh;
+}
+.remark-slide-content.customtitle {
+   padding-top: 2.5em;
+   padding-left: 2.5em;
+}
+.remark-slide-content.customtitle, .remark-slide-content.title-slide {
+   background-image: url("background-title.png") !important;
+   background-size: contain;
+}
+.remark-slide-content:not(.customtitle):not(.title-slide) {
+   background-image: url("background.png") !important;
+   background-size: contain;
+}
+.title-slide h1, .title-slide h3 {
+   color: black;
+}
+.title-slide .title, .title-slide .author {
+   position: absolute;
+   margin-left: 40%;
+}
+.title-slide .title {
+   top: 12vh;
+}
+.title-slide .author {
+   top: 36vh;
+}
+p img {
+   box-shadow: none;
+   text-align: left;
+}
+.footnote {
+   bottom: 12.5%;
+   height: 86% !important;
+}
+.footer {
+   margin-left: 0em;
+   width: unset;
+   bottom: 12.5%;
+}
+#slide-bib .mainbar {
+   font-size: 90%; 
+}
+.caption {
+   font-size: 80%;
+   opacity: 0.8;
+}
+.updated {
+   color: var(--accent);
+   opacity: 0.2 !important;
+   bottom: 12.5% !important;
+}
+.remark-slide-number {
+   color: white;
+}
+.banner {
+   left: unset;
+   right: 8px !important;
+}
+.timenow {
+   bottom: unset;
+   top: 0px;
+   display: none;
+}
+body:fullscreen .remark-slides-area::before {
+   display: none;
+}
+.sevinlogo::after {
+   opacity: 0.6;
+   content: '';
+   position: absolute;
+  /* border: 0px solid red;*/
+   width: 6vw; /* 31px */ /* 4.5 */
+   height: 6vw; /* 32px */
+   bottom: -1px;
+   right:  6vw;
+   background-image: url(https://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico);
+   background-size: contain;
+   background-repeat: no-repeat;
+}
+.remark-slide-content.customtitle .sevinlogo::after {
+   opacity: 0.85;
+   bottom: 12vh;
+   right:  -1vw;
+   width: 17vw; /* 31px */ /* 4.5 */
+   height: 17vw; /* 32px */
+}
