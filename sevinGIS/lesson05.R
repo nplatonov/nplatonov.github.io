@@ -7,9 +7,6 @@
 #'    html_document:
 #'       toc: true
 #'       toc_depth: 5
-#'    xaringan::moon_reader:
-#'       toc: true
-#'       toc_depth: 5
 #' mathjax: true
 #' echo: true
 #' title: Возможности R для работы с пространственными данными
