@@ -53,7 +53,7 @@ pi
 #'
 #' Установить или обновить R, например, [отсюда](https://cran.rstudio.org/).
 #'
-#' По состоянию на `r plutil::format_date()` актуальная версия 4.3.3. Нативные пайпы с версии 4.1. Пакеты не обновляются для старых версий R.
+#' Актуальная версия 4.3.3. Нативные пайпы с версии 4.1. Пакеты не обновляются для старых версий R.
 #'
 #' При переходе с версии 3.6 на версию 4.0 пришлось переустановить все пакеты (библиотеки, модули).
 #'
@@ -858,25 +858,6 @@ dev.off()
 #+ paper-view, out.extra="bound"
 knitr::include_graphics(fileout4) ## try 'browseURL(fileout4)'
 #'
-#'---
-#' class: break middle picsum
-#' :::note
-#+ echo=F
-schedule <- readxl::read_excel("index.xlsx",sheet=format(Sys.Date(),"%Y"))
-schedule <- as.data.frame(schedule)
-schedule <- schedule[is.na(schedule$'Имя') & !is.na(schedule$'Tg'),]
-schedule <- schedule[,apply(schedule,2,\(x) !all(is.na(x)))] |> t() |> as.data.frame()
-colnames(schedule) <- schedule[1,]
-schedule <- schedule[-1,]
-cname <- as.integer(rownames(schedule)[which(gsub("\\s","",schedule$'ДЗ сдача')=="4")])
-day0 <- as.Date(cname,origin="1899-12-30")
-#'  ## Домашнее задание на [`r plutil::format_date(day0)`](index`r plutil::dirID()`.html#deadline4)
-#' 
-#' Нарисовать Австралию (или свой район работ), используя данные [Natural Earth World GIS Data](https://www.naturalearthdata.com/) 1:10m.
-#+ echo=F, out.height=ifelse(ursa:::.isRemark(),500,400), out.extra="bound"
-knitr::include_graphics(file.path(rmarkdown::metadata$assets,"homework.png"))
-#' 
-#' :::
 #' #### Интерактивная
 #'
 #' ##### `mapview`

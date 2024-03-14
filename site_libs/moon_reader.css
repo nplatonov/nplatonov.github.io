@@ -797,7 +797,7 @@ ul {
    margin-top: -24px;
    padding-top: 24px;
    padding-left: 32px;
-   padding-right: 8px;
+   padding-right: 16px;
   /* overflow: scroll; */
    overflow-y: auto;
   /* scrollbar-width: thin;*/
@@ -866,7 +866,7 @@ ul {
    border-bottom: 1px solid transparent;
    border-left: 0.15em solid transparent;
   /* border-right: 1px solid var(--accent);*/
-   margin: 5px -8px -5px -16px;
+   margin: 5px -16px -5px -16px;
    padding: 4px 16px 6px 8px;
   /* padding: 0.15em 0.35em 0.15em 0.3em;*/
 }
@@ -947,7 +947,7 @@ ul {
 .sidebar h3[id*=bg][id*=fg],
 .sidebar h4[id*=bg][id*=fg],
 .sidebar h5[id*=bg][id*=fg] {
-  /* border-image: linear-gradient(to right,var(--sidebar-border),transparent) 1 0%; */
+   border-image: linear-gradient(to right,var(--sidebar-border),var(--sidebar-border),transparent) 1 0%; */
    border-left-color: transparent; /* var(--accent); transparent; #5386;*/
    border-bottom: 1px solid var(--sidebar-border);
    border-top: 1px solid var(--sidebar-border);
@@ -960,6 +960,7 @@ ul {
 .inverse:not(.revert) .sidebar h3[id*=bg][id*=fg],
 .inverse:not(.revert) .sidebar h4[id*=bg][id*=fg],
 .inverse:not(.revert) .sidebar h5[id*=bg][id*=fg] {
+   border-image: linear-gradient(to right,var(--sidebar-border-inverse),var(--sidebar-border-inverse),transparent) 1 0%; */
    border-left-color: transparent; /* var(--inverse-accent);*/
    border-bottom: 1px solid var(--sidebar-border-inverse);
    border-top: 1px solid var(--sidebar-border-inverse);
