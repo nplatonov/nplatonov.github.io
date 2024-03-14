@@ -179,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when"> <span class="updated">Обновлено: 2024-03-07 15:34</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 05</span> <span class="when"> <span class="updated">Обновлено: 2024-03-14 10:56</span></span></h4>
 <div class="abstract">
 <p class="abstract">Abstract</p>
 Демонстрация основ работы с интерфейсом командной строки в R, позволяющей создавать скрипты и получать воспроизводимые результаты. Показано, как пространственные векторные и растровые данные могут попасть в R и как они выглядят в R. С возможностью сделать обработку, анализ и визуализацию пространственных данных.
@@ -344,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="базовый-r" class="section level4">
 <h4>Базовый R</h4>
 <p>Установить или обновить R, например, <a href="https://cran.rstudio.org/">отсюда</a>.</p>
-<p>По состоянию на 07 марта 2024 г. актуальная версия 4.3.3. Нативные пайпы с версии 4.1. Пакеты не обновляются для старых версий R.</p>
+<p>По состоянию на 14 марта 2024 г. актуальная версия 4.3.3. Нативные пайпы с версии 4.1. Пакеты не обновляются для старых версий R.</p>
 <p>При переходе с версии 3.6 на версию 4.0 пришлось переустановить все пакеты (библиотеки, модули).</p>
 </div>
 <div id="библиотеки" class="section level4">
@@ -2085,7 +2085,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="#cb288-1" tabindex="-1"></a>sfile <span class="ot">&lt;-</span> <span class="st">&quot;lesson05.R&quot;</span></span>
 <span id="cb288-2"><a href="#cb288-2" tabindex="-1"></a>rfile <span class="ot">&lt;-</span> <span class="st">&quot;lesson05-reproduced.R&quot;</span></span>
 <span id="cb288-3"><a href="#cb288-3" tabindex="-1"></a>{</span>
-<span id="cb288-4"><a href="#cb288-4" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">file.exists</span>(sfile))</span>
+<span id="cb288-4"><a href="#cb288-4" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">file.exists</span>(rfile))</span>
 <span id="cb288-5"><a href="#cb288-5" tabindex="-1"></a>      <span class="fu">file.copy</span>(sfile,rfile,<span class="at">overwrite=</span><span class="cn">TRUE</span>,<span class="at">copy.date=</span><span class="cn">TRUE</span>)</span>
 <span id="cb288-6"><a href="#cb288-6" tabindex="-1"></a>   <span class="cf">else</span></span>
 <span id="cb288-7"><a href="#cb288-7" tabindex="-1"></a>      <span class="fu">download.file</span>(<span class="fu">file.path</span>(<span class="st">&quot;https://nplatonov.github.io/sevinGIS&quot;</span>,sfile)</span>
@@ -2109,7 +2109,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>Параметры сессии</h4>
 <div class="oversize font85">
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="#cb292-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.3.3 Patched (2024-02-29 r86036 ucrt)
+<pre><code>## R version 4.3.3 Patched (2024-02-29 r86056 ucrt)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 19045)
 ## 
