@@ -22,12 +22,14 @@
    --sidebar-strip: #FFFFFFFE; /* #FFFFFFFE;  var(--light);*/
    --sidebar-strip-inverse: var(--inverse-bg); 
    --sidebar-select: var(--accent);
+   --sidebar-select-inverse: var(--inverse-accent);
    --sidebar-border: var(--accent); /* transparent; */
    --sidebar-border-inverse: var(--inverse-accent);
    --bg: #37A;
    --inverse-bg: #000; /*#222E3A #3B0863 #2C3E50*/
    --blur: 0.2em;
    --gap: 0.8em;
+   --sidebar-right-margin: 8px; /* 0px 8px */
    --darkreader-text--accent: #ee9;
    --darkreader-border--accent: var(--inverse-accent);
    --darkreader-bg--sidebar-background: var(--sidebar-background-inverse); /*#123;*/
@@ -798,7 +800,7 @@ ul {
    margin-top: -24px;
    padding-top: 24px;
    padding-left: 32px;
-   padding-right: 16px;
+   padding-right: calc(16px - var(--sidebar-right-margin));
   /* overflow: scroll; */
    overflow-y: auto;
   /* scrollbar-width: thin;*/
@@ -865,10 +867,10 @@ ul {
 .sidebar.left-column h1 { /* .sidebar.left-column h3:last-child */
    border-top: 1px solid transparent;
    border-bottom: 1px solid transparent;
-   border-left: 0.15em solid transparent;
+  /* border-left: 0.15em solid transparent;*/
   /* border-right: 1px solid var(--accent);*/
-   margin: 5px -16px -5px -16px;
-   padding: 4px 16px 6px 8px;
+   margin: 5px -8px -5px -16px;
+   padding: 4px 16px 6px calc(16px - var(--sidebar-right-margin));
   /* padding: 0.15em 0.35em 0.15em 0.3em;*/
 }
 /*
@@ -922,9 +924,24 @@ ul {
 .inverse:not(.revert) .sidebar h5[id*=bg][id*=fg] {
    color: var(--inverse-accent);
 }
-.sidebar h1[id*=bg][id*=fg] a, .sidebar h2[id*=bg][id*=fg] a, .sidebar h3[id*=bg][id*=fg] a, .sidebar h4[id*=bg][id*=fg] a, .sidebar h5[id*=bg][id*=fg] a,
-.sidebar h1[id*=bg][id*=fg], .sidebar h2[id*=bg][id*=bg], .sidebar h3[id*=bg][id*=fg], .sidebar h4[id*=bg][id*=fg], .sidebar h5[id*=bg][id*=fg] {
-   color: var(--sidebar-select);
+.sidebar h1[id*=bg][id*=fg] a,
+.sidebar h2[id*=bg][id*=fg] a,
+.sidebar h3[id*=bg][id*=fg] a,
+.sidebar h4[id*=bg][id*=fg] a,
+.sidebar h5[id*=bg][id*=fg] a,
+.sidebar h1[id*=bg][id*=fg],
+.sidebar h2[id*=bg][id*=bg],
+.sidebar h3[id*=bg][id*=fg],
+.sidebar h4[id*=bg][id*=fg],
+.sidebar h5[id*=bg][id*=fg] {
+   color: var(--sidebar-select) !important;
+}
+.inverse .sidebar h1[id*=bg][id*=fg] a,
+.inverse .sidebar h2[id*=bg][id*=fg] a,
+.inverse .sidebar h3[id*=bg][id*=fg] a,
+.inverse .sidebar h4[id*=bg][id*=fg] a,
+.inverse .sidebar h5[id*=bg][id*=fg] a {
+   color: var(--sidebar-select-inverse) !important;
 }
 .sidebar h1[id*=bg] a, .sidebar h2[id*=bg] a, .sidebar h3[id*=bg] a, .sidebar h4[id*=bg] a, .sidebar h5[id*=bg] a {
    opacity: 1.0;
