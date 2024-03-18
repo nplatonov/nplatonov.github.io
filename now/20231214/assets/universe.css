@@ -1,14 +1,18 @@
 :root {
-   --sidebar: 25%;
+   --sidebar: 24.5%;
    --sidebar-pointsize: 72.5%;
    --sidebar-margin: 15px;
-   --accent: #185698
+   --accent: #185698;
 }
 .sidebar {
    background-image: none !important;
+   background-color: var(--accent);
+   height: calc(100% - 12.5% + 2px) !important;
 }
-.customtitle .sidebar,
-#slide-bib .sidebar {
+.sidebar a{
+   color: var(--light) !important;
+}
+.customtitle .sidebar {
    opacity: 0;
 }
 .customtitle .mainbar {
