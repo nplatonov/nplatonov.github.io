@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ГИС 04</title>
+    <meta charset="utf-8" />
+    <script src="https://nplatonov.github.io/site_libs/header-attrs-2.25/header-attrs.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader-fonts.css" type="text/css" />
+  </head>
+  <body>
+<style>
+.remark-backdrop:after{
+   content: 'Никита Платонов \A \A ГИС аспирантура';
+}
+:root {--pointsize: 22pt;}
+</style>
+
+    <textarea id="source">
+
+layout: true
+
+
+
+
+
+
+
+.banner[
+
+.shorttitle[
+[ГИС аспирантура](break.html#home)
+]
+
+]
+
+---
+class: metadata customtitle middle left
+name: H32169
+<iframe width='220' height='220' class='timenow' src='https://www.timeanddate.com/worldclock/fullscreen.html?n=1440' frameborder='0' allow='encrypted-media' allowfullscreen></iframe>
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+
+
+
+
+.author[Никита&nbsp;Платонов]
+
+
+.institute[с.н.с. ИПЭЭ РАН]
+
+
+
+
+.title[Пространственные данные: получение и обработка]
+
+
+.subtitle[ГИС технологии в биологических исследованиях]
+
+
+.what[Занятие 04]
+
+
+.where[]
+
+
+.when[ .updated[Обновлено: 2024-03-13 21:26]]
+
+
+
+]
+---
+
+name: H82899
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899).fg[].bg[]
+### [Natural Earth](#H29603)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+
+
+
+Мы привыкли к картам в браузерах и в приложениях. Журналы выдвигают определенные требования к рисункам для повышения уровня восприятия информации
+
++ Копия экрана не удовлетворяет требованиям  
+
++ Тайловые картографические web-сервисы, в основном, выдают данные экранного разрешения. Некоторые, как CartoDB, — с улучшенным (двухкратным), но и это не всегда дотягивает до требований  
+
++ QGIS для Windows, вероятно, чувствителен к масштабу текста в параметрах ОС.  
+
+Для оформления картографического мелкомасштабного и среднемасштабного материала есть данные в свободном доступе
++ Возможно, что-то будет лишь через VPN
+
+
+]
+---
+
+name: H29603
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899).fg[]
+### [Natural Earth](#H29603).fg[].bg[]
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+См. [Natural Earth World GIS Data](https://www.naturalearthdata.com/)
+
+<iframe src="https://www.naturalearthdata.com/downloads/" width="1330" height="480" data-external="1"></iframe>
+
++ Есть поддержка русскоязычных названий (см. поля "name_ru", "NAME_RU")
+
+]
+---
+class: notable middle inverse
+
+
+.note[
+.pulling[
+.pull-left-55.font90[
+
+
+
+ ## Домашнее задание на [22 февраля 2024 г.](index.html#deadline1)
+В QGIS на основе данных Natural Earth 1:10m cоздать картооснову, ориентируясь
+на территорию,
+охватывающую Карелию и Мурманскую области. 
+Желательно включить административные границы, батиметрию и контуры высот.
+Экспортировать через Export Image или Print Layout два изображения,
+соответствующих русскоязычным журнальным требованиям,
+с различным пространственным охватом:
+1) только Кольский п-ов,
+2) вместе Карелия и Мурманская обл.,
+3) свой район работ для описания изучаемой территории в разделе «Методы»
+4) свой район работ для использования в качестве подложки для «Результатов»
+]
+.pull-right-45[
+
+<img src="assets/lesson04/homework.png" width="1330" height="600" bound style="display: block; margin: auto;" />
+
+]
+]
+]
+
+
+---
+
+name: H7932e
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e).fg[]
+### [QGIS <span class="hovertext" data-hover="QMS">QuickMapServices</span>](#H7932e).fg[].bg[]
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+
+
+<img src="assets/lesson04/QMSsearch.png" width="1330" height="600" bound style="display: block; margin: auto;" />
+
+
+
+
+
+]
+---
+
+name: H90dce
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce).fg[]
+### [Global Elevation Map](#H90dce).fg[].bg[]
+### [ESA Copernicus](#H488e5)
+### [EO Browser](#Hf2b34)
+### [EarthImages](#H32f04)
+### [ASF](#H379a4)
+### [Earthdata](#Hf460e)
+### [Прибрежные данные](#H4a6fb)
+### [OpenStreetMap](#osm)
+### [Earth Engine](#Hd47f6)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+Cм. [Global Elevation Map](https://gislounge.com/new-global-elevation-data-available-to-download-global-multi-resolution-terrain-elevation-data-2010/)
+
+<iframe src="https://www.gislounge.com/new-global-elevation-data-available-global-multi-resolution-terrain-elevation-data-2010/" width="1330" height="480" data-external="1"></iframe>
+
+Доступ через [USGS EarthExplorer](https://earthexplorer.usgs.gov/) (требуется регистрация)
+
+]
+---
+
+name: H488e5
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce).fg[]
+### [Global Elevation Map](#H90dce)
+### [ESA Copernicus](#H488e5).fg[].bg[]
+### [EO Browser](#Hf2b34)
+### [EarthImages](#H32f04)
+### [ASF](#H379a4)
+### [Earthdata](#Hf460e)
+### [Прибрежные данные](#H4a6fb)
+### [OpenStreetMap](#osm)
+### [Earth Engine](#Hd47f6)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+См. [Copernicus Open Access Hub](https://scihub.copernicus.eu/dhus/#/home)
+
+<iframe src="https://scihub.copernicus.eu/" width="1330" height="480" data-external="1"></iframe>
+
+
+]
+---
+
+name: Hf2b34
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce).fg[]
+### [Global Elevation Map](#H90dce)
+### [ESA Copernicus](#H488e5)
+### [EO Browser](#Hf2b34).fg[].bg[]
+### [EarthImages](#H32f04)
+### [ASF](#H379a4)
+### [Earthdata](#Hf460e)
+### [Прибрежные данные](#H4a6fb)
+### [OpenStreetMap](#osm)
+### [Earth Engine](#Hd47f6)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+См. [Sentinel Hub EO Browser](https://apps.sentinel-hub.com/eo-browser)
+
+<iframe src="https://apps.sentinel-hub.com/eo-browser" width="1330" height="480" data-external="1"></iframe>
+
+
+]
+---
+
+name: H32f04
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce).fg[]
+### [Global Elevation Map](#H90dce)
+### [ESA Copernicus](#H488e5)
+### [EO Browser](#Hf2b34)
+### [EarthImages](#H32f04).fg[].bg[]
+### [ASF](#H379a4)
+### [Earthdata](#Hf460e)
+### [Прибрежные данные](#H4a6fb)
+### [OpenStreetMap](#osm)
+### [Earth Engine](#Hd47f6)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+См. [Geocento EarthImages](https://imagery.geocento.com/)
+
+Сервис с простым и удобным интерфейсом для поиска ДДЗ.
+
+<iframe src="https://imagery.geocento.com/" width="1330" height="480" data-external="1"></iframe>
+
+
+
+]
+---
+
+name: H379a4
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce).fg[]
+### [Global Elevation Map](#H90dce)
+### [ESA Copernicus](#H488e5)
+### [EO Browser](#Hf2b34)
+### [EarthImages](#H32f04)
+### [ASF](#H379a4).fg[].bg[]
+### [Earthdata](#Hf460e)
+### [Прибрежные данные](#H4a6fb)
+### [OpenStreetMap](#osm)
+### [Earth Engine](#Hd47f6)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+См. [<span class="hovertext" data-hover="Alaska SAR Facility">ASF</span> Data Search Vertext](https://search.asf.alaska.edu)
+
+
+<iframe src="https://search.asf.alaska.edu" width="1330" height="605" data-external="1"></iframe>
+
+
+
+]
+---
+
+name: Hf460e
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce).fg[]
+### [Global Elevation Map](#H90dce)
+### [ESA Copernicus](#H488e5)
+### [EO Browser](#Hf2b34)
+### [EarthImages](#H32f04)
+### [ASF](#H379a4)
+### [Earthdata](#Hf460e).fg[].bg[]
+### [Прибрежные данные](#H4a6fb)
+### [OpenStreetMap](#osm)
+### [Earth Engine](#Hd47f6)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+См. [Earthdata Search](https://search.earthdata.nasa.gov/search)
+
+
+<iframe src="https://search.earthdata.nasa.gov/search" width="1330" height="605" data-external="1"></iframe>
+
+
+
+]
+---
+
+name: H4a6fb
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce).fg[]
+### [Global Elevation Map](#H90dce)
+### [ESA Copernicus](#H488e5)
+### [EO Browser](#Hf2b34)
+### [EarthImages](#H32f04)
+### [ASF](#H379a4)
+### [Earthdata](#Hf460e)
+### [Прибрежные данные](#H4a6fb).fg[].bg[]
+### [OpenStreetMap](#osm)
+### [Earth Engine](#Hd47f6)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+[Data Derived from OpenStreetMap for Download](https://osmdata.openstreetmap.de/)
+
+
+<iframe src="https://osmdata.openstreetmap.de/" width="1330" height="605" data-external="1"></iframe>
+
+
+
+]
+---
+name: osm
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce).fg[]
+### [Global Elevation Map](#H90dce)
+### [ESA Copernicus](#H488e5)
+### [EO Browser](#Hf2b34)
+### [EarthImages](#H32f04)
+### [ASF](#H379a4)
+### [Earthdata](#Hf460e)
+### [Прибрежные данные](#H4a6fb)
+### [OpenStreetMap](#osm).fg[].bg[]
+### [Earth Engine](#Hd47f6)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+
+.font84[
+
+QGIS модуль [QuickMapServices](https://plugins.qgis.org/plugins/quick_map_services/), преимущественно, выдает тайлы на основе OpenStreetMap (OSM) данных. Сами данные доступны.
+
+ #### Непосредственно <span class="hovertext" data-hover="OpenStreetMap">OSM</span>
+
+[Пример](https://www.openstreetmap.org/export#map=13/56.0052/38.3995) выгрузки данных.
+
+При нажатии кнопки 'Экспорт' по умолчанию создается файл `map.osm`.
+
+  
+ #### Overpass API
+
+Пример использования [Overpass API](https://overpass-api.de/api/map?bbox=38.3594,55.9835,38.4396,56.0270)
+
++ QGIS, модуль ["QuickOSM"](https://plugins.qgis.org/plugins/QuickOSM/)
+
+   + Импорт `map.osm`
+
+   + Экспорт в векторные (ГИС) форматы (ESRI Shapefile, GeoJSON).
+
++ R, пакет [`osmdata`](https://cran.rstudio.com/web/packages/osmdata/)
+
+   + Формирование запроса для Overpass API  
+   + Использование средств R для работы с атрибутами  
+   + Экспорт в векторные (ГИС) форматы  
+
+  
+ #### BBBike's<sup>*</sup>
+
+См. [BBBike's free download server](https://download.bbbike.org/osm/).
+
+]
+
+.footer[
+<sup>*</sup> Спасибо Вадиму Меркину за указание этого сервиса.
+]
+
+
+]
+---
+class: inverse middle center
+background-color: #444
+name: Hd47f6
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce).fg[]
+### [Global Elevation Map](#H90dce)
+### [ESA Copernicus](#H488e5)
+### [EO Browser](#Hf2b34)
+### [EarthImages](#H32f04)
+### [ASF](#H379a4)
+### [Earthdata](#Hf460e)
+### [Прибрежные данные](#H4a6fb)
+### [OpenStreetMap](#osm)
+### [Earth Engine](#Hd47f6).fg[].bg[]
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+
+
+
+
+
+Будет/было рассмотрено [дополнительно](lesson07.html#EarthEngine)
+
+
+
+]
+---
+class: middle
+name: H8b616
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616).fg[].bg[]
+### [Nominatim](#H6d781)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+
+
+Получение пространственных данных по текстовому запросу. Обратное геокодирование - поиск объекта по географическим координатам
+
+
+]
+---
+
+name: H6d781
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616).fg[]
+### [Nominatim](#H6d781).fg[].bg[]
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+
+URL: [Nominatim](https://nominatim.openstreetmap.org)
+
+<iframe src="https://nominatim.openstreetmap.org/ui/search.html?q=Черноголовка" width="1330" height="480" data-external="1"></iframe>
+
+
+]
+---
+
+name: H8e03b
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b).fg[].bg[]
+### [QGIS визуализация](#H78cf1)
+]
+.mainbar.right-column[
+
+Цифровая модель рельефа ЦМР (Digital Elevation Model DEM)
+
+[SRTM Tile Downloader](https://dwtkns.com/srtm30m/)
+
+<iframe src="https://dwtkns.com/srtm30m/" width="1330" height="480" data-external="1"></iframe>
+
+
+
+]
+---
+
+name: H78cf1
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b).fg[]
+### [QGIS визуализация](#H78cf1).fg[].bg[]
+#### [Через свойства растра](#Hc38b3)
+#### [С помощью GDAL](#H28cdc)
+]
+.mainbar.right-column[
+
+На примере вулканов Камчатского п-ова
+
+<img src="assets/lesson04/Kamchatka.png" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: Hc38b3
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b).fg[]
+### [QGIS визуализация](#H78cf1).fg[]
+#### [Через свойства растра](#Hc38b3) <span class="bullet bullet-active">[&#8226;](#Hc38b3)</span><span class="bullet mslide26m">[&#8226;](#H0bcd8)</span><span class="bullet mslide27m">[&#8226;](#H7ccab)</span><span class="bullet mslide28m">[&#8226;](#Hec75a)</span><span class="bullet mslide29m">[&#8226;](#H9b729)</span><span class="bullet mslide30m">[&#8226;](#Hfbb51)</span><span class="bullet mslide31m">[&#8226;](#H8cb22)</span>.fg[].bg[]
+#### [С помощью GDAL](#H28cdc)
+]
+.mainbar.right-column[
+
+Оригинальное изображение в проекции WGS84
+
+<img src="assets/lesson04/grey4326.png" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H0bcd8
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b).fg[]
+### [QGIS визуализация](#H78cf1).fg[]
+#### [Через свойства растра](#Hc38b3) <span class="bullet bullet">[&#8226;](#Hc38b3)</span><span class="bullet bullet-active">[&#8226;](#H0bcd8)</span><span class="bullet mslide27m">[&#8226;](#H7ccab)</span><span class="bullet mslide28m">[&#8226;](#Hec75a)</span><span class="bullet mslide29m">[&#8226;](#H9b729)</span><span class="bullet mslide30m">[&#8226;](#Hfbb51)</span><span class="bullet mslide31m">[&#8226;](#H8cb22)</span>.fg[].bg[]
+#### [С помощью GDAL](#H28cdc)
+]
+.mainbar.right-column[
+
+Изображение в сферической проекции Меркатора
+
+<img src="assets/lesson04/grey3857.png" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H7ccab
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b).fg[]
+### [QGIS визуализация](#H78cf1).fg[]
+#### [Через свойства растра](#Hc38b3) <span class="bullet bullet">[&#8226;](#Hc38b3)</span><span class="bullet bullet">[&#8226;](#H0bcd8)</span><span class="bullet bullet-active">[&#8226;](#H7ccab)</span><span class="bullet mslide28m">[&#8226;](#Hec75a)</span><span class="bullet mslide29m">[&#8226;](#H9b729)</span><span class="bullet mslide30m">[&#8226;](#Hfbb51)</span><span class="bullet mslide31m">[&#8226;](#H8cb22)</span>.fg[].bg[]
+#### [С помощью GDAL](#H28cdc)
+]
+.mainbar.right-column[
+
+Настройка отображения теневой заливкой
+
+<img src="assets/lesson04/hillshade-symbology.png" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: Hec75a
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b).fg[]
+### [QGIS визуализация](#H78cf1).fg[]
+#### [Через свойства растра](#Hc38b3) <span class="bullet bullet">[&#8226;](#Hc38b3)</span><span class="bullet bullet">[&#8226;](#H0bcd8)</span><span class="bullet bullet">[&#8226;](#H7ccab)</span><span class="bullet bullet-active">[&#8226;](#Hec75a)</span><span class="bullet mslide29m">[&#8226;](#H9b729)</span><span class="bullet mslide30m">[&#8226;](#Hfbb51)</span><span class="bullet mslide31m">[&#8226;](#H8cb22)</span>.fg[].bg[]
+#### [С помощью GDAL](#H28cdc)
+]
+.mainbar.right-column[
+
+Отображение теневой заливкой
+
+<img src="assets/lesson04/hillshade-output.png" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H9b729
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b).fg[]
+### [QGIS визуализация](#H78cf1).fg[]
+#### [Через свойства растра](#Hc38b3) <span class="bullet bullet">[&#8226;](#Hc38b3)</span><span class="bullet bullet">[&#8226;](#H0bcd8)</span><span class="bullet bullet">[&#8226;](#H7ccab)</span><span class="bullet bullet">[&#8226;](#Hec75a)</span><span class="bullet bullet-active">[&#8226;](#H9b729)</span><span class="bullet mslide30m">[&#8226;](#Hfbb51)</span><span class="bullet mslide31m">[&#8226;](#H8cb22)</span>.fg[].bg[]
+#### [С помощью GDAL](#H28cdc)
+]
+.mainbar.right-column[
+
+3D отображение
+
+<img src="assets/lesson04/map3D.png" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: Hfbb51
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b).fg[]
+### [QGIS визуализация](#H78cf1).fg[]
+#### [Через свойства растра](#Hc38b3) <span class="bullet bullet">[&#8226;](#Hc38b3)</span><span class="bullet bullet">[&#8226;](#H0bcd8)</span><span class="bullet bullet">[&#8226;](#H7ccab)</span><span class="bullet bullet">[&#8226;](#Hec75a)</span><span class="bullet bullet">[&#8226;](#H9b729)</span><span class="bullet bullet-active">[&#8226;](#Hfbb51)</span><span class="bullet mslide31m">[&#8226;](#H8cb22)</span>.fg[].bg[]
+#### [С помощью GDAL](#H28cdc)
+]
+.mainbar.right-column[
+
+Настройка контурного отображения
+
+<img src="assets/lesson04/contour-symbology.png" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H8cb22
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b).fg[]
+### [QGIS визуализация](#H78cf1).fg[]
+#### [Через свойства растра](#Hc38b3) <span class="bullet bullet">[&#8226;](#Hc38b3)</span><span class="bullet bullet">[&#8226;](#H0bcd8)</span><span class="bullet bullet">[&#8226;](#H7ccab)</span><span class="bullet bullet">[&#8226;](#Hec75a)</span><span class="bullet bullet">[&#8226;](#H9b729)</span><span class="bullet bullet">[&#8226;](#Hfbb51)</span><span class="bullet bullet-active">[&#8226;](#H8cb22)</span>.fg[].bg[]
+#### [С помощью GDAL](#H28cdc)
+]
+.mainbar.right-column[
+
+Контурное отображение
+
+<img src="assets/lesson04/contour-output.png" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H28cdc
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b).fg[]
+### [QGIS визуализация](#H78cf1).fg[]
+#### [Через свойства растра](#Hc38b3)
+#### [С помощью GDAL](#H28cdc) <span class="bullet bullet-active">[&#8226;](#H28cdc)</span><span class="bullet mslide33m">[&#8226;](#H62bc4)</span><span class="bullet mslide34m">[&#8226;](#Hfcd8d)</span><span class="bullet mslide35m">[&#8226;](#H8bdfe)</span>.fg[].bg[]
+]
+.mainbar.right-column[
+
+Настройка GDAL модуля `gdal_contour`
+
+<img src="assets/lesson04/gdal-contour-setting.png" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H62bc4
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b).fg[]
+### [QGIS визуализация](#H78cf1).fg[]
+#### [Через свойства растра](#Hc38b3)
+#### [С помощью GDAL](#H28cdc) <span class="bullet bullet">[&#8226;](#H28cdc)</span><span class="bullet bullet-active">[&#8226;](#H62bc4)</span><span class="bullet mslide34m">[&#8226;](#Hfcd8d)</span><span class="bullet mslide35m">[&#8226;](#H8bdfe)</span>.fg[].bg[]
+]
+.mainbar.right-column[
+
+Контур после GDAL модуля `gdal_contour`
+
+<img src="assets/lesson04/gdal-contour-output.png" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: Hfcd8d
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b).fg[]
+### [QGIS визуализация](#H78cf1).fg[]
+#### [Через свойства растра](#Hc38b3)
+#### [С помощью GDAL](#H28cdc) <span class="bullet bullet">[&#8226;](#H28cdc)</span><span class="bullet bullet">[&#8226;](#H62bc4)</span><span class="bullet bullet-active">[&#8226;](#Hfcd8d)</span><span class="bullet mslide35m">[&#8226;](#H8bdfe)</span>.fg[].bg[]
+]
+.mainbar.right-column[
+
+Настройка GDAL модуля `gdaldem`
+
+<img src="assets/lesson04/gdaldem-setting.png" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H8bdfe
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b).fg[]
+### [QGIS визуализация](#H78cf1).fg[]
+#### [Через свойства растра](#Hc38b3)
+#### [С помощью GDAL](#H28cdc) <span class="bullet bullet">[&#8226;](#H28cdc)</span><span class="bullet bullet">[&#8226;](#H62bc4)</span><span class="bullet bullet">[&#8226;](#Hfcd8d)</span><span class="bullet bullet-active">[&#8226;](#H8bdfe)</span>.fg[].bg[]
+]
+.mainbar.right-column[
+
+Растр после GDAL модуля `gdaldem`
+
+<img src="assets/lesson04/gdaldem-output.png" width="1330" height="568" style="display: block; margin: auto;" />
+
+
+]
+---
+
+name: H12d6b
+
+.sidebar.left-column[
+## [Для картоосновы](#H82899)
+## [Для визуализации](#H7932e)
+## [Для проектов](#H90dce)
+## [Геокодирование](#H8b616)
+## [ЦМР](#H8e03b)
+]
+.mainbar.right-column[
+
+
+
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": false,
+"ratio": "29:18",
+"navigation": {
+"scroll": true,
+"click": false,
+"touch": true
+},
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+  </body>
+</html>
