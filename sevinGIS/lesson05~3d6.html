@@ -3,7 +3,7 @@
   <head>
     <title>ГИС 05</title>
     <meta charset="utf-8" />
-    <script src="https://nplatonov.github.io/site_libs/header-attrs-2.25/header-attrs.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/header-attrs-2.26/header-attrs.js"></script>
     <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
     <link href="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -80,7 +80,7 @@ name: H32169
 .where[]
 
 
-.when[ .updated[Обновлено: 2024-03-13 21:26]]
+.when[ .updated[Обновлено: 2024-03-24 12:37]]
 
 
 
@@ -183,7 +183,7 @@ name: H1d46d
 
 Установить или обновить R, например, [отсюда](https://cran.rstudio.org/).
 
-По состоянию на 13 марта 2024 г. актуальная версия 4.3.3. Нативные пайпы с версии 4.1. Пакеты не обновляются для старых версий R.
+По состоянию на 24 марта 2024 г. актуальная версия 4.3.3. Нативные пайпы с версии 4.1. Пакеты не обновляются для старых версий R.
 
 При переходе с версии 3.6 на версию 4.0 пришлось переустановить все пакеты (библиотеки, модули).
 
@@ -601,7 +601,7 @@ a2
 ```
 
 ```
-## Wednesday  Thursday    Friday  Saturday    Sunday    Monday   Tuesday 
+##    Sunday    Monday   Tuesday Wednesday  Thursday    Friday  Saturday 
 ##         1         2         3         4         5         6         7
 ```
 
@@ -611,7 +611,7 @@ str(a2)
 
 ```
 ##  Named int [1:7] 1 2 3 4 5 6 7
-##  - attr(*, "names")= chr [1:7] "Wednesday" "Thursday" "Friday" "Saturday" ...
+##  - attr(*, "names")= chr [1:7] "Sunday" "Monday" "Tuesday" "Wednesday" ...
 ```
 
 
@@ -649,7 +649,7 @@ str(a2+0L)
 
 ```
 ##  Named int [1:7] 1 2 3 4 5 6 7
-##  - attr(*, "names")= chr [1:7] "Wednesday" "Thursday" "Friday" "Saturday" ...
+##  - attr(*, "names")= chr [1:7] "Sunday" "Monday" "Tuesday" "Wednesday" ...
 ```
 
 ```r
@@ -658,7 +658,7 @@ str(a2+0)
 
 ```
 ##  Named num [1:7] 1 2 3 4 5 6 7
-##  - attr(*, "names")= chr [1:7] "Wednesday" "Thursday" "Friday" "Saturday" ...
+##  - attr(*, "names")= chr [1:7] "Sunday" "Monday" "Tuesday" "Wednesday" ...
 ```
 
 ```r
@@ -739,8 +739,8 @@ str(a3)
 ```
 
 ```
-## [1] "Wednesday" "Thursday"  "Friday"    "Saturday"  "Sunday"    "Monday"   
-## [7] "Tuesday"
+## [1] "Sunday"    "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"   
+## [7] "Saturday"
 ```
 
 ```r
@@ -756,7 +756,7 @@ str(a4)
 ```
 
 ```
-##  chr [1:7] "Wednesday" "Thursday" "Friday" "Saturday" "Sunday" "Monday" ...
+##  chr [1:7] "Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" ...
 ```
 
 
@@ -799,7 +799,7 @@ name: Hef704
 ## [1] 1 3 4 5 6 7
 ## 
 ## $char
-## [1] "Wednesday" "Friday"    "Saturday"  "Sunday"    "Monday"    "Tuesday"
+## [1] "Sunday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday"
 ```
 
 ```r
@@ -809,7 +809,7 @@ str(a5)
 ```
 ## List of 2
 ##  $ num : int [1:6] 1 3 4 5 6 7
-##  $ char: chr [1:6] "Wednesday" "Friday" "Saturday" "Sunday" ...
+##  $ char: chr [1:6] "Sunday" "Tuesday" "Wednesday" "Thursday" ...
 ```
 
 ```r
@@ -873,12 +873,12 @@ name: dataframe
 
 ```
 ##   num      char
-## 1   1 Wednesday
-## 2   3    Friday
-## 3   4  Saturday
-## 4   5    Sunday
-## 5   6    Monday
-## 6   7   Tuesday
+## 1   1    Sunday
+## 2   3   Tuesday
+## 3   4 Wednesday
+## 4   5  Thursday
+## 5   6    Friday
+## 6   7  Saturday
 ```
 
 ```r
@@ -888,7 +888,7 @@ str(a6)
 ```
 ## 'data.frame':	6 obs. of  2 variables:
 ##  $ num : int  1 3 4 5 6 7
-##  $ char: chr  "Wednesday" "Friday" "Saturday" "Sunday" ...
+##  $ char: chr  "Sunday" "Tuesday" "Wednesday" "Thursday" ...
 ```
 
 ```r
@@ -1147,8 +1147,8 @@ name: H31d77
 ```
 
 ```
-## [1] Thursday  Wednesday Friday    Sunday    Saturday  Tuesday   Monday   
-## Levels: Wednesday Thursday Friday Saturday Sunday Monday Tuesday
+## [1] Monday    Sunday    Tuesday   Thursday  Wednesday Saturday  Friday   
+## Levels: Sunday Monday Tuesday Wednesday Thursday Friday Saturday
 ```
 
 ```r
@@ -1156,7 +1156,7 @@ str(a9)
 ```
 
 ```
-##  Factor w/ 7 levels "Wednesday","Thursday",..: 2 1 3 5 4 7 6
+##  Factor w/ 7 levels "Sunday","Monday",..: 2 1 3 5 4 7 6
 ```
 
 ```r
@@ -1172,8 +1172,8 @@ class(a9)
 ```
 
 ```
-## [1] Saturday  Sunday    Tuesday   Wednesday Friday    Monday    Thursday 
-## 7 Levels: Wednesday < Thursday < Friday < Saturday < Sunday < ... < Tuesday
+## [1] Wednesday Thursday  Saturday  Sunday    Tuesday   Friday    Monday   
+## 7 Levels: Sunday < Monday < Tuesday < Wednesday < Thursday < ... < Saturday
 ```
 
 ```r
@@ -1181,7 +1181,7 @@ str(a10)
 ```
 
 ```
-##  Ord.factor w/ 7 levels "Wednesday"<"Thursday"<..: 4 5 7 1 3 6 2
+##  Ord.factor w/ 7 levels "Sunday"<"Monday"<..: 4 5 7 1 3 6 2
 ```
 
 ```r
@@ -1225,12 +1225,12 @@ a6
 
 ```
 ##   num      char
-## 1   1 Wednesday
-## 2   3    Friday
-## 3   4  Saturday
-## 4   5    Sunday
-## 5   6    Monday
-## 6   7   Tuesday
+## 1   1    Sunday
+## 2   3   Tuesday
+## 3   4 Wednesday
+## 4   5  Thursday
+## 5   6    Friday
+## 6   7  Saturday
 ```
 
 Выбрать отдельные строки
@@ -1241,9 +1241,9 @@ a6[5:6,]
 ```
 
 ```
-##   num    char
-## 5   6  Monday
-## 6   7 Tuesday
+##   num     char
+## 5   6   Friday
+## 6   7 Saturday
 ```
 
 Выбрать отдельные столбцы
@@ -1254,7 +1254,7 @@ a6[,2]
 ```
 
 ```
-## [1] "Wednesday" "Friday"    "Saturday"  "Sunday"    "Monday"    "Tuesday"
+## [1] "Sunday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday"
 ```
 
 ```r
@@ -1262,7 +1262,7 @@ a6[[2]]
 ```
 
 ```
-## [1] "Wednesday" "Friday"    "Saturday"  "Sunday"    "Monday"    "Tuesday"
+## [1] "Sunday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday"
 ```
 
 Использовать фунцию `subset()`
@@ -1274,9 +1274,8 @@ subset(a6,char %in% c("Hrus Hrus","Monday","Tuesday","Wednesday"))
 
 ```
 ##   num      char
-## 1   1 Wednesday
-## 5   6    Monday
-## 6   7   Tuesday
+## 2   3   Tuesday
+## 3   4 Wednesday
 ```
 
 ]
@@ -1830,288 +1829,6 @@ name: Haa827
 ursa::session_grid(NULL)
 ursa::glance(shpname,coast=FALSE,field="(NAME|SID79)",blank="white"
             ,legend=list(list(1,"left"),list(2,"left")),dpi=88)
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/ca_nrc_ntv2_0.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_conus.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_alaska.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/ca_nrc_NA27SCRS.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/ca_nrc_ABCSRSV4.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/ca_nrc_SK27-98.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_ethpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_wthpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_FL.tif: Could not
-## resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_emhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_WO.tif: Could not
-## resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_mihpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_cnhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_nvhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_mnhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_nmhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_azhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_nyhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_cshpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_mohpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_okhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_WI.tif: Could not
-## resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_cohpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_wmhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_wyhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_nbhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_uthpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_vahpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_ilhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_sdhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_lahpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_gahpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_kshpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_kyhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_ndhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_iahpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_mshpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_alhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_arhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_wvhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_mehpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_ohhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_nehpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_TN.tif: Could not
-## resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_inhpgn.tif: Could
-## not resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_MD.tif: Could not
-## resolve host: cdn.proj.org
-```
-
-```
-## Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :
-## GDAL Error 1: PROJ: Cannot open https://cdn.proj.org/us_noaa_njhpgn.tif: Could
-## not resolve host: cdn.proj.org
 ```
 
 <img src="assets/lesson05//ursa05_scotBNG.png" width="1330" height="566" bound style="display: block; margin: auto;" />
@@ -4397,7 +4114,7 @@ m@map
 ```
 <div class="figure">
 <div class="framed" style="height:588px; width=100%">
-<iframe src="assets/lesson05/widget_mapview-remark_16b2a3625c7356c4ab9ee2534ac46916.html" width="100%" height="588" class="ursa-widgetize"></iframe>
+<iframe src="assets/lesson05/widget_mapview-remark_0d693e734c28196c9fbcb3baeb68729d.html" width="100%" height="588" class="ursa-widgetize"></iframe>
 </div>
 </div>
 
@@ -4499,7 +4216,7 @@ m
 ```
 <div class="figure">
 <div class="framed" style="height:588px; width=100%">
-<iframe src="assets/lesson05/widget_leafletwidget-widgetize_b83b3ea1028de184cf3c4f2ab319624a.html" width="100%" height="588" class="ursa-widgetize"></iframe>
+<iframe src="assets/lesson05/widget_leafletwidget-widgetize_1f0f2a7fbfe4544669d639c7e62b1f9d.html" width="100%" height="588" class="ursa-widgetize"></iframe>
 </div>
 </div>
 
@@ -4541,7 +4258,7 @@ tmap_leaflet(tm)
 ```
 <div class="figure">
 <div class="framed" style="height:564px; width=100%">
-<iframe src="assets/lesson05/widget_tmap-view-remark_1a63ac09674d1e61108268436c27cdb6.html" width="100%" height="564" class="ursa-widgetize"></iframe>
+<iframe src="assets/lesson05/widget_tmap-view-remark_fc1c523051da38dcb451e4298c428b12.html" width="100%" height="564" class="ursa-widgetize"></iframe>
 </div>
 </div>
 
@@ -4732,697 +4449,6 @@ name: H1f6aa
 try(ursa::glance(fileout1,style="CartoDB",las=1,size=480,dpi=192))
 ```
 
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/15/19411/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/15/19411/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/15/19411/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/15/19411/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/15/19411/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/15/19411/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/15/19411/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/15/19411/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/15/19410/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/15/19410/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/15/19410/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/15/19410/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/15/19409/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/15/19409/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/15/19409/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/15/19409/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/15/19411/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/15/19411/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/15/19411/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/15/19411/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/15/19411/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/15/19411/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/15/19411/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/15/19411/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/15/19410/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/15/19410/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/15/19410/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/15/19410/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/15/19409/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/15/19409/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/15/19409/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/15/19409/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/15/19409/9873.png'
-## Error in .geomap(lim, style = style, size = size, zoom = zoom, border = border,  : 
-##   all tiles are failed
-```
-
-```
-## failed to get map; change service: 'CartoDB color' -> 'mapnik color'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/15/19411/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/15/19411/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/15/19411/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/15/19411/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/15/19411/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/15/19411/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/15/19410/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/15/19410/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/15/19410/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/15/19409/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/15/19409/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/15/19409/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/15/19409/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/15/19409/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/15/19409/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/15/19411/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/15/19411/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/15/19411/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/15/19411/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/15/19411/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/15/19411/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/15/19410/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/15/19410/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/15/19410/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/15/19410/9873.png'
-## Error in .geomap(lim, style = style, size = size, zoom = zoom, border = border,  : 
-##   all tiles are failed
-```
-
-```
-## failed to get map; change service: 'mapnik color' -> 'opentopomap color'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/15/19409/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/15/19409/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/15/19409/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/15/19410/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/15/19410/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/15/19410/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/15/19411/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/15/19411/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/15/19411/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/15/19411/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/15/19411/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/15/19411/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/15/19409/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/15/19409/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/15/19409/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/15/19410/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/15/19410/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/15/19410/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/15/19411/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/15/19411/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/15/19411/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/15/19411/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/15/19411/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/15/19411/9873.png'
-## Error in .geomap(lim, style = style, size = size, zoom = zoom, border = border,  : 
-##   all tiles are failed
-```
-
-```
-## failed to get map; change service: 'opentopomap color' -> 'NA color'
-```
-
-```
-## Error in if (grepl("tiles\\.stadiamaps\\.com", src)) { : 
-##   argument is of length zero
-```
-
-```
-## failed to get map; cancel
-```
-
-```
-## [1] 33.24144 57.96931 33.25479 57.97349
-```
-
 <img src="assets/lesson05//ursa15_glancept.png" width="1330" height="568" bound style="display: block; margin: auto;" />
 
 
@@ -5500,697 +4526,6 @@ try(ursa::glance(fileout2,resetGrid=TRUE,layout=c(NA,1)
                 ,style="opentopomap",las=1,dpi=192,size=480))
 ```
 
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/6/18/24.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/6/18/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/6/18/24.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/6/18/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/6/18/24.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/6/18/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/6/16/25.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/6/16/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/6/16/25.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/6/16/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/6/16/25.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/6/16/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/6/17/24.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/6/17/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/6/17/24.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/6/17/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/6/17/24.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/6/17/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/6/17/25.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/6/17/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/6/17/25.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/6/17/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/6/17/25.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/6/17/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/6/16/24.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/6/16/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/6/16/24.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/6/16/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/6/16/24.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/6/16/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/6/18/25.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/6/18/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/6/18/25.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/6/18/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/6/18/25.png': status was 'Couldn't
-## resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/6/18/25.png'
-## Error in .geomap(lim, style = style, size = size, zoom = zoom, border = border,  : 
-##   all tiles are failed
-```
-
-```
-## failed to get map; change service: 'opentopomap color' -> 'CartoDB color'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/6/17/25.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/6/17/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/6/17/25.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/6/17/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/6/17/25.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/6/17/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/6/17/25.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/6/17/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/6/16/25.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/6/16/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/6/16/25.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/6/16/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/6/16/25.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/6/16/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/6/16/25.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/6/16/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/6/18/24.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/6/18/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/6/18/24.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/6/18/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/6/18/24.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/6/18/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/6/18/24.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/6/18/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/6/16/24.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/6/16/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/6/16/24.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/6/16/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/6/16/24.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/6/16/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/6/16/24.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/6/16/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/6/17/24.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/6/17/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/6/17/24.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/6/17/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/6/17/24.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/6/17/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/6/17/24.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/6/17/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/6/18/25.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/6/18/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/6/18/25.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/6/18/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/6/18/25.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/6/18/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/6/18/25.png': status
-## was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/6/18/25.png'
-## Error in .geomap(lim, style = style, size = size, zoom = zoom, border = border,  : 
-##   all tiles are failed
-```
-
-```
-## failed to get map; change service: 'CartoDB color' -> 'mapnik color'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/6/16/24.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/6/16/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/6/16/24.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/6/16/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/6/16/24.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/6/16/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/6/17/24.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/6/17/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/6/17/24.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/6/17/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/6/17/24.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/6/17/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/6/17/25.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/6/17/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/6/17/25.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/6/17/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/6/17/25.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/6/17/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/6/16/25.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/6/16/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/6/16/25.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/6/16/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/6/16/25.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/6/16/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/6/18/25.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/6/18/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/6/18/25.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/6/18/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/6/18/25.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/6/18/25.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/6/18/24.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/6/18/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/6/18/24.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/6/18/24.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/6/18/24.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/6/18/24.png'
-## Error in .geomap(lim, style = style, size = size, zoom = zoom, border = border,  : 
-##   all tiles are failed
-```
-
-```
-## failed to get map; change service: 'mapnik color' -> 'NA color'
-```
-
-```
-## Error in if (grepl("tiles\\.stadiamaps\\.com", src)) { : 
-##   argument is of length zero
-```
-
-```
-## failed to get map; cancel
-```
-
-```
-## [1] -84.32808  33.87478 -75.45272  36.60362
-```
-
 <img src="assets/lesson05//ursa17_glancescot.png" width="1330" height="568" bound style="display: block; margin: auto;" />
 
 
@@ -6265,477 +4600,6 @@ try(ursa::glance(fileout3,resetGrid=TRUE
                 ,style="CartoDB",las=1,dpi=192,size=480))
 ```
 
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/15/19410/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/15/19410/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/15/19410/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/15/19410/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/15/19409/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/15/19409/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/15/19409/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/15/19409/9874.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/15/19410/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/15/19410/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/15/19410/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/15/19410/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.basemaps.cartocdn.com/light_all/15/19409/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.basemaps.cartocdn.com/light_all/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.basemaps.cartocdn.com/light_all/15/19409/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.basemaps.cartocdn.com/light_all/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.basemaps.cartocdn.com/light_all/15/19409/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.basemaps.cartocdn.com/light_all/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://d.basemaps.cartocdn.com/light_all/15/19409/9873.png':
-## status was 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://d.basemaps.cartocdn.com/light_all/15/19409/9873.png'
-## Error in .geomap(lim, style = style, size = size, zoom = zoom, border = border,  : 
-##   all tiles are failed
-```
-
-```
-## failed to get map; change service: 'CartoDB color' -> 'mapnik color'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/15/19409/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/15/19409/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/15/19409/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/15/19410/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/15/19410/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/15/19410/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/15/19409/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/15/19409/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/15/19409/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://c.tile.openstreetmap.org/15/19410/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://c.tile.openstreetmap.org/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://a.tile.openstreetmap.org/15/19410/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://a.tile.openstreetmap.org/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'https://b.tile.openstreetmap.org/15/19410/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'https://b.tile.openstreetmap.org/15/19410/9874.png'
-## Error in .geomap(lim, style = style, size = size, zoom = zoom, border = border,  : 
-##   all tiles are failed
-```
-
-```
-## failed to get map; change service: 'mapnik color' -> 'opentopomap color'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/15/19410/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/15/19410/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/15/19410/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/15/19410/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/15/19409/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/15/19409/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/15/19409/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/15/19409/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/15/19409/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/15/19409/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/15/19409/9874.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/15/19409/9874.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://b.tile.opentopomap.org/15/19410/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://b.tile.opentopomap.org/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://a.tile.opentopomap.org/15/19410/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://a.tile.opentopomap.org/15/19410/9873.png'
-```
-
-```
-## Warning in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile
-## = dst, : URL 'http://c.tile.opentopomap.org/15/19410/9873.png': status was
-## 'Couldn't resolve host name'
-```
-
-```
-## Error in download.file(url = URLencode(iconv(src[i], to = "UTF-8")), destfile = dst,  : 
-##   cannot open URL 'http://c.tile.opentopomap.org/15/19410/9873.png'
-## Error in .geomap(lim, style = style, size = size, zoom = zoom, border = border,  : 
-##   all tiles are failed
-```
-
-```
-## failed to get map; change service: 'opentopomap color' -> 'NA color'
-```
-
-```
-## Error in if (grepl("tiles\\.stadiamaps\\.com", src)) { : 
-##   argument is of length zero
-```
-
-```
-## failed to get map; cancel
-```
-
-```
-## [1] 33.24203 57.96962 33.25420 57.97318
-```
-
 <img src="assets/lesson05//ursa19_glancetrack.png" width="1330" height="568" bound style="display: block; margin: auto;" />
 
 
@@ -6808,7 +4672,7 @@ name: H5e0c2
 sfile <- "lesson05.R"
 rfile <- "lesson05-reproduced.R"
 {
-   if (file.exists(sfile))
+   if (file.exists(rfile))
       file.copy(sfile,rfile,overwrite=TRUE,copy.date=TRUE)
    else
       download.file(file.path("https://nplatonov.github.io/sevinGIS",sfile)
@@ -6890,7 +4754,7 @@ sessionInfo()
 ```
 
 ```
-## R version 4.3.3 Patched (2024-02-29 r86056 ucrt)
+## R version 4.3.3 Patched (2024-02-29 r86162 ucrt)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 19045)
 ## 
@@ -6914,28 +4778,28 @@ sessionInfo()
 ## [1] leaflet_2.2.1 tmap_3.3-4    ggplot2_3.5.0
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] tidyselect_1.2.0        viridisLite_0.4.2       dplyr_1.1.4            
+##  [1] tidyselect_1.2.1        viridisLite_0.4.2       dplyr_1.1.4            
 ##  [4] farver_2.1.1            fastmap_1.1.1           xaringan_0.29          
 ##  [7] mapview_2.11.2          promises_1.2.1          XML_3.99-0.16.1        
-## [10] digest_0.6.34           mime_0.12               lifecycle_1.0.4        
+## [10] digest_0.6.35           mime_0.12               lifecycle_1.0.4        
 ## [13] sf_1.0-15               gdalUtilities_1.2.5     ellipsis_0.3.2         
 ## [16] plutil_0.9-7321         terra_1.7-71            magrittr_2.0.3         
-## [19] compiler_4.3.3          rlang_1.1.3             sass_0.4.8             
+## [19] compiler_4.3.3          rlang_1.1.3             sass_0.4.9             
 ## [22] tools_4.3.3             leafpop_0.1.0           utf8_1.2.4             
 ## [25] yaml_2.3.8              knitr_1.45              brew_1.0-10            
 ## [28] labeling_0.4.3          htmlwidgets_1.6.4       sp_2.1-3               
 ## [31] classInt_0.4-10         RColorBrewer_1.1-3      abind_1.4-5            
 ## [34] KernSmooth_2.23-22      withr_3.0.0             leafsync_0.1.0         
-## [37] grid_4.3.3              stats4_4.3.3            ursa_3.11.0-1081       
+## [37] grid_4.3.3              stats4_4.3.3            ursa_3.11.0-1082       
 ## [40] fansi_1.0.6             mapedit_0.6.0           xtable_1.8-4           
 ## [43] e1071_1.7-14            leafem_0.2.3            colorspace_2.1-0       
 ## [46] scales_1.3.0            dichromat_2.0-0.1       cli_3.6.2              
-## [49] rmarkdown_2.25          generics_0.1.3          tmaptools_3.1-1        
+## [49] rmarkdown_2.26          generics_0.1.3          tmaptools_3.1-1        
 ## [52] readxl_1.4.3            DBI_1.2.2               cachem_1.0.8           
 ## [55] proxy_0.4-27            stars_0.6-4             parallel_4.3.3         
 ## [58] cellranger_1.1.0        s2_1.1.6                base64enc_0.1-3        
 ## [61] vctrs_0.6.5             jsonlite_1.8.8          geojsonsf_2.0.3        
-## [64] systemfonts_1.0.5       crosstalk_1.2.1         jquerylib_0.1.4        
+## [64] systemfonts_1.0.6       crosstalk_1.2.1         jquerylib_0.1.4        
 ## [67] units_0.8-5             rgdal_1.6-7             glue_1.7.0             
 ## [70] lwgeom_0.2-14           codetools_0.2-19        leaflet.providers_2.0.0
 ## [73] xaringanExtra_0.7.0     gtable_0.3.4            later_1.3.2            

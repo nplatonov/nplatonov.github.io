@@ -37,6 +37,8 @@
    --darkreader-text--sidebar-select: var(--inverse-accent);
    --darkreader-text--sidebar-color: var(--inverse-accent);
    --darkreader-border--sidebar-border: var(--inverse-accent);
+   --lorem: url(https://loremflickr.com/1060/682/arctic,ice/all);
+   --lorem-attr: url(https://loremflickr.com/assets/img/logo.small.alt.png) '   LoremFlickr';
 }
 .remark-slides-area {
    background-image: linear-gradient(to right, var(--dark), var(--dark));
@@ -190,7 +192,7 @@ remark-slide-content[style*="background"] .inverse:not(.revert) h5 {
     font-size: 110%;
 }
 .notable:not(.inverse), .notable:not(.inverse) .title-slide.notable {
-  background-color: #FFFDF4 !important;
+  /* background-color: #FFFDF4 !important;*/
  /* color: #43418A;*/
   text-shadow: 4px 4px 15px var(--light);
 }
@@ -513,8 +515,7 @@ table:not([class]) td {
   /* visibility: hidden;*/
 }
 body:fullscreen .picsum.title-slide {
-   background-image: linear-gradient(#000A, #000A),
-                     url(https://picsum.photos/1060/682);
+   background-image: linear-gradient(#000A, #000A), var(--lorem);
    background-size: cover;
 }
 body:fullscreen .giphy.title-slide {
@@ -523,19 +524,17 @@ body:fullscreen .giphy.title-slide {
    background-size: cover;
 }
 .picsum:not(.title-slide):not(.inverse) {
-   background-image: linear-gradient(#FFFB, #FFFB),
-                     url(https://picsum.photos/1060/682?random=$randomNumber);
+   background-image: linear-gradient(#FFFB, #FFFB),var(--lorem);
    background-size: cover;
 
 }
 .picsum:not(.title-slide).break:not(.inverse) {
-   background-image: url(https://picsum.photos/1060/682?random=$randomNumber);
+   background-image: var(--lorem);
    background-size: cover;
 
 }
 .picsum:not(.title-slide).inverse {
-   background-image: linear-gradient(#000A, #000A),
-                     url(https://picsum.photos/1060/682?random=$randomNumber);
+   background-image: linear-gradient(#000A, #000A),var(--lorem);
    background-size: cover;
 
 }
@@ -549,12 +548,12 @@ body:fullscreen .giphy.title-slide {
 */
 .picsum:not(.title-slide):after,
 body:fullscreen .picsum.title-slide:after {
-   content: '\1F306' ' ' 'Lorem Picsum';
+   content: var(--lorem-attr);
    font-size: 50%;
    display: block;
    position: absolute;
-   bottom: 0.4em;
-   left: 0.4em;
+   bottom: 0em;
+   right: 50px;
    opacity: 0.2;
    text-shadow: 1px 0px 1px #000000F0,
                 1px 1px 1px #000000F0,
@@ -1064,12 +1063,11 @@ h1[id*=class-thankyou], .sidebar h1[id^=-zzspan], .sidebar h2[id^=-zzspan] {
    background-color: #000000f4; /* #235;*/
 }
 body:fullscreen .remark-backdrop { /* body:fullscreen */
-   background-image: linear-gradient(#000A,#000A),
-                     url(https://picsum.photos/1600/900);
+   background-image: linear-gradient(#000A,#000A), var(--lorem);
    background-size: cover;
 }
 body:fullscreen .remark-backdrop:before {
-   content: '\1F306' ' ' 'Lorem Picsum';
+  /* content: '\1F306' ' ' 'Lorem Picsum';*/
    font-size: min(2.1vh, 2.7vw);
    display: block;
    position: absolute;
@@ -1084,7 +1082,7 @@ body:fullscreen .remark-backdrop:before {
                -1px -1px 1px #000000F0,
                 1px -1px 1px #000000F0,
                 -1px 1px 1px #000000F0;
-   color: #FFFFFFF0;
+   color: #FFFFFFD0;
 }
 .remark-backdrop::after {
    display: inline;
@@ -1544,6 +1542,12 @@ table tr th:empty {
 .remark-container {
    background-color: #000;
 }
+@media screen and (max-width: 800px) {
+   .remark-container {
+      background-image: linear-gradient(#000A, #000A), var(--lorem);
+      background-size: cover;
+   }
+}
 .aside {
    display: revert;
    position: absolute;
@@ -1571,9 +1575,14 @@ table tr th:empty {
 }
 #slide-bib .footnote {
    overflow-y: auto; 
-   width: calc(100% - 3% - var(--sidebar));
    height: 656px;
    padding-right: 18px;
+}
+#slide-bib > .mainbar .footnote {
+   width: calc(100% - 3% - var(--sidebar));
+}
+#slide-bib:not(.mainbar) > .footnote {
+   margin-left: 64px;
 }
 .remark-slide-content > .top,
 .remark-slide-content > .middle,
@@ -1609,6 +1618,17 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
 .footer code {
    text-transform: none;
    font-size: 110%;
+}
+.backtoshow {
+   position: fixed;
+   top: 3px;
+   left: 1px;
+   display: block;
+   font-size: 90px;
+   opacity: 0.1;
+}
+.backtoshow:hover {
+   opacity: 0.8;
 }
 @media only screen {
    .remark-slides-area .remark-fading { z-index: 9; } 
@@ -1652,7 +1672,7 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
    #slide-bib .footnote {
       font-size: 40%;
    }
-   .dontprint, .noprint {
+   .dontprint, .noprint, .backtoshow {
       display: none;
    }
    .countdown {
