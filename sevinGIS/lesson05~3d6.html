@@ -44,7 +44,7 @@ layout: true
 ]
 
 ---
-class: metadata customtitle middle left
+class: metadata customtitle middle left giphy
 name: H32169
 <iframe width='220' height='220' class='timenow' src='https://www.timeanddate.com/worldclock/fullscreen.html?n=1440' frameborder='0' allow='encrypted-media' allowfullscreen></iframe>
 
@@ -80,7 +80,7 @@ name: H32169
 .where[]
 
 
-.when[ .updated[Обновлено: 2024-03-24 12:37]]
+.when[ .updated[Обновлено: 2024-03-28 14:19]]
 
 
 
@@ -183,7 +183,7 @@ name: H1d46d
 
 Установить или обновить R, например, [отсюда](https://cran.rstudio.org/).
 
-По состоянию на 24 марта 2024 г. актуальная версия 4.3.3. Нативные пайпы с версии 4.1. Пакеты не обновляются для старых версий R.
+По состоянию на 28 марта 2024 г. актуальная версия 4.3.3. Нативные пайпы с версии 4.1. Пакеты не обновляются для старых версий R.
 
 При переходе с версии 3.6 на версию 4.0 пришлось переустановить все пакеты (библиотеки, модули).
 
@@ -601,7 +601,7 @@ a2
 ```
 
 ```
-##    Sunday    Monday   Tuesday Wednesday  Thursday    Friday  Saturday 
+##  Thursday    Friday  Saturday    Sunday    Monday   Tuesday Wednesday 
 ##         1         2         3         4         5         6         7
 ```
 
@@ -611,7 +611,7 @@ str(a2)
 
 ```
 ##  Named int [1:7] 1 2 3 4 5 6 7
-##  - attr(*, "names")= chr [1:7] "Sunday" "Monday" "Tuesday" "Wednesday" ...
+##  - attr(*, "names")= chr [1:7] "Thursday" "Friday" "Saturday" "Sunday" ...
 ```
 
 
@@ -649,7 +649,7 @@ str(a2+0L)
 
 ```
 ##  Named int [1:7] 1 2 3 4 5 6 7
-##  - attr(*, "names")= chr [1:7] "Sunday" "Monday" "Tuesday" "Wednesday" ...
+##  - attr(*, "names")= chr [1:7] "Thursday" "Friday" "Saturday" "Sunday" ...
 ```
 
 ```r
@@ -658,7 +658,7 @@ str(a2+0)
 
 ```
 ##  Named num [1:7] 1 2 3 4 5 6 7
-##  - attr(*, "names")= chr [1:7] "Sunday" "Monday" "Tuesday" "Wednesday" ...
+##  - attr(*, "names")= chr [1:7] "Thursday" "Friday" "Saturday" "Sunday" ...
 ```
 
 ```r
@@ -739,8 +739,8 @@ str(a3)
 ```
 
 ```
-## [1] "Sunday"    "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"   
-## [7] "Saturday"
+## [1] "Thursday"  "Friday"    "Saturday"  "Sunday"    "Monday"    "Tuesday"  
+## [7] "Wednesday"
 ```
 
 ```r
@@ -756,7 +756,7 @@ str(a4)
 ```
 
 ```
-##  chr [1:7] "Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" ...
+##  chr [1:7] "Thursday" "Friday" "Saturday" "Sunday" "Monday" "Tuesday" ...
 ```
 
 
@@ -799,7 +799,7 @@ name: Hef704
 ## [1] 1 3 4 5 6 7
 ## 
 ## $char
-## [1] "Sunday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday"
+## [1] "Thursday"  "Saturday"  "Sunday"    "Monday"    "Tuesday"   "Wednesday"
 ```
 
 ```r
@@ -809,7 +809,7 @@ str(a5)
 ```
 ## List of 2
 ##  $ num : int [1:6] 1 3 4 5 6 7
-##  $ char: chr [1:6] "Sunday" "Tuesday" "Wednesday" "Thursday" ...
+##  $ char: chr [1:6] "Thursday" "Saturday" "Sunday" "Monday" ...
 ```
 
 ```r
@@ -873,12 +873,12 @@ name: dataframe
 
 ```
 ##   num      char
-## 1   1    Sunday
-## 2   3   Tuesday
-## 3   4 Wednesday
-## 4   5  Thursday
-## 5   6    Friday
-## 6   7  Saturday
+## 1   1  Thursday
+## 2   3  Saturday
+## 3   4    Sunday
+## 4   5    Monday
+## 5   6   Tuesday
+## 6   7 Wednesday
 ```
 
 ```r
@@ -888,7 +888,7 @@ str(a6)
 ```
 ## 'data.frame':	6 obs. of  2 variables:
 ##  $ num : int  1 3 4 5 6 7
-##  $ char: chr  "Sunday" "Tuesday" "Wednesday" "Thursday" ...
+##  $ char: chr  "Thursday" "Saturday" "Sunday" "Monday" ...
 ```
 
 ```r
@@ -1147,8 +1147,8 @@ name: H31d77
 ```
 
 ```
-## [1] Monday    Sunday    Tuesday   Thursday  Wednesday Saturday  Friday   
-## Levels: Sunday Monday Tuesday Wednesday Thursday Friday Saturday
+## [1] Friday    Thursday  Saturday  Monday    Sunday    Wednesday Tuesday  
+## Levels: Thursday Friday Saturday Sunday Monday Tuesday Wednesday
 ```
 
 ```r
@@ -1156,7 +1156,7 @@ str(a9)
 ```
 
 ```
-##  Factor w/ 7 levels "Sunday","Monday",..: 2 1 3 5 4 7 6
+##  Factor w/ 7 levels "Thursday","Friday",..: 2 1 3 5 4 7 6
 ```
 
 ```r
@@ -1172,8 +1172,8 @@ class(a9)
 ```
 
 ```
-## [1] Wednesday Thursday  Saturday  Sunday    Tuesday   Friday    Monday   
-## 7 Levels: Sunday < Monday < Tuesday < Wednesday < Thursday < ... < Saturday
+## [1] Sunday    Monday    Wednesday Thursday  Saturday  Tuesday   Friday   
+## 7 Levels: Thursday < Friday < Saturday < Sunday < Monday < ... < Wednesday
 ```
 
 ```r
@@ -1181,7 +1181,7 @@ str(a10)
 ```
 
 ```
-##  Ord.factor w/ 7 levels "Sunday"<"Monday"<..: 4 5 7 1 3 6 2
+##  Ord.factor w/ 7 levels "Thursday"<"Friday"<..: 4 5 7 1 3 6 2
 ```
 
 ```r
@@ -1225,12 +1225,12 @@ a6
 
 ```
 ##   num      char
-## 1   1    Sunday
-## 2   3   Tuesday
-## 3   4 Wednesday
-## 4   5  Thursday
-## 5   6    Friday
-## 6   7  Saturday
+## 1   1  Thursday
+## 2   3  Saturday
+## 3   4    Sunday
+## 4   5    Monday
+## 5   6   Tuesday
+## 6   7 Wednesday
 ```
 
 Выбрать отдельные строки
@@ -1241,9 +1241,9 @@ a6[5:6,]
 ```
 
 ```
-##   num     char
-## 5   6   Friday
-## 6   7 Saturday
+##   num      char
+## 5   6   Tuesday
+## 6   7 Wednesday
 ```
 
 Выбрать отдельные столбцы
@@ -1254,7 +1254,7 @@ a6[,2]
 ```
 
 ```
-## [1] "Sunday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday"
+## [1] "Thursday"  "Saturday"  "Sunday"    "Monday"    "Tuesday"   "Wednesday"
 ```
 
 ```r
@@ -1262,7 +1262,7 @@ a6[[2]]
 ```
 
 ```
-## [1] "Sunday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday"
+## [1] "Thursday"  "Saturday"  "Sunday"    "Monday"    "Tuesday"   "Wednesday"
 ```
 
 Использовать фунцию `subset()`
@@ -1274,8 +1274,9 @@ subset(a6,char %in% c("Hrus Hrus","Monday","Tuesday","Wednesday"))
 
 ```
 ##   num      char
-## 2   3   Tuesday
-## 3   4 Wednesday
+## 4   5    Monday
+## 5   6   Tuesday
+## 6   7 Wednesday
 ```
 
 ]
@@ -4065,7 +4066,7 @@ knitr::include_graphics(fileout4) ## try 'browseURL(fileout4)'
 
 ]
 ---
-class: break middle picsum
+class: break inverse middle picsum
 
 
 .note[
@@ -4114,7 +4115,7 @@ m@map
 ```
 <div class="figure">
 <div class="framed" style="height:588px; width=100%">
-<iframe src="assets/lesson05/widget_mapview-remark_0d693e734c28196c9fbcb3baeb68729d.html" width="100%" height="588" class="ursa-widgetize"></iframe>
+<iframe src="assets/lesson05/widget_mapview-remark_471a245cf3ee6cc5b1b64dcd7ff69eaf.html" width="100%" height="588" class="ursa-widgetize"></iframe>
 </div>
 </div>
 
@@ -4216,7 +4217,7 @@ m
 ```
 <div class="figure">
 <div class="framed" style="height:588px; width=100%">
-<iframe src="assets/lesson05/widget_leafletwidget-widgetize_1f0f2a7fbfe4544669d639c7e62b1f9d.html" width="100%" height="588" class="ursa-widgetize"></iframe>
+<iframe src="assets/lesson05/widget_leafletwidget-widgetize_1fc0167d350a3a8f1b8e4acd419a6f94.html" width="100%" height="588" class="ursa-widgetize"></iframe>
 </div>
 </div>
 
@@ -4258,7 +4259,7 @@ tmap_leaflet(tm)
 ```
 <div class="figure">
 <div class="framed" style="height:564px; width=100%">
-<iframe src="assets/lesson05/widget_tmap-view-remark_fc1c523051da38dcb451e4298c428b12.html" width="100%" height="564" class="ursa-widgetize"></iframe>
+<iframe src="assets/lesson05/widget_tmap-view-remark_dfd3585a303db4ee6e26c4e6bba955d2.html" width="100%" height="564" class="ursa-widgetize"></iframe>
 </div>
 </div>
 
@@ -4754,7 +4755,7 @@ sessionInfo()
 ```
 
 ```
-## R version 4.3.3 Patched (2024-02-29 r86162 ucrt)
+## R version 4.3.3 Patched (2024-02-29 r86113 ucrt)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 19045)
 ## 
@@ -4782,7 +4783,7 @@ sessionInfo()
 ##  [4] farver_2.1.1            fastmap_1.1.1           xaringan_0.29          
 ##  [7] mapview_2.11.2          promises_1.2.1          XML_3.99-0.16.1        
 ## [10] digest_0.6.35           mime_0.12               lifecycle_1.0.4        
-## [13] sf_1.0-15               gdalUtilities_1.2.5     ellipsis_0.3.2         
+## [13] sf_1.0-16               gdalUtilities_1.2.5     ellipsis_0.3.2         
 ## [16] plutil_0.9-7321         terra_1.7-71            magrittr_2.0.3         
 ## [19] compiler_4.3.3          rlang_1.1.3             sass_0.4.9             
 ## [22] tools_4.3.3             leafpop_0.1.0           utf8_1.2.4             
