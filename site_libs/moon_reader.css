@@ -7,11 +7,11 @@
 */
 :root {
    --light: #FFFFFFFE;
-   --dark: #00000001; /* #149 */
+   --dark: #000000FE; /* #149 */
    --accent: #038; /* maroon #A52 #248 #1D6D8C #268  #0084D7;*/
    --inverse-accent: #ee9;
    --magnifier: 1.7;
-   --pointsize: 22pt;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
+   --pointsize: 29px;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
    --sidebar: 23%;
    --sidebar-pointsize: 70%;
    --sidebar-margin: 18px;
@@ -1581,7 +1581,8 @@ table tr th:empty {
 #slide-bib > .mainbar .footnote {
    width: calc(100% - 3% - var(--sidebar));
 }
-#slide-bib:not(.mainbar) > .footnote {
+#slide-bib:not(.mainbar) > .footnote,
+#slide-fn:not(.mainbar) > .footnote {
    margin-left: 64px;
 }
 .remark-slide-content > .top,
@@ -1630,6 +1631,29 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
 .backtoshow:hover {
    opacity: 0.8;
 }
+.remark-slide-notes {
+   border-top: none;
+   position: absolute;
+   display: revert;
+   bottom: 0px;
+   top: unset;
+   color: var(--light);
+   text-shadow: 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark);
+   margin-left: 1em;
+   margin-right: 128px;
+   opacity: 0.2;
+}
+.remark-presenter-mode .remark-slide-notes {
+   display: none;
+}
+.remark-slide-notes p {
+   margin-top: 0.2em;
+   margin-bottom: 0.2em;
+}
+.remark-slide-notes:hover {
+   opacity: 0.99;
+   font-size: 200%;
+}
 @media only screen {
    .remark-slides-area .remark-fading { z-index: 9; } 
    .remark-slides-area .remark-slide-container {transition: opacity 0.4s ease-out;opacity: 0;}
@@ -1672,7 +1696,7 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
    #slide-bib .footnote {
       font-size: 40%;
    }
-   .dontprint, .noprint, .backtoshow {
+   .dontprint, .noprint, .backtoshow, .remark-slide-notes {
       display: none;
    }
    .countdown {
