@@ -14,7 +14,7 @@
 
 <title>ГИС 09</title>
 
-<script src="https://nplatonov.github.io/site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.26/header-attrs.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -68,11 +68,11 @@ div.csl-indent {
 
 
 
-<h1 class="title toc-ignore">Решения задач в QGIS</h1>
+<h1 class="title toc-ignore">Решение задач в QGIS</h1>
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 09</span> <span class="when"> <span class="updated">Обновлено: 2024-03-13 16:54</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 09</span> <span class="when"> <span class="updated">Обновлено: 2024-04-04 20:06</span></span></h4>
 
 
 <div id="TOC">
@@ -130,15 +130,21 @@ div.csl-indent {
 </ul></li>
 </ul></li>
 </ul></li>
-<li style="display: none;"><a href="#section" id="toc-section"></a></li>
 </ul>
 </div>
 
 <div id="оцифровка" class="section level2">
 <h2>Оцифровка</h2>
-<p>Задача: оценить площадь заприпайных площадей моря Лаптевых из «Атласа биологического разнообразия морей и побережий российской Арктики»<sup>*</sup> <span class="citation">(<a href="#ref-AtlasWWF"><em>Атлас биологического разнообразия морей и побережий российской <span>А</span>рктики</em>, 2011</a>)</span>, <a href="https://wwf.ru/upload/iblock/523/atlas_biol_ros_arkt_web.pdf#page=38">стр. 37</a>.</p>
+<style type="text/css">
+img.background {
+   display: none;
+}
+
+
+</style>
+<p>Задача: оценить площадь заприпайных площадей моря Лаптевых из «Атласа биологического разнообразия морей и побережий российской Арктики»<sup>*</sup> <span class="citation">(<a href="#ref-AtlasWWF"><em>Атлас биологического разнообразия морей и побережий российской <span>А</span>рктики</em>, 2011</a>)</span>, <a href="https://wsbs-msu.ru/res/DOCFOLDER120/atlas_biol_ros_arkt_web.pdf#page=38">стр. 37</a>.</p>
 <div class="footer">
-<p><sup>*</sup> «Атлас…» издан WWF России, по состоянию на 13 марта 2024 г. находящегося в реестре иностранных агентов.</p>
+<p><sup>*</sup> «Атлас…» издан WWF России, по состоянию на 04 апреля 2024 г. находящегося в реестре иностранных агентов.</p>
 </div>
 <div id="извлекаем-рисунок" class="section level3">
 <h3>Извлекаем рисунок</h3>
@@ -148,9 +154,9 @@ div.csl-indent {
 <h3>Новая система координат</h3>
 <ul>
 <li><p>Пробуем подобрать класс проекций (прямоугольная, равноугольная, равноплощадная, равнопромежуточная, …)</p></li>
-<li><p>Подбираем параметры проекции</p></li>
+<li><p>Подбираем параметры проекции (центральный меридиан!)</p></li>
 </ul>
-<p class="centered-image"><img src="assets/lesson09/Clipboard04.png" width="690" height="480" /></p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard04.png" width="690" height="450" bound /></p>
 <p>Устанавливаем систему координат проекта</p>
 <p class="centered-image"><img src="assets/lesson09/Clipboard05.png" width="690" height="580" /></p>
 </div>
@@ -207,20 +213,20 @@ div.csl-indent {
 <p class="centered-image"><img src="assets/lesson09/Clipboard20.png" width="690" height="580" /></p>
 <p>Результат можно сравнить со значениями столбчатой диаграммы</p>
 <p class="centered-image"><img src="assets/lesson09/Clipboard21.png" width="690" height="575" /></p>
-<p class="centered-image"><img src="https://i.ytimg.com/vi/_HKLxlS2sv4/maxresdefault.jpg" class="centered-image noprint" width="400" /></p>
+<p class="centered-image"><img src="https://i.ytimg.com/vi/_HKLxlS2sv4/maxresdefault.jpg" class="centered-image background noprint" width="400" /></p>
 <p><span class="onlyremark huge">Демонстрация в QGIS</span></p>
 <div class="note">
 <h2 class="toc-ignore unnumbered unlisted">
-Домашнее задание на <a href="index.html#deadline3">11 апреля 2024 г.</a>
+Домашнее задание на <a href="index.html#deadline3">25 апреля 2024 г.</a>
 </h2>
-<p>Оценить площадь каждой из обозначенных в легенде заприпайных полыней Карского моря из «Атласа биологического разнообразия морей и побережий российской Арктики»<sup>*</sup> <span class="citation">(<a href="#ref-AtlasWWF"><em>Атлас биологического разнообразия морей и побережий российской <span>А</span>рктики</em>, 2011</a>)</span>, <a href="https://wwf.ru/upload/iblock/523/atlas_biol_ros_arkt_web.pdf#page=36">стр. 35</a></p>
+<p>Оценить площадь каждой из обозначенных в легенде заприпайных полыней Карского моря из «Атласа биологического разнообразия морей и побережий российской Арктики»<sup>*</sup> <span class="citation">(<a href="#ref-AtlasWWF"><em>Атлас биологического разнообразия морей и побережий российской <span>А</span>рктики</em>, 2011</a>)</span>, <a href="https://wsbs-msu.ru/res/DOCFOLDER120/atlas_biol_ros_arkt_web.pdf#page=36&amp;zoom=40">стр. 35</a></p>
 <p>Береговую линию не оцифровывать, а вырезать по слою из набора <a href="https://www.naturalearthdata.com/">Natural Earth World GIS Data</a> 1:10m.</p>
 <!--
 [См. также здесь](index.html#Apr27)
 -->
 </div>
 <div class="footer">
-<p><sup>*</sup> «Атлас…» издан WWF России, по состоянию на 13 марта 2024 г. находящегося в реестре иностранных агентов.</p>
+<p><sup>*</sup> «Атлас…» издан WWF России, по состоянию на 04 апреля 2024 г. находящегося в реестре иностранных агентов.</p>
 </div>
 </div>
 </div>
@@ -290,7 +296,7 @@ div.csl-indent {
 <p>Удаление шума - отдельных ячеек одного класса, окруженных ячейками другого класса</p>
 <p class="centered-image"><img src="assets/lesson09/Clipboard63.png" width="689" height="560" bound /></p>
 <p class="centered-image"><img src="assets/lesson09/Clipboard64.png" width="690" height="600" bound /></p>
-<p class="centered-image"><img src="https://i.ytimg.com/vi/_HKLxlS2sv4/maxresdefault.jpg" class="centered-image noprint" width="400" /></p>
+<p class="centered-image"><img src="https://i.ytimg.com/vi/_HKLxlS2sv4/maxresdefault.jpg" class="centered-image background noprint" width="400" /></p>
 <p><span class="onlyremark huge">Демонстрация в QGIS</span></p>
 </div>
 </div>
@@ -357,21 +363,12 @@ div.csl-indent {
 <div id="оценка-качества" class="section level5">
 <h5>Оценка качества</h5>
 <p>В том числе, визуально: подложкой (ниже) или по <a href="#rgb">исходным данным</a></p>
-<p class="centered-image"><img src="assets/lesson09/Clipboard91.png" width="864" height="576" bound /></p>
-<p class="centered-image"><img src="https://i.ytimg.com/vi/_HKLxlS2sv4/maxresdefault.jpg" class="centered-image noprint" width="400" /></p>
-<p><span class="onlyremark huge">Демонстрация в QGIS</span></p>
-</div>
-</div>
-</div>
-</div>
-<div id="section" class="section level1 additional">
-<h1 class="additional"></h1>
-</div>
-<div id="refs" class="section level1 unnumbered toc-ignore unlisted">
-<h1 class="unnumbered toc-ignore unlisted"></h1>
 <div id="refs" class="references csl-bib-body" entry-spacing="1">
 <div id="ref-AtlasWWF" data-number="1" class="csl-entry">
-Атлас биологического разнообразия морей и побережий российской <span>А</span>рктики. 2011. WWF России. М. В.А. Спиридонов, Е.Д. Краснова, М.В. Гаврило, and Н.Г. Николаева (<em>Eds</em>). 64 с. Авторский коллектив: Беликов С. Е., Гаврило М. В., Горин С. Л., Иванов А. Н., Краснова Е. Д., Краснов Ю. В., Кулангиев А. О., Лашманов Ф. И., Макаров А. В., Николаева Н. Г., Попов А. В., Сергиенко Л. А., Спиридонов В. А., Шредерс М. А. ISBN: 978-5-9902786-1-5. <a href="https://wwf.ru/upload/iblock/523/atlas_biol_ros_arkt_web.pdf">https://wwf.ru/upload/iblock/523/atlas_biol_ros_arkt_web.pdf</a> (дата обращения 30 октября 2019 г.).
+Атлас биологического разнообразия морей и побережий российской <span>А</span>рктики. 2011. WWF России. М. В.А. Спиридонов, Е.Д. Краснова, М.В. Гаврило, and Н.Г. Николаева (<em>Eds</em>). 64 с. Авторский коллектив: Беликов С. Е., Гаврило М. В., Горин С. Л., Иванов А. Н., Краснова Е. Д., Краснов Ю. В., Кулангиев А. О., Лашманов Ф. И., Макаров А. В., Николаева Н. Г., Попов А. В., Сергиенко Л. А., Спиридонов В. А., Шредерс М. А. ISBN: 978-5-9902786-1-5. <a href="https://wsbs-msu.ru/res/DOCFOLDER120/atlas_biol_ros_arkt_web.pdf">https://wsbs-msu.ru/res/DOCFOLDER120/atlas_biol_ros_arkt_web.pdf</a> (дата обращения 03 апреля 2024 г.).
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
