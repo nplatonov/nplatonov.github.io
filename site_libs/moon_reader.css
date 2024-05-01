@@ -139,7 +139,8 @@ remark-slide-content[style*="background"] .inverse:not(.revert) h5 {
    color: #ff4;
    text-shadow: 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark);
 }
-.sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
+.sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5,
+.mainbar > .sidebar {
   font-family: "Roboto Condensed", "z Fira Sans" ,"z Segoe UI", serif !important;
 }
 .sidebar code {
@@ -1655,6 +1656,17 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
 .remark-slide-notes:hover {
    opacity: 0.99;
    font-size: 200%;
+}
+.sidebar:not(.left-column) {
+   display: block;
+   position: absolute;
+   left: 8px;
+   bottom: 8px;
+   font-size: calc(var(--sidebar-pointsize) * 1.15);
+}
+.sidebar + .mainbar:not(.right-column) {
+   float: right;
+   width: calc(101% - var(--sidebar) - var(--sidebar-margin));
 }
 @media only screen {
    .remark-slides-area .remark-fading { z-index: 9; } 
