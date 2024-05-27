@@ -8,7 +8,7 @@
 :root {
    --light: #FFFFFFFE;
    --dark: #000000FE; /* #149 */
-   --accent: #038; /* maroon #A52 #248 #1D6D8C #268  #0084D7;*/
+   --accent: #650; /* #038 maroon #A52 #248 #1D6D8C #268  #0084D7;*/
    --inverse-accent: #ee9;
    --magnifier: 1.7;
    --pointsize: 29px;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
@@ -25,15 +25,17 @@
    --sidebar-select-inverse: var(--inverse-accent);
    --sidebar-border: var(--accent); /* transparent; */
    --sidebar-border-inverse: var(--inverse-accent);
+   --sidebar-left: 0em; /* 0.15em */
    --bg: #37A;
    --inverse-bg: #000; /*#222E3A #3B0863 #2C3E50*/
    --blur: 0.2em;
    --gap: 0.8em;
    --sidebar-right-margin: 8px; /* 0px 8px */
-   --darkreader-text--accent: #ee9;
+  /* --darkreader-text--accent: #ee9;*/
    --darkreader-border--accent: var(--inverse-accent);
    --darkreader-bg--sidebar-background: var(--sidebar-background-inverse); /*#123;*/
    --darkreader-bg--sidebar-strip: var(--inverse-bg);
+   --darkreader-bg--light: var(--inverse-bg);
    --darkreader-text--sidebar-select: var(--inverse-accent);
    --darkreader-text--sidebar-color: var(--inverse-accent);
    --darkreader-border--sidebar-border: var(--inverse-accent);
@@ -45,7 +47,7 @@
 }
 .remark-slide-scaler {
    box-shadow: none;
-   top: 0px !important;
+  /* top: 0px !important;*/
   /* left: unset !important;*/
   /* right: 0px !important;*/
 }
@@ -147,8 +149,11 @@ remark-slide-content[style*="background"] .inverse:not(.revert) h5 {
    color: unset;
 }
 .remark-slide-content {
-  background-color: #FFFFFF;
+  background-color: var(--light);
   font-size: var(--pointsize);
+}
+html[data-darkreader-mode="dynamic"] .remark-slide-content {
+  background-color: var(--darkreader-selection-text);
 }
 .remark-slide-content h1,
 .remark-slide-content h2,
@@ -210,7 +215,7 @@ remark-slide-content[style*="background"] .inverse:not(.revert) h5 {
 .break,
 .notable.inverse {
   background-color: var(--inverse-bg);
-  color: #ffffff;
+  color: #dfdfdf;
  /* text-shadow: 0 0 20px var(--dark);*/
 }
 .remark-slide-content[style*="zbackground"].inverse:not(.notable),
@@ -869,7 +874,7 @@ ul {
 .sidebar.left-column h1 { /* .sidebar.left-column h3:last-child */
    border-top: 1px solid transparent;
    border-bottom: 1px solid transparent;
-  /* border-left: 0.15em solid transparent;*/
+   border-left: var(--sidebar-left) solid transparent;
   /* border-right: 1px solid var(--accent);*/
    margin: 5px -8px -5px -16px;
    padding: 4px 16px 6px calc(16px - var(--sidebar-right-margin));
@@ -885,7 +890,9 @@ ul {
 .sidebar.left-column h4 {padding-left: 20px ;}
 .sidebar.left-column h5 {padding-left: 25px ;}
 */
-.sidebar.left-column h2 {padding-left: 7% ;}
+.sidebar.left-column h2 {
+  padding-left: 7% ;
+}
 .sidebar.left-column h3 {padding-left: 10% ;}
 .sidebar.left-column h4 {padding-left: 13% ;}
 .sidebar.left-column h5 {padding-left: 16% ;}
@@ -897,9 +904,22 @@ ul {
    opacity: 0.5;
    color: var(--sidebar-color); /* indigo */
 }
+html[data-darkreader-scheme="dark"] .sidebar h1 a,
+html[data-darkreader-scheme="dark"] .sidebar h2 a,
+html[data-darkreader-scheme="dark"] .sidebar h3 a,
+html[data-darkreader-scheme="dark"] .sidebar h4 a,
+html[data-darkreader-scheme="dark"] .sidebar h5 a,
+html[data-darkreader-scheme="dark"] .sidebar h1,
+html[data-darkreader-scheme="dark"] .sidebar h2,
+html[data-darkreader-scheme="dark"] .sidebar h3,
+html[data-darkreader-scheme="dark"] .sidebar h4,
+html[data-darkreader-scheme="dark"] .sidebar h5 {
+   opacity: 0.7;
+}
+
 .sidebar h1[id*=fg] a, .sidebar h2[id*=fg] a, .sidebar h3[id*=fg] a, .sidebar h4[id*=fg] a, .sidebar h5[id*=fg] a,
 .sidebar h1[id*=fg], .sidebar h2[id*=fg], .sidebar h3[id*=fg], .sidebar h4[id*=fg], .sidebar h5[id*=fg] {
-   opacity: 0.999;
+   opacity: 0.999 !important;
    color: var(--sidebar-color); /* indigo */
 }
 .inverse:not(.revert) .sidebar h1[id*=fg] a,
@@ -967,8 +987,8 @@ ul {
 .sidebar h3[id*=bg][id*=fg],
 .sidebar h4[id*=bg][id*=fg],
 .sidebar h5[id*=bg][id*=fg] {
-   border-image: linear-gradient(to right,var(--sidebar-border),var(--sidebar-border),transparent) 1 0%; */
-   border-left-color: transparent; /* var(--accent); transparent; #5386;*/
+ /* border-image: linear-gradient(to right,var(--sidebar-border),var(--sidebar-border),transparent) 1 0%; */
+   border-left-color: var(--sidebar-select); /* transparent; var(--accent); #5386;*/
    border-bottom: 1px solid var(--sidebar-border);
    border-top: 1px solid var(--sidebar-border);
   /* border-right-color: transparent;*/
