@@ -1,6 +1,6 @@
 :root {   
-  --hue: 210;
-  --accent: hsl(calc(var(--hue) - 180),40%,40%);
+  --hue: 60;
+  --accent: hsl(calc(var(--hue) + 60),40%,40%);
   --sidebar-accent: hsl(var(--hue),100%,90%);
   --sidebar-border: transparent;
 }
@@ -61,8 +61,8 @@
    border-left: 6px solid var(--dark);
    background-color: var(--sidebar-accent);
 }
-.sidebar h1 + h1, .sidebar h2 + h1, .sidebar h3 + h1 {
-   margin-top: 2em !important;
+.sidebar h1 + h1, .sidebar h2 + h1, .sidebar h3 + h1, .sidebar h4 + h1 {
+   margin-top: 1.5em !important;
 }
 .customtitle .shorttitle {
    visibility: hidden;
@@ -99,4 +99,7 @@
    display: block;
    font-size: 92%;
    padding-left: 44px;
+}
+img.torussian:before {
+   content: 'Lorem ipsum'; /*url(assets/pb-strategy2010-ru.png);*/
 }
