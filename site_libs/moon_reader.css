@@ -453,19 +453,19 @@ h2 .header{
   color: red;
 }
 .header {
-  font-size: 60%;
-  display: block;
-  text-align: right;
-  color: #43418A;
-  font-style: italic;
-  border-style: solid;
-  border: 0;
-  border-bottom: 1px solid #eee;
-  padding-top: 0px;
-  padding-bottom: 12px;
-  margin-top: 0px;
-  margin-bottom: -14px;
-  line-height: 0;
+   font-size: 80%;
+   display: block;
+   text-align: right;
+   color: var(--accent);
+  /* font-style: italic;*/
+   border-style: solid;
+   border: 0;
+   border-bottom: 1px solid #eee;
+   padding-top: 0px;
+   padding-bottom: 12px;
+   margin-top: 6px;
+   margin-bottom: -8px;
+   line-height: 0;
 }
 .right-column {
    padding-top: initial;
@@ -1280,8 +1280,8 @@ code.remark-code:not(.hljs) {
 }
 */
 .remark-slide-scaler {
-   box-shadow: none !important;
   /*
+   box-shadow: none !important;
    -moz-box-shadow: 0 0 30px #000;
    -webkit-box-shadow: 0 0 30px #000;
    box-shadow: 0 0 30px #000;
@@ -1787,6 +1787,16 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
      /* right: calc(50% - 1.2em - (14 / 9) * 50vh);*/
    }
 }
+@media only screen and (max-width: 800px) {
+   .remark-slide-scaler {
+      box-shadow: 0 0 300px #000 !important;
+     /*
+      border-top: 3px dotted #DDD;
+      border-bottom: 3px dotted #DDD;
+     */
+   }
+}
+
 @page { margin: 0; }
 @media print {
    p > img {
