@@ -1,9 +1,6 @@
 :root {   
-  --sidebar: 24%; 
-  --hue: 60;
-  --accent: hsl(calc(var(--hue) + 60),40%,40%);
-  --sidebar-accent: hsl(var(--hue),100%,90%);
-  --sidebar-border: transparent;
+  --zsidebar-accent: hsl(var(--hue),100%,90%);
+  --zsidebar-border: transparent;
 }
 
 /*
@@ -24,7 +21,9 @@
 }
 */
 .remark-slide h1, .remark-slide h2, .remark-slide h3, .remark-slide h4, .remark-slide h5  {
-   color: var(--accent); /* mainbar */
+  /* color: var(--accent); */
+   text-transform: uppercase;
+   letter-spacing: -0.5px;
 }
 .remark-slide .customtitle .mainbar p {
    font-size: 62%;
@@ -45,10 +44,10 @@
 */	
 .remark-slide .metadata .title {
    font-size: 230%;
-   margin-top: 0.2em;
-   margin-bottom: 0.4em;
-   padding-top: 0.3em;
-   padding-bottom: 0.3em;
+   margin-top: 0.3em;
+   margin-bottom: 0.3em;
+   padding-top: 0.4em;
+   padding-bottom: 0.6em;
 }
 .remark-slide .metadata .subtitle {
    margin-top: -1.16em;
@@ -77,17 +76,31 @@
 .photo.platonov:before {
    content: url(https://www.iucn-pbsg.org/wp-content/uploads/2024/02/PBSG-Platonov.jpg);
 }
+.photo.sevin2:before {
+   content: url(https://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico);
+}
 .photo.sevin:before {
    content: url(https://sev-in.ru/sites/default/files/LogoSevin.svg);
 }
+.photo.david:before {
+   content: url(https://www.iucn-pbsg.org/wp-content/uploads/2023/08/dcd_photo_2022c.jpg);
+}
+.photo.stirling:before {
+   content: url(https://i.ytimg.com/vi/FtGOFZeJR2k/maxresdefault.jpg);
+   filter: grayscale(100%);
+   border: 100px solid black;
+   background-color: red;
+   transition: background-color 1000ms linear;
+}
 .photo:before, .author img {
    position: fixed;
-   bottom: 0px;
-   right: -215px;
+   bottom: 40px;
+   left: 580px;
    visibility: hidden;
-  /* width: 300px;*/
+   width: auto;
    height: 300px;
    display: flex;
+   border: 100px solid transparent;
 }
 .photo:hover:before, .author:hover img {
    visibility: visible;
@@ -100,18 +113,24 @@
    width: 240px;
 }
 .approved {
-   display: block;
-   font-size: 92%;
-   padding-left: 44px;
+   display: inline-block;
+  /* font-size: 92%;*/
+  /* padding-left: 44px; */
+}
+.approved:before {
+   display: inline-block;
+   content: '';
+   padding-left: 36px;
+   margin-right: 0.3em;
+   margin-bottom: 0.16em;
+   padding-top: 0px;
+   padding-bottom: 0.16em;
+   border: 3px solid color-mix(in srgb, var(--dark), transparent 85%);
+   border-radius: 10px;
+   background-color: var(--sidebar-accent);
 }
 img.torussian:before {
    content: 'Lorem ipsum'; /*url(assets/pb-strategy2010-ru.png);*/
-}
-.hovertext {
-   border-bottom: none;
-}
-.hovertext:after {
-   content: "…";
 }
 .generalmap {
    margin-left: 60px;
@@ -132,8 +151,11 @@ img.torussian:before {
 .white:hover {
    opacity: 1;
 }
-.sidebar {
-  text-transform: uppercase;
+.customtitle .author {
+   margin-top: 0px;
+}
+.customtitle .institute {
+   margin-bottom: 0.6em;
 }
 @media print {
    #slide-polarmap-skip {

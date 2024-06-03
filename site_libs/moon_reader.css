@@ -6,9 +6,11 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 */
 :root {
-   --light: #FFFFFFFE;
-   --dark: #000000FE; /* #149 */
-   --accent: #640; /* #038 maroon #A52 #248 #1D6D8C #268  #0084D7;*/
+   --hue: 60;
+   --light: #FFFFFF;
+   --dark: #000000; /* #149 */
+   --semi-dark: color-mix(in srgb, var(--dark), transparent 85%);
+   --accent: hsl(calc(var(--hue) + 60),40%,40%); /* #640; #038 maroon #A52 #248 #1D6D8C #268  #0084D7;*/
    --inverse-accent: #ee9;
    --magnifier: 1.7;
    --pointsize: 29px;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
@@ -455,20 +457,19 @@ h2 .header{
 }
 */
 .header {
-   font-size: 80%;
+   font-size: calc(var(--pointsize) * 1);
    display: block;
-   text-align: right;
-   color: var(--accent);
+   text-align: left;
   /* font-style: italic;*/
-   border-style: solid;
-   border: 0;
-  /* border-bottom: 1px solid #eee;*/
    padding-top: 0px;
-   padding-bottom: 6px;
-   margin-top: 6px;
+   padding-bottom: 0px;
+   margin-top: 0px;
    margin-bottom: 0px;
-   line-height: 0;
+   line-height: 0.9;
    text-transform: uppercase;
+   letter-spacing: -0.5px;
+   text-decoration: underline 5px #7f7f7f4f;
+   color: var(--sidebar-select);
 }
 .right-column {
    padding-top: initial;
@@ -480,8 +481,8 @@ h2 .header{
    width: calc(101% - var(--sidebar) - var(--sidebar-margin));
 }
 a, a:visited, a > code {
-   color: #358;
-   text-decoration: none;
+   color: var(--dark);
+   text-decoration: underline dotted color-mix(in srgb, var(--dark), transparent 60%);
 }
 a:hover {
   /* color: initial;*/
@@ -1716,14 +1717,20 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
    float: right;
    width: calc(101% - var(--sidebar) - var(--sidebar-margin));
 }
- .hovertext:before {
+.hovertext {
+   border-bottom: none;
+}
+.hovertext:after {
+   content: "…";
+}
+.hovertext:before {
    left: calc(var(--sidebar) + var(--gap) / 2);
    top: 94%;
    position: fixed;
-   background-color: var(--accent);
+   background-color: color-mix(in srgb, var(--dark), transparent 25%);
 }
 [id*=bg][id*=fg] .hovertext:before {
-   width: unset;
+   width: calc(100% - var(--sidebar) - var(--gap));
    left: calc(var(--sidebar) + var(--gap) / 2);
    top: 0.2em;
    font-size: 130%;
