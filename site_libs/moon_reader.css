@@ -110,7 +110,7 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
    color: #538;
 }
 */
-.condensed {
+.condensed, .header {
    font-family: "Roboto Condensed", serif;
 }
 .regular {
@@ -196,19 +196,19 @@ html[data-darkreader-mode="dynamic"] .remark-slide-content {
 }
 
 .remark-slide-content h1 {
-    font-size: 190%;
+   font-size: 190%;
 }
 .remark-slide-content h2 {
-    font-size: 160%;
+   font-size: 160%;
 }
 .remark-slide-content h3 {
-    font-size: 135%;
+   font-size: 135%;
 }
 .remark-slide-content h4 {
-    font-size: 115%;
+   font-size: 115%;
 }
 .remark-slide-content h5 {
-    font-size: 110%;
+   font-size: 110%;
 }
 .notable:not(.inverse):not(#slide-bib),
 .notable:not(.inverse) .title-slide.notable {
@@ -463,9 +463,9 @@ h2 .header{
   /* font-style: italic;*/
    padding-top: 0px;
    padding-bottom: 0px;
-   margin-top: 0px;
-   margin-bottom: 0px;
-   line-height: 0.9;
+   margin-top: -3px;
+   margin-bottom: -3px;
+   line-height: 1.05;
    text-transform: uppercase;
    letter-spacing: -0.5px;
    text-decoration: underline 5px #7f7f7f4f;
@@ -480,9 +480,16 @@ h2 .header{
 .sidebar + .right-column {
    width: calc(101% - var(--sidebar) - var(--sidebar-margin));
 }
-a, a:visited, a > code {
+.mainbar a,
+.mainbar a:visited,
+.mainbar a > code,
+.notable a,
+.backtoshow a {
    color: var(--dark);
-   text-decoration: underline dotted color-mix(in srgb, var(--dark), transparent 60%);
+  /* text-decoration: underline dotted color-mix(in srgb, var(--dark), transparent 60%);*/
+  /* text-decoration: underline 1px dotted var(--dark);*/
+   text-decoration: none;
+   border-bottom: 2px dotted color-mix(in srgb, var(--dark), transparent 60%);
 }
 a:hover {
   /* color: initial;*/
@@ -493,7 +500,16 @@ a:hover {
    color: var(--inverse-accent);
 }
 a:hover {
-   opacity: 0.8;
+   opacity: 0.6;
+  /* color: var(--accent);*/
+   text-decoration: none;
+}
+.mainbar a:hover {
+   text-decoration: none;
+   border-bottom: 0px solid transparent;
+}
+.banner a {
+   text-decoration: none;
 }
 .remark-slide table {
    margin: auto auto 0.3em auto; 
@@ -1635,7 +1651,7 @@ table tr th:empty {
 }
 #slide-bib:not(.mainbar) > .footnote,
 #slide-fn:not(.mainbar) > .footnote {
-   margin-left: 64px;
+   margin-left: 48px;
 }
 .remark-slide-content > .top,
 .remark-slide-content > .middle,
@@ -1677,8 +1693,12 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
    top: 3px;
    left: 1px;
    display: block;
-   font-size: 90px;
+   font-size: 64px;
    opacity: 0.1;
+}
+.backtoshow a {
+   text-decoration: none;
+   border-bottom: none;
 }
 .backtoshow:hover {
    opacity: 0.8;
@@ -1725,16 +1745,17 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
 }
 .hovertext:before {
    left: calc(var(--sidebar) + var(--gap) / 2);
-   top: 94%;
+   bottom: 0.8em;
    position: fixed;
    background-color: color-mix(in srgb, var(--dark), transparent 25%);
 }
 [id*=bg][id*=fg] .hovertext:before {
-   width: calc(100% - var(--sidebar) - var(--gap));
    left: calc(var(--sidebar) + var(--gap) / 2);
    top: 0.2em;
    font-size: 130%;
-   position: fixed;
+   width: calc(100% - var(--sidebar) - var(--gap) - 1.4em) !important;
+   margin: auto !important;
+   padding: 0.8em;
 }
 /* filling background  -- begin */
 /*
