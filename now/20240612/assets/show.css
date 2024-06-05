@@ -1,8 +1,13 @@
 :root {   
   --zsidebar-accent: hsl(var(--hue),100%,90%);
   --zsidebar-border: transparent;
+  --magnifier: 1.63;
+  /* --pointsize: 11pt; */
 }
-
+.a {
+   text-decoration: none;
+   border-bottom: 2px dotted;
+}
 /*
    --sidebar-color: var(--dark);
 .left-column.sidebar {
@@ -62,45 +67,69 @@
    background-color: var(--sidebar-accent);
 }
 .sidebar h1 + h1, .sidebar h2 + h1, .sidebar h3 + h1, .sidebar h4 + h1 {
-   margin-top: 1em !important;
+   margin-top: 1.0em !important;
 }
+.sidebar h1 + h1[id*=research][id*=fg], .sidebar h1[id*=research][id*=fg] ~ h1 {
+   margin-top: 0.5em !important;
+}
+.sidebar h4 + h3 + h1 + h1, h1 + h1[id*=___fg] {
+   margin-top: 0.1em !important;
+}
+.sidebar h1:not([id*=fg]) + h1:not([id*=fg]) {
+   margin-top: 1.5em !important;
+}
+
 .customtitle .shorttitle {
    visibility: hidden;
 }
 .photo.kochnev:before {
-   content: url(https://www.iucn-pbsg.org/wp-content/uploads/2023/08/Kochnev.jpg);
+   background-image: url(https://www.iucn-pbsg.org/wp-content/uploads/2023/08/Kochnev.jpg);
 }
 .photo.belikov:before {
-   content: url(https://www.iucn-pbsg.org/wp-content/uploads/2023/08/belikov.jpg);
+   background-image: url(https://www.iucn-pbsg.org/wp-content/uploads/2023/08/belikov.jpg);
 }
 .photo.platonov:before {
-   content: url(https://www.iucn-pbsg.org/wp-content/uploads/2024/02/PBSG-Platonov.jpg);
-}
-.photo.sevin2:before {
-   content: url(https://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico);
+   background-image: url(https://www.iucn-pbsg.org/wp-content/uploads/2024/02/PBSG-Platonov.jpg);
 }
 .photo.sevin:before {
-   content: url(https://sev-in.ru/sites/default/files/LogoSevin.svg);
+   background-image: url(https://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico);
+}
+.photo.sevin2:before {
+   background-image: url(https://sev-in.ru/sites/default/files/LogoSevin.svg);
 }
 .photo.david:before {
-   content: url(https://www.iucn-pbsg.org/wp-content/uploads/2023/08/dcd_photo_2022c.jpg);
+   background-image: url(https://www.iucn-pbsg.org/wp-content/uploads/2023/08/dcd_photo_2022c.jpg);
 }
 .photo.stirling:before {
-   content: url(https://i.ytimg.com/vi/FtGOFZeJR2k/maxresdefault.jpg);
+   width: 533px;
+   background-image: url(https://i.ytimg.com/vi/FtGOFZeJR2k/maxresdefault.jpg);
    filter: grayscale(100%);
-   border: 100px solid black;
-   background-color: red;
-   transition: background-color 1000ms linear;
+   border: 110px solid #000B;
+}
+html[data-darkreader-mode="dynamic"] .customtitle:after {
+   content: '';
+   filter: grayscale(100%);
+   background-image: url(https://i.ytimg.com/vi/FtGOFZeJR2k/maxresdefault.jpg);
+   background-size: auto 300px;
+   background-repeat: no-repeat;
+   position: absolute;
+   bottom: 0.4em;
+   right: 0.2em;
+   width: 533px;
+   height: 300px;
+   border: 195px solid #FFFE;
 }
 .photo:before, .author img {
-   position: fixed;
-   bottom: 40px;
-   left: 580px;
+   content: '';
+   background-size: auto 300px;
+   background-repeat: no-repeat;
+   position: absolute;
+   bottom: 140px;
+   right: 20px;
    visibility: hidden;
-   width: auto;
+   width: 300px;
    height: 300px;
-   display: flex;
-   border: 100px solid transparent;
+  /* border: 100px solid transparent;*/
 }
 .photo:hover:before, .author:hover img {
    visibility: visible;
@@ -133,10 +162,19 @@ img.torussian:before {
    content: 'Lorem ipsum'; /*url(assets/pb-strategy2010-ru.png);*/
 }
 .generalmap {
-   margin-left: 60px;
+   margin-left: 40px;
 }
 #slide-polarmap > .leaflet {
    display: none;
+}
+[id*=aerial] .logo { /* #slide- */
+   width: 50px;
+}
+[id*=occurrence] .logo { /* #slide- */
+   width: 50px;
+}
+[id*=maternal] .logo { /* #slide- */
+   width: 80px;
 }
 .html-widget.grViz {
    width: unset !important;
@@ -157,6 +195,58 @@ img.torussian:before {
 .customtitle .institute {
    margin-bottom: 0.6em;
 }
+a[href*=polarmap] {
+   border: none;
+}
+#slide-polarmap .logo {
+   width: 40px;
+}
+.selected {
+  font-size: 100%;
+}
+div.approved {
+   border: 1px solid red;
+}
+.clarify > ul {
+   list-style-type: none;
+}
+.qclarify:before,
+.clarify > ul > li:only-child:before,
+.clarify > ul > li > *:before {
+   content: '';
+   display: inline-block;
+   position: relative;
+   left: -12px;
+   border: 3px solid red;
+   top: 0px;
+   margin-bottom: 0.16em;
+   padding-top: 0px;
+   padding-bottom: 0.16em;
+   border: 3px solid color-mix(in srgb, var(--dark), transparent 85%);
+   border-radius: 10px;
+   padding-left: 0px;
+   margin-right: -0.16em;
+   margin-left: -0.9em;
+   padding-right: 26px;
+}
+.sidebar h1 a img, .sidebar h2 a img, .sidebar h3 a img, .sidebar h4 a img {
+   height: calc(var(--pointsize) * 0.6);
+}
+.remark-slide-container {
+   background-image: url(https://c.tenor.com/qgAmZtOcTX4AAAAC/tenor.gif);
+   background-position: top -3.2em left -3em;
+   background-size: 12.4em auto;
+   background-repeat: no-repeat;
+   opacity: 0.2;
+}
+.abacktoshow {
+   visibility: hidden;
+}
+.abacktoshow:after {
+   visibility: visible;
+   content: url(https://media.tenor.com/TVl_MozR-HMAAAAi/mee-happy.gif);
+}
+
 @media print {
    #slide-polarmap-skip {
       display: none;

@@ -31,6 +31,7 @@
    --sidebar-left-color: inherit; 
    --sidebar-accent: transparent;
    --bg: #37A;
+   --inverse-color: #dfdfdf;
    --inverse-bg: #000; /*#222E3A #3B0863 #2C3E50*/
    --blur: 0.2em;
    --gap: 0.8em;
@@ -228,7 +229,7 @@ html[data-darkreader-mode="dynamic"] .remark-slide-content {
 .break,
 .notable.inverse {
   background-color: var(--inverse-bg);
-  color: #dfdfdf;
+  color: var(--inverse-color);
  /* text-shadow: 0 0 20px var(--dark);*/
 }
 .remark-slide-content[style*="zbackground"].inverse:not(.notable),
@@ -458,17 +459,18 @@ h2 .header{
 */
 .header {
    font-size: calc(var(--pointsize) * 1);
-   display: block;
+   display: table;
    text-align: left;
   /* font-style: italic;*/
    padding-top: 0px;
    padding-bottom: 0px;
    margin-top: -3px;
-   margin-bottom: -3px;
+   margin-bottom: -9px;
    line-height: 1.05;
    text-transform: uppercase;
    letter-spacing: -0.5px;
-   text-decoration: underline 5px #7f7f7f4f;
+  /* text-decoration: underline 5px #7f7f7f4f;*/
+   border-bottom: solid 5px #7f7f7f4f;
    color: var(--sidebar-select);
 }
 .right-column {
@@ -1741,7 +1743,10 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
    border-bottom: none;
 }
 .hovertext:after {
-   content: "…";
+   content: ' 🛈'; /* … ▷ 🛈 */
+   vertical-align: super;
+   font-size: 50%;
+   opacity: 0.3;
 }
 .hovertext:before {
    left: calc(var(--sidebar) + var(--gap) / 2);
