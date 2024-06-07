@@ -3,6 +3,7 @@
   --zsidebar-border: transparent;
   --magnifier: 1.63;
   /* --pointsize: 11pt; */
+  --sidebar: 24%;
 }
 .a {
    text-decoration: none;
@@ -105,7 +106,7 @@
    background-image: url(https://www.iucn-pbsg.org/wp-content/uploads/2023/08/dcd_photo_2022c.jpg);
 }
 .photo.stirling:before {
-   width: 533px;
+   width: 532.5px;
    background-image: url(https://i.ytimg.com/vi/FtGOFZeJR2k/maxresdefault.jpg);
    filter: grayscale(100%);
    border: 182px solid #000C;
@@ -188,6 +189,12 @@ img.torussian:before {
 [id*=microbiology] .logo { /* #slide- */
    width: 0px;
 }
+[id*=trap] .logo { /* #slide- */
+   width: 35px;
+}
+[id*=ground] .logo { /* #slide- */
+   width: 0px;
+}
 .html-widget.grViz {
    width: unset !important;
 }
@@ -247,7 +254,7 @@ div.approved {
 .sidebar h1 a img, .sidebar h2 a img, .sidebar h3 a img, .sidebar h4 a img {
    height: calc(var(--pointsize) * 0.6);
 }
-.remark-slide-container {
+.skip-remark-slide-container {
    background-image: url(https://c.tenor.com/qgAmZtOcTX4AAAAC/tenor.gif);
    background-position: top -3.2em left -3em;
    background-size: 12.4em auto;
@@ -268,7 +275,9 @@ div.approved {
    visibility: visible;
    content: url(https://media.tenor.com/TVl_MozR-HMAAAAi/mee-happy.gif);
 }
-
+.sidebar {
+   overflow-y: hidden !important;
+}
 @media print {
    #slide-polarmap-skip {
       display: none;
