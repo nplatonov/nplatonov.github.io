@@ -69,7 +69,8 @@
 .sidebar h1 + h1, .sidebar h2 + h1, .sidebar h3 + h1, .sidebar h4 + h1 {
    margin-top: 1.0em !important;
 }
-.sidebar h1 + h1[id*=research][id*=fg], .sidebar h1[id*=research][id*=fg] ~ h1 {
+.sidebar h1 + h1[id*=research][id*=fg],
+.sidebar h1[id*=research][id*=fg] ~ h1 {
    margin-top: 0.1em !important;
 }
 .sidebar h4 + h3 + h1 + h1, h1 + h1[id*=___fg] {
@@ -78,7 +79,10 @@
 .sidebar h1:not([id*=fg]) + h1:not([id*=fg]) {
    margin-top: 1.5em !important;
 }
-
+.sidebar h1 + h1[id*=research][id*=fg][id*=bg],
+.sidebar h2 + .sidebar h2[id*=result] + h1[id*=activity] {
+   margin-top: 1.5em !important;
+}
 .customtitle .shorttitle {
    visibility: hidden;
 }
@@ -169,6 +173,9 @@ img.torussian:before {
 #slide-polarmap > .leaflet {
    display: none;
 }
+#slide-polarmap .logo {
+   width: 40px;
+}
 [id*=aerial] .logo { /* #slide- */
    width: 0px;
 }
@@ -208,9 +215,6 @@ a[href*=polarmap]:after {
 }
 .section a[href*=polarmap] {
    display: none;
-}
-#slide-polarmap .logo {
-   width: 40px;
 }
 .selected {
   font-size: 100%;
