@@ -30,6 +30,7 @@
    --sidebar-left-size: 5px; /* 0.15em */
    --sidebar-left-color: inherit; 
    --sidebar-accent: transparent;
+   --header-accent: #afafaf;
    --bg: #37A;
    --inverse-color: #dfdfdf;
    --inverse-bg: #000; /*#222E3A #3B0863 #2C3E50*/
@@ -464,14 +465,21 @@ h2 .header{
   /* font-style: italic;*/
    padding-top: 0px;
    padding-bottom: 0px;
-   margin-top: -3px;
-   margin-bottom: -3px;
+   margin-top: 0px;
+   margin-bottom: -6px;
    line-height: 1.05;
    text-transform: uppercase;
    letter-spacing: -0.5px;
   /* text-decoration: underline 5px #7f7f7f4f;*/
-   border-bottom: solid 5px #7f7f7f4f;
+  /* border-bottom: solid 5px #7f7f7f4f;*/
    color: var(--sidebar-select);
+}
+.header p {
+   border-bottom: solid 5px var(--header-accent); /*var(--accent);*/
+  /* border-bottom: 5px solid red;*/
+}
+.header:not(:first-child) {
+   margin-top: 2em;	
 }
 .right-column {
    padding-top: initial;
