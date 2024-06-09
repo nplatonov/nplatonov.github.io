@@ -86,7 +86,10 @@
    margin-top: 1.5em !important;
 }
 .customtitle .shorttitle {
-   visibility: hidden;
+   opacity: 0.05;
+}
+.customtitle .shorttitle:hover {
+   opacity: 0.4;
 }
 .photo.kochnev:before {
    background-image: url(https://www.iucn-pbsg.org/wp-content/uploads/2023/08/Kochnev.jpg);
@@ -107,12 +110,13 @@
    background-image: url(https://www.iucn-pbsg.org/wp-content/uploads/2023/08/dcd_photo_2022c.jpg);
 }
 .photo.stirling:before {
-   width: 532.5px;
+   width: 532.7px;
    background-image: url(https://i.ytimg.com/vi/FtGOFZeJR2k/maxresdefault.jpg);
    filter: grayscale(100%);
-   border: 182px solid #000C;
+   border: 200px solid #000C;
    border-left-width: 488px;
-   bottom: 0.8em;
+   bottom: 0em;
+   right: 0em;
 }
 html[data-darkreader-mode="zzzdynamic"] .customtitle:after {
    content: '';
@@ -186,7 +190,8 @@ img.torussian:before {
 [id*=maternal] .logo { /* #slide- */
    width: 0px;
 }
-[id*=microbiology] .logo { /* #slide- */
+[id*=microbiology] .logo,
+[id*=toxicology] .logo {
    width: 0px;
 }
 [id*=trap] .logo { /* #slide- */
@@ -231,13 +236,20 @@ a[href*=polarmap]:after {
 div.approved {
    border: 1px solid red;
 }
+.clarify {
+   box-shadow: 0 0 11px 0 #bbb; /* #eee */
+   margin-top: 0.2em;
+   margin-bottom: 0.2em;
+   padding: 0.1em 0.2em 0.1em 0.2em;
+   break-inside: avoid;
+}
 .clarify > ul {
    list-style-type: none;
 }
 .qclarify:before,
 .clarify > ul > li:only-child:before,
 .clarify > ul > li > *:before,
- clarify > ul > li:before {
+.qclarify > ul > li:before {
    content: '';
    display: inline-block;
    position: relative;
@@ -251,9 +263,10 @@ div.approved {
    border-radius: 10px;
    padding-left: 0px;
    margin-right: -0.16em;
-   margin-left: -0.9em;
+   margin-left: -1.05em;
    padding-right: 26px;
 }
+
 .sidebar h1 a img, .sidebar h2 a img, .sidebar h3 a img, .sidebar h4 a img {
    height: calc(var(--pointsize) * 0.6);
 }
@@ -292,6 +305,16 @@ div.approved {
 }
 .remark-slide-content .herald-insets .ursa-widgetize {
    height: 210px;	
+}
+.remark-slide-scaler-badidea {
+   display: contents !important;
+}
+.header .sub, .sidebar .sub {
+   font-size: 80%;
+   padding-left: 0.015em;
+}
+.qqqheader p::first-letter {
+  font-size: 120% !important;
 }
 @media print {
    #slide-polarmap-skip {

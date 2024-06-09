@@ -465,7 +465,7 @@ h2 .header{
   /* font-style: italic;*/
    padding-top: 0px;
    padding-bottom: 0px;
-   margin-top: 0px;
+   margin-top: -3px;
    margin-bottom: -6px;
    line-height: 1.05;
    text-transform: uppercase;
@@ -474,12 +474,28 @@ h2 .header{
   /* border-bottom: solid 5px #7f7f7f4f;*/
    color: var(--sidebar-select);
 }
-.header p {
+div.header p {
    border-bottom: solid 5px var(--header-accent); /*var(--accent);*/
   /* border-bottom: 5px solid red;*/
 }
 .header:not(:first-child) {
-   margin-top: 2em;	
+   margin-top: 1.2em;	
+}
+p .header {
+   margin-top: 0.8em;	
+   margin-bottom: unset;
+}
+h1 span.header,
+h2 span.header,
+h3 span.header,
+h4 span.header,
+h5 span.header {
+   border-bottom: solid 5px var(--header-accent); /*var(--accent);*/
+} 
+/* .sidebar .sub, */
+.header .sub {
+   font-size: 80%;
+   padding-left: 0.015em;
 }
 .right-column {
    padding-top: initial;
@@ -738,7 +754,7 @@ iframe.ursa-widgetize {
 .column img {
   /* position: fixed;*/
 }
-img[width="1330"]:not([image]):not(.image):not([bound]):not(.bound):not([aspect]):not(.aspect) {
+img[width="1330"]:not([expand]):not(.expand):not([bound]):not(.bound):not([aspect]):not(.aspect) {
    width: unset;
   /* max-width: max(600px, 100%);*/
   /* height: auto;*/
@@ -754,7 +770,7 @@ img[width$="%"] {
    flex: 0 0 auto;
    object-fit: scale-down;
 }
-img[image], img[bound], img.bound {
+img[bound], img.bound {
    max-width: 100%;
   /* height: auto;*/
    max-height: 100%; /*calc(100% / var(--magnifier));*/
@@ -763,6 +779,13 @@ img[image], img[bound], img.bound {
    flex: 0 0 auto;
    object-fit: scale-down;
   /* scale: calc(0.6 * var(--magnifier));*/
+}
+img[expand], img.expand {
+   max-width: 100%;
+   max-height: 100%;
+   width: auto;
+   flex: 0 0 auto;
+  /* object-fit: scale-down;*/
 }
 img[aspect],img.aspect {
   /* max-height: 100%;*/
@@ -1421,7 +1444,7 @@ code.remark-code:not(.hljs) {
 }
 */
 .inline img, img.inline {
-   height: 1.2em !important; 
+   height: 1em !important; 
    display: inline-block;
    margin-bottom: -0.15em !important;
    box-shadow: none;
