@@ -1,5 +1,5 @@
 :root {
-  --header-accent: var(--accent);
+  --header-accent: #0003;
   --zsidebar-accent: hsl(var(--hue),100%,90%);
   --zsidebar-border: transparent;
   --magnifier: 1.63;
@@ -202,6 +202,20 @@ img.torussian:before {
 [id*=survey] .logo { /* #slide- */
    width: 0px;
 }
+[id*=maternal] .sidebar,
+[id*=occurrence] .sidebar,
+[id*=distribution] .sidebar,
+[id*=hotspot] .sidebar {
+   font-size: calc(var(--sidebar-pointsize) * 0.96);
+}
+[id*=ground] .sidebar,
+[id*=aerial] .sidebar,
+[id*=survey] .sidebar { /* #slide- */
+   font-size: calc(var(--sidebar-pointsize) * 0.92);
+}
+
+
+[] .sidebar
 .html-widget.grViz {
    width: unset !important;
 }
