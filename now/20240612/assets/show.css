@@ -1,5 +1,5 @@
 :root {
-  --header-accent: #0003;
+  --header-accent: #ED8;
   --zsidebar-accent: hsl(var(--hue),100%,90%);
   --zsidebar-border: transparent;
   --magnifier: 1.63;
@@ -194,7 +194,10 @@ img.torussian:before {
 [id*=toxicology] .logo {
    width: 0px;
 }
-[id*=trap] .logo { /* #slide- */
+[id*=schmidt] .logo {
+   width: 60px;
+}
+[id*=trap] .logo {
    width: 35px;
 }
 [id*=ground] .logo,
@@ -206,16 +209,13 @@ img.torussian:before {
 [id*=occurrence] .sidebar,
 [id*=distribution] .sidebar,
 [id*=hotspot] .sidebar {
-   font-size: calc(var(--sidebar-pointsize) * 0.96);
+   font-size: calc(var(--sidebar-pointsize) * 0.93);
 }
 [id*=ground] .sidebar,
 [id*=aerial] .sidebar,
 [id*=survey] .sidebar { /* #slide- */
-   font-size: calc(var(--sidebar-pointsize) * 0.92);
+   font-size: calc(var(--sidebar-pointsize) * 0.89);
 }
-
-
-[] .sidebar
 .html-widget.grViz {
    width: unset !important;
 }
@@ -329,6 +329,9 @@ div.approved {
 }
 .qqqheader p::first-letter {
   font-size: 120% !important;
+}
+.immunity li:not(:first-of-type)  {
+   margin-top: 28vh;
 }
 @media print {
    #slide-polarmap-skip {
