@@ -1750,13 +1750,13 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
 .remark-slide-notes {
    border-top: none;
    position: absolute;
-   display: revert;
+   display: block ruby;
    bottom: 0px;
    top: unset;
-   color: var(--light);
-   text-shadow: 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark);
-   margin-left: 1em;
-   margin-right: 128px;
+   color: transparent; /*var(--light);*/
+  /* text-shadow: 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark);*/
+   margin-left: 0em;
+   margin-right: 0em;
    opacity: 0.2;
 }
 .remark-presenter-mode .remark-slide-notes {
@@ -1765,10 +1765,31 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
 .remark-slide-notes p {
    margin-top: 0.2em;
    margin-bottom: 0.2em;
+   margin-left: 0.4em;
 }
 .remark-slide-notes:hover {
-   opacity: 0.99;
-   font-size: 200%;
+   display: block;
+   opacity: 0.8;
+   background-color: var(--dark) !important;
+   font-size: calc(var(--pointsize) * 0.9) !important;
+   color: var(--light) !important;
+   top: 0px;
+}
+.remark-slide-notes p:hover {
+  /* font-size: 22em !important;*/
+  /* margin: 0.4em;*/
+}
+.remark-slide-notes:before {
+   color: var(--dark) !important;
+   opacity: 0.2 !important;
+   content: '🛈';
+   display: block !important;
+   position: fixed;
+   top: 1px;
+   right: 0.4em;
+}
+.remark-slide-notes:hover:before {
+   display: none !important;
 }
 .sidebar:not(.left-column) {
    display: block;
@@ -1786,7 +1807,8 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
 }
 .hovertext:after {
    content: ' 🛈'; /* … ▷ 🛈 */
-   vertical-align: super;
+   vertical-align: top;
+   margin-left: -0.2em;
    font-size: 50%;
    opacity: 0.3;
 }
