@@ -191,18 +191,34 @@ img.torussian:before {
 [id*=hotspot] .logo { /* #slide- */
    width: 0px;
 }
-[id*=maternal] .logo { /* #slide- */
+[id*=maternal] .logo,
+[id*=environ] .logo { /* #slide- */
    width: 0px;
 }
 [id*=microbiology] .logo,
+[id*=immunity] .logo,
 [id*=toxicology] .logo {
    width: 0px;
 }
-[id*=schmidt] .logo {
+[id*=schmidt] .logo,
+[id*=instrument] .logo {
    width: 60px;
 }
-[id*=trap] .logo {
+[id*=foobar35] .logo {
    width: 35px;
+}
+[id*=participant] .sidebar h3,
+[id*=participant] .sidebar h3 a,
+[id*=result] .sidebar h3,
+[id*=result] .sidebar h3 a,
+[id*=reserve] .sidebar h4,
+[id*=reserve] .sidebar h4 a {
+   opacity: 1 !important;
+}
+[id*=result] .sidebar h3 a,
+[id*=participant] .sidebar h3 a,
+[id*=reserve] .sidebar h4 a {
+   border-bottom: var(--header-accent) 2px solid;
 }
 [id*=ground] .logo,
 [id*=aerial] .logo,
@@ -337,6 +353,26 @@ div.approved {
 .immunity li:not(:first-of-type)  {
    margin-top: 28vh;
 }
+.remark-slide-number {
+   margin-right: calc(100% - var(--sidebar) - 0px - var(--gap));
+   bottom: 0.1em;
+   font-size: 100%;
+   opacity: 0.2;
+   border: 1px solid var(--dark);
+   padding: 0.1em;
+   border-radius: 1.2em;
+}
+.remark-slide-number:hover::before {
+   content: '';
+}
+.remark-slide-number:hover{
+   opacity: 0.4;
+}
+[id*=polarmap] .remark-slide-number {
+   display: none;
+}
+
+
 @media print {
    #slide-polarmap-skip {
       display: none;
