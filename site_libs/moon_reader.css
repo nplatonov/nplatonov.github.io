@@ -372,6 +372,23 @@ body:not(:fullscreen) .title-slide iframe {
 .remark-slide-number:hover::before {
    content: 'Slide ';
 }
+.mainbar + .remark-slide-number {
+   margin-right: calc(100% - var(--sidebar) - 4px - var(--gap));
+   bottom: 0.15em;
+   font-size: 80%;
+   opacity: 0.2;
+   border: 1px solid var(--dark);
+   padding: 0em 0.1em 0em 0em;
+   width: 1.3em;
+   text-align: right;
+   border-radius: 0.2em;
+}
+.mainbar + .remark-slide-number:hover::before {
+   content: '';
+}
+.mainbar + .remark-slide-number:hover{
+   opacity: 0.4;
+}
 /* .remark-slide-content > h1, h2, h3:first-of-type {
   margin-top: 80px;
   margin-top: 80px;
@@ -1813,10 +1830,23 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
    opacity: 0.3;
 }
 .hovertext:before {
-   left: calc(var(--sidebar) + var(--gap) / 2);
+  /* left: calc(var(--sidebar) + var(--gap) / 2);*/
+   left: 1%;
   /* bottom: 0.8em;*/
    position: fixed;
    background-color: color-mix(in srgb, var(--dark), transparent 25%);
+   top: 1%;
+  /* bottom: 1%;*/
+   width: calc(var(--sidebar) - var(--gap));
+  /* width: calc(100% - var(--sidebar) - var(--gap)*1.2);*/
+   display: block;
+   opacity: 1;
+}
+.caption .hovertext:hover {
+   opacity: 1 !important;
+}
+.hovertext:hover:before {
+   opacity: 1;
 }
 [id*=bg][id*=fg] .hovertext:before {
    left: calc(var(--sidebar) + var(--gap) / 2);
@@ -1825,6 +1855,9 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
    width: calc(100% - var(--sidebar) - var(--gap) - 1.4em) !important;
    margin: auto !important;
    padding: 0.8em;
+}
+.remark-container .simple-translate-panel.isShow {
+   font-size: 26px !important;
 }
 /* filling background  -- begin */
 /*
