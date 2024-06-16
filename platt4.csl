@@ -65,7 +65,7 @@
       <name delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=" " initialize-with="" delimiter=", " and="text" />
       <label prefix=" (" suffix=")" text-case="capitalize-first" font-style="italic"/>
       <substitute>
-        <!-- <names variable="editor"/> -->
+        <names variable="editor"/> <!-- comment/uncomment -->
         <names variable="translator"/>
         <text variable="title"/>
       </substitute>
@@ -76,7 +76,7 @@
       <et-al font-style="italic"/>
       <name form="short" and="text" delimiter=", " initialize-with=". "/>
       <substitute>
-        <!-- <names variable="editor"/> -->
+        <names variable="editor"/> <!-- uncomment -->
         <names variable="translator"/>
         <choose>
           <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
@@ -211,6 +211,7 @@
         <group prefix=". " suffix="">
           <text variable="number-of-pages" suffix=" p."/>
         </group>
+        <text variable="publisher" prefix=". " suffix=". " font-style="italic"/>
       </if>
       <else-if type="misc bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="any">
         <group delimiter=". ">
@@ -221,7 +222,7 @@
               <text macro="edition"/>
             </group>
           </group>
-          <text variable="volume" prefix="" font-weight="normal"/>
+          <text variable="volume" prefix="Vol. " font-weight="normal"/>
           <text macro="publisher" />
           <text macro="container-contributors"/>
           <text macro="secondary-contributors"/>

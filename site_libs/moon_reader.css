@@ -30,7 +30,9 @@
    --sidebar-left-size: 5px; /* 0.15em */
    --sidebar-left-color: inherit; 
    --sidebar-accent: transparent;
+   --header-accent: #afafaf;
    --bg: #37A;
+   --inverse-color: #dfdfdf;
    --inverse-bg: #000; /*#222E3A #3B0863 #2C3E50*/
    --blur: 0.2em;
    --gap: 0.8em;
@@ -110,7 +112,7 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
    color: #538;
 }
 */
-.condensed {
+.condensed, .header {
    font-family: "Roboto Condensed", serif;
 }
 .regular {
@@ -196,19 +198,19 @@ html[data-darkreader-mode="dynamic"] .remark-slide-content {
 }
 
 .remark-slide-content h1 {
-    font-size: 190%;
+   font-size: 190%;
 }
 .remark-slide-content h2 {
-    font-size: 160%;
+   font-size: 160%;
 }
 .remark-slide-content h3 {
-    font-size: 135%;
+   font-size: 135%;
 }
 .remark-slide-content h4 {
-    font-size: 115%;
+   font-size: 115%;
 }
 .remark-slide-content h5 {
-    font-size: 110%;
+   font-size: 110%;
 }
 .notable:not(.inverse):not(#slide-bib),
 .notable:not(.inverse) .title-slide.notable {
@@ -228,7 +230,7 @@ html[data-darkreader-mode="dynamic"] .remark-slide-content {
 .break,
 .notable.inverse {
   background-color: var(--inverse-bg);
-  color: #dfdfdf;
+  color: var(--inverse-color);
  /* text-shadow: 0 0 20px var(--dark);*/
 }
 .remark-slide-content[style*="zbackground"].inverse:not(.notable),
@@ -364,11 +366,28 @@ body:not(:fullscreen) .title-slide iframe {
 }
 .remark-slide-number:hover {
    font-size: 200%;
-   opacity: 1;
-   background-color: #FFF8;
+   opacity: 0.6;
+   background-color: #FFF;
 }
 .remark-slide-number:hover::before {
    content: 'Slide ';
+}
+.mainbar + .remark-slide-number {
+   margin-right: calc(100% - var(--sidebar) - 4px - var(--gap));
+   bottom: 0.15em;
+   font-size: 80%;
+   opacity: 0.2;
+   border: 1px solid var(--dark);
+   padding: 0em 0.1em 0em 0.1em;
+   width: 1.3em;
+   text-align: center;
+   border-radius: 0.2em;
+}
+.mainbar + .remark-slide-number:hover::before {
+   content: '';
+}
+.mainbar + .remark-slide-number:hover{
+   opacity: 0.4;
 }
 /* .remark-slide-content > h1, h2, h3:first-of-type {
   margin-top: 80px;
@@ -416,7 +435,7 @@ strong{color: unset;}
     color: unset;
 }
 
-caption, p.caption {
+caption, p.caption, p span.caption, div.caption p {
   font-family: "Roboto Condensed";
   font-size: (var(--pointsize) * 0.9);
  /* color: #555;*/ /* #274;*/
@@ -424,8 +443,9 @@ caption, p.caption {
   opacity: 0.6;
   text-align: left;
 }
-caption:hover, p.caption:hover {
- /* color: #274;*/
+caption:hover, p.caption:hover, .caption p:hover {
+  color: var(--dark);
+  opacity: 1.0;
 }
 /*
 img {
@@ -458,18 +478,42 @@ h2 .header{
 */
 .header {
    font-size: calc(var(--pointsize) * 1);
-   display: block;
+   display: table;
    text-align: left;
   /* font-style: italic;*/
    padding-top: 0px;
    padding-bottom: 0px;
-   margin-top: 0px;
-   margin-bottom: 0px;
-   line-height: 0.9;
+   margin-top: -3px;
+   margin-bottom: -6px;
+   line-height: 1.05;
    text-transform: uppercase;
    letter-spacing: -0.5px;
-   text-decoration: underline 5px #7f7f7f4f;
+  /* text-decoration: underline 5px #7f7f7f4f;*/
+  /* border-bottom: solid 5px #7f7f7f4f;*/
    color: var(--sidebar-select);
+}
+div.header p {
+   border-bottom: solid 5px var(--header-accent); /*var(--accent);*/
+  /* border-bottom: 5px solid red;*/
+}
+.header:not(:first-child) {
+   margin-top: 1.2em;	
+}
+p .header {
+   margin-top: 0.8em;	
+   margin-bottom: unset;
+}
+h1 span.header,
+h2 span.header,
+h3 span.header,
+h4 span.header,
+h5 span.header {
+   border-bottom: solid 5px var(--header-accent); /*var(--accent);*/
+} 
+/* .sidebar .sub, */
+.header .sub {
+   font-size: 80%;
+   padding-left: 0.015em;
 }
 .right-column {
    padding-top: initial;
@@ -480,9 +524,16 @@ h2 .header{
 .sidebar + .right-column {
    width: calc(101% - var(--sidebar) - var(--sidebar-margin));
 }
-a, a:visited, a > code {
+.mainbar a,
+.mainbar a:visited,
+.mainbar a > code,
+.notable a,
+.backtoshow a {
    color: var(--dark);
-   text-decoration: underline dotted color-mix(in srgb, var(--dark), transparent 60%);
+  /* text-decoration: underline dotted color-mix(in srgb, var(--dark), transparent 60%);*/
+  /* text-decoration: underline 1px dotted var(--dark);*/
+   text-decoration: none;
+   border-bottom: 2px dotted color-mix(in srgb, var(--dark), transparent 60%);
 }
 a:hover {
   /* color: initial;*/
@@ -493,7 +544,16 @@ a:hover {
    color: var(--inverse-accent);
 }
 a:hover {
-   opacity: 0.8;
+   opacity: 0.6;
+  /* color: var(--accent);*/
+   text-decoration: none;
+}
+.mainbar a:hover {
+   text-decoration: none;
+   border-bottom: 0px solid transparent;
+}
+.banner a {
+   text-decoration: none;
 }
 .remark-slide table {
    margin: auto auto 0.3em auto; 
@@ -712,7 +772,7 @@ iframe.ursa-widgetize {
 .column img {
   /* position: fixed;*/
 }
-img[width="1330"]:not([image]):not(.image):not([bound]):not(.bound):not([aspect]):not(.aspect) {
+img[width="1330"]:not([expand]):not(.expand):not([bound]):not(.bound):not([aspect]):not(.aspect) {
    width: unset;
   /* max-width: max(600px, 100%);*/
   /* height: auto;*/
@@ -728,7 +788,7 @@ img[width$="%"] {
    flex: 0 0 auto;
    object-fit: scale-down;
 }
-img[image], img[bound], img.bound {
+img[bound], img.bound {
    max-width: 100%;
   /* height: auto;*/
    max-height: 100%; /*calc(100% / var(--magnifier));*/
@@ -737,6 +797,13 @@ img[image], img[bound], img.bound {
    flex: 0 0 auto;
    object-fit: scale-down;
   /* scale: calc(0.6 * var(--magnifier));*/
+}
+img[expand], img.expand {
+   max-width: 100%;
+   max-height: 100%;
+   width: auto;
+   flex: 0 0 auto;
+  /* object-fit: scale-down;*/
 }
 img[aspect],img.aspect {
   /* max-height: 100%;*/
@@ -762,7 +829,7 @@ ul {
    margin-bottom: 0.4em;
 }
 .mainbar {
-   margin-top: -0.2em;
+   margin-top: -0.3em;
    margin-right: -0.3em;
 }
 .scroll,
@@ -830,6 +897,7 @@ ul {
    word-wrap: break-word;
   /* text-shadow: none;*/
   /* text-align: justify;*/
+   z-index: 0;
 }
 .remark-slide-content[style*="background"] .left-column.sidebar {
    background-image: none;
@@ -860,7 +928,8 @@ ul {
 .sidebar {
    box-shadow: 0 0 8px color-mix(in srgb, var(--dark), transparent 85%);
 }
-html[data-darkreader-scheme="dark"] .sidebar {
+html[data-darkreader-scheme="dark"] .sidebar,
+html[data-darkreader-mode="filter"] .sidebar {
    box-shadow: 0 0 8px color-mix(in srgb, #AAA, transparent 10%);
 }
 .customtitle .sidebar {
@@ -1179,6 +1248,15 @@ body:fullscreen .remark-backdrop:before {
    margin-top: -0.5em;
    margin-bottom: 1.2em;
 }
+/*
+.remark-slide .metadata .title,
+.remark-slide .metadata .subtitle {
+   margin-left: -20px;
+   padding-left: 14px;
+   border-left: 6px solid var(--dark);
+   background-color: var(--sidebar-accent);
+}
+*/
 .metadata .author {
    font-size: 120%;
    margin-top: 0.5em;
@@ -1385,7 +1463,7 @@ code.remark-code:not(.hljs) {
 }
 */
 .inline img, img.inline {
-   height: 1.2em !important; 
+   height: 1em !important; 
    display: inline-block;
    margin-bottom: -0.15em !important;
    box-shadow: none;
@@ -1635,7 +1713,7 @@ table tr th:empty {
 }
 #slide-bib:not(.mainbar) > .footnote,
 #slide-fn:not(.mainbar) > .footnote {
-   margin-left: 64px;
+   margin-left: 48px;
 }
 .remark-slide-content > .top,
 .remark-slide-content > .middle,
@@ -1677,8 +1755,12 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
    top: 3px;
    left: 1px;
    display: block;
-   font-size: 90px;
+   font-size: 64px;
    opacity: 0.1;
+}
+.backtoshow a {
+   text-decoration: none;
+   border-bottom: none;
 }
 .backtoshow:hover {
    opacity: 0.8;
@@ -1686,13 +1768,13 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
 .remark-slide-notes {
    border-top: none;
    position: absolute;
-   display: revert;
-   bottom: 0px;
+   display: block ruby;
+   bottom: -800px;
    top: unset;
-   color: var(--light);
-   text-shadow: 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark);
-   margin-left: 1em;
-   margin-right: 128px;
+   color: transparent; /*var(--light);*/
+  /* text-shadow: 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark), 0 0 var(--blur) var(--dark);*/
+   margin-left: 0em;
+   margin-right: 0em;
    opacity: 0.2;
 }
 .remark-presenter-mode .remark-slide-notes {
@@ -1701,10 +1783,31 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
 .remark-slide-notes p {
    margin-top: 0.2em;
    margin-bottom: 0.2em;
+   margin-left: 0.4em;
 }
 .remark-slide-notes:hover {
-   opacity: 0.99;
-   font-size: 200%;
+   display: block;
+   opacity: 0.8;
+   background-color: var(--dark) !important;
+   font-size: calc(var(--pointsize) * 0.9) !important;
+   color: var(--light) !important;
+   top: 0px;
+}
+.remark-slide-notes p:hover {
+  /* font-size: 22em !important;*/
+  /* margin: 0.4em;*/
+}
+.remark-slide-notes:before {
+   color: var(--dark) !important;
+   opacity: 0.2 !important;
+   content: '🛈';
+   display: block !important;
+   position: fixed;
+   top: 1px;
+   right: 0.4em;
+}
+.remark-slide-notes:hover:before {
+   display: none !important;
 }
 .sidebar:not(.left-column) {
    display: block;
@@ -1721,20 +1824,53 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
    border-bottom: none;
 }
 .hovertext:after {
-   content: "…";
+   content: ' 🛈'; /* … ▷ 🛈 */
+   vertical-align: top;
+   margin-left: -0.2em;
+   font-size: 50%;
+   opacity: 0.3;
+}
+.cite.hovertext:after {
+   content: '';
 }
 .hovertext:before {
-   left: calc(var(--sidebar) + var(--gap) / 2);
-   top: 94%;
+  /* left: calc(var(--sidebar) + var(--gap) / 2);*/
+   left: 1%;
+  /* bottom: 0.8em;*/
    position: fixed;
    background-color: color-mix(in srgb, var(--dark), transparent 25%);
+  /* bottom: 1%;*/
+  /* width: calc(100% - var(--sidebar) - var(--gap)*1.2);*/
+   display: block;
+   opacity: 1;
+}
+.cite.hovertext:before {
+   width: calc(var(--sidebar) - var(--gap) + 2em);
+   top: 1%;
+   border-radius: 1em;
+   padding: 5em 1em;
+   height: 50%;
+}
+.caption .hovertext:hover {
+   opacity: 1 !important;
+}
+.hovertext:hover:before {
+   opacity: 1;
+}
+.cite.hovertext:before {
+   font-family: "Roboto condensed";
+   font-size: var(--pointsize);
 }
 [id*=bg][id*=fg] .hovertext:before {
-   width: calc(100% - var(--sidebar) - var(--gap));
    left: calc(var(--sidebar) + var(--gap) / 2);
    top: 0.2em;
    font-size: 130%;
-   position: fixed;
+   width: calc(100% - var(--sidebar) - var(--gap) - 1.4em) !important;
+   margin: auto !important;
+   padding: 0.8em;
+}
+.remark-container .simple-translate-panel.isShow {
+   font-size: 26px !important;
 }
 /* filling background  -- begin */
 /*
