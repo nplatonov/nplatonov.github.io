@@ -378,10 +378,13 @@ body:not(:fullscreen) .title-slide iframe {
    font-size: 80%;
    opacity: 0.2;
    border: 1px solid var(--dark);
-   padding: 0em 0.1em 0em 0em;
+   padding: 0em 0.1em 0em 0.1em;
    width: 1.3em;
-   text-align: right;
+   text-align: center;
    border-radius: 0.2em;
+   right: unset;
+   left: 0.05em;
+   bottom: 0.05em;
 }
 .mainbar + .remark-slide-number:hover::before {
    content: '';
@@ -443,8 +446,9 @@ caption, p.caption, p span.caption, div.caption p {
   opacity: 0.6;
   text-align: left;
 }
-caption:hover, p.caption:hover {
- /* color: #274;*/
+caption:hover, p.caption:hover, .caption p:hover {
+  color: var(--dark);
+  opacity: 1.0;
 }
 /*
 img {
@@ -828,7 +832,7 @@ ul {
    margin-bottom: 0.4em;
 }
 .mainbar {
-   margin-top: -0.2em;
+   margin-top: -0.3em;
    margin-right: -0.3em;
 }
 .scroll,
@@ -1434,9 +1438,15 @@ code.remark-code:not(.hljs) {
 }
 .shorttitle {
   font-family: "Roboto Condensed", serif;
-  font-size: 55%;
+  font-size: 70%;
   opacity: 0.2;
   text-align: left;
+  margin-left: 35px;
+  margin-bottom: -16px;
+  margin-top:10px
+  position: relative;
+  display: block;
+ /* left: 0em;*/
 }
 .shorttitle a {
    color: unset;
@@ -1829,24 +1839,36 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
    font-size: 50%;
    opacity: 0.3;
 }
+.cite.hovertext:after {
+   content: '';
+}
 .hovertext:before {
   /* left: calc(var(--sidebar) + var(--gap) / 2);*/
    left: 1%;
   /* bottom: 0.8em;*/
    position: fixed;
    background-color: color-mix(in srgb, var(--dark), transparent 25%);
-   top: 1%;
   /* bottom: 1%;*/
-   width: calc(var(--sidebar) - var(--gap));
   /* width: calc(100% - var(--sidebar) - var(--gap)*1.2);*/
    display: block;
    opacity: 1;
+}
+.cite.hovertext:before {
+   width: calc(var(--sidebar) - var(--gap) + 2em);
+   top: 1%;
+   border-radius: 1em;
+   padding: 5em 1em;
+   height: 50%;
 }
 .caption .hovertext:hover {
    opacity: 1 !important;
 }
 .hovertext:hover:before {
    opacity: 1;
+}
+.cite.hovertext:before {
+   font-family: "Roboto condensed";
+   font-size: var(--pointsize);
 }
 [id*=bg][id*=fg] .hovertext:before {
    left: calc(var(--sidebar) + var(--gap) / 2);
