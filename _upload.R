@@ -50,7 +50,7 @@ for (myname in c("C:/platt/article/platt.bib"
    }
    else {
       message("just copy file")
-      if (grepl("\\.css$",myname))
+      if (grepl("(moon.*reader.*\\.js|\\.css)$",myname))
          file.copy(myname,file.path(lib,basename(myname)),overwrite=TRUE,copy.date=TRUE)
       else
          file.copy(myname,basename(myname),overwrite=TRUE,copy.date=TRUE)
