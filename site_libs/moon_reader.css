@@ -15,10 +15,10 @@
    --magnifier: 1.7;
    --pointsize: 29px;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
    --sidebar: 23%;
-   --sidebar-narrow: 38px;
+   --sidebar-narrow: 32px;
    --sidebar-pointsize: 70%;
    --sidebar-narrow-pointsize: calc(var(--sidebar-narrow) / 12);
-   --sidebar-margin: 18px;
+   --sidebar-margin: 15px;
    --sidebar-background: var(--light); /*#ffffe6 #00000017 #FAFAFA #ffc */
    --sidebar-background-right: var(--light); /* var(--sidebar-background); */
    --sidebar-background-inverse: var(--accent); /* var(--dark);*/
@@ -378,7 +378,7 @@ body:not(:fullscreen) .title-slide iframe {
    content: 'Slide ';
 }
 .mainbar + .remark-slide-number {
-   margin-right: calc(100% - var(--sidebar) - 4px - var(--gap));
+   margin-right: calc(100% - var(--sidebar) - var(--gap) - 8px);
   /* margin-right: calc(100% - 4px - var(--gap));*/
    bottom: 0.15em;
    font-size: 80%;
@@ -393,7 +393,7 @@ body:not(:fullscreen) .title-slide iframe {
    bottom: 0.05em;
 }
 .mainbar.broad + .remark-slide-number {
-   margin-right: calc(100% - var(--sidebar-narrow) - var(--gap) - 4px);
+   margin-right: calc(100% - var(--sidebar-narrow) - var(--gap) - 8px);
 }
 .mainbar + .remark-slide-number:hover::before {
    content: '';
@@ -1252,7 +1252,7 @@ h1[id*=class-thankyou], .sidebar h1[id^=-zzspan], .sidebar h2[id^=-zzspan] {
    right: 0;
 }
 .remark-backdrop {
-   background-color: #000000f4; /* #235;*/
+   background-color: #124; /* #235;*/
 }
 body:fullscreen .remark-backdrop { /* body:fullscreen */
    background-image: linear-gradient(#000A,#000A), var(--lorem);
