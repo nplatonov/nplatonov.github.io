@@ -2,6 +2,7 @@ remark.macros.scale = function (percentage) {
   var url = this;
   return '<img src="' + url + '" style="width: ' + percentage + '" />';
 };
+/*
 function simulateMouseOver1() {
   var item2 = document.querySelector(".narrow");
   var event = new MouseEvent('mouseover', {view: window, bubbles: true, cancelable: true});
@@ -39,6 +40,7 @@ function simulateMouseOver3() {
       }
    }
 }
+*/
 /*
 function simulateMouseOver() {
    $(".narrow").toggleClass("hovered2");

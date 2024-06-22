@@ -14,7 +14,7 @@ $('.fitText').fitText(1.2, { minFontSize: '14px', maxFontSize: '936px' });
 
 */
 
-$(".sidebar.narrow").hover(function () { $(this).toggleClass("hovered"); });
+//$(".sidebar.narrow").hover(function () { $(this).toggleClass("hovered"); });
 
 //.mainbar.scale:not(.broad) 
 // document.getElementsByTagName(".mainbar").style.setProperty('--pointsize', '13px');
@@ -26,23 +26,3 @@ $(".sidebar.narrow").hover(function () { $(this).toggleClass("hovered"); });
 //$(".remark-slide-container")(function() { $(".remark-slide-container").css('background','red')});
 
 expandBackgroundColor();
-
-document.addEventListener('DOMContentLoaded', function() {
-    const class2Element = document.querySelector('.class2');
-    function toggleBisClassOnClass1() {
-        const class1Element = document.querySelector('.class1');
-        if (class2Element.classList.contains('bis')) {
-            class1Element.classList.add('bis');
-        } else {
-            class1Element.classList.remove('bis');
-        }
-    }
-    toggleBisClassOnClass1();
-    class2Element.addEventListener('classAdded', toggleBisClassOnClass1);
-    class2Element.addEventListener('classRemoved', toggleBisClassOnClass1);
-    class2Element.addEventListener('DOMAttrModified', function(e) {
-        if (e.target === class2Element && e.attributeName === 'class') {
-            toggleBisClassOnClass1();
-        }
-    });
-});
