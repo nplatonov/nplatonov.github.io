@@ -10,6 +10,7 @@
    --light: #FDF6E3;
    --dark: #233; /* #149 */
    --semi-dark: color-mix(in srgb, var(--dark), transparent 85%);
+   --semi-light: color-mix(in srgb, var(--light), transparent 85%);
    --accent: hsl(calc(var(--hue) + 60),40%,40%); /* #640; #038 maroon #A52 #248 #1D6D8C #268  #0084D7;*/
    --inverse-accent: #ee9;
    --magnifier: 1.7;
@@ -288,16 +289,20 @@ body:not(:fullscreen) .title-slide iframe {
 .title-slide .remark-slide-number {
   display: none;
 }
-.remark-code, .remark-inline-code {
+.remark-code, .remark-inline-code, pre code * {
   /* font-size: calc(var(--pointsize) * 0.8);*/
    font-family: 'Source Code Pro', 'Cousine', 'Lucida Console', Monaco, monospace;
 }
-.remark-code {
+/*
+pre code * {
+   font-family: 'Source Code Pro', 'Cousine', 'Lucida Console', Monaco, monospace !important;
    font-size: 70%;
 }
-.remark-inline-code {
-   font-size: 95%;
+*/
+.remark-code, pre code+ul {
+   font-size: 70%;
 }
+.remark-inline-code:empty,
 .remark-code-line:empty {
    display: none;
 }
@@ -475,10 +480,17 @@ strong{color: unset;}
 caption, p.caption, p span.caption, div.caption p {
   font-family: var(--font-condensed);
   font-size: (var(--pointsize) * 0.9);
+  color: var(--dark);
  /* color: #555;*/ /* #274;*/
  /* margin-top: calc(0.1em * var(--magnifier));*/
-  opacity: 0.6;
+ /* opacity: 0.6;*/
   text-align: left;
+}
+.inverse caption,
+.inverse p.caption,
+.inverse p span.caption,
+.inverse div.caption p {
+  color: var(--light);
 }
 caption:hover, p.caption:hover, .caption p:hover {
   color: var(--dark);
@@ -528,6 +540,9 @@ h2 .header{
   /* text-decoration: underline 5px #7f7f7f4f;*/
   /* border-bottom: solid 5px #7f7f7f4f;*/
    color: var(--sidebar-select);
+}
+.header .remark-inline-code {
+   text-transform: none;
 }
 .inverse:not(rever) .header {
    color: var(--sidebar-select-inverse);
@@ -1573,8 +1588,8 @@ code.remark-code:not(.hljs) {
   opacity: 0.2;
   text-align: left;
   margin-left: 0px;
-  margin-right: 45px;
-  margin-bottom: 0px;
+  margin-right: 40px; /* slide number */
+  margin-bottom: 4px;
   position: relative;
   display: inline-block; /* 'block' - hides empty line; 'inline-block' keeps emptry line */
  /* left: 0em;*/
@@ -2003,6 +2018,14 @@ a[href="#fn"] .hovertext:before {
    border-radius: 1em;
    padding: 3em 1em;
    height: 70%;
+   text-shadow: 2px 0px 2px #000000F0,
+                2px 2px 2px #000000F0,
+                0px 2px 2px #000000F0,
+                -2px 0px 2px #000000F0,
+                0px -2px 2px #000000F0,
+               -2px -2px 2px #000000F0,
+                2px -2px 2px #000000F0,
+                -2px 2px 2px #000000F0;
 }
 .caption .hovertext:hover {
    opacity: 1 !important;
@@ -2130,6 +2153,11 @@ a[href="#fn"] .hovertext:before {
    opacity: 0.2;
    margin-bottom: -1.4em;
 }
+.middle .scale:not(.broad) > .header:not(:only-child),
+.middle .mainbar:not(.scale):not(.broad) > .header.broad {
+   opacity: 0.05;
+   font-size: 100%;
+}
 .mainbar.broad > .header.show {
    display: none;
 }
@@ -2164,6 +2192,16 @@ a[href="#fn"] .hovertext:before {
    background-color: #666;
    color: var(--light);
 }
+.remark-slide tr:nth-child(2n) {
+   background-color: unset;
+}
+.remark-slide thead {
+   background-color: unset;
+}
+.remark-slide table {
+   font-family: var(--font-condensed);
+}
+
 /* filling background  -- begin */
 @media only screen {
    .remark-slide-scaler {
