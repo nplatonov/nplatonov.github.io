@@ -106,3 +106,25 @@ function expandBackgroundColor() {
    observer.observe(document.body, config);
 }
 
+document.addEventListener('keydown', function(event) {
+  if (!event.altKey) return;
+  const go_up = event.code === 'Equal';
+  const go_down = event.code === 'Minus';
+  const go_reset = event.code === 'Digit0';
+
+  if (!(go_up || go_down || go_reset)) return;
+  event.preventDefault();
+
+  if (go_reset) {
+    document.documentElement.style.removeProperty('--pointsize');
+    return;
+  }
+
+  const currentSize = parseFloat(
+    getComputedStyle(document.documentElement)
+      .getPropertyValue('--pointsize')
+  );
+
+  const newSize = go_up ? currentSize + 1 : currentSize - 1;
+  document.documentElement.style.setProperty('--pointsize', newSize + 'px');
+});

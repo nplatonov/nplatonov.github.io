@@ -7,7 +7,7 @@
 */
 :root {
    --hue: 60;
-   --light: #FDF6E3;
+   --light: #FFFDF7;
    --dark: #233; /* #149 */
    --semi-dark: color-mix(in srgb, var(--dark), transparent 85%);
    --semi-light: color-mix(in srgb, var(--light), transparent 85%);
@@ -86,6 +86,7 @@ body:fullscreen .remark-slides-area:before {
    background-image: url(https://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico);
    background-size: contain;
    background-repeat: no-repeat;
+   accent-color: #888;
 }
 .remark-slide { /* devel */
   /* opacity: 0.2; */
@@ -2168,14 +2169,20 @@ a[href="#fn"] .hovertext:before {
 .sidebar.narrow:not(:hover):not(.hovered) * img {
    display: none;
 }
-.mainbar .next {
+.mainbar .next.fixed {
    position: fixed;
    top: 5em;
    left: 4em;
 
 }
 .mainbar:not(.broad) .next {
-   display: none;
+  /* display: none;*/
+}
+.mainbar:not(.broad) .next .header {
+   margin: revert;
+   line-height: revert;
+   padding: revert;
+   margin-bottom: 0.4em;
 }
 .header.next * {
    font-size: revert;
