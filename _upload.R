@@ -28,6 +28,8 @@ for (myname in c("C:/platt/article/platt.bib"
                 ,"C:/platt/R/style/distill_article.css"
                 ,"C:/platt/R/style/tufte_html.css"
                 ,"C:/platt/R/style/moon_reader.css"
+                ,"C:/platt/R/style/moon_reader-before.js"
+                ,"C:/platt/R/style/moon_reader-after.js"
                 ,"C:/platt/R/style/moon_reader-fonts.css"
                 ,"C:/platt/R/style/link.svg"
                 ,"C:/platt/R/style/orcid.svg"
@@ -48,7 +50,7 @@ for (myname in c("C:/platt/article/platt.bib"
    }
    else {
       message("just copy file")
-      if (grepl("\\.css$",myname))
+      if (grepl("(moon.*reader.*\\.js|\\.css)$",myname))
          file.copy(myname,file.path(lib,basename(myname)),overwrite=TRUE,copy.date=TRUE)
       else
          file.copy(myname,basename(myname),overwrite=TRUE,copy.date=TRUE)
