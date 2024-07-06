@@ -55,6 +55,7 @@
    --lorem-attr: url(https://loremflickr.com/assets/img/logo.small.alt.png) '   LoremFlickr';
    --font-normal: "Roboto", "Roboto Condensed" ,"z Fira Sans" ,"z Segoe UI", serif;
    --font-condensed: "Roboto Condensed" ,"z Segoe UI", serif;
+   --bibliography-scale: 40%;
 }
 /*
 .remark-visible {
@@ -407,7 +408,7 @@ pre code * {
    border-color: var(--light);
 }
 .mainbar.broad + .remark-slide-number {
-   margin-right: calc(100% - var(--sidebar-narrow) - var(--gap) - 9px);
+   margin-right: calc(100% - var(--sidebar-narrow) - var(--gap) - 11px);
 }
 .mainbar + .remark-slide-number:hover::before {
    content: '';
@@ -586,11 +587,16 @@ h5 span.header {
 .sidebar.narrow {
    width: calc(var(--sidebar-narrow) - var(--sidebar-margin));
 }
-.sidebar + .right-column,.metadata .sidebar.narrow + .right-column {
+.sidebar + .right-column {
    width: calc(101% - var(--sidebar) - var(--sidebar-margin));
 }
+.metadata .sidebar.narrow + .right-column {
+   width: calc(101% - var(--sidebar-narrow) - var(--sidebar) - var(--sidebar-margin));
+}
 .sidebar.narrow + .right-column {
-   width: calc(101% - var(--sidebar-narrow) - var(--sidebar-margin));
+  /* width: 2 -> 1, right: 1 -> 0 */
+   width: calc(101% - 2 * var(--sidebar-narrow) - var(--sidebar-margin));
+   margin-right: calc(1 * var(--sidebar-narrow));
 }
 .mainbar a,
 .mainbar a:visited,
@@ -1384,10 +1390,13 @@ body:fullscreen .remark-backdrop:before {
    display: block;
 }
 .metadata .title {
-   font-size: 160%;
+   font-size: 200%;
    margin-top: 1.2em;
    margin-bottom: 1.2em;
    line-height: 1;
+   margin-left: -20px;
+   padding-left: 14px;
+   border-left: 6px solid var(--header-accent); /* var(--dark) var(--accent)*/
 }
 .metadata .subtitle {
    font-size: 120%;
@@ -2060,7 +2069,7 @@ a[href="#fn"] .hovertext:before {
    font-size: 140%;
 }
 .broad  li > .header.next {
-   border: 1px solid red;
+  /* border: 1px solid red;*/
    margin-top: 0.8em;
    font-size: revert;
 }
@@ -2192,6 +2201,9 @@ a[href="#fn"] .hovertext:before {
 .header.next * {
    font-size: revert;
 }
+.header.next img {
+   max-height: 1.5em;
+}
 /*
 .scale {
    font-size: var(--pointsize);
@@ -2216,7 +2228,13 @@ a[href="#fn"] .hovertext:before {
 .interrupt {
    background: #ac92ec;
 }
-
+[class*="tile-view"] .left-column.sidebar {
+   margin-top: revert;
+   padding-top: revert;
+   margin-left: revert;
+   padding-left: revert;
+   height: 100%;
+}
 /* filling background  -- begin */
 @media only screen {
    .remark-slide-scaler {
@@ -2319,14 +2337,21 @@ a[href="#fn"] .hovertext:before {
    p > img {
       box-shadow: none;
    }
-   #slide-bib .footnote {
-      font-size: 40%;
-   }
    .dontprint, .noprint, .backtoshow, .remark-slide-notes {
       display: none;
    }
    .countdown {
       display: none !important;
+   }
+}
+@media screen {
+   [class*="tile-view"] #slide-bib .footnote {
+      font-size: var(--bibliography-scale);
+   }
+}
+@media print {
+   #slide-bib .footnote {
+      font-size: var(--bibliography-scale);
    }
 }
 @media zzzprint {
