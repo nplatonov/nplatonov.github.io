@@ -527,6 +527,10 @@ h2 .header{
   color: red;
 }
 */
+.remark-slide-content > h1 { /* toc0 */
+  /* text-transform: uppercase;*/
+}
+
 .header {
    font-size: calc(var(--pointsize) * 1);
    display: table;
@@ -2077,8 +2081,13 @@ a[href="#fn"] .hovertext:before {
 .mainbar .header.title,
 .scale .header:only-child,
 .broad .header:only-child {
-   margin-top: 20%;
+  /* margin-top: 0%;*/
    font-size: 140%;
+}
+.remark-slide-content:not(.middle) .mainbar .header.title,
+.remark-slide-content:not(.middle) .scale .header:only-child,
+.remark-slide-content:not(.middle) .broad .header:only-child {
+   margin-top: 20%;
 }
 .broad  li > .header.next {
   /* border: 1px solid red;*/
@@ -2182,7 +2191,7 @@ a[href="#fn"] .hovertext:before {
 }
 .middle .scale:not(.broad) > .header:not(:only-child),
 .middle .mainbar:not(.scale):not(.broad) > .header.broad {
-   opacity: 0.05;
+   opacity: 0.01;
    font-size: 100%;
 }
 .mainbar.broad > .header.show {
