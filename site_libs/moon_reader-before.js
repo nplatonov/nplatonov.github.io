@@ -125,6 +125,6 @@ document.addEventListener('keydown', function(event) {
       .getPropertyValue('--pointsize')
   );
 
-  const newSize = go_up ? currentSize + 1 : currentSize - 1;
+  const newSize = go_up ? currentSize + 0.5 : currentSize - 0.5;
   document.documentElement.style.setProperty('--pointsize', newSize + 'px');
 });

@@ -143,7 +143,7 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
    box-shadow: none;
 }
 .inverse:not(.revert) .panelset .panel-tabs {
-   border-left: 5px yellow solid;
+  /* border-left: 5px yellow solid;*/
 }
 remark-slide-content[style*="background"] .sidebar h1,
 remark-slide-content[style*="background"] .sidebar h2,
@@ -193,7 +193,7 @@ html[data-darkreader-mode="dynamic"] .remark-slide-content {
 .remark-slide-content *+h3,
 .remark-slide-content *+h4,
 .remark-slide-content *+h5 {
-  margin-top: 0.6em;
+  margin-top: 0em;
 }
 /*
 .remark-slide-content h4 {
@@ -488,6 +488,15 @@ caption, p.caption, p span.caption, div.caption p {
  /* opacity: 0.6;*/
   text-align: left;
 }
+p + p.caption {
+   margin-top: 0.6em;
+}
+/*
+p.caption:last-child {
+   margin-bottom: 0em;
+   color: red;
+}
+*/
 .inverse caption,
 .inverse p.caption,
 .inverse p span.caption,
@@ -517,6 +526,9 @@ hr {
   border-top: 1px solid #eee;
   margin: 1px 0;
   line-height: 0;
+}
+.inverse hr {
+  border-top-color: #444;
 }
 /*
 .header h2 {
@@ -648,7 +660,8 @@ a[href="#fn"]:hover {
    text-decoration: none;
 }
 .remark-slide table {
-   margin: auto auto 0.3em auto; 
+  /* margin: auto auto 0.3em auto; */
+   margin: auto auto 0.3em 0em;
 }
 table.dataTable {
    font-size: 80%; /* s1: 70%, s2: 100% */
@@ -1924,6 +1937,8 @@ table tr th:empty {
 .bottom {
    vertical-align: bottom;
 }
+.inverse img:hover,
+.inverse .html-widget:hover
 html[data-darkreader-scheme="dark"] body img:hover,
 html[data-darkreader-scheme="dark"] body .html-widget:hover {
    filter: invert();
@@ -1997,8 +2012,17 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
    display: block;
    position: absolute;
    left: 8px;
-   bottom: 8px;
+   bottom: 30px;
    font-size: calc(var(--sidebar-pointsize) * 1.15);
+   box-shadow: none;
+   background-color: var(--light);
+}
+.inverse .sidebar:not(.left-column) {
+   background-color: var(--dark);
+   box-shadow: none;
+}
+.narrow.sidebar:not(.left-column) {
+   display: none;
 }
 .sidebar + .mainbar:not(.right-column) {
    float: right;
@@ -2087,7 +2111,7 @@ a[href="#fn"] .hovertext:before {
 .remark-slide-content:not(.middle) .mainbar .header.title,
 .remark-slide-content:not(.middle) .scale .header:only-child,
 .remark-slide-content:not(.middle) .broad .header:only-child {
-   margin-top: 20%;
+   margin-top: 0.4em; /* 20%; */
 }
 .broad  li > .header.next {
   /* border: 1px solid red;*/
@@ -2247,7 +2271,10 @@ a[href="#fn"] .hovertext:before {
    font-family: var(--font-condensed);
 }
 .interrupt {
-   background: #ac92ec;
+   background: red;
+}
+.announce {
+   font-size: 160%;
 }
 [class*="tile-view"] .left-column.sidebar {
    margin-top: revert;
