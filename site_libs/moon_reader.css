@@ -620,10 +620,10 @@ h5 span.header {
 .notable a,
 .backtoshow a {
    color: var(--color);
-  /* text-decoration: underline dotted color-mix(in srgb, var(--dark), transparent 60%);*/
+   text-decoration: underline 0.08em dotted color-mix(in srgb, var(--dark), transparent 70%);
   /* text-decoration: underline 1px dotted var(--dark);*/
-   text-decoration: none;
-   border-bottom: 2px dotted color-mix(in srgb, var(--dark), transparent 60%);
+  /* text-decoration: none;*/
+  /* border-bottom: 2px dotted color-mix(in srgb, var(--dark), transparent 60%);*/
 }
 a:hover {
   /* color: initial;*/
@@ -2102,13 +2102,13 @@ a[href="#fn"] .hovertext:before {
 .mainbar {
    animation-fill-mode: backwards !important;
 }
-.mainbar .header.title,
+.mainbar .header.announce,
 .scale .header:only-child,
 .broad .header:only-child {
   /* margin-top: 0%;*/
    font-size: 140%;
 }
-.remark-slide-content:not(.middle) .mainbar .header.title,
+.remark-slide-content:not(.middle) .mainbar .header.announce,
 .remark-slide-content:not(.middle) .scale .header:only-child,
 .remark-slide-content:not(.middle) .broad .header:only-child {
    margin-top: 0.4em; /* 20%; */
@@ -2432,8 +2432,13 @@ a[href="#fn"] .hovertext:before {
 }
 @media print {
  .remark-container.remark-presenter-mode .remark-slide-notes {
-  margin-top:700px;
+    margin-top:700px;
  }
+}
+@media screen and ((max-width: 1000px)) {
+   .sidebar {
+      background-color: orange !important;
+   }
 }
 @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge */
    .html-widget {
