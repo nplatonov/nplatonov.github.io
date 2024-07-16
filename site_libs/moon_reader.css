@@ -16,7 +16,7 @@
    --magnifier: 1.7;
    --pointsize: 29px;  /* '21pt Fira' '22pt Segoe ' '26px' for 16:9, '22px' for 16:9; 12pt=16px */
    --sidebar: 23%;
-   --sidebar-narrow: 32px;
+   --sidebar-narrow: -8px;
    --sidebar-pointsize: 70%;
    --sidebar-narrow-pointsize: calc(var(--sidebar-narrow) / 12);
    --sidebar-margin: 15px;
@@ -408,7 +408,12 @@ pre code * {
    border-color: var(--light);
 }
 .mainbar.broad + .remark-slide-number {
-   margin-right: calc(100% - var(--sidebar-narrow) - var(--gap) - 11px);
+  /* margin-right: calc(100% - var(--sidebar-narrow) - var(--gap) - 11px);*/
+   left: unset;
+   bottom: unset;
+   top: 0.45em;
+   right: 0.4em;
+   margin-right: unset;
 }
 .mainbar + .remark-slide-number:hover::before {
    content: '';
@@ -558,6 +563,9 @@ h2 .header{
   /* text-decoration: underline 5px #7f7f7f4f;*/
   /* border-bottom: solid 5px #7f7f7f4f;*/
    color: var(--sidebar-select);
+}
+.mainbar.broad .header.broad {
+   margin-top: 0px;
 }
 .header .remark-inline-code {
    text-transform: none;
@@ -1028,6 +1036,9 @@ ul {
 }
 .inverse:not(.revert) .left-column.sidebar {
   /* filter: invert(100%);*/
+  /* background-image: linear-gradient(to right, var(--sidebar-background-inverse), var(--inverse-bg));*/ /*#2589 #fff2->#fff0*/
+}
+.inverse:not(.revert) .left-column.sidebar:hover {
    background-image: linear-gradient(to right, var(--sidebar-background-inverse), var(--inverse-bg)); /*#2589 #fff2->#fff0*/
 }
 .remark-slide-content[style*=background] > .sidebar {
@@ -2437,7 +2448,7 @@ a[href="#fn"] .hovertext:before {
 }
 @media screen and ((max-width: 1000px)) {
    .sidebar {
-      background-color: orange !important;
+     /* background-color: orange !important;*/
    }
 }
 @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge */
