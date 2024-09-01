@@ -221,25 +221,25 @@ body {
       height: calc(100% - 12px);
       overflow-y: auto; 
    }
-   .csl-entry:hover::after, .caption-prefix:hover::after {
+   .csl-entry:hover::after, 
+   .caption-prefix:hover::after,
+   a[href^="#ref-"]:hover::after,
+   a[href^="#fig:"]:hover::after,
+   a[href^="#tab:"]:hover::after {
       opacity: 0.4;
-      content: attr(id) ' #' attr(data-number);
       margin-top: -1.3em;
       float: right;
       display: block;
       position: absolute;
       left: calc(max(0px,(100% - 790px - 90px)*0.5 + 790px + 80px));
    }
+   .csl-entry:hover::after, .caption-prefix:hover::after {
+      content: attr(id)attr(data-id) ' #' attr(data-number);
+   }
    a[href^="#ref-"]:hover::after,
    a[href^="#fig:"]:hover::after,
    a[href^="#tab:"]:hover::after {
-      opacity: 0.4;
       content: attr(href);
-      margin-top: -1.3em;
-      float: right;
-      display: block;
-      position: absolute;
-      left: calc(max(0px,(100% - 790px - 90px)*0.5 + 790px + 64px));
    }
    zspan[id]:not(.comment-start)::after {
       content: attr(id);
