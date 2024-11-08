@@ -40,7 +40,7 @@
    --color: #111;
    --inverse-bg: var(--dark); /*#222E3A #3B0863 #2C3E50*/
    --blur: 0.2em;
-   --gap: 0.8em;
+   --gap: 0.5em;
    --sidebar-right-margin: 8px; /* 0px 8px */
   /* --darkreader-text--accent: #ee9;*/
    --darkreader-border--accent: var(--inverse-accent);
@@ -390,9 +390,8 @@ pre code * {
    content: 'Slide ';
 }
 .mainbar + .remark-slide-number {
-   margin-right: calc(100% - var(--sidebar) - var(--gap) - 8px);
+   margin-right: calc(100% - var(--sidebar) - var(--gap) - 0.6em);
   /* margin-right: calc(100% - 4px - var(--gap));*/
-   bottom: 0.15em;
    font-size: 80%;
    opacity: 0.4;
    border: 1px solid var(--dark);
@@ -402,7 +401,7 @@ pre code * {
    border-radius: 0.2em;
   /* right: unset;*/
   /* left: 0.05em;*/
-   bottom: 0.05em;
+   bottom: 0.15em;
 }
 .inverse:not(.revert) .mainbar + .remark-slide-number {
    border-color: var(--light);
@@ -1038,8 +1037,8 @@ ul {
   /* filter: invert(100%);*/
   /* background-image: linear-gradient(to right, var(--sidebar-background-inverse), var(--inverse-bg));*/ /*#2589 #fff2->#fff0*/
 }
-.inverse:not(.revert) .left-column.sidebar:hover,
-.metadata.inverse:not(.revert) .left-column.sidebar {
+/* .metadata.inverse:not(.revert) .left-column.sidebar, */
+.inverse:not(.revert) .left-column.sidebar:hover {
    background-image: linear-gradient(to right, var(--sidebar-background-inverse), var(--inverse-bg)); /*#2589 #fff2->#fff0*/
 }
 .remark-slide-content[style*=background] > .sidebar {
@@ -1079,6 +1078,9 @@ html[data-darkreader-mode="filter"] .sidebar {
 }
 .customtitle .sidebar.narrow {
    background-color: var(--light) !important;
+}
+.customtitle.inverse .sidebar.narrow {
+   background-color: var(--dark) !important;
 }
 .sidebar * {
    font-size: unset;
@@ -1433,7 +1435,7 @@ body:fullscreen .remark-backdrop:before {
    padding-bottom: 0.6em;
    line-height: 1;
    margin-left: -20px;
-   padding-left: 14px;
+  /* padding-left: 14px;*/
    border-left: 6px solid var(--header-accent); /* var(--dark) var(--accent)*/
 }
 .inverse.metadata .title {
@@ -1470,6 +1472,9 @@ body:fullscreen .remark-backdrop:before {
 }
 .metadata .date, .metadata .when {
    font-size: 85%;
+}
+.metadata .when, .metadata .what, .metadata .where {
+   margin-top: 1em;
 }
 .metadata .updated {
    font-size: 60%;
@@ -1594,6 +1599,9 @@ code.remark-code:not(.hljs) {
 }
 .banner.sidebar.narrow {
    width: var(--sidebar-narrow);
+}
+.banner.narrow {
+   bottom: -15.2px;
 }
 .banner p {
   /* border: 1px solid red;*/
@@ -2045,7 +2053,8 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
    width: calc(101% - var(--sidebar-narrow) - var(--sidebar-margin));
 }
 .banner img {
-   max-width: calc(100% - var(--sidebar-right-margin) - var(--sidebar));
+  /* max-width: calc(100% - var(--sidebar-right-margin) - var(--sidebar));
+  /* max-width: var(--sidebar);*/
 }
 .hovertext {
    border-bottom: none;
