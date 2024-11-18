@@ -7,8 +7,8 @@
 */
 :root {
    --hue: 60;
-   --light: #FFFDF7;
-   --dark: #233; /* #149 */
+   --light: #FFF; /* Jul 2024 #FFFDF7;*/
+   --dark: #000; /* Jul 2024 #233;*/ /* #149 */
    --semi-dark: color-mix(in srgb, var(--dark), transparent 85%);
    --semi-light: color-mix(in srgb, var(--light), transparent 85%);
    --accent: hsl(calc(var(--hue) + 60),40%,40%); /* #640; #038 maroon #A52 #248 #1D6D8C #268  #0084D7;*/
@@ -37,7 +37,7 @@
    --header-accent-inverse: #777;
    --bg: #37A;
    --inverse-color: #dfdfdf;
-   --color: #111;
+   --color: #222;
    --inverse-bg: var(--dark); /*#222E3A #3B0863 #2C3E50*/
    --blur: 0.2em;
    --gap: 0.5em;
@@ -421,17 +421,19 @@ pre code * {
    opacity: 0.4;
 }
 .countdown {
-   background-image: none !important;
-   background-color: var(--light) !important;
    opacity: 0.2;
    top: unset !important;
-   right: unset !important;
+   left: unset !important;
    bottom: -0.1em !important;
-   left: -0.1em !important;
+   right: -0.1em !important;
    border-radius: 13px !important;
    box-shadow: unset !important;
    padding: 0.1em 0.1em 0.1em 0.1em !important;
    z-index: 0;
+}
+.countdown:not(.finished):not(.warning) {
+   background-image: none !important;
+   background-color: var(--light) !important;
 }
 .countdown-time {
    font-family: var(--font-normal);
@@ -1063,11 +1065,11 @@ ul {
    font-size: var(--sidebar-narrow-pointsize);
 }
 .sidebar {
-   box-shadow: 3px 0 8px -2px color-mix(in srgb, var(--dark), transparent 85%);
+  /* box-shadow: 3px 0 8px -2px color-mix(in srgb, var(--dark), transparent 85%); */
   /* box-shadow: 0 0 8px color-mix(in srgb, var(--dark), transparent 85%); */
 }
 .inverse:not(.revert) .sidebar {
-   box-shadow: 3px 0 8px -2px color-mix(in srgb, var(--light), transparent 85%);
+  /* box-shadow: 3px 0 8px -2px color-mix(in srgb, var(--light), transparent 85%);*/
 }
 html[data-darkreader-scheme="dark"] .sidebar,
 html[data-darkreader-mode="filter"] .sidebar {
@@ -1482,7 +1484,7 @@ body:fullscreen .remark-backdrop:before {
    opacity: 0.3;
    position: fixed;
    bottom: 0.2em;
-   right: 0.2em;
+   right: 4.2em;
 }
 .metadata .advance {
    margin-top: 2em;
