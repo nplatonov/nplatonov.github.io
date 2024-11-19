@@ -51,8 +51,8 @@
   /* --darkreader-text--sidebar-select: var(--inverse-accent);*/
   /* --darkreader-text--sidebar-color: var(--inverse-accent);*/
   /* --darkreader-border--sidebar-border: var(--inverse-accent);*/
-   --lorem: url(https://loremflickr.com/1060/682/arctic,nature/all);
-   --lorem-attr: url(https://loremflickr.com/assets/img/logo.small.alt.png) '   LoremFlickr';
+  /* --lorem: url(https://loremflickr.com/1060/682/arctic,nature/all);*/
+  /* --lorem-attr: url(https://loremflickr.com/assets/img/logo.small.alt.png) '   LoremFlickr';*/
    --font-normal: "Roboto", "Roboto Condensed" ,"z Fira Sans" ,"z Segoe UI", serif;
    --font-condensed: "Roboto Condensed" ,"z Segoe UI", serif;
    --bibliography-scale: 40%;
@@ -218,25 +218,31 @@ html[data-darkreader-mode="dynamic"] .remark-slide-content {
    font-size: 150%;
 }
 .remark-slide-content .sidebar h2 {
-   font-size: 160%;
+   font-size: 168%;
 }
 .remark-slide-content h3 {
    font-size: 140%;
 }
+.remark-slide-content .sidebar h3 {
+   font-size: 150%;
+}
 .remark-slide-content h4 {
    font-size: 130%;
 }
-.remark-slide-content .sidebar h3 {
+.remark-slide-content .sidebar h4 {
    font-size: 135%;
 }
 .remark-slide-content h5 {
+   font-size: 120%;
+}
+.remark-slide-content .sidebar h5 {
    font-size: 120%;
 }
 .notable:not(.inverse):not(#slide-bib),
 .notable:not(.inverse) .title-slide.notable {
   /* background-color: #FFFDF4 !important;*/
  /* color: #43418A;*/
-  text-shadow: 4px 4px 15px var(--light);
+ /* text-shadow: 4px 4px 15px var(--light);*/
 }
 .title-slide.notable {
    color: unset;
@@ -248,6 +254,7 @@ html[data-darkreader-mode="dynamic"] .remark-slide-content {
 .remark-slide-content.inverse:not(.notable, .revert),
 .title-slide.inverse,
 .break,
+.blackout,
 .notable.inverse {
   background-color: var(--inverse-bg);
   color: var(--inverse-color);
@@ -430,7 +437,7 @@ pre code * {
    opacity: 0.4;
 }
 .countdown {
-   opacity: 0.2;
+   opacity: 0.4;
    top: unset !important;
    left: unset !important;
    bottom: -0.1em !important;
@@ -442,7 +449,7 @@ pre code * {
 }
 .countdown:not(.finished):not(.warning) {
    background-image: none !important;
-   background-color: var(--light) !important;
+  /* background-color: var(--light) !important;*/
 }
 .countdown:not(.finished):not(.warning):not(.running) {
    opacity: 1.0 !important;
@@ -450,6 +457,9 @@ pre code * {
 .countdown-time {
    font-family: var(--font-normal);
    font-size: 100% !important;
+}
+.countdown-digits:not(.finished):not(.warning):not(.running) {
+   color: #666;
 }
 /* .remark-slide-content > h1, h2, h3:first-of-type {
   margin-top: 80px;
@@ -2341,6 +2351,14 @@ blockquote p:last-of-type {
   /* border: 1px solid red;*/
   /* margin-bottom: 0px;*/
 }
+.endofslideshow {
+   letter-spacing: 4px;
+   font-size: 50%;
+   opacity: 0.2;
+}
+.endofslideshow::after {
+   content: 'Designed by NPLATONOV';
+}
 /* filling background  -- begin */
 @media only screen {
    .remark-slide-scaler {
@@ -2449,6 +2467,9 @@ blockquote p:last-of-type {
    .countdown {
       display: none !important;
    }
+   .blackout {
+      background-color: white;
+   }
 }
 @media screen {
    [class*="tile-view"] #slide-bib .footnote {
@@ -2456,6 +2477,9 @@ blockquote p:last-of-type {
    }
 }
 @media print {
+   a[href="#bib"] {
+      text-decoration-line: none;
+   }
    #slide-bib .footnote {
       font-size: var(--bibliography-scale);
    }
