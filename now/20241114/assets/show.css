@@ -1,7 +1,7 @@
 :root {
    --sidebar: 24.5%;
-   --light: white;
-   --dark: black;
+   --bibliography-scale: 80%;
+
 }
 .zmainbar > p:last-of-type:only-of-type {
   /* background: yellow; */
@@ -36,4 +36,43 @@
 .drop-9em {margin-top: 9em;}
 .bibliography {
    font-size: 72%;
+}
+#refs .references {
+   page-break-before: always;
+}
+.pagedjs_pages .abstract p {
+   font-size: 10.3pt;
+   text-indent: 1cm !important;
+   text-align: justify !important;
+}
+.abstract p br {
+   display: none;
+}
+.indent0 p {
+   text-indent: 0cm !important;
+}
+.sidebar {
+   box-shadow: none;
+}
+.caption.indent0 {
+   margin-left: 0;
+   margin-right: 0;
+}
+@media print {
+   .caption.indent0 {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding-left: 0;
+      padding-right: 0;
+   }
+   .caption.indent0 p {
+      text-indent: 0 !important;
+      text-align: left;
+      margin-bottom: 0.5em;
+   }
+   .abstract {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      width: 100% !important;
+   }
 }
