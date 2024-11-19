@@ -212,31 +212,31 @@ html[data-darkreader-mode="dynamic"] .remark-slide-content {
    font-size: 160%;
 }
 .remark-slide-content .sidebar h1 {
-   font-size: 190%;
+   font-size: 190%; /* 190% */
 }
 .remark-slide-content h2 {
    font-size: 150%;
 }
 .remark-slide-content .sidebar h2 {
-   font-size: 168%;
+   font-size: 168%; /* 160% */
 }
 .remark-slide-content h3 {
    font-size: 140%;
 }
 .remark-slide-content .sidebar h3 {
-   font-size: 150%;
+   font-size: 150%; /* 135% */
 }
 .remark-slide-content h4 {
    font-size: 130%;
 }
 .remark-slide-content .sidebar h4 {
-   font-size: 135%;
+   font-size: 135%; /* 115% */
 }
 .remark-slide-content h5 {
    font-size: 120%;
 }
 .remark-slide-content .sidebar h5 {
-   font-size: 120%;
+   font-size: 120%; /* 110% */
 }
 .notable:not(.inverse):not(#slide-bib),
 .notable:not(.inverse) .title-slide.notable {
@@ -273,10 +273,12 @@ html[data-darkreader-mode="dynamic"] .remark-slide-content {
 .remark-slide-content[style*="zbackground"]:not(.inverse) {
   text-shadow: 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light), 0 0 var(--blur) var(--light);
 }
+/*
 .inverse h1, .inverse h2, .inverse h3 {
   color: #ffffff;
   line-height: 1.0em;
 }
+*/
 .inverse.revert {
    color: var(--dark);
    text-shadow: none;
@@ -441,7 +443,7 @@ pre code * {
    top: unset !important;
    left: unset !important;
    bottom: -0.1em !important;
-   right: -0.1em !important;
+   right: 1.2em !important;
    border-radius: 13px !important;
    box-shadow: unset !important;
    padding: 0.1em 0.1em 0.1em 0.1em !important;
@@ -482,6 +484,10 @@ pre code * {
   padding:10px;
   background: linear-gradient(to bottom, #D4D5A0, white, white, white, white, white, white);
  */
+}
+.remark-slide-content.notable {
+  padding-top: 0.2em;
+  padding-left: 0.35em;
 }
 .remark-slide-content.metadata > p {
   padding-left: 1.5em !important;
@@ -928,20 +934,21 @@ img[width$="%"] {
 }
 img[bound], img.bound {
    max-width: 100%;
-  /* height: auto;*/
    max-height: 100%; /*calc(100% / var(--magnifier));*/
-   width: auto; /* 100%; */
+  /* height: auto;*/
+  /* width: auto;*/ /* 100%; */
   /* margin: 0 !important;*/
-   flex: 0 0 auto;
-   object-fit: scale-down;
+  /* flex: 0 0 auto;*/
+   object-fit: contain; /* scale-down; */
   /* scale: calc(0.6 * var(--magnifier));*/
+  /* padding: 3px;*/
 }
 img[expand], img.expand {
    max-width: 100%;
    max-height: 100%;
    width: auto;
    flex: 0 0 auto;
-  /* object-fit: scale-down;*/
+   object-fit: contain;
 }
 img[aspect],img.aspect {
   /* max-height: 100%;*/
@@ -959,6 +966,21 @@ img[autowidth] {
    width: auto;
    height: 100% !important;
 }
+img[contain] {
+   max-width: 100% !important;
+   max-height: 100% !important;
+   object-fit: contain;
+}
+img[fill] {
+   max-width: 100% !important;
+   max-height: 100% !important;
+   object-fit: fill;
+}
+img[cover] {
+   max-width: 100% !important;
+   max-height: 100% !important;
+   object-fit: cover;
+}
 p > img {
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
 }
@@ -973,7 +995,7 @@ ul {
 .scroll,
 .scrollable,
 .mainbar > .oversize { /* .mainbar:not[.break] */
-   height: 671px; /* 656px; */
+   height: 675px; /* 671 656px; */
    width: calc(100% + 7px);
    overflow-y: auto; 
    overflow-x: auto;
@@ -1141,8 +1163,8 @@ html[data-darkreader-mode="filter"] .sidebar {
    border-bottom: 1px solid transparent;
    border-left: var(--sidebar-left-size) solid transparent;
   /* border-right: 1px solid var(--accent);*/
-   margin: 5px -5px -5px -13px;
-   padding: 4px 4px 6px calc(13px - var(--sidebar-right-margin));
+   margin: 4px -5px -5px -13px;
+   padding: 3px 4px 6px calc(13px - var(--sidebar-right-margin));
   /* padding: 0.15em 0.35em 0.15em 0.3em;*/
 }
 .sidebar.narrow h5,
@@ -1393,7 +1415,7 @@ h1[id*=class-thankyou], .sidebar h1[id^=-zzspan], .sidebar h2[id^=-zzspan] {
    right: 0;
 }
 .remark-backdrop {
-   background-color: #000000E7; /* #235;*/
+   background-color: #000000F7; /* #235;*/
 }
 body:fullscreen .remark-backdrop { /* body:fullscreen */
    background-image: linear-gradient(#000A,#000A), var(--lorem);
@@ -1443,10 +1465,10 @@ body:fullscreen .remark-backdrop:before {
 }
 .metadata .mainbar p, .notable .mainbar p {
    margin-top: 0.6em;
-   line-height: 1;
+  /* line-height: 1;*/
    margin-bottom: 0.1em;
-   margin-left: 0.4em;
-   margin-right: 0.4em;
+   margin-left: 0.2em;
+   margin-right: 0.2em;
 }
 .metadata .title, .metadata .subtitle, .metadata .author, .metadata .institute, .metadata.date {
   /* font-family: var(--font-condensed);*/
@@ -1454,14 +1476,14 @@ body:fullscreen .remark-backdrop:before {
 }
 .metadata .title {
    font-size: 200%;
-   margin-top: 0.6em;
-   margin-bottom: 0.6em;
-   padding-top: 0.6em;
-   padding-bottom: 0.6em;
-   line-height: 1;
-   margin-left: -20px;
+   margin-top: 0.3em;
+   margin-bottom: 0.3em;
+   padding-top: 0.3em;
+   padding-bottom: 0.3em;
+  /* line-height: 1;*/
+  /* margin-left: -14px;*/ /* -20px if border 6px; -14px without border */
   /* padding-left: 14px;*/
-   border-left: 6px solid var(--header-accent); /* var(--dark) var(--accent)*/
+  /* border-left: 6px solid var(--header-accent); */ /* var(--dark) var(--accent)*/
 }
 .inverse.metadata .title {
    border-left-color: var(--header-accent-inverse);
@@ -1499,14 +1521,14 @@ body:fullscreen .remark-backdrop:before {
    font-size: 85%;
 }
 .metadata .when, .metadata .what, .metadata .where {
-   margin-top: 1em;
+   margin-top: 0.6em;
 }
 .metadata .updated {
    font-size: 60%;
    opacity: 0.3;
    position: fixed;
-   bottom: 0.22em;
-   right: 4.2em;
+   bottom: 0.27em;
+   right: 6em;
 }
 .metadata .advance {
    margin-top: 2em;
@@ -1763,6 +1785,7 @@ table tr th:empty {
 }
 .metadata.customtitle .mainbar p {
    margin-top: 0.3em;
+   margin-left: 0px;
 }
 .w00 {width: 00%;}
 .w01 {width: 01%;}
@@ -1982,11 +2005,11 @@ table tr th:empty {
 .bottom {
    vertical-align: bottom;
 }
-.inverse img:hover,
+.inverse img:not([picture]),
 .inverse .html-widget:hover
 html[data-darkreader-scheme="dark"] body img:hover,
 html[data-darkreader-scheme="dark"] body .html-widget:hover {
-   filter: invert();
+   filter: invert() brightness(150%) contrast(100%);
 }
 .footer code {
    text-transform: none;
@@ -2100,12 +2123,13 @@ a[href="#fn"] .hovertext:after {
    left: 1%;
   /* bottom: 0.8em;*/
    position: fixed;
-   background-color: color-mix(in srgb, var(--dark), transparent 20%);
+   background-color: color-mix(in srgb, var(--dark), transparent 8%);
   /* background-color: var(--dark);*/
   /* bottom: 1%;*/
   /* width: calc(100% - var(--sidebar) - var(--gap)*1.2);*/
    display: block;
    opacity: 1;
+   border: 10px solid orange;
 }
 .cite.hovertext:before,
 a[href="#fn"] .hovertext:before {
@@ -2351,6 +2375,9 @@ blockquote p:last-of-type {
   /* border: 1px solid red;*/
   /* margin-bottom: 0px;*/
 }
+.blackout p {
+   margin-bottom: 1em;
+}
 .endofslideshow {
    letter-spacing: 4px;
    font-size: 50%;
@@ -2359,6 +2386,10 @@ blockquote p:last-of-type {
 .endofslideshow::after {
    content: 'Designed by NPLATONOV';
 }
+.bibliography a[href="#bib"] {
+   text-decoration-line: none;
+}
+
 /* filling background  -- begin */
 @media only screen {
    .remark-slide-scaler {
