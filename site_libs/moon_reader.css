@@ -24,6 +24,7 @@
    --sidebar-background-right: var(--light); /* var(--sidebar-background); */
    --sidebar-background-inverse: var(--dark); /* var(--dark);*/
    --sidebar-color: var(--dark); /* var(--accent); */
+   --sidebar-color-inverse: var(--light); /* var(--accent); */
    --sidebar-strip: #FFFFFFFE; /* #FFFFFFFE;  var(--light);*/
    --sidebar-strip-inverse: var(--inverse-bg); 
    --sidebar-select: var(--dark); /* var(--accent); */
@@ -399,7 +400,7 @@ pre code * {
    opacity: 0.3; /* default: 0.5 */
    z-index: 8;
 }
-.remark-slide-number:hover {
+.zzzremark-slide-number:hover {
    font-size: 200%;
    opacity: 0.6;
    background-color: #FFF;
@@ -437,6 +438,19 @@ pre code * {
 }
 .mainbar + .remark-slide-number:hover{
    opacity: 0.4;
+}
+.custom-slide-number::before {
+   content: attr(data-current);
+}
+.custom-slide-number:hover::before {
+   content: attr(data-current) ' / ' attr(data-total);
+}
+.remark-slide-number:hover {
+   opacity: 1 !important;
+   font-size: 110%;
+   width: 3.6em;
+   text-align: right;
+   border-color: transparent !important;
 }
 .countdown {
    opacity: 0.4;
@@ -600,14 +614,14 @@ h2 .header{
 .header .remark-inline-code {
    text-transform: none;
 }
-.inverse:not(rever) .header {
+.inverse:not(.revert) .header, .blackout .header {
    color: var(--sidebar-select-inverse);
 }
 div.header p {
    border-bottom: solid 5px var(--header-accent); /*var(--accent);*/
   /* border-bottom: 5px solid red;*/
 }
-.inverse:not(rever) div.header p {
+.inverse:not(.revert) div.header p, .blackout div.header p {
    border-bottom-color: var(--header-accent-inverse);
 }
 .header:not(:first-child):not(.show) {
@@ -981,7 +995,7 @@ img[cover] {
    max-height: 100% !important;
    object-fit: cover;
 }
-p > img {
+p > img[bound], p > img[aspect] {
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
 }
 ul {
@@ -1152,7 +1166,19 @@ html[data-darkreader-mode="filter"] .sidebar {
 }
 .inverse .sidebar h1, .inverse .sidebar h2, .inverse .sidebar h3, .inverse .sidebar h4, .inverse .sidebar h5,
 .inverse .sidebar h1 a, .inverse .sidebar h2 a, .inverse .sidebar h3 a, .inverse .sidebar h4 a, .inverse .sidebar h5 a {
-   color: #FFF;
+   color: var(--sidebar-color-inverse);
+}
+.blackout .sidebar h1,
+.blackout .sidebar h2,
+.blackout .sidebar h3,
+.blackout .sidebar h4,
+.blackout .sidebar h5,
+.blackout .sidebar h1 a,
+.blackout .sidebar h2 a,
+.blackout .sidebar h3 a,
+.blackout .sidebar h4 a,
+.blackout .sidebar h5 a {
+   color: var(--sidebar-color-inverse);
 }
 .sidebar.left-column h5,
 .sidebar.left-column h4,
@@ -1220,13 +1246,10 @@ html[data-darkreader-mode="filter"] .sidebar {
 .sidebar.left-column h4 {padding-left: 20px ;}
 .sidebar.left-column h5 {padding-left: 25px ;}
 */
-.sidebar.left-column h2 {
-  padding-left: 7% ;
-}
-.sidebar.left-column h3 {padding-left: 10% ;}
-.sidebar.left-column h4 {padding-left: 13% ;}
-.sidebar.left-column h5 {padding-left: 16% ;}
-
+.sidebar.left-column h2 {padding-left: 6%;} /* 4% 7% */
+.sidebar.left-column h3 {padding-left: 9%;} /* 6.5% 10% */
+.sidebar.left-column h4 {padding-left: 12%;} /* 8.5 13% */
+.sidebar.left-column h5 {padding-left: 14%;} /* 9.5 15% */
 
 .left-column h2:last-of-type, .left-column h3:last-child,
 .sidebar h1 a, .sidebar h2 a, .sidebar h3 a, .sidebar h4 a, .sidebar h5 a,
@@ -1252,6 +1275,16 @@ html[data-darkreader-scheme="dark"] .sidebar h5 {
    opacity: 0.999 !important;
    color: var(--sidebar-color); /* indigo */
 }
+.blackout .sidebar h1[id*=fg] a,
+.blackout .sidebar h2[id*=fg] a,
+.blackout .sidebar h3[id*=fg] a,
+.blackout .sidebar h4[id*=fg] a,
+.blackout .sidebar h5[id*=fg] a,
+.blackout .sidebar h1[id*=fg],
+.blackout .sidebar h2[id*=fg],
+.blackout .sidebar h3[id*=fg],
+.blackout .sidebar h4[id*=fg],
+.blackout .sidebar h5[id*=fg],
 .inverse:not(.revert) .sidebar h1[id*=fg] a,
 .inverse:not(.revert) .sidebar h2[id*=fg] a,
 .inverse:not(.revert) .sidebar h3[id*=fg] a,
@@ -1288,6 +1321,11 @@ html[data-darkreader-scheme="dark"] .sidebar h5 {
 .sidebar h5[id*=bg][id*=fg] {
    color: var(--sidebar-select) !important;
 }
+.blackout .sidebar h1[id*=bg][id*=fg] a,
+.blackout .sidebar h2[id*=bg][id*=fg] a,
+.blackout .sidebar h3[id*=bg][id*=fg] a,
+.blackout .sidebar h4[id*=bg][id*=fg] a,
+.blackout .sidebar h5[id*=bg][id*=fg] a,
 .inverse .sidebar h1[id*=bg][id*=fg] a,
 .inverse .sidebar h2[id*=bg][id*=fg] a,
 .inverse .sidebar h3[id*=bg][id*=fg] a,
@@ -2375,9 +2413,10 @@ blockquote p:last-of-type {
   /* border: 1px solid red;*/
   /* margin-bottom: 0px;*/
 }
-.blackout p {
+#slide-endofslideshow p {
    margin-bottom: 1em;
 }
+
 .endofslideshow {
    letter-spacing: 4px;
    font-size: 50%;
