@@ -55,6 +55,7 @@ document.addEventListener('keydown', function(e) {
       $(".banner").toggleClass("narrow");
      // $(".sidebar").toggleClass("scale");
       $(".mainbar").toggleClass("broad");
+      $(".remark-slide-content").toggleClass("modified");
      // $(".mainbar").toggleClass("scale");
      // simulateMouseOver();
       var scaleElements = document.querySelectorAll('.mainbar.scale');

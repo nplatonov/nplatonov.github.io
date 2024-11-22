@@ -57,6 +57,11 @@
    --font-normal: "Roboto", "Roboto Condensed" ,"z Fira Sans" ,"z Segoe UI", serif;
    --font-condensed: "Roboto Condensed" ,"z Segoe UI", serif;
    --bibliography-scale: 40%;
+   --h1-size: calc(var(--pointsize) * 1.80);
+   --h2-size: calc(var(--pointsize) * 1.60);
+   --h3-size: calc(var(--pointsize) * 1.42);
+   --h4-size: calc(var(--pointsize) * 1.30);
+   --h5-size: calc(var(--pointsize) * 1.18);
 }
 /*
 .remark-visible {
@@ -209,32 +214,22 @@ html[data-darkreader-mode="dynamic"] .remark-slide-content {
  /* text-shadow: 4px 4px 15px var(--dark);*/
 }
 
-.remark-slide-content h1 {
-   font-size: 160%;
-}
+.remark-slide-content h1 {font-size: var(--h1-size);}
+.remark-slide-content h2 {font-size: var(--h2-size);}
+.remark-slide-content h3 {font-size: var(--h3-size);}
+.remark-slide-content h4 {font-size: var(--h4-size);}
+.remark-slide-content h5 {font-size: var(--h5-size);}
 .remark-slide-content .sidebar h1 {
    font-size: 190%; /* 190% */
-}
-.remark-slide-content h2 {
-   font-size: 150%;
 }
 .remark-slide-content .sidebar h2 {
    font-size: 168%; /* 160% */
 }
-.remark-slide-content h3 {
-   font-size: 140%;
-}
 .remark-slide-content .sidebar h3 {
    font-size: 150%; /* 135% */
 }
-.remark-slide-content h4 {
-   font-size: 130%;
-}
 .remark-slide-content .sidebar h4 {
    font-size: 135%; /* 115% */
-}
-.remark-slide-content h5 {
-   font-size: 120%;
 }
 .remark-slide-content .sidebar h5 {
    font-size: 120%; /* 110% */
@@ -305,11 +300,17 @@ body:not(:fullscreen) .title-slide iframe {
 #slide-fn .remark-slide-number,
 .break .remark-slide-number,
 .notable .remark-slide-number,
-.metadata .remark-slide-number,
 .picsum .remark-slide-number,
 .title-slide .remark-slide-number {
   display: none;
 }
+.metadata .remark-slide-number {
+   opacity: 0 !important;
+}
+.metadata .remark-slide-number:hover {
+   opacity: 0.2;
+}
+
 .remark-code, .remark-inline-code, pre code * {
   /* font-size: calc(var(--pointsize) * 0.8);*/
    font-family: 'Source Code Pro', 'Cousine', 'Lucida Console', Monaco, monospace;
@@ -430,7 +431,7 @@ pre code * {
    left: unset;
    bottom: unset;
    top: 0.45em;
-   right: 1.1em;
+   right: 0.5em; /* 1.1em with scrollbar */
    margin-right: unset;
 }
 .mainbar + .remark-slide-number:hover::before {
@@ -602,11 +603,15 @@ h2 .header{
    margin-top: -3px;
    margin-bottom: -6px;
    line-height: 1.05;
-   text-transform: uppercase;
    letter-spacing: -0.5px;
   /* text-decoration: underline 5px #7f7f7f4f;*/
   /* border-bottom: solid 5px #7f7f7f4f;*/
    color: var(--sidebar-select);
+}
+.mainbar:not(.broad) .header.broad,
+.mainbar:not(.broad) .header.show,
+.mainbar:not(.broad) .header:not(.show) {
+   text-transform: uppercase;
 }
 .mainbar.broad .header.broad {
    margin-top: 0px;
@@ -617,7 +622,9 @@ h2 .header{
 .inverse:not(.revert) .header, .blackout .header {
    color: var(--sidebar-select-inverse);
 }
-div.header p {
+.mainbar:not(.broad) .header.broad p,
+.mainbar:not(.broad) .header.show p,
+.foobar {
    border-bottom: solid 5px var(--header-accent); /*var(--accent);*/
   /* border-bottom: 5px solid red;*/
 }
@@ -659,7 +666,7 @@ h5 span.header {
    width: calc(101% - var(--sidebar) - var(--sidebar-margin));
 }
 .metadata .sidebar.narrow + .right-column {
-   width: calc(101% - var(--sidebar-narrow) - var(--sidebar) - var(--sidebar-margin) - 9px);
+   width: calc(101% - var(--sidebar-narrow) - var(--sidebar) - var(--sidebar-margin) - 8.7px);
 }
 .sidebar.narrow + .right-column {
   /* width: 2 -> 1, right: 1 -> 0 */
@@ -1503,7 +1510,7 @@ body:fullscreen .remark-backdrop:before {
 }
 .metadata .mainbar p, .notable .mainbar p {
    margin-top: 0.6em;
-  /* line-height: 1;*/
+   line-height: 1.02;
    margin-bottom: 0.1em;
    margin-left: 0.2em;
    margin-right: 0.2em;
@@ -1527,8 +1534,8 @@ body:fullscreen .remark-backdrop:before {
    border-left-color: var(--header-accent-inverse);
 }
 .metadata .subtitle {
-   font-size: 120%;
-   margin-top: -0.5em;
+   font-size: 135%;
+   margin-top: -0.01em;
    margin-bottom: 1.2em;
 }
 /*
@@ -1546,7 +1553,7 @@ body:fullscreen .remark-backdrop:before {
 }
 .metadata.customtitle .institute {
    font-size: 90%;
-   margin-top: -0.1em;
+   margin-top: -0.25em;
    margin-left: 2em;
 }
 .metadata .meeting, .metadata .what {
@@ -2300,8 +2307,19 @@ a[href="#fn"] .hovertext:before {
 .metadata > .broad p { /* title subtitle author date ... */
   /* font-size: 120%;*/
 }
-.broad > .header {
-   font-size: calc(var(--pointsize) * 1.3);
+.broad > .header {font-size: calc(var(--pointsize) * 1.3);}
+.broad > .header.h1 {font-size: var(--h1-size);}
+.broad > .header.h2 {font-size: var(--h2-size);}
+.broad > .header.h3 {font-size: var(--h3-size);}
+.broad > .header.h4 {font-size: var(--h4-size);}
+.broad > .header.h5 {font-size: var(--h5-size);}
+.header:after {
+   content: attr(class);
+   display: block;
+   position: absolute;
+   top: -1.1em;
+   opacity: 0.2;
+   font-size: 18px;
 }
 .zzzscale:not(.broad) > .zzzheader:not(:only-child) {
    font-size: calc(var(--pointsize) * 0.4);
@@ -2328,7 +2346,7 @@ a[href="#fn"] .hovertext:before {
    font-size: 100%;
 }
 .mainbar.broad > .header.show {
-   display: none;
+  /* display: none; */
 }
 .scale:not(.broad) > .header:not(:only-child) p,
 .mainbar:not(.scale):not(.broad) > .header:not(.show) p {
@@ -2445,7 +2463,7 @@ blockquote p:last-of-type {
       height: 100%;
       margin-top: 0em;
       padding-top: revert;
-      margin-left: -16px;
+      margin-left: -29px;
       transition: 0.3s;
       box-shadow: 0 0 8px; 
    }
