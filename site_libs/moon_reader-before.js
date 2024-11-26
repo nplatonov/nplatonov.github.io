@@ -62,7 +62,7 @@ document.addEventListener('keydown', function(e) {
       if (scaleElements) {
          scaleElements.forEach(function(element) {
             if (!element.classList.contains('broad')) {
-               element.style.fontSize = "92%";
+               element.style.fontSize = "100%"; /* 92% */
             } else {
                element.style.fontSize = "100%";
             }

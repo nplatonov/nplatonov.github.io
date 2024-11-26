@@ -21,8 +21,9 @@
    --sidebar-narrow-pointsize: calc(var(--sidebar-narrow) / 12);
    --sidebar-margin: 15px;
    --sidebar-background: var(--light); /*#ffffe6 #00000017 #FAFAFA #ffc */
-   --sidebar-background-right: var(--light); /* var(--sidebar-background); */
+   --sidebar-background-right: var(--sidebar-background); /* var(--sidebar-background); */
    --sidebar-background-inverse: var(--dark); /* var(--dark);*/
+   --sidebar-background-inverse-right: var(--sidebar-background-inverse); /* var(--sidebar-background); */
    --sidebar-color: var(--dark); /* var(--accent); */
    --sidebar-color-inverse: var(--light); /* var(--accent); */
    --sidebar-strip: #FFFFFFFE; /* #FFFFFFFE;  var(--light);*/
@@ -1075,8 +1076,8 @@ ul {
    left: 0;
    height: 100%;
   /* background-image: linear-gradient(to right, #0000, #0000, #0000000A);*/
-  /* background-image: linear-gradient(to right, var(--sidebar-background), var(--sidebar-background-right)); */ /* #ff35 #0254 */
-  /* background-color: #0001;*/
+   background-image: linear-gradient(to right, var(--sidebar-background), var(--sidebar-background-right));  /* #ff35 #0254 */
+  /* background-color: var(--sidebar-background);*/ /* #0001 */
    margin-left: -516px;
    margin-top: -24px;
    padding-top: 24px;
@@ -1091,6 +1092,10 @@ ul {
   /* text-align: justify;*/
    z-index: 0;
 }
+.left-column.sidebar.narrow:not(:hover):not(.hovered) {
+   background-color: unset;
+   background-image: unset;
+}
 .left-column.sidebar.narrow:hover,
 .left-column.sidebar.narrow.hovered {
    margin-left: 16px;
@@ -1103,11 +1108,11 @@ ul {
 }
 .inverse:not(.revert) .left-column.sidebar {
   /* filter: invert(100%);*/
-  /* background-image: linear-gradient(to right, var(--sidebar-background-inverse), var(--inverse-bg));*/ /*#2589 #fff2->#fff0*/
+   background-image: linear-gradient(to right, var(--sidebar-background-inverse), var(--sidebar-background-right-inverse)); /*#2589 #fff2->#fff0*/
 }
 /* .metadata.inverse:not(.revert) .left-column.sidebar, */
 .inverse:not(.revert) .left-column.sidebar:hover {
-   background-image: linear-gradient(to right, var(--sidebar-background-inverse), var(--inverse-bg)); /*#2589 #fff2->#fff0*/
+  /* background-image: linear-gradient(to right, var(--sidebar-background-inverse), var(--sidebar-background-right-inverse)); */ /*#2589 #fff2->#fff0*/
 }
 .remark-slide-content[style*=background] > .sidebar {
    background-color: none !important;
