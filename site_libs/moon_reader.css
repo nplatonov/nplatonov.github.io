@@ -18,6 +18,7 @@
    --sidebar: 23%;
    --sidebar-narrow: -8px;
    --sidebar-pointsize: 70%;
+   --footer-pointsize: 70%;
    --sidebar-narrow-pointsize: calc(var(--sidebar-narrow) / 12);
    --sidebar-margin: 15px;
    --sidebar-background: var(--light); /*#ffffe6 #00000017 #FAFAFA #ffc */
@@ -946,6 +947,9 @@ img[width="1330"]:not([expand]):not(.expand):not([bound]):not(.bound):not([aspec
 img[auto][width="1330"] {
    height: revert-layer;
 }
+.html-widget[style*="width: 1330px"] {
+   width: unset !important;
+}
 img[width$="%"] {
   /* height: auto;*/
   /* width: auto;*/
@@ -1043,13 +1047,13 @@ ul {
 .footer {
    position: fixed;
    left: calc(21px + var(--sidebar));
-   bottom: -4px;
+   bottom: -6px;
   /* height: 20px;*/
    width: calc(100% - 26px - var(--sidebar));
    text-align: left;
    text-transform: uppercase;
    letter-spacing: 2px;
-   font-size: 12px;
+   font-size: var(--footer-pointsize);
    opacity: 0.6;
   /* border: 1px solid red;*/
   /* background-color: orange;*/
