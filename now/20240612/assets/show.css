@@ -5,6 +5,8 @@
   --magnifier: 1.63;
   /* --pointsize: 11pt; */
   --sidebar: 24%;
+  --bibliography-scale: 37.5%;
+  --sidebar-pointsize: 67%
 }
 .a {
    text-decoration: none;
@@ -50,17 +52,22 @@
    font-size: 80%;
 }
 */	
+.remark-slide .customtitle .what,
+.remark-slide .customtitle .where,
+.remark-slide .customtitle .when {
+   margin-top: 0.2em;
+}
 .remark-slide .metadata .title {
    font-size: 230%;
-   margin-top: 0.3em;
-   margin-bottom: 0.3em;
-   padding-top: 0.4em;
+   margin-top: 0.05em;
+   margin-bottom: 0.0em;
+   padding-top: 0.05em;
    padding-bottom: 0.6em;
 }
 .remark-slide .metadata .subtitle {
    margin-top: -1.16em;
-   margin-bottom: 0.4em;
-   padding-bottom: 1em;
+   margin-bottom: 0.05em;
+   padding-bottom: 0.7em;
 }
 .remark-slide .metadata .title,
 .remark-slide .metadata .subtitle {
@@ -214,18 +221,22 @@ img.torussian:before {
 [id*=result] .sidebar h3 a,
 [id*=reserve] .sidebar h4,
 [id*=reserve] .sidebar h4 a {
-   opacity: 1 !important;
+  /* opacity: 1 !important;*/
 }
 [id*=result] .sidebar h3 a,
 [id*=participant] .sidebar h3 a,
 [id*=reserve] .sidebar h4 a {
-   border-bottom: var(--header-accent) 2px solid;
+  /* border-bottom: var(--header-accent) 2px solid;*/
 }
 [id*=ground] .logo,
 [id*=aerial] .logo,
 [id*=survey] .logo { /* #slide- */
    width: 0px;
 }
+[id*=laptev] .sidebar {
+   font-size: calc(var(--sidebar-pointsize) * 0.98);
+}
+[id*=immunity] .sidebar,
 [id*=maternal] .sidebar,
 [id*=occurrence] .sidebar,
 [id*=distribution] .sidebar,
@@ -235,7 +246,7 @@ img.torussian:before {
 [id*=ground] .sidebar,
 [id*=aerial] .sidebar,
 [id*=survey] .sidebar { /* #slide- */
-   font-size: calc(var(--sidebar-pointsize) * 0.89);
+   font-size: calc(var(--sidebar-pointsize) * 0.88);
 }
 .html-widget.grViz {
    width: unset !important;
@@ -251,13 +262,14 @@ img.torussian:before {
    opacity: 1;
 }
 .customtitle .author {
-   margin-top: -3px;
+   margin-top: -9px;
 }
 .customtitle .institute {
    margin-bottom: 0.6em;
 }
 a[href*=polarmap] {
    border: none;
+   text-decoration: none;
 }
 a[href*=polarmap]:after {
    content: '🌐';
@@ -375,7 +387,18 @@ div.approved {
 .shorttitle p {
    font-size: 13px !important;
 }
-
+:not([remark-slide]) .remark.notes {
+   display: none;
+}
+:not([remark-slide]) .clarify {
+  /* margin-top: 0.5em; */
+  /* margin-bottom: 0.5em; */
+   box-shadow: none;
+}
+h4 > img, h3 > img, h2 > img {
+  height: 1.4em !important;
+  margin-top: -0.2em;  
+}
 @media print {
    #slide-polarmap-skip {
       display: none;
