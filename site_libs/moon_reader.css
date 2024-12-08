@@ -615,7 +615,8 @@ h2 .header{
 .mainbar:not(.broad) .header:not(.show) {
    text-transform: uppercase;
 }
-.mainbar.broad .header.broad {
+.mainbar.broad .header.broad,
+.mainbar.broad .header.show {
    margin-top: 0px;
 }
 .header .remark-inline-code {
@@ -668,12 +669,16 @@ h5 span.header {
    width: calc(101% - var(--sidebar) - var(--sidebar-margin));
 }
 .metadata .sidebar.narrow + .right-column {
-   width: calc(101% - var(--sidebar-narrow) - var(--sidebar) - var(--sidebar-margin) - 8.7px);
+   width: calc(101% - var(--sidebar-narrow) - var(--sidebar) - var(--sidebar-margin) - 8.7px - 0.6em);
+   margin-top: -0.1em;
 }
 .sidebar.narrow + .right-column {
   /* width: 2 -> 1, right: 1 -> 0 */
-   width: calc(101% - 2 * var(--sidebar-narrow) - var(--sidebar-margin));
-   margin-right: calc(1 * var(--sidebar-narrow));
+   width: calc(101% - 2 * var(--sidebar-narrow) - var(--sidebar-margin) - 1.2em);
+   margin-right: calc(1 * var(--sidebar-narrow) + 0.6em);
+   margin-top: 0.2em;
+   margin-bottom: 0.2em;
+   text-align: justify;
 }
 .mainbar a,
 .mainbar a:visited,
@@ -690,6 +695,17 @@ a:hover {
   /* color: initial;*/
   /* text-decoration: underline dotted;*/
 }
+.announce a {
+   text-decoration: none;
+}
+.announce a:hover {
+   text-decoration: underline 0.08em dotted color-mix(in srgb, var(--dark), transparent 70%);
+}
+.inverse .announce a:hover,
+.blackout .announce a:hover {
+   text-decoration: underline 0.08em dotted color-mix(in srgb, var(--light), transparent 70%);
+}
+.blackout a, .blackout a:visited,
 .break a, .break a:visited,
 .inverse a, .inverse a:visited {
    color: var(--inverse-color);
@@ -1812,7 +1828,7 @@ code.remark-code:not(.hljs) {
    right: 0;
    opacity: 0.1;
 }
-.framed {
+.framed, .scrollable iframe {
    width: 99.2%;
 }
 .full {
@@ -2425,11 +2441,12 @@ a[href="#fn"] .hovertext:before {
   /* content: ' ❘ '; */ /* ➧ ❯ */
 }
 
+[class*="remark-presenter-mode"] .left-column.sidebar,
 [class*="tile-view"] .left-column.sidebar {
    margin-top: revert;
    padding-top: revert;
-   margin-left: revert;
-   padding-left: revert;
+   margin-left: 0px;
+   padding-left: 16px;
    height: 100%;
 }
 blockquote {
@@ -2475,7 +2492,7 @@ blockquote p:last-of-type {
       height: 100%;
       margin-top: 0em;
       padding-top: revert;
-      margin-left: -29px;
+      margin-left: -9px;
       transition: 0.3s;
       box-shadow: 0 0 8px; 
    }
