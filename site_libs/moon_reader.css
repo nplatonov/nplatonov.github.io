@@ -29,12 +29,12 @@
    --sidebar-color-inverse: var(--light); /* var(--accent); */
    --sidebar-strip: #FFFFFFFE; /* #FFFFFFFE;  var(--light);*/
    --sidebar-strip-inverse: var(--inverse-bg); 
-   --sidebar-select: var(--dark); /* var(--accent); */
+   --sidebar-select: var(--dark); /* var(--dark);*/ /* var(--accent); */
    --sidebar-select-inverse: var(--light); /* var(--inverse-accent);*/
    --sidebar-border: var(--sidebar-select); /* var(--accent) transparent; */
    --sidebar-border-inverse: var(--sidebar-select-inverse); /*var(--inverse-accent);*/
    --sidebar-left-size: 5px; /* 0.15em */
-   --sidebar-left-color: inherit; 
+   --sidebar-left-color: inherit; /* inherit; */
    --sidebar-accent: transparent;
    --header-accent: #ccc;
    --header-accent-inverse: #777;
@@ -176,17 +176,20 @@ remark-slide-content[style*="background"] .inverse:not(.revert) h5 {
 }
 .sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5,
 .mainbar > .sidebar {
-  font-family: var(--font-condensed) !important;
+   font-family: var(--font-condensed) !important;
+}
+.mainbar h1, .mainbar h2, .mainbar h3, .mainbar h4, .mainbar h5 {
+   line-height: 0.95;
 }
 .sidebar code {
    color: unset;
 }
 .remark-slide-content {
-  background-color: var(--light);
-  font-size: var(--pointsize);
+   background-color: var(--light);
+   font-size: var(--pointsize);
 }
 html[data-darkreader-mode="dynamic"] .remark-slide-content {
-  background-color: var(--darkreader-selection-text);
+   background-color: var(--darkreader-selection-text);
 }
 .remark-slide-content h1,
 .remark-slide-content h2,
@@ -424,6 +427,7 @@ pre code * {
   /* right: unset;*/
   /* left: 0.05em;*/
    bottom: 0.15em;
+   background-color: var(--sidebar-accent);
 }
 .inverse:not(.revert) .mainbar + .remark-slide-number {
    border-color: var(--light);
@@ -432,8 +436,8 @@ pre code * {
   /* margin-right: calc(100% - var(--sidebar-narrow) - var(--gap) - 11px);*/
    left: unset;
    bottom: unset;
-   top: 0.45em;
-   right: 0.5em; /* 1.1em with scrollbar */
+   top: 0.85em;
+   right: 0.9em; /* 1.1em with scrollbar */
    margin-right: unset;
 }
 .mainbar + .remark-slide-number:hover::before {
@@ -618,6 +622,14 @@ h2 .header{
 .mainbar.broad .header.broad,
 .mainbar.broad .header.show {
    margin-top: 0px;
+   width: calc(100% - 1.1em);
+   overflow-x: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   display: block;
+}
+.mainbar.broad .header.show p { 
+   white-space: normal;
 }
 .header .remark-inline-code {
    text-transform: none;
@@ -666,19 +678,21 @@ h5 span.header {
    width: calc(var(--sidebar-narrow) - var(--sidebar-margin));
 }
 .sidebar + .right-column {
-   width: calc(101% - var(--sidebar) - var(--sidebar-margin));
+   width: calc(100% - var(--sidebar) - var(--sidebar-margin) + 11px);
+  /* width: calc(100% - var(--sidebar) + 5px);*/
 }
 .metadata .sidebar.narrow + .right-column {
-   width: calc(101% - var(--sidebar-narrow) - var(--sidebar) - var(--sidebar-margin) - 8.7px - 0.6em);
+   width: calc(101% - var(--sidebar-narrow) - var(--sidebar) - var(--sidebar-margin) - 5.6px - 0.6em);
    margin-top: -0.1em;
 }
 .sidebar.narrow + .right-column {
   /* width: 2 -> 1, right: 1 -> 0 */
-   width: calc(101% - 2 * var(--sidebar-narrow) - var(--sidebar-margin) - 1.2em);
-   margin-right: calc(1 * var(--sidebar-narrow) + 0.6em);
+   width: calc(101% - 2 * var(--sidebar-narrow) - var(--sidebar-margin) - 1.05em);
+   margin-right: calc(1 * var(--sidebar-narrow) - 0.2em - 1px);
    margin-top: 0.2em;
    margin-bottom: 0.2em;
-   text-align: justify;
+   padding-right: 0.8em;
+  /* text-align: justify; */ /* this is verbose option */
 }
 .mainbar a,
 .mainbar a:visited,
@@ -1032,7 +1046,11 @@ ul {
 }
 .mainbar {
    margin-top: -0.3em;
-   margin-right: -0.3em;
+   margin-right: -0.5em;
+   padding-right: 0.3em;
+   padding-left: 0.3em;
+  /* text-align: justify;*/
+   margin-left: 1em;
 }
 .scroll,
 .scrollable,
@@ -1051,6 +1069,9 @@ ul {
 }
 .customtitle .scrollable, .middle .scrollable, .bottom .scrollable {
    height: unset;
+}
+.customtitle .scrollable {
+   padding-top: 3px;
 }
 .wide {
    display: block;
@@ -1105,7 +1126,7 @@ ul {
    margin-top: -24px;
    padding-top: 24px;
    padding-left: 532px;
-   padding-right: calc(16px - var(--sidebar-right-margin));
+   padding-right: calc(16px - var(--sidebar-right-margin)); /* margin-right in .sidebar.outline */
   /* overflow: scroll; */
    overflow-y: auto;
   /* scrollbar-width: thin;*/
@@ -1115,6 +1136,15 @@ ul {
   /* text-align: justify;*/
    z-index: 0;
 }
+.sidebar > .outline {
+   margin-right: -3px;
+   margin-left: -3px;
+}
+/*
+.sidebar > .outline {
+   background-color: #FF03;
+}
+*/
 .left-column.sidebar.narrow:not(:hover):not(.hovered) {
    background-color: unset;
    background-image: unset;
@@ -1122,7 +1152,7 @@ ul {
 .left-column.sidebar.narrow:hover,
 .left-column.sidebar.narrow.hovered {
    margin-left: 16px;
-   padding-left: 32px;
+   padding-left: 30px;
 }
 .remark-slide-content[style*="background"] .left-column.sidebar {
    background-image: none;
@@ -1224,8 +1254,8 @@ html[data-darkreader-mode="filter"] .sidebar {
    border-bottom: 1px solid transparent;
    border-left: var(--sidebar-left-size) solid transparent;
   /* border-right: 1px solid var(--accent);*/
-   margin: 4px -5px -5px -13px;
-   padding: 3px 4px 6px calc(13px - var(--sidebar-right-margin));
+   margin: 4px 0px -5px -10px; /* right -5px: 4px -5px -5px -10px */
+   padding: 3px 0px 6px calc(13px - var(--sidebar-right-margin)); /* right 4px */
   /* padding: 0.15em 0.35em 0.15em 0.3em;*/
 }
 .sidebar.narrow h5,
@@ -2078,7 +2108,7 @@ table tr th:empty {
 .bottom {
    vertical-align: bottom;
 }
-.inverse img:not([picture]),
+.inverse img[invertable],
 .inverse .html-widget:hover
 html[data-darkreader-scheme="dark"] body img:hover,
 html[data-darkreader-scheme="dark"] body .html-widget:hover {
@@ -2270,7 +2300,7 @@ a[href="#fn"] .hovertext:before {
    margin-top: revert	;
 }
 .sidebar.narrow .outline {
-   opacity: 0.2;
+   opacity: 0.01;
 }
 .sidebar.narrow:hover,
 .sidebar.narrow.hovered {
@@ -2476,7 +2506,28 @@ blockquote p:last-of-type {
 .bibliography a[href="#bib"] {
    text-decoration-line: none;
 }
-
+.mainbar.broad .parent {
+   font-size: calc(var(--pointsize) * 1);
+   position: relative;
+}
+.mainbar.broad .parent-devel {
+   display: block;
+   position: absolute;
+   top: 0.8em;
+   right: 2.8em;
+   font-size: calc(var(--pointsize) * 0.8);
+   border: 2px solid transparent;
+}
+.mainbar.broad .grand::before {
+   content: ' « ';
+}
+.mainbar.broad .grand {
+   opacity: 0.3;
+   font-size: 80%;
+}
+.mainbar:not(.broad) .parent {
+   display: none;
+}
 /* filling background  -- begin */
 @media only screen {
    .remark-slide-scaler {
