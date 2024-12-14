@@ -29,12 +29,12 @@
    --sidebar-color-inverse: var(--light); /* var(--accent); */
    --sidebar-strip: #FFFFFFFE; /* #FFFFFFFE;  var(--light);*/
    --sidebar-strip-inverse: var(--inverse-bg); 
-   --sidebar-select: var(--dark); /* var(--accent); */
+   --sidebar-select: var(--dark); /* var(--dark);*/ /* var(--accent); */
    --sidebar-select-inverse: var(--light); /* var(--inverse-accent);*/
    --sidebar-border: var(--sidebar-select); /* var(--accent) transparent; */
    --sidebar-border-inverse: var(--sidebar-select-inverse); /*var(--inverse-accent);*/
    --sidebar-left-size: 5px; /* 0.15em */
-   --sidebar-left-color: inherit; 
+   --sidebar-left-color: inherit; /* inherit; */
    --sidebar-accent: transparent;
    --header-accent: #ccc;
    --header-accent-inverse: #777;
@@ -1063,6 +1063,10 @@ ul {
   /* background-color: orange;*/
   /* border: 3px solid #f5f5f5;*/
 }
+.broad.scrollable {
+   height: 660px; /* 675 671 656px; */
+}
+
 .scrollable > .mainbar {
    overflow-y: auto; 
    height: 656px;
@@ -1140,7 +1144,11 @@ ul {
    margin-right: -3px;
    margin-left: -3px;
 }
-
+/*
+.sidebar > .outline {
+   background-color: #FF03;
+}
+*/
 .left-column.sidebar.narrow:not(:hover):not(.hovered) {
    background-color: unset;
    background-image: unset;
@@ -1250,8 +1258,8 @@ html[data-darkreader-mode="filter"] .sidebar {
    border-bottom: 1px solid transparent;
    border-left: var(--sidebar-left-size) solid transparent;
   /* border-right: 1px solid var(--accent);*/
-   margin: 4px -5px -5px -10px;
-   padding: 3px 4px 6px calc(13px - var(--sidebar-right-margin));
+   margin: 4px 0px -5px -10px; /* right -5px: 4px -5px -5px -10px */
+   padding: 3px 0px 6px calc(13px - var(--sidebar-right-margin)); /* right 4px */
   /* padding: 0.15em 0.35em 0.15em 0.3em;*/
 }
 .sidebar.narrow h5,
@@ -2105,7 +2113,8 @@ table tr th:empty {
    vertical-align: bottom;
 }
 .inverse img[invertable],
-.inverse .html-widget:hover
+.inverse iframe[invertable],
+.inverse .html-widget:hover,
 html[data-darkreader-scheme="dark"] body img:hover,
 html[data-darkreader-scheme="dark"] body .html-widget:hover {
    filter: invert() brightness(150%) contrast(100%);
