@@ -1867,8 +1867,10 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
    display: inline;
 }
 .deletion {
-   text-decoration-line: line-through;
    color: red;
+}
+.deletion:not(:hover) {
+   text-decoration-line: line-through;
 }
 .insertion {
    color: blue;
@@ -1895,7 +1897,7 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
    opacity: 0.5;
   /* content: '> ';*/
 }
-.deletion[author]::after {
+.deletion[author]:hover::after {
    text-decoration-line: unset !important;
    content: ' Removed by ' attr(author) ' on ' attr(date);
    font-size: 72%;
@@ -1911,7 +1913,7 @@ table tbody tr td span { /* https://github.com/renkun-ken/formattable/blob/maste
 .insertion::before {
   /* content: '<' attr(author) ', ' attr(date) '> ';*/
 }
-.insertion[author]::after {
+.insertion[author]:hover:after {
    content: ' Added by ' attr(author) ' on ' attr(date);
    font-size: 80%;
    opacity: 0.5;
