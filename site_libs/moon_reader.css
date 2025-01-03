@@ -609,7 +609,7 @@ h2 .header{
    margin-top: -3px;
    margin-bottom: -6px;
    line-height: 1.05;
-   letter-spacing: -0.5px;
+   letter-spacing: -0.03em;
   /* text-decoration: underline 5px #7f7f7f4f;*/
   /* border-bottom: solid 5px #7f7f7f4f;*/
    color: var(--sidebar-select);
@@ -885,9 +885,9 @@ body:fullscreen .picsum.title-slide:after {
   /* opacity: 0.5;*/
 }
 .html-widget.plotly {
-   zoom: var(--magnifier); 
-   -moz-transform: scale(var(--magnifier)); 
-   -moz-transform-origin: 0 0;
+  /* zoom: var(--magnifier); */
+   -webkit-transform: scale(var(--magnifier)); 
+   -webkit-transform-origin: 0 0;
    max-width: calc(100% / var(--magnifier));
   /* opacity: 0.5;*/
 }
@@ -913,9 +913,9 @@ body:fullscreen .picsum.title-slide:after {
    border: 1px solid blue;
    height: calc( 98% / var(--magnifier));
    zoom: var(--magnifier); 
-   -ms-zoome: var(--magnifier);
-   -moz-transform: scale(var(--magnifier)); 
-   -moz-transform-origin: 0 0;
+  /* -ms-zoome: var(--magnifier);*/
+  /* -moz-transform: scale(var(--magnifier)); */
+  /* -moz-transform-origin: 0 0; */
    -o-transform: scale(var(--magnifier));
    -o-transform-origin: 0 0;
    -webkit-transform: scale(var(--magnifier));
@@ -945,10 +945,10 @@ iframe.ursa-widgetize, iframe.magnify, iframe[magnify] {
    border: 1px dashed #eee;
   /* zoom: var(--magnifier); */
   /* -ms-zoome: var(--magnifier);*/
-   -ms-transform: scale(var(--magnifier));
-   -ms-transform-origin: 0 0;
-   -moz-transform: scale(var(--magnifier)); 
-   -moz-transform-origin: 0 0;
+  /* -ms-transform: scale(var(--magnifier));*/
+  /* -ms-transform-origin: 0 0;*/
+  /* -moz-transform: scale(var(--magnifier)); */
+  /* -moz-transform-origin: 0 0; */
    -o-transform: scale(var(--magnifier));
    -o-transform-origin: 0 0;
    -webkit-transform: scale(var(--magnifier));
@@ -1144,7 +1144,7 @@ ul {
    margin-right: -3px;
    margin-left: -3px;
   /* font-variant: small-caps;*/
-   letter-spacing: -4%;
+   letter-spacing: -0.06em;
 }
 /*
 .sidebar > .outline {
@@ -1804,7 +1804,7 @@ code.remark-code:not(.hljs) {
   text-align: left;
   margin-left: 0px;
   margin-right: 40px; /* slide number */
-  margin-bottom: 0px;
+  margin-bottom: 0.08em;
   position: relative;
   display: inline-block; /* 'block' - hides empty line; 'inline-block' keeps emptry line */
  /* left: 0em;*/
@@ -2114,6 +2114,7 @@ table tr th:empty {
 .bottom {
    vertical-align: bottom;
 }
+.inverse .invertable img,
 .inverse img[invertable],
 .inverse iframe[invertable],
 .inverse .html-widget:hover,
@@ -2701,5 +2702,6 @@ blockquote p:last-of-type {
 @supports (not (-moz-appearance:none)) and (not (-ms-ime-align: auto)) { /* not Firefox and not Edge */
    .html-widget {
       max-width: 100% !important;
+     /* border: 3px solid red !important;*/
    }
 }
