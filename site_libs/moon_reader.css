@@ -253,6 +253,7 @@ html[data-darkreader-mode="dynamic"] .remark-slide-content {
  /* color: #43418A; */
 }
 .remark-slide-content.inverse:not(.notable, .revert),
+.remark-slide-content.blackout,
 .title-slide.inverse,
 .break,
 .blackout,
@@ -429,6 +430,7 @@ pre code * {
    bottom: 0.15em;
    background-color: var(--sidebar-accent);
 }
+.blackout .mainbar + .remark-slide-number,
 .inverse:not(.revert) .mainbar + .remark-slide-number {
    border-color: var(--light);
 }
@@ -617,7 +619,8 @@ h2 .header{
 .mainbar:not(.broad) .header.broad,
 .mainbar:not(.broad) .header.show,
 .mainbar:not(.broad) .header:not(.show) {
-   text-transform: uppercase;
+  /* text-transform: uppercase;*/
+   font-variant: small-caps;
 }
 .mainbar.broad .header.broad,
 .mainbar.broad .header.show {
@@ -724,6 +727,10 @@ a:hover {
 .inverse a, .inverse a:visited {
    color: var(--inverse-color);
 }
+.blackout .mainbar a,
+.blackout .mainbar a:visited,
+.blackout .mainbar a > code,
+.blackout .notable a,
 .inverse .mainbar a,
 .inverse .mainbar a:visited,
 .inverse .mainbar a > code,
@@ -1165,7 +1172,8 @@ ul {
 }
 .inverse {
 }
-.inverse:not(.revert) .left-column.sidebar {
+.inverse:not(.revert) .left-column.sidebar,
+.blackout .left-column.sidebar {
   /* filter: invert(100%);*/
    background-image: linear-gradient(to right, var(--sidebar-background-inverse), var(--sidebar-background-right-inverse)); /*#2589 #fff2->#fff0*/
 }
@@ -1436,6 +1444,11 @@ html[data-darkreader-scheme="dark"] .sidebar h5 {
   /* background-image: linear-gradient(to right, var(--sidebar-strip), var(--sidebar-strip), var(--sidebar-strip));*/ /* #FFFF, #FFF9, #FFF0 ; white #FFFCE1;*/
    background-image: none;
 }
+.blackout .sidebar h1[id*=bg][id*=fg],
+.blackout .sidebar h2[id*=bg][id*=fg],
+.blackout .sidebar h3[id*=bg][id*=fg],
+.blackout .sidebar h4[id*=bg][id*=fg],
+.blackout .sidebar h5[id*=bg][id*=fg],
 .inverse:not(.revert) .sidebar h1[id*=bg][id*=fg],
 .inverse:not(.revert) .sidebar h2[id*=bg][id*=bg],
 .inverse:not(.revert) .sidebar h3[id*=bg][id*=fg],
@@ -2114,8 +2127,10 @@ table tr th:empty {
 .bottom {
    vertical-align: bottom;
 }
+.blackout .invertable img,
 .inverse .invertable img,
 .inverse img[invertable],
+.blackout img[invertable],
 .inverse iframe[invertable],
 .inverse .html-widget:hover,
 html[data-darkreader-scheme="dark"] body img:hover,
