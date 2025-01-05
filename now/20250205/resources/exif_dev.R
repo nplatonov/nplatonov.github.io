@@ -1,0 +1,32 @@
+#+ include=FALSE
+dpath <- ifelse(isTRUE(grepl("(child|code)=",knitr::opts_current$get("params.src"))),"resources",".")
+tz <- c('D7500'="UTC"
+       ,'Oregon'="Asia/Krasnoyarsk")
+user <- "D7500"
+(src <- file.path(dpath,"DSC_2414.JPG"))
+file.info(src)
+#+ eval=TRUE
+photoID <- gsub(".*\\D(\\d{4})\\D.*","\\1",basename(src))
+a <- sf::gdal_utils("info",src,quiet=TRUE)
+a <- strsplit(a,split="\\n")[[1]]
+patt1 <- "\\s*EXIF_DateTimeOriginal=(.+)"
+if (length(ind1 <- grep(patt1,a))==1) {
+   t3 <- gsub(patt1,"\\1",a[ind1])
+   t3 <- as.POSIXct(t3,format="%Y:%m:%d %H:%M:%S",tz="UTC")
+   patt2 <- "\\s*EXIF_OffsetTimeOriginal=(.+)"
+   if (length(ind2 <- grep(patt2,a))==1) {
+      tz3 <- gsub(patt2,"\\1",a[ind2])
+      print(c(TZ=tz3))
+      t3 <- t3-(as.difftime(as.numeric(gsub("^(.+):(.+)$","\\1",tz3))+
+            as.numeric(gsub("^(.+):(.+)$","\\2",tz3))/60,units="hours"))
+      t3 <- as.POSIXct(t3,tz=tz[user])
+   }
+   print(c(t3=t3))
+   print(c(photoID=photoID))
+   dst <- file.path(dirname(src),paste0(format(t3,"%Y%m%d-%H%M%S-"),photoID
+                                   ,tolower(gsub(".*(\\..+$)","\\1",basename(src)))
+                                   ))
+   print(data.frame('src'=src,'dst'=dst))
+}
+# file.rename(src,dst)
+file.copy(src,dst,overwrite=TRUE,copy.date=TRUE)

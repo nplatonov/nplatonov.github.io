@@ -1,0 +1,109 @@
+:root {
+   --sidebar-select: #002366;
+   --sidebar-color: #002366;
+}
+.logo img[alt=sevin] {
+   height: 90px;
+}
+.logo img[alt=pu] {
+   height: 80px;
+}
+.customtitle .logo img[alt=sevin] {
+   height: 180px;
+}
+.customtitle .logo img[alt=pu] {
+   height: 140px;
+}
+.metadata .shorttitle {
+   visibility: hidden;
+}
+.sidebar h1[id*=cadet],
+[id*=cadet] .sidebar h3 {
+   font-size: calc(var(--sidebar-pointsize) * 2);
+}
+[id*=cadet] .mainbar {
+   font-size: calc(var(--sidebar-pointsize) * 0.5);
+}
+[id*=cadet] .sidebar {
+   font-size: calc(var(--sidebar-pointsize) * 0.4);
+}
+[id*=cadet] .logo {
+   display: none;
+}
+iframe[explorer], iframe[xml] {
+   -webkit-transform: scale(calc(1 * var(--magnifier)));
+   -webkit-transform-origin: 0 0;
+   max-width: calc(99% / calc(1 * var(--magnifier)));
+  /* zoom: calc(1 / (1 * var(--magnifier)));*/
+}
+iframe[explorer] #document {
+   border: 3px solid red !important;
+}
+.remark-slide-content iframe[explorer] + p {
+   margin-top: 140px;
+}
+.sidebar h1[id*=cadet] {
+   margin-top: 3em !important;
+}
+.outline {
+   font-variant: small-caps;
+  /* letter-spacing: -4%;*/
+}
+.mainbar h1, .mainbar h2, .mainbar h3, .mainbar h4, .mainbar h5 {
+   font-variant: small-caps;                                    	
+   letter-spacing: -0.02em;
+}
+.optional {
+   opacity: 0.4;
+}
+.clarify {
+   margin-top: 0.2em;
+   margin-bottom: 0.2em;
+   padding: 0.1em 0.0em 0.1em 0.0em;
+   break-inside: avoid;
+}
+.clarify > ul {
+   list-style-type: none;
+}
+.clarify li {
+   margin-left: -0.4em;
+}
+.clarify > ul > li:only-child:before,
+.clarify > ul > li > *:before {
+   content: '';
+   display: inline-block;
+   position: relative;
+   left: -0.4em;
+   top: 0px;
+   margin-bottom: 0.16em;
+   padding-top: 0px;
+   padding-bottom: 0.16em;
+   border: 2px solid color-mix(in srgb, var(--dark), transparent 85%);
+   border-radius: 10px;
+   padding-left: 0px;
+   margin-right: -0.16em;
+   margin-left: -0.58em;
+   padding-right: 0.6em;
+}
+.mainbar:not(.broad) .next .header {
+   margin-bottom: 0;
+}
+.remark-slide-content[id*=application] h1[id*=application] {
+   visibility: visible;
+}
+.remark-slide-content:not([id*=cadet]):not([id*=application]):not([id*=finalizing]) h1[id*=application] {
+   visibility: hidden;
+}
+[id*=application] .mainbar .next {
+   -webkit-columns: 2;
+   -moz-columns: 2;
+   columns: 2;
+   -webkit-column-gap: calc(var(--gap) * 2);
+   -moz-column-gap: calc(var(--gap) * 2);
+   column-gap: calc(var(--gap) * 2);
+  /* text-align: justify; */ /* devel */
+}
+.remark-slide-content:not([id*=hidden]) .outline *[id*=hidden] {
+  /* visibility: hidden;*/
+   display: none;
+}
