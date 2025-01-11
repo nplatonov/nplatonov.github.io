@@ -1,12 +1,13 @@
 :root {
    --sidebar-select: #002366;
    --sidebar-color: #002366;
+   --scrollY: 900px;
 }
 .logo img[alt=sevin] {
-   height: 90px;
+   height: 70px;
 }
 .logo img[alt=pu] {
-   height: 80px;
+   height: 65px;
 }
 .customtitle .logo img[alt=sevin] {
    height: 180px;
@@ -107,8 +108,14 @@ iframe[explorer] #document {
   /* visibility: hidden;*/
    display: none;
 }
+.section[id*=hidden] {
+   display: none;
+}
+div#TOC li:has(> a[id*=hidden]) {
+   display: none;
+}
 .remark-slide-content[id*=gpx] .mainbar .scrollable {
-   height: 640px;
+   height: 75vh;
 }
 .mainbar .scrollable pre {
    overflow-x: hidden;   
@@ -117,4 +124,31 @@ iframe[explorer] #document {
 .scrollable.explorer {
    height: 328px;
    margin-bottom: 0.6em;
+}
+.serga:after {
+   content: '🔎';
+   vertical-align: top;
+   margin-left: -0.2em;
+   font-size: 50%;
+   opacity: 0.2;
+}
+.serga::before:hover {
+   background-image: url(https://avatars.yandex.net/get-music-content/14707562/e7d7cc2d.a.33979706-1/400x400);
+   color: red;
+}
+.serga::before:hover {
+   display: block;
+   content: '';
+   background-size: auto 300px;
+   background-repeat: no-repeat;
+   position: absolute;
+   bottom: 140px;
+   right: 0.2em;
+  /* visibility: hidden;*/
+   width: 300px;
+   height: 300px;
+  /* border: 100px solid transparent;*/
+}
+.serga::before {
+   visibility: visible;
 }
