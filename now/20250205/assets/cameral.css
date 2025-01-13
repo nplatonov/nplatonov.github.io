@@ -3,17 +3,27 @@
    --sidebar-color: #002366;
    --scrollY: 900px;
 }
-.logo img[alt=sevin] {
-   height: 70px;
+.remark-slide-content:not(.customtitle):not([id*=beforefinalizing]) .logo img {
+   opacity: 0.3;
 }
-.logo img[alt=pu] {
+.logo img[alt=sevin] {
    height: 65px;
 }
-.customtitle .logo img[alt=sevin] {
+.logo img[alt=pu] {
+   height: 60px;
+}
+.customtitle .logo img[alt=sevin],
+.logo img[alt=sevin]:hover,
+#slide-beforefinalizing .logo img[alt=sevin] {
    height: 180px;
 }
-.customtitle .logo img[alt=pu] {
-   height: 140px;
+.customtitle .logo img[alt=pu],
+.logo img[alt=pu]:hover,
+#slide-beforefinalizing .logo img[alt=pu] {
+   height: 135px;
+}
+.logo img:hover {
+   opacity: 1.0 !important;
 }
 .metadata .shorttitle {
    visibility: hidden;
@@ -90,10 +100,11 @@ iframe[explorer] #document {
    margin-bottom: 0;
 }
 .remark-slide-content[id*=application] h1[id*=application] {
-   visibility: visible;
+  /* visibility: visible;*/
 }
 .remark-slide-content:not([id*=cadet]):not([id*=application]):not([id*=finalizing]) h1[id*=application] {
-   visibility: hidden;
+  /* visibility: hidden;*/
+   display: none;
 }
 [id*=application] .mainbar .next {
    -webkit-columns: 2;
@@ -122,7 +133,7 @@ div#TOC li:has(> a[id*=hidden]) {
    white-space: pre-wrap;
 }
 .scrollable.explorer {
-   height: 328px;
+   height: 326px;
    margin-bottom: 0.6em;
 }
 .serga:after {
@@ -151,4 +162,35 @@ div#TOC li:has(> a[id*=hidden]) {
 }
 .serga::before {
    visibility: visible;
+}
+.focus .outline h1 ~ h2,
+.focus .outline h2 ~ h3,
+.focus .outline h3 ~ h4,
+.focus .outline h4 ~ h5 {
+   display: none;
+}
+/*
+.remark-slide-content:not([id*=cadet]) .outline {
+   height: 587px;
+   overflow-y: auto;
+}
+*/
+/*
+.outline {
+   position: absolute;
+   background-color: #FF7;
+   z-index: 5;
+}
+.banner {
+   position: absolute;
+   z-index: 10;
+}
+.banner .logo {
+   position: absolute;
+   z-index: 20;
+   bottom: 100px;
+}
+*/
+.outline:has(> h3[id*=qgis-standalone][id*=fg]) {
+   font-size: calc(var(--sidebar-pointsize) * 1.37);
 }
