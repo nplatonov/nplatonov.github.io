@@ -1,17 +1,17 @@
 .countdown {
-  background: #E5E5FF90;
+  background: inherit;
   position: absolute;
   cursor: pointer;
-  font-size: 2.25vh;
+  font-size: 3rem;
   line-height: 1;
-  border-color: #dddddd20;
-  border-width: 1px;
+  border-color: #ddd;
+  border-width: 3px;
   border-style: solid;
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: 0px 4px 10px 0px rgba(50, 50, 50, 0.4);
   -webkit-box-shadow: 0px 4px 10px 0px rgba(50, 50, 50, 0.4);
-  margin: 0.2em 0.2em;
-  padding: 0.2em;
+  margin: 0.6em;
+  padding: 10px 15px;
   text-align: center;
   z-index: 10;
   -webkit-user-select: none;
@@ -30,28 +30,28 @@
   padding: 0;
 }
 .countdown-digits {
-  color: #0004;
+  color: inherit;
 }
 .countdown.running {
-  border-color: #CBCBCBFF;
-  background-color: #E5E5E590;
+  border-color: #2A9B59FF;
+  background-color: #43AC6A;
 }
 .countdown.running .countdown-digits {
-  color: #363636FF;
+  color: #002F14FF;
 }
 .countdown.finished {
   border-color: #DE3000FF;
-  background-color: #F0412490;
+  background-color: #F04124;
 }
 .countdown.finished .countdown-digits {
   color: #4A0900FF;
 }
 .countdown.running.warning {
-  border-color: #DCC98FFF;
-  background-color: #F6E2A990;
+  border-color: #CEAC04FF;
+  background-color: #E6C229;
 }
 .countdown.running.warning .countdown-digits {
-  color: #403502FF;
+  color: #3A2F02FF;
 }
 
 .countdown.running.blink-colon .countdown-digits.colon {
@@ -96,16 +96,16 @@
 .countdown .countdown-controls > button:last-child {
   transform: translate(calc(-1 * var(--countdown-transition-distance)), var(--countdown-transition-distance));
   opacity: 0;
-  color: #363636FF;
-  background-color: #E5E5E590;
-  border-color: #CBCBCBFF;
+  color: #002F14FF;
+  background-color: #43AC6A;
+  border-color: #2A9B59FF;
 }
 
 .countdown .countdown-controls > button:first-child {
   transform: translate(var(--countdown-transition-distance), var(--countdown-transition-distance));
   opacity: 0;
   color: #4A0900FF;
-  background-color: #F0412490;
+  background-color: #F04124;
   border-color: #DE3000FF;
 }
 
