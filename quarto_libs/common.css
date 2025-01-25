@@ -32,7 +32,7 @@
   /* text-align: justify; */ /* devel */
 }
 .double:not(:first-child), .triple {
-   margin-top: 1.2em;
+   margin-top: calc (var(--gap) * 0.5);
 }
 .double:not(:last-child), .triple {
    margin-bottom: 0.8em;
@@ -40,10 +40,19 @@
 .double p:first-child {
    margin-top: 0em;
 }
+.double p:not(:first-child) {
+   border: 1px solid transparent;
+}
 .double > .column, .triple > .column, .double > .twin {
    width: revert;
    vertical-align: top;
    display: inline-block;
+}
+.pulling .ursa-widgetize {
+   width: 100%;
+}
+.pull-left-25, .pull-right-25 {
+  width: calc(25% - var(--gap));
 }
 .pull-left-30, .pull-right-30 {
   width: calc(30% - var(--gap));
@@ -72,6 +81,10 @@
 .pull-left-70, .pull-right-70 {
   width: calc(70% - var(--gap));
 }
+.pull-left-75, .pull-right-75 {
+  width: calc(75% - var(--gap));
+}
+.pull-left-25,
 .pull-left-30,
 .pull-left-35,
 .pull-left-40,
@@ -81,9 +94,11 @@
 .pull-left-60,
 .pull-left-65,
 .pull-left-70,
+.pull-left-75,
 .pull-left {
-  float: left;
+   float: left;
 }
+.pull-right-25,
 .pull-right-30,
 .pull-right-35,
 .pull-right-40,
@@ -93,10 +108,12 @@
 .pull-right-60,
 .pull-right-65,
 .pull-right-70,
+.pull-right-75,
 .pull-right {
    float: right;
    margin-right: 0em;
 }
+.pull-right-25 + *,
 .pull-right-30 + *,
 .pull-right-35 + *,
 .pull-right-40 + *,
@@ -106,6 +123,7 @@
 .pull-right-60 + *,
 .pull-right-65 + *,
 .pull-right-70 + *,
+.pull-right-75 + *,
 .pull-right + * {
    clear: both;
 }
@@ -132,6 +150,30 @@
 .rotate90 {
    writing-mode: tb-rl;
    transform: rotate(180deg);
+}
+.hovertext {
+  position: relative;
+  border-bottom: 1px dotted;
+}
+.hovertext:before {
+  content: attr(data-hover);
+  visibility: hidden;
+  opacity: 0;
+  width: max-content;
+  background-color: #000;
+  color: #FFF;
+  text-align: left;
+  border-radius: 5px;
+  padding: 5px 5px;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  z-index: 1;
+  left: 0em;
+  top: 90%;
+}
+.hovertext:hover:before {
+  opacity: 0.9;
+  visibility: visible;
 }
 @media print {
    .zzzpulling {
@@ -312,3 +354,20 @@ ul li:only-child::marker {
        display: none;
    }
 }
+/*
+p {
+   background-color: #FF03;
+}
+p:first-child {
+   background-color: #F003;
+}
+p:last-child {
+   background-color: #0F03;
+}
+p:first-of-type {
+   background-color: #00F3;
+}
+p:last-of-type {
+   background-color: #F0F3;
+}
+*/
