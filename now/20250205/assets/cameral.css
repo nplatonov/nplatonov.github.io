@@ -13,18 +13,18 @@
    height: 60px;
 }
 .customtitle .logo img[alt=sevin],
-.logo img[alt=sevin]:hover,
+/*.logo img[alt=sevin]:hover,*/
 #slide-applications .logo img[alt=sevin],
 #slide-beforefinalizing .logo img[alt=sevin],
 #slide-finalizing .logo img[alt=sevin] {
-   height: 180px;
+   height: 175px;
 }
 .customtitle .logo img[alt=pu],
-.logo img[alt=pu]:hover,
+/*.logo img[alt=pu]:hover,*/
 #slide-applications .logo img[alt=pu],
 #slide-beforefinalizing .logo img[alt=pu],
 #slide-finalizing .logo img[alt=pu] {
-   height: 135px;
+   height: 130px;
 }
 .logo img:hover {
    opacity: 1.0 !important;
@@ -40,9 +40,9 @@
    font-size: calc(var(--sidebar-pointsize) * 0.5);
 }
 [id*=cadet] .sidebar {
-   font-size: calc(var(--sidebar-pointsize) * 0.4);
+   font-size: calc(var(--sidebar-pointsize) * 0.38);
 }
-[id*=cadet] .logo {
+[id*=zzzcadet] .logo {
    display: none;
 }
 iframe[explorer], iframe[xml] {
@@ -198,6 +198,12 @@ div#TOC li:has(> a[id*=hidden]) {
 .outline:has(> h3[id*=qgis-standalone][id*=fg]) {
    font-size: calc(var(--sidebar-pointsize) * 1.37);
 }
+.outline:has(> h4[id*=steps][id*=fg]) {
+   font-size: calc(var(--sidebar-pointsize) * 0.99);
+}
+.outline:has(> h3[id*=retired-datasource][id*=fg]) {
+   font-size: calc(var(--sidebar-pointsize) * 1.41);
+}
 .countdown {
    opacity: 1;
    background-image: none;
@@ -218,4 +224,8 @@ div#TOC li:has(> a[id*=hidden]) {
 }
 .section .youturn {
    display: none;
+}
+:not(.customtitle) > * > .outline:not(:has(> h1[id*=dataset][id*=fg])) h1[id*=dataset] {
+   background-color: yellow !important;
+   display: none !important;
 }
