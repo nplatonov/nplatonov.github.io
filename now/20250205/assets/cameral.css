@@ -40,7 +40,7 @@
    font-size: calc(var(--sidebar-pointsize) * 0.5);
 }
 [id*=cadet] .sidebar {
-   font-size: calc(var(--sidebar-pointsize) * 0.38);
+   font-size: calc(var(--sidebar-pointsize) * 0.48);
 }
 [id*=zzzcadet] .logo {
    display: none;
@@ -106,7 +106,7 @@ iframe[explorer] #document {
 .remark-slide-content[id*=application] h1[id*=application] {
   /* visibility: visible;*/
 }
-.remark-slide-content:not([id*=cadet]):not([id*=application]):not([id*=finalizing]) h1[id*=application] {
+.remark-slide-content:not([id*=cadet]):not([id*=application]):not([id*=zzzfinalizing]) h1[id*=application] {
   /* visibility: hidden;*/
    display: none;
 }
@@ -199,7 +199,7 @@ div#TOC li:has(> a[id*=hidden]) {
    font-size: calc(var(--sidebar-pointsize) * 1.37);
 }
 .outline:has(> h4[id*=steps][id*=fg]) {
-   font-size: calc(var(--sidebar-pointsize) * 0.99);
+   font-size: calc(var(--sidebar-pointsize) * 1.3);
 }
 .outline:has(> h3[id*=retired-datasource][id*=fg]) {
    font-size: calc(var(--sidebar-pointsize) * 1.41);
@@ -219,6 +219,7 @@ div#TOC li:has(> a[id*=hidden]) {
 .remark-slide-content.youturn img {
    margin-left: auto !important;
 }
+
 .youturn {
    background-color: #0000006F;
 }
@@ -228,4 +229,10 @@ div#TOC li:has(> a[id*=hidden]) {
 :not(.customtitle) > * > .outline:not(:has(> h1[id*=dataset][id*=fg])) h1[id*=dataset] {
    background-color: yellow !important;
    display: none !important;
+}
+.outline:has(> h1[id*=application][id*=fg]) h1:not([id*=application]) {
+   display: none;
+}
+.outline:has(> h1[id*=dataset][id*=fg]) h1:not([id*=dataset]) {
+   display: none;
 }
