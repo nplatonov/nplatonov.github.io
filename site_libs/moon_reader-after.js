@@ -25,4 +25,36 @@ $('.fitText').fitText(1.2, { minFontSize: '14px', maxFontSize: '936px' });
    
 //$(".remark-slide-container")(function() { $(".remark-slide-container").css('background','red')});
 
+function expandBackgroundColor() {
+   document.querySelectorAll('.remark-slide-container').forEach(container => {
+      const contentGrandchild = container.querySelector('.remark-slide-content');
+      if (contentGrandchild) {
+         const computedStyle = window.getComputedStyle(contentGrandchild);
+         const backgroundColor = computedStyle.backgroundColor;
+         container.style.backgroundColor = backgroundColor;
+      }
+   });
+   const observer = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+         if (mutation.type === 'attributes') {
+            mutation.target.classList.forEach((className, index) => {
+               if (className === 'remark-slide-content' && index === 0) {
+                  const container = mutation.target.closest('.remark-slide-container');
+                  if (container) {
+                     container.style.backgroundColor = window.getComputedStyle(mutation.target).backgroundColor;
+                  }
+               }
+            });
+         }
+      });
+   });
+   const config = { attributes: true, subtree: true };
+   observer.observe(document.body, config);
+}
 expandBackgroundColor();
+
+window.addEventListener('load', resizeImage);
+//window.addEventListener('resize', resizeImage); 
+
+window.addEventListener('load', adjustFontSize);
+// window.addEventListener('resize', adjustFontSize);
