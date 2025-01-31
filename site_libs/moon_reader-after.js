@@ -53,8 +53,11 @@ function expandBackgroundColor() {
 }
 expandBackgroundColor();
 
-window.addEventListener('load', resizeImage);
-//window.addEventListener('resize', resizeImage); 
+//window.onload = resizeImage;
+// window.addEventListener('load', resizeImage);
+// // // window.addEventListener('resize', resizeImage); 
 
-window.addEventListener('load', adjustFontSize);
+//window.addEventListener('load', adjustFontSize);
 // window.addEventListener('resize', adjustFontSize);
+
+// resizeImage before adjustFontSize: adjustFontSize removes class scrollable

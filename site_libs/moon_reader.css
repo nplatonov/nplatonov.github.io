@@ -519,6 +519,9 @@ pre code * {
    margin-top: 0em;    /* 0em */
    margin-bottom: 0.4em; /* 0.4em */
 }
+.remark-slide-content p:has(> img) {
+   margin-top: 2px;
+}
 pre+p {
    margin-top: 0.3em !important;
 }
@@ -696,6 +699,8 @@ h5 span.header {
    margin-bottom: 0.2em;
    padding-right: 0.8em;
   /* text-align: justify; */ /* this is verbose option */
+   height: 660px;
+   overflow-y: auto;
 }
 .mainbar a,
 .mainbar a:visited,
@@ -1062,7 +1067,7 @@ ul {
 .scroll,
 .scrollable,
 .mainbar > .oversize { /* .mainbar:not[.break] */
-   height: 682px; /* 675 671 656px; */
+   height: 680px; /* 682/671 675 671 656px; */
    width: calc(100% + 7px);
    overflow-y: auto; 
    overflow-x: auto;
@@ -1630,7 +1635,7 @@ body:fullscreen .remark-backdrop:before {
 */
 .metadata .author {
    font-size: 120%;
-   margin-top: 0.5em;
+  /* margin-top: 0.5em;*/ /* uncomment for hover */
 }
 .metadata.customtitle .institute {
    font-size: 90%;
@@ -2554,6 +2559,11 @@ blockquote p:last-of-type {
 }
 .mainbar:not(.broad) .parent {
    display: none;
+}
+.zmainbar p:last-of-type:has(> img),
+.zmainbar p:last-of-type {
+   border: 1px solid red;
+   margin-bottom: 0;
 }
 /* filling background  -- begin */
 @media only screen {
