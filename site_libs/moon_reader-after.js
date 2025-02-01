@@ -61,3 +61,18 @@ expandBackgroundColor();
 // window.addEventListener('resize', adjustFontSize);
 
 // resizeImage before adjustFontSize: adjustFontSize removes class scrollable
+
+document.addEventListener('DOMContentLoaded', function() {
+   const remarkDiv = document.querySelector('.remark-slide-area');
+   function showSplashAndCallAdjust() {
+      const splashDiv = document.createElement('div');
+      splashDiv.className = 'splash';
+      splashDiv.textContent = 'Please wait';
+      remarkDiv.appendChild(splashDiv);
+     // adjustFontSize();
+      remarkDiv.removeChild(splashDiv);
+   }
+
+   // Call the function to show splash and then call adjust
+   showSplashAndCallAdjust();
+});

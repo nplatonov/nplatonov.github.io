@@ -270,7 +270,7 @@ function resizeImage() {
    const endTime = performance.now();
    const durationInMilliseconds = endTime - startTime;
    const durationInSeconds = durationInMilliseconds / 1000;
-   if (durationInSeconds<0)
+   if (durationInSeconds>10)
       alert(`Image size adjustment took ${durationInSeconds} seconds`);
    return;
 }
@@ -284,8 +284,10 @@ function adjustFontSize() {
    let count=0;
    slideList.forEach(slide => {
       const container = slide.querySelector('.fixprecode');
-      const scroller = slide.querySelector('.scrollable');
       if (!container)
+         return;
+      const scroller = slide.querySelector('.scrollable');
+      if (!hasVerticalScrollbar(scroller))
          return;
       container.setAttribute('style', `font-size: 100%;`);
       // Проверяем наличие img и iframe внутри контейнера
@@ -362,7 +364,7 @@ function adjustFontSize() {
    const endTime = performance.now();
    const durationInMilliseconds = endTime - startTime;
    const durationInSeconds = durationInMilliseconds / 1000;
-   if (durationInSeconds>15)
+   if (durationInSeconds>10)
       alert(`Font size adjustment took ${durationInSeconds} seconds`);
 }
 window.addEventListener('load', resizeImage);
