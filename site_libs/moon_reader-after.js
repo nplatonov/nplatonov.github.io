@@ -26,6 +26,14 @@ $('.fitText').fitText(1.2, { minFontSize: '14px', maxFontSize: '936px' });
 //$(".remark-slide-container")(function() { $(".remark-slide-container").css('background','red')});
 
 function expandBackgroundColor() {
+   document.querySelectorAll('.remark-slides-area').forEach(container => {
+      const contentGrandchild = container.querySelector('.remark-slide-content');
+      if (contentGrandchild) {
+         const computedStyle = window.getComputedStyle(contentGrandchild);
+         const backgroundColor = computedStyle.backgroundColor;
+         container.style.backgroundColor = backgroundColor;
+      }
+   });
    document.querySelectorAll('.remark-slide-container').forEach(container => {
       const contentGrandchild = container.querySelector('.remark-slide-content');
       if (contentGrandchild) {
@@ -61,18 +69,3 @@ expandBackgroundColor();
 // window.addEventListener('resize', adjustFontSize);
 
 // resizeImage before adjustFontSize: adjustFontSize removes class scrollable
-
-document.addEventListener('DOMContentLoaded', function() {
-   const remarkDiv = document.querySelector('.remark-slide-area');
-   function showSplashAndCallAdjust() {
-      const splashDiv = document.createElement('div');
-      splashDiv.className = 'splash';
-      splashDiv.textContent = 'Please wait';
-      remarkDiv.appendChild(splashDiv);
-     // adjustFontSize();
-      remarkDiv.removeChild(splashDiv);
-   }
-
-   // Call the function to show splash and then call adjust
-   showSplashAndCallAdjust();
-});

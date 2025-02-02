@@ -49,32 +49,72 @@ function simulateMouseOver() {
 */
 document.addEventListener('keydown', function(e) {
    if (e.code === 'KeyL') {
-    // alert('Key \'L\' is pressed is pressed!');
-    // $(".narrow").toggleClass("extend");
-     $(".sidebar").toggleClass("narrow");
-     $(".banner").toggleClass("narrow");
-    // $(".sidebar").toggleClass("scale");
-     $(".mainbar").toggleClass("broad");
-    // $(".mainbar").addClass("scrollable");
-     $(".remark-slide-content").toggleClass("modified");
-    // $(".mainbar").toggleClass("scale");
-    // simulateMouseOver();
-     var scaleElements = document.querySelectorAll('.mainbar.scale');
-     if (scaleElements) {
-       scaleElements.forEach(function(element) {
-         if (!element.classList.contains('broad')) {
-            element.style.fontSize = "100%"; /* 92% */
-         } else {
-            element.style.fontSize = "100%";
+      const adjust = !false;
+      var allSlides = document.querySelectorAll('.remark-slide-container');
+      var image;
+      const hide = false;
+      if (true || hide) {
+         allSlides.forEach(function(slide) {
+            slide.style.display = "block";
+         });
+      }
+     // alert('Key \'L\' is pressed is pressed!');
+     // $(".narrow").toggleClass("extend");
+      $(".sidebar").toggleClass("narrow");
+      $(".banner").toggleClass("narrow");
+     // $(".sidebar").toggleClass("scale");
+      $(".mainbar").toggleClass("broad");
+     // $(".mainbar").addClass("scrollable");
+      $(".remark-slide-content").toggleClass("modified");
+     // $(".mainbar").toggleClass("scale");
+     // simulateMouseOver();
+      if (adjust) {
+         var scaleElements = document.querySelectorAll('.mainbar');
+         if (scaleElements) {
+            var counter = 0;
+            scaleElements.forEach(function(element) {
+               const container = element.querySelector('.fixprecode');
+               if (!container)
+                  return;
+               counter++;
+              // alert(counter);
+               element.classList.add("scrollable");
+               container.style.fontSize = "100%";
+              // container.removeAttribute("style");
+               const imageList = element.querySelectorAll('.framed, iframe');
+               imageList.forEach(function(image) {
+                 // console.log('Class Name (as string):', image.className);
+                 // console.log(image.parentNode.className);
+                  image.style.height = "700px";
+               })
+              /* 
+               if (!element.classList.contains('broad')) {
+                 // alert('toc');
+                 // element.classList.remove("yyyy");
+                 // element.classList.add("xxxx");
+               } else {
+                 // alert('broad');
+                 // element.classList.remove("xxxx");
+                 // element.classList.add("yyyy");
+               }
+              */ 
+            });
          }
-       });
+         adjustImageSize();
+         adjustFontSize();
+         if (hide) {
+            allSlides.forEach(function(slide) {
+               if (!slide.classList.contains('remark-visible'))
+                  slide.style.display = "none";
+            });
+         }
      }
-    // adjustFontSize();
      e.preventDefault();
   }
 });
 document.addEventListener('keydown', function(e) {
    if (e.code === 'KeyI') {
+    // $(".remark-slides-area").toggleClass("inverse");
      $(".remark-slide-content").toggleClass("inverse");
     // $(".remark-slide-container").toggleClass("inverse");
     // $(".remark-slide-container").css('background','black');
@@ -93,6 +133,7 @@ document.addEventListener('keydown', function(event) {
 
   if (go_reset) {
    document.documentElement.style.removeProperty('--pointsize');
+   adjustOutline();
    return;
   }
 
@@ -103,13 +144,17 @@ document.addEventListener('keydown', function(event) {
 
   const newSize = go_up ? currentSize + 0.5 : currentSize - 0.5;
   document.documentElement.style.setProperty('--pointsize', newSize + 'px');
+  adjustOutline();
 });
-function resizeImage() {
+function hasVerticalScrollbar(element, verbose = false) {
+   if (verbose)
+      alert(element.scrollHeight + ' vs ' + element.clientHeight);
+   return element.scrollHeight > element.clientHeight;
+}
+function adjustImageSize() {
+   const removableClass = "scrollable";
    const startTime = performance.now();
    // Функция для проверки наличия вертикальной прокрутки
-   function hasVerticalScrollbar(element) {
-      return element.scrollHeight > element.clientHeight;
-   }
    const slideList = document.querySelectorAll('.remark-slide-scaler');
    let counter=0;
    var multi;
@@ -122,13 +167,14 @@ function resizeImage() {
          return;
       if (!scroller.clientHeight)
          return;
-      if (false && !hasVerticalScrollbar(scroller)) {
+     // if (false && !hasVerticalScrollbar(scroller)) {
         // scroller.classList.remove('scrollable')
         // scroller.classList.add('imageresized')
-         return;
-      }
+     //    return;
+     // }
       const imageList = scroller.querySelectorAll('img, iframe, .framed');
       multi = Object.keys(imageList).length > 1
+     // console.log(Object.keys(imageList).length)
       const columns = scroller.querySelector('.pulling, .double');
       if (multi) {
         // alert('scroller scrollHeight=' + scroller.scrollHeight +' clientHeight='+scroller.clientHeight);
@@ -137,23 +183,26 @@ function resizeImage() {
          let k = 1;
          var imageHeight;
          var imageWidth;
+         console.log("picture resize")
         // scroller.style.height = "600px";
          while (hasVerticalScrollbar(scroller)) {
             k = k * 0.99;
-            if (k < 0.5)
+            if (k < 0.2)
                break;
             imageList.forEach(image => {
               // aspectRatio = image.naturalWidth / image.naturalHeight;
               // newWidth = availableHeight * aspectRatio * 1;
               // newHeight = availableHeight;
-               imageHeight = Math.floor(image.naturalHeight * k);
+              // imageHeight = Math.floor(image.naturalHeight * k);
+               imageHeight = Math.floor(image.offsetWidth * k);
               // newWidth = image.naturalWidth * k;
               // const aspectRatio = image.naturalWidth / image.naturalHeight;
                image.style.height = `${imageHeight}px`;
             })
          }
+         console.log('k=' + k + ', ' + 'height=' + imageHeight);
          if (k >= 0.5) {
-            scroller.classList.remove('scrollable1')
+            scroller.classList.remove(removableClass)
             imageList.forEach(image => {
                image.style.objectFit = `contain`
             });
@@ -259,7 +308,7 @@ function resizeImage() {
       // image.style.width = `${newWidth}px`;
       // newHeight = Math.floor(newHeight);
       // image.style.height = `${newHeight}px`;
-      scroller.classList.remove('scrollable1')
+      scroller.classList.remove(removableClass)
       if (isAlert)
          alert('newHeight (image): ' + newHeight);
       // alert('size: ' + newHeight + ' x ' + Math.round(newHeight * aspectRatio));
@@ -275,20 +324,34 @@ function resizeImage() {
    return;
 }
 function adjustFontSize() {
+   const removableClass = "scrollable";
    const startTime = performance.now();
+            //~ const remarkDiv = document.querySelector('.remark-slides-area');
+            //~ const splashDiv = document.createElement('div');
+            //~ splashDiv.className = 'splash';
+            //~ splashDiv.textContent = 'Please wait';
+            //~ remarkDiv.appendChild(splashDiv);
    // Функция для проверки наличия вертикальной прокрутки
-   function hasVerticalScrollbar(element) {
-      return element.scrollHeight > element.clientHeight;
-   }
    const slideList = document.querySelectorAll('.remark-slide-scaler');
    let count=0;
    slideList.forEach(slide => {
+      count++;
+     // alert(count + ' A');
       const container = slide.querySelector('.fixprecode');
       if (!container)
          return;
+     // alert(count + ' B');
       const scroller = slide.querySelector('.scrollable');
-      if (!hasVerticalScrollbar(scroller))
+      if (!scroller)
          return;
+     // alert(count + ' C');
+     // console.log(scroller.parentNode);
+     // container.setAttribute('style', `font-size: 100%;`);
+      if (!hasVerticalScrollbar(scroller)) {
+        // scroller.classList.remove(removableClass)
+         return;
+      }
+     // alert(count + ' D');
       container.setAttribute('style', `font-size: 100%;`);
       // Проверяем наличие img и iframe внутри контейнера
       const hasImagesOrIframes = container.querySelectorAll('img, .framed, iframe').length > 0;
@@ -301,8 +364,7 @@ function adjustFontSize() {
       if (forced)
          admit = 70;
       else
-         admit = 60;
-      count++;
+         admit = 80/10;
       if (count == 6) {
        // container.addAttribute('style', 'background-color: yellow;');
        // return;
@@ -331,34 +393,50 @@ function adjustFontSize() {
       // Если есть вертикальная прокрутка, начинаем уменьшать размер шрифта
       let fontSize = 100; // Начальный размер шрифта в процентах
       let reduced = false;
-      const step=0.2;
+      const step=1-0.002;
+      const step2=1-0.001;
       while (hasVerticalScrollbar(scroller)) {
+     // while (container.clientHeight - scroller.clientHeight > 0) {
          if (!reduced)
             reduced = true
-         fontSize -= step;
+         fontSize *= step;
          if (fontSize <= admit) { // Ограничиваем минимальный размер шрифта
             reduced = false;
             break; 
          }
          container.style.fontSize = `${fontSize}%`;
       }
+     // var k=
       if (reduced) {
          while (!hasVerticalScrollbar(scroller)) {
-            fontSize += step;
+            fontSize /= step2;
             container.style.fontSize = `${fontSize}%`;
          }
-         fontSize -= step;
-         if (!forced)
-            scroller.classList.remove('scrollable')
+         fontSize *= step2;
+         container.style.fontSize = `${fontSize}%`;
+        // alert('1: ' + container.clientHeight - scroller.clientHeight);
+        // alert(container.clientHeight - scroller.clientHeight);
+         if (!forced) {
+            scroller.classList.remove(removableClass)
+           // fontSize /= step;
+           // scroller.classList.add("scrollable");
+           // if (hasVerticalScrollbar(scroller)) {
+           //    fontSize *= step;
+           // }
+           // scroller.classList.remove(removableClass)
+         }
       }
       else {
          fontSize = 100;
          container.style.fontSize = `${fontSize}%`;
          if (!hasVerticalScrollbar(scroller))
-            scroller.classList.remove('scrollable')
+            scroller.classList.remove(removableClass)
       }
       // Устанавливаем найденный размер шрифта в стиле контейнера
-      container.setAttribute('style', `font-size: ${(fontSize).toFixed(1)}%;`);
+     // container.setAttribute('style', `font-size: ${(fontSize).toFixed(2)}%;`);
+     // container.style.fontSize = `150%`;
+      container.style.fontSize = `${(fontSize).toFixed(2)}%`;
+     // console.log(count + ': ' + fontSize);
       return;
    })
    const endTime = performance.now();
@@ -367,5 +445,76 @@ function adjustFontSize() {
    if (durationInSeconds>10)
       alert(`Font size adjustment took ${durationInSeconds} seconds`);
 }
-window.addEventListener('load', resizeImage);
-window.addEventListener('load', adjustFontSize);
+function adjustOutline() {
+   const slideList = document.querySelectorAll('.remark-slide-scaler');
+   let counter=0;
+   slideList.forEach(slide => {
+      if (!slide)
+         return;
+      const sidebar = slide.querySelector('.sidebar');
+      if (!sidebar)
+         return;
+      if (sidebar.clientHeight==0)
+         return;
+      const outline = sidebar.querySelector('.outline');
+      if (!sidebar)
+         return;
+      if (sidebar.clientHeight==0)
+         return;
+      counter++;
+      const isAlert = counter == 0;
+      const banner = slide.querySelector('.banner');
+      let totalHeight = 0;
+      if (!banner)
+         totalHeight = 0; //sidebar.clientHeight;
+      else
+         totalHeight = banner.offsetHeight; //sidebar.clientHeight - banner.offsetHeight;
+      if (outline.clientHeight + totalHeight < sidebar.clientHeight)
+         return;
+      totalHeight = sidebar.clientHeight - totalHeight-7;
+      var header;
+      var fontSize;
+      if (isAlert) {
+         alert(totalHeight);
+         alert(outline.clientHeight);
+      }
+      var k=0;
+      const elements = outline.querySelectorAll('h1, h2, h3, h4, h5');
+      while (outline.clientHeight > totalHeight) {
+         k++;
+         elements.forEach((element) => {
+            const computedStyle = window.getComputedStyle(element);
+            const currentFontSize = computedStyle.getPropertyValue('font-size');
+            const fontSizeNumeric = parseFloat(currentFontSize);
+            const reducedFontSize = fontSizeNumeric * 0.99;
+            element.style.fontSize = `${reducedFontSize}px`;
+         });
+         if (isAlert && k==22)
+            alert('22 ' + outline.clientHeight + ' out of ' + totalHeight);
+        // break;
+      }
+      if (isAlert) {
+         alert(k + ' final ' + outline.clientHeight + ' out of ' + totalHeight);
+      }
+      sidebar.style.overflowY = "hidden";
+      sidebar.style.overflowX = "hidden";
+   })
+   return;
+}
+// window.addEventListener('load', adjustImageSize);
+// window.addEventListener('load', adjustFontSize);
+document.addEventListener('DOMContentLoaded', function() {
+   const remarkDiv = document.querySelector('.remark-slides-area');
+   function showSplashAndCallAdjust() {
+      const splashDiv = document.createElement('div');
+      splashDiv.className = 'splash';
+      splashDiv.textContent = 'Please wait';
+      remarkDiv.appendChild(splashDiv);
+      adjustImageSize();
+      adjustFontSize();
+      adjustOutline();
+      remarkDiv.removeChild(splashDiv);
+   }
+   // Call the function to show splash and then call adjust
+   showSplashAndCallAdjust();
+});

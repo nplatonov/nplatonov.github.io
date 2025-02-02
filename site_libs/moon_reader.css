@@ -74,7 +74,7 @@ html[data-darkreader-mode="dynamic"] .remark-visible {
   background-color: var(--darkreader-selection-text);
 }
 .remark-slides-area {
-   background-image: linear-gradient(to right, var(--dark), var(--dark));
+  /* background-image: linear-gradient(to right, var(--dark), var(--dark));*/
 }
 .remark-slide-scaler {
    box-shadow: none;
@@ -699,8 +699,11 @@ h5 span.header {
    margin-bottom: 0.2em;
    padding-right: 0.8em;
   /* text-align: justify; */ /* this is verbose option */
+}
+.remark-slide-content:not(.metadata) .zsidebar.narrow + .right-column {
    height: 660px;
    overflow-y: auto;
+   background-color: yellow;
 }
 .mainbar a,
 .mainbar a:visited,
@@ -1088,6 +1091,9 @@ ul {
 }
 .customtitle .scrollable {
    padding-top: 3px;
+}
+.scrollable:has(.scrollable) {
+   overflow-y: hidden;
 }
 .wide {
    display: block;
@@ -2567,12 +2573,35 @@ blockquote p:last-of-type {
 }
 .splash {
    margin: auto;
+   padding: 900px;
    text-align: center;
    position: absolute;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
    width: 100%; /* Ensures the text is centered horizontally */
+   font-size: 12vw;
+   z-index: 12;
+   background-color: #000A;
+   color: white;
+}
+#splash-screen {
+   display: none; /* Hidden by default */
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: #0002; /* Dark background with transparency */
+   color: white;
+   font-size: 24px;
+   font-weight: bold;
+   text-align: center;
+   z-index: 1000; /* Ensure it appears on top */
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   display: flex; /* Center the content */
 }
 /* filling background  -- begin */
 @media only screen {
@@ -2742,4 +2771,7 @@ blockquote p:last-of-type {
       max-width: 100% !important;
      /* border: 3px solid red !important;*/
    }
+}
+.zzzremark-slide-container {
+   display: block !important;
 }
