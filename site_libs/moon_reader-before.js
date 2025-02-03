@@ -218,7 +218,8 @@ function adjustImageSize() {
       const parentElement = image.parentElement;
       const parentWidth = parentElement.offsetWidth;
       if (true && columns) {
-         availableHeight = image.naturalHeight; //clientHeight - totalTextHeight;
+        // availableHeight = image.naturalHeight; //clientHeight - totalTextHeight;
+         availableHeight = image.offsetHeight;
         // const clientHeight = parentWidth;
         // image.style.width = `${parentWidth}px`;
         // const imageList = scroller.querySelectorAll('img, iframe, .framed');
@@ -269,7 +270,8 @@ function adjustImageSize() {
       while (hasVerticalScrollbar(scroller)) {
          // newHeight *= 0.95;
          // newWidth *= 0.95;
-         newHeight -= 1;
+         newHeight *= (1-0.01);
+         console.log(newHeight);
          if (newHeight < 10)
             break
          // newWidth -= 1;
@@ -298,6 +300,10 @@ function adjustImageSize() {
         // newWidth = newHeight * aspectRatio / 2;
         // image.style.width = `${newWidth}px`;
       }
+      else {
+         newHeight = Math.round(newHeight);
+         image.style.height = `${newHeight}px`;
+      }
       if (isAlert)
          alert('changableHeight: ' + changableHeight);
       // alert(availableHeight);
@@ -316,10 +322,7 @@ function adjustImageSize() {
        // Включаем вертикальную прокрутку контейнера, если она все еще нужна
       // scroller.style.overflowY = hasVerticalScrollbar(scroller) ? 'scroll' : 'hidden';
    })
-   const endTime = performance.now();
-   const durationInMilliseconds = endTime - startTime;
-   const durationInSeconds = durationInMilliseconds / 1000;
-   if (durationInSeconds>10)
+   if (((performance.now() - startTime) / 1000) > 10)
       alert(`Image size adjustment took ${durationInSeconds} seconds`);
    return;
 }
