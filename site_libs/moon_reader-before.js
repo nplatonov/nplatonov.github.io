@@ -345,13 +345,14 @@ function adjustFontSize() {
          return;
      // alert(count + ' B');
       const scroller = slide.querySelector('.scrollable');
-      if (!scroller)
+      if (!scroller) {
          return;
+      }
      // alert(count + ' C');
      // console.log(scroller.parentNode);
      // container.setAttribute('style', `font-size: 100%;`);
       if (!hasVerticalScrollbar(scroller)) {
-        // scroller.classList.remove(removableClass)
+         scroller.classList.remove(removableClass);
          return;
       }
      // alert(count + ' D');
@@ -413,9 +414,16 @@ function adjustFontSize() {
       if (reduced) {
          while (!hasVerticalScrollbar(scroller)) {
             fontSize /= step2;
+            fontSize /= step2;
             container.style.fontSize = `${fontSize}%`;
          }
          fontSize *= step2;
+         if (hasVerticalScrollbar(scroller)) {
+            fontSize *= step2;
+           // if (hasVerticalScrollbar(scroller)) {
+           //    alert('fail');
+           // }
+         }
          container.style.fontSize = `${fontSize}%`;
         // alert('1: ' + container.clientHeight - scroller.clientHeight);
         // alert(container.clientHeight - scroller.clientHeight);
