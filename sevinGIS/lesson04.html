@@ -14,7 +14,7 @@
 
 <title>ГИС 04</title>
 
-<script src="https://nplatonov.github.io/site_libs/header-attrs-2.26/header-attrs.js"></script>
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.29/header-attrs.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -49,40 +49,40 @@
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 04</span> <span class="when"> <span class="updated">Обновлено: 2024-04-04 20:04</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 04</span> <span class="when"> <span class="updated">Обновлено: 2025-02-05 13:10</span></span></h4>
 
 
 <div id="TOC">
 <ul>
-<li><a href="#для-картоосновы" id="toc-для-картоосновы">Для картоосновы</a>
+<li><a href="#%D0%B4%D0%BB%D1%8F-%D0%BA%D0%B0%D1%80%D1%82%D0%BE%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D1%8B" id="toc-для-картоосновы">Для картоосновы</a>
 <ul>
 <li><a href="#natural-earth" id="toc-natural-earth">Natural Earth</a></li>
 </ul></li>
-<li><a href="#для-визуализации" id="toc-для-визуализации">Для визуализации</a>
+<li><a href="#%D0%B4%D0%BB%D1%8F-%D0%B2%D0%B8%D0%B7%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8" id="toc-для-визуализации">Для визуализации</a>
 <ul>
 <li><a href="#qgis-quickmapservices" id="toc-qgis-quickmapservices">QGIS <span class="hovertext" data-hover="QMS">QuickMapServices</span></a></li>
 </ul></li>
-<li><a href="#для-проектов" id="toc-для-проектов">Для проектов</a>
+<li><a href="#%D0%B4%D0%BB%D1%8F-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BE%D0%B2" id="toc-для-проектов">Для проектов</a>
 <ul>
 <li><a href="#global-elevation-map" id="toc-global-elevation-map">Global Elevation Map</a></li>
 <li><a href="#eo-browser" id="toc-eo-browser">EO Browser</a></li>
 <li><a href="#earthimages" id="toc-earthimages">EarthImages</a></li>
 <li><a href="#asf" id="toc-asf">ASF</a></li>
 <li><a href="#earthdata" id="toc-earthdata">Earthdata</a></li>
-<li><a href="#прибрежные-данные" id="toc-прибрежные-данные">Прибрежные данные</a></li>
+<li><a href="#%D0%BF%D1%80%D0%B8%D0%B1%D1%80%D0%B5%D0%B6%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5" id="toc-прибрежные-данные">Прибрежные данные</a></li>
 <li><a href="#osm" id="toc-osm">OpenStreetMap</a></li>
 <li><a href="#earth-engine" id="toc-earth-engine">Earth Engine</a></li>
 </ul></li>
-<li><a href="#геокодирование" id="toc-геокодирование">Геокодирование</a>
+<li><a href="#%D0%B3%D0%B5%D0%BE%D0%BA%D0%BE%D0%B4%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5" id="toc-геокодирование">Геокодирование</a>
 <ul>
 <li><a href="#nominatim" id="toc-nominatim">Nominatim</a></li>
 </ul></li>
-<li><a href="#цмр" id="toc-цмр">ЦМР</a>
+<li><a href="#%D1%86%D0%BC%D1%80" id="toc-цмр">ЦМР</a>
 <ul>
-<li><a href="#qgis-визуализация" id="toc-qgis-визуализация">QGIS визуализация</a>
+<li><a href="#qgis-%D0%B2%D0%B8%D0%B7%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F" id="toc-qgis-визуализация">QGIS визуализация</a>
 <ul>
-<li><a href="#через-свойства-растра" id="toc-через-свойства-растра">Через свойства растра</a></li>
-<li><a href="#с-помощью-gdal" id="toc-с-помощью-gdal">С помощью GDAL</a></li>
+<li><a href="#%D1%87%D0%B5%D1%80%D0%B5%D0%B7-%D1%81%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0-%D1%80%D0%B0%D1%81%D1%82%D1%80%D0%B0" id="toc-через-свойства-растра">Через свойства растра</a></li>
+<li><a href="#%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-gdal" id="toc-с-помощью-gdal">С помощью GDAL</a></li>
 </ul></li>
 </ul></li>
 <li style="display: none;"><a href="#section" id="toc-section"></a></li>
@@ -111,7 +111,7 @@
 <div class="pulling">
 <div class="pull-left-55 font90">
 <h2 class="toc-ignore unnumbered unlisted">
-Домашнее задание на <a href="index.html#deadline1">22 февраля 2024 г.</a>
+Домашнее задание на <a href="index.html#deadline1">27 февраля 2025 г.</a>
 </h2>
 <p>В QGIS на основе данных Natural Earth 1:10m cоздать картооснову, ориентируясь
 на территорию,
@@ -212,13 +212,15 @@ Overpass API
 </ul></li>
 </ul>
 <h4 class="toc-ignore unnumbered unlisted">
-BBBike’s<sup>*</sup>
+BBBike’s <!-- <sup>*</sup> -->
 </h4>
 <p>См. <a href="https://download.bbbike.org/osm/">BBBike’s free download server</a>.</p>
 </div>
-<div class="footer">
-<p><sup>*</sup> Спасибо Вадиму Меркину за указание этого сервиса.</p>
-</div>
+<!--
+:::footer
+<sup>*</sup> Спасибо Вадиму Меркину за указание этого сервиса.
+:::
+-->
 </div>
 <div id="earth-engine" class="section level3">
 <h3>Earth Engine</h3>

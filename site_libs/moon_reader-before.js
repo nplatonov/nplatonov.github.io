@@ -183,7 +183,7 @@ function adjustImageSize() {
          let k = 1;
          var imageHeight;
          var imageWidth;
-         console.log("picture resize")
+        // console.log("picture resize")
         // scroller.style.height = "600px";
          while (hasVerticalScrollbar(scroller)) {
             k = k * 0.99;
@@ -200,7 +200,7 @@ function adjustImageSize() {
                image.style.height = `${imageHeight}px`;
             })
          }
-         console.log('k=' + k + ', ' + 'height=' + imageHeight);
+        // console.log('k=' + k + ', ' + 'height=' + imageHeight);
          if (k >= 0.5) {
             scroller.classList.remove(removableClass)
             imageList.forEach(image => {
@@ -271,7 +271,7 @@ function adjustImageSize() {
          // newHeight *= 0.95;
          // newWidth *= 0.95;
          newHeight *= (1-0.01);
-         console.log(newHeight);
+        // console.log(newHeight);
          if (newHeight < 10)
             break
          // newWidth -= 1;
@@ -420,9 +420,10 @@ function adjustFontSize() {
          fontSize *= step2;
          if (hasVerticalScrollbar(scroller)) {
             fontSize *= step2;
-           // if (hasVerticalScrollbar(scroller)) {
-           //    alert('fail');
-           // }
+            if (hasVerticalScrollbar(scroller))
+               fontSize *= step2;
+            if (hasVerticalScrollbar(scroller))
+               fontSize *= step2;
          }
          container.style.fontSize = `${fontSize}%`;
         // alert('1: ' + container.clientHeight - scroller.clientHeight);
@@ -473,6 +474,7 @@ function adjustOutline() {
       if (sidebar.clientHeight==0)
          return;
       counter++;
+      
       const isAlert = counter == 0;
       const banner = slide.querySelector('.banner');
       let totalHeight = 0;
@@ -500,6 +502,7 @@ function adjustOutline() {
             const reducedFontSize = fontSizeNumeric * 0.99;
             element.style.fontSize = `${reducedFontSize}px`;
          });
+        // console.log(counter + ': ' + k);
          if (isAlert && k==22)
             alert('22 ' + outline.clientHeight + ' out of ' + totalHeight);
         // break;

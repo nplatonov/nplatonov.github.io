@@ -14,7 +14,7 @@
 
 <title>ГИС 01</title>
 
-<script src="https://nplatonov.github.io/site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.29/header-attrs.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -28,9 +28,134 @@
 
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
 <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
@@ -45,20 +170,307 @@
 
 
 
-<h1 class="title toc-ignore">Общие вопросы, введение</h1>
+<h1 class="title toc-ignore">Введение</h1>
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 01</span> <span class="when"> <span class="updated">Обновлено: 2024-03-07 08:28</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 01</span> <span class="when"> <span class="updated">Обновлено: 2025-02-05 13:09</span></span></h4>
 
 
-
+<div id="TOC">
 <ul>
-<li><p>Домашние задания выдаются раз в две недели на шесть дней со сдачей до 09:00 Мск UTC+3 в среду. Проверяются в течение среды. Выносятся на обсуждение на занятии в четверг. При уважительной причине допускается сдача на неделю позже.</p></li>
-<li><p>Домашние задания можно высылать как по почте, так и в Telegram</p></li>
-<li><p>В среду вечером перекличка, кто собирается приходить в класс. Чтобы не включать проектор, если никого в классе не будет. Преподаватель предупреждает, если не сможет провести занятие в классе; в этом случае в класс приходить не надо.</p></li>
-<li><p>Форма аттестации – зачет. Для зачета нужно сделать все домашние задания. Преподаватель может выдать индивидуальные задания, которые также будуь учитываться для получения зачёта.</p></li>
+<li><a href="#offline" id="toc-offline">К 06 февраля</a>
+<ul>
+<li><a href="#data" id="toc-data">Данные</a>
+<ul>
+<li><a href="#dataset" id="toc-dataset">Для освоения</a></li>
+<li><a href="#datasource" id="toc-datasource">Об этих данных</a></li>
+</ul></li>
+<li><a href="#soft" id="toc-soft">Программы</a>
+<ul>
+<li><a href="#qgis" id="toc-qgis">QGIS</a></li>
+<li><a href="#r" id="toc-r">R</a></li>
+</ul></li>
+<li><a href="#before" id="toc-before">Попробовать</a>
+<ul>
+<li><a href="#qgis-1" id="toc-qgis-1">QGIS</a></li>
+<li><a href="#r-1" id="toc-r-1">R</a></li>
+</ul></li>
+</ul></li>
 </ul>
+</div>
+
+<div id="offline" class="section level1">
+<h1>К 06 февраля</h1>
+<div id="data" class="section level2">
+<h2>Данные</h2>
+<div id="dataset" class="section level3">
+<h3>Для освоения</h3>
+<p>Экспедиция Арктического плавучего университета рейса 2023-2 <span class="citation">(<a href="#ref-winterschool2025">Платонов, 2025</a>)</span>.
+Перейти по DOI (Zenodo) и распаковать.
+Папка <code>input</code> должна быть в рабочей директории.</p>
+</div>
+<div id="datasource" class="section level3">
+<h3>Об этих данных</h3>
+<div id="natural-earth" class="section level4">
+<h4>Natural Earth</h4>
+<p>Для создания картографической подложки.</p>
+<div class="font97">
+<ul>
+<li><p><a href="https://www.naturalearthdata.com/">Natural Earth World GIS Data</a></p>
+<ul>
+<li><p><a href="https://www.naturalearthdata.com/downloads">Downloads</a></p>
+<ul>
+<li><a href="https://naciscdn.org/naturalearth/packages/natural_earth_vector.zip">Download all vector themes as SHP</a> - прямая ссылка на скачивание.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>В наборе <span class="citation">(<a href="#ref-winterschool2025">Платонов, 2025</a>)</span> используется векторные данные, приведенные ниже. Их скачивать не обязательно.</p>
+<ul>
+<li><p><a href="https://naciscdn.org/naturalearth/10m/physical/ne_10m_graticules_5.zip">10m_physical/ne_10m_graticules_all/ne_10m_graticules_5.shp</a> - линии долгот-широт через 5 градусов, для помощи в ориентации на север</p></li>
+<li><p><a href="https://naciscdn.org/naturalearth/10m/physical/ne_10m_ocean.zip">10m_physical/ne_10m_ocean.shp</a> - полигоны с морями и океанами, разделить сушу и море</p></li>
+<li><p><a href="https://naciscdn.org/naturalearth/10m/physical/ne_10m_geography_regions_polys.zip">10m_physical/ne_10m_geography_regions_polys.shp</a> - полигоны для подписей сухопутных названий</p></li>
+<li><p><a href="https://naciscdn.org/naturalearth/10m/physical/ne_10m_geography_marine_polys.zip">10m_physical/ne_10m_geography_marine_polys.shp</a> - полигоны для подписей морей</p></li>
+<li><p><a href="https://naciscdn.org/naturalearth/10m/cultural/ne_10m_populated_places.zip">10m_cultural/ne_10m_populated_places.shp</a> - точки населенных пунктов</p></li>
+</ul>
+<!--
++ Есть поддержка русскоязычных названий (см. поля "name_ru", "NAME_RU")
+-->
+</div>
+</div>
+<div id="osmdata" class="section level4">
+<h4>OSM береговая линия</h4>
+<p>Эти данные для более дательного отображения береговой линии по сравнению с Natural Earth.
+<!--
+При воспроизводимости R-кода они будут получены, поэтому если они не нужны в Вашей работе, их можно не скачивать.
+--></p>
+<ul>
+<li><p><a href="https://osmdata.openstreetmap.de/">Data Derived from OpenStreetMap for Download</a></p>
+<ul>
+<li><p><a href="https://osmdata.openstreetmap.de/data/land-polygons.html">Land Polygons</a></p>
+<ul>
+<li><a href="https://osmdata.openstreetmap.de/download/simplified-land-polygons-complete-3857.zip">Download large simplified polygons</a>.</li>
+</ul></li>
+</ul></li>
+</ul>
+<!--
+См. [пример использования](#dist2coast).
+-->
+</div>
+<div id="download-gebco" class="section level4">
+<h4>GEBCO батиметрия</h4>
+<ul>
+<li><p><a href="https://www.gebco.net/" class="uri">https://www.gebco.net/</a></p>
+<ul>
+<li><p><a href="https://www.gebco.net/data_and_products/gridded_bathymetry_data/">Gridded Bathymetry Data</a></p>
+<ul>
+<li><p><a href="https://www.gebco.net/data_and_products/gridded_bathymetry_data/#area">Download data for user-defined areas</a></p>
+<ul>
+<li><a href="https://download.gebco.net/">Application</a>. Откройте в новой вкладке по размеру экрана браузера. Полученные с этого источника данные включены в набор <span class="citation">(<a href="#ref-winterschool2025">Платонов, 2025</a>)</span> с уменьшенным масштабом.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<iframe src="https://download.gebco.net/" width="646.08" height="400px" data-external="1">
+</iframe>
+<!--
+См. [пример обработки](#analysis-gebco).
+-->
+</div>
+</div>
+</div>
+<div id="soft" class="section level2">
+<h2>Программы</h2>
+<div id="qgis" class="section level3">
+<h3>QGIS</h3>
+<div id="ядро" class="section level4">
+<h4>Ядро</h4>
+<!-- [QGIS Web](https://qgis.org/en/site/) -->
+<p>Сайт <a href="https://qgis.org/" class="uri">https://qgis.org/</a>.
+Находим “Download”</p>
+<iframe src="https://qgis.org/" width="646.08" height="400px" data-external="1">
+</iframe>
+<p><a href="https://qgis.org/en/site/forusers/download.html" class="uri">https://qgis.org/en/site/forusers/download.html</a></p>
+<iframe src="https://qgis.org/en/site/forusers/download.html" width="646.08" height="400px" data-external="1">
+</iframe>
+<p>Прямые ссылки для скачивания установочного файла <a href="https://download.qgis.org//downloads/QGIS-OSGeo4W-3.34.14-1.msi">QGIS 3.34 LTR</a> и <a href="https://download.qgis.org//downloads/QGIS-OSGeo4W-3.40.2-1.msi">QGIS 3.40 Latest</a> под Windows (актуальны на 26 января 2025 г.) Если не получается открыть, можно забрать отсюда: <a href="https://www.dropbox.com/scl/fi/cuccvi24xgmi33qu5zwia/QGIS-OSGeo4W-3.34.14-1.msi?rlkey=wckvkxprvtsz1bnz3g38g6nkr&amp;st=959qlat8&amp;dl=1">QGIS 3.34 LTR</a> или <a href="https://www.dropbox.com/scl/fi/q5f1qimfcrukrvivnyp3n/QGIS-OSGeo4W-3.40.2-1.msi?rlkey=zci6w4sehiakfeyrtkjyic8c1&amp;st=wnu0xaql&amp;dl=1">QGIS 3.40 Latest</a> до 15 февраля 2025 г.</p>
+</div>
+<div id="soft-qgis-plugins" class="section level4">
+<h4>Расширения</h4>
+<p><a href="https://plugins.qgis.org/" class="uri">https://plugins.qgis.org/</a></p>
+<iframe src="https://plugins.qgis.org/plugins/?sort=-downloads" width="646.08" height="400px" data-external="1">
+</iframe>
+<div id="quickmapservices" class="section level5">
+<h5>QuickMapServices</h5>
+<p><a href="https://plugins.qgis.org/plugins/quick_map_services/">Страница проекта</a></p>
+<iframe src="https://plugins.qgis.org/plugins/quick_map_services/" width="646.08" height="400px" data-external="1">
+</iframe>
+<p>Установить в QGIS</p>
+<p class="centered-image"><img src="assets/lesson01/PluginsMenu.jpg" width="883" height="670" contain /></p>
+<p class="centered-image"><img src="assets/lesson01/PluginsList.jpg" width="792" height="670" contain /></p>
+<p class="centered-image"><img src="assets/lesson01/PluginsInstall.jpg" width="836" height="670" contain /></p>
+<p>Получить набор готовых сервисов</p>
+<p class="centered-image"><img src="assets/lesson01/PluginsSettings.jpg" width="430" height="625" contain /></p>
+<p class="centered-image"><img src="assets/lesson01/PluginsUsage.jpg" width="1013" height="670" contain /></p>
+</div>
+</div>
+</div>
+<div id="r" class="section level3">
+<h3>R</h3>
+<p><a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>.
+Выбираем “download R” и сервер для скачивания (mirror).</p>
+<iframe src="https://www.r-project.org/" width="646.08" height="400px" data-external="1">
+</iframe>
+<div id="ядро-1" class="section level4">
+<h4>Ядро</h4>
+<p><a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a></p>
+<iframe src="https://cloud.r-project.org/banner.shtml" width="646.08" height="400px" data-external="1">
+</iframe>
+</div>
+<div id="пакеты" class="section level4">
+<h4>Пакеты</h4>
+<p><a href="https://cloud.r-project.org/web/packages/" class="uri">https://cloud.r-project.org/web/packages/</a></p>
+<iframe src="https://cloud.r-project.org/web/packages/" width="646.08" height="400px" data-external="1">
+</iframe>
+<p><a href="https://cloud.r-project.org/web/packages/available_packages_by_name.html">Отображение всех пакетов</a></p>
+<iframe src="https://cloud.r-project.org/web/packages/available_packages_by_name.html" width="646.08" height="400px" data-external="1">
+</iframe>
+</div>
+</div>
+</div>
+<div id="before" class="section level2">
+<h2>Попробовать</h2>
+<div id="qgis-1" class="section level3">
+<h3>QGIS</h3>
+<div id="открыть-проект" class="section level4">
+<h4>Открыть проект</h4>
+<p class="centered-image"><img src="assets/lesson01/Before00-OpenProject.jpg" width="848" height="700" contain /></p>
+<p>Указать путь к проекту <code>template.qgz</code> из набора <span class="citation">(<a href="#ref-winterschool2025">Платонов, 2025</a>)</span>.</p>
+<p class="centered-image"><img src="assets/lesson01/Before01-OrangeProject.jpg" width="984" height="592" contain /></p>
+<p>Возможное оранжевое предупреждение проигнорировать и закрыть.</p>
+</div>
+<div id="выполнить-задание" class="section level4">
+<h4>Выполнить задание</h4>
+<p>Отредактировать отображение с красного на голубой</p>
+<p class="centered-image"><img src="assets/lesson01/Before18-BlueProject.jpg" width="901" height="600" contain /></p>
+<ul>
+<li><p>Изменить проекцию проекта на азимутальную равноплощадную Ламберта (EPSG:3576)</p></li>
+<li><p>Скорректировать вращением направление на север</p></li>
+<li><p>Моря сделать голубыми, сушу не раскрашивать</p></li>
+<li><p>Названия населенных пунктов сделать русскоязычными</p></li>
+<li><p>Убрать встречающиеся названия морей и регионов из южного полушария</p></li>
+<li><p>Добавить масштабную линейку</p></li>
+</ul>
+</div>
+<div id="steps" class="section level4">
+<h4>По шагам</h4>
+<div id="свойства-проекта" class="section level5">
+<h5>Свойства проекта</h5>
+<p class="centered-image"><img src="assets/lesson01/Before02-ProjectProperties.jpg" width="969" height="672" contain /></p>
+<p>Заменить цвет фона на белый, чтобы убрать красноту отображения.</p>
+<p class="centered-image"><img src="assets/lesson01/Before03-ProperiesGeneral.jpg" width="843" height="1594" contain /></p>
+<p>Изменить проекцию проекта на равноплощадную азимутальную проекцию Ламберта (EPSG:3576)</p>
+<p class="centered-image"><img src="assets/lesson01/Before04-ProjectCRS.jpg" width="843" height="1594" contain /></p>
+<p>В строке состояния указать, на сколько градусов повернуть, чтобы меридиан в центре отображения был направлен вертикально</p>
+<p class="centered-image"><img src="assets/lesson01/Before05-StatusBar.jpg" width="794" height="672" aspect /></p>
+</div>
+<div id="cвойства-слоя" class="section level5">
+<h5>Cвойства слоя</h5>
+<p class="centered-image"><img src="assets/lesson01/Before06-LayerProperties.jpg" width="968" height="672" contain /></p>
+</div>
+<div id="раскраска-слоя" class="section level5">
+<h5>Раскраска слоя</h5>
+<p>Изменить красный цвет океана на голубой. Можно изменить значение прозрачности слоя.</p>
+<p class="centered-image"><img src="assets/lesson01/Before07-LayerColor.jpg" width="964" height="1594" contain /></p>
+</div>
+<div id="таблица-атрибутов" class="section level5">
+<h5>Таблица атрибутов</h5>
+<p class="centered-image"><img src="assets/lesson01/BeforeX1-AttributeTable.jpg" width="982" height="1594" contain /></p>
+<p>Это обычная таблица, как в Excel, каждая строка связана с геометрией пространственного объекта.</p>
+<p class="centered-image"><img src="assets/lesson01/BeforeX2-AttributeTable.jpg" width="703" height="1594" contain /></p>
+</div>
+<div id="извление-названий" class="section level5">
+<h5>Извление названий</h5>
+<p>Изменить англоязычные названия населённых пунктов на русскоязычные.</p>
+<p class="centered-image"><img src="assets/lesson01/Before08-LayerLabels.jpg" width="794" height="1594" contain /></p>
+</div>
+<div id="лишние-названия" class="section level5">
+<h5>Лишние названия</h5>
+<p>Убрать появляющиеся подписи из южного полушария фильтрацией исключением.</p>
+<p class="centered-image"><img src="assets/lesson01/Before09-LayerFilter.jpg" width="968" height="1594" contain /></p>
+<p>Для морей в таблице атрибутов нет столбца по региону, поэтому фильтрация напрямую.</p>
+<p class="centered-image"><img src="assets/lesson01/Before10-QueryAqua.jpg" width="684" height="1594" contain /></p>
+<p>Для суши можно сделать фильтрацию по региону, который есть в таблице атрибутов.</p>
+<p class="centered-image"><img src="assets/lesson01/Before11-QueryTerra.jpg" width="684" height="1594" contain /></p>
+<p>Чтобы отображались лишь названия, без точек-линий-полигонов, слой полностью прозрачный</p>
+<p class="centered-image"><img src="assets/lesson01/Before12-LayerOpacity.jpg" width="794" height="1594" contain /></p>
+</div>
+<div id="украшательства" class="section level5">
+<h5>Украшательства</h5>
+<p>Применены разные стили отображения для океанов и морей.</p>
+<p class="centered-image"><img src="assets/lesson01/Before13-MarineLabels.jpg" width="792" height="1594" contain /></p>
+<p class="centered-image"><img src="assets/lesson01/Before14-GraticuleStyle.jpg" width="794" height="672" contain /></p>
+</div>
+<div id="прореживание-долгот" class="section level5">
+<h5>Прореживание долгот</h5>
+<p class="centered-image"><img src="assets/lesson01/Before15-GraticuleSampling.jpg" width="684" height="672" contain /></p>
+</div>
+<div id="масштабная-линейка" class="section level5">
+<h5>Масштабная линейка</h5>
+<p class="centered-image"><img src="assets/lesson01/Before16-Decoration.jpg" width="968" height="672" contain /></p>
+<p class="centered-image"><img src="assets/lesson01/Before17-Scalebar.jpg" width="589" height="672" contain /></p>
+</div>
+<div id="результат" class="section level5">
+<h5>Результат</h5>
+<p class="centered-image"><img src="assets/lesson01/Before18-BlueProject.jpg" width="901" height="560" contain /></p>
+<p>Сохраните с новым названием. Если совсем ничего не получилось, используйтся файл проекта <code>desired.qgz</code> из набора <span class="citation">(<a href="#ref-winterschool2025">Платонов, 2025</a>)</span>.</p>
+<!--
+
+-->
+</div>
+</div>
+</div>
+<div id="r-1" class="section level3">
+<h3>R</h3>
+<div id="установить-необходимые-пакеты" class="section level4 notremark">
+<h4>Установить необходимые пакеты</h4>
+<p>Ниже приведен скрипт, который проверяет, установлены ли требуемые пакеты и при необходимости их устанавливает.</p>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>pkgList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;png&quot;</span>,<span class="st">&quot;mapview&quot;</span>,<span class="st">&quot;tmap&quot;</span>,<span class="st">&quot;sf&quot;</span>,<span class="st">&quot;terra&quot;</span>,<span class="st">&quot;adehabitatLT&quot;</span>,<span class="st">&quot;readxl&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>            ,<span class="st">&quot;tidyr&quot;</span>,<span class="st">&quot;lwgeom&quot;</span>,<span class="st">&quot;geosphere&quot;</span>,<span class="st">&quot;ggstatsplot&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>            ,<span class="st">&quot;ursa&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>repos <span class="ot">&lt;-</span> <span class="st">&quot;https://cloud.r-project.org/&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>type <span class="ot">&lt;-</span> <span class="cf">if</span> (.Platform<span class="sc">$</span>OS.type<span class="sc">==</span><span class="st">&quot;windows&quot;</span>) <span class="st">&quot;binary&quot;</span> <span class="cf">else</span> <span class="fu">getOption</span>(<span class="st">&quot;pkgType&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>available <span class="ot">&lt;-</span> <span class="fu">sapply</span>(pkgList,<span class="cf">function</span>(pkg) {</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">requireNamespace</span>(pkg))</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">TRUE</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>   <span class="fu">install.packages</span>(pkg,<span class="at">repos=</span>repos,<span class="at">type=</span>type)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>   <span class="fu">requireNamespace</span>(pkg)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">packageVersion</span>(<span class="st">&quot;ursa&quot;</span>)<span class="sc">&lt;</span><span class="st">&quot;3.11.2&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>   <span class="fu">install.packages</span>(<span class="st">&quot;ursa&quot;</span>,<span class="at">repos=</span>repos,<span class="at">type=</span>type)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;ursa&quot;</span>)</span></code></pre></div>
+<pre><code>[1] &#39;3.11.2&#39;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>available</span></code></pre></div>
+<pre><code>         png      mapview         tmap           sf        terra adehabitatLT       readxl        tidyr 
+        TRUE         TRUE         TRUE         TRUE         TRUE         TRUE         TRUE         TRUE 
+      lwgeom    geosphere  ggstatsplot         ursa 
+        TRUE         TRUE         TRUE         TRUE </code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&#39;Everything is ok?&#39;</span><span class="ot">=</span><span class="fu">all</span>(available))</span></code></pre></div>
+<pre><code>Everything is ok? 
+             TRUE </code></pre>
+<!-- [@Durner2009] -->
+</div>
+</div>
+</div>
+<div id="refs" class="section level1 unnumbered toc-ignore unlisted">
+<h1 class="unnumbered toc-ignore unlisted"></h1>
+<div id="refs" class="references csl-bib-body" entry-spacing="1">
+<div id="ref-winterschool2025" data-number="1" class="csl-entry">
+Платонов Н. 2025 (26 January). Набор данных для практикума по применению геоинформационных систем для обработки данных судовых учётов морских млекопитающих. Zenodo. <a href="https://doi.org/10.5281/zenodo.14743126">10.5281/zenodo.14743126</a>.
+</div>
+</div>
+</div>
 
 
 

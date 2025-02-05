@@ -14,7 +14,7 @@
 
 <title>ГИС 09</title>
 
-<script src="https://nplatonov.github.io/site_libs/header-attrs-2.26/header-attrs.js"></script>
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.29/header-attrs.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -72,64 +72,59 @@ div.csl-indent {
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 09</span> <span class="when"> <span class="updated">Обновлено: 2024-04-04 20:06</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 09</span> <span class="when"> <span class="updated">Обновлено: 2025-02-05 16:59</span></span></h4>
 
 
 <div id="TOC">
 <ul>
-<li><a href="#оцифровка" id="toc-оцифровка">Оцифровка</a>
+<li><a href="#%D0%BE%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BA%D0%B0" id="toc-оцифровка">Оцифровка</a>
 <ul>
-<li><a href="#извлекаем-рисунок" id="toc-извлекаем-рисунок">Извлекаем рисунок</a></li>
-<li><a href="#новая-система-координат" id="toc-новая-система-координат">Новая система координат</a></li>
-<li><a href="#картооснова" id="toc-картооснова">Картооснова</a></li>
-<li><a href="#геопривязка" id="toc-геопривязка">Геопривязка</a>
+<li><a href="#%D0%B8%D0%B7%D0%B2%D0%BB%D0%B5%D0%BA%D0%B0%D0%B5%D0%BC-%D1%80%D0%B8%D1%81%D1%83%D0%BD%D0%BE%D0%BA" id="toc-извлекаем-рисунок">Извлекаем рисунок</a></li>
+<li><a href="#%D0%BD%D0%BE%D0%B2%D0%B0%D1%8F-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0-%D0%BA%D0%BE%D0%BE%D1%80%D0%B4%D0%B8%D0%BD%D0%B0%D1%82" id="toc-новая-система-координат">Новая система координат</a></li>
+<li><a href="#%D0%BA%D0%B0%D1%80%D1%82%D0%BE%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B0" id="toc-картооснова">Картооснова</a></li>
+<li><a href="#%D0%B3%D0%B5%D0%BE%D0%BF%D1%80%D0%B8%D0%B2%D1%8F%D0%B7%D0%BA%D0%B0" id="toc-геопривязка">Геопривязка</a>
 <ul>
-<li><a href="#опорные-точки" id="toc-опорные-точки">Опорные точки</a></li>
-<li><a href="#параметры-привязки" id="toc-параметры-привязки">Параметры привязки</a></li>
+<li><a href="#%D0%BE%D0%BF%D0%BE%D1%80%D0%BD%D1%8B%D0%B5-%D1%82%D0%BE%D1%87%D0%BA%D0%B8" id="toc-опорные-точки">Опорные точки</a></li>
+<li><a href="#%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%8B-%D0%BF%D1%80%D0%B8%D0%B2%D1%8F%D0%B7%D0%BA%D0%B8" id="toc-параметры-привязки">Параметры привязки</a></li>
 </ul></li>
-<li><a href="#обрисовка" id="toc-обрисовка">Обрисовка</a></li>
-<li><a href="#получение-характеристик" id="toc-получение-характеристик">Получение характеристик</a></li>
+<li><a href="#%D0%BE%D0%B1%D1%80%D0%B8%D1%81%D0%BE%D0%B2%D0%BA%D0%B0" id="toc-обрисовка">Обрисовка</a></li>
+<li><a href="#%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%85%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80%D0%B8%D1%81%D1%82%D0%B8%D0%BA" id="toc-получение-характеристик">Получение характеристик</a></li>
 </ul></li>
-<li><a href="#классификация" id="toc-классификация">Классификация</a>
+<li><a href="#%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F" id="toc-классификация">Классификация</a>
 <ul>
-<li><a href="#установка-модуля" id="toc-установка-модуля">Установка модуля</a></li>
-<li><a href="#предобработка" id="toc-предобработка">Предобработка</a>
+<li><a href="#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8F" id="toc-установка-модуля">Установка модуля</a></li>
+<li><a href="#%D0%BF%D1%80%D0%B5%D0%B4%D0%BE%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0" id="toc-предобработка">Предобработка</a>
 <ul>
 <li><a href="#download" id="toc-download">Получение данных</a></li>
 <li><a href="#clip" id="toc-clip">Обрезка данных</a></li>
 <li><a href="#RT" id="toc-RT">Преобразование яркости</a></li>
-<li><a href="#маскирование-облачности" id="toc-маскирование-облачности">Маскирование облачности</a></li>
+<li><a href="#%D0%BC%D0%B0%D1%81%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BE%D0%B1%D0%BB%D0%B0%D1%87%D0%BD%D0%BE%D1%81%D1%82%D0%B8" id="toc-маскирование-облачности">Маскирование облачности</a></li>
 <li><a href="#rgb" id="toc-rgb">Отображение данных</a></li>
-</ul></li>
-<li><a href="#без-учителя" id="toc-без-учителя">Без учителя</a>
+<li><a href="#%D0%BA%D0%BB%D0%B0%D1%81%D1%82%D0%B5%D1%80%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F" id="toc-кластеризация">Кластеризация</a></li>
+<li><a href="#%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F" id="toc-реклассификация">Реклассификация</a></li>
+<li><a href="#%D0%BF%D1%80%D0%BE%D1%81%D0%B5%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5" id="toc-просеивание">Просеивание</a></li>
+<li><a href="#%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B4%D0%BB%D1%8F-%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D1%8F" id="toc-данные-для-обучения">Данные для обучения</a></li>
+<li><a href="#%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B-c-%D0%B8-%D0%BC%D0%B0%D0%BA%D1%80%D0%BE-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B-mc" id="toc-классы-c-и-макро-классы-mc">Классы (C) и макро-классы (MC)</a>
 <ul>
-<li><a href="#кластеризация" id="toc-кластеризация">Кластеризация</a></li>
-<li><a href="#реклассификация" id="toc-реклассификация">Реклассификация</a></li>
-<li><a href="#просеивание" id="toc-просеивание">Просеивание</a></li>
+<li><a href="#%D0%B3%D0%B5%D0%BE%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D1%8F-%D0%BE%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BA%D0%B0" id="toc-геометрия-оцифровка">геометрия (оцифровка)</a></li>
+<li><a href="#%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0-%D0%B0%D1%82%D1%80%D0%B8%D0%B1%D1%83%D1%82%D0%BE%D0%B2" id="toc-таблица-атрибутов">таблица атрибутов</a></li>
+<li><a href="#%D0%B7%D0%B0%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5" id="toc-заполнение">Заполнение</a></li>
 </ul></li>
-<li><a href="#с-учителем" id="toc-с-учителем">С учителем</a>
+<li><a href="#%D1%81%D0%BF%D0%B5%D0%BA%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D1%85%D0%B0%D1%80%D0%B0%D0%BA%D1%82%D0%B5%D1%80%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B8" id="toc-спектральные-характеристики">Спектральные характеристики</a>
 <ul>
-<li><a href="#данные-для-обучения" id="toc-данные-для-обучения">Данные для обучения</a></li>
-<li><a href="#классы-c-и-макро-классы-mc" id="toc-классы-c-и-макро-классы-mc">Классы (C) и макро-классы (MC)</a>
+<li><a href="#%D0%B2%D0%B8%D0%B7%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F" id="toc-визуализация">Визуализация</a></li>
+<li><a href="#%D1%81%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0" id="toc-свойства">Свойства</a></li>
+<li><a href="#%D0%BE%D1%82%D0%BB%D0%B8%D1%87%D0%B8%D1%8F" id="toc-отличия">Отличия</a></li>
+</ul></li>
+<li><a href="#%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82" id="toc-результат">Результат</a>
 <ul>
-<li><a href="#геометрия-оцифровка" id="toc-геометрия-оцифровка">геометрия (оцифровка)</a></li>
-<li><a href="#таблица-атрибутов" id="toc-таблица-атрибутов">таблица атрибутов</a></li>
-<li><a href="#заполнение" id="toc-заполнение">Заполнение</a></li>
-</ul></li>
-<li><a href="#спектральные-характеристики" id="toc-спектральные-характеристики">Спектральные характеристики</a>
-<ul>
-<li><a href="#визуализация" id="toc-визуализация">Визуализация</a></li>
-<li><a href="#свойства" id="toc-свойства">Свойства</a></li>
-<li><a href="#отличия" id="toc-отличия">Отличия</a></li>
-</ul></li>
-<li><a href="#результат" id="toc-результат">Результат</a>
-<ul>
-<li><a href="#классы-c" id="toc-классы-c">Классы (C)</a></li>
-<li><a href="#макро-классы-mc" id="toc-макро-классы-mc">Макро-классы (MC)</a></li>
-<li><a href="#оценка-качества" id="toc-оценка-качества">Оценка качества</a></li>
+<li><a href="#%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B-c" id="toc-классы-c">Классы (C)</a></li>
+<li><a href="#%D0%BC%D0%B0%D0%BA%D1%80%D0%BE-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B-mc" id="toc-макро-классы-mc">Макро-классы (MC)</a></li>
+<li><a href="#%D0%BE%D1%86%D0%B5%D0%BD%D0%BA%D0%B0-%D0%BA%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%B0" id="toc-оценка-качества">Оценка качества</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
+<li style="display: none;"><a href="#section" id="toc-section"></a></li>
 </ul>
 </div>
 
@@ -142,9 +137,9 @@ img.background {
 
 
 </style>
-<p>Задача: оценить площадь заприпайных площадей моря Лаптевых из «Атласа биологического разнообразия морей и побережий российской Арктики»<sup>*</sup> <span class="citation">(<a href="#ref-AtlasWWF"><em>Атлас биологического разнообразия морей и побережий российской <span>А</span>рктики</em>, 2011</a>)</span>, <a href="https://wsbs-msu.ru/res/DOCFOLDER120/atlas_biol_ros_arkt_web.pdf#page=38">стр. 37</a>.</p>
+<p>Задача: оценить площадь заприпайных площадей моря Лаптевых из «Атласа биологического разнообразия морей и побережий российской Арктики»<sup>*</sup> <span class="citation">(<a href="#ref-AtlasWWF">Спиридонов <em>и др.</em>, 2011</a>)</span>, <a href="https://wsbs-msu.ru/res/DOCFOLDER120/atlas_biol_ros_arkt_web.pdf#page=38">стр. 37</a>.</p>
 <div class="footer">
-<p><sup>*</sup> «Атлас…» издан WWF России, по состоянию на 04 апреля 2024 г. находящегося в реестре иностранных агентов.</p>
+<p><sup>*</sup> «Атлас…» издан WWF России, по состоянию на 05 февраля 2025 г. находящегося в реестре иностранных агентов.</p>
 </div>
 <div id="извлекаем-рисунок" class="section level3">
 <h3>Извлекаем рисунок</h3>
@@ -213,20 +208,24 @@ img.background {
 <p class="centered-image"><img src="assets/lesson09/Clipboard20.png" width="690" height="580" /></p>
 <p>Результат можно сравнить со значениями столбчатой диаграммы</p>
 <p class="centered-image"><img src="assets/lesson09/Clipboard21.png" width="690" height="575" /></p>
-<p class="centered-image"><img src="https://i.ytimg.com/vi/_HKLxlS2sv4/maxresdefault.jpg" class="centered-image background noprint" width="400" /></p>
+<p>class: break inverse bottom right
+background-color: #032040
+background-image: url(<a href="https://i.ytimg.com/vi/_HKLxlS2sv4/maxresdefault.jpg" class="uri">https://i.ytimg.com/vi/_HKLxlS2sv4/maxresdefault.jpg</a>)
+background-size: cover</p>
 <p><span class="onlyremark huge">Демонстрация в QGIS</span></p>
+<p>class: notable inverse middle picsum</p>
 <div class="note">
 <h2 class="toc-ignore unnumbered unlisted">
-Домашнее задание на <a href="index.html#deadline3">25 апреля 2024 г.</a>
+Домашнее задание на <a href="index.html#deadline3">10 апреля 2025 г.</a>
 </h2>
-<p>Оценить площадь каждой из обозначенных в легенде заприпайных полыней Карского моря из «Атласа биологического разнообразия морей и побережий российской Арктики»<sup>*</sup> <span class="citation">(<a href="#ref-AtlasWWF"><em>Атлас биологического разнообразия морей и побережий российской <span>А</span>рктики</em>, 2011</a>)</span>, <a href="https://wsbs-msu.ru/res/DOCFOLDER120/atlas_biol_ros_arkt_web.pdf#page=36&amp;zoom=40">стр. 35</a></p>
+<p>Оценить площадь каждой из обозначенных в легенде заприпайных полыней Карского моря из «Атласа биологического разнообразия морей и побережий российской Арктики»<sup>*</sup> <span class="citation">(<a href="#ref-AtlasWWF">Спиридонов <em>и др.</em>, 2011</a>)</span>, <a href="https://wsbs-msu.ru/res/DOCFOLDER120/atlas_biol_ros_arkt_web.pdf#page=36&amp;zoom=40">стр. 35</a></p>
 <p>Береговую линию не оцифровывать, а вырезать по слою из набора <a href="https://www.naturalearthdata.com/">Natural Earth World GIS Data</a> 1:10m.</p>
 <!--
 [См. также здесь](index.html#Apr27)
 -->
 </div>
 <div class="footer">
-<p><sup>*</sup> «Атлас…» издан WWF России, по состоянию на 04 апреля 2024 г. находящегося в реестре иностранных агентов.</p>
+<p><sup>*</sup> «Атлас…» издан WWF России, по состоянию на 05 февраля 2025 г. находящегося в реестре иностранных агентов.</p>
 </div>
 </div>
 </div>
@@ -269,13 +268,12 @@ img.background {
 <p class="centered-image"><img src="assets/lesson09/Clipboard57.png" width="690" height="600" bound /></p>
 <p>Через SCP Working Panel выбрать RGB = 3-2-1</p>
 <p class="centered-image"><img src="assets/lesson09/Clipboard58.png" width="690" height="600" bound /></p>
-</div>
-</div>
-<div id="без-учителя" class="section level3">
-<h3>Без учителя</h3>
+<p>class: middle
+### Без учителя</p>
 <p>Использовано обучающее пособие <a href="https://fromgistors.blogspot.com/2021/01/unsupervised-classification-using-scp7.html">«Unsupervised Classification using the Semi-Automatic Classification Plugin version 7»</a></p>
 <p>Набор данных – фрагмент изображений Copernicus-2, <a href="https://docs.google.com/uc?id=1cph9rCQ1oiWgRGusgRkjUWwLW3JEwqUK">архив</a>.</p>
 <p>Загружать в проект необязательно, но можно сделать для «знакомства» с данными.</p>
+</div>
 <div id="кластеризация" class="section level4">
 <h4>Кластеризация</h4>
 <p>Алгоритм ISODATA</p>
@@ -296,12 +294,13 @@ img.background {
 <p>Удаление шума - отдельных ячеек одного класса, окруженных ячейками другого класса</p>
 <p class="centered-image"><img src="assets/lesson09/Clipboard63.png" width="689" height="560" bound /></p>
 <p class="centered-image"><img src="assets/lesson09/Clipboard64.png" width="690" height="600" bound /></p>
-<p class="centered-image"><img src="https://i.ytimg.com/vi/_HKLxlS2sv4/maxresdefault.jpg" class="centered-image background noprint" width="400" /></p>
+<p>class: break inverse bottom right
+background-color: #032040
+background-image: url(<a href="https://i.ytimg.com/vi/_HKLxlS2sv4/maxresdefault.jpg" class="uri">https://i.ytimg.com/vi/_HKLxlS2sv4/maxresdefault.jpg</a>)
+background-size: cover</p>
 <p><span class="onlyremark huge">Демонстрация в QGIS</span></p>
-</div>
-</div>
-<div id="с-учителем" class="section level3">
-<h3>С учителем</h3>
+<p>class: middle
+### С учителем</p>
 <p>Использовано обучающее пособие <a href="https://fromgistors.blogspot.com/2020/10/land-cover-classification-scp-7.html">«Land Cover Classification using the Semi-Automatic Classification Plugin version 7»</a></p>
 <p>Набор данных – фрагмент изображений Copernicus-2 L1C_T37VDC_A022727_20210713T085013_2021-07-13 для района Черноголовки</p>
 <p>Подготовка данных - в модуле SCP:</p>
@@ -311,6 +310,7 @@ img.background {
 <li><p><a href="#RT">Преобразование яркости</a></p></li>
 </ul>
 <p class="centered-image"><img src="assets/lesson09/Clipboard76.png" width="864" height="600" bound /></p>
+</div>
 <div id="данные-для-обучения" class="section level4">
 <h4>Данные для обучения</h4>
 <p class="centered-image"><img src="assets/lesson09/Clipboard78.png" width="864" height="600" bound /></p>
@@ -363,12 +363,21 @@ img.background {
 <div id="оценка-качества" class="section level5">
 <h5>Оценка качества</h5>
 <p>В том числе, визуально: подложкой (ниже) или по <a href="#rgb">исходным данным</a></p>
+<p class="centered-image"><img src="assets/lesson09/Clipboard91.png" width="864" height="576" bound /></p>
+<p class="centered-image"><img src="https://i.ytimg.com/vi/_HKLxlS2sv4/maxresdefault.jpg" class="centered-image background noprint" width="400" /></p>
+<p><span class="onlyremark huge">Демонстрация в QGIS</span></p>
+</div>
+</div>
+</div>
+</div>
+<div id="section" class="section level1 additional">
+<h1 class="additional"></h1>
+</div>
+<div id="refs" class="section level1 unnumbered toc-ignore unlisted">
+<h1 class="unnumbered toc-ignore unlisted"></h1>
 <div id="refs" class="references csl-bib-body" entry-spacing="1">
 <div id="ref-AtlasWWF" data-number="1" class="csl-entry">
-Атлас биологического разнообразия морей и побережий российской <span>А</span>рктики. 2011. WWF России. М. В.А. Спиридонов, Е.Д. Краснова, М.В. Гаврило, and Н.Г. Николаева (<em>Eds</em>). 64 с. Авторский коллектив: Беликов С. Е., Гаврило М. В., Горин С. Л., Иванов А. Н., Краснова Е. Д., Краснов Ю. В., Кулангиев А. О., Лашманов Ф. И., Макаров А. В., Николаева Н. Г., Попов А. В., Сергиенко Л. А., Спиридонов В. А., Шредерс М. А. ISBN: 978-5-9902786-1-5. <a href="https://wsbs-msu.ru/res/DOCFOLDER120/atlas_biol_ros_arkt_web.pdf">https://wsbs-msu.ru/res/DOCFOLDER120/atlas_biol_ros_arkt_web.pdf</a> (дата обращения 03 апреля 2024 г.).
-</div>
-</div>
-</div>
+Спиридонов ВА, Краснова ЕД, Гаврило МВ и Николаева НГ (<em>Editors</em>). 2011. Атлас биологического разнообразия морей и побережий российской <span>А</span>рктики. WWF России. М. 64 с. Авторский коллектив: Беликов С. Е., Гаврило М. В., Горин С. Л., Иванов А. Н., Краснова Е. Д., Краснов Ю. В., Кулангиев А. О., Лашманов Ф. И., Макаров А. В., Николаева Н. Г., Попов А. В., Сергиенко Л. А., Спиридонов В. А., Шредерс М. А. ISBN: 978-5-9902786-1-5. <a href="https://wsbs-msu.ru/res/DOCFOLDER120/atlas_biol_ros_arkt_web.pdf">https://wsbs-msu.ru/res/DOCFOLDER120/atlas_biol_ros_arkt_web.pdf</a> (дата обращения 03 апреля 2024 г.).
 </div>
 </div>
 </div>

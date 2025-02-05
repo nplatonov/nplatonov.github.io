@@ -14,7 +14,7 @@
 
 <title>ГИС 03</title>
 
-<script src="https://nplatonov.github.io/site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.29/header-attrs.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -72,23 +72,23 @@ div.csl-indent {
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 03</span> <span class="when"> <span class="updated">Обновлено: 2024-03-07 08:28</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 03</span> <span class="when"> <span class="updated">Обновлено: 2025-02-05 13:10</span></span></h4>
 
 
 <div id="TOC">
 <ul>
-<li><a href="#растровые-и-векторные-данные" id="toc-растровые-и-векторные-данные">Растровые и векторные данные</a>
+<li><a href="#%D1%80%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B2%D1%8B%D0%B5-%D0%B8-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5" id="toc-растровые-и-векторные-данные">Растровые и векторные данные</a>
 <ul>
-<li><a href="#вектор" id="toc-вектор">Вектор</a>
+<li><a href="#%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80" id="toc-вектор">Вектор</a>
 <ul>
-<li><a href="#исходные-данные" id="toc-исходные-данные">Исходные данные</a></li>
-<li><a href="#вместе" id="toc-вместе">Вместе</a>
+<li><a href="#%D0%B8%D1%81%D1%85%D0%BE%D0%B4%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5" id="toc-исходные-данные">Исходные данные</a></li>
+<li><a href="#%D0%B2%D0%BC%D0%B5%D1%81%D1%82%D0%B5" id="toc-вместе">Вместе</a>
 <ul>
 <li><a href="#point-together" id="toc-point-together">POINT (точки)</a></li>
 <li><a href="#line-together" id="toc-line-together">LINESTRING (линии)</a></li>
 <li><a href="#poly-together" id="toc-poly-together">POLYGON (полигоны)</a></li>
 </ul></li>
-<li><a href="#раздельно" id="toc-раздельно">Раздельно</a>
+<li><a href="#%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE" id="toc-раздельно">Раздельно</a>
 <ul>
 <li><a href="#point-separate" id="toc-point-separate">POINT (точки)</a></li>
 <li><a href="#line-separate" id="toc-line-separate">LINESTRING (линии)</a></li>
@@ -99,15 +99,15 @@ div.csl-indent {
 <li><a href="#point-vs-multipoint" id="toc-point-vs-multipoint">POINT vs MULTIPOINT:</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#растр" id="toc-растр">Растр</a>
+<li><a href="#%D1%80%D0%B0%D1%81%D1%82%D1%80" id="toc-растр">Растр</a>
 <ul>
-<li><a href="#исходные-данные-1" id="toc-исходные-данные-1">Исходные данные</a></li>
-<li><a href="#псевдоцвета" id="toc-псевдоцвета">Псевдоцвета</a></li>
-<li><a href="#размер-ячейки" id="toc-размер-ячейки">Размер ячейки</a></li>
-<li><a href="#категории" id="toc-категории">Категории</a></li>
+<li><a href="#%D0%B8%D1%81%D1%85%D0%BE%D0%B4%D0%BD%D1%8B%D0%B5-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-1" id="toc-исходные-данные-1">Исходные данные</a></li>
+<li><a href="#%D0%BF%D1%81%D0%B5%D0%B2%D0%B4%D0%BE%D1%86%D0%B2%D0%B5%D1%82%D0%B0" id="toc-псевдоцвета">Псевдоцвета</a></li>
+<li><a href="#%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80-%D1%8F%D1%87%D0%B5%D0%B9%D0%BA%D0%B8" id="toc-размер-ячейки">Размер ячейки</a></li>
+<li><a href="#%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B8" id="toc-категории">Категории</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#проекции" id="toc-проекции">Проекции</a></li>
+<li><a href="#%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%86%D0%B8%D0%B8" id="toc-проекции">Проекции</a></li>
 <li style="display: none;"><a href="#section" id="toc-section"></a></li>
 </ul>
 </div>
@@ -227,23 +227,23 @@ div.csl-indent {
 Создадим новое поле `id` конкатенацией полей `season:period`
 и сделаем выборку по значению `"max:0716"`.
 -->
-<p class="centered-image"><img src="assets/lesson03/3ff50ec1~chunk.png" width="494" /></p>
+<p class="centered-image"><img src="assets/kernel/source-847.png" width="494" /></p>
 </div>
 <div id="вместе" class="section level4">
 <h4>Вместе</h4>
 <div id="point-together" class="section level5">
 <h5>POINT (точки)</h5>
-<p class="centered-image"><img src="assets/lesson03/ee1409e9~chunk.png" width="494" /></p>
+<p class="centered-image"><img src="assets/kernel/combine-points-847.png" width="494" /></p>
 <p>Выборка по четырем случайным особям. См. <a href="#point-separate">“раздельно”</a>.</p>
 </div>
 <div id="line-together" class="section level5">
 <h5>LINESTRING (линии)</h5>
-<p class="centered-image"><img src="assets/lesson03/9e0edbb4~chunk.png" width="494" /></p>
+<p class="centered-image"><img src="assets/kernel/combine-lines-847.png" width="494" /></p>
 <p>Линии - соединение точек. См. <a href="#line-separate">раздельно</a>.</p>
 </div>
 <div id="poly-together" class="section level5">
 <h5>POLYGON (полигоны)</h5>
-<p class="centered-image"><img src="assets/lesson03/e6ab3d79~chunk.png" width="494" /></p>
+<p class="centered-image"><img src="assets/kernel/combine-polygons-847.png" width="492" /></p>
 <p>Полигоны - буфер вокруг точек. См. <a href="#poly-separate">раздельно</a>.</p>
 </div>
 </div>
@@ -251,18 +251,18 @@ div.csl-indent {
 <h4>Раздельно</h4>
 <div id="point-separate" class="section level5">
 <h5>POINT (точки)</h5>
-<p class="centered-image"><img src="assets/lesson03/7b2785dd~chunk.png" width="448" /></p>
+<p class="centered-image"><img src="assets/kernel/separate-points-847.png" width="448" /></p>
 <p>См <a href="#point-together">вместе</a>.</p>
 <!-- Отображение локаций для каждой особи в отдельной панели. -->
 </div>
 <div id="line-separate" class="section level5">
 <h5>LINESTRING (линии)</h5>
-<p class="centered-image"><img src="assets/lesson03/ce88590a~chunk.png" width="448" /></p>
+<p class="centered-image"><img src="assets/kernel/separate-lines-847.png" width="448" /></p>
 <p>См <a href="#line-together">вместе</a>.</p>
 </div>
 <div id="poly-separate" class="section level5">
 <h5>POLYGON (полигоны)</h5>
-<p class="centered-image"><img src="assets/lesson03/a165a12b~chunk.png" width="448" /></p>
+<p class="centered-image"><img src="assets/kernel/separate-polygons-847.png" width="448" /></p>
 <p>См <a href="#poly-together">вместе</a>.</p>
 </div>
 </div>
@@ -313,7 +313,7 @@ div.csl-indent {
 </table>
 </div>
 <div class="pull-right-70">
-<p class="centered-image"><img src="assets/lesson03/d191ebf1~chunk.png" width="328" /></p>
+<p class="centered-image"><img src="assets/kernel/sinlge-point-847.png" width="328" /></p>
 </div>
 </div>
 <p>MULTIPOINT</p>
@@ -352,7 +352,7 @@ div.csl-indent {
 </table>
 </div>
 <div class="pull-right-70">
-<p class="centered-image"><img src="assets/lesson03/89700a39~chunk.png" width="324" /></p>
+<p class="centered-image"><img src="assets/kernel/multi-point-847.png" width="324" /></p>
 </div>
 </div>
 </div>
@@ -374,23 +374,23 @@ div.csl-indent {
 </ul>
 <div id="исходные-данные-1" class="section level4">
 <h4>Исходные данные</h4>
-<p class="centered-image"><img src="assets/lesson03/713e9495~chunk.png" width="504" /></p>
+<p class="centered-image"><img src="assets/kernel/raster-b0-847.png" width="504" /></p>
 <p>Участок обитания (кёрнел) <span class="citation">(<a href="#ref-Worton1989">Worton, 1989</a>)</span>
 на основе данных <span class="citation">(<a href="#ref-Durner2019_data">Durner, 2019</a>)</span>.</p>
 </div>
 <div id="псевдоцвета" class="section level4">
 <h4>Псевдоцвета</h4>
-<p class="centered-image"><img src="assets/lesson03/664580d6~chunk.png" width="488" /></p>
+<p class="centered-image"><img src="assets/kernel/raster-b1-847.png" width="488" /></p>
 <p>Для отображения используются псевдоцвета, градации серого, RGB</p>
 </div>
 <div id="размер-ячейки" class="section level4">
 <h4>Размер ячейки</h4>
-<p class="centered-image"><img src="assets/lesson03/48b3a850~chunk.png" width="488" /></p>
+<p class="centered-image"><img src="assets/kernel/raster-b3-847.png" width="488" /></p>
 <p>В отличие от вектора, в растрах жестко заданы характеристики пространственной сетки</p>
 </div>
 <div id="категории" class="section level4">
 <h4>Категории</h4>
-<p class="centered-image"><img src="assets/lesson03/5fc8bc13~chunk.png" width="506" /></p>
+<p class="centered-image"><img src="assets/kernel/raster-b2-847.png" width="506" /></p>
 <p>Растры позволяют оперировать с номинальными шкалами</p>
 </div>
 </div>
@@ -403,6 +403,29 @@ div.csl-indent {
 <li><p>WKT</p></li>
 <li><p>PRO4 string</p></li>
 </ul>
+<div class="note">
+<div class="pulling">
+<div class="pull-left-55 font90">
+<h2 class="toc-ignore unnumbered unlisted">
+Домашнее задание на <a href="index.html#deadline1">27 февраля 2025 г.</a>
+</h2>
+<p>В QGIS на основе данных Natural Earth 1:10m cоздать картооснову, ориентируясь
+на территорию,
+охватывающую Карелию и Мурманскую области.
+Желательно включить административные границы, батиметрию и контуры высот.
+Экспортировать через Export Image или Print Layout два изображения,
+соответствующих русскоязычным журнальным требованиям,
+с различным пространственным охватом:
+1) только Кольский п-ов,
+2) вместе Карелия и Мурманская обл.,
+3) свой район работ для описания изучаемой территории в разделе «Методы»
+4) свой район работ для использования в качестве подложки для «Результатов»</p>
+</div>
+<div class="pull-right-45">
+<p class="centered-image"><img src="assets/lesson03/homework.png" width="752" height="400" bound /></p>
+</div>
+</div>
+</div>
 </div>
 <div id="section" class="section level1 additional">
 <h1 class="additional"></h1>
@@ -414,13 +437,13 @@ div.csl-indent {
 Durner GM. 2019. <span class="nocase">Polar Bear Distribution and Habitat Resource Selection Data, Beaufort and Chukchi Seas</span>, 1985-2016. U.S. Geological Survey. <a href="https://alaska.usgs.gov/products/data.php?dataid=246">https://alaska.usgs.gov/products/data.php?dataid=246</a>. <a href="https://doi.org/10.5066/P9ZRJ3XU">10.5066/P9ZRJ3XU</a>.
 </div>
 <div id="ref-Durner2019_RSF" data-number="2" class="csl-entry">
-Durner GM, Douglas DC and Atwood TC. 2019. Are polar bear habitat resource selection functions developed from 1985–1995 data still useful? <em>Ecology and Evolution</em>, 9(15): 8625–8638. <a href="https://doi.org/10.1002/ece3.5401">10.1002/ece3.5401</a>.
+Durner GM, Douglas DC and Atwood TC. 2019. Are polar bear habitat resource selection functions developed from 1985–1995 data still useful? <em>Ecology and Evolution</em>, 9(15): 8625–8638. <em>Wiley</em>. <a href="https://doi.org/10.1002/ece3.5401">10.1002/ece3.5401</a>.
 </div>
 <div id="ref-PROJ" data-number="3" class="csl-entry">
 PROJ contributors. 2022. <span>PRØJ</span> coordinate transformation software library. Open Source Geospatial Foundation. <a href="https://proj.org/">https://proj.org/</a>.
 </div>
 <div id="ref-Worton1989" data-number="4" class="csl-entry">
-Worton BJ. 1989. Kernel methods for estimating the utilization distribution in home-range studies. <em>Ecology</em>, 70(1): 164–168. ISSN: 1939-9170. <a href="https://doi.org/10.2307/1938423">10.2307/1938423</a>.
+Worton BJ. 1989. Kernel methods for estimating the utilization distribution in home-range studies. <em>Ecology</em>, 70(1): 164–168. <em>Ecological Society of America</em>. ISSN: 1939-9170. <a href="https://doi.org/10.2307/1938423">10.2307/1938423</a>.
 </div>
 </div>
 </div>
