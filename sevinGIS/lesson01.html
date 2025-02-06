@@ -174,7 +174,7 @@ div.csl-indent {
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 01</span> <span class="when"> <span class="updated">Обновлено: 2025-02-05 13:09</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 01</span> <span class="when"> <span class="updated">Обновлено: 2025-02-06 10:38</span></span></h4>
 
 
 <div id="TOC">
@@ -184,17 +184,58 @@ div.csl-indent {
 <li><a href="#data" id="toc-data">Данные</a>
 <ul>
 <li><a href="#dataset" id="toc-dataset">Для освоения</a></li>
-<li><a href="#datasource" id="toc-datasource">Об этих данных</a></li>
+<li><a href="#datasource" id="toc-datasource">Об этих данных</a>
+<ul>
+<li><a href="#natural-earth" id="toc-natural-earth">Natural Earth</a></li>
+<li><a href="#osmdata" id="toc-osmdata">OSM береговая линия</a></li>
+<li><a href="#download-gebco" id="toc-download-gebco">GEBCO батиметрия</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#soft" id="toc-soft">Программы</a>
 <ul>
-<li><a href="#qgis" id="toc-qgis">QGIS</a></li>
-<li><a href="#r" id="toc-r">R</a></li>
+<li><a href="#qgis" id="toc-qgis">QGIS</a>
+<ul>
+<li><a href="#%D1%8F%D0%B4%D1%80%D0%BE" id="toc-ядро">Ядро</a></li>
+<li><a href="#soft-qgis-plugins" id="toc-soft-qgis-plugins">Расширения</a>
+<ul>
+<li><a href="#quickmapservices" id="toc-quickmapservices">QuickMapServices</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#r" id="toc-r">R</a>
+<ul>
+<li><a href="#%D1%8F%D0%B4%D1%80%D0%BE-1" id="toc-ядро-1">Ядро</a></li>
+<li><a href="#%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B" id="toc-пакеты">Пакеты</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#before" id="toc-before">Попробовать</a>
 <ul>
-<li><a href="#qgis-1" id="toc-qgis-1">QGIS</a></li>
-<li><a href="#r-1" id="toc-r-1">R</a></li>
+<li><a href="#qgis-1" id="toc-qgis-1">QGIS</a>
+<ul>
+<li><a href="#%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82" id="toc-открыть-проект">Открыть проект</a></li>
+<li><a href="#%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B8%D1%82%D1%8C-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5" id="toc-выполнить-задание">Выполнить задание</a></li>
+<li><a href="#steps" id="toc-steps">По шагам</a>
+<ul>
+<li><a href="#%D1%81%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0" id="toc-свойства-проекта">Свойства проекта</a></li>
+<li><a href="#c%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0-%D1%81%D0%BB%D0%BE%D1%8F" id="toc-cвойства-слоя">Cвойства слоя</a></li>
+<li><a href="#%D1%80%D0%B0%D1%81%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0-%D1%81%D0%BB%D0%BE%D1%8F" id="toc-раскраска-слоя">Раскраска слоя</a></li>
+<li><a href="#%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0-%D0%B0%D1%82%D1%80%D0%B8%D0%B1%D1%83%D1%82%D0%BE%D0%B2" id="toc-таблица-атрибутов">Таблица атрибутов</a></li>
+<li><a href="#%D0%B8%D0%B7%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9" id="toc-извление-названий">Извление названий</a></li>
+<li><a href="#%D0%BB%D0%B8%D1%88%D0%BD%D0%B8%D0%B5-%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" id="toc-лишние-названия">Лишние названия</a></li>
+<li><a href="#%D1%83%D0%BA%D1%80%D0%B0%D1%88%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%B0" id="toc-украшательства">Украшательства</a></li>
+<li><a href="#%D0%BF%D1%80%D0%BE%D1%80%D0%B5%D0%B6%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B4%D0%BE%D0%BB%D0%B3%D0%BE%D1%82" id="toc-прореживание-долгот">Прореживание долгот</a></li>
+<li><a href="#%D0%BC%D0%B0%D1%81%D1%88%D1%82%D0%B0%D0%B1%D0%BD%D0%B0%D1%8F-%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BA%D0%B0" id="toc-масштабная-линейка">Масштабная линейка</a></li>
+<li><a href="#%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82" id="toc-результат">Результат</a></li>
+</ul></li>
+<li><a href="#c%D0%B2%D0%BE%D0%B8-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5" id="toc-cвои-данные">Cвои данные</a>
+<ul>
+<li><a href="#%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80" id="toc-открыть-вектор">Открыть вектор</a></li>
+<li><a href="#%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C-%D1%80%D0%B0%D1%81%D1%82%D1%80" id="toc-открыть-растр">Открыть растр</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#r-1" id="toc-r-1">R</a>
+<ul>
+<li><a href="#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C-%D0%BD%D0%B5%D0%BE%D0%B1%D1%85%D0%BE%D0%B4%D0%B8%D0%BC%D1%8B%D0%B5-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B" id="toc-установить-необходимые-пакеты">Установить необходимые пакеты</a></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -424,6 +465,27 @@ div.csl-indent {
 <h5>Результат</h5>
 <p class="centered-image"><img src="assets/lesson01/Before18-BlueProject.jpg" width="901" height="560" contain /></p>
 <p>Сохраните с новым названием. Если совсем ничего не получилось, используйтся файл проекта <code>desired.qgz</code> из набора <span class="citation">(<a href="#ref-winterschool2025">Платонов, 2025</a>)</span>.</p>
+</div>
+</div>
+<div id="cвои-данные" class="section level4">
+<h4>Cвои данные</h4>
+<div id="открыть-вектор" class="section level5">
+<h5>Открыть вектор</h5>
+<p class="centered-image"><img src="assets/lesson12/AddVector.jpg" width="877" /></p>
+<hr />
+<p class="centered-image"><img src="assets/lesson12/SelectVector.jpg" width="557" /></p>
+</div>
+<div id="открыть-растр" class="section level5">
+<h5>Открыть растр</h5>
+<p class="centered-image"><img src="assets/lesson12/AddRaster.jpg" width="974" /></p>
+<hr />
+<p class="centered-image"><img src="assets/lesson12/SelectRaster2.jpg" width="458" /></p>
+<hr />
+<p class="centered-image"><img src="assets/lesson12/RasterProperties2.jpg" width="766" /></p>
+<hr />
+<p class="centered-image"><img src="assets/lesson12/RasterColorization.jpg" width="829" /></p>
+<hr />
+<p class="centered-image"><img src="assets/lesson12/RasterOutput.jpg" width="962" /></p>
 <!--
 
 -->
@@ -437,26 +499,207 @@ div.csl-indent {
 <p>Ниже приведен скрипт, который проверяет, установлены ли требуемые пакеты и при необходимости их устанавливает.</p>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>pkgList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;png&quot;</span>,<span class="st">&quot;mapview&quot;</span>,<span class="st">&quot;tmap&quot;</span>,<span class="st">&quot;sf&quot;</span>,<span class="st">&quot;terra&quot;</span>,<span class="st">&quot;adehabitatLT&quot;</span>,<span class="st">&quot;readxl&quot;</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>            ,<span class="st">&quot;tidyr&quot;</span>,<span class="st">&quot;lwgeom&quot;</span>,<span class="st">&quot;geosphere&quot;</span>,<span class="st">&quot;ggstatsplot&quot;</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>            ,<span class="st">&quot;ursa&quot;</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>repos <span class="ot">&lt;-</span> <span class="st">&quot;https://cloud.r-project.org/&quot;</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>type <span class="ot">&lt;-</span> <span class="cf">if</span> (.Platform<span class="sc">$</span>OS.type<span class="sc">==</span><span class="st">&quot;windows&quot;</span>) <span class="st">&quot;binary&quot;</span> <span class="cf">else</span> <span class="fu">getOption</span>(<span class="st">&quot;pkgType&quot;</span>)</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>            ,<span class="st">&quot;tidyr&quot;</span>,<span class="st">&quot;lwgeom&quot;</span>,<span class="st">&quot;geosphere&quot;</span>,<span class="st">&quot;ggstatsplot&quot;</span>,<span class="st">&quot;ursa&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>repos <span class="ot">&lt;-</span> <span class="st">&quot;https://cloud.r-project.org/&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>type <span class="ot">&lt;-</span> <span class="cf">if</span> (.Platform<span class="sc">$</span>OS.type<span class="sc">==</span><span class="st">&quot;windows&quot;</span>) <span class="st">&quot;binary&quot;</span> <span class="cf">else</span> <span class="fu">getOption</span>(<span class="st">&quot;pkgType&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>available <span class="ot">&lt;-</span> <span class="fu">sapply</span>(pkgList,<span class="cf">function</span>(pkg) {</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">requireNamespace</span>(pkg))</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">TRUE</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>   <span class="fu">install.packages</span>(pkg,<span class="at">repos=</span>repos,<span class="at">type=</span>type)</span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>   <span class="fu">requireNamespace</span>(pkg)</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>})</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">packageVersion</span>(<span class="st">&quot;ursa&quot;</span>)<span class="sc">&lt;</span><span class="st">&quot;3.11.2&quot;</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>   <span class="fu">install.packages</span>(<span class="st">&quot;ursa&quot;</span>,<span class="at">repos=</span>repos,<span class="at">type=</span>type)</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;ursa&quot;</span>)</span></code></pre></div>
+<pre><code>package &#39;png&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;fs&#39; successfully unpacked and MD5 sums checked
+package &#39;rappdirs&#39; successfully unpacked and MD5 sums checked
+package &#39;cachem&#39; successfully unpacked and MD5 sums checked
+package &#39;memoise&#39; successfully unpacked and MD5 sums checked
+package &#39;sass&#39; successfully unpacked and MD5 sums checked
+package &#39;proxy&#39; successfully unpacked and MD5 sums checked
+package &#39;evaluate&#39; successfully unpacked and MD5 sums checked
+package &#39;highr&#39; successfully unpacked and MD5 sums checked
+package &#39;bslib&#39; successfully unpacked and MD5 sums checked
+package &#39;fontawesome&#39; successfully unpacked and MD5 sums checked
+package &#39;tinytex&#39; successfully unpacked and MD5 sums checked
+package &#39;geometries&#39; successfully unpacked and MD5 sums checked
+package &#39;jsonify&#39; successfully unpacked and MD5 sums checked
+package &#39;rapidjsonr&#39; successfully unpacked and MD5 sums checked
+package &#39;sfheaders&#39; successfully unpacked and MD5 sums checked
+package &#39;lazyeval&#39; successfully unpacked and MD5 sums checked
+package &#39;systemfonts&#39; successfully unpacked and MD5 sums checked
+package &#39;cpp11&#39; successfully unpacked and MD5 sums checked
+package &#39;colorspace&#39; successfully unpacked and MD5 sums checked
+package &#39;later&#39; successfully unpacked and MD5 sums checked
+package &#39;promises&#39; successfully unpacked and MD5 sums checked
+package &#39;e1071&#39; successfully unpacked and MD5 sums checked
+package &#39;wk&#39; successfully unpacked and MD5 sums checked
+package &#39;digest&#39; successfully unpacked and MD5 sums checked
+package &#39;fastmap&#39; successfully unpacked and MD5 sums checked
+package &#39;rlang&#39; successfully unpacked and MD5 sums checked
+package &#39;jsonlite&#39; successfully unpacked and MD5 sums checked
+package &#39;knitr&#39; successfully unpacked and MD5 sums checked
+package &#39;rmarkdown&#39; successfully unpacked and MD5 sums checked
+package &#39;yaml&#39; successfully unpacked and MD5 sums checked
+package &#39;geojsonsf&#39; successfully unpacked and MD5 sums checked
+package &#39;crosstalk&#39; successfully unpacked and MD5 sums checked
+package &#39;jquerylib&#39; successfully unpacked and MD5 sums checked
+package &#39;leaflet.providers&#39; successfully unpacked and MD5 sums checked
+package &#39;magrittr&#39; successfully unpacked and MD5 sums checked
+package &#39;RColorBrewer&#39; successfully unpacked and MD5 sums checked
+package &#39;viridisLite&#39; successfully unpacked and MD5 sums checked
+package &#39;xfun&#39; successfully unpacked and MD5 sums checked
+package &#39;brew&#39; successfully unpacked and MD5 sums checked
+package &#39;svglite&#39; successfully unpacked and MD5 sums checked
+package &#39;uuid&#39; successfully unpacked and MD5 sums checked
+package &#39;Rcpp&#39; successfully unpacked and MD5 sums checked
+package &#39;terra&#39; successfully unpacked and MD5 sums checked
+package &#39;plyr&#39; successfully unpacked and MD5 sums checked
+package &#39;cli&#39; successfully unpacked and MD5 sums checked
+package &#39;farver&#39; successfully unpacked and MD5 sums checked
+package &#39;glue&#39; successfully unpacked and MD5 sums checked
+package &#39;labeling&#39; successfully unpacked and MD5 sums checked
+package &#39;lifecycle&#39; successfully unpacked and MD5 sums checked
+package &#39;munsell&#39; successfully unpacked and MD5 sums checked
+package &#39;R6&#39; successfully unpacked and MD5 sums checked
+package &#39;mime&#39; successfully unpacked and MD5 sums checked
+package &#39;httpuv&#39; successfully unpacked and MD5 sums checked
+package &#39;classInt&#39; successfully unpacked and MD5 sums checked
+package &#39;DBI&#39; successfully unpacked and MD5 sums checked
+package &#39;s2&#39; successfully unpacked and MD5 sums checked
+package &#39;units&#39; successfully unpacked and MD5 sums checked
+package &#39;base64enc&#39; successfully unpacked and MD5 sums checked
+package &#39;htmltools&#39; successfully unpacked and MD5 sums checked
+package &#39;htmlwidgets&#39; successfully unpacked and MD5 sums checked
+package &#39;leafem&#39; successfully unpacked and MD5 sums checked
+package &#39;leaflet&#39; successfully unpacked and MD5 sums checked
+package &#39;leafpop&#39; successfully unpacked and MD5 sums checked
+package &#39;raster&#39; successfully unpacked and MD5 sums checked
+package &#39;satellite&#39; successfully unpacked and MD5 sums checked
+package &#39;scales&#39; successfully unpacked and MD5 sums checked
+package &#39;servr&#39; successfully unpacked and MD5 sums checked
+package &#39;sf&#39; successfully unpacked and MD5 sums checked
+package &#39;sp&#39; successfully unpacked and MD5 sums checked
+package &#39;mapview&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;logger&#39; successfully unpacked and MD5 sums checked
+package &#39;abind&#39; successfully unpacked and MD5 sums checked
+package &#39;stringdist&#39; successfully unpacked and MD5 sums checked
+package &#39;spacesXYZ&#39; successfully unpacked and MD5 sums checked
+package &#39;lwgeom&#39; successfully unpacked and MD5 sums checked
+package &#39;dichromat&#39; successfully unpacked and MD5 sums checked
+package &#39;XML&#39; successfully unpacked and MD5 sums checked
+package &#39;cols4all&#39; successfully unpacked and MD5 sums checked
+package &#39;data.table&#39; successfully unpacked and MD5 sums checked
+package &#39;leafgl&#39; successfully unpacked and MD5 sums checked
+package &#39;leaflegend&#39; successfully unpacked and MD5 sums checked
+package &#39;leafsync&#39; successfully unpacked and MD5 sums checked
+package &#39;stars&#39; successfully unpacked and MD5 sums checked
+package &#39;tmaptools&#39; successfully unpacked and MD5 sums checked
+package &#39;tmap&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;pixmap&#39; successfully unpacked and MD5 sums checked
+package &#39;RcppArmadillo&#39; successfully unpacked and MD5 sums checked
+package &#39;ade4&#39; successfully unpacked and MD5 sums checked
+package &#39;adehabitatMA&#39; successfully unpacked and MD5 sums checked
+package &#39;CircStats&#39; successfully unpacked and MD5 sums checked
+package &#39;adehabitatLT&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;utf8&#39; successfully unpacked and MD5 sums checked
+package &#39;rematch&#39; successfully unpacked and MD5 sums checked
+package &#39;fansi&#39; successfully unpacked and MD5 sums checked
+package &#39;pillar&#39; successfully unpacked and MD5 sums checked
+package &#39;pkgconfig&#39; successfully unpacked and MD5 sums checked
+package &#39;vctrs&#39; successfully unpacked and MD5 sums checked
+package &#39;crayon&#39; successfully unpacked and MD5 sums checked
+package &#39;hms&#39; successfully unpacked and MD5 sums checked
+package &#39;prettyunits&#39; successfully unpacked and MD5 sums checked
+package &#39;cellranger&#39; successfully unpacked and MD5 sums checked
+package &#39;tibble&#39; successfully unpacked and MD5 sums checked
+package &#39;progress&#39; successfully unpacked and MD5 sums checked
+package &#39;readxl&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;generics&#39; successfully unpacked and MD5 sums checked
+package &#39;stringi&#39; successfully unpacked and MD5 sums checked
+package &#39;withr&#39; successfully unpacked and MD5 sums checked
+package &#39;dplyr&#39; successfully unpacked and MD5 sums checked
+package &#39;purrr&#39; successfully unpacked and MD5 sums checked
+package &#39;stringr&#39; successfully unpacked and MD5 sums checked
+package &#39;tidyselect&#39; successfully unpacked and MD5 sums checked
+package &#39;tidyr&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;geosphere&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;rbibutils&#39; successfully unpacked and MD5 sums checked
+package &#39;Rdpack&#39; successfully unpacked and MD5 sums checked
+package &#39;backports&#39; successfully unpacked and MD5 sums checked
+package &#39;cowplot&#39; successfully unpacked and MD5 sums checked
+package &#39;Deriv&#39; successfully unpacked and MD5 sums checked
+package &#39;modelr&#39; successfully unpacked and MD5 sums checked
+package &#39;microbenchmark&#39; successfully unpacked and MD5 sums checked
+package &#39;SparseM&#39; successfully unpacked and MD5 sums checked
+package &#39;minqa&#39; successfully unpacked and MD5 sums checked
+package &#39;nloptr&#39; successfully unpacked and MD5 sums checked
+package &#39;reformulas&#39; successfully unpacked and MD5 sums checked
+package &#39;broom&#39; successfully unpacked and MD5 sums checked
+package &#39;numDeriv&#39; successfully unpacked and MD5 sums checked
+package &#39;doBy&#39; successfully unpacked and MD5 sums checked
+package &#39;carData&#39; successfully unpacked and MD5 sums checked
+package &#39;Formula&#39; successfully unpacked and MD5 sums checked
+package &#39;quantreg&#39; successfully unpacked and MD5 sums checked
+package &#39;elliptic&#39; successfully unpacked and MD5 sums checked
+package &#39;contfrac&#39; successfully unpacked and MD5 sums checked
+package &#39;deSolve&#39; successfully unpacked and MD5 sums checked
+package &#39;lme4&#39; successfully unpacked and MD5 sums checked
+package &#39;pbkrtest&#39; successfully unpacked and MD5 sums checked
+package &#39;lmerTest&#39; successfully unpacked and MD5 sums checked
+package &#39;car&#39; successfully unpacked and MD5 sums checked
+package &#39;coda&#39; successfully unpacked and MD5 sums checked
+package &#39;pbapply&#39; successfully unpacked and MD5 sums checked
+package &#39;mvtnorm&#39; successfully unpacked and MD5 sums checked
+package &#39;MatrixModels&#39; successfully unpacked and MD5 sums checked
+package &#39;hypergeo&#39; successfully unpacked and MD5 sums checked
+package &#39;RcppEigen&#39; successfully unpacked and MD5 sums checked
+package &#39;multcompView&#39; successfully unpacked and MD5 sums checked
+package &#39;gmp&#39; successfully unpacked and MD5 sums checked
+package &#39;Rmpfr&#39; successfully unpacked and MD5 sums checked
+package &#39;SuppDists&#39; successfully unpacked and MD5 sums checked
+package &#39;kSamples&#39; successfully unpacked and MD5 sums checked
+package &#39;BWStest&#39; successfully unpacked and MD5 sums checked
+package &#39;desc&#39; successfully unpacked and MD5 sums checked
+package &#39;RcppParallel&#39; successfully unpacked and MD5 sums checked
+package &#39;reshape&#39; successfully unpacked and MD5 sums checked
+package &#39;bayestestR&#39; successfully unpacked and MD5 sums checked
+package &#39;reshape2&#39; successfully unpacked and MD5 sums checked
+package &#39;gtable&#39; successfully unpacked and MD5 sums checked
+package &#39;isoband&#39; successfully unpacked and MD5 sums checked
+package &#39;prismatic&#39; successfully unpacked and MD5 sums checked
+package &#39;rematch2&#39; successfully unpacked and MD5 sums checked
+package &#39;rstudioapi&#39; successfully unpacked and MD5 sums checked
+package &#39;afex&#39; successfully unpacked and MD5 sums checked
+package &#39;BayesFactor&#39; successfully unpacked and MD5 sums checked
+package &#39;effectsize&#39; successfully unpacked and MD5 sums checked
+package &#39;PMCMRplus&#39; successfully unpacked and MD5 sums checked
+package &#39;rstantools&#39; successfully unpacked and MD5 sums checked
+package &#39;WRS2&#39; successfully unpacked and MD5 sums checked
+package &#39;zeallot&#39; successfully unpacked and MD5 sums checked
+package &#39;correlation&#39; successfully unpacked and MD5 sums checked
+package &#39;datawizard&#39; successfully unpacked and MD5 sums checked
+package &#39;ggcorrplot&#39; successfully unpacked and MD5 sums checked
+package &#39;ggplot2&#39; successfully unpacked and MD5 sums checked
+package &#39;ggrepel&#39; successfully unpacked and MD5 sums checked
+package &#39;ggside&#39; successfully unpacked and MD5 sums checked
+package &#39;ggsignif&#39; successfully unpacked and MD5 sums checked
+package &#39;insight&#39; successfully unpacked and MD5 sums checked
+package &#39;paletteer&#39; successfully unpacked and MD5 sums checked
+package &#39;parameters&#39; successfully unpacked and MD5 sums checked
+package &#39;patchwork&#39; successfully unpacked and MD5 sums checked
+package &#39;performance&#39; successfully unpacked and MD5 sums checked
+package &#39;statsExpressions&#39; successfully unpacked and MD5 sums checked
+package &#39;ggstatsplot&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;ursa&#39; successfully unpacked and MD5 sums checked</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">packageVersion</span>(<span class="st">&quot;ursa&quot;</span>)<span class="sc">&lt;</span><span class="st">&quot;3.11.2&quot;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>   <span class="fu">install.packages</span>(<span class="st">&quot;ursa&quot;</span>,<span class="at">repos=</span>repos,<span class="at">type=</span>type)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;ursa&quot;</span>)</span></code></pre></div>
 <pre><code>[1] &#39;3.11.2&#39;</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>available</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>available</span></code></pre></div>
 <pre><code>         png      mapview         tmap           sf        terra adehabitatLT       readxl        tidyr 
         TRUE         TRUE         TRUE         TRUE         TRUE         TRUE         TRUE         TRUE 
       lwgeom    geosphere  ggstatsplot         ursa 
         TRUE         TRUE         TRUE         TRUE </code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&#39;Everything is ok?&#39;</span><span class="ot">=</span><span class="fu">all</span>(available))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&#39;Everything is ok?&#39;</span><span class="ot">=</span><span class="fu">all</span>(available))</span></code></pre></div>
 <pre><code>Everything is ok? 
              TRUE </code></pre>
 <!-- [@Durner2009] -->

@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ГИС 03</title>
+    <meta charset="utf-8" />
+    <script src="https://nplatonov.github.io/site_libs/header-attrs-2.29/header-attrs.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/xaringanExtra_fit-screen-0.2.6/fit-screen.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/js-cookie-3.0.0/js.cookie.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/peerjs-1.3.1/peerjs.min.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/tiny.toast-1.0.0/toast.min.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader-fonts.css" type="text/css" />
+  </head>
+  <body>
+<style>
+.remark-backdrop:after{
+   content: 'Никита Платонов \A \A ГИС аспирантура';
+}
+</style>
+
+    <textarea id="source">
+
+layout: true
+
+
+
+
+
+
+
+
+.toc.banner[
+
+.shorttitle[
+[ГИС аспирантура](break.html#home)
+]
+
+]
+
+---
+name: home
+class: metadata customtitle middle left giphy
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+
+
+
+.author[Никита&nbsp;Платонов]
+
+
+.institute[с.н.с. ИПЭЭ РАН]
+
+
+
+
+.title[
+Основы работы с пространственными данными
+]
+
+
+.subtitle[
+ГИС технологии в биологических исследованиях
+]
+
+
+.what[
+Занятие 03
+]
+
+
+.where[
+
+]
+
+
+.when[
+ .updated[Обновлено: 2025-02-06 07:10]
+]
+
+
+
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+class: middle
+name: H3a17f
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f).fg[].bg[]
+#### [Исходные данные ](#H0aedd)
+#### [Вместе ](#point-together)
+#### [Раздельно ](#point-separate)
+#### [\{geom\} vs MULTI\{geom\} ](#Ha44f7)
+### [Растр ](#H3b31a)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+.header.h3.broad[
+Вектор .parent[.grand[Растровые и векторные данные]]
+]
+
+.fixprecode[
+
+
+
++ Геометрия (точка, линия, полигон)
+
++ Таблица с атрибутами, связанная с геометрией (один к одному)
+
++ Информация о проекции
+
+
+]
+]
+---
+
+name: H0aedd
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f).fg[]
+#### [Исходные данные ](#H0aedd) <span class="bullet bullet-active">[&#8226;](#H0aedd)</span><span class="bullet mslide9m">[&#8226;](#Ha5c44)</span>.fg[].bg[]
+#### [Вместе ](#point-together)
+#### [Раздельно ](#point-separate)
+#### [\{geom\} vs MULTI\{geom\} ](#Ha44f7)
+### [Растр ](#H3b31a)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h4.broad[
+Исходные данные .parent[.grand[Вектор .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+
+Пример на основе данных <span class="cite hovertext" data-hover="Polar Bear Distribution and Habitat Resource Selection Data, Beaufort and Chukchi Seas, 1985-2016"><a name=cite-Durner2019_data></a>([Durner, 2019](#bib))</span>,
+используемых в работе <span class="cite hovertext" data-hover="Are polar bear habitat resource selection functions developed from 1985--1995 data still useful?"><a name=cite-Durner2019_RSF></a>([Durner et al., 2019](#bib))</span>.
+
+Исходные данные - локации белых медведей по данным спутниковой биотелеметрии.
+Фрагмент атрибутивной таблицы:
+
+.dummy-for-font-size[
+
+| BearID_ud|DateTimeUTC_ud  |season |period | coords.x1| coords.x2|
+|---------:|:---------------|:------|:------|---------:|---------:|
+|       244|10/1/2008 0:01  |gth    |0716   |  -147.985|    70.491|
+|       244|10/4/2008 2:01  |gth    |0716   |  -147.985|    70.491|
+|       244|10/7/2008 3:00  |gth    |0716   |  -147.984|    70.491|
+|       244|10/10/2008 4:00 |gth    |0716   |  -147.985|    70.491|
+|       244|10/13/2008 4:00 |gth    |0716   |  -147.985|    70.491|
+|       127|8/17/2006 0:00  |mlt    |9606   |  -150.414|    72.464|
+|       127|8/20/2006 16:01 |mlt    |9606   |  -150.967|    72.848|
+|       127|8/24/2006 16:00 |mlt    |9606   |  -154.550|    73.357|
+|       127|8/27/2006 16:00 |mlt    |9606   |  -155.652|    73.748|
+|       127|8/30/2006 16:00 |mlt    |9606   |  -156.683|    73.872|
+]
+
+
+
+
+
+]
+]
+---
+
+name: Ha5c44
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f).fg[]
+#### [Исходные данные ](#H0aedd) <span class="bullet bullet">[&#8226;](#H0aedd)</span><span class="bullet bullet-active">[&#8226;](#Ha5c44)</span>.fg[].bg[]
+#### [Вместе ](#point-together)
+#### [Раздельно ](#point-separate)
+#### [\{geom\} vs MULTI\{geom\} ](#Ha44f7)
+### [Растр ](#H3b31a)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h4.broad[
+Исходные данные .parent[.grand[Вектор .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+<img src="assets/kernel/source-847.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+
+
+]
+]
+
+
+
+---
+name: point-together
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f).fg[]
+#### [Исходные данные ](#H0aedd)
+#### [Вместе ](#point-together).fg[]
+##### [POINT (точки)](#point-together).fg[].bg[]
+##### [LINESTRING (линии)](#line-together)
+##### [POLYGON (полигоны)](#poly-together)
+#### [Раздельно ](#point-separate)
+#### [\{geom\} vs MULTI\{geom\} ](#Ha44f7)
+### [Растр ](#H3b31a)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h5.broad[
+POINT (точки) .parent[.grand[Вместе .grand[Вектор] .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/kernel/combine-points-847.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+Выборка по четырем случайным особям. См. ["раздельно"](#point-separate).
+
+
+]
+]
+---
+name: line-together
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f).fg[]
+#### [Исходные данные ](#H0aedd)
+#### [Вместе ](#point-together).fg[]
+##### [POINT (точки)](#point-together)
+##### [LINESTRING (линии)](#line-together).fg[].bg[]
+##### [POLYGON (полигоны)](#poly-together)
+#### [Раздельно ](#point-separate)
+#### [\{geom\} vs MULTI\{geom\} ](#Ha44f7)
+### [Растр ](#H3b31a)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h5.broad[
+LINESTRING (линии) .parent[.grand[Вместе .grand[Вектор] .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/kernel/combine-lines-847.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+Линии - соединение точек. См. [раздельно](#line-separate).
+
+
+]
+]
+---
+name: poly-together
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f).fg[]
+#### [Исходные данные ](#H0aedd)
+#### [Вместе ](#point-together).fg[]
+##### [POINT (точки)](#point-together)
+##### [LINESTRING (линии)](#line-together)
+##### [POLYGON (полигоны)](#poly-together).fg[].bg[]
+#### [Раздельно ](#point-separate)
+#### [\{geom\} vs MULTI\{geom\} ](#Ha44f7)
+### [Растр ](#H3b31a)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h5.broad[
+POLYGON (полигоны) .parent[.grand[Вместе .grand[Вектор] .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/kernel/combine-polygons-847.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+Полигоны - буфер вокруг точек. См. [раздельно](#poly-separate).
+
+]
+]
+
+
+
+
+---
+name: point-separate
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f).fg[]
+#### [Исходные данные ](#H0aedd)
+#### [Вместе ](#point-together)
+#### [Раздельно ](#point-separate).fg[]
+##### [POINT (точки)](#point-separate).fg[].bg[]
+##### [LINESTRING (линии)](#line-separate)
+##### [POLYGON (полигоны)](#poly-separate)
+#### [\{geom\} vs MULTI\{geom\} ](#Ha44f7)
+### [Растр ](#H3b31a)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h5.broad[
+POINT (точки) .parent[.grand[Раздельно .grand[Вектор] .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/kernel/separate-points-847.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+См [вместе](#point-together).
+
+<!-- Отображение локаций для каждой особи в отдельной панели. -->
+
+]
+]
+---
+name: line-separate
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f).fg[]
+#### [Исходные данные ](#H0aedd)
+#### [Вместе ](#point-together)
+#### [Раздельно ](#point-separate).fg[]
+##### [POINT (точки)](#point-separate)
+##### [LINESTRING (линии)](#line-separate).fg[].bg[]
+##### [POLYGON (полигоны)](#poly-separate)
+#### [\{geom\} vs MULTI\{geom\} ](#Ha44f7)
+### [Растр ](#H3b31a)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+.header.h5.broad[
+LINESTRING (линии) .parent[.grand[Раздельно .grand[Вектор] .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+
+
+
+
+
+<img src="assets/kernel/separate-lines-847.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+См [вместе](#line-together).
+
+
+]
+]
+---
+name: poly-separate
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f).fg[]
+#### [Исходные данные ](#H0aedd)
+#### [Вместе ](#point-together)
+#### [Раздельно ](#point-separate).fg[]
+##### [POINT (точки)](#point-separate)
+##### [LINESTRING (линии)](#line-separate)
+##### [POLYGON (полигоны)](#poly-separate).fg[].bg[]
+#### [\{geom\} vs MULTI\{geom\} ](#Ha44f7)
+### [Растр ](#H3b31a)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+.header.h5.broad[
+POLYGON (полигоны) .parent[.grand[Раздельно .grand[Вектор] .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/kernel/separate-polygons-847.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+См [вместе](#poly-together).
+
+
+]
+]
+---
+class: middle
+name: Ha44f7
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f).fg[]
+#### [Исходные данные ](#H0aedd)
+#### [Вместе ](#point-together)
+#### [Раздельно ](#point-separate)
+#### [\{geom\} vs MULTI\{geom\} ](#Ha44f7).fg[].bg[]
+##### [POINT vs MULTIPOINT: ](#H7bbc7)
+### [Растр ](#H3b31a)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+.header.h4.broad[
+\{geom\} vs MULTI\{geom\} .parent[.grand[Вектор .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+В каждой строке таблицы атрибутов есть поле геометрии
+
+В поле геометрии представлена информация, как географически представлена запись (точка, линия, полигон).
+
+В поле геометрии может храниться список, то есть, несколько пространственных точек, несколько линий, несколько полигонов.
+В этом случае тип данных (по геометрии) будет множественным (MULTIPOINT, MULTILINESTRING, MULTIPOLYGON).
+
+
+]
+]
+---
+
+name: H7bbc7
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f).fg[]
+#### [Исходные данные ](#H0aedd)
+#### [Вместе ](#point-together)
+#### [Раздельно ](#point-separate)
+#### [\{geom\} vs MULTI\{geom\} ](#Ha44f7).fg[]
+##### [POINT vs MULTIPOINT: ](#H7bbc7) <span class="bullet bullet-active">[&#8226;](#H7bbc7)</span><span class="bullet mslide25m">[&#8226;](#H92c4d)</span>.fg[].bg[]
+### [Растр ](#H3b31a)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h5.broad[
+POINT vs MULTIPOINT: .parent[.grand[\{geom\} vs MULTI\{geom\} .grand[Вектор] .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+
+POINT
+
+.pulling[
+.pull-left-30[
+
+
+|id       |BearID_ud |
+|:--------|:---------|
+|max:0716 |212       |
+|max:0716 |233       |
+|max:0716 |233       |
+|max:0716 |170       |
+|max:0716 |170       |
+|max:0716 |259       |
+
+]
+.pull-right-70[
+
+<img src="assets/kernel/sinlge-point-847.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+]
+]
+
+
+]
+]
+---
+
+name: H92c4d
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f).fg[]
+#### [Исходные данные ](#H0aedd)
+#### [Вместе ](#point-together)
+#### [Раздельно ](#point-separate)
+#### [\{geom\} vs MULTI\{geom\} ](#Ha44f7).fg[]
+##### [POINT vs MULTIPOINT: ](#H7bbc7) <span class="bullet bullet">[&#8226;](#H7bbc7)</span><span class="bullet bullet-active">[&#8226;](#H92c4d)</span>.fg[].bg[]
+### [Растр ](#H3b31a)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h5.broad[
+POINT vs MULTIPOINT: .parent[.grand[\{geom\} vs MULTI\{geom\} .grand[Вектор] .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+MULTIPOINT
+
+.pulling[
+.pull-left-30[
+
+
+|id       |BearID_ud | npt|
+|:--------|:---------|---:|
+|max:0716 |170       |   2|
+|max:0716 |212       |   1|
+|max:0716 |233       |   2|
+|max:0716 |259       |   1|
+
+]
+
+.pull-right-70[
+
+<img src="assets/kernel/multi-point-847.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+]
+]
+
+
+]
+]
+---
+class: middle
+name: H3b31a
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f)
+### [Растр ](#H3b31a).fg[].bg[]
+#### [Исходные данные ](#Ha1958)
+#### [Псевдоцвета ](#H5dd5c)
+#### [Размер ячейки ](#Hb4a71)
+#### [Категории ](#Hf5c90)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+.header.h3.broad[
+Растр .parent[.grand[Растровые и векторные данные]]
+]
+
+.fixprecode[
+
+
+
++ Сетка
+
+   + Размер ячейки
+
+   + Пространственный охват (минимальные и максимальные значение по обоим осям)
+
+   + Число стобцов и строк
+
+   + Информация о проекции
+
++ Данные (многослойные) в числовых значениях
+
++ Категории
+
++ Таблица цветов
+
+
+]
+]
+---
+
+name: Ha1958
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f)
+### [Растр ](#H3b31a).fg[]
+#### [Исходные данные ](#Ha1958).fg[].bg[]
+#### [Псевдоцвета ](#H5dd5c)
+#### [Размер ячейки ](#Hb4a71)
+#### [Категории ](#Hf5c90)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h4.broad[
+Исходные данные .parent[.grand[Растр .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/kernel/raster-b0-847.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+Участок обитания (кёрнел) <span class="cite hovertext" data-hover="Kernel Methods for Estimating the Utilization Distribution in Home-Range Studies"><a name=cite-Worton1989></a>([Worton, 1989](#bib))</span>
+на основе данных <span class="cite hovertext" data-hover="Polar Bear Distribution and Habitat Resource Selection Data, Beaufort and Chukchi Seas, 1985-2016">([Durner, 2019](#bib))</span>.
+
+
+]
+]
+---
+
+name: H5dd5c
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f)
+### [Растр ](#H3b31a).fg[]
+#### [Исходные данные ](#Ha1958)
+#### [Псевдоцвета ](#H5dd5c).fg[].bg[]
+#### [Размер ячейки ](#Hb4a71)
+#### [Категории ](#Hf5c90)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h4.broad[
+Псевдоцвета .parent[.grand[Растр .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/kernel/raster-b1-847.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+Для отображения используются псевдоцвета, градации серого, RGB
+
+
+]
+]
+---
+
+name: Hb4a71
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f)
+### [Растр ](#H3b31a).fg[]
+#### [Исходные данные ](#Ha1958)
+#### [Псевдоцвета ](#H5dd5c)
+#### [Размер ячейки ](#Hb4a71).fg[].bg[]
+#### [Категории ](#Hf5c90)
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h4.broad[
+Размер ячейки .parent[.grand[Растр .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/kernel/raster-b3-847.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+В отличие от вектора, в растрах жестко заданы характеристики пространственной сетки
+
+
+]
+]
+---
+
+name: Hf5c90
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f).fg[]
+### [Вектор ](#H3a17f)
+### [Растр ](#H3b31a).fg[]
+#### [Исходные данные ](#Ha1958)
+#### [Псевдоцвета ](#H5dd5c)
+#### [Размер ячейки ](#Hb4a71)
+#### [Категории ](#Hf5c90).fg[].bg[]
+## [Проекции ](#H3eb35)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h4.broad[
+Категории .parent[.grand[Растр .grand[Растровые и векторные данные]]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/kernel/raster-b2-847.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+Растры позволяют оперировать с номинальными шкалами
+
+
+]
+]
+---
+class: middle
+name: H3eb35
+
+.toc.sidebar.left-column[
+.outline[
+## [Растровые и векторные данные ](#H3a17f)
+## [Проекции ](#H3eb35).fg[].bg[]
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+.header.h2.broad[
+Проекции
+]
+
+.fixprecode[
+
+
+
+В QGIS и R используются следующие нотации PROJ <span class="cite hovertext" data-hover="PRØJ coordinate transformation software library"><a name=cite-PROJ></a>([PROJ contributors, 2022](#bib))</span>.
+
++ EPSG
+
++ WKT
+
++ PRO4 string
+
+
+]
+]
+---
+class: notable middle inverse picsum
+
+
+
+.note[
+.pulling[
+.pull-left-55.font90[
+
+
+
+ ## Домашнее задание на [27 февраля 2025 г.](index.html#deadline1)
+В QGIS на основе данных Natural Earth 1:10m cоздать картооснову, ориентируясь
+на территорию,
+охватывающую Карелию и Мурманскую области. 
+Желательно включить административные границы, батиметрию и контуры высот.
+Экспортировать через Export Image или Print Layout два изображения,
+соответствующих русскоязычным журнальным требованиям,
+с различным пространственным охватом:
+1) только Кольский п-ов,
+2) вместе Карелия и Мурманская обл.,
+3) свой район работ для описания изучаемой территории в разделе «Методы»
+4) свой район работ для использования в качестве подложки для «Результатов»
+]
+.pull-right-45[
+
+
+<img src="assets/lesson03/homework.png" width="1330" height="600" bound style="display: block; margin: auto auto auto 0;" />
+
+]
+]
+]
+
+---
+name: beforefinalizing
+name: bib
+class: notable
+
+
+
+
+
+
+
+
+
+.footnote.small.bibliography[
+<div class="backtoshow"><a href="javascript:window.history.back();">↩</a></div>
+****
+
+<a name=bib-Durner2019_data></a>[Durner, G. M.](#bib) (2019). _Polar Bear Distribution and Habitat Resource Selection Data, Beaufort and Chukchi Seas, 1985-2016_. DOI: [10.5066/P9ZRJ3XU](https://doi.org/10.5066%2FP9ZRJ3XU). URL: [https://alaska.usgs.gov/products/data.php?dataid=246](https://alaska.usgs.gov/products/data.php?dataid=246). 
+
+ <a name=bib-Durner2019_RSF></a>[Durner, G. M., D. C. Douglas, and T. C. Atwood](#bib) (2019). "Are polar bear habitat resource selection functions developed from 1985-1995 data still useful?" In: _Ecology and Evolution_ 9.15, pp. 8625-8638. DOI: [10.1002/ece3.5401](https://doi.org/10.1002%2Fece3.5401). 
+
+ <a name=bib-PROJ></a>[PROJ contributors](#bib) (2022). _PRØJ coordinate transformation software library_. Open Source Geospatial Foundation. URL: [https://proj.org/](https://proj.org/). 
+
+ <a name=bib-Worton1989></a>[Worton, B. J.](#bib) (1989). "Kernel Methods for Estimating the Utilization Distribution in Home-Range Studies". In: _Ecology_ 70.1, pp. 164-168. ISSN: 1939-9170. DOI: [10.2307/1938423](https://doi.org/10.2307%2F1938423).
+
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://nplatonov.github.io/site_libs/remark.js/remark-latest.min.js"></script>
+<script src="https://nplatonov.github.io/site_libs/moon_reader-before.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": false,
+"slideNumberFormat": "<div class=\"custom-slide-number\" data-total=\"%total%\" data-current=\"%current%\"></div>",
+"ratio": "29:18",
+"navigation": {
+"scroll": true,
+"click": false,
+"touch": true
+},
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script src="https://nplatonov.github.io/site_libs/moon_reader-after.js"></script>
+
+  </body>
+</html>
