@@ -2604,6 +2604,16 @@ blockquote p:last-of-type {
    flex-direction: column;
    display: flex; /* Center the content */
 }
+.remark-slide-content.focus .outline h1[id*=fg] ~ h2,
+.remark-slide-content.focus .outline h2[id*=fg] ~ h3,
+.remark-slide-content.focus .outline h3[id*=fg] ~ h4,
+.remark-slide-content.focus .outline h4[id*=fg] ~ h5 {
+   display: none;
+}
+.remark-slide-content:not([id*=hiddentoc]) .outline *[id*=hiddentoc] {
+   display: none;
+}
+
 /* filling background  -- begin */
 @media only screen {
    .remark-slide-scaler {

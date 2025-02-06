@@ -183,7 +183,7 @@ function adjustImageSize() {
          let k = 1;
          var imageHeight;
          var imageWidth;
-         console.log("picture resize")
+        // console.log("picture resize")
         // scroller.style.height = "600px";
          while (hasVerticalScrollbar(scroller)) {
             k = k * 0.99;
@@ -200,7 +200,7 @@ function adjustImageSize() {
                image.style.height = `${imageHeight}px`;
             })
          }
-         console.log('k=' + k + ', ' + 'height=' + imageHeight);
+        // console.log('k=' + k + ', ' + 'height=' + imageHeight);
          if (k >= 0.5) {
             scroller.classList.remove(removableClass)
             imageList.forEach(image => {
@@ -218,7 +218,8 @@ function adjustImageSize() {
       const parentElement = image.parentElement;
       const parentWidth = parentElement.offsetWidth;
       if (true && columns) {
-         availableHeight = image.naturalHeight; //clientHeight - totalTextHeight;
+        // availableHeight = image.naturalHeight; //clientHeight - totalTextHeight;
+         availableHeight = image.offsetHeight;
         // const clientHeight = parentWidth;
         // image.style.width = `${parentWidth}px`;
         // const imageList = scroller.querySelectorAll('img, iframe, .framed');
@@ -269,7 +270,8 @@ function adjustImageSize() {
       while (hasVerticalScrollbar(scroller)) {
          // newHeight *= 0.95;
          // newWidth *= 0.95;
-         newHeight -= 1;
+         newHeight *= (1-0.01);
+        // console.log(newHeight);
          if (newHeight < 10)
             break
          // newWidth -= 1;
@@ -298,6 +300,10 @@ function adjustImageSize() {
         // newWidth = newHeight * aspectRatio / 2;
         // image.style.width = `${newWidth}px`;
       }
+      else {
+         newHeight = Math.round(newHeight);
+         image.style.height = `${newHeight}px`;
+      }
       if (isAlert)
          alert('changableHeight: ' + changableHeight);
       // alert(availableHeight);
@@ -316,10 +322,7 @@ function adjustImageSize() {
        // Включаем вертикальную прокрутку контейнера, если она все еще нужна
       // scroller.style.overflowY = hasVerticalScrollbar(scroller) ? 'scroll' : 'hidden';
    })
-   const endTime = performance.now();
-   const durationInMilliseconds = endTime - startTime;
-   const durationInSeconds = durationInMilliseconds / 1000;
-   if (durationInSeconds>10)
+   if (((performance.now() - startTime) / 1000) > 10)
       alert(`Image size adjustment took ${durationInSeconds} seconds`);
    return;
 }
@@ -342,13 +345,14 @@ function adjustFontSize() {
          return;
      // alert(count + ' B');
       const scroller = slide.querySelector('.scrollable');
-      if (!scroller)
+      if (!scroller) {
          return;
+      }
      // alert(count + ' C');
      // console.log(scroller.parentNode);
      // container.setAttribute('style', `font-size: 100%;`);
       if (!hasVerticalScrollbar(scroller)) {
-        // scroller.classList.remove(removableClass)
+         scroller.classList.remove(removableClass);
          return;
       }
      // alert(count + ' D');
@@ -410,9 +414,17 @@ function adjustFontSize() {
       if (reduced) {
          while (!hasVerticalScrollbar(scroller)) {
             fontSize /= step2;
+            fontSize /= step2;
             container.style.fontSize = `${fontSize}%`;
          }
          fontSize *= step2;
+         if (hasVerticalScrollbar(scroller)) {
+            fontSize *= step2;
+            if (hasVerticalScrollbar(scroller))
+               fontSize *= step2;
+            if (hasVerticalScrollbar(scroller))
+               fontSize *= step2;
+         }
          container.style.fontSize = `${fontSize}%`;
         // alert('1: ' + container.clientHeight - scroller.clientHeight);
         // alert(container.clientHeight - scroller.clientHeight);
@@ -462,6 +474,7 @@ function adjustOutline() {
       if (sidebar.clientHeight==0)
          return;
       counter++;
+      
       const isAlert = counter == 0;
       const banner = slide.querySelector('.banner');
       let totalHeight = 0;
@@ -489,6 +502,7 @@ function adjustOutline() {
             const reducedFontSize = fontSizeNumeric * 0.99;
             element.style.fontSize = `${reducedFontSize}px`;
          });
+        // console.log(counter + ': ' + k);
          if (isAlert && k==22)
             alert('22 ' + outline.clientHeight + ' out of ' + totalHeight);
         // break;
