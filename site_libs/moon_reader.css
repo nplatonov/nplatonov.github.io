@@ -2142,7 +2142,7 @@ table tr th:empty {
 .bottom {
    vertical-align: bottom;
 }
-.inverse img:not([src$=jpg]),
+.inverse img:not([src$=jpg]):not([notinvertable]),
 .blackout .invertable img,
 .inverse .invertable img,
 .inverse img[invertable],
@@ -2572,7 +2572,7 @@ blockquote p:last-of-type {
    border: 1px solid red;
    margin-bottom: 0;
 }
-.splash {
+.zzzsplash {
    margin: auto;
    padding: 900px;
    text-align: center;
@@ -2586,7 +2586,7 @@ blockquote p:last-of-type {
    background-color: #000A;
    color: white;
 }
-#splash-screen {
+#zzzsplash-screen {
    display: none; /* Hidden by default */
    position: fixed;
    top: 0;
@@ -2604,6 +2604,28 @@ blockquote p:last-of-type {
    flex-direction: column;
    display: flex; /* Center the content */
 }
+#loader {
+   border: 12px solid #f3f3f3;
+   border-radius: 50%;
+   border-top: 12px solid #444444;
+   width: 70px;
+   height: 70px;
+   animation: spin 1s linear infinite;
+}
+.loader {
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   margin: auto;
+}
+@keyframes spin {
+   100% {
+       transform: rotate(360deg);
+   }
+}
+
 .remark-slide-content.focus .outline h1[id*=fg] ~ h2,
 .remark-slide-content.focus .outline h2[id*=fg] ~ h3,
 .remark-slide-content.focus .outline h3[id*=fg] ~ h4,

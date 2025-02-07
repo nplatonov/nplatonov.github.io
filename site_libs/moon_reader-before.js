@@ -100,8 +100,7 @@ document.addEventListener('keydown', function(e) {
               */ 
             });
          }
-         adjustImageSize();
-         adjustFontSize();
+         adjustBundle();
          if (hide) {
             allSlides.forEach(function(slide) {
                if (!slide.classList.contains('remark-visible'))
@@ -515,6 +514,13 @@ function adjustOutline() {
    })
    return;
 }
+adjustBundle=function() {
+   document.querySelector("#loader").style.visibility = "visible";
+   adjustImageSize();
+   adjustFontSize();
+   document.querySelector("#loader").style.visibility = "hidden";
+  // document.querySelector("body").style.visibility = "visible";
+}
 // window.addEventListener('load', adjustImageSize);
 // window.addEventListener('load', adjustFontSize);
 document.addEventListener('DOMContentLoaded', function() {
@@ -524,8 +530,7 @@ document.addEventListener('DOMContentLoaded', function() {
       splashDiv.className = 'splash';
       splashDiv.textContent = 'Please wait';
       remarkDiv.appendChild(splashDiv);
-      adjustImageSize();
-      adjustFontSize();
+      adjustBundle();
       adjustOutline();
       remarkDiv.removeChild(splashDiv);
    }
