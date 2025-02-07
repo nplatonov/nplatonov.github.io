@@ -42,7 +42,6 @@ div.abstract{
   box-sizing: content-box !important;
 }
 html {
-  background: #ebebeb;
   margin: -2pt 0 0 0; /* -8pt 0 -8pt 0 -- failure for printing of first line on each page */
 }
 body {
@@ -203,9 +202,27 @@ li:has(> a[id*=hiddentoc]) {
       width: unset;
    }
 }
-@media only screen and ((min-width: 1355px) or (min-height: 840px)) {
+html {
+  background: #ebebeb;
+}
+@supports (-moz-appearance: none) or (-ms-ime-align: auto) { /* Firefox or Edge */
    html {
-      background-color: #eee;
+     background: #eed;
+   }
+   @media only screen and (min-width: 1355.0001px) and (min-height: 832.0001px) {
+      html {
+         background-color: #eee;
+      }
+   }
+   @media only screen and (max-width: 1355px) and (min-height: 832.0001px) {
+      html {
+         background-color: #dee;
+      }
+   }
+   @media only screen and (min-width: 1355.0001px) and (max-height: 832px) {
+      html {
+         background-color: #aad;
+      }
    }
 }
 @media only screen and (min-width: 1315px) {
