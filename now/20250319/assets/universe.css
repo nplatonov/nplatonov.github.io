@@ -1,0 +1,203 @@
+:root {
+   --scrollable-offset: 77px;
+   --sidebar: 24.5%;
+   --sidebar-pointsize: 67.1%;
+   --sidebar-margin: 15px;
+   --accent: #185698;
+   --header-accent: #18569830;
+   --sidebar-left: 0em;
+   --sidebar-select: var(--accent);
+   --footer-pointsize: 14px;
+   --color: #0F5E9F;
+}
+.sidebar {
+   background-image: none !important;
+   height: calc(100% - 12.5% + 13px) !important;
+   box-shadow: none;
+}
+.remark-slide-content:not(.inverse) .sidebar {
+   background-color: var(--accent);
+}
+.sidebar a {
+   color: var(--light) !important;
+}
+.metadata .sidebar.narrow + .right-column,
+.metadata .sidebar + .right-column {
+   width: calc(100% - var(--sidebar) - 100px);
+}
+:not(.inverse) .sidebar *[id*="bg"][id*="fg"] {
+   background-color: var(--light) !important;
+  /* margin-right: -8px; */
+   border-color: var(--light) !important;
+}
+.customtitle:not(.inverse) .sidebar {
+   opacity: 0;
+}
+.customtitle:not(.inverse) .sidebar:hover {
+   opacity: 1;
+}
+.customtitle .zzzmainbar {
+   width: calc(100% - var(--sidebar) - var(--sidebar-margin) - 120px);
+   margin-top: 1em;
+}
+.customtitle .title, .customtitle .authors {
+   position: absolute;
+}
+.customtitle .title {
+   line-height: 1.1;
+   font-size: 190%;
+   top: -4%;
+}
+.customtitle .authors {
+   top: 24%;
+}
+
+.remark-slide-content.customtitle {
+   padding-top: 2.5em;
+   padding-left: 2.5em;
+}
+.remark-slide-content.customtitle:not(.inverse), .remark-slide-content.title-slide:not(.inverse) {
+   background-image: url("background-title.png") !important;
+   background-size: contain;
+
+}
+.remark-slide-content:not(.customtitle):not(.title-slide):not(.inverse) {
+   background-image: url("background.png") !important;
+   background-size: contain;
+}
+.title-slide h1, .title-slide h3 {
+   color: black;
+}
+.title-slide .title, .title-slide .author {
+   position: absolute;
+   margin-left: 40%;
+}
+.title-slide .title {
+   top: 12%;
+}
+.title-slide .author {
+   top: 36%;
+}
+p img {
+   box-shadow: none;
+   text-align: left;
+}
+.footnote {
+   bottom: 12.5%;
+   height: 86% !important;
+}
+.footer {
+   margin-left: 0em;
+   width: unset;
+   bottom: 12.5%;
+}
+#slide-bib .mainbar {
+   font-size: 90%; 
+}
+.caption {
+   font-size: 80%;
+   opacity: 0.8;
+}
+.updated {
+   color: var(--accent);
+   opacity: 0.2 !important;
+   bottom: 12.5% !important;
+}
+.remark-slide-number {
+   color: white;
+}
+.banner {
+   left: unset;
+   right: 8px !important;
+}
+.timenow {
+   bottom: unset;
+   top: 0px;
+   display: none;
+}
+body:fullscreen .remark-slides-area::before {
+   display: none;
+}
+.remark-slide-content.customtitle .sevinlogo::before {
+   position: fixed;
+   left: 710px;
+   top: 360px;
+   background-image: url(umnikov.png);
+   content: '';
+   width: 210px; 
+   height: 210px; /* 32px */
+   background-size: contain;
+   background-repeat: no-repeat;
+}
+.remark-slide-content.customtitle.inverse .sevinlogo::before {
+   filter: grayscale() contrast(2);
+}
+.sevinlogo::after {
+   content: '';
+   position: fixed;
+  /* border: 0px solid red;*/
+   width: 76px; /* 31px */ /* 4.5 */
+   height: 76px; /* 32px */
+   bottom: 2px;
+   right:  2px;
+   left:  unset;
+  /* background-image: url(https://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico);*/
+   background-image: url(sevin-800000.png);
+   background-size: contain;
+   background-repeat: no-repeat;
+   filter: invert() hue-rotate(30deg) brightness(1.6) contrast(0.8);
+}
+.remark-slide-content .sevinlogo::after {
+   right:  294px;
+}
+.remark-slide-content.customtitle .sevinlogo::after {
+   opacity: 1;
+   bottom: 110px;
+   left: 488px;
+   right: unset;
+   width: 210px; /* 31px */ /* 4.5 */
+   height: 210px; /* 32px */
+  /* filter: hue-rotate(200deg) brightness(1.8);*/
+   filter: hue-rotate(200deg) brightness(2.4);
+}
+.remark-slide-content.customtitle.inverse .sevinlogo::after {
+   filter: invert() hue-rotate(200deg) brightness(2.8) contrast(0.8);
+}
+.inverse:not(.customtitle) .sevinlogo {
+   border: 1px solid red;
+   visibility: hidden;
+}
+.mainbar + .remark-slide-number {
+   border: none;
+   margin-right: 49em;
+   bottom: 1.1em;
+}
+.mainbar.broad + .remark-slide-number {
+   position: absolute;
+   left: 32px;
+   right: unset;
+   top: unset;
+   bottom: 1.1em;
+}
+.sidebar > .outline *[id*=bg][id*=fg] {
+   margin-right: -5.4px;
+   padding-right: 15px;
+}
+html[data-darkreader-scheme="dark"] .sidebar {
+   background-image: none;
+   background-color: var(--darkreader-neutral-background);
+}
+.scrollable-offset {
+   background-color: #FFAA;
+}
+.remark-slide-container:not(:has(.inverse)) {
+   background-image: linear-gradient(to bottom, white, white, var(--accent), var(--accent));
+}
+.remark-slide-content:not(.inverse) {
+   border-bottom: 1px solid var(--accent);
+}
+@media print {
+   #slide-bib .footnote {
+      font-size: 40.7%;
+   }
+}

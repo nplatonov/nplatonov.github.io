@@ -150,6 +150,18 @@ function hasVerticalScrollbar(element, verbose = false) {
       alert(element.scrollHeight + ' vs ' + element.clientHeight);
    return element.scrollHeight > element.clientHeight;
 }
+function getCssVariable(variableName) {
+   var rootStyle = getComputedStyle(document.documentElement);
+   if (!rootStyle)
+      return 0;
+   rootStyle = rootStyle.getPropertyValue(variableName).trim()
+   if (!rootStyle)
+      return 0;
+   return parseFloat(rootStyle);
+}
+function scrollableOffset() {
+   return getCssVariable('--scrollable-offset');
+}
 function adjustImageSize() {
    const removableClass = "scrollable";
    const startTime = performance.now();
@@ -182,18 +194,22 @@ function adjustImageSize() {
          let k = 1;
          var imageHeight;
          var imageWidth;
+        // imageList.forEach(image => {
+        // })
         // console.log("picture resize")
         // scroller.style.height = "600px";
          while (hasVerticalScrollbar(scroller)) {
             k = k * 0.99;
             if (k < 0.2)
                break;
+           // console.log(k);
             imageList.forEach(image => {
               // aspectRatio = image.naturalWidth / image.naturalHeight;
               // newWidth = availableHeight * aspectRatio * 1;
               // newHeight = availableHeight;
               // imageHeight = Math.floor(image.naturalHeight * k);
-               imageHeight = Math.floor(image.offsetWidth * k);
+               imageHeight = Math.floor(image.offsetHeight * k);
+              // console.log(imageHeight);
               // newWidth = image.naturalWidth * k;
               // const aspectRatio = image.naturalWidth / image.naturalHeight;
                image.style.height = `${imageHeight}px`;
@@ -217,6 +233,7 @@ function adjustImageSize() {
       const parentElement = image.parentElement;
       const parentWidth = parentElement.offsetWidth;
       if (true && columns) {
+         console.log(image.offsetHeight);
         // availableHeight = image.naturalHeight; //clientHeight - totalTextHeight;
          availableHeight = image.offsetHeight;
         // const clientHeight = parentWidth;
@@ -335,25 +352,26 @@ function adjustFontSize() {
             //~ remarkDiv.appendChild(splashDiv);
    // Функция для проверки наличия вертикальной прокрутки
    const slideList = document.querySelectorAll('.remark-slide-scaler');
+  // const offset = scrollableOffset();
    let count=0;
    slideList.forEach(slide => {
       count++;
-     // alert(count + ' A');
-      const container = slide.querySelector('.fixprecode');
-      if (!container)
-         return;
-     // alert(count + ' B');
       const scroller = slide.querySelector('.scrollable');
       if (!scroller) {
          return;
       }
-     // alert(count + ' C');
+      const container = slide.querySelector('.fixprecode');
+      if (!container) {
+         scroller.classList.remove(removableClass);
+         return;
+      }
      // console.log(scroller.parentNode);
      // container.setAttribute('style', `font-size: 100%;`);
       if (!hasVerticalScrollbar(scroller)) {
          scroller.classList.remove(removableClass);
          return;
       }
+     // console.log(count);
      // alert(count + ' D');
       container.setAttribute('style', `font-size: 100%;`);
       // Проверяем наличие img и iframe внутри контейнера
@@ -365,9 +383,9 @@ function adjustFontSize() {
       const forced = scroller.querySelectorAll('pre > code, table').length > 0;
       var admit;
       if (forced)
-         admit = 70;
+         admit = 70/1;
       else
-         admit = 80/10;
+         admit = 75/1;
       if (count == 6) {
        // container.addAttribute('style', 'background-color: yellow;');
        // return;
@@ -427,7 +445,7 @@ function adjustFontSize() {
          container.style.fontSize = `${fontSize}%`;
         // alert('1: ' + container.clientHeight - scroller.clientHeight);
         // alert(container.clientHeight - scroller.clientHeight);
-         if (!forced) {
+         if ((!forced)||(!hasVerticalScrollbar(scroller))) {
             scroller.classList.remove(removableClass)
            // fontSize /= step;
            // scroller.classList.add("scrollable");
@@ -515,10 +533,28 @@ function adjustOutline() {
    return;
 }
 adjustBundle=function() {
-   document.querySelector("#loader").style.visibility = "visible";
+   const loader = document.querySelector("#loader");
+   if (loader)
+      loader.style.visibility = "visible";
+   const offset = scrollableOffset();
+   if (offset > 0) {
+      const slideList = document.querySelectorAll('.fixprecode');
+      slideList.forEach(slide => {
+         const banner = document.createElement('div');
+         banner.className = 'scrollable-offset';
+         slide.appendChild(banner);
+      })
+   }
    adjustImageSize();
    adjustFontSize();
-   document.querySelector("#loader").style.visibility = "hidden";
+   if (offset) {
+      const bannerList = document.querySelectorAll('.scrollable-offset');
+      bannerList.forEach(banner => {
+         banner.remove();
+      })
+   }
+   if (loader)
+      loader.style.visibility = "hidden";
   // document.querySelector("body").style.visibility = "visible";
 }
 // window.addEventListener('load', adjustImageSize);
@@ -528,7 +564,7 @@ document.addEventListener('DOMContentLoaded', function() {
    function showSplashAndCallAdjust() {
       const splashDiv = document.createElement('div');
       splashDiv.className = 'splash';
-      splashDiv.textContent = 'Please wait';
+      splashDiv.textContent = 'Check JS console ';
       remarkDiv.appendChild(splashDiv);
       adjustBundle();
       adjustOutline();

@@ -1092,14 +1092,19 @@ h1:hover, h2:hover, h3:hover, h4:hover {
    pre.sourceCode.python::after {
       content: '{python}';
    }
+   pre.sourceCode.css::after {
+      content: '{css}';
+   }
    pre.sourceCode.r::after {
       content: '{r}';
    }
    pre.sourceCode.python::after,
+   pre.sourceCode.css::after,
    pre.sourceCode.r::after {
       color: transparent;
    }
    pre.sourceCode.python:hover::after,
+   pre.sourceCode.css:hover::after,
    pre.sourceCode.r:hover::after {
       color: black;
       opacity: 0.2;
@@ -1108,8 +1113,9 @@ h1:hover, h2:hover, h3:hover, h4:hover {
    .section > h2::after,
    .section > h3::after,
    .section > h4::after,
-   pre.sourceCode.r::after,
-   pre.sourceCode.python::after {
+   pre.zsourceCode.r::after,
+   pre.sourceCode.python::after,
+   pre.sourceCode.css::after {
        margin-left: 8pt;
        margin-top: -1.25em;
        float: right;
