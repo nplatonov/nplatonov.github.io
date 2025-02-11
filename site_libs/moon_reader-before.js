@@ -187,36 +187,79 @@ function adjustImageSize() {
       multi = Object.keys(imageList).length > 1
      // console.log(Object.keys(imageList).length)
       const columns = scroller.querySelector('.pulling, .double');
-      if (multi) {
+      if (multi || columns) {
+         imageList.forEach((image) => {
+             image.style.height = ''; 
+         });
+         if (!hasVerticalScrollbar(scroller)) {
+            scroller.classList.remove(removableClass);
+            return;
+         }
         // alert('scroller scrollHeight=' + scroller.scrollHeight +' clientHeight='+scroller.clientHeight);
         // alert('slide scrollHeight=' + slide.scrollHeight +' clientHeight='+slide.clientHeight);
         // availableHeight = image.naturalHeight;
-         let k = 1;
+         var k;
          var imageHeight;
          var imageWidth;
-        // imageList.forEach(image => {
-        // })
-        // console.log("picture resize")
-        // scroller.style.height = "600px";
-         while (hasVerticalScrollbar(scroller)) {
-            k = k * 0.99;
-            if (k < 0.2)
-               break;
-           // console.log(k);
-            imageList.forEach(image => {
-              // aspectRatio = image.naturalWidth / image.naturalHeight;
-              // newWidth = availableHeight * aspectRatio * 1;
-              // newHeight = availableHeight;
-              // imageHeight = Math.floor(image.naturalHeight * k);
-               imageHeight = Math.floor(image.offsetHeight * k);
-              // console.log(imageHeight);
-              // newWidth = image.naturalWidth * k;
-              // const aspectRatio = image.naturalWidth / image.naturalHeight;
-               image.style.height = `${imageHeight}px`;
-            })
+         if (false) {
+            while (hasVerticalScrollbar(scroller)) {
+               k = k * 0.99;
+               if (k < 0.2)
+                  break;
+              // console.log(k);
+               imageList.forEach(image => {
+                 // aspectRatio = image.naturalWidth / image.naturalHeight;
+                 // newWidth = availableHeight * aspectRatio * 1;
+                 // newHeight = availableHeight;
+                 // imageHeight = Math.floor(image.naturalHeight * k);
+                  imageHeight = Math.floor(image.offsetHeight * k);
+                 // console.log(imageHeight);
+                 // newWidth = image.naturalWidth * k;
+                 // const aspectRatio = image.naturalWidth / image.naturalHeight;
+                  image.style.height = `${imageHeight}px`;
+               })
+            }
+           // console.log('k=' + k + ', ' + 'height=' + imageHeight);
+            if (k >= 0.5) {
+               scroller.classList.remove(removableClass)
+               imageList.forEach(image => {
+                  image.style.objectFit = `contain`
+               });
+            }
+            return;
          }
-        // console.log('k=' + k + ', ' + 'height=' + imageHeight);
-         if (k >= 0.5) {
+         let originalHeights = Array.from(imageList).map(image => image.offsetHeight);
+         let heights = [...originalHeights]; // Start with the original heights
+        // console.log(heights);
+         imageList.forEach((image, index) => {
+            const originalHeight = image.offsetHeight;
+            image.style.height = `${originalHeight * 0.99}px`;
+            Array.from(imageList).forEach((otherImage, otherIndex) => {
+               if (otherIndex !== index) {
+                  otherImage.style.height = '20px';
+               }
+            });
+            k = 1;
+            while (hasVerticalScrollbar(scroller)) {
+               k = k * 0.995;
+               if (k < 0.2)
+                  break;
+              // imageHeight = Math.floor(image.offsetHeight * 0.995);
+               imageHeight = Math.floor(originalHeights[index] * k);
+               image.style.height = `${imageHeight}px`;
+              // console.log([k, imageHeight, originalHeights[index]]);
+            }
+            heights[index] = image.offsetHeight;
+            Array.from(imageList).forEach((restoreImage, restoreIndex) => {
+               restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
+            });
+         });
+         imageList.forEach((image, index) => {
+            image.style.height = `${heights[index]}px`;
+         });
+        // console.log(heights);
+         const success = heights.some((height, index) => height < 0.5 * originalHeights[index])
+         if (success) {
             scroller.classList.remove(removableClass)
             imageList.forEach(image => {
                image.style.objectFit = `contain`
@@ -330,7 +373,7 @@ function adjustImageSize() {
       // image.style.width = `${newWidth}px`;
       // newHeight = Math.floor(newHeight);
       // image.style.height = `${newHeight}px`;
-      scroller.classList.remove(removableClass)
+      scroller.classList.remove(removableClass);
       if (isAlert)
          alert('newHeight (image): ' + newHeight);
       // alert('size: ' + newHeight + ' x ' + Math.round(newHeight * aspectRatio));
@@ -537,6 +580,12 @@ adjustBundle=function() {
    if (loader)
       loader.style.visibility = "visible";
    const offset = scrollableOffset();
+   if (false && offset) {
+      const bannerList = document.querySelectorAll('.scrollable-offset');
+      bannerList.forEach(banner => {
+         banner.remove();
+      })
+   }
    if (offset > 0) {
       const slideList = document.querySelectorAll('.fixprecode');
       slideList.forEach(slide => {
@@ -547,7 +596,7 @@ adjustBundle=function() {
    }
    adjustImageSize();
    adjustFontSize();
-   if (offset) {
+   if (true && offset) {
       const bannerList = document.querySelectorAll('.scrollable-offset');
       bannerList.forEach(banner => {
          banner.remove();
