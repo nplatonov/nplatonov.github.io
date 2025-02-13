@@ -428,7 +428,7 @@ function adjustFontSize() {
       if (forced)
          admit = 70/1;
       else
-         admit = 75/1;
+         admit = 70/1;
       if (count == 6) {
        // container.addAttribute('style', 'background-color: yellow;');
        // return;
