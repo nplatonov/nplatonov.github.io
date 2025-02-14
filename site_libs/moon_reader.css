@@ -632,6 +632,7 @@ h2 .header{
    margin-top: 0px;
    width: calc(100% - 1.1em);
    overflow-x: hidden;
+   overflow-y: clip;
    text-overflow: ellipsis;
    white-space: nowrap;
    display: block;
@@ -779,6 +780,7 @@ table.dataTable {
 }
 table:not([class]) {
   /* font-size: 80%;*/
+   overflow-x: auto;
 }
 table:not([class]) th,
 table:not([class]) td {
@@ -1082,6 +1084,9 @@ ul {
   /* scrollbar-width: thin;*/
   /* background-color: orange;*/
   /* border: 3px solid #f5f5f5;*/
+}
+.mainbar:not(.broad) {
+   overflow-x: auto;
 }
 .broad.scrollable {
    height: 660px; /* 675 671 656px; */
@@ -1790,7 +1795,7 @@ code.remark-code:not(.hljs) {
    width: var(--sidebar-narrow);
 }
 .banner.narrow {
-   bottom: -15.2px;
+   bottom: -5.2px;
 }
 .banner p {
   /* border: 1px solid red;*/

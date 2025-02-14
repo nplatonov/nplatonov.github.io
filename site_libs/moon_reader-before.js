@@ -150,6 +150,16 @@ function hasVerticalScrollbar(element, verbose = false) {
       alert(element.scrollHeight + ' vs ' + element.clientHeight);
    return element.scrollHeight > element.clientHeight;
 }
+function hasHorizontalScrollbar(element, verbose = false) {
+   if (verbose)
+      alert(element.scrollWidth + ' vs ' + element.clientWidth);
+   return element.scrollWidth > element.clientWidth;
+}
+function hasScrollbar(scroller,within = false) {
+   if (!within)
+      return hasVerticalScrollbar(scroller);
+   return hasVerticalScrollbar(scroller) || hasHorizontalScrollbar(scroller);
+};
 function getCssVariable(variableName) {
    var rootStyle = getComputedStyle(document.documentElement);
    if (!rootStyle)
@@ -169,7 +179,7 @@ function adjustImageSize() {
    const slideList = document.querySelectorAll('.remark-slide-scaler');
    let counter=0;
    var multi;
-   slideList.forEach(slide => {
+   slideList.forEach((slide, index) => {
       if (!slide)
          return;
       // const slide = document.querySelector('.remark-slide-scaler');
@@ -187,9 +197,11 @@ function adjustImageSize() {
       multi = Object.keys(imageList).length > 1
      // console.log(Object.keys(imageList).length)
       const columns = scroller.querySelector('.pulling, .double');
-      if (multi || columns) {
+      if (multi || columns > 0) {
+        // console.log(multi, Object.keys(columns).length > 0, index);
          imageList.forEach((image) => {
-             image.style.height = ''; 
+             image.style.height = '';
+             return;
          });
          if (!hasVerticalScrollbar(scroller)) {
             scroller.classList.remove(removableClass);
@@ -276,7 +288,7 @@ function adjustImageSize() {
       const parentElement = image.parentElement;
       const parentWidth = parentElement.offsetWidth;
       if (true && columns) {
-         console.log(image.offsetHeight);
+        // console.log(image.offsetHeight);
         // availableHeight = image.naturalHeight; //clientHeight - totalTextHeight;
          availableHeight = image.offsetHeight;
         // const clientHeight = parentWidth;
@@ -397,7 +409,7 @@ function adjustFontSize() {
    const slideList = document.querySelectorAll('.remark-slide-scaler');
   // const offset = scrollableOffset();
    let count=0;
-   slideList.forEach(slide => {
+   slideList.forEach((slide, index) => {
       count++;
       const scroller = slide.querySelector('.scrollable');
       if (!scroller) {
@@ -408,9 +420,11 @@ function adjustFontSize() {
          scroller.classList.remove(removableClass);
          return;
       }
+     // const within = scroller.querySelector('.within');
+      const within = container.querySelectorAll('.within').length > 0
      // console.log(scroller.parentNode);
      // container.setAttribute('style', `font-size: 100%;`);
-      if (!hasVerticalScrollbar(scroller)) {
+      if (!hasScrollbar(scroller,within)) {
          scroller.classList.remove(removableClass);
          return;
       }
@@ -429,6 +443,9 @@ function adjustFontSize() {
          admit = 70/1;
       else
          admit = 70/1;
+      if (within) {
+         admit /= 10;
+      }
       if (count == 6) {
        // container.addAttribute('style', 'background-color: yellow;');
        // return;
@@ -459,7 +476,7 @@ function adjustFontSize() {
       let reduced = false;
       const step=1-0.002;
       const step2=1-0.001;
-      while (hasVerticalScrollbar(scroller)) {
+      while (hasScrollbar(scroller,within)) {
      // while (container.clientHeight - scroller.clientHeight > 0) {
          if (!reduced)
             reduced = true
@@ -472,23 +489,23 @@ function adjustFontSize() {
       }
      // var k=
       if (reduced) {
-         while (!hasVerticalScrollbar(scroller)) {
+         while (!hasScrollbar(scroller,within)) {
             fontSize /= step2;
             fontSize /= step2;
             container.style.fontSize = `${fontSize}%`;
          }
          fontSize *= step2;
-         if (hasVerticalScrollbar(scroller)) {
+         if (hasScrollbar(scroller,within)) {
             fontSize *= step2;
-            if (hasVerticalScrollbar(scroller))
+            if (hasScrollbar(scroller,within))
                fontSize *= step2;
-            if (hasVerticalScrollbar(scroller))
+            if (hasScrollbar(scroller,within))
                fontSize *= step2;
          }
          container.style.fontSize = `${fontSize}%`;
         // alert('1: ' + container.clientHeight - scroller.clientHeight);
         // alert(container.clientHeight - scroller.clientHeight);
-         if ((!forced)||(!hasVerticalScrollbar(scroller))) {
+         if ((true || !forced)||(!hasScrollbar(scroller,within))) {
             scroller.classList.remove(removableClass)
            // fontSize /= step;
            // scroller.classList.add("scrollable");
@@ -501,7 +518,7 @@ function adjustFontSize() {
       else {
          fontSize = 100;
          container.style.fontSize = `${fontSize}%`;
-         if (!hasVerticalScrollbar(scroller))
+         if (!hasScrollbar(scroller,within))
             scroller.classList.remove(removableClass)
       }
       // Устанавливаем найденный размер шрифта в стиле контейнера
@@ -520,7 +537,11 @@ function adjustFontSize() {
 function adjustOutline() {
    const slideList = document.querySelectorAll('.remark-slide-scaler');
    let counter=0;
-   slideList.forEach(slide => {
+   if (false)
+      setTimeout(() => {
+         console.log("Waited 3 seconds!");
+      }, 3000); 
+   slideList.forEach((slide, index) => {
       if (!slide)
          return;
       const sidebar = slide.querySelector('.sidebar');
@@ -542,9 +563,11 @@ function adjustOutline() {
          totalHeight = 0; //sidebar.clientHeight;
       else
          totalHeight = banner.offsetHeight; //sidebar.clientHeight - banner.offsetHeight;
-      if (outline.clientHeight + totalHeight < sidebar.clientHeight)
-         return;
+     // if (outline.clientHeight + totalHeight < sidebar.clientHeight)
+     //    return;
       totalHeight = sidebar.clientHeight - totalHeight-7;
+      if (outline.clientHeight > totalHeight)
+         return;
       var header;
       var fontSize;
       if (isAlert) {
@@ -555,11 +578,12 @@ function adjustOutline() {
       const elements = outline.querySelectorAll('h1, h2, h3, h4, h5');
       while (outline.clientHeight > totalHeight) {
          k++;
+         console.log(index, k);
          elements.forEach((element) => {
             const computedStyle = window.getComputedStyle(element);
             const currentFontSize = computedStyle.getPropertyValue('font-size');
             const fontSizeNumeric = parseFloat(currentFontSize);
-            const reducedFontSize = fontSizeNumeric * 0.99;
+            const reducedFontSize = fontSizeNumeric * (1-0.002);
             element.style.fontSize = `${reducedFontSize}px`;
          });
         // console.log(counter + ': ' + k);
