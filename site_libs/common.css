@@ -139,9 +139,14 @@
    margin-left: 0.4em;
    margin-right: 0.4em;
 }
-.columns > .column { /* exclude remark */
+.zcolumns > .column { /* exclude remark */
+   border: 1px solid red;
   /* display: table-cell;*/
   /* width: unset;*/
+}
+html:not(.remark-container) .columns > .column {
+   display: table-cell;
+   width: unset;
 }
 .pulling:after, .columns::after {
   content: '';
@@ -349,6 +354,7 @@ ul li:only-child::marker {
 .width97 {width: 97%;}
 .width98 {width: 98%;}
 .width99 {width: 99%;}
+.width100 {width: 100%;}
 
 .moz-reader-content .moz-reader-block-img {
    display: block;

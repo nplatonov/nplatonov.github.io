@@ -418,7 +418,7 @@ pre code * {
    content: 'Slide ';
 }
 .mainbar + .remark-slide-number {
-   margin-right: calc(100% - var(--sidebar) - var(--gap) - 0.6em);
+   margin-right: calc(100% - var(--sidebar) - var(--gap) - 0.5em);
   /* margin-right: calc(100% - 4px - var(--gap));*/
    font-size: 80%;
    opacity: 0.4;
@@ -440,8 +440,8 @@ pre code * {
   /* margin-right: calc(100% - var(--sidebar-narrow) - var(--gap) - 11px);*/
    left: unset;
    bottom: unset;
-   top: 0.85em;
-   right: 0.9em; /* 1.1em with scrollbar */
+   top: 0.1em;
+   right: 0.15em; /* 1.1em with scrollbar */
    margin-right: unset;
 }
 .mainbar + .remark-slide-number:hover::before {
@@ -547,9 +547,16 @@ caption, p.caption, p span.caption, div.caption p {
   color: var(--dark);
  /* color: #555;*/ /* #274;*/
  /* margin-top: calc(0.1em * var(--magnifier));*/
- /* opacity: 0.6;*/
+  opacity: 0.6;
   text-align: left;
   line-height: 1.05;
+}
+.figure > .retire.caption::before {
+   content: '👆';
+   opacity: 0.1;
+   filter: greyscale();
+   font-size: 50%;
+   margin-top: -1em;
 }
 p + p.caption {
    margin-top: 0.6em;
@@ -1117,7 +1124,7 @@ ul {
 }
 */
 .footer {
-   position: fixed;
+   position: fixed; /* fixed */
    left: calc(21px + var(--sidebar));
    bottom: -6px;
   /* height: 20px;*/
@@ -1130,8 +1137,9 @@ ul {
   /* border: 1px solid red;*/
   /* background-color: orange;*/
    font-family: var(--font-condensed);
+   padding-top: 0em;
 }
-.mainbar.broad > .footer {
+.mainbar.broad .footer {
    left: calc(21px + var(--sidebar-narrow));
    width: calc(100% - 26px - var(--sidebar-narrow));
 }
@@ -1317,13 +1325,19 @@ html[data-darkreader-mode="filter"] .sidebar {
    border-radius: 13px;
   /* box-shadow: 10px 0 5px -2px #000; */
 }
-.sidebar.narrow:hover,
-.sidebar.narrow.hovered * {
-   border-left-width: 5px;
+.sidebar.narrow:has(> .outline:empty):hover{
+   display: none;
+}
+.sidebar:has(> .outline:empty) {
+  /* display: none;*/
+   opacity: 0.2;
+}
+.sidebar:has(> .outline:empty) + .mainbar {
+  /* width: calc(100% - 0 * var(--sidebar) - var(--sidebar-margin) + 11px);*/
 }
 .sidebar.narrow:hover,
 .sidebar.narrow.hovered * {
-   border-left-width: 5px;
+   border-left-width: 105px;
 }
 .metadata > .sidebar.narrow:hover,
 .metadata > .sidebar.narrow.hovered * {

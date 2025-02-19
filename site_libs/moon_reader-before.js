@@ -148,7 +148,13 @@ document.addEventListener('keydown', function(event) {
 function hasVerticalScrollbar(element, verbose = false) {
    if (verbose)
       alert(element.scrollHeight + ' vs ' + element.clientHeight);
-   return element.scrollHeight > element.clientHeight;
+   const footer = element.querySelector('.footer');
+   if (!footer)
+      return (element.scrollHeight > element.clientHeight);
+   footer.style.position = "static";
+   const ret = element.scrollHeight > element.clientHeight;
+   footer.style.position = "fixed";
+   return ret;
 }
 function hasHorizontalScrollbar(element, verbose = false) {
    if (verbose)
@@ -410,6 +416,7 @@ function adjustFontSize() {
   // const offset = scrollableOffset();
    let count=0;
    slideList.forEach((slide, index) => {
+      console.log(index);
       count++;
       const scroller = slide.querySelector('.scrollable');
       if (!scroller) {
@@ -419,6 +426,12 @@ function adjustFontSize() {
       if (!container) {
          scroller.classList.remove(removableClass);
          return;
+      }
+      if (false) {
+         const footer = container.querySelector('.footer');
+         if (footer) {
+            console.log(footer.clientHeight);
+         }
       }
      // const within = scroller.querySelector('.within');
       const within = container.querySelectorAll('.within').length > 0
