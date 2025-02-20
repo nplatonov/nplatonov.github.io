@@ -416,7 +416,7 @@ function adjustFontSize() {
   // const offset = scrollableOffset();
    let count=0;
    slideList.forEach((slide, index) => {
-      console.log(index);
+     // console.log(index);
       count++;
       const scroller = slide.querySelector('.scrollable');
       if (!scroller) {
@@ -568,7 +568,6 @@ function adjustOutline() {
       if (sidebar.clientHeight==0)
          return;
       counter++;
-      
       const isAlert = counter == 0;
       const banner = slide.querySelector('.banner');
       let totalHeight = 0;
@@ -579,8 +578,9 @@ function adjustOutline() {
      // if (outline.clientHeight + totalHeight < sidebar.clientHeight)
      //    return;
       totalHeight = sidebar.clientHeight - totalHeight-7;
-      if (outline.clientHeight > totalHeight)
+      if (outline.clientHeight < totalHeight)
          return;
+     // console.log("1", index,outline.clientHeight,totalHeight);
       var header;
       var fontSize;
       if (isAlert) {
@@ -589,9 +589,10 @@ function adjustOutline() {
       }
       var k=0;
       const elements = outline.querySelectorAll('h1, h2, h3, h4, h5');
+      console.log("2", index,outline.clientHeight,totalHeight);
       while (outline.clientHeight > totalHeight) {
          k++;
-         console.log(index, k);
+        // console.log(index, k);
          elements.forEach((element) => {
             const computedStyle = window.getComputedStyle(element);
             const currentFontSize = computedStyle.getPropertyValue('font-size');
