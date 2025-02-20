@@ -199,7 +199,7 @@ function adjustImageSize() {
         // scroller.classList.add('imageresized')
      //    return;
      // }
-      const imageList = scroller.querySelectorAll('img, iframe, .framed');
+      const imageList = scroller.querySelectorAll('img, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
       multi = Object.keys(imageList).length > 1
      // console.log(Object.keys(imageList).length)
       const columns = scroller.querySelector('.pulling, .double');
@@ -285,7 +285,7 @@ function adjustImageSize() {
          }
          return;
       }
-      const image = scroller.querySelector('img, iframe, .framed');
+      const image = scroller.querySelector('img, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
       if (!image)
          return;
       counter++;
