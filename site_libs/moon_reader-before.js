@@ -199,15 +199,18 @@ function adjustImageSize() {
         // scroller.classList.add('imageresized')
      //    return;
      // }
-      const imageList = scroller.querySelectorAll('img, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
+      const imageList = scroller.querySelectorAll(':not(.inline) img, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
       multi = Object.keys(imageList).length > 1
      // console.log(Object.keys(imageList).length)
       const columns = scroller.querySelector('.pulling, .double');
       if (multi || columns > 0) {
-        // console.log(multi, Object.keys(columns).length > 0, index);
+         const predefinedHeights = Array.from(imageList).map(image => image.offsetHeight);
          imageList.forEach((image) => {
-             image.style.height = '';
-             return;
+            if (true & multi)
+               image.style.height = '700px';
+            else
+               image.style.height = '';
+            return;
          });
          if (!hasVerticalScrollbar(scroller)) {
             scroller.classList.remove(removableClass);
@@ -248,7 +251,6 @@ function adjustImageSize() {
          }
          let originalHeights = Array.from(imageList).map(image => image.offsetHeight);
          let heights = [...originalHeights]; // Start with the original heights
-        // console.log(heights);
          imageList.forEach((image, index) => {
             const originalHeight = image.offsetHeight;
             image.style.height = `${originalHeight * 0.99}px`;
@@ -275,17 +277,52 @@ function adjustImageSize() {
          imageList.forEach((image, index) => {
             image.style.height = `${heights[index]}px`;
          });
-        // console.log(heights);
          const success = heights.some((height, index) => height < 0.5 * originalHeights[index])
-         if (success) {
+         if (success && !hasVerticalScrollbar(scroller)) {
             scroller.classList.remove(removableClass)
             imageList.forEach(image => {
                image.style.objectFit = `contain`
             });
          }
+         else { // trying proportional decreasing
+            console.log(index,"proportional");
+            console.log("predefinedHeights:",predefinedHeights);
+            console.log("resettedHeights:",originalHeights);
+            console.log("modifiedHeights:",heights);
+            Array.from(imageList).forEach((restoreImage, restoreIndex) => {
+               restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
+            });
+            k = 1;
+            while (hasVerticalScrollbar(scroller)) {
+               k = k * 0.99;
+               if (k < 0.2)
+                  break;
+              // console.log(k);
+               imageList.forEach(image => {
+                 // aspectRatio = image.naturalWidth / image.naturalHeight;
+                 // newWidth = availableHeight * aspectRatio * 1;
+                 // newHeight = availableHeight;
+                 // imageHeight = Math.floor(image.naturalHeight * k);
+                  imageHeight = Math.floor(image.offsetHeight * k);
+                 // console.log(imageHeight);
+                 // newWidth = image.naturalWidth * k;
+                 // const aspectRatio = image.naturalWidth / image.naturalHeight;
+                  image.style.height = `${imageHeight}px`;
+               })
+            }
+           // console.log('k=' + k + ', ' + 'height=' + imageHeight);
+            if (k >= 0.5) {
+               scroller.classList.remove(removableClass)
+               imageList.forEach(image => {
+                  image.style.objectFit = `contain`
+               });
+            }
+            console.log("resultingHeights:",Array.from(imageList).map(image => image.offsetHeight));
+            return;
+         }
          return;
       }
-      const image = scroller.querySelector('img, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
+      const image = scroller.querySelector('img, iframe:not(.ursa-widgetize), .framed:has(> iframe), .html-widget');
       if (!image)
          return;
       counter++;
@@ -344,6 +381,10 @@ function adjustImageSize() {
       if (isAlert)
          alert('newHeight (itit): ' + newHeight);
       image.style.height = `${newHeight}px`;
+      if (hasVerticalScrollbar(image)) {
+         image.style.height = ``;
+         return;
+      }
       while (hasVerticalScrollbar(scroller)) {
          // newHeight *= 0.95;
          // newWidth *= 0.95;
@@ -391,13 +432,20 @@ function adjustImageSize() {
       // image.style.width = `${newWidth}px`;
       // newHeight = Math.floor(newHeight);
       // image.style.height = `${newHeight}px`;
-      scroller.classList.remove(removableClass);
+      console.log(hasVerticalScrollbar(scroller), hasHorizontalScrollbar(scroller));
+      if (!hasVerticalScrollbar(scroller)) {
+         scroller.classList.remove(removableClass);
+        // if (hasVerticalScrollbar(scroller))
+        //    scroller.classList.add(removableClass);
+      }
       if (isAlert)
          alert('newHeight (image): ' + newHeight);
       // alert('size: ' + newHeight + ' x ' + Math.round(newHeight * aspectRatio));
 
        // Включаем вертикальную прокрутку контейнера, если она все еще нужна
-      // scroller.style.overflowY = hasVerticalScrollbar(scroller) ? 'scroll' : 'hidden';
+      // scroller.style.overflowY = hasVerticalScrollbar(scroller) ? 'scroll' : 'unset';
+       if (!hasHorizontalScrollbar(scroller))
+          scroller.style.overflowX = 'unset';
    })
    if (((performance.now() - startTime) / 1000) > 10)
       alert(`Image size adjustment took ${durationInSeconds} seconds`);
@@ -563,10 +611,17 @@ function adjustOutline() {
       if (sidebar.clientHeight==0)
          return;
       const outline = sidebar.querySelector('.outline');
-      if (!sidebar)
+      if (!outline)
          return;
-      if (sidebar.clientHeight==0)
-         return;
+     // if (outline.clientHeight==0)
+     //    return;
+      const hideHeight = sidebar.style.height;
+      const hideMargin = sidebar.style.marginTop;
+      const hidePadding = sidebar.style.paddingTop;
+      console.log(hideHeight);
+      sidebar.style.height = '100%';
+      sidebar.style.marginTop = 'revert'; // revert
+      sidebar.style.paddingTop = 'revert'; // revert
       counter++;
       const isAlert = counter == 0;
       const banner = slide.querySelector('.banner');
@@ -577,9 +632,12 @@ function adjustOutline() {
          totalHeight = banner.offsetHeight; //sidebar.clientHeight - banner.offsetHeight;
      // if (outline.clientHeight + totalHeight < sidebar.clientHeight)
      //    return;
-      totalHeight = sidebar.clientHeight - totalHeight-7;
-      if (outline.clientHeight < totalHeight)
-         return;
+      totalHeight = sidebar.clientHeight - 0 * totalHeight - scrollableOffset();
+      if (outline.clientHeight <= totalHeight) {
+         if (false && !hasVerticalScrollbar(sidebar))
+            return;
+      }
+     // console.log("A",index,hasVerticalScrollbar(sidebar),hasHorizontalScrollbar(sidebar));
      // console.log("1", index,outline.clientHeight,totalHeight);
       var header;
       var fontSize;
@@ -588,18 +646,28 @@ function adjustOutline() {
          alert(outline.clientHeight);
       }
       var k=0;
+      var relative=100;
       const elements = outline.querySelectorAll('h1, h2, h3, h4, h5');
-      console.log("2", index,outline.clientHeight,totalHeight);
+      console.log("B:",index,banner.offsetHeight,outline.clientHeight,totalHeight);
+      outline.style.fontSize = `${relative}%`;
       while (outline.clientHeight > totalHeight) {
          k++;
         // console.log(index, k);
-         elements.forEach((element) => {
-            const computedStyle = window.getComputedStyle(element);
-            const currentFontSize = computedStyle.getPropertyValue('font-size');
-            const fontSizeNumeric = parseFloat(currentFontSize);
-            const reducedFontSize = fontSizeNumeric * (1-0.002);
-            element.style.fontSize = `${reducedFontSize}px`;
-         });
+         if (false) {
+            elements.forEach((element) => {
+               const computedStyle = window.getComputedStyle(element);
+               const currentFontSize = computedStyle.getPropertyValue('font-size');
+               const fontSizeNumeric = parseFloat(currentFontSize);
+               const reducedFontSize = fontSizeNumeric * (1-0.002);
+               element.style.fontSize = `${reducedFontSize}px`;
+            });
+         } else {
+            relative = relative * (1-0.002);
+           // console.log("C:", relative);
+            outline.style.fontSize = `${(relative).toFixed(1)}%`;
+           // if (k>10)
+           //    break;
+         }
         // console.log(counter + ': ' + k);
          if (isAlert && k==22)
             alert('22 ' + outline.clientHeight + ' out of ' + totalHeight);
@@ -608,8 +676,13 @@ function adjustOutline() {
       if (isAlert) {
          alert(k + ' final ' + outline.clientHeight + ' out of ' + totalHeight);
       }
-      sidebar.style.overflowY = "hidden";
-      sidebar.style.overflowX = "hidden";
+     // sidebar.style.height = hideHeight;
+     // sidebar.style.marginTop = hideMargin;
+     // sidebar.style.paddingTop = hidePadding;
+     // sidebar.style.overflowY = "clip";
+     // sidebar.style.overflowX = "scroll";
+     // sidebar.style.overflowY = "auto";
+     // sidebar.style.overflowX = "auto";
    })
    return;
 }
