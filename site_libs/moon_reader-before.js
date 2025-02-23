@@ -203,7 +203,7 @@ function adjustImageSize() {
       multi = Object.keys(imageList).length > 1
      // console.log(Object.keys(imageList).length)
       const columns = scroller.querySelector('.pulling, .double');
-      if (multi || columns > 0) {
+      if ((multi) || (columns > 0)) {
          const predefinedHeights = Array.from(imageList).map(image => image.offsetHeight);
          imageList.forEach((image) => {
             if (true & multi)
@@ -381,9 +381,15 @@ function adjustImageSize() {
       if (isAlert)
          alert('newHeight (itit): ' + newHeight);
       image.style.height = `${newHeight}px`;
+     // image.style.height = `700px`;
+     // return;
       if (hasVerticalScrollbar(image)) {
          image.style.height = ``;
          return;
+      }
+      if (false) { // false if you want to keep figure size small
+         newHeight = 777;
+         image.style.height = `${newHeight}px`;
       }
       while (hasVerticalScrollbar(scroller)) {
          // newHeight *= 0.95;
@@ -408,6 +414,18 @@ function adjustImageSize() {
          // Если доступная высота меньше или равна нулю, завершаем процесс
          if (changableHeight <= 0) break;
          */
+      }
+      if (true) {
+         const minHeight = newHeight;
+         while (!hasVerticalScrollbar(scroller)) {
+            newHeight *= (1+0.01);
+            image.style.height = `${newHeight}px`;
+         }
+         const maxHeight=newHeight;
+         image.style.height = `${minHeight}px`;
+         hasVerticalScrollbar(scroller);
+         newHeight = maxHeight * (1-0.01);
+         image.style.height = `${newHeight}px`;
       }
       if (columns) {
          newWidth = newHeight * aspectRatio;
@@ -615,10 +633,11 @@ function adjustOutline() {
          return;
      // if (outline.clientHeight==0)
      //    return;
+      var elem = document.querySelector('.test')
       const hideHeight = sidebar.style.height;
       const hideMargin = sidebar.style.marginTop;
       const hidePadding = sidebar.style.paddingTop;
-      console.log(hideHeight);
+     // console.log(hideHeight);
       sidebar.style.height = '100%';
       sidebar.style.marginTop = 'revert'; // revert
       sidebar.style.paddingTop = 'revert'; // revert
@@ -632,7 +651,7 @@ function adjustOutline() {
          totalHeight = banner.offsetHeight; //sidebar.clientHeight - banner.offsetHeight;
      // if (outline.clientHeight + totalHeight < sidebar.clientHeight)
      //    return;
-      totalHeight = sidebar.clientHeight - 0 * totalHeight - scrollableOffset();
+      totalHeight = sidebar.clientHeight - 1 * totalHeight - 0 * scrollableOffset() + 6;
       if (outline.clientHeight <= totalHeight) {
          if (false && !hasVerticalScrollbar(sidebar))
             return;
@@ -648,9 +667,11 @@ function adjustOutline() {
       var k=0;
       var relative=100;
       const elements = outline.querySelectorAll('h1, h2, h3, h4, h5');
-      console.log("B:",index,banner.offsetHeight,outline.clientHeight,totalHeight);
+      console.log("B:",index
+                // ,"shorttitle:",banner.offsetHeight,"confbanner:",scrollableOffset()
+                 ,"outline:",outline.clientHeight,"available:",totalHeight);
       outline.style.fontSize = `${relative}%`;
-      while (outline.clientHeight > totalHeight) {
+      while (outline.clientHeight >= totalHeight) {
          k++;
         // console.log(index, k);
          if (false) {
@@ -673,13 +694,17 @@ function adjustOutline() {
             alert('22 ' + outline.clientHeight + ' out of ' + totalHeight);
         // break;
       }
+      if (k > 0)
+         console.log("C:",index,k
+                   // ,"shorttitle:",banner.offsetHeight,"confbanner:",scrollableOffset()
+                    ,"outline:",outline.clientHeight,"available:",totalHeight);
       if (isAlert) {
          alert(k + ' final ' + outline.clientHeight + ' out of ' + totalHeight);
       }
      // sidebar.style.height = hideHeight;
      // sidebar.style.marginTop = hideMargin;
      // sidebar.style.paddingTop = hidePadding;
-     // sidebar.style.overflowY = "clip";
+      sidebar.style.overflowY = "clip";
      // sidebar.style.overflowX = "scroll";
      // sidebar.style.overflowY = "auto";
      // sidebar.style.overflowX = "auto";
