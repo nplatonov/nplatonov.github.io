@@ -426,6 +426,7 @@ function adjustImageSize() {
          hasVerticalScrollbar(scroller);
          newHeight = maxHeight * (1-0.01);
          image.style.height = `${newHeight}px`;
+         console.log(minHeight,maxHeight,newHeight);
       }
       if (columns) {
          newWidth = newHeight * aspectRatio;
@@ -437,7 +438,7 @@ function adjustImageSize() {
         // image.style.width = `${newWidth}px`;
       }
       else {
-         newHeight = Math.round(newHeight);
+         newHeight = Math.floor(newHeight);
          image.style.height = `${newHeight}px`;
       }
       if (isAlert)
@@ -623,7 +624,7 @@ function adjustOutline() {
    slideList.forEach((slide, index) => {
       if (!slide)
          return;
-      const sidebar = slide.querySelector('.sidebar');
+      const sidebar = slide.querySelector('.sidebar.left-column');
       if (!sidebar)
          return;
       if (sidebar.clientHeight==0)
@@ -634,10 +635,10 @@ function adjustOutline() {
      // if (outline.clientHeight==0)
      //    return;
       var elem = document.querySelector('.test')
-      const hideHeight = sidebar.style.height;
-      const hideMargin = sidebar.style.marginTop;
-      const hidePadding = sidebar.style.paddingTop;
-     // console.log(hideHeight);
+      var style = window.getComputedStyle(sidebar);
+      const hideHeight = '200vh'; // sidebar.offsetHeight;
+      const hideMargin = '-924px'; // sidebar.style.marginTop;
+      const hidePadding = '924px'; // sidebar.style.paddingTop;
       sidebar.style.height = '100%';
       sidebar.style.marginTop = 'revert'; // revert
       sidebar.style.paddingTop = 'revert'; // revert
@@ -651,7 +652,7 @@ function adjustOutline() {
          totalHeight = banner.offsetHeight; //sidebar.clientHeight - banner.offsetHeight;
      // if (outline.clientHeight + totalHeight < sidebar.clientHeight)
      //    return;
-      totalHeight = sidebar.clientHeight - 1 * totalHeight - 0 * scrollableOffset() + 6;
+      totalHeight = sidebar.clientHeight - 1 * totalHeight - 0 * scrollableOffset() - 6; /*+6*/
       if (outline.clientHeight <= totalHeight) {
          if (false && !hasVerticalScrollbar(sidebar))
             return;
@@ -701,9 +702,9 @@ function adjustOutline() {
       if (isAlert) {
          alert(k + ' final ' + outline.clientHeight + ' out of ' + totalHeight);
       }
-     // sidebar.style.height = hideHeight;
-     // sidebar.style.marginTop = hideMargin;
-     // sidebar.style.paddingTop = hidePadding;
+      sidebar.style.height = hideHeight;
+      sidebar.style.marginTop = hideMargin;
+      sidebar.style.paddingTop = hidePadding;
       sidebar.style.overflowY = "clip";
      // sidebar.style.overflowX = "scroll";
      // sidebar.style.overflowY = "auto";
