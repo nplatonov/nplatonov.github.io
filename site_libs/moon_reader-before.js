@@ -81,7 +81,8 @@ document.addEventListener('keydown', function(e) {
                element.classList.add("scrollable");
                container.style.fontSize = "100%";
               // container.removeAttribute("style");
-               const imageList = element.querySelectorAll('.framed, iframe');
+               const imageList = element.querySelectorAll(':not(.inline) img, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
+              /* const imageList = element.querySelectorAll('.framed, iframe'); */
                imageList.forEach(function(image) {
                  // console.log('Class Name (as string):', image.className);
                  // console.log(image.parentNode.className);
@@ -385,8 +386,10 @@ function adjustImageSize() {
      // return;
       if (hasVerticalScrollbar(image)) {
          image.style.height = ``;
-         return;
+         if (!hasVerticalScrollbar(scroller))
+            return;
       }
+      console.log("in", newHeight);
       if (false) { // false if you want to keep figure size small
          newHeight = 777;
          image.style.height = `${newHeight}px`;
@@ -695,6 +698,8 @@ function adjustOutline() {
             alert('22 ' + outline.clientHeight + ' out of ' + totalHeight);
         // break;
       }
+      if (relative == 100)
+         outline.style.fontSize = ''
       if (k > 0)
          console.log("C:",index,k
                    // ,"shorttitle:",banner.offsetHeight,"confbanner:",scrollableOffset()
@@ -702,10 +707,10 @@ function adjustOutline() {
       if (isAlert) {
          alert(k + ' final ' + outline.clientHeight + ' out of ' + totalHeight);
       }
-      sidebar.style.height = hideHeight;
-      sidebar.style.marginTop = hideMargin;
-      sidebar.style.paddingTop = hidePadding;
-      sidebar.style.overflowY = "clip";
+      sidebar.style.height = ''; // hideHeight;
+      sidebar.style.marginTop = ''; // hideMargin;
+      sidebar.style.paddingTop = ''; // hidePadding;
+     // sidebar.style.overflowY = "clip";
      // sidebar.style.overflowX = "scroll";
      // sidebar.style.overflowY = "auto";
      // sidebar.style.overflowX = "auto";
