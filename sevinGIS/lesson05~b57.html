@@ -106,7 +106,7 @@ class: metadata customtitle middle left giphy
 
 
 .when[
- .updated[Обновлено: 2025-02-23 09:35]
+ .updated[Обновлено: 2025-02-27 14:07]
 ]
 
 
@@ -244,7 +244,7 @@ name: Hadeed
 
 Установить или обновить R, например, [отсюда](https://cran.rstudio.org/).
 
-По состоянию на 23 февраля 2025 г. актуальная версия 4.4.2. Нативные пайпы с версии 4.1. Пакеты не обновляются для старых версий R.
+По состоянию на 27 февраля 2025 г. актуальная версия 4.4.2. Нативные пайпы с версии 4.1. Пакеты не обновляются для старых версий R.
 
 При переходе с версии 3.x на версию 4.x необходимость переустановки всех пакетов (библиотеки, модули).
 
@@ -636,7 +636,7 @@ name: H20e0d
 .fixprecode[
 
 
-.font90[
+.zont90[
 Команда для проверки кириллицы:
 
 
@@ -751,7 +751,7 @@ name: Hc304d
 ```
 
 ```
-‎    Sunday    Monday   Tuesday Wednesday  Thursday    Friday  Saturday 
+‎  Thursday    Friday  Saturday    Sunday    Monday   Tuesday Wednesday 
 ‎         1         2         3         4         5         6         7 
 ```
 
@@ -761,7 +761,7 @@ name: Hc304d
 
 ```
 ‎  Named int [1:7] 1 2 3 4 5 6 7
-‎  - attr(*, "names")= chr [1:7] "Sunday" "Monday" "Tuesday" "Wednesday" ...
+‎  - attr(*, "names")= chr [1:7] "Thursday" "Friday" "Saturday" "Sunday" ...
 ```
 
 
@@ -810,7 +810,7 @@ name: H3ca3a
 
 ```
 ‎  Named int [1:7] 1 2 3 4 5 6 7
-‎  - attr(*, "names")= chr [1:7] "Sunday" "Monday" "Tuesday" "Wednesday" ...
+‎  - attr(*, "names")= chr [1:7] "Thursday" "Friday" "Saturday" "Sunday" ...
 ```
 
 ``` r
@@ -819,7 +819,7 @@ name: H3ca3a
 
 ```
 ‎  Named num [1:7] 1 2 3 4 5 6 7
-‎  - attr(*, "names")= chr [1:7] "Sunday" "Monday" "Tuesday" "Wednesday" ...
+‎  - attr(*, "names")= chr [1:7] "Thursday" "Friday" "Saturday" "Sunday" ...
 ```
 
 ``` r
@@ -911,8 +911,8 @@ name: H942fc
 ```
 
 ```
-‎ [1] "Sunday"    "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"   
-‎ [7] "Saturday" 
+‎ [1] "Thursday"  "Friday"    "Saturday"  "Sunday"    "Monday"    "Tuesday"  
+‎ [7] "Wednesday"
 ```
 
 ``` r
@@ -928,7 +928,7 @@ name: H942fc
 ```
 
 ```
-‎  chr [1:7] "Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" ...
+‎  chr [1:7] "Thursday" "Friday" "Saturday" "Sunday" "Monday" "Tuesday" ...
 ```
 
 
@@ -983,7 +983,7 @@ name: H6633e
 ‎ [1] 1 3 4 5 6 7
 ‎ 
 ‎ $char
-‎ [1] "Sunday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday" 
+‎ [1] "Thursday"  "Saturday"  "Sunday"    "Monday"    "Tuesday"   "Wednesday"
 ```
 
 ``` r
@@ -993,7 +993,7 @@ name: H6633e
 ```
 ‎ List of 2
 ‎  $ num : int [1:6] 1 3 4 5 6 7
-‎  $ char: chr [1:6] "Sunday" "Tuesday" "Wednesday" "Thursday" ...
+‎  $ char: chr [1:6] "Thursday" "Saturday" "Sunday" "Monday" ...
 ```
 
 ``` r
@@ -1068,12 +1068,12 @@ name: dataframe
 
 ```
 ‎   num      char
-‎ 1   1    Sunday
-‎ 2   3   Tuesday
-‎ 3   4 Wednesday
-‎ 4   5  Thursday
-‎ 5   6    Friday
-‎ 6   7  Saturday
+‎ 1   1  Thursday
+‎ 2   3  Saturday
+‎ 3   4    Sunday
+‎ 4   5    Monday
+‎ 5   6   Tuesday
+‎ 6   7 Wednesday
 ```
 
 ``` r
@@ -1083,7 +1083,7 @@ name: dataframe
 ```
 ‎ 'data.frame':	6 obs. of  2 variables:
 ‎  $ num : int  1 3 4 5 6 7
-‎  $ char: chr  "Sunday" "Tuesday" "Wednesday" "Thursday" ...
+‎  $ char: chr  "Thursday" "Saturday" "Sunday" "Monday" ...
 ```
 
 ``` r
@@ -1386,8 +1386,8 @@ name: H86d41
 ```
 
 ```
-‎ [1] Monday    Sunday    Tuesday   Thursday  Wednesday Saturday  Friday   
-‎ Levels: Sunday Monday Tuesday Wednesday Thursday Friday Saturday
+‎ [1] Friday    Thursday  Saturday  Monday    Sunday    Wednesday Tuesday  
+‎ Levels: Thursday Friday Saturday Sunday Monday Tuesday Wednesday
 ```
 
 ``` r
@@ -1395,7 +1395,7 @@ name: H86d41
 ```
 
 ```
-‎  Factor w/ 7 levels "Sunday","Monday",..: 2 1 3 5 4 7 6
+‎  Factor w/ 7 levels "Thursday","Friday",..: 2 1 3 5 4 7 6
 ```
 
 ``` r
@@ -1411,8 +1411,8 @@ name: H86d41
 ```
 
 ```
-‎ [1] Wednesday Thursday  Saturday  Sunday    Tuesday   Friday    Monday   
-‎ 7 Levels: Sunday < Monday < Tuesday < Wednesday < Thursday < ... < Saturday
+‎ [1] Sunday    Monday    Wednesday Thursday  Saturday  Tuesday   Friday   
+‎ 7 Levels: Thursday < Friday < Saturday < Sunday < Monday < ... < Wednesday
 ```
 
 ``` r
@@ -1420,7 +1420,7 @@ name: H86d41
 ```
 
 ```
-‎  Ord.factor w/ 7 levels "Sunday"<"Monday"<..: 4 5 7 1 3 6 2
+‎  Ord.factor w/ 7 levels "Thursday"<"Friday"<..: 4 5 7 1 3 6 2
 ```
 
 ``` r
@@ -1475,12 +1475,12 @@ name: indices
 
 ```
 ‎   num      char
-‎ 1   1    Sunday
-‎ 2   3   Tuesday
-‎ 3   4 Wednesday
-‎ 4   5  Thursday
-‎ 5   6    Friday
-‎ 6   7  Saturday
+‎ 1   1  Thursday
+‎ 2   3  Saturday
+‎ 3   4    Sunday
+‎ 4   5    Monday
+‎ 5   6   Tuesday
+‎ 6   7 Wednesday
 ```
 
 Выбрать отдельные строки
@@ -1491,9 +1491,9 @@ name: indices
 ```
 
 ```
-‎   num     char
-‎ 5   6   Friday
-‎ 6   7 Saturday
+‎   num      char
+‎ 5   6   Tuesday
+‎ 6   7 Wednesday
 ```
 
 Выбрать отдельные столбцы
@@ -1505,12 +1505,12 @@ name: indices
 
 ```
 ‎        char
-‎ 1    Sunday
-‎ 2   Tuesday
-‎ 3 Wednesday
-‎ 4  Thursday
-‎ 5    Friday
-‎ 6  Saturday
+‎ 1  Thursday
+‎ 2  Saturday
+‎ 3    Sunday
+‎ 4    Monday
+‎ 5   Tuesday
+‎ 6 Wednesday
 ```
 
 ``` r
@@ -1518,7 +1518,7 @@ name: indices
 ```
 
 ```
-‎ [1] "Sunday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday" 
+‎ [1] "Thursday"  "Saturday"  "Sunday"    "Monday"    "Tuesday"   "Wednesday"
 ```
 
 Использовать фунцию `subset()`
@@ -1530,8 +1530,9 @@ name: indices
 
 ```
 ‎   num      char
-‎ 2   3   Tuesday
-‎ 3   4 Wednesday
+‎ 4   5    Monday
+‎ 5   6   Tuesday
+‎ 6   7 Wednesday
 ```
 
 ]
@@ -1877,6 +1878,8 @@ name: H7cf34
 
 
 
+.within[
+
 Библиотека | Формат | Импорт | Экспорт 
 -----|------|-----|---
 [`sp`](https://edzer.github.io/sp/) | [GDAL vector drivers](https://gdal.org/drivers/vector/index.html) | `sf::st_read() ǀ> sf::as_Spatial()` <sup>1</sup> | `sf::st_as_sf() ǀ> sf::st_write()` <sup>2</sup>
@@ -1888,6 +1891,8 @@ name: H7cf34
 <sup>1</sup>: `ursa::spatial_read(fname,engine="sp")` <br> **`rgdal`**`::readOGR()`
 
 <sup>2</sup>: `ursa::spatial_write(obj,fname)` <br> **`rgdal`**`::writeOGR()`
+
+]
 
 
 ]
@@ -1921,7 +1926,7 @@ name: H74b7f
 
 
 
-.font95[
+.within[
 
 Библиотека | Формат | Импорт | Экспорт
 ---|----|--------|----
@@ -4664,7 +4669,7 @@ name: He6a47
 ]
 ]
 ---
-
+class: middle
 name: H78c0e
 
 .toc.sidebar.left-column[
@@ -4696,9 +4701,8 @@ name: H78c0e
 .fixprecode[
 
 
-.middle[
+
 Для оформления карт можно использовать функционал других библиотек.
-]
 
 
 ]
@@ -4809,12 +4813,8 @@ name: H3cf52
 ```
 
 ``` r
-‎ (tm1 <- tm_shape(b.sf) + tm_polygons("FIPSNO") + tm_scale_bar() +
+‎ (tm1 <- tm_shape(b.sf) + tm_polygons("FIPSNO") + tm_scalebar() +
 ‎    tm_compass(position=c("left","bottom")) + tm_graticules())
-```
-
-```
-‎ ! `tm_scale_bar()` is deprecated. Please use `tm_scalebar()` instead.
 ```
 
 <img src="assets/lesson05/tmap-plot-1.svg" width="1330" height="445" style="display: block; margin: auto auto auto 0;" />
@@ -5774,7 +5774,7 @@ name: H8bbe4
 ```
 
 ```
-‎ R version 4.4.2 Patched (2025-02-05 r87692 ucrt)
+‎ R version 4.4.2 Patched (2025-02-16 r87726 ucrt)
 ‎ Platform: x86_64-w64-mingw32/x64
 ‎ Running under: Windows 10 x64 (build 19045)
 ‎ 
@@ -5806,8 +5806,8 @@ name: H8bbe4
 ‎  [16] wk_0.9.4                gdalUtilities_1.2.5     fastmap_1.2.0          
 ‎  [19] mapedit_0.6.0           lwgeom_0.2-14           leafem_0.2.3           
 ‎  [22] labeling_0.4.3          geojsonsf_2.0.3         promises_1.3.2         
-‎  [25] rmarkdown_2.29          spacesXYZ_1.5-1         xfun_0.50              
-‎  [28] satellite_1.0.5         cachem_1.1.0            jsonlite_1.8.9         
+‎  [25] rmarkdown_2.29          spacesXYZ_1.5-1         xfun_0.51              
+‎  [28] satellite_1.0.5         cachem_1.1.0            jsonlite_1.9.0         
 ‎  [31] later_1.4.1             mapview_2.11.2          uuid_1.2-1             
 ‎  [34] jpeg_0.1-10             terra_1.8-21            parallel_4.4.2         
 ‎  [37] R6_2.6.1                bslib_0.9.0             RColorBrewer_1.1-3     
@@ -5825,7 +5825,7 @@ name: H8bbe4
 ‎  [73] xtable_1.8-4            class_7.3-23            glue_1.8.0             
 ‎  [76] tools_4.4.2             xaringanExtra_0.8.0     leaflegend_1.2.1       
 ‎  [79] data.table_1.16.4       XML_3.99-0.18           grid_4.4.2             
-‎  [82] crosstalk_1.2.1         ursa_3.11.4-1190        colorspace_2.1-1       
+‎  [82] crosstalk_1.2.1         ursa_3.11.4-1216        colorspace_2.1-1       
 ‎  [85] cols4all_0.8            raster_3.6-31           cli_3.6.4              
 ‎  [88] brew_1.0-10             viridisLite_0.4.2       svglite_2.1.3          
 ‎  [91] dplyr_1.1.4             gtable_0.3.6            sass_0.4.9             
@@ -5976,15 +5976,15 @@ name: beforefinalizing
 <script src="https://nplatonov.github.io/site_libs/remark.js/remark-latest.min.js"></script>
 <script src="https://nplatonov.github.io/site_libs/moon_reader-before.js"></script>
 <script>var slideshow = remark.create({
-"countIncrementalSlides": false,
-"slideNumberFormat": "<div class=\"custom-slide-number\" data-total=\"%total%\" data-current=\"%current%\"></div>",
-"ratio": "29:18",
-"navigation": {
-"scroll": true,
-"click": false,
-"touch": true
-},
-"highlightLines": true
+  "countIncrementalSlides": false,
+  "slideNumberFormat": "<div class=\"custom-slide-number\" data-total=\"%total%\" data-current=\"%current%\"></div>",
+  "ratio": "29:18",
+  "navigation": {
+    "scroll": true,
+    "click": false,
+    "touch": true
+  },
+  "highlightLines": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
