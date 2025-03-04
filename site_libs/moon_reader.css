@@ -2847,12 +2847,20 @@ blockquote p:last-of-type {
 .zzzremark-slide-container {
    display: block !important;
 }
-.outline::after, .fixprecode::after { /* :hover::after */
-   opacity: 0.1 !important;
+.outline::after, .fixprecode::after, img::after { /* :hover::after */
    content: attr(style);
+   opacity: 0.3 !important;
    font-size: 12px;
    display: block;
    position: fixed;
-   top: -30px;
+   top: -22px;
+}
+.outline::after {
+   left: 3px;
+} 
+.fixprecode::after {
    right: 18px;
+}
+img::after {
+   left: 300px;
 }

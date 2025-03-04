@@ -79,7 +79,7 @@ document.addEventListener('keydown', function(e) {
                counter++;
               // alert(counter);
                element.classList.add("scrollable");
-               container.style.fontSize = "100%";
+               container.style.fontSize = ''; // "100%";
               // container.removeAttribute("style");
                const imageList = element.querySelectorAll(':not(.inline) img, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
               /* const imageList = element.querySelectorAll('.framed, iframe'); */
@@ -608,6 +608,8 @@ function adjustFontSize() {
      // container.setAttribute('style', `font-size: ${(fontSize).toFixed(2)}%;`);
      // container.style.fontSize = `150%`;
       container.style.fontSize = `${(fontSize).toFixed(2)}%`;
+      if (fontSize == 100)
+         container.style.fontSize = '';
      // console.log(count + ': ' + fontSize);
       return;
    })
@@ -700,7 +702,7 @@ function adjustOutline() {
         // break;
       }
       if (relative == 100)
-         outline.style.fontSize = ''
+         outline.style.fontSize = '';
       if (k > 0)
          console.log(index,"C:",k
                    // ,"shorttitle:",banner.offsetHeight,"confbanner:",scrollableOffset()
