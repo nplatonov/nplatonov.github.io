@@ -1,35 +1,48 @@
 :root {
    --scrollable-offset: 77px;
-   --sidebar: 25%;
-   --sidebar-pointsize: 75%;
+   --sidebar: 22%;
+   --sidebar-pointsize: 67.3%;
   /* --sidebar-margin: 15px;*/
-   --accent: #185698;
+   --accent: #185698; /* #185698 */
    --header-accent: #18569830;
   /* --sidebar-left: 0em;*/
    --sidebar-select: var(--accent);
+   --sidebar-accent: var(--light);
    --footer-pointsize: 14px;
    --color: #0F5E9F;
+   --sidebar-color: var(--light);
+   --sidebar-background: var(--accent);
+   --sidebar-border: transparent;
+   --sidebar-left-color: transparent;
    --logosize: 150px;
 }
+.remark-slide-content.customtitle:not(.inverse), .remark-slide-content.title-slide:not(.inverse) {
+   background-image: url("background-title.png") !important;
+   background-size: cover;
+   border-bottom: 3px solid var(--accent);
+}
+.remark-slide-content:not(.customtitle):not(.title-slide):not(.inverse) {
+   background-image: url("background.png") !important;
+   background-size: cover;
+   border-bottom: 3px solid var(--accent);	
+   z-index: 8;
+}
 .sidebar {
-   background-image: none !important;
-   height: calc(100% - 12.5% + 13px) !important;
+  /* background-image: none !important;*/
+   height: calc(100% - 1 * var(--scrollable-offset)) !important;
    box-shadow: none;
 }
-.remark-slide-content:not(.inverse) .sidebar {
-   background-color: var(--accent);
-}
-.sidebar a {
-   color: var(--light) !important;
+.metadata .sidebar:hover {
+   width: 380px;
 }
 .metadata .sidebar.narrow + .right-column,
 .metadata .sidebar + .right-column {
    width: calc(100% - var(--sidebar) - 100px);
 }
 .remark-slide-content:not(.inverse) .sidebar *[id*="bg"][id*="fg"] {
-   background-color: var(--light) !important;
+  /* background-color: var(--light) !important;*/
   /* margin-right: -8px; */
-   border-color: var(--light) !important;
+  /* border-color: var(--light) !important;*/
 }
 .customtitle:not(.inverse) .sidebar {
    opacity: 0;
@@ -56,15 +69,6 @@
 .remark-slide-content.customtitle {
    padding-top: 2.5em;
    padding-left: 2.5em;
-}
-.remark-slide-content.customtitle:not(.inverse), .remark-slide-content.title-slide:not(.inverse) {
-   background-image: url("background-title.png") !important;
-   background-size: contain;
-
-}
-.remark-slide-content:not(.customtitle):not(.title-slide):not(.inverse) {
-   background-image: url("background.png") !important;
-   background-size: contain;
 }
 .title-slide h1, .title-slide h3 {
    color: black;
@@ -121,7 +125,7 @@ body:fullscreen .remark-slides-area::before {
 }
 .remark-slide-content.customtitle .sevinlogo::before {
    position: fixed;
-   left: 605px;
+   left: 630px;
    bottom: 90px;
    background-image: url(umnikov.png);
    content: '';
@@ -168,10 +172,14 @@ body:fullscreen .remark-slides-area::before {
    border: 1px solid red;
    visibility: hidden;
 }
+.banner:has(> .sevinlogo) > .shorttitle {
+   display: none;
+}
 .mainbar + .remark-slide-number {
    border: none;
    margin-right: 49em;
    bottom: 1.1em;
+   background-color: transparent;
 }
 .mainbar.broad + .remark-slide-number {
    position: absolute;
@@ -179,10 +187,6 @@ body:fullscreen .remark-slides-area::before {
    right: unset;
    top: unset;
    bottom: 1.1em;
-}
-.sidebar > .outline *[id*=bg][id*=fg] {
-   margin-right: -5.4px;
-   padding-right: 15px;
 }
 html[data-darkreader-scheme="dark"] .sidebar {
    background-image: none;
@@ -193,6 +197,7 @@ html[data-darkreader-scheme="dark"] .sidebar {
 }
 .remark-slide-container:not(:has(.inverse)) {
    background-image: linear-gradient(to bottom, white 75%, var(--accent), var(--accent));
+  /* background-image: linear-gradient(to right, yellow 25%, red);*/
 }
 .remark-slide-content:not(.inverse) {
    border-bottom: 1px solid var(--accent);

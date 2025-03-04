@@ -286,10 +286,10 @@ function adjustImageSize() {
             });
          }
          else { // trying proportional decreasing
-            console.log(index,"proportional");
-            console.log("predefinedHeights:",predefinedHeights);
-            console.log("resettedHeights:",originalHeights);
-            console.log("modifiedHeights:",heights);
+           // console.log(index,"proportional");
+           // console.log("predefinedHeights:",predefinedHeights);
+           // console.log("resettedHeights:",originalHeights);
+           // console.log("modifiedHeights:",heights);
             Array.from(imageList).forEach((restoreImage, restoreIndex) => {
                restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
             });
@@ -318,7 +318,7 @@ function adjustImageSize() {
                   image.style.objectFit = `contain`
                });
             }
-            console.log("resultingHeights:",Array.from(imageList).map(image => image.offsetHeight));
+           // console.log("resultingHeights:",Array.from(imageList).map(image => image.offsetHeight));
             return;
          }
          return;
@@ -389,7 +389,7 @@ function adjustImageSize() {
          if (!hasVerticalScrollbar(scroller))
             return;
       }
-      console.log("in", newHeight);
+     // console.log("in", newHeight);
       if (false) { // false if you want to keep figure size small
          newHeight = 777;
          image.style.height = `${newHeight}px`;
@@ -429,7 +429,7 @@ function adjustImageSize() {
          hasVerticalScrollbar(scroller);
          newHeight = maxHeight * (1-0.01);
          image.style.height = `${newHeight}px`;
-         console.log(minHeight,maxHeight,newHeight);
+        // console.log(minHeight,maxHeight,newHeight);
       }
       if (columns) {
          newWidth = newHeight * aspectRatio;
@@ -454,7 +454,7 @@ function adjustImageSize() {
       // image.style.width = `${newWidth}px`;
       // newHeight = Math.floor(newHeight);
       // image.style.height = `${newHeight}px`;
-      console.log(hasVerticalScrollbar(scroller), hasHorizontalScrollbar(scroller));
+     // console.log(hasVerticalScrollbar(scroller), hasHorizontalScrollbar(scroller));
       if (!hasVerticalScrollbar(scroller)) {
          scroller.classList.remove(removableClass);
         // if (hasVerticalScrollbar(scroller))
@@ -499,7 +499,7 @@ function adjustFontSize() {
       }
       if (false) {
          const footer = container.querySelector('.footer');
-         if (footer) {
+         if (false && footer) {
             console.log(footer.clientHeight);
          }
       }
@@ -671,9 +671,10 @@ function adjustOutline() {
       var k=0;
       var relative=100;
       const elements = outline.querySelectorAll('h1, h2, h3, h4, h5');
-      console.log("B:",index
-                // ,"shorttitle:",banner.offsetHeight,"confbanner:",scrollableOffset()
-                 ,"outline:",outline.clientHeight,"available:",totalHeight);
+      if (outline.clientHeight >= totalHeight)
+         console.log(index,"B:"
+                   // ,"shorttitle:",banner.offsetHeight,"confbanner:",scrollableOffset()
+                    ,"outline:",outline.clientHeight,"available:",totalHeight);
       outline.style.fontSize = `${relative}%`;
       while (outline.clientHeight >= totalHeight) {
          k++;
@@ -701,9 +702,19 @@ function adjustOutline() {
       if (relative == 100)
          outline.style.fontSize = ''
       if (k > 0)
-         console.log("C:",index,k
+         console.log(index,"C:",k
                    // ,"shorttitle:",banner.offsetHeight,"confbanner:",scrollableOffset()
-                    ,"outline:",outline.clientHeight,"available:",totalHeight);
+                    ,"outline:",outline.clientHeight,"available:",totalHeight
+                    ,"relative:",relative,"scrollbar:",hasVerticalScrollbar(sidebar));
+      k = 0;
+      while (hasVerticalScrollbar(sidebar)) {
+         k++;
+         if (k>10)
+            break;
+         relative = relative * (1-0.002);
+         console.log(index, k, "D:", relative);
+         outline.style.fontSize = `${(relative).toFixed(1)}%`;
+      }
       if (isAlert) {
          alert(k + ' final ' + outline.clientHeight + ' out of ' + totalHeight);
       }
