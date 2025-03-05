@@ -27,14 +27,14 @@
    --sidebar-background-inverse-right: var(--sidebar-background-inverse); /* var(--sidebar-background); */
    --sidebar-strip: #FFFFFFFE; /* #FFFFFFFE;  var(--light);*/
    --sidebar-strip-inverse: var(--inverse-bg); 
-   --sidebar-select: var(--dark); /* var(--dark);*/ /* var(--accent); */
-   --sidebar-select-inverse: var(--light); /* var(--inverse-accent);*/
-   --sidebar-color: var(--sidebar-select); /* var(--accent); */
-   --sidebar-color-inverse: var(--sidebar-select-inverse); /* var(--accent); */
+   --sidebar-color: var(--dark); /* var(--dark);*/ /* var(--accent); */
+   --sidebar-color-inverse: var(--light); /* var(--inverse-accent);*/
+   --sidebar-select: var(--sidebar-color); /* var(--accent); */
+   --sidebar-select-inverse: var(--sidebar-color-inverse); /* var(--accent); */
    --sidebar-border: var(--sidebar-select); /* var(--accent) transparent; */
    --sidebar-border-inverse: var(--sidebar-select-inverse); /*var(--inverse-accent);*/
    --sidebar-left-size: 5px; /* 0.15em */
-   --sidebar-left-color: inherit; /* inherit; */
+   --sidebar-left-color: var(--sidebar-border); /*inherit;*/ /* inherit; */
    --sidebar-accent: transparent;
    --header-accent: #ccc;
    --header-accent-inverse: #777;
@@ -430,7 +430,7 @@ pre code * {
   /* right: unset;*/
   /* left: 0.05em;*/
    bottom: 0.15em;
-   background-color: var(--sidebar-accent);
+   background-color: transparent; /*var(--sidebar-background);*/ /*var(--sidebar-accent);*/
 }
 .blackout .mainbar + .remark-slide-number,
 .inverse:not(.revert) .mainbar + .remark-slide-number {
@@ -626,7 +626,7 @@ h2 .header{
    letter-spacing: -0.03em;
   /* text-decoration: underline 5px #7f7f7f4f;*/
   /* border-bottom: solid 5px #7f7f7f4f;*/
-   color: var(--sidebar-select);
+   color: var(--sidebar-color);
 }
 .mainbar:not(.broad) .header.broad,
 .mainbar:not(.broad) .header.show,
