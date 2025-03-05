@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ГИС 08</title>
+    <meta charset="utf-8" />
+    <script src="https://nplatonov.github.io/site_libs/header-attrs-2.29/header-attrs.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/xaringanExtra_fit-screen-0.2.6/fit-screen.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/js-cookie-3.0.0/js.cookie.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/peerjs-1.3.1/peerjs.min.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/tiny.toast-1.0.0/toast.min.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/general/general.css" type="text/css" />
+  </head>
+  <body>
+
+<div id="loader" class="loader"></div>
+
+<style>
+.remark-backdrop:after{
+   content: 'Никита Платонов \A \A ГИС аспирантура';
+}
+</style>
+
+    <textarea id="source">
+
+layout: true
+
+
+
+
+
+
+
+
+.toc.banner[
+
+.shorttitle[
+[ГИС аспирантура](break.html#home)
+]
+
+]
+
+---
+name: home
+class: metadata customtitle middle left giphy
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+
+
+.authors[
+
+
+.author[Никита&nbsp;Платонов]
+
+
+.institute[с.н.с. ИПЭЭ РАН]
+
+
+
+]
+
+
+.title[
+Операции с геометрией
+]
+
+
+.subtitle[
+ГИС технологии в биологических исследованиях
+]
+
+
+.what[
+Занятие 08
+]
+
+
+.where[
+
+]
+
+
+.when[
+ .updated[Обновлено: 2025-02-28 09:17]
+]
+
+
+
+]
+
+
+
+
+
+
+---
+name: difference
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference).fg[]
+### ["Геообработка"](#difference).fg[].bg[]
+### ["Геометрия" ](#Hd5674)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+"Геообработка" .parent[.grand[Инструменты QGIS]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/lesson08/QGIS-geoprocessing.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+
+]
+]
+---
+
+name: Hd5674
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference).fg[]
+### ["Геообработка"](#difference)
+### ["Геометрия" ](#Hd5674).fg[].bg[]
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+.header.h3.broad[
+"Геометрия" .parent[.grand[Инструменты QGIS]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/lesson08/QGIS-geometry.png" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+
+]
+]
+---
+
+name: H90e56
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56) <span class="bullet bullet-active">[&#8226;](#H90e56)</span><span class="bullet mslide9m">[&#8226;](#Ha5c44)</span><span class="bullet mslide10m">[&#8226;](#Hc9837)</span>.fg[].bg[]
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Данные и методы
+]
+
+.fixprecode[
+
+
+Пакет для визуализации: `tmap`.
+
+
+``` r
+‎ require(tmap)
+```
+
+```
+‎ Loading required package: tmap
+```
+
+``` r
+‎ tmap_mode("view") ## plot view
+```
+
+```
+‎ ℹ tmap mode set to "view".
+```
+
+
+
+Пакет для геообработки: `sf`.
+
+[Шпаргалка](https://github.com/r-spatial/sf/wiki/Migrating) по миграции между `sp` и `sf`:
+
+<iframe src="https://github.com/r-spatial/sf/wiki/Migrating" width="1330" height="300" data-external="1"></iframe>
+
+
+]
+]
+---
+
+name: Ha5c44
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56) <span class="bullet bullet">[&#8226;](#H90e56)</span><span class="bullet bullet-active">[&#8226;](#Ha5c44)</span><span class="bullet mslide10m">[&#8226;](#Hc9837)</span>.fg[].bg[]
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Данные и методы
+]
+
+.fixprecode[
+
+
+
+``` r
+‎ hr <- sf::st_read("data/hr.geojson",quiet=TRUE) |>
+‎    sf::st_transform(3572)
+‎ sf::st_agr(hr) <- "constant"
+‎ hr2 <- lapply(unique(hr$id),function(id) {
+‎    hr2 <- hr[hr$id==id,]
+‎    ulevel <- unique(hr2$level)
+‎    hr3 <- lapply(ulevel,function(level) hr2[hr2$level==level,])
+‎    names(hr3) <- ulevel
+‎    hr4 <- list('50-95'=sf::st_difference(sf::st_geometry(hr3[["95"]])
+‎                                         ,sf::st_geometry(hr3[["50"]]))
+‎               ,'0-50'=sf::st_geometry(hr3[["50"]])
+‎               )
+‎    sf::st_sf(id=id,level=names(hr4)
+‎             ,geometry=do.call(rbind,hr4),crs=sf::st_crs(hr))
+‎ })
+‎ hr2 <- do.call(rbind,hr2)
+‎ hr2 <- sf::st_transform(hr2,4326)
+‎ hr2$group <- paste(hr2$id,hr2$level,sep=":")
+```
+
+
+]
+]
+---
+
+name: Hc9837
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56) <span class="bullet bullet">[&#8226;](#H90e56)</span><span class="bullet bullet">[&#8226;](#Ha5c44)</span><span class="bullet bullet-active">[&#8226;](#Hc9837)</span>.fg[].bg[]
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Данные и методы
+]
+
+.fixprecode[
+
+
+
+``` r
+‎ m1 <- tm_shape(hr2)+tm_polygons("group",fill_alpha=0.5,group="Kernel levels")
+```
+
+``` r
+‎ try(print(m1))
+```
+
+
+
+]
+]
+---
+
+name: H60b25
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25) <span class="bullet bullet-active">[&#8226;](#H60b25)</span><span class="bullet mslide13m">[&#8226;](#H508a2)</span>.fg[].bg[]
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+.header.h2.broad[
+Валидность
+]
+
+.fixprecode[
+
+
+
+
+
+``` r
+‎ sf::st_is_valid(hr2)
+```
+
+```
+‎ [1]  TRUE FALSE  TRUE FALSE
+```
+
+``` r
+‎ if (length(ind <- which(!sf::st_is_valid(hr2))))
+‎    hr2[ind,] <- sf::st_make_valid(hr2[ind,])
+‎ sf::st_is_valid(hr2)
+```
+
+```
+‎ [1] TRUE TRUE TRUE TRUE
+```
+
+``` r
+‎ hr2
+```
+
+```
+‎ Simple feature collection with 4 features and 3 fields
+‎ Geometry type: GEOMETRY
+‎ Dimension:     XY
+‎ Bounding box:  xmin: -153.1044 ymin: 69.42322 xmax: -128.2873 ymax: 76.15215
+‎ Geodetic CRS:  WGS 84
+‎    id level                       geometry     group
+‎ 1 145 50-95 MULTIPOLYGON (((-153.1044 7... 145:50-95
+‎ 2 145  0-50 POLYGON ((-138.281 70.63453...  145:0-50
+‎ 3 168 50-95 POLYGON ((-152.4999 71.1491... 168:50-95
+‎ 4 168  0-50 POLYGON ((-150.1846 70.6716...  168:0-50
+```
+
+
+]
+]
+---
+
+name: H508a2
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25) <span class="bullet bullet">[&#8226;](#H60b25)</span><span class="bullet bullet-active">[&#8226;](#H508a2)</span>.fg[].bg[]
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Валидность
+]
+
+.fixprecode[
+
+
+
+``` r
+‎ m1v <- tm_shape(hr2)+tm_polygons("group",fill_alpha=0.5,group="Kernel levels")
+```
+
+``` r
+‎ m1v
+```
+<div class="figure">
+<div class="framed" style="height:535px; width=100%">
+<iframe src="assets/lesson08/widget_wm1v.html" width="100%" height="535" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+.indent[
+]
+
+]
+]
+---
+
+name: H8ff48
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48).fg[].bg[]
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Связь "Атрибут-геометрия"
+]
+
+.fixprecode[
+
+
+
+
+``` r
+‎ sf::st_agr(hr2) <- "constant"
+‎ attr(hr2,"agr")
+```
+
+```
+‎       id    level    group 
+‎ constant constant constant 
+‎ Levels: constant aggregate identity
+```
+
+``` r
+‎ levels(attr(hr2,"agr"))
+```
+
+```
+‎ [1] "constant"  "aggregate" "identity" 
+```
+
++ `"constant"` - атрибут постоянны по всей геометрии (землепользование)  
++ `"aggregate"` - атрибут агрегированы по геометрии (плотность населения)
++ `"identity"` - однозначное идентифицирование (название города)
+
+]
+]
+
+
+
+---
+
+name: H7000f
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f).fg[]
+### [В полигоны ](#H7000f).fg[].bg[]
+### [В мультиполигоны ](#Hfb73c)
+### [В линии ](#Heba92)
+### [В точки ](#Ha0db6)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+В полигоны .parent[.grand[Преобразование]]
+]
+
+.fixprecode[
+
+
+
+
+``` r
+‎ (hr_poly <- sf::st_cast(hr,"POLYGON"))
+```
+
+```
+‎ Simple feature collection with 5 features and 3 fields
+‎ Attribute-geometry relationships: constant (3)
+‎ Geometry type: POLYGON
+‎ Dimension:     XY
+‎ Bounding box:  xmin: -109626 ymin: -2254479 xmax: 779252.1 ymax: -1438563
+‎ Projected CRS: WGS 84 / North Pole LAEA Alaska
+‎      id      area level                       geometry
+‎ 1   145 200163.21    95 POLYGON ((-108821 -2033301,...
+‎ 1.1 145 200163.21    95 POLYGON ((543191.4 -1457301...
+‎ 2   145  35748.68    50 POLYGON ((437079.1 -2107065...
+‎ 3   168  73098.40    95 POLYGON ((-90920.86 -210402...
+‎ 4   168  17253.45    50 POLYGON ((-6920.856 -214782...
+```
+
+``` r
+‎ units::set_units(sum(sf::st_area(hr_poly)),km^2)
+```
+
+```
+‎ 326263.7 [km^2]
+```
+
+
+]
+]
+---
+
+name: Hfb73c
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f).fg[]
+### [В полигоны ](#H7000f)
+### [В мультиполигоны ](#Hfb73c).fg[].bg[]
+### [В линии ](#Heba92)
+### [В точки ](#Ha0db6)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+В мультиполигоны .parent[.grand[Преобразование]]
+]
+
+.fixprecode[
+
+
+
+
+``` r
+‎ (hr_mpoly <- sf::st_cast(hr,"MULTIPOLYGON"))
+```
+
+```
+‎ Simple feature collection with 4 features and 3 fields
+‎ Attribute-geometry relationships: constant (3)
+‎ Geometry type: MULTIPOLYGON
+‎ Dimension:     XY
+‎ Bounding box:  xmin: -109626 ymin: -2254479 xmax: 779252.1 ymax: -1438563
+‎ Projected CRS: WGS 84 / North Pole LAEA Alaska
+‎    id      area level                       geometry
+‎ 1 145 200163.21    95 MULTIPOLYGON (((-108821 -20...
+‎ 2 145  35748.68    50 MULTIPOLYGON (((437079.1 -2...
+‎ 3 168  73098.40    95 MULTIPOLYGON (((-90920.86 -...
+‎ 4 168  17253.45    50 MULTIPOLYGON (((-6920.856 -...
+```
+
+``` r
+‎ units::set_units(sum(sf::st_area(hr_mpoly)),km^2)
+```
+
+```
+‎ 326263.7 [km^2]
+```
+
+``` r
+‎ units::set_units(sum(sf::st_length(hr_mpoly)),km)
+```
+
+```
+‎ 0 [km]
+```
+
+
+]
+]
+---
+
+name: Heba92
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f).fg[]
+### [В полигоны ](#H7000f)
+### [В мультиполигоны ](#Hfb73c)
+### [В линии ](#Heba92) <span class="bullet bullet-active">[&#8226;](#Heba92)</span><span class="bullet mslide20m">[&#8226;](#He2ae2)</span>.fg[].bg[]
+### [В точки ](#Ha0db6)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+.header.h3.broad[
+В линии .parent[.grand[Преобразование]]
+]
+
+.fixprecode[
+
+
+
+
+``` r
+‎ (hr_mline <- sf::st_cast(hr2,"MULTILINESTRING")) ## sf::st_boundary()
+```
+
+```
+‎ Simple feature collection with 4 features and 3 fields
+‎ Attribute-geometry relationships: constant (3)
+‎ Geometry type: MULTILINESTRING
+‎ Dimension:     XY
+‎ Bounding box:  xmin: -153.1044 ymin: 69.42322 xmax: -128.2873 ymax: 76.15215
+‎ Geodetic CRS:  WGS 84
+‎    id level     group                       geometry
+‎ 1 145 50-95 145:50-95 MULTILINESTRING ((-153.1044...
+‎ 2 145  0-50  145:0-50 MULTILINESTRING ((-138.281 ...
+‎ 3 168 50-95 168:50-95 MULTILINESTRING ((-152.4999...
+‎ 4 168  0-50  168:0-50 MULTILINESTRING ((-150.1846...
+```
+
+``` r
+‎ units::set_units(sum(sf::st_area(hr_mline)),km^2)
+```
+
+```
+‎ 0 [km^2]
+```
+
+``` r
+‎ units::set_units(sum(sf::st_length(hr_mline)),km)
+```
+
+```
+‎ 6748.012 [km]
+```
+
+
+]
+]
+---
+
+name: He2ae2
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f).fg[]
+### [В полигоны ](#H7000f)
+### [В мультиполигоны ](#Hfb73c)
+### [В линии ](#Heba92) <span class="bullet bullet">[&#8226;](#Heba92)</span><span class="bullet bullet-active">[&#8226;](#He2ae2)</span>.fg[].bg[]
+### [В точки ](#Ha0db6)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+В линии .parent[.grand[Преобразование]]
+]
+
+.fixprecode[
+
+
+
+``` r
+‎ m3 <- tm_shape(hr_mline)+tm_lines("group",col_alpha=1,lwd=3,group="Contour levels")
+```
+
+``` r
+‎ m3
+```
+<div class="figure">
+<div class="framed" style="height:485px; width=100%">
+<iframe src="assets/lesson08/widget_w3.html" width="100%" height="485" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+]
+]
+---
+
+name: Ha0db6
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f).fg[]
+### [В полигоны ](#H7000f)
+### [В мультиполигоны ](#Hfb73c)
+### [В линии ](#Heba92)
+### [В точки ](#Ha0db6) <span class="bullet bullet-active">[&#8226;](#Ha0db6)</span><span class="bullet mslide22m">[&#8226;](#H0ca04)</span>.fg[].bg[]
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+В точки .parent[.grand[Преобразование]]
+]
+
+.fixprecode[
+
+
+
+
+``` r
+‎ (hr_mpoint <- sf::st_cast(hr2,"MULTIPOINT"))
+```
+
+```
+‎ Simple feature collection with 4 features and 3 fields
+‎ Attribute-geometry relationships: constant (3)
+‎ Geometry type: MULTIPOINT
+‎ Dimension:     XY
+‎ Bounding box:  xmin: -153.1044 ymin: 69.42322 xmax: -128.2873 ymax: 76.15215
+‎ Geodetic CRS:  WGS 84
+‎    id level     group                       geometry
+‎ 1 145 50-95 145:50-95 MULTIPOINT ((-153.1044 71.7...
+‎ 2 145  0-50  145:0-50 MULTIPOINT ((-138.281 70.63...
+‎ 3 168 50-95 168:50-95 MULTIPOINT ((-152.4999 71.1...
+‎ 4 168  0-50  168:0-50 MULTIPOINT ((-150.1846 70.6...
+```
+
+``` r
+‎ tmap_mode("view")
+```
+
+```
+‎ ℹ tmap mode set to "view".
+```
+
+``` r
+‎ if (packageVersion("tmap")>'3') {
+‎    sf::st_agr(hr_mpoint) <- "constant"
+‎    hr_mpoint <- sf::st_cast(hr_mpoint,"POINT")
+‎ }
+```
+
+
+]
+]
+---
+
+name: H0ca04
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f).fg[]
+### [В полигоны ](#H7000f)
+### [В мультиполигоны ](#Hfb73c)
+### [В линии ](#Heba92)
+### [В точки ](#Ha0db6) <span class="bullet bullet">[&#8226;](#Ha0db6)</span><span class="bullet bullet-active">[&#8226;](#H0ca04)</span>.fg[].bg[]
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+В точки .parent[.grand[Преобразование]]
+]
+
+.fixprecode[
+
+
+
+``` r
+‎ m4 <- tm_shape(hr_mpoint)+tm_dots("group",size=0.4,group="Points")
+```
+
+``` r
+‎ m4
+```
+
+```
+‎ Registered S3 method overwritten by 'jsonify':
+‎   method     from    
+‎   print.json jsonlite
+```
+
+<div class="figure">
+<div class="framed" style="height:485px; width=100%">
+<iframe src="assets/lesson08/widget_w4.html" width="100%" height="485" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+]
+]
+---
+
+name: H87d0e
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e).fg[].bg[]
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Объединение
+]
+
+.fixprecode[
+
+
+
+
+``` r
+‎ union <- sf::st_union(hr)
+‎ m2 <- tm_shape(hr2)+tm_polygons("group",fill_alpha=0.5,group="Kernel levels")+
+‎    tm_shape(union)+tm_borders(col="black",lwd=3,lty="dashed",alpha=0.5,group="Join")
+```
+
+```
+‎ 
+```
+
+```
+‎ ── tmap v3 code detected ───────────────────────────────────────────────────────
+```
+
+```
+‎ [v3->v4] `tm_borders()`: use 'fill' for the fill color of polygons/symbols
+‎ (instead of 'col'), and 'col' for the outlines (instead of 'border.col').
+‎ [v3->v4] `tm_borders()`: use `fill_alpha` instead of `alpha`.
+‎ This message is displayed once every 8 hours.
+```
+
+``` r
+‎ m2
+```
+<div class="figure">
+<div class="framed" style="height:485px; width=100%">
+<iframe src="assets/lesson08/widget_w2.html" width="100%" height="485" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+]
+]
+---
+
+name: Hb8e98
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98).fg[].bg[]
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Центроид
+]
+
+.fixprecode[
+
+
+
+
+``` r
+‎ centroid <- sf::st_centroid(hr2)
+‎ m2 <- tm_shape(hr2)+tm_polygons("group",fill_alpha=0.5,group="Kernel levels")+
+‎    tm_shape(centroid)+tm_dots(id="group",group="Centroid")
+```
+
+``` r
+‎ m2
+```
+<div class="figure">
+<div class="framed" style="height:485px; width=100%">
+<iframe src="assets/lesson08/widget_w2c.html" width="100%" height="485" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+]
+]
+---
+
+name: Hae516
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516).fg[].bg[]
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Буфер
+]
+
+.fixprecode[
+
+
+
+
+``` r
+‎ buffer <- sf::st_buffer(centroid,units::set_units(150,km))
+‎ m5 <- tm_shape(hr2)+tm_polygons("group",fill_alpha=0.5,group="Kernel levels")+
+‎    tm_shape(centroid)+tm_dots(id="group",group="Centroid")+
+‎    tm_shape(buffer)+tm_borders(group="Buffer",lty="dashed",lwd=3)
+```
+
+``` r
+‎ m5
+```
+<div class="figure">
+<div class="framed" style="height:460px; width=100%">
+<iframe src="assets/lesson08/widget_w5.html" width="100%" height="460" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+]
+]
+
+
+
+---
+
+name: H7523e
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e).fg[]
+### [Бинарное ](#H7523e) <span class="bullet bullet-active">[&#8226;](#H7523e)</span><span class="bullet mslide28m">[&#8226;](#Hec75a)</span><span class="bullet mslide29m">[&#8226;](#H9b729)</span><span class="bullet mslide30m">[&#8226;](#Hfbb51)</span>.fg[].bg[]
+### [Унарное ](#Ha5bd4)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+Бинарное .parent[.grand[Пересечение]]
+]
+
+.fixprecode[
+
+
+
+
+``` r
+‎ intersection <- sf::st_intersection(hr2,buffer)
+‎ m6 <- tm_shape(intersection)+tm_polygons("group",fill_alpha=0.5,group="Kernel levels")
+```
+
+``` r
+‎ m6
+```
+<div class="figure">
+<div class="framed" style="height:460px; width=100%">
+<iframe src="assets/lesson08/widget_w6.html" width="100%" height="460" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+]
+]
+---
+
+name: Hec75a
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e).fg[]
+### [Бинарное ](#H7523e) <span class="bullet bullet">[&#8226;](#H7523e)</span><span class="bullet bullet-active">[&#8226;](#Hec75a)</span><span class="bullet mslide29m">[&#8226;](#H9b729)</span><span class="bullet mslide30m">[&#8226;](#Hfbb51)</span>.fg[].bg[]
+### [Унарное ](#Ha5bd4)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+Бинарное .parent[.grand[Пересечение]]
+]
+
+.fixprecode[
+
+
+
+``` r
+‎ print(intersection)
+```
+
+```
+‎ Simple feature collection with 11 features and 6 fields
+‎ Geometry type: GEOMETRY
+‎ Dimension:     XY
+‎ Bounding box:  xmin: -151.0912 ymin: 69.42322 xmax: -130.283 ymax: 72.47304
+‎ Geodetic CRS:  WGS 84
+‎ First 10 features:
+‎      id level     group id.1 level.1   group.1                       geometry
+‎ 1   145 50-95 145:50-95  145   50-95 145:50-95 POLYGON ((-142.45 70.80287,...
+‎ 2   145  0-50  145:0-50  145   50-95 145:50-95 POLYGON ((-135.7036 71.0320...
+‎ 3   168 50-95 168:50-95  145   50-95 145:50-95 MULTIPOLYGON (((-143.4902 7...
+‎ 1.1 145 50-95 145:50-95  145    0-50  145:0-50 MULTIPOLYGON (((-130.3065 7...
+‎ 2.1 145  0-50  145:0-50  145    0-50  145:0-50 POLYGON ((-130.6021 71.0781...
+‎ 1.2 145 50-95 145:50-95  168   50-95 168:50-95 POLYGON ((-149.9768 71.0956...
+‎ 3.1 168 50-95 168:50-95  168   50-95 168:50-95 POLYGON ((-149.7604 70.0269...
+‎ 4   168  0-50  168:0-50  168   50-95 168:50-95 POLYGON ((-150.168 70.6638,...
+‎ 1.3 145 50-95 145:50-95  168    0-50  168:0-50 POLYGON ((-150.6205 71.2267...
+‎ 3.2 168 50-95 168:50-95  168    0-50  168:0-50 POLYGON ((-150.896 70.27866...
+```
+
+
+]
+]
+---
+
+name: H9b729
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e).fg[]
+### [Бинарное ](#H7523e) <span class="bullet bullet">[&#8226;](#H7523e)</span><span class="bullet bullet">[&#8226;](#Hec75a)</span><span class="bullet bullet-active">[&#8226;](#H9b729)</span><span class="bullet mslide30m">[&#8226;](#Hfbb51)</span>.fg[].bg[]
+### [Унарное ](#Ha5bd4)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+Бинарное .parent[.grand[Пересечение]]
+]
+
+.fixprecode[
+
+
+
+``` r
+‎ (intersection <- intersection[intersection$group==intersection$group.1,])
+```
+
+```
+‎ Simple feature collection with 4 features and 6 fields
+‎ Geometry type: POLYGON
+‎ Dimension:     XY
+‎ Bounding box:  xmin: -150.45 ymin: 69.63394 xmax: -130.283 ymax: 72.47304
+‎ Geodetic CRS:  WGS 84
+‎      id level     group id.1 level.1   group.1                       geometry
+‎ 1   145 50-95 145:50-95  145   50-95 145:50-95 POLYGON ((-142.45 70.80287,...
+‎ 2.1 145  0-50  145:0-50  145    0-50  145:0-50 POLYGON ((-130.6021 71.0781...
+‎ 3.1 168 50-95 168:50-95  168   50-95 168:50-95 POLYGON ((-149.7604 70.0269...
+‎ 4.1 168  0-50  168:0-50  168    0-50  168:0-50 POLYGON ((-150.1846 70.6716...
+```
+
+
+]
+]
+---
+
+name: Hfbb51
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e).fg[]
+### [Бинарное ](#H7523e) <span class="bullet bullet">[&#8226;](#H7523e)</span><span class="bullet bullet">[&#8226;](#Hec75a)</span><span class="bullet bullet">[&#8226;](#H9b729)</span><span class="bullet bullet-active">[&#8226;](#Hfbb51)</span>.fg[].bg[]
+### [Унарное ](#Ha5bd4)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+Бинарное .parent[.grand[Пересечение]]
+]
+
+.fixprecode[
+
+
+
+``` r
+‎ m7 <- tm_shape(intersection)+tm_polygons("group",fill_alpha=0.5,group="Kernel levels")+
+‎    tm_shape(buffer)+tm_borders(group="Buffer",lty="dashed",lwd=3)
+```
+
+``` r
+‎ m7
+```
+<div class="figure">
+<div class="framed" style="height:460px; width=100%">
+<iframe src="assets/lesson08/widget_w7.html" width="100%" height="460" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+]
+]
+---
+
+name: Ha5bd4
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e).fg[]
+### [Бинарное ](#H7523e)
+### [Унарное ](#Ha5bd4) <span class="bullet bullet-active">[&#8226;](#Ha5bd4)</span><span class="bullet mslide32m">[&#8226;](#H15bb7)</span>.fg[].bg[]
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+Унарное .parent[.grand[Пересечение]]
+]
+
+.fixprecode[
+
+
+
+
+``` r
+‎ overlaps <- hr2 |> sf::st_transform(3572) |> sf::st_intersection() |> 
+‎    sf::st_collection_extract() |> sf::st_transform(4326)
+‎ if (length(ind <- which(!sf::st_is_valid(overlaps))))
+‎    overlaps[ind,] <- sf::st_make_valid(overlaps[ind,])
+‎ overlaps <- overlaps[sf::st_is_valid(overlaps),]
+‎ overlaps <- overlaps[sf::st_area(overlaps)>units::set_units(100,m^2),]
+‎ overlaps
+```
+
+```
+‎ Simple feature collection with 11 features and 5 fields
+‎ Geometry type: MULTIPOLYGON
+‎ Dimension:     XY
+‎ Bounding box:  xmin: -153.1044 ymin: 69.42322 xmax: -128.2873 ymax: 76.15215
+‎ Geodetic CRS:  WGS 84
+‎ First 10 features:
+‎      id level     group n.overlaps origins                       geometry
+‎ 1   145 50-95 145:50-95          1       1 MULTIPOLYGON (((-152.6013 7...
+‎ 1.6 145 50-95 145:50-95          1       1 MULTIPOLYGON (((-149.2072 7...
+‎ 1.7 145 50-95 145:50-95          1       1 MULTIPOLYGON (((-128.4342 7...
+‎ 1.1 145 50-95 145:50-95          2    1, 2 MULTIPOLYGON (((-138.1358 7...
+‎ 2   145  0-50  145:0-50          1       2 MULTIPOLYGON (((-138.2509 7...
+‎ 1.2 145 50-95 145:50-95          2    1, 3 MULTIPOLYGON (((-142.4289 7...
+‎ 3   168 50-95 168:50-95          1       3 MULTIPOLYGON (((-152.4775 7...
+‎ 3.2 168 50-95 168:50-95          1       3 MULTIPOLYGON (((-146.6688 7...
+‎ 3.1 168 50-95 168:50-95          2    3, 4 MULTIPOLYGON (((-149.9249 7...
+‎ 1.4 145 50-95 145:50-95          2    1, 4 MULTIPOLYGON (((-143.8433 7...
+```
+
+
+]
+]
+---
+
+name: H15bb7
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e).fg[]
+### [Бинарное ](#H7523e)
+### [Унарное ](#Ha5bd4) <span class="bullet bullet">[&#8226;](#Ha5bd4)</span><span class="bullet bullet-active">[&#8226;](#H15bb7)</span>.fg[].bg[]
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+Унарное .parent[.grand[Пересечение]]
+]
+
+.fixprecode[
+
+
+
+``` r
+‎ m13 <- tm_shape(overlaps)+tm_polygons("n.overlaps",fill_alpha=0.5,group="Overlaps")
+```
+
+``` r
+‎ m13
+```
+<div class="figure">
+<div class="framed" style="height:460px; width=100%">
+<iframe src="assets/lesson08/widget_w13.html" width="100%" height="460" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+]
+]
+---
+
+name: H641b0
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0) <span class="bullet bullet-active">[&#8226;](#H641b0)</span><span class="bullet mslide34m">[&#8226;](#Hfcd8d)</span><span class="bullet mslide35m">[&#8226;](#H8bdfe)</span>.fg[].bg[]
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Охват
+]
+
+.fixprecode[
+
+
+
+
+``` r
+‎ extent <- hr2 |> sf::st_bbox(hr2) |> sf::st_as_sfc()
+‎ m8 <- tm_shape(hr2)+tm_polygons("group",fill_alpha=0.5,group="Kernel levels")+
+‎    tm_shape(extent)+tm_borders(group="Extent, boudary box",lty="dotted",lwd=2)
+```
+
+``` r
+‎ m8
+```
+<div class="figure">
+<div class="framed" style="height:485px; width=100%">
+<iframe src="assets/lesson08/widget_w8.html" width="100%" height="485" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+]
+]
+---
+
+name: Hfcd8d
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0) <span class="bullet bullet">[&#8226;](#H641b0)</span><span class="bullet bullet-active">[&#8226;](#Hfcd8d)</span><span class="bullet mslide35m">[&#8226;](#H8bdfe)</span>.fg[].bg[]
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Охват
+]
+
+.fixprecode[
+
+
+
+``` r
+‎ inside <- extent |> sf::st_transform(3572) |> sf::st_buffer(-100*1e3)
+‎ m9 <- tm_shape(hr2)+tm_polygons("group",fill_alpha=0.5,group="Kernel levels")+
+‎    tm_shape(extent)+tm_borders(group="Extent",lty="dotted",lwd=2)+
+‎    tm_shape(inside)+tm_borders(group="Inside 100km",lty="dashed",lwd=3)
+```
+
+``` r
+‎ m9
+```
+<div class="figure">
+<div class="framed" style="height:460px; width=100%">
+<iframe src="assets/lesson08/widget_w9.html" width="100%" height="460" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+]
+]
+---
+
+name: H8bdfe
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0) <span class="bullet bullet">[&#8226;](#H641b0)</span><span class="bullet bullet">[&#8226;](#Hfcd8d)</span><span class="bullet bullet-active">[&#8226;](#H8bdfe)</span>.fg[].bg[]
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Охват
+]
+
+.fixprecode[
+
+
+
+``` r
+‎ cutted <- sf::st_intersection(hr2,sf::st_transform(inside,sf::st_crs(hr2)))
+‎ m14 <- tm_shape(cutted)+tm_polygons("group",fill_alpha=0.5,group="Kernel levels")+
+‎    tm_shape(inside)+tm_borders(group="Inside 100km",lty="dashed",lwd=3)
+```
+
+``` r
+‎ m14
+```
+<div class="figure">
+<div class="framed" style="height:485px; width=100%">
+<iframe src="assets/lesson08/widget_w14.html" width="100%" height="485" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+]
+]
+---
+
+name: H4253e
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e) <span class="bullet bullet-active">[&#8226;](#H4253e)</span><span class="bullet mslide37m">[&#8226;](#H65d18)</span>.fg[].bg[]
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Сегментация
+]
+
+.fixprecode[
+
+
+
+
+``` r
+‎ bound <- sf::st_segmentize(inside,3000)
+‎ m10 <- tm_shape(bound)+tm_borders(col="red",group="Bound (n pts)",lty="dashed",lwd=2)+
+‎    tm_shape(inside)+tm_borders(col="blue",group="Extent (4 pts)",lty="dashed",lwd=2)
+```
+
+``` r
+‎ m10
+```
+<div class="figure">
+<div class="framed" style="height:485px; width=100%">
+<iframe src="assets/lesson08/widget_w10.html" width="100%" height="485" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+]
+]
+---
+
+name: H65d18
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e) <span class="bullet bullet">[&#8226;](#H4253e)</span><span class="bullet bullet-active">[&#8226;](#H65d18)</span>.fg[].bg[]
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Сегментация
+]
+
+.fixprecode[
+
+
+
+``` r
+‎ within <- sf::st_intersection(hr2,sf::st_transform(bound,sf::st_crs(hr2)))
+‎ m11 <- tm_shape(within)+tm_polygons("group",fill_alpha=0.5,group="Kernel levels")+
+‎    tm_shape(bound)+tm_borders(group="Within 100km",lty="dashed",lwd=3)
+```
+
+``` r
+‎ m11
+```
+<div class="figure">
+<div class="framed" style="height:485px; width=100%">
+<iframe src="assets/lesson08/widget_w11.html" width="100%" height="485" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+]
+]
+---
+class: notable middle
+
+
+.note[
+Пересечение геометрически корректно, но отображение линий между точками по плоскости, а не по поверхности
+]
+---
+
+name: Hdeb96
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96) <span class="bullet bullet-active">[&#8226;](#Hdeb96)</span><span class="bullet mslide40m">[&#8226;](#Hb4f48)</span>.fg[].bg[]
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Упрощение
+]
+
+.fixprecode[
+
+
+Для ускорения скорости обработки и прорисовки
+
+
+``` r
+‎ s1 <- hr2 |> sf::st_cast("MULTIPOLYGON")
+‎ s2 <- sf::st_simplify(hr2,3000,preserveTopology=TRUE) |>
+‎    sf::st_cast("MULTIPOLYGON")
+‎ sf::st_agr(s1) <- "constant"
+‎ sf::st_agr(s2) <- "constant"
+‎ p1 <- sf::st_cast(s1,"POINT")
+‎ p2 <- sf::st_cast(s2,"POINT")
+‎ m12 <- NULL+
+‎    tm_shape(s1)+tm_borders(group="Original border",col="grey60")+
+‎    tm_shape(s2)+tm_borders(group="Simplified border",col="grey20")+
+‎    tm_shape(p1)+tm_dots(size=0.01,group="Original vertexes",col="grey60")+
+‎    tm_shape(p2)+tm_dots(size=0.06,group="Simplified vertexes",col="grey20")+
+‎    NULL
+```
+
+
+]
+]
+---
+
+name: Hb4f48
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96) <span class="bullet bullet">[&#8226;](#Hdeb96)</span><span class="bullet bullet-active">[&#8226;](#Hb4f48)</span>.fg[].bg[]
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Упрощение
+]
+
+.fixprecode[
+
+
+
+``` r
+‎ m12
+```
+<div class="figure">
+<div class="framed" style="height:600px; width=100%">
+<iframe src="assets/lesson08/widget_w12.html" width="100%" height="600" class="ursa-widgetize"></iframe>
+</div>
+</div>
+
+
+<style type="text/css">
+:root {--sidebar: 25%; --pointsize: 21.5pt;}
+</style>
+
+]
+]
+---
+name: beforefinalizing
+
+
+.toc.sidebar.left-column[
+.outline[
+## [Инструменты QGIS ](#difference)
+## [Данные и методы ](#H90e56)
+## [Валидность ](#H60b25)
+## [Связь "Атрибут-геометрия" ](#H8ff48)
+## [Преобразование ](#H7000f)
+## [Объединение ](#H87d0e)
+## [Центроид ](#Hb8e98)
+## [Буфер ](#Hae516)
+## [Пересечение ](#H7523e)
+## [Охват ](#H641b0)
+## [Сегментация ](#H4253e)
+## [Упрощение ](#Hdeb96)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+]
+
+
+---
+name: endofslideshow
+class: right bottom notable blackout
+.endofslideshow[]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://nplatonov.github.io/site_libs/remark.js/remark-latest.min.js"></script>
+<script src="https://nplatonov.github.io/site_libs/moon_reader-before.js"></script>
+<script>var slideshow = remark.create({
+  "countIncrementalSlides": false,
+  "slideNumberFormat": "<div class=\"custom-slide-number\" data-total=\"%total%\" data-current=\"%current%\"></div>",
+  "ratio": "29:18",
+  "navigation": {
+    "scroll": true,
+    "click": false,
+    "touch": true
+  },
+  "highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+<script src="https://nplatonov.github.io/site_libs/moon_reader-after.js"></script>
+
+  </body>
+</html>
