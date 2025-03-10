@@ -195,6 +195,9 @@ function adjustImageSize() {
          return;
       if (!scroller.clientHeight)
          return;
+      const oversize = scroller.querySelector('.scrollable, .oversize');
+      if (oversize)
+         return;
      // if (false && !hasVerticalScrollbar(scroller)) {
         // scroller.classList.remove('scrollable')
         // scroller.classList.add('imageresized')
