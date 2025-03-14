@@ -187,6 +187,7 @@ function adjustImageSize() {
    let counter=0;
    var multi;
    slideList.forEach((slide, index) => {
+     // console.log("Image size", index);
       if (!slide)
          return;
       // const slide = document.querySelector('.remark-slide-scaler');
@@ -469,8 +470,8 @@ function adjustImageSize() {
 
        // Включаем вертикальную прокрутку контейнера, если она все еще нужна
       // scroller.style.overflowY = hasVerticalScrollbar(scroller) ? 'scroll' : 'unset';
-       if (!hasHorizontalScrollbar(scroller))
-          scroller.style.overflowX = 'unset';
+      if (!hasHorizontalScrollbar(scroller))
+         scroller.style.overflowX = 'unset';
    })
    if (((performance.now() - startTime) / 1000) > 10)
       alert(`Image size adjustment took ${durationInSeconds} seconds`);
@@ -489,7 +490,7 @@ function adjustFontSize() {
   // const offset = scrollableOffset();
    let count=0;
    slideList.forEach((slide, index) => {
-     // console.log(index);
+     // console.log("Font size:", index);
       count++;
       const scroller = slide.querySelector('.scrollable');
       if (!scroller) {
@@ -556,7 +557,6 @@ function adjustFontSize() {
       if (filteredElements.some((num) => num))
         return;
      */
-
       // Если есть вертикальная прокрутка, начинаем уменьшать размер шрифта
       let fontSize = 100; // Начальный размер шрифта в процентах
       let reduced = false;
@@ -676,7 +676,7 @@ function adjustOutline() {
       var k=0;
       var relative=100;
       const elements = outline.querySelectorAll('h1, h2, h3, h4, h5');
-      if (outline.clientHeight >= totalHeight)
+      if (false && outline.clientHeight >= totalHeight)
          console.log(index,"B:"
                    // ,"shorttitle:",banner.offsetHeight,"confbanner:",scrollableOffset()
                     ,"outline:",outline.clientHeight,"available:",totalHeight);
@@ -706,7 +706,7 @@ function adjustOutline() {
       }
       if (relative == 100)
          outline.style.fontSize = '';
-      if (k > 0)
+      if (false && k > 0)
          console.log(index,"C:",k
                    // ,"shorttitle:",banner.offsetHeight,"confbanner:",scrollableOffset()
                     ,"outline:",outline.clientHeight,"available:",totalHeight
@@ -717,7 +717,8 @@ function adjustOutline() {
          if (k>10)
             break;
          relative = relative * (1-0.002);
-         console.log(index, k, "D:", relative);
+         if (false)
+            console.log(index, k, "D:", relative);
          outline.style.fontSize = `${(relative).toFixed(1)}%`;
       }
       if (isAlert) {
@@ -753,7 +754,7 @@ adjustBundle=function() {
       })
    }
    adjustImageSize();
-   adjustFontSize();
+  // adjustFontSize();
    if (true && offset) {
       const bannerList = document.querySelectorAll('.scrollable-offset');
       bannerList.forEach(banner => {
