@@ -187,7 +187,6 @@ function adjustImageSize() {
    let counter=0;
    var multi;
    slideList.forEach((slide, index) => {
-     // console.log("Image size", index);
       if (!slide)
          return;
       // const slide = document.querySelector('.remark-slide-scaler');
@@ -196,6 +195,7 @@ function adjustImageSize() {
          return;
       if (!scroller.clientHeight)
          return;
+     // console.log("Image size: ind =", index);
       const oversize = scroller.querySelector('.scrollable, .oversize');
       if (oversize)
          return;
@@ -208,10 +208,14 @@ function adjustImageSize() {
       multi = Object.keys(imageList).length > 1
      // console.log(Object.keys(imageList).length)
       const columns = scroller.querySelector('.pulling, .double');
-      if ((multi) || (columns > 0)) {
+     // if (columns)
+     //    console.log("columns:",Object.keys(columns).length);
+     // console.log("multi:",Object.keys(imageList).length);
+      if ((multi) || (columns)) {
+        // console.log("Multiple images or multiple columns");
          const predefinedHeights = Array.from(imageList).map(image => image.offsetHeight);
          imageList.forEach((image) => {
-            if (true & multi)
+            if (true & multi) // `| multi`
                image.style.height = '700px';
             else
                image.style.height = '';
@@ -665,8 +669,10 @@ function adjustOutline() {
          if (false && !hasVerticalScrollbar(sidebar))
             return;
       }
-     // console.log("A",index,hasVerticalScrollbar(sidebar),hasHorizontalScrollbar(sidebar));
-     // console.log("1", index,outline.clientHeight,totalHeight);
+      if (false) {
+         console.log("A",index,hasVerticalScrollbar(sidebar),hasHorizontalScrollbar(sidebar));
+         console.log("1", index,outline.clientHeight,totalHeight);
+      }
       var header;
       var fontSize;
       if (isAlert) {
@@ -754,7 +760,7 @@ adjustBundle=function() {
       })
    }
    adjustImageSize();
-  // adjustFontSize();
+   adjustFontSize();
    if (true && offset) {
       const bannerList = document.querySelectorAll('.scrollable-offset');
       bannerList.forEach(banner => {
