@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ГИС 07</title>
+    <meta charset="utf-8" />
+    <script src="https://nplatonov.github.io/site_libs/header-attrs-2.29/header-attrs.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/xaringanExtra_fit-screen-0.2.6/fit-screen.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/js-cookie-3.0.0/js.cookie.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/peerjs-1.3.1/peerjs.min.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/tiny.toast-1.0.0/toast.min.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/general/general.css" type="text/css" />
+  </head>
+  <body>
+
+<div id="loader" class="loader"></div>
+
+<style>
+.remark-backdrop:after{
+   content: 'Никита Платонов \A \A ГИС аспирантура';
+}
+</style>
+
+    <textarea id="source">
+
+layout: true
+
+
+
+
+
+
+
+
+.toc.banner[
+
+
+
+
+.shorttitle[
+[ГИС аспирантура](break.html#home)
+]
+
+]
+
+---
+name: home
+class: metadata customtitle middle left giphy
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996)
+## [Просмотр исходных данных ](#H83d6b)
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+
+
+.authors[
+
+
+.author[Никита&nbsp;Платонов]
+
+
+.institute[с.н.с. ИПЭЭ РАН]
+
+
+
+]
+
+
+.title[
+Вопросы и ответы
+]
+
+
+.subtitle[
+ГИС технологии в биологических исследованиях
+]
+
+
+.what[
+Занятие 07
+]
+
+
+.where[
+
+]
+
+
+.when[
+ .updated[Обновлено: 2025-03-27 13:23]
+]
+
+
+
+]
+---
+class: middle 
+
+
+
+
+
+
+
+
+
+
+Вопросы обучающихся, появляющиеся во время занятий, работы над домашними заданиями. 
+Здесь приведены возможные решения.
+
+
+---
+
+name: Hce996
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996) <span class="bullet bullet-active">[&#8226;](#Hce996)</span><span class="bullet mslide5m">[&#8226;](#source)</span><span class="bullet mslide6m">[&#8226;](#H357b5)</span><span class="bullet mslide7m">[&#8226;](#H427c6)</span><span class="bullet mslide8m">[&#8226;](#modified)</span><span class="bullet mslide9m">[&#8226;](#Ha5c44)</span><span class="bullet mslide10m">[&#8226;](#voyager)</span><span class="bullet mslide11m">[&#8226;](#Hbe844)</span><span class="bullet mslide12m">[&#8226;](#H278d1)</span>.fg[].bg[]
+## [Просмотр исходных данных ](#H83d6b)
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+QGIS Модуль QuickMapServices
+]
+
+.fixprecode[
+
+
+
+
+<img src="assets/lesson07/../QGIS/01%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F/03%20Specific/QGIS-Specific-05-Plugins.png" width="1330" height="700" bound style="display: block; margin: auto auto auto 0;" />
+
+Установить, обновить. В настройка модуля загрузить "Contributive Pack".
+
+
+]
+]
+---
+name: source
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996) <span class="bullet bullet">[&#8226;](#Hce996)</span><span class="bullet bullet-active">[&#8226;](#source)</span><span class="bullet mslide6m">[&#8226;](#H357b5)</span><span class="bullet mslide7m">[&#8226;](#H427c6)</span><span class="bullet mslide8m">[&#8226;](#modified)</span><span class="bullet mslide9m">[&#8226;](#Ha5c44)</span><span class="bullet mslide10m">[&#8226;](#voyager)</span><span class="bullet mslide11m">[&#8226;](#Hbe844)</span><span class="bullet mslide12m">[&#8226;](#H278d1)</span>.fg[].bg[]
+## [Просмотр исходных данных ](#H83d6b)
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+QGIS Модуль QuickMapServices
+]
+
+.fixprecode[
+
+
+
+
+<img src="assets/lesson07/Positron-Original.png" width="1330" height="700" bound style="display: block; margin: auto auto auto 0;" />
+
+Мелкие буквы и объекты. См. [исправление](#modified)
+
+
+]
+]
+---
+
+name: H357b5
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996) <span class="bullet bullet">[&#8226;](#Hce996)</span><span class="bullet bullet">[&#8226;](#source)</span><span class="bullet bullet-active">[&#8226;](#H357b5)</span><span class="bullet mslide7m">[&#8226;](#H427c6)</span><span class="bullet mslide8m">[&#8226;](#modified)</span><span class="bullet mslide9m">[&#8226;](#Ha5c44)</span><span class="bullet mslide10m">[&#8226;](#voyager)</span><span class="bullet mslide11m">[&#8226;](#Hbe844)</span><span class="bullet mslide12m">[&#8226;](#H278d1)</span>.fg[].bg[]
+## [Просмотр исходных данных ](#H83d6b)
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+QGIS Модуль QuickMapServices
+]
+
+.fixprecode[
+
+
+<img src="assets/lesson07/Positron-Settings.png" width="1330" height="700" bound style="display: block; margin: auto auto auto 0;" />
+
+Открываем свойства слоя и вкладку источника данных
+
+
+]
+]
+---
+
+name: H427c6
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996) <span class="bullet bullet">[&#8226;](#Hce996)</span><span class="bullet bullet">[&#8226;](#source)</span><span class="bullet bullet">[&#8226;](#H357b5)</span><span class="bullet bullet-active">[&#8226;](#H427c6)</span><span class="bullet mslide8m">[&#8226;](#modified)</span><span class="bullet mslide9m">[&#8226;](#Ha5c44)</span><span class="bullet mslide10m">[&#8226;](#voyager)</span><span class="bullet mslide11m">[&#8226;](#Hbe844)</span><span class="bullet mslide12m">[&#8226;](#H278d1)</span>.fg[].bg[]
+## [Просмотр исходных данных ](#H83d6b)
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+QGIS Модуль QuickMapServices
+]
+
+.fixprecode[
+
+
+<img src="assets/lesson07/Positron-Settings2.png" width="1330" height="700" bound style="display: block; margin: auto auto auto 0;" />
+
++ Меняем URL, добавляя "&#64;2x" и предпочитая https://
++ Задаем разрешение тайлов (192 DPI)
+
+
+]
+]
+---
+name: modified
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996) <span class="bullet bullet">[&#8226;](#Hce996)</span><span class="bullet bullet">[&#8226;](#source)</span><span class="bullet bullet">[&#8226;](#H357b5)</span><span class="bullet bullet">[&#8226;](#H427c6)</span><span class="bullet bullet-active">[&#8226;](#modified)</span><span class="bullet mslide9m">[&#8226;](#Ha5c44)</span><span class="bullet mslide10m">[&#8226;](#voyager)</span><span class="bullet mslide11m">[&#8226;](#Hbe844)</span><span class="bullet mslide12m">[&#8226;](#H278d1)</span>.fg[].bg[]
+## [Просмотр исходных данных ](#H83d6b)
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+QGIS Модуль QuickMapServices
+]
+
+.fixprecode[
+
+
+
+<img src="assets/lesson07/Positron-Modified.png" width="1330" height="700" bound style="display: block; margin: auto auto auto 0;" />
+
+См. по-умолчанию ([оригинал](#source)) и [стиль "Voyager"](#voyager)
+
+]
+]
+---
+
+name: Ha5c44
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996) <span class="bullet bullet">[&#8226;](#Hce996)</span><span class="bullet bullet">[&#8226;](#source)</span><span class="bullet bullet">[&#8226;](#H357b5)</span><span class="bullet bullet">[&#8226;](#H427c6)</span><span class="bullet bullet">[&#8226;](#modified)</span><span class="bullet bullet-active">[&#8226;](#Ha5c44)</span><span class="bullet mslide10m">[&#8226;](#voyager)</span><span class="bullet mslide11m">[&#8226;](#Hbe844)</span><span class="bullet mslide12m">[&#8226;](#H278d1)</span>.fg[].bg[]
+## [Просмотр исходных данных ](#H83d6b)
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+QGIS Модуль QuickMapServices
+]
+
+.fixprecode[
+
+
+<img src="assets/lesson07/Voyager-Settings.png" width="1330" height="700" bound style="display: block; margin: auto auto auto 0;" />
+
+Можно заменить URL частично или полностью.  
+Здесь оставлен пройвайдер CartoDB, но заменен стиль.
+
+
+]
+]
+---
+name: voyager
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996) <span class="bullet bullet">[&#8226;](#Hce996)</span><span class="bullet bullet">[&#8226;](#source)</span><span class="bullet bullet">[&#8226;](#H357b5)</span><span class="bullet bullet">[&#8226;](#H427c6)</span><span class="bullet bullet">[&#8226;](#modified)</span><span class="bullet bullet">[&#8226;](#Ha5c44)</span><span class="bullet bullet-active">[&#8226;](#voyager)</span><span class="bullet mslide11m">[&#8226;](#Hbe844)</span><span class="bullet mslide12m">[&#8226;](#H278d1)</span>.fg[].bg[]
+## [Просмотр исходных данных ](#H83d6b)
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+QGIS Модуль QuickMapServices
+]
+
+.fixprecode[
+
+
+
+<img src="assets/lesson07/Voyager-Modified.png" width="1330" height="700" bound style="display: block; margin: auto auto auto 0;" />
+
+Cм. стиль [Positron](#modified).
+
+
+]
+]
+---
+
+name: Hbe844
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996) <span class="bullet bullet">[&#8226;](#Hce996)</span><span class="bullet bullet">[&#8226;](#source)</span><span class="bullet bullet">[&#8226;](#H357b5)</span><span class="bullet bullet">[&#8226;](#H427c6)</span><span class="bullet bullet">[&#8226;](#modified)</span><span class="bullet bullet">[&#8226;](#Ha5c44)</span><span class="bullet bullet">[&#8226;](#voyager)</span><span class="bullet bullet-active">[&#8226;](#Hbe844)</span><span class="bullet mslide12m">[&#8226;](#H278d1)</span>.fg[].bg[]
+## [Просмотр исходных данных ](#H83d6b)
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+QGIS Модуль QuickMapServices
+]
+
+.fixprecode[
+
+
+<img src="assets/lesson07/CartoDB-Attribution.png" width="1330" height="700" bound style="display: block; margin: auto auto auto 0;" />
+
+При использовании в статьях важно указать источник данных и лицензию.
+
+
+]
+]
+---
+
+name: H278d1
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996) <span class="bullet bullet">[&#8226;](#Hce996)</span><span class="bullet bullet">[&#8226;](#source)</span><span class="bullet bullet">[&#8226;](#H357b5)</span><span class="bullet bullet">[&#8226;](#H427c6)</span><span class="bullet bullet">[&#8226;](#modified)</span><span class="bullet bullet">[&#8226;](#Ha5c44)</span><span class="bullet bullet">[&#8226;](#voyager)</span><span class="bullet bullet">[&#8226;](#Hbe844)</span><span class="bullet bullet-active">[&#8226;](#H278d1)</span>.fg[].bg[]
+## [Просмотр исходных данных ](#H83d6b)
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+QGIS Модуль QuickMapServices
+]
+
+.fixprecode[
+
+
+
+<img src="assets/lesson07/Attribution-Example.png" width="1330" height="700" bound style="display: block; margin: auto auto auto 0;" />
+
+Как, например, [рисунок 3](https://www.mdpi.com/2306-5729/7/4/39/htm#fig_body_display_data-07-00039-f003) в статье <span class="cite hovertext" data-hover="OpenStreetMap Contribution to Local Data Ecosystems in COVID-19 Times: Experiences and Reflections from the Italian Case"><a name=cite-Minghini2022></a>([Minghini et al., 2022](#bib))</span>.
+[Оригинал рисунка](https://www.mdpi.com/data/data-07-00039/article_deploy/html/images/data-07-00039-g003.png);
+здесь фрагмент pdf-версии статьи.
+
+
+<style type="text/css">
+:root {
+    --sidebar: 25%;
+}
+</style>
+
+
+]
+]
+
+
+
+---
+
+name: H83d6b
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996)
+## [Просмотр исходных данных ](#H83d6b).fg[]
+### [QGIS ](#H83d6b).fg[].bg[]
+### [R ](#H54fe7)
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+QGIS .parent[.grand[Просмотр исходных данных]]
+]
+
+.fixprecode[
+
+
+
++ Добавить слой
+
++ Добавить подложку или иные пространственные ориентиры
+
+
+
+]
+]
+---
+
+name: H54fe7
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996)
+## [Просмотр исходных данных ](#H83d6b).fg[]
+### [QGIS ](#H83d6b)
+### [R ](#H54fe7) <span class="bullet bullet-active">[&#8226;](#H54fe7)</span><span class="bullet mslide16m">[&#8226;](#H20e0d)</span>.fg[].bg[]
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+R .parent[.grand[Просмотр исходных данных]]
+]
+
+.fixprecode[
+
+
+
+
+``` r
+‎ loc <- sf::st_read("Полина Богатова/10_Точки_20230928-2109.kml")
+‎ m <- mapview::mapview(loc)
+‎ m ## m@map
+```
+
+
+]
+]
+---
+
+name: H20e0d
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996)
+## [Просмотр исходных данных ](#H83d6b).fg[]
+### [QGIS ](#H83d6b)
+### [R ](#H54fe7) <span class="bullet bullet">[&#8226;](#H54fe7)</span><span class="bullet bullet-active">[&#8226;](#H20e0d)</span>.fg[].bg[]
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+R .parent[.grand[Просмотр исходных данных]]
+]
+
+.fixprecode[
+
+
+
+
+
+]
+]
+---
+name: EarthEngine
+class: inverse middle
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996)
+## [Просмотр исходных данных ](#H83d6b)
+## [Earth Engine](#EarthEngine) <span class="bullet bullet-active">[&#8226;](#EarthEngine)</span><span class="bullet mslide19m">[&#8226;](#Hb05fc)</span>.fg[].bg[]
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+
+.header.h2.broad[
+Earth Engine
+]
+
+.fixprecode[
+
+
+
+Облачная платформа для геопространственного анализа данных.
+
+.footer[
+По состоянию на 27 марта 2025 г. раздел не сформирован.
+]
+
+
+]
+]
+---
+class: inverse
+name: Hb05fc
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996)
+## [Просмотр исходных данных ](#H83d6b)
+## [Earth Engine](#EarthEngine) <span class="bullet bullet">[&#8226;](#EarthEngine)</span><span class="bullet bullet-active">[&#8226;](#Hb05fc)</span>.fg[].bg[]
+## [Портативные GPS](#GPS)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+Earth Engine
+]
+
+.fixprecode[
+
+
+
++ [Авторизация](https://code.earthengine.google.com/) по учетной записи Google
+
++ Редактирование скриптов в облачном блокноте [Google Colab](https://developers.google.com/earth-engine/guides/python_install-colab).
+
++ "Внушительный" [каталог данных](https://developers.google.com/earth-engine/datasets/catalog) с фрагментом кода для доступа и возможностью облачной обработки.
+
++ QGIS модули
+
+   + [Google Earth Engine<sup class="remarkonly">*</sup>](https://gee-community.github.io/qgis-earthengine-plugin/)
+
+   + [Google Earth Engine Data Catalog](https://plugins.qgis.org/plugins/qgis_gee_data_catalog/)
+
++ more...
+
+.footer.remarkonly[
+<sup>*</sup> Project name: pl-ggetest
+]
+
+]
+]
+---
+name: GPS
+class: inverse middle
+
+.toc.sidebar.left-column[
+.outline[
+## [QGIS Модуль QuickMapServices ](#Hce996)
+## [Просмотр исходных данных ](#H83d6b)
+## [Earth Engine](#EarthEngine)
+## [Портативные GPS](#GPS).fg[].bg[]
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+
+.header.h2.broad[
+Портативные GPS
+]
+
+.fixprecode[
+
+
+
+.footer[
+По состоянию на 27 марта 2025 г. раздел не сформирован.
+]
+
+ ### Устройства
+
++ Garmin
+
++ Приложения Android/iPhone
+
+&nbsp;
+
+ ### Работа
+
++ Максимально открытое пространство
+
++ Периодическая проверка уровня сигнала
+
++ Заряд аккумуляторов (включенный экран)
+
++ При импорте данных не забыть про нужные атрибуты (высота, hdov)
+
+
+]
+]
+---
+name: beforefinalizing
+name: bib
+class: notable
+
+
+
+
+
+
+
+
+.footnote.small.bibliography[
+<div class="backtoshow"><a href="javascript:window.history.back();">↩</a></div>
+****
+
+<a name=bib-Minghini2022></a>[Minghini, M., A. Sarretta, and M. Napolitano](#bib) (2022). "OpenStreetMap Contribution to Local Data Ecosystems in COVID-19 Times: Experiences and Reflections from the Italian Case". In: _Data_ 7.4, p. 39. DOI: [10.3390/data7040039](https://doi.org/10.3390%2Fdata7040039).
+
+]
+
+
+---
+name: endofslideshow
+class: right bottom notable blackout
+.endofslideshow[]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://nplatonov.github.io/site_libs/remark.js/remark-latest.min.js"></script>
+<script src="https://nplatonov.github.io/site_libs/moon_reader-before.js"></script>
+<script>var slideshow = remark.create({
+  "countIncrementalSlides": false,
+  "slideNumberFormat": "<div class=\"custom-slide-number\" data-total=\"%total%\" data-current=\"%current%\"></div>",
+  "ratio": "29:18",
+  "navigation": {
+    "scroll": true,
+    "click": false,
+    "touch": true
+  },
+  "highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script src="https://nplatonov.github.io/site_libs/moon_reader-after.js"></script>
+
+  </body>
+</html>
