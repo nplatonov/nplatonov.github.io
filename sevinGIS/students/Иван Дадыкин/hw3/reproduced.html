@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>reproduced</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.29/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+<p>Задание выполнено в R. Использованные пакеты:</p>
+<ol style="list-style-type: decimal">
+<li><p>sf</p></li>
+<li><p>sp</p></li>
+<li><p>adehabitatLT</p></li>
+<li><p>mapview</p></li>
+<li><p>htmlwidgets</p></li>
+<li><p>webshot</p></li>
+</ol>
+<p>Дальше будет следовать код, перемежаемый комментариями и результатами команд</p>
+<div id="глава-1.-сегментация" class="section level1">
+<h1>Глава 1. Сегментация</h1>
+<pre><code>library(sf)
+library(mapview)
+library(adehabitatLT)</code></pre>
+<p>Сперва загрузим данные, а именно слой “track_points”</p>
+<pre><code>dsn &lt;- st_read(&quot;D:/GIS/lyzhnik/2022-01-09_14-00_Sun.gpx&quot;, layer=&quot;track_points&quot;) |&gt; as(&quot;Spatial&quot;)</code></pre>
+<p>Изменим проекцию на эквидистантную, чтобы было удобнее считать координаты</p>
+<pre><code>dsn2&lt;- sp::spTransform(dsn,&quot;+proj=aeqd +lat_0=90 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;)
+dsn.matr&lt;-st_as_sf(dsn2)</code></pre>
+<p>Конвертируем обратно из sp в sf</p>
+<p>Готовим почву для дальнейшего сегментирования – создаем объект класса ltraj</p>
+<pre><code>trajectory &lt;- as.ltraj(st_coordinates(dsn.matr), date=dsn.matr$time, id=1, proj4string=sp::CRS(st_crs(dsn.matr)$proj4string))</code></pre>
+<p>Сегментируем объект с помощью lavielle. Выберем три сегмента, соответствующие пути до трассы, треку по трассе и пути обратно.</p>
+<pre><code>segmented &lt;- lavielle(trajectory, Lmin=10, Kmax=6, type=&quot;mean&quot;)
+chooseseg(segmented)
+(segments &lt;- findpath(segmented, 3))</code></pre>
+<p class="centered-image"><img src="media/image1.png" style="width:3.61676in;height:3.35in" /></p>
+<p>Смотрим на получившееся разбиение на сегменты и видим, что в целом получилось достаточно логично, в первом и третьем сегменте перемещения меньше, чем во втором, а второй сегмент как будто состоит из двух повторяющихся частей.</p>
+<p>Сам объект segments выглядит следующим образом:</p>
+<pre><code>segments</code></pre>
+<p class="centered-image"><img src="media/image2.png" style="width:4.74483in;height:2.12558in" /></p>
+</div>
+<div id="глава-2.-визуализация" class="section level1">
+<h1>Глава 2. Визуализация</h1>
+<p>Теперь визуализируем результат разбиения в пакете mapview</p>
+<pre><code>loc&lt;-segments</code></pre>
+<p>Изменили название, чтобы не искать эту переменную в функции ниже</p>
+<p>Дальше следует кусок, скопированный из кода занятия, но с учетом эквидистантной системы координат</p>
+<pre><code>&#39;plottraj&#39; &lt;- function(lt,desc=c(&quot;burst&quot;, &quot;id&quot;)) {
+desc &lt;- match.arg(desc)
+lt &lt;- na.omit(lt)
+id &lt;- sapply(lt,attr,desc)
+bt_loc &lt;- st_as_sf(ld(lt),coords=c(&quot;x&quot;,&quot;y&quot;),crs=st_crs(dsn.matr)$proj4string)</code></pre>
+<p>Проверить, что система координат соответствует таковой исходного файла sf</p>
+<pre><code>[c(desc,&quot;date&quot;)]
+bt_ext &lt;- by(st_geometry(bt_loc),bt_loc[[desc]],function(x) {
+st_sf(onset=c(&quot;begin&quot;,&quot;end&quot;),
+geometry=rbind(head(x,1), tail(x,1)))
+})
+bt_ext &lt;- do.call(rbind,bt_ext)
+st_crs(bt_ext) &lt;- st_crs(bt_loc)
+xy &lt;- lapply(lt,function(obj) {
+as.matrix(obj[,c(&quot;x&quot;,&quot;y&quot;)]) |&gt; st_linestring()
+})
+bt_track &lt;- st_sf(dummy=id, geometry=st_sfc(xy,crs=st_crs(dsn.matr)$proj4string)) </code></pre>
+<p>Проверить, что система координат соответствует таковой исходного файла sf</p>
+<pre><code>colnames(bt_track)[grep(&quot;dummy&quot;,colnames(bt_track))] &lt;- desc
+with(list(loc=bt_loc,track=bt_track,ext=bt_ext)
+,mapview(ext,zcol=&quot;onset&quot;,cex=6,layer=&quot;Period&quot;
+,col.regions=c(&quot;blue&quot;,&quot;red&quot;),legend=F,home=F)+
+mapview(track,layer=&quot;Track&quot;,zcol=desc,home=F,legend=F)+
+mapview(loc,zcol=desc,layer=&quot;Locations&quot;,cex=3,home=T,label=&quot;date&quot;))
+}</code></pre>
+<p>Теперь собственно визуализация в браузере</p>
+<pre><code>mapviewOptions(fgb = FALSE)</code></pre>
+<p>Этот шаг необходим для нормального экспорта изображения, без него не отображаются точки</p>
+<pre><code>(map &lt;- plottraj(loc,&quot;burst&quot;))</code></pre>
+<p>Отрисовка</p>
+<p>В результате получаем следующую картинку, которую можно при желании приблизить и рассмотреть подробнее:</p>
+<p class="centered-image"><img src="media/image3.png" style="width:5.7002in;height:4.275in" /></p>
+<p>Кстати, этот скриншот мы добыли не на полке и не в магазине – мы экспортировали его с помощью следующей конструкции:</p>
+<pre><code>library(htmlwidgets)
+library(webshot)
+mapshot (map, file = &quot;D:/GIS/lyzhnik/lyzhnik_map.png&quot;)</code></pre>
+<p>Приглядевшись внимательнее, видим, что согласно map, разбиение на сегменты прошло не идеально: конец 1 и начало 2 сегмента не строго соответствуют началу “круга”, нужно добавить к сегменту 1 2 первых значения сегмента 2. А у сегмента 2, наоборот, убрать 2 первых значения.</p>
+<p>Также надо состыковать конец 2 и начало 3 сегмента (порядка 10 м по карте)</p>
+<p class="centered-image"><img src="media/image4.png" style="width:6.00793in;height:3.02805in" /></p>
+<p>Похоже, эти артефакты появляются из-за того, что ltraj не поддерживает повторяющихся значений, какая жалость.</p>
+<p>Хорошо, что наша задача – посчитать, для этого можно использовать просто матрицу без разбиения на сегменты</p>
+<pre><code>matrix&lt;-ld(segments)</code></pre>
+<p>Получим же эту матрицу</p>
+<pre><code>head (matrix)</code></pre>
+<p>Для дальнейшей работы неплохо бы представлять, что у нас там есть</p>
+<p class="centered-image"><img src="media/image5.png" style="width:6.11081in;height:1.8401in" /></p>
+<p>И о чудо, у нас там есть уже посчитанные дистанции и временные сдвиги, то есть заморачиваться с этим не нужно.</p>
+</div>
+<div id="глава-3.-вычисление-параметров-трека." class="section level1">
+<h1>Глава 3. Вычисление параметров трека.</h1>
+<p>Для вычисления длин участков траектории разделим датасет на 4 части, сверившись с картой, чтобы у нас концы отрезков соответствовали действительности.</p>
+<p>Для этого потыкаем мышкой в точки на интерактивной карте и узнаем их порядковые номера. Такой вот у нас аналитический метод.</p>
+<pre><code>walk1&lt;-matrix[1:96,]
+circle_1&lt;-matrix[96:396,]
+circle_2&lt;-matrix[396:691,]
+walk2&lt;-matrix[691:835,]</code></pre>
+<p>Считаем общую длину для каждой части (учтем, что где-то могут быть NA)</p>
+<pre><code>length_walk1&lt;-sum(walk1[,6], na.rm=TRUE)
+length_circle1&lt;-sum(circle_1[,6], na.rm=TRUE)
+length_circle2&lt;-sum(circle_2[,6], na.rm=TRUE)
+length_walk2&lt;-sum(walk2[,6], na.rm=TRUE)
+lengths&lt;-cbind(length_walk1/1000, length_circle1/1000, length_circle2/1000, length_walk2/1000)</code></pre>
+<p>делаем поправку на километры</p>
+<pre><code>colnames(lengths)&lt;-c(&quot;Walk 1&quot;, &quot;Circle 1&quot;, &quot;Circle 2&quot;, &quot;Walk 2&quot;)</code></pre>
+<p class="centered-image"><img src="media/image6.png" style="width:3.2389in;height:0.31417in" /></p>
+<p>Милая маленькая таблица, а главное, что длина в километрах оказалась похожа на то, что мы видим из карты map</p>
+<p>Приятен также факт, что круги почти сошлись по длине. Значит, мы качественно натыкали!</p>
+<p>Теперь посчитаем среднюю скорость движения для каждого участка</p>
+<p>Для этого напишем такую функцию:</p>
+<pre><code>speed &lt;- function(data) {
+dx &lt;- data[, 6]
+dt &lt;- data[, 7]
+velocities &lt;- 3.6\*dx/dt 
+return(velocities)
+}</code></pre>
+<p>Вычисляем скорость для каждой строки в км/ч (исходно м/c)</p>
+<pre><code>speeds_1&lt;-speed(matrix[1:96,])</code></pre>
+<p>Считаем скорость каждого сегмента движения во время первой части трека</p>
+<pre><code>speeds_2&lt;-speed(matrix[96:396,])
+speeds_3&lt;-speed(matrix[396:691,])
+speeds_4&lt;-speed(matrix[691:835,])
+speed_1&lt;-mean(speeds_1, na.rm=TRUE)</code></pre>
+<p>Считаем скорость внутри участка как среднюю. Скорость в км/ч</p>
+<pre><code>speed_2&lt;-mean(speeds_2, na.rm=TRUE)
+speed_3&lt;-mean(speeds_3, na.rm=TRUE)
+speed_4&lt;-mean(speeds_4, na.rm=TRUE)
+speeds_total&lt;-cbind(speed_1, speed_2, speed_3, speed_4)
+speeds_total</code></pre>
+<p class="centered-image"><img src="media/image7.png" style="width:2.97421in;height:0.28876in" /></p>
+<p>Скорости в км/ч вполне приемлемые для пешехода и лыжника</p>
+<p>Время начала и конца круга узнаем из уже имеющегося разбиения на отрезки</p>
+<pre><code>time_start&lt;-c(walk1[1,]$date, circle_1[1,]$date, circle_2[1,]$date, walk2[1,]$date)
+time_end&lt;-c(walk1[96,]$date, circle_1[301,]$date, circle_2[296,]$date, walk2[145,]$date)
+final&lt;-rbind(round(lengths, digits=3), as.character(time_start), as.character(time_end), round(speeds_total, digits=1))</code></pre>
+<p>Заключаем даты в as.character(), иначе они превратятся в секундный формат</p>
+<pre><code>rownames(final)&lt;-c(&quot;Distance (km)&quot;, &quot;Start time&quot;, &quot;End time&quot;, &quot;Average velocity (km/h)&quot;)
+final</code></pre>
+<p class="centered-image"><img src="media/image8.png" style="width:6.30233in;height:1.37432in" /></p>
+<p>Насладимся экспортом с пакетом xlsx</p>
+<pre><code>library(xlsx)
+write.xlsx(final, &quot;final2.xlsx&quot;, row.names=TRUE, col.names=TRUE)</code></pre>
+<table style="width:98%;">
+<colgroup>
+<col width="22%" />
+<col width="18%" />
+<col width="18%" />
+<col width="18%" />
+<col width="18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">Walk.1</th>
+<th align="left">Circle.1</th>
+<th align="left">Circle.2</th>
+<th align="left">Walk.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Distance (km)</td>
+<td align="left">0.301</td>
+<td align="left">4.606</td>
+<td align="left">4.612</td>
+<td align="left">0.447</td>
+</tr>
+<tr class="even">
+<td>Start time</td>
+<td align="left">2022-01-09 14:00:18</td>
+<td align="left">2022-01-09 14:09:09</td>
+<td align="left">2022-01-09 14:36:09</td>
+<td align="left">2022-01-09 15:02:45</td>
+</tr>
+<tr class="odd">
+<td>End time</td>
+<td align="left">2022-01-09 14:09:09</td>
+<td align="left">2022-01-09 14:36:09</td>
+<td align="left">2022-01-09 15:02:45</td>
+<td align="left">2022-01-09 15:16:08</td>
+</tr>
+<tr class="even">
+<td>Average velocity (km/h)</td>
+<td align="left">2.1</td>
+<td align="left">10.2</td>
+<td align="left">10.4</td>
+<td align="left">2.1</td>
+</tr>
+</tbody>
+</table>
+<p>Осталось только найти наиболее удаленную от начала точку</p>
+<p>Для этого напишем еще одну функцию, возвращающую расстояние между началом датасета и i-ой точкой:</p>
+<pre><code>distance &lt;- function(data) {
+X &lt;- data[, 1]
+Y &lt;- data[, 2]
+delta_X &lt;- X-data[1,]$x
+delta_Y &lt;- Y-data[1,]$y
+dist &lt;- round(sqrt(delta_X^2 + delta_Y^2), digits=1)
+return(dist)
+}
+p&lt;-distance(matrix)
+head(p)</code></pre>
+<p>Проверяем, что разность для первой точки 0</p>
+<p class="centered-image"><img src="media/image9.png" style="width:2.3502in;height:0.18335in" /></p>
+<pre><code>max(p)</code></pre>
+<p class="centered-image"><img src="media/image10.png" style="width:0.89359in;height:0.16703in" /></p>
+<p>Итого самая удаленная от начала точка находится от него на расстоянии 771.6 м</p>
+<p>Что же это за точка?</p>
+<p class="centered-image"><img src="media/image11.png" style="width:0.72506in;height:0.15001in" /></p>
+<p>Номер пятьсот шестьдесят пятый</p>
+<p>И действительно, по карте получается похоже</p>
+<p class="centered-image"><img src="media/image12.png" style="width:6.2806in;height:3.16011in" /></p>
+<p>На этом у меня все, спасибо за внимание</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>

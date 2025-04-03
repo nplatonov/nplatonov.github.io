@@ -1,0 +1,167 @@
+# ссылки на скачивание shape-файлов:
+# ocean: https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_ocean.zip
+# state: https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_1_states_provinces.zip
+# place: https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places.zip
+# relief: https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/raster/NE1_HR_LC_SR_W.zip
+
+library(sf)
+library(terra)
+library(tmap)
+library(RColorBrewer)
+
+# поменяла способ чтения растра на чтение через terra, поменяла масштаб данных с 50m на 10m
+
+ocean<-st_read("C:/Users/vikro/pu-pu-pu/IPEE_classes/QGIS/rr/ne_10m_ocean/ne_10m_ocean.shp")
+state<-st_read("C:/Users/vikro/pu-pu-pu/IPEE_classes/QGIS/rr/ne_10m_admin_1_states_provinces/ne_10m_admin_1_states_provinces.shp")
+place<-st_read("C:/Users/vikro/pu-pu-pu/IPEE_classes/QGIS/rr/ne_10m_populated_places/ne_10m_populated_places.shp")
+relief<-terra::rast("C:/Users/vikro/pu-pu-pu/IPEE_classes/QGIS/rr/NE1_HR_LC_SR_W/NE1_HR_LC_SR_W.tif")|> as("SpatRaster")
+
+# Преобразуем name_ru в character СРАЗУ после чтения данных
+state$name_ru <- as.character(state$name_ru)
+
+# чтобы быть точно уверенными в системе координат, проверяем и устанавливаем её (по умолчанию это WGS 84 = EPSG:4236, т.е. и не проекция даже)
+
+st_crs(ocean)
+if (is.na(st_crs(ocean))) {
+	st_crs(ocean) <- "EPSG:4326"
+	}
+
+# и вырезываем Австралию
+
+australia<-sf::st_crop(ocean, xmin = 105, ymin = -48, xmax = 165, ymax = -8)
+
+# затем трансформируем проекцию наших данных
+
+australia_albers <- st_transform(australia, crs = "EPSG:3112")
+
+# поверяем, изменилась ли она
+
+st_crs(australia_albers)
+
+# растр тоже нужно перепроецировать в Альберс, иначе он поломает нам ситему координат, когда будем вырезать из него Австралию
+# задаём Альберс и перепроецируем в него (это дико долго, но делается)
+
+albers_crs <- "EPSG:3112"
+relief_albers <- terra::project(relief, albers_crs)
+
+# убеждаемся, что всё теперь ок
+
+terra::crs(relief_albers)
+
+# extent Австралии в системе координат Albers
+
+australia_extent <- ext(australia_albers)
+    australia_extent
+
+# и обрезаем до Австралии
+
+relief_albers_cropped <- terra::crop(relief_albers, australia_extent)
+
+# проверяем, что эта сволочь существует
+
+relief_albers_cropped 
+
+
+# дальше мы будем красить регионы Австралии разными цветами
+# для этого необходимо отсортировать их по какому-то стабцу таблицы атрибутов
+# удобнее всего по name_ru
+# к сожалению, там может ничего не значиться - эту ситуацию надо предусмотреть
+# либо удаляем строки с NA (это может привести к потере существенных данных, если строк NA в таблице много)
+# либо заменяем NA на значение по умолчанию в столбце name_ru
+# я попробовала покрасить регионы без этого - и выяснила, что есть она строка с NA в name_ru
+
+state$name_ru <- trimws(state$name_ru) # Удаляет пробелы в начале и конце строк
+state <- state[!is.na(state$name_ru) & state$name_ru != "", ]
+
+state <- state[!is.na(state$name_ru), ] 	# но делать это надо ДО того, как фильтровать регионы
+
+# выбираем нужные нам кусочки Австралии
+
+state.au <- state[state$admin == "Australia", ]
+state.au <- state.au[!is.na(state.au$name_ru), ] 	# фильтруем NA
+
+state.st <- state[state$admin == "Australia" & state$type == "State", ]
+state.st <- state.st[!is.na(state.st$name_ru), ]
+
+state.tr <- state[state$admin == "Australia" & state$type == "Territory", ]
+state.tr <- state.tr[!is.na(state.tr$name_ru), ]
+
+northern <- state.tr[state.tr$name == "Northern Territory", , drop = FALSE]
+
+if (nrow(northern) == 0) {
+  warning("Northern Territory not found after filtering!")
+}
+
+# Затем объединяем, зная, что в каждом кусочке NA уже отфильтрованы
+states.au <- rbind(state.st, northern)
+
+# Последняя проверка для уверенности:
+states.au <- states.au[!is.na(states.au$name_ru), ]
+
+# Еще раз убедимся, что NA больше нет
+table(states.au$name_ru, useNA = "ifany")
+
+
+# не помешает также проверить northern на NA, т.к. его фильтруем отдельно
+
+state.tr<-state.au[state.au$type=="Territory",]
+    northern<-state.tr[1,]
+
+    table(northern$name_ru, useNA = "ifany")
+
+# тут всё чисто
+
+
+# наконец добираем данные по городам:
+
+place.au<-place[place$ADM0NAME=="Australia",]
+place.au4<-place.au[place.au$SCALERANK<4,] 
+
+# сужаем границы, чтобы сделать красиво
+
+xmin <- st_bbox(australia_albers)["xmin"]
+xmax <- st_bbox(australia_albers)["xmax"]
+ymin <- st_bbox(australia_albers)["ymin"]
+ymax <- st_bbox(australia_albers)["ymax"]
+
+xmin_new <- xmin + (xmax - xmin) * 0.15
+xmax_new <- xmax - (xmax - xmin) * 0.15
+ymin_new <- ymin + (ymax - ymin) * 0.1
+ymax_new <- ymax - (ymax - ymin) * 0.05
+
+australia_extent <- ext(c(xmin_new, xmax_new, ymin_new, ymax_new))
+relief_albers_cropped <- terra::crop(relief_albers, australia_extent)
+
+
+# приступаем к отображению
+
+tmap_mode("plot")
+(tm1<-tm_shape(relief_albers_cropped) +
+	tm_rgb() +
+tm_shape(australia_albers) +
+	tm_polygons(fill=NULL) +
+tm_shape(states.au) +
+	tm_polygons(
+  fill="name_ru", fill_alpha=0.4,
+  fill.legend = 
+  tm_legend(title="Легенда", palette = "met.nattier", fill_alpha=0.4)) + 
+  tm_borders(col="#600c1a", lwd=0.5) +
+tm_shape(place.au4) +
+	tm_symbols(place.au4, size=0.5, lwd=1, fill="darkviolet") +
+	tm_text(text="NAME_RU", size=0.6, xmod=2, ymod=-0.55, col="white") +
+	tm_text(text="NAME_RU", size=0.6, xmod=2, ymod=-0.5) +
+tm_scalebar(position=c("left", "bottom")) +
+tm_graticules(size=0.5, alpha=0.8, col="black", lwd=0.5) +
+tm_layout(xlim = c(xmin_new, xmax_new), ylim = c(ymin_new, ymax_new)))
+
+
+# если предпросмотр нас устроил, пишем в итоговый файл
+
+fileout <- "C:/Users/vikro/pu-pu-pu/IPEE_classes/QGIS/rr/australia_tmap17.png"
+if (!dir.exists(dirname(fileout)))
+  dir.create(dirname(fileout),recursive=TRUE)
+png(fileout, res=300, width=1600, height=1200,
+    type="cairo", pointsize=10, family="arial")
+print(tm1)
+dev.off()
+

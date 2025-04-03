@@ -1,0 +1,31 @@
+require(ursa)
+options(ursaProj4Legacy=TRUE)
+a <- ursa_read("Kara_modified.tif")
+spatial_crs(a)
+ursa_grid(a)
+p <- spatial_read("Полыньи обрезанные.shz")
+spatial_crs(p)
+ursa_crs(a) <- spatial_crs(p) 
+spatial_crs(a)
+ursa_grid(a)
+# display(a,legend=NULL,col="black",graticule.lon=seq(0,350,by=10),graticule.lat=seq(0,80,by=10))
+p <- ursa:::spatialize(p,resetGrid=TRUE)
+# glance(p["Name"],blank="white",coast.fill="#00000010")
+p$Check <- spatial_area(p)*1e-6
+spatial_data(p)[,c("Name","Area","Check")]
+p <- spatial_transform(p,4326)
+p$Check2 <- spatial_area(p)*1e-6
+spatial_data(p)[,c("Name","Area","Check","Check2")]
+pc <- spatial_centroid(p)
+pc$Area <- sprintf("%.0f",pc$Area)
+ct <- palettize(p$Name,pal.bright=191,pal.rotate="circle")
+compose_open(extraspace=2,height=2000,pointsize=12)
+panel_new("layout")
+panel_raster(a)
+panel_plot(p["Name"],col=ct,alpha=0.7)
+panel_decor(col="black",coast.fill="#00000010"
+           ,graticule.lon=seq(0,350,by=10),graticule.lat=seq(0,80,by=10)
+           )
+panel_annotation(pc["Area"],buffer=1.4)
+compose_legend(ct,abbrev=0)
+compose_close()
