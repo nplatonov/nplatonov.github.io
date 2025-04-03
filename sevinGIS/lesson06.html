@@ -175,7 +175,7 @@ div.csl-indent {
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 06</span> <span class="when"> <span class="updated">Обновлено: 2025-03-20 13:28</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 06</span> <span class="when"> <span class="updated">Обновлено: 2025-04-03 07:57</span></span></h4>
 
 
 <div id="TOC">
@@ -253,13 +253,13 @@ div.csl-indent {
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>fname <span class="ot">&lt;-</span> list1[<span class="fu">grep</span>(<span class="st">&quot;kernelUD&quot;</span>,<span class="fu">basename</span>(list1))]</span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">file.remove</span>(list1)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>fname</span></code></pre></div>
-<pre><code>[1] &quot;C:\\TEMP\\RtmpuYSRnR/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
+<pre><code>[1] &quot;C:\\TEMP\\RtmpCMnfWq/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
 <div id="подготовка-данных" class="section level3">
 <h3><span class="small">Подготовка данных</span></h3>
 <div class="oversize">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">require</span>(sf)</span></code></pre></div>
 <pre><code>Loading required package: sf</code></pre>
-<pre><code>Linking to GEOS 3.12.2, GDAL 3.9.3, PROJ 9.4.1; sf_use_s2() is TRUE</code></pre>
+<pre><code>Linking to GEOS 3.13.0, GDAL 3.10.1, PROJ 9.5.1; sf_use_s2() is TRUE</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span></code></pre></div>
 <pre><code>Loading required package: ggplot2</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">require</span>(adehabitatHR)</span></code></pre></div>
@@ -1018,7 +1018,7 @@ Characteristics of the bursts:
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" tabindex="-1"></a><span class="co"># plotltr(lt1,&quot;dt/3600/24&quot;)</span></span></code></pre></div>
 <p>Установим точку отсчета</p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" tabindex="-1"></a>(refda <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">strptime</span>(<span class="st">&quot;12:00&quot;</span>,<span class="st">&quot;%H:%M&quot;</span>,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))))</span></code></pre></div>
-<pre><code>[1] &quot;2025-03-20 12:00:00 UTC&quot;</code></pre>
+<pre><code>[1] &quot;2025-04-03 12:00:00 UTC&quot;</code></pre>
 <p>Заполним пропуски значениями <code>NA</code></p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" tabindex="-1"></a>lt3 <span class="ot">&lt;-</span> <span class="fu">setNA</span>(lt2,refda,<span class="dv">3</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span>)</span>
 <span id="cb87-2"><a href="#cb87-2" tabindex="-1"></a>lt3</span></code></pre></div>
@@ -1036,10 +1036,10 @@ Characteristics of the bursts:
 3 145 145.4       80  17 2009-11-03 18:26:00 2010-06-28 18:58:00
 4 145 145.5       71  24 2010-12-01 20:34:00 2011-06-29 16:51:00
 5 145 145.6       17  12 2012-03-28 20:20:00 2012-05-15 18:27:00
-6 168 168.1       27   3 2012-04-12 21:45:00 2012-06-30 10:00:00
-7 168 168.2       80   1 2012-11-02 00:00:00 2013-06-28 14:17:00
+6 168 168.1       28   5 2012-04-12 21:45:00 2012-06-30 10:00:00
+7 168 168.2       81   2 2012-11-02 00:00:00 2013-06-28 14:17:00
 8 168 168.3       27   0 2014-04-13 21:27:00 2014-06-30 22:00:00
-9 168 168.4       61  13 2014-12-03 00:00:00 2015-05-30 04:00:00
+9 168 168.4       60   9 2014-12-03 00:00:00 2015-05-30 04:00:00
 
 
  infolocs provided. The following variables are available:
@@ -1060,15 +1060,15 @@ Regular traject. Time lag between two locs: 259200 seconds
 
 Characteristics of the bursts:
    id burst nb.reloc NAs          date.begin            date.end
-1 145 145.1       15   3 2008-05-15 12:00:00 2008-06-26 12:00:00
-2 145 145.3       36   9 2009-03-17 12:00:00 2009-06-30 12:00:00
-3 145 145.4       80  17 2009-11-03 12:00:00 2010-06-28 12:00:00
-4 145 145.5       71  24 2010-12-01 12:00:00 2011-06-29 12:00:00
-5 145 145.6       17  12 2012-03-28 12:00:00 2012-05-15 12:00:00
-6 168 168.1       27   3 2012-04-12 12:00:00 2012-06-29 12:00:00
-7 168 168.2       80   1 2012-11-02 12:00:00 2013-06-27 12:00:00
-8 168 168.3       27   0 2014-04-14 12:00:00 2014-07-01 12:00:00
-9 168 168.4       61  13 2014-12-01 12:00:00 2015-05-30 12:00:00
+1 145 145.1       15   3 2008-05-14 12:00:00 2008-06-25 12:00:00
+2 145 145.3       36   9 2009-03-16 12:00:00 2009-06-29 12:00:00
+3 145 145.4       80  17 2009-11-02 12:00:00 2010-06-27 12:00:00
+4 145 145.5       71  24 2010-11-30 12:00:00 2011-06-28 12:00:00
+5 145 145.6       17  12 2012-03-27 12:00:00 2012-05-14 12:00:00
+6 168 168.1       28   5 2012-04-11 12:00:00 2012-07-01 12:00:00
+7 168 168.2       81   2 2012-11-01 12:00:00 2013-06-29 12:00:00
+8 168 168.3       27   0 2014-04-13 12:00:00 2014-06-30 12:00:00
+9 168 168.4       60   9 2014-12-03 12:00:00 2015-05-29 12:00:00
 
 
  infolocs provided. The following variables are available:
@@ -1094,7 +1094,7 @@ Regular traject. Time lag between two locs: 259200 seconds
 Characteristics of the bursts:
    id burst nb.reloc NAs          date.begin            date.end
 1 145 145.6       12   8 2012-04-11 12:00:00 2012-05-14 12:00:00
-2 168 168.1       12   0 2012-04-11 12:00:00 2012-05-14 12:00:00
+2 168 168.1       12   4 2012-04-11 12:00:00 2012-05-14 12:00:00
 
 
  infolocs provided. The following variables are available:
@@ -1119,15 +1119,15 @@ Irregular traject. Variable time lag between two locs
 
 Characteristics of the bursts:
    id        burst nb.reloc NAs          date.begin            date.end
-1 145 145.1.R50000        6   0 2008-05-15 12:00:00 2008-06-26 05:12:02
-2 145 145.3.R50000       19   0 2009-03-17 12:00:00 2009-06-30 08:29:14
-3 145 145.4.R50000       32   0 2009-11-03 12:00:00 2010-06-27 09:31:12
-4 145 145.5.R50000       21   0 2010-12-01 12:00:00 2011-06-27 04:20:19
-5 145 145.6.R50000        4   0 2012-03-28 12:00:00 2012-05-10 23:37:20
-6 168 168.1.R50000        9   0 2012-04-12 12:00:00 2012-06-28 07:51:23
-7 168 168.2.R50000       44   0 2012-11-02 12:00:00 2013-06-27 07:26:02
-8 168 168.3.R50000        3   0 2014-04-14 12:00:00 2014-07-01 06:11:42
-9 168 168.4.R50000       16   0 2014-12-01 12:00:00 2015-05-18 11:18:11
+1 145 145.1.R50000        6   0 2008-05-14 12:00:00 2008-06-25 05:12:02
+2 145 145.3.R50000       19   0 2009-03-16 12:00:00 2009-06-29 08:29:14
+3 145 145.4.R50000       32   0 2009-11-02 12:00:00 2010-06-26 09:31:12
+4 145 145.5.R50000       21   0 2010-11-30 12:00:00 2011-06-26 04:20:19
+5 145 145.6.R50000        4   0 2012-03-27 12:00:00 2012-05-09 23:37:20
+6 168 168.1.R50000        8   0 2012-04-11 12:00:00 2012-06-29 16:25:40
+7 168 168.2.R50000       44   0 2012-11-01 12:00:00 2013-06-29 02:52:05
+8 168 168.3.R50000        3   0 2014-04-13 12:00:00 2014-06-30 06:11:42
+9 168 168.4.R50000       16   0 2014-12-03 12:00:00 2015-05-17 11:29:34
 
 
  infolocs provided. The following variables are available:
@@ -1147,15 +1147,15 @@ Regular traject. Time lag between two locs: 518400 seconds
 
 Characteristics of the bursts:
    id burst nb.reloc NAs          date.begin            date.end
-1 145 145.1        7   3 2008-05-15 12:00:00 2008-06-20 12:00:00
-2 145 145.3       18   8 2009-03-17 12:00:00 2009-06-27 12:00:00
-3 145 145.4       40  17 2009-11-03 12:00:00 2010-06-25 12:00:00
-4 145 145.5       35  19 2010-12-01 12:00:00 2011-06-23 12:00:00
-5 145 145.6        8   7 2012-03-28 12:00:00 2012-05-09 12:00:00
-6 168 168.1       13   3 2012-04-12 12:00:00 2012-06-23 12:00:00
-7 168 168.2       40   1 2012-11-02 12:00:00 2013-06-24 12:00:00
-8 168 168.3       13   0 2014-04-14 12:00:00 2014-06-25 12:00:00
-9 168 168.4       30   9 2014-12-01 12:00:00 2015-05-24 12:00:00
+1 145 145.1        7   3 2008-05-14 12:00:00 2008-06-19 12:00:00
+2 145 145.3       18   8 2009-03-16 12:00:00 2009-06-26 12:00:00
+3 145 145.4       40  17 2009-11-02 12:00:00 2010-06-24 12:00:00
+4 145 145.5       35  19 2010-11-30 12:00:00 2011-06-22 12:00:00
+5 145 145.6        8   7 2012-03-27 12:00:00 2012-05-08 12:00:00
+6 168 168.1       14   4 2012-04-11 12:00:00 2012-06-28 12:00:00
+7 168 168.2       40   2 2012-11-01 12:00:00 2013-06-23 12:00:00
+8 168 168.3       13   0 2014-04-13 12:00:00 2014-06-24 12:00:00
+9 168 168.4       30   8 2014-12-03 12:00:00 2015-05-26 12:00:00
 
 
  infolocs provided. The following variables are available:
@@ -1304,8 +1304,8 @@ Irregular traject. Variable time lag between two locs
 
 Characteristics of the bursts:
    id        burst nb.reloc NAs          date.begin            date.end
-1 168 168.2.R15000      165   0 2012-11-02 12:00:00 2013-06-26 22:52:44
-2 168 168.3.R15000       22   0 2014-04-14 12:00:00 2014-06-30 18:06:23
+1 168 168.2.R15000      165   0 2012-11-01 12:00:00 2013-06-28 09:45:29
+2 168 168.3.R15000       22   0 2014-04-13 12:00:00 2014-06-29 18:06:23
 
 
  infolocs provided. The following variables are available:
@@ -1478,7 +1478,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <p>Как с пространственными данными</p>
 <div class="note remarkonly">
 <h2 class="toc-ignore unnumbered unlisted">
-Домашнее задание на <a href="index.html#deadline2">27 марта 2025 г.</a>
+Домашнее задание на <a href="index.html#deadline3">27 марта 2025 г.</a>
 </h2>
 <ul>
 <li><p>Исходные данные: “<code>data/2022-01-09_14-00_Sun.gpx</code>” (“Лыжная прогулка”)</p></li>
