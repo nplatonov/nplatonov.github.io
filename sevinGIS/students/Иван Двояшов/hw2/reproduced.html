@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>reproduced.R</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.29/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a> <span class="do">#######HOMEWORK 2, map of australia######</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(sf)        </span></code></pre></div>
+<pre><code>Linking to GEOS 3.13.0, GDAL 3.10.1, PROJ 9.5.1; sf_use_s2() is TRUE</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(tmap)       </span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co"># Define the data source folder</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>root <span class="ot">&lt;-</span> <span class="st">&quot;D:/users/platt/shapefile/auxiliary/naturalearth/5.1.2&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Load shapefiles</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>marines <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">file.path</span>(root, <span class="st">&quot;10m_physical&quot;</span>, <span class="st">&quot;ne_10m_geography_marine_polys.shp.zip&quot;</span>))</span></code></pre></div>
+<pre><code>Reading layer `ne_10m_geography_marine_polys&#39; from data source 
+  `C:\Users\platt\shapefile\auxiliary\naturalearth\5.1.2\10m_physical\ne_10m_geography_marine_polys.shp.zip&#39; 
+  using driver `ESRI Shapefile&#39;
+Simple feature collection with 306 features and 37 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -180 ymin: -85.19206 xmax: 179.9999 ymax: 90
+Geodetic CRS:  WGS 84</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>marines <span class="ot">&lt;-</span> marines[<span class="fu">st_is_valid</span>(marines), ] <span class="co"># Keep only valid geometries</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>sea_for_labels <span class="ot">&lt;-</span> marines[marines<span class="sc">$</span>name  <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Tasman Sea&quot;</span>, <span class="st">&quot;Coral Sea&quot;</span>, <span class="st">&quot;Timor Sea&quot;</span>), ]</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>countries <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">file.path</span>(root, <span class="st">&quot;10m_cultural&quot;</span>, <span class="st">&quot;ne_10m_admin_0_countries.shp.zip&quot;</span>))</span></code></pre></div>
+<pre><code>Reading layer `ne_10m_admin_0_countries&#39; from data source 
+  `C:\Users\platt\shapefile\auxiliary\naturalearth\5.1.2\10m_cultural\ne_10m_admin_0_countries.shp.zip&#39; 
+  using driver `ESRI Shapefile&#39;
+Simple feature collection with 258 features and 168 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -180 ymin: -90 xmax: 180 ymax: 83.6341
+Geodetic CRS:  WGS 84</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>aus_bord <span class="ot">&lt;-</span> countries[countries<span class="sc">$</span>NAME <span class="sc">==</span> <span class="st">&quot;Australia&quot;</span>, <span class="dv">1</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">plot</span>(aus_bord)</span></code></pre></div>
+<p class="centered-image"><img src="assets/unnamed-chunk-1-1.svg" width="787.2" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>admin <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">file.path</span>(root, <span class="st">&quot;10m_cultural&quot;</span>, <span class="st">&quot;ne_10m_admin_1_states_provinces.shp.zip&quot;</span>))</span></code></pre></div>
+<pre><code>Reading layer `ne_10m_admin_1_states_provinces&#39; from data source 
+  `C:\Users\platt\shapefile\auxiliary\naturalearth\5.1.2\10m_cultural\ne_10m_admin_1_states_provinces.shp.zip&#39; 
+  using driver `ESRI Shapefile&#39;
+Simple feature collection with 4596 features and 121 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -180 ymin: -90 xmax: 180 ymax: 83.6341
+Geodetic CRS:  WGS 84</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>aus_admin <span class="ot">&lt;-</span> admin[admin<span class="sc">$</span>admin <span class="sc">==</span> <span class="st">&quot;Australia&quot;</span>, ]</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>lakes <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">file.path</span>(root, <span class="st">&quot;10m_physical&quot;</span>, <span class="st">&quot;ne_10m_lakes.shp.zip&quot;</span>))</span></code></pre></div>
+<pre><code>Reading layer `ne_10m_lakes&#39; from data source 
+  `C:\Users\platt\shapefile\auxiliary\naturalearth\5.1.2\10m_physical\ne_10m_lakes.shp.zip&#39; 
+  using driver `ESRI Shapefile&#39;
+Simple feature collection with 1355 features and 41 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -165.9656 ymin: -50.66967 xmax: 177.1544 ymax: 81.95521
+Geodetic CRS:  WGS 84</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>lakes <span class="ot">&lt;-</span> lakes[<span class="fu">st_is_valid</span>(lakes), ]</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">st_agr</span>(lakes) <span class="ot">=</span> <span class="st">&quot;constant&quot;</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>lakes <span class="ot">&lt;-</span> <span class="fu">st_crop</span>(lakes, aus_bord)</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>rivers <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">file.path</span>(root, <span class="st">&quot;10m_physical&quot;</span>, <span class="st">&quot;ne_10m_rivers_lake_centerlines.shp.zip&quot;</span>))</span></code></pre></div>
+<pre><code>Reading layer `ne_10m_rivers_lake_centerlines&#39; from data source 
+  `C:\Users\platt\shapefile\auxiliary\naturalearth\5.1.2\10m_physical\ne_10m_rivers_lake_centerlines.shp.zip&#39; 
+  using driver `ESRI Shapefile&#39;
+Simple feature collection with 1473 features and 38 fields
+Geometry type: MULTILINESTRING
+Dimension:     XY
+Bounding box:  xmin: -164.9035 ymin: -52.15775 xmax: 177.5204 ymax: 75.79348
+Geodetic CRS:  WGS 84</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>cities <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">file.path</span>(root, <span class="st">&quot;10m_cultural&quot;</span>, <span class="st">&quot;ne_10m_populated_places.shp.zip&quot;</span>))</span></code></pre></div>
+<pre><code>Reading layer `ne_10m_populated_places&#39; from data source 
+  `C:\Users\platt\shapefile\auxiliary\naturalearth\5.1.2\10m_cultural\ne_10m_populated_places.shp.zip&#39; 
+  using driver `ESRI Shapefile&#39;
+Simple feature collection with 7342 features and 137 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -179.59 ymin: -90 xmax: 179.3833 ymax: 82.48332
+Geodetic CRS:  WGS 84</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>cities <span class="ot">&lt;-</span> cities[cities<span class="sc">$</span>SCALERANK <span class="sc">&lt;=</span> <span class="dv">2</span>, ]</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>cities <span class="ot">&lt;-</span> <span class="fu">st_filter</span>(cities, aus_bord)  <span class="co"># Keep cities within Australia</span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="co"># Define your bounding box (xmin, ymin, xmax, ymax)</span></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>crop_extent <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(<span class="at">xmin =</span> <span class="dv">100</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="dv">63</span>, <span class="at">xmax =</span> <span class="dv">190</span>, <span class="at">ymax =</span> <span class="dv">0</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(marines))</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="fu">st_agr</span>(marines) <span class="ot">=</span> <span class="st">&quot;constant&quot;</span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>marine2 <span class="ot">&lt;-</span> <span class="fu">st_crop</span>(marines, crop_extent)</span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="do">#### Manually adjust label positions</span></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a>aus_admin<span class="sc">$</span>xmod <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co"># Default no shift</span></span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a>aus_admin<span class="sc">$</span>ymod <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co"># Default no shift</span></span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a><span class="co"># Shift the label for Australian Capital Territory (adjust these values as needed)</span></span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a>aus_admin<span class="sc">$</span>xmod[<span class="fu">which</span>(aus_admin<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;Australian Capital Territory&quot;</span>)] <span class="ot">&lt;-</span> <span class="fl">5.5</span>  <span class="co"># Move right</span></span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a>aus_admin<span class="sc">$</span>ymod[<span class="fu">which</span>(aus_admin<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;Australian Capital Territory&quot;</span>)] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span>  <span class="co"># Move up</span></span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a>aus_admin<span class="sc">$</span>xmod[<span class="fu">which</span>(aus_admin<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;Jervis Bay Territory&quot;</span>)] <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a>aus_admin<span class="sc">$</span>ymod[<span class="fu">which</span>(aus_admin<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;Lord Howe Island&quot;</span>)] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.5</span> </span>
+<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a>aus_admin<span class="sc">$</span>ymod[<span class="fu">which</span>(aus_admin<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;Macquarie Island&quot;</span>)] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.5</span> </span>
+<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a><span class="co"># Calculate centroids for the line (if not already available)</span></span>
+<span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a>centroids <span class="ot">&lt;-</span> <span class="fu">st_centroid</span>(aus_admin<span class="sc">$</span>geometry)  <span class="co"># Get centroids of polygons</span></span>
+<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a>aus_admin<span class="sc">$</span>centroid_x <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(centroids)[,<span class="dv">1</span>]  <span class="co"># X coordinate of centroid</span></span>
+<span id="cb16-22"><a href="#cb16-22" tabindex="-1"></a>aus_admin<span class="sc">$</span>centroid_y <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(centroids)[,<span class="dv">2</span>]  <span class="co"># Y coordinate of centroid</span></span>
+<span id="cb16-23"><a href="#cb16-23" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" tabindex="-1"></a><span class="co"># Calculate shifted label positions</span></span>
+<span id="cb16-25"><a href="#cb16-25" tabindex="-1"></a>aus_admin<span class="sc">$</span>label_x <span class="ot">&lt;-</span> aus_admin<span class="sc">$</span>centroid_x <span class="sc">+</span> aus_admin<span class="sc">$</span>xmod</span>
+<span id="cb16-26"><a href="#cb16-26" tabindex="-1"></a>aus_admin<span class="sc">$</span>label_y <span class="ot">&lt;-</span> aus_admin<span class="sc">$</span>centroid_y <span class="sc">+</span> aus_admin<span class="sc">$</span>ymod</span>
+<span id="cb16-27"><a href="#cb16-27" tabindex="-1"></a></span>
+<span id="cb16-28"><a href="#cb16-28" tabindex="-1"></a><span class="do">### creating lines for labels</span></span>
+<span id="cb16-29"><a href="#cb16-29" tabindex="-1"></a>act <span class="ot">&lt;-</span> aus_admin[aus_admin<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;Australian Capital Territory&quot;</span>, ]</span>
+<span id="cb16-30"><a href="#cb16-30" tabindex="-1"></a>jbt <span class="ot">&lt;-</span> aus_admin[aus_admin<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;Jervis Bay Territory&quot;</span>, ]</span>
+<span id="cb16-31"><a href="#cb16-31" tabindex="-1"></a><span class="co"># extract coordinates</span></span>
+<span id="cb16-32"><a href="#cb16-32" tabindex="-1"></a>act_coor <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(act<span class="sc">$</span>centroid_x, act<span class="sc">$</span>centroid_y, act<span class="sc">$</span>label_x, act<span class="sc">$</span>label_y),  <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-33"><a href="#cb16-33" tabindex="-1"></a>jbt_coor <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(jbt<span class="sc">$</span>centroid_x, jbt<span class="sc">$</span>centroid_y, jbt<span class="sc">$</span>label_x, jbt<span class="sc">$</span>label_y),  <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-34"><a href="#cb16-34" tabindex="-1"></a>coor_list <span class="ot">&lt;-</span> <span class="fu">list</span>(act_coor, jbt_coor)</span>
+<span id="cb16-35"><a href="#cb16-35" tabindex="-1"></a><span class="co"># creating sf lines</span></span>
+<span id="cb16-36"><a href="#cb16-36" tabindex="-1"></a>lines <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(</span>
+<span id="cb16-37"><a href="#cb16-37" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;ACT&quot;</span>, <span class="st">&quot;JBT&quot;</span>),</span>
+<span id="cb16-38"><a href="#cb16-38" tabindex="-1"></a>  <span class="at">geometry =</span> <span class="fu">st_sfc</span>(<span class="fu">lapply</span>(coor_list, st_linestring)),</span>
+<span id="cb16-39"><a href="#cb16-39" tabindex="-1"></a>  <span class="at">crs =</span> <span class="dv">4326</span></span>
+<span id="cb16-40"><a href="#cb16-40" tabindex="-1"></a>)</span>
+<span id="cb16-41"><a href="#cb16-41" tabindex="-1"></a></span>
+<span id="cb16-42"><a href="#cb16-42" tabindex="-1"></a>crop_map <span class="ot">&lt;-</span> crop_extent <span class="sc">-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">15</span>,<span class="sc">-</span><span class="dv">7</span>,<span class="dv">27</span>,<span class="dv">10</span>)</span>
+<span id="cb16-43"><a href="#cb16-43" tabindex="-1"></a><span class="do">#### CREATE MAP</span></span>
+<span id="cb16-44"><a href="#cb16-44" tabindex="-1"></a>my_map <span class="ot">&lt;-</span> </span>
+<span id="cb16-45"><a href="#cb16-45" tabindex="-1"></a>  <span class="fu">tm_shape</span>(marine2, <span class="at">bbox =</span> crop_map)<span class="sc">+</span></span>
+<span id="cb16-46"><a href="#cb16-46" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-47"><a href="#cb16-47" tabindex="-1"></a>  </span>
+<span id="cb16-48"><a href="#cb16-48" tabindex="-1"></a>  <span class="fu">tm_shape</span>(aus_admin) <span class="sc">+</span></span>
+<span id="cb16-49"><a href="#cb16-49" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">&quot;pink&quot;</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-50"><a href="#cb16-50" tabindex="-1"></a>  <span class="fu">tm_graticules</span>(<span class="at">n.x =</span> <span class="dv">20</span>, <span class="at">n.y =</span> <span class="dv">5</span>, <span class="at">col =</span> <span class="st">&quot;gray50&quot;</span>, <span class="at">labels.size =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb16-51"><a href="#cb16-51" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">&quot;name&quot;</span>, <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">xmod =</span> <span class="st">&quot;xmod&quot;</span>, <span class="at">ymod =</span> <span class="st">&quot;ymod&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-52"><a href="#cb16-52" tabindex="-1"></a>  </span>
+<span id="cb16-53"><a href="#cb16-53" tabindex="-1"></a>  <span class="fu">tm_shape</span>(sea_for_labels) <span class="sc">+</span></span>
+<span id="cb16-54"><a href="#cb16-54" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">&quot;name&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="fl">0.7</span>) <span class="sc">+</span> </span>
+<span id="cb16-55"><a href="#cb16-55" tabindex="-1"></a>  </span>
+<span id="cb16-56"><a href="#cb16-56" tabindex="-1"></a>  <span class="fu">tm_shape</span>(lines) <span class="sc">+</span></span>
+<span id="cb16-57"><a href="#cb16-57" tabindex="-1"></a>  <span class="fu">tm_lines</span>(<span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-58"><a href="#cb16-58" tabindex="-1"></a>  </span>
+<span id="cb16-59"><a href="#cb16-59" tabindex="-1"></a>  <span class="fu">tm_shape</span>(rivers) <span class="sc">+</span></span>
+<span id="cb16-60"><a href="#cb16-60" tabindex="-1"></a>  <span class="fu">tm_lines</span>(<span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-61"><a href="#cb16-61" tabindex="-1"></a>  </span>
+<span id="cb16-62"><a href="#cb16-62" tabindex="-1"></a>  <span class="fu">tm_shape</span>(lakes) <span class="sc">+</span></span>
+<span id="cb16-63"><a href="#cb16-63" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-64"><a href="#cb16-64" tabindex="-1"></a>  </span>
+<span id="cb16-65"><a href="#cb16-65" tabindex="-1"></a>  <span class="fu">tm_shape</span>(cities) <span class="sc">+</span> </span>
+<span id="cb16-66"><a href="#cb16-66" tabindex="-1"></a>  <span class="fu">tm_dots</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb16-67"><a href="#cb16-67" tabindex="-1"></a>  </span>
+<span id="cb16-68"><a href="#cb16-68" tabindex="-1"></a>  <span class="fu">tm_scalebar</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb16-69"><a href="#cb16-69" tabindex="-1"></a>  <span class="fu">tm_title</span>(<span class="st">&quot;Australia administrative map&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-70"><a href="#cb16-70" tabindex="-1"></a>  <span class="fu">tm_crs</span>(<span class="dv">3112</span>) </span>
+<span id="cb16-71"><a href="#cb16-71" tabindex="-1"></a></span>
+<span id="cb16-72"><a href="#cb16-72" tabindex="-1"></a></span>
+<span id="cb16-73"><a href="#cb16-73" tabindex="-1"></a><span class="co"># Export to PNG with 300 DPI</span></span>
+<span id="cb16-74"><a href="#cb16-74" tabindex="-1"></a><span class="fu">tmap_save</span>(my_map, <span class="at">filename =</span> <span class="st">&quot;australia_map.png&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code></pre></div>
+<pre><code>[tip] Consider a suitable map projection, e.g. by adding `+ tm_crs(&quot;auto&quot;)`.
+This message is displayed once per session.</code></pre>
+<pre><code>Map saved to australia_map.png</code></pre>
+<pre><code>Resolution: 2086.118 by 2113.975 pixels</code></pre>
+<pre><code>Size: 6.953726 by 7.046582 inches (300 dpi)</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;australia_map.png&quot;</span>)</span></code></pre></div>
+<p class="centered-image"><img src="australia_map.png" width="1043" /></p>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>

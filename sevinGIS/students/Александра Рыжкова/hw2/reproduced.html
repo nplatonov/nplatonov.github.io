@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>reproduced.R</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.29/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+<div class="kable-table">
+<table>
+<colgroup>
+<col width="18%" />
+<col width="18%" />
+<col width="18%" />
+<col width="7%" />
+<col width="7%" />
+<col width="12%" />
+<col width="12%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">name</th>
+<th align="left">long_name</th>
+<th align="left">write</th>
+<th align="left">copy</th>
+<th align="left">is_raster</th>
+<th align="left">is_vector</th>
+<th align="left">vsi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ESRI Shapefile</td>
+<td align="left">ESRI Shapefile</td>
+<td align="left">ESRI Shapefile</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">ESRIJSON</td>
+<td align="left">ESRIJSON</td>
+<td align="left">ESRIJSON</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Путь к данным Natural Earth</p>
+<p>Проверка доступных файлов</p>
+<pre><code>  [1] &quot;10m_cultural/ne_10m_admin_0_antarctic_claim_limit_lines.shp.zip&quot;              
+  [2] &quot;10m_cultural/ne_10m_admin_0_antarctic_claims.shp.zip&quot;                         
+  [3] &quot;10m_cultural/ne_10m_admin_0_boundary_lines_disputed_areas.shp.zip&quot;            
+  [4] &quot;10m_cultural/ne_10m_admin_0_boundary_lines_land.shp.zip&quot;                      
+  [5] &quot;10m_cultural/ne_10m_admin_0_boundary_lines_map_units.shp.zip&quot;                 
+  [6] &quot;10m_cultural/ne_10m_admin_0_boundary_lines_maritime_indicator.shp.zip&quot;        
+  [7] &quot;10m_cultural/ne_10m_admin_0_boundary_lines_maritime_indicator_chn.shp.zip&quot;    
+  [8] &quot;10m_cultural/ne_10m_admin_0_countries.shp.zip&quot;                                
+  [9] &quot;10m_cultural/ne_10m_admin_0_countries_arg.shp.zip&quot;                            
+ [10] &quot;10m_cultural/ne_10m_admin_0_countries_bdg.shp.zip&quot;                            
+ [11] &quot;10m_cultural/ne_10m_admin_0_countries_bra.shp.zip&quot;                            
+ [12] &quot;10m_cultural/ne_10m_admin_0_countries_chn.shp.zip&quot;                            
+ [13] &quot;10m_cultural/ne_10m_admin_0_countries_deu.shp.zip&quot;                            
+ [14] &quot;10m_cultural/ne_10m_admin_0_countries_egy.shp.zip&quot;                            
+ [15] &quot;10m_cultural/ne_10m_admin_0_countries_esp.shp.zip&quot;                            
+ [16] &quot;10m_cultural/ne_10m_admin_0_countries_fra.shp.zip&quot;                            
+ [17] &quot;10m_cultural/ne_10m_admin_0_countries_gbr.shp.zip&quot;                            
+ [18] &quot;10m_cultural/ne_10m_admin_0_countries_grc.shp.zip&quot;                            
+ [19] &quot;10m_cultural/ne_10m_admin_0_countries_idn.shp.zip&quot;                            
+ [20] &quot;10m_cultural/ne_10m_admin_0_countries_ind.shp.zip&quot;                            
+ [21] &quot;10m_cultural/ne_10m_admin_0_countries_iso.shp.zip&quot;                            
+ [22] &quot;10m_cultural/ne_10m_admin_0_countries_isr.shp.zip&quot;                            
+ [23] &quot;10m_cultural/ne_10m_admin_0_countries_ita.shp.zip&quot;                            
+ [24] &quot;10m_cultural/ne_10m_admin_0_countries_jpn.shp.zip&quot;                            
+ [25] &quot;10m_cultural/ne_10m_admin_0_countries_kor.shp.zip&quot;                            
+ [26] &quot;10m_cultural/ne_10m_admin_0_countries_lakes.shp.zip&quot;                          
+ [27] &quot;10m_cultural/ne_10m_admin_0_countries_mar.shp.zip&quot;                            
+ [28] &quot;10m_cultural/ne_10m_admin_0_countries_nep.shp.zip&quot;                            
+ [29] &quot;10m_cultural/ne_10m_admin_0_countries_nld.shp.zip&quot;                            
+ [30] &quot;10m_cultural/ne_10m_admin_0_countries_pak.shp.zip&quot;                            
+ [31] &quot;10m_cultural/ne_10m_admin_0_countries_pol.shp.zip&quot;                            
+ [32] &quot;10m_cultural/ne_10m_admin_0_countries_prt.shp.zip&quot;                            
+ [33] &quot;10m_cultural/ne_10m_admin_0_countries_pse.shp.zip&quot;                            
+ [34] &quot;10m_cultural/ne_10m_admin_0_countries_rus.shp.zip&quot;                            
+ [35] &quot;10m_cultural/ne_10m_admin_0_countries_sau.shp.zip&quot;                            
+ [36] &quot;10m_cultural/ne_10m_admin_0_countries_swe.shp.zip&quot;                            
+ [37] &quot;10m_cultural/ne_10m_admin_0_countries_tlc.shp.zip&quot;                            
+ [38] &quot;10m_cultural/ne_10m_admin_0_countries_tur.shp.zip&quot;                            
+ [39] &quot;10m_cultural/ne_10m_admin_0_countries_twn.shp.zip&quot;                            
+ [40] &quot;10m_cultural/ne_10m_admin_0_countries_ukr.shp.zip&quot;                            
+ [41] &quot;10m_cultural/ne_10m_admin_0_countries_usa.shp.zip&quot;                            
+ [42] &quot;10m_cultural/ne_10m_admin_0_countries_vnm.shp.zip&quot;                            
+ [43] &quot;10m_cultural/ne_10m_admin_0_disputed_areas.shp.zip&quot;                           
+ [44] &quot;10m_cultural/ne_10m_admin_0_disputed_areas_scale_rank_minor_islands.shp.zip&quot;  
+ [45] &quot;10m_cultural/ne_10m_admin_0_label_points.shp.zip&quot;                             
+ [46] &quot;10m_cultural/ne_10m_admin_0_map_subunits.shp.zip&quot;                             
+ [47] &quot;10m_cultural/ne_10m_admin_0_map_units.shp.zip&quot;                                
+ [48] &quot;10m_cultural/ne_10m_admin_0_names.shp.zip&quot;                                    
+ [49] &quot;10m_cultural/ne_10m_admin_0_pacific_groupings.shp.zip&quot;                        
+ [50] &quot;10m_cultural/ne_10m_admin_0_scale_rank.shp.zip&quot;                               
+ [51] &quot;10m_cultural/ne_10m_admin_0_scale_rank_minor_islands.shp.zip&quot;                 
+ [52] &quot;10m_cultural/ne_10m_admin_0_seams.shp.zip&quot;                                    
+ [53] &quot;10m_cultural/ne_10m_admin_0_sovereignty.shp.zip&quot;                              
+ [54] &quot;10m_cultural/ne_10m_admin_1_label_points.shp.zip&quot;                             
+ [55] &quot;10m_cultural/ne_10m_admin_1_label_points_details.shp.zip&quot;                     
+ [56] &quot;10m_cultural/ne_10m_admin_1_seams.shp.zip&quot;                                    
+ [57] &quot;10m_cultural/ne_10m_admin_1_states_provinces.shp.zip&quot;                         
+ [58] &quot;10m_cultural/ne_10m_admin_1_states_provinces_lakes.shp.zip&quot;                   
+ [59] &quot;10m_cultural/ne_10m_admin_1_states_provinces_lines.shp.zip&quot;                   
+ [60] &quot;10m_cultural/ne_10m_admin_1_states_provinces_scale_rank.shp.zip&quot;              
+ [61] &quot;10m_cultural/ne_10m_admin_1_states_provinces_scale_rank_minor_islands.shp.zip&quot;
+ [62] &quot;10m_cultural/ne_10m_admin_2_counties.shp.zip&quot;                                 
+ [63] &quot;10m_cultural/ne_10m_admin_2_counties_lakes.shp.zip&quot;                           
+ [64] &quot;10m_cultural/ne_10m_admin_2_counties_lines.shp.zip&quot;                           
+ [65] &quot;10m_cultural/ne_10m_admin_2_counties_scale_rank.shp.zip&quot;                      
+ [66] &quot;10m_cultural/ne_10m_admin_2_counties_scale_rank_minor_islands.shp.zip&quot;        
+ [67] &quot;10m_cultural/ne_10m_admin_2_counties_to_match.shp.zip&quot;                        
+ [68] &quot;10m_cultural/ne_10m_admin_2_label_points.shp.zip&quot;                             
+ [69] &quot;10m_cultural/ne_10m_admin_2_label_points_details.shp.zip&quot;                     
+ [70] &quot;10m_cultural/ne_10m_airports.shp.zip&quot;                                         
+ [71] &quot;10m_cultural/ne_10m_parks_and_protected_lands_area.shp.zip&quot;                   
+ [72] &quot;10m_cultural/ne_10m_parks_and_protected_lands_line.shp.zip&quot;                   
+ [73] &quot;10m_cultural/ne_10m_parks_and_protected_lands_point.shp.zip&quot;                  
+ [74] &quot;10m_cultural/ne_10m_parks_and_protected_lands_scale_rank.shp.zip&quot;             
+ [75] &quot;10m_cultural/ne_10m_populated_places.shp.zip&quot;                                 
+ [76] &quot;10m_cultural/ne_10m_populated_places_simple.shp.zip&quot;                          
+ [77] &quot;10m_cultural/ne_10m_ports.shp.zip&quot;                                            
+ [78] &quot;10m_cultural/ne_10m_railroads.shp.zip&quot;                                        
+ [79] &quot;10m_cultural/ne_10m_railroads_north_america.shp.zip&quot;                          
+ [80] &quot;10m_cultural/ne_10m_roads.shp.zip&quot;                                            
+ [81] &quot;10m_cultural/ne_10m_roads_north_america.shp.zip&quot;                              
+ [82] &quot;10m_cultural/ne_10m_time_zones.shp.zip&quot;                                       
+ [83] &quot;10m_cultural/ne_10m_urban_areas.shp.zip&quot;                                      
+ [84] &quot;10m_cultural/ne_10m_urban_areas_landscan.shp.zip&quot;                             
+ [85] &quot;10m_physical/ne_10m_antarctic_ice_shelves_lines.shp.zip&quot;                      
+ [86] &quot;10m_physical/ne_10m_antarctic_ice_shelves_polys.shp.zip&quot;                      
+ [87] &quot;10m_physical/ne_10m_bathymetry_A_10000.shp.zip&quot;                               
+ [88] &quot;10m_physical/ne_10m_bathymetry_B_9000.shp.zip&quot;                                
+ [89] &quot;10m_physical/ne_10m_bathymetry_C_8000.shp.zip&quot;                                
+ [90] &quot;10m_physical/ne_10m_bathymetry_D_7000.shp.zip&quot;                                
+ [91] &quot;10m_physical/ne_10m_bathymetry_E_6000.shp.zip&quot;                                
+ [92] &quot;10m_physical/ne_10m_bathymetry_F_5000.shp.zip&quot;                                
+ [93] &quot;10m_physical/ne_10m_bathymetry_G_4000.shp.zip&quot;                                
+ [94] &quot;10m_physical/ne_10m_bathymetry_H_3000.shp.zip&quot;                                
+ [95] &quot;10m_physical/ne_10m_bathymetry_I_2000.shp.zip&quot;                                
+ [96] &quot;10m_physical/ne_10m_bathymetry_J_1000.shp.zip&quot;                                
+ [97] &quot;10m_physical/ne_10m_bathymetry_K_200.shp.zip&quot;                                 
+ [98] &quot;10m_physical/ne_10m_bathymetry_L_0.shp.zip&quot;                                   
+ [99] &quot;10m_physical/ne_10m_coastline.shp.zip&quot;                                        
+[100] &quot;10m_physical/ne_10m_geographic_lines.shp.zip&quot;                                 
+[101] &quot;10m_physical/ne_10m_geography_marine_polys.shp.zip&quot;                           
+[102] &quot;10m_physical/ne_10m_geography_regions_elevation_points.shp.zip&quot;               
+[103] &quot;10m_physical/ne_10m_geography_regions_points.shp.zip&quot;                         
+[104] &quot;10m_physical/ne_10m_geography_regions_polys.shp.zip&quot;                          
+[105] &quot;10m_physical/ne_10m_glaciated_areas.shp.zip&quot;                                  
+[106] &quot;10m_physical/ne_10m_graticules_1.shp.zip&quot;                                     
+[107] &quot;10m_physical/ne_10m_graticules_10.shp.zip&quot;                                    
+[108] &quot;10m_physical/ne_10m_graticules_15.shp.zip&quot;                                    
+[109] &quot;10m_physical/ne_10m_graticules_20.shp.zip&quot;                                    
+[110] &quot;10m_physical/ne_10m_graticules_30.shp.zip&quot;                                    
+[111] &quot;10m_physical/ne_10m_graticules_5.shp.zip&quot;                                     
+[112] &quot;10m_physical/ne_10m_lakes.shp.zip&quot;                                            
+[113] &quot;10m_physical/ne_10m_lakes_australia.shp.zip&quot;                                  
+[114] &quot;10m_physical/ne_10m_lakes_europe.shp.zip&quot;                                     
+[115] &quot;10m_physical/ne_10m_lakes_historic.shp.zip&quot;                                   
+[116] &quot;10m_physical/ne_10m_lakes_north_america.shp.zip&quot;                              
+[117] &quot;10m_physical/ne_10m_lakes_pluvial.shp.zip&quot;                                    
+[118] &quot;10m_physical/ne_10m_land.shp.zip&quot;                                             
+[119] &quot;10m_physical/ne_10m_land_ocean_label_points.shp.zip&quot;                          
+[120] &quot;10m_physical/ne_10m_land_ocean_seams.shp.zip&quot;                                 
+[121] &quot;10m_physical/ne_10m_land_scale_rank.shp.zip&quot;                                  
+[122] &quot;10m_physical/ne_10m_land_scale_rank2.shp.zip&quot;                                 
+[123] &quot;10m_physical/ne_10m_minor_islands.shp.zip&quot;                                    
+[124] &quot;10m_physical/ne_10m_minor_islands_coastline.shp.zip&quot;                          
+[125] &quot;10m_physical/ne_10m_minor_islands_label_points.shp.zip&quot;                       
+[126] &quot;10m_physical/ne_10m_minor_islands2.shp.zip&quot;                                   
+[127] &quot;10m_physical/ne_10m_ocean.shp.zip&quot;                                            
+[128] &quot;10m_physical/ne_10m_ocean_scale_rank.shp.zip&quot;                                 
+[129] &quot;10m_physical/ne_10m_playas.shp.zip&quot;                                           
+[130] &quot;10m_physical/ne_10m_reefs.shp.zip&quot;                                            
+[131] &quot;10m_physical/ne_10m_rivers_australia.shp.zip&quot;                                 
+[132] &quot;10m_physical/ne_10m_rivers_europe.shp.zip&quot;                                    
+[133] &quot;10m_physical/ne_10m_rivers_lake_centerlines.shp.zip&quot;                          
+[134] &quot;10m_physical/ne_10m_rivers_lake_centerlines_scale_rank.shp.zip&quot;               
+[135] &quot;10m_physical/ne_10m_rivers_north_america.shp.zip&quot;                             
+[136] &quot;10m_physical/ne_10m_wgs84_bounding_box.shp.zip&quot;                               
+[137] &quot;110m_cultural/ne_110m_admin_0_boundary_lines_land.shp.zip&quot;                    
+[138] &quot;110m_cultural/ne_110m_admin_0_countries.shp.zip&quot;                              
+[139] &quot;110m_cultural/ne_110m_admin_0_countries_lakes.shp.zip&quot;                        
+[140] &quot;110m_cultural/ne_110m_admin_0_map_units.shp.zip&quot;                              
+[141] &quot;110m_cultural/ne_110m_admin_0_pacific_groupings.shp.zip&quot;                      
+[142] &quot;110m_cultural/ne_110m_admin_0_scale_rank.shp.zip&quot;                             
+[143] &quot;110m_cultural/ne_110m_admin_0_sovereignty.shp.zip&quot;                            
+[144] &quot;110m_cultural/ne_110m_admin_0_tiny_countries.shp.zip&quot;                         
+[145] &quot;110m_cultural/ne_110m_admin_1_states_provinces.shp.zip&quot;                       
+[146] &quot;110m_cultural/ne_110m_admin_1_states_provinces_lakes.shp.zip&quot;                 
+[147] &quot;110m_cultural/ne_110m_admin_1_states_provinces_lines.shp.zip&quot;                 
+[148] &quot;110m_cultural/ne_110m_admin_1_states_provinces_scale_rank.shp.zip&quot;            
+[149] &quot;110m_cultural/ne_110m_populated_places.shp.zip&quot;                               
+[150] &quot;110m_cultural/ne_110m_populated_places_simple.shp.zip&quot;                        
+[151] &quot;110m_physical/ne_110m_coastline.shp.zip&quot;                                      
+[152] &quot;110m_physical/ne_110m_geographic_lines.shp.zip&quot;                               
+[153] &quot;110m_physical/ne_110m_geography_marine_polys.shp.zip&quot;                         
+[154] &quot;110m_physical/ne_110m_geography_regions_elevation_points.shp.zip&quot;             
+[155] &quot;110m_physical/ne_110m_geography_regions_points.shp.zip&quot;                       
+[156] &quot;110m_physical/ne_110m_geography_regions_polys.shp.zip&quot;                        
+[157] &quot;110m_physical/ne_110m_glaciated_areas.shp.zip&quot;                                
+[158] &quot;110m_physical/ne_110m_graticules_1.shp.zip&quot;                                   
+[159] &quot;110m_physical/ne_110m_graticules_10.shp.zip&quot;                                  
+[160] &quot;110m_physical/ne_110m_graticules_15.shp.zip&quot;                                  
+[161] &quot;110m_physical/ne_110m_graticules_20.shp.zip&quot;                                  
+[162] &quot;110m_physical/ne_110m_graticules_30.shp.zip&quot;                                  
+[163] &quot;110m_physical/ne_110m_graticules_5.shp.zip&quot;                                   
+[164] &quot;110m_physical/ne_110m_lakes.shp.zip&quot;                                          
+[165] &quot;110m_physical/ne_110m_land.shp.zip&quot;                                           
+[166] &quot;110m_physical/ne_110m_ocean.shp.zip&quot;                                          
+[167] &quot;110m_physical/ne_110m_rivers_lake_centerlines.shp.zip&quot;                        
+[168] &quot;110m_physical/ne_110m_wgs84_bounding_box.shp.zip&quot;                             
+[169] &quot;50m_cultural/ne_10m_admin_1_sel.shp.zip&quot;                                      
+[170] &quot;50m_cultural/ne_50m_admin_0_boundary_lines_disputed_areas.shp.zip&quot;            
+[171] &quot;50m_cultural/ne_50m_admin_0_boundary_lines_land.shp.zip&quot;                      
+[172] &quot;50m_cultural/ne_50m_admin_0_boundary_lines_maritime_indicator.shp.zip&quot;        
+[173] &quot;50m_cultural/ne_50m_admin_0_boundary_lines_maritime_indicator_chn.shp.zip&quot;    
+[174] &quot;50m_cultural/ne_50m_admin_0_boundary_map_units.shp.zip&quot;                       
+[175] &quot;50m_cultural/ne_50m_admin_0_breakaway_disputed_areas.shp.zip&quot;                 
+[176] &quot;50m_cultural/ne_50m_admin_0_breakaway_disputed_areas_scale_rank.shp.zip&quot;      
+[177] &quot;50m_cultural/ne_50m_admin_0_countries.shp.zip&quot;                                
+[178] &quot;50m_cultural/ne_50m_admin_0_countries_lakes.shp.zip&quot;                          
+[179] &quot;50m_cultural/ne_50m_admin_0_map_subunits.shp.zip&quot;                             
+[180] &quot;50m_cultural/ne_50m_admin_0_map_units.shp.zip&quot;                                
+[181] &quot;50m_cultural/ne_50m_admin_0_pacific_groupings.shp.zip&quot;                        
+[182] &quot;50m_cultural/ne_50m_admin_0_scale_rank.shp.zip&quot;                               
+[183] &quot;50m_cultural/ne_50m_admin_0_sovereignty.shp.zip&quot;                              
+[184] &quot;50m_cultural/ne_50m_admin_0_tiny_countries.shp.zip&quot;                           
+[185] &quot;50m_cultural/ne_50m_admin_0_tiny_countries_scale_rank.shp.zip&quot;                
+[186] &quot;50m_cultural/ne_50m_admin_1_seams.shp.zip&quot;                                    
+[187] &quot;50m_cultural/ne_50m_admin_1_states_provinces.shp.zip&quot;                         
+[188] &quot;50m_cultural/ne_50m_admin_1_states_provinces_lakes.shp.zip&quot;                   
+[189] &quot;50m_cultural/ne_50m_admin_1_states_provinces_lines.shp.zip&quot;                   
+[190] &quot;50m_cultural/ne_50m_admin_1_states_provinces_scale_rank.shp.zip&quot;              
+[191] &quot;50m_cultural/ne_50m_airports.shp.zip&quot;                                         
+[192] &quot;50m_cultural/ne_50m_populated_places.shp.zip&quot;                                 
+[193] &quot;50m_cultural/ne_50m_populated_places_simple.shp.zip&quot;                          
+[194] &quot;50m_cultural/ne_50m_ports.shp.zip&quot;                                            
+[195] &quot;50m_cultural/ne_50m_urban_areas.shp.zip&quot;                                      
+[196] &quot;50m_physical/ne_50m_antarctic_ice_shelves_lines.shp.zip&quot;                      
+[197] &quot;50m_physical/ne_50m_antarctic_ice_shelves_polys.shp.zip&quot;                      
+[198] &quot;50m_physical/ne_50m_coastline.shp.zip&quot;                                        
+[199] &quot;50m_physical/ne_50m_geographic_lines.shp.zip&quot;                                 
+[200] &quot;50m_physical/ne_50m_geography_marine_polys.shp.zip&quot;                           
+[201] &quot;50m_physical/ne_50m_geography_regions_elevation_points.shp.zip&quot;               
+[202] &quot;50m_physical/ne_50m_geography_regions_points.shp.zip&quot;                         
+[203] &quot;50m_physical/ne_50m_geography_regions_polys.shp.zip&quot;                          
+[204] &quot;50m_physical/ne_50m_glaciated_areas.shp.zip&quot;                                  
+[205] &quot;50m_physical/ne_50m_graticules_1.shp.zip&quot;                                     
+[206] &quot;50m_physical/ne_50m_graticules_10.shp.zip&quot;                                    
+[207] &quot;50m_physical/ne_50m_graticules_15.shp.zip&quot;                                    
+[208] &quot;50m_physical/ne_50m_graticules_20.shp.zip&quot;                                    
+[209] &quot;50m_physical/ne_50m_graticules_30.shp.zip&quot;                                    
+[210] &quot;50m_physical/ne_50m_graticules_5.shp.zip&quot;                                     
+[211] &quot;50m_physical/ne_50m_lakes.shp.zip&quot;                                            
+[212] &quot;50m_physical/ne_50m_lakes_historic.shp.zip&quot;                                   
+[213] &quot;50m_physical/ne_50m_land.shp.zip&quot;                                             
+[214] &quot;50m_physical/ne_50m_ocean.shp.zip&quot;                                            
+[215] &quot;50m_physical/ne_50m_playas.shp.zip&quot;                                           
+[216] &quot;50m_physical/ne_50m_rivers_lake_centerlines.shp.zip&quot;                          
+[217] &quot;50m_physical/ne_50m_rivers_lake_centerlines_scale_rank.shp.zip&quot;               
+[218] &quot;50m_physical/ne_50m_wgs84_bounding_box.shp.zip&quot;                               </code></pre>
+<p>Береговая линия (для точного вычитания морей)</p>
+<pre><code>Reading layer `ne_10m_admin_0_countries&#39; from data source 
+  `C:\Users\platt\shapefile\auxiliary\naturalearth\5.1.2\10m_cultural\ne_10m_admin_0_countries.shp.zip&#39; 
+  using driver `ESRI Shapefile&#39;
+Simple feature collection with 258 features and 168 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -180 ymin: -90 xmax: 180 ymax: 83.6341
+Geodetic CRS:  WGS 84</code></pre>
+<p>Загрузка данных административных границ (штаты)</p>
+<pre><code>Reading layer `ne_10m_admin_1_states_provinces&#39; from data source 
+  `C:\Users\platt\shapefile\auxiliary\naturalearth\5.1.2\10m_cultural\ne_10m_admin_1_states_provinces.shp.zip&#39; 
+  using driver `ESRI Shapefile&#39;
+Simple feature collection with 4596 features and 121 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -180 ymin: -90 xmax: 180 ymax: 83.6341
+Geodetic CRS:  WGS 84</code></pre>
+<p>Загрузка данных морей (обрезка по береговой линии)</p>
+<pre><code>Reading layer `ne_10m_geography_marine_polys&#39; from data source 
+  `C:\Users\platt\shapefile\auxiliary\naturalearth\5.1.2\10m_physical\ne_10m_geography_marine_polys.shp.zip&#39; 
+  using driver `ESRI Shapefile&#39;
+Simple feature collection with 306 features and 37 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -180 ymin: -85.19206 xmax: 179.9999 ymax: 90
+Geodetic CRS:  WGS 84</code></pre>
+<p>Города</p>
+<pre><code>Reading layer `ne_10m_populated_places&#39; from data source 
+  `C:\Users\platt\shapefile\auxiliary\naturalearth\5.1.2\10m_cultural\ne_10m_populated_places.shp.zip&#39; 
+  using driver `ESRI Shapefile&#39;
+Simple feature collection with 7342 features and 137 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -179.59 ymin: -90 xmax: 179.3833 ymax: 82.48332
+Geodetic CRS:  WGS 84</code></pre>
+<p class="centered-image"><img src="assets/unnamed-chunk-7-1.svg" width="646.08" /></p>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>

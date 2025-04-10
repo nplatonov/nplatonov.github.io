@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>lyznik</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.29/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+<p>Я решила сделать эту домашку всё же в QGIS, потому что это мне как будто интуитивно ближе, чем кодить в R (и Женя согласилась мне помочь).</p>
+<p class="centered-image"><img src="media/image1.png" style="width:6.50422in;height:3.45385in" /></p>
+<p>Данные содержат 5 слоёв, из которых нам нужны, видимо, те два, описание которых не (0). Выгружаем их в проект:</p>
+<p class="centered-image"><img src="media/image2.png" style="width:6.5536in;height:3.03102in" /></p>
+<p>Подложим под это дело карту для наглядности и поменяем проекцию на подходящую:</p>
+<p class="centered-image"><img src="media/image3.png" style="width:6.49877in;height:3.43846in" /></p>
+<p>В целом трек можно поделить на ту часть, где лыжник выходил на круги, и собственно круги. Разбивку произведём с помощью создания нового shape-файла. В режиме редактирования нарисуем там полигон, который будет перекрывать какую-то из частей, выделенных нами в треке (либо подход от раздевалки к трассе, либо круги). Какую именно часть – неважно, потому что нам надо раскусить трек надвое, и неважно, с какой стороны это делать:</p>
+<p class="centered-image"><img src="media/image4.png" style="width:6.49877in;height:2.89231in" /></p>
+<p class="centered-image"><img src="media/image5.png" style="width:6.49877in;height:3.43846in" /></p>
+<p>Задаём параметры обрезки – слой, из которого будем вырезать (т.е. трек) и слой наложения, и создаём новый слой – кусочек трека:</p>
+<p class="centered-image"><img src="media/image6.png" style="width:6.49877in;height:3.43846in" /></p>
+<p>В отличие от меня, кугис хорошо справляется с поставленной задачей:</p>
+<p class="centered-image"><img src="media/image7.png" style="width:6.50155in;height:3.42308in" /></p>
+<p class="centered-image"><img src="media/image7.png" style="width:6.71636in;height:0.75385in" /></p>
+<p>Созданный слой «результат обрезки» содержит фрагмент трека, лежащий на пути от раздевалки до трассы:</p>
+<p class="centered-image"><img src="media/image8.png" style="width:6.7548in;height:2.52369in" /></p>
+<p>Теперь, чтобы выделить уже круги, повторим всё то же самое, но воспользовавшись другим инструментом, разностью:<img src="media/image9.png" style="width:6.49593in;height:3.46243in" /></p>
+<p class="centered-image"><img src="media/image10.png" style="width:6.49593in;height:3.45665in" /><br />
+<img src="media/image11.png" style="width:6.49593in;height:2.12139in" /></p>
+<p>С полученными слоями «разность» и «результат обрезки» можно оперировать.</p>
+<p>У них есть таблицы атрибутов, в них можно создать поле, в котором функция посчитает длину выбранного отрезка трека. Сперва рассчитаем длину «разности» (у нас это круги, которые намотал наш спортсмен):</p>
+<p class="centered-image"><img src="media/image12.png" style="width:6.49593in;height:3.43353in" /></p>
+<p class="centered-image"><img src="media/image13.png" style="width:6.49593in;height:3.43931in" /></p>
+<p class="centered-image"><img src="media/image14.png" style="width:6.49593in;height:3.44509in" /></p>
+<p class="centered-image"><img src="media/image15.png" style="width:6.49593in;height:3.45665in" />Длина кругов в общем вышла без малого 9 километров:<br />
+<img src="media/image16.png" style="width:5.7045in;height:1.9422in" /></p>
+<p>Проделаем то же самое для раздевалочного пути, и получим что-то около восьмисот метров:<br />
+<img src="media/image17.png" style="width:4.61639in;height:1.4721in" /></p>
+<p>Скорее всего, если лыжник мотал свои круги по одной и той же трассе, а потом возвращался с них в ту же раздевалку, где бросил свои вещи (а не погнал на лыжах прямиком домой), то мы можем себе позволить допущение, что круги были одинаковой длины, и пути раздевалка-трек и обратно – тоже сопоставимы.</p>
+<p><strong>Итого получаем, что средняя длина круга – 8973/2=4486,5м.<br />
+</strong></p>
+<p>Все остальные данные можно найти в таблице атрибутов слоя с точками маршрута.</p>
+<p class="centered-image"><img src="media/image18.png" style="width:6.83737in;height:2.55446in" /></p>
+<p>Например, там есть время.</p>
+<p><strong>Время начала и окончания круга можно узнать</strong>, вызвав соответствующие точки, и заглянув в их атрибуты:<br />
+Круг1 начало:<br />
+<img src="media/image19.png" style="width:5.82486in;height:3.27011in" /></p>
+<p>Круг1 окончание и начало круга2:</p>
+<p class="centered-image"><img src="media/image20.png" style="width:6.01772in;height:3.07921in" /></p>
+<p>Окончание круга2:<br />
+<img src="media/image21.png" style="width:6.50749in;height:3.71177in" /></p>
+<p><strong>Средняя скорость прохождения круга</strong><br />
+Что ж, в таблице атрибутов, как говорят коллеги, есть просто столбец со скоростями, но у меня его почему-то нет, к тому же это читерство. Вместо этого сделаем вот как.<br />
+Длина круга, как мы помним - 4486,5м.<br />
+Допустим, это круг 1. Время начала его прохождения - 11:09:30, время окончания – 11:36:24. То есть за 00:26:54 (1494 сек) лыжник делает 4486,5м, и его скорость получается около 3м/с, то есть 10.8 км/ч.<br />
+Прохождение круга 2 заняло 1622 сек, средняя скорость примерно такая же. 2,76м/c = 9.936км/ч.</p>
+<p>Даже отсюда уже видно, что движение было не совсем одинаковым, потому что средние скорости отличаются.</p>
+<p>Из общих соображений мы знаем, что GPS пишет координаты более-менее через равные промежутки времени, и таблица атрибутов слоя с точками даёт нам подтверждение этому – интервал между регистрациями позиции лыжника составляет 5-6сек:</p>
+<p class="centered-image"><img src="media/image22.png" style="width:3.63097in;height:2.62278in" /></p>
+<p>Между тем мы видим, что точки трека расположены весьма неравномерно. Нетрудно сделать вывод, что там, где точки расположены чаще, лыжник двигался медленнее (путь из/в раздевалку, некоторые отдельные участки кругов), в то время как там, где точки реже, скорость бегуна была выше (круги):<br />
+<img src="media/image23.png" style="width:5.53605in;height:2.93413in" /></p>
+<p><strong>Максимальное удаление от базы</strong></p>
+<p>К счастью для таких простых людей, как я, в QGIS есть линейка, которой можно измерить расстояние «вручную»: <img src="media/image24.png" style="width:1.48082in;height:1.09261in" /></p>
+<p class="centered-image"><img src="media/image25.png" style="width:6.49665in;height:3.43713in" /></p>
+<p>Расстояние получается что-то около 780 м.</p>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
