@@ -40,6 +40,10 @@ function expandBackgroundColor() {
          const computedStyle = window.getComputedStyle(contentGrandchild);
          const backgroundColor = computedStyle.backgroundColor;
          container.style.backgroundColor = backgroundColor;
+         const banner = contentGrandchild.querySelector('.banner.narrow');
+         if (banner) {
+            contentGrandchild.classList.add("wideformatted");
+         }
       }
    });
    const observer = new MutationObserver(mutations => {
