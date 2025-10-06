@@ -689,7 +689,7 @@ function adjustOutline() {
       outline.style.fontSize = `${relative}%`;
       while (outline.clientHeight >= totalHeight) {
          k++;
-        // console.log(index, k);
+         //~ console.log(index, k);
          if (false) {
             elements.forEach((element) => {
                const computedStyle = window.getComputedStyle(element);
@@ -700,14 +700,15 @@ function adjustOutline() {
             });
          } else {
             relative = relative * (1-0.002);
-           // console.log("C:", relative);
+            if (false)
+               console.log("C:", relative);
             outline.style.fontSize = `${(relative).toFixed(1)}%`;
            // if (k>10)
            //    break;
          }
         // console.log(counter + ': ' + k);
-         if (isAlert && k==22)
-            alert('22 ' + outline.clientHeight + ' out of ' + totalHeight);
+        // if (isAlert && k==22)
+        //    alert('22 ' + outline.clientHeight + ' out of ' + totalHeight);
         // break;
       }
       if (relative == 100)
@@ -720,11 +721,31 @@ function adjustOutline() {
       k = 0;
       while (hasVerticalScrollbar(sidebar)) {
          k++;
-         if (k>10)
+         if (k>100)
             break;
          relative = relative * (1-0.002);
          if (false)
             console.log(index, k, "D:", relative);
+         outline.style.fontSize = `${(relative).toFixed(1)}%`;
+      }
+      if (k>1) {
+         const keepRelative = relative;
+         k = 0;
+         while (!hasVerticalScrollbar(sidebar)) {
+            k++;
+            if (k>100)
+               break;
+            relative = relative / (1-0.002);
+            if (false)
+               console.log(index, k, keepIndex, "E:", relative);
+            outline.style.fontSize = `${(relative).toFixed(1)}%`;
+         }
+         var keepIndex = k;
+         outline.style.fontSize = `${(keepRelative).toFixed(1)}%`;
+         relative = keepRelative;
+         for (k=0; k<keepIndex; k++) {
+            relative = relative / (1-0.002);
+         }
          outline.style.fontSize = `${(relative).toFixed(1)}%`;
       }
       if (isAlert) {

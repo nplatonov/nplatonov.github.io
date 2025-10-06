@@ -11,7 +11,7 @@
    --sidebar-color: var(--accent);
    --sidebar-accent: var(--light);
    --footer-pointsize: 14px;
-   --logosize: 150px;
+   --logosize: 450px;
 }
 .remark-slide-content.customtitle:not(.inverse):not(.modified):not(.wideformatted), .remark-slide-content.title-slide:not(.inverse) {
    background-image: url("background-title.png") !important;
@@ -19,7 +19,7 @@
    background-position: left top;
   /* border-bottom: 3px solid var(--accent); */
 }
-.remark-slide-content:not(.customtitle):not(.title-slide):not(.inverse):not(#slide-endofslideshow):not(.modified):not(.wideformatted) {
+.remark-slide-content:not(.customtitle):not(.title-slide):not(.inverse):not(#slide-endofslideshow):not(.modified):not(.wideformatted):not(.break) {
    background-image: url("background.png") !important;
    background-size: contain;
    background-position: left top;
@@ -43,6 +43,7 @@
 }
 .sidebar > .outline {
    margin-top: 126px;
+   margin-bottom: 171px;
 }
 .sidebar {
    background-image: none !important;
@@ -141,18 +142,18 @@
 }
 .tamura {
    position: fixed;
-   width: 1500px;
-   height: 150px;
+   width: 155px;
+   height: 155px;
    bottom: 9px;
-   left: 25px;
-   background-image: url(tamura-0060B0.png);
+   left: 41px;
+   background-image: url(tamura-0060B0-right.png);
    background-size: contain;
    background-repeat: no-repeat;
 }
 .remark-slide-content.customtitle .tamura {
-   width: 1500px;
-   height: 160px;
-   left: 43px;
+   width: 155px;
+   height: 155px;
+   left: 41px;
    bottom: 120px;
 }
 .remark-slide-content.inverse .tamura {
@@ -185,4 +186,12 @@
 }
 #slide-welch table td {
    padding: 0.15em 0.95em;
+}
+.mainbar + .remark-slide-number {
+   right: unset;
+   bottom: 137px;
+   left: 4px;
+  /* top: 4px;*/
+   color: var(--accent);
+   border-color: var(--accent);
 }
