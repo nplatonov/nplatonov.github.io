@@ -290,7 +290,7 @@ function adjustImageSize() {
          if (success && !hasVerticalScrollbar(scroller)) {
             scroller.classList.remove(removableClass)
             imageList.forEach(image => {
-               image.style.objectFit = `contain`
+               image.style.objectFit = `contain`;
             });
          }
          else { // trying proportional decreasing
@@ -303,28 +303,42 @@ function adjustImageSize() {
             });
             k = 1;
             while (hasVerticalScrollbar(scroller)) {
-               k = k * 0.99;
-               if (k < 0.2)
-                  break;
-              // console.log(k);
+               if (false) {
+                  k = k * 0.99;
+                  if (k < 0.2)
+                     break;
+               }
+               else {
+                  k++;
+                  if (k>200)
+                     break;
+               }
                imageList.forEach(image => {
                  // aspectRatio = image.naturalWidth / image.naturalHeight;
                  // newWidth = availableHeight * aspectRatio * 1;
                  // newHeight = availableHeight;
                  // imageHeight = Math.floor(image.naturalHeight * k);
-                  imageHeight = Math.floor(image.offsetHeight * k);
+                  imageHeight = Math.floor(image.offsetHeight * 0.99);
                  // console.log(imageHeight);
                  // newWidth = image.naturalWidth * k;
                  // const aspectRatio = image.naturalWidth / image.naturalHeight;
                   image.style.height = `${imageHeight}px`;
+                 // console.log(k,imageHeight,image.offsetHeight);
                })
             }
            // console.log('k=' + k + ', ' + 'height=' + imageHeight);
-            if (k >= 0.5) {
-               scroller.classList.remove(removableClass)
-               imageList.forEach(image => {
-                  image.style.objectFit = `contain`
+            if (k>200) {
+               Array.from(imageList).forEach((restoreImage, restoreIndex) => {
+                  restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
                });
+            }
+            else {
+               if (k >= 0.5) {
+                  scroller.classList.remove(removableClass)
+                  imageList.forEach(image => {
+                     image.style.objectFit = `contain`;
+                  });
+               }
             }
            // console.log("resultingHeights:",Array.from(imageList).map(image => image.offsetHeight));
             return;
@@ -526,7 +540,8 @@ function adjustFontSize() {
       const hasImagesOrIframes = container.querySelectorAll('img, .framed, iframe').length > 0;
       
       if (hasImagesOrIframes) {
-         return; // Если есть img или iframe, ничего не делаем
+        // console.log(index,"media");
+        // return; // Если есть img или iframe, ничего не делаем
       }
       const forced = scroller.querySelectorAll('pre > code, table').length > 0;
       var admit;

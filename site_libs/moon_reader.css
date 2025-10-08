@@ -208,7 +208,7 @@ html[data-darkreader-mode="dynamic"] .remark-slide-content {
 .remark-slide-content *+h3,
 .remark-slide-content *+h4,
 .remark-slide-content *+h5 {
-  margin-top: 0em;
+  margin-top: 0.6em;
 }
 /*
 .remark-slide-content h4 {
@@ -2141,7 +2141,7 @@ table tr th:empty {
    text-indent: -1em;
    margin-left: 1em;
 }
-#slide-bib .footnote {
+#slide-bib .zzzfootnote {
    overflow-y: auto; 
    height: 656px;
    padding-right: 18px;
@@ -2150,8 +2150,10 @@ table tr th:empty {
    width: calc(100% - 3% - var(--sidebar));
 }
 #slide-bib:not(.mainbar) > .footnote,
+#slide-bib:not(.mainbar) > .bibliography,
 #slide-fn:not(.mainbar) > .footnote {
    margin-left: 48px;
+   width: calc(100% - 48px);
 }
 .remark-slide-content > .top,
 .remark-slide-content > .middle,
@@ -2728,8 +2730,8 @@ blockquote p:last-of-type {
 	/* filling background  -- end */
 @media only screen {
    .remark-slides-area .remark-fading { z-index: 9; } 
-   .remark-slides-area .remark-slide-container {transition: opacity 0.4s ease-out;opacity: 0;}
-   .remark-slides-area .remark-visible {transition: opacity 0.4s ease-out;opacity: 1;}
+   .remark-slides-area .remark-slide-container {transition: opacity 0.2s ease-out;opacity: 0;}
+   .remark-slides-area .remark-visible {transition: opacity 0.2s ease-out;opacity: 1;}
    .remark-slides-area #slide-bib .remark-slide-number,
    .remark-slides-area #slide-fn .remark-slide-number {
       display: none;
@@ -2791,7 +2793,8 @@ blockquote p:last-of-type {
    }
 }
 @media screen {
-   [class*="tile-view"] #slide-bib .footnote {
+   [class*="tile-view"] #slide-bib .footnote,
+   [class*="tile-view"] #slide-bib .bibliography {
       font-size: var(--bibliography-scale);
    }
 }
