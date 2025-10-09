@@ -1,15 +1,15 @@
 :root {
    --accent-swap: #B06000;
-   --accent: #0060B0;
+   --accent-maresedu: #0060B0;
+   --accent-alt: #056608;
    --header-accent: #FFD204;
    --sidebar: 15.9%;
    --sidebar-pointsize: 60%;
   /* --sidebar-margin: 15px;*/
   /* --header-accent: #18569830;*/
   /* --sidebar-left: 0em;*/
-   --sidebar-select: var(--accent);
-   --sidebar-color: var(--accent);
-   --sidebar-accent: var(--light);
+   --sidebar-select: var(--accent-swap);
+   --sidebar-color: var(--accent-swap);
    --footer-pointsize: 14px;
    --logosize: 450px;
 }
@@ -19,15 +19,18 @@
    background-position: left top;
   /* border-bottom: 3px solid var(--accent); */
 }
-.remark-slide-content:not(.customtitle):not(.title-slide):not(.inverse):not(#slide-endofslideshow):not(.modified):not(.wideformatted):not(.break) {
+.remark-slide-content:not(.customtitle):not(.title-slide):not(.inverse):not(#slide-endofslideshow):not(.modified):not(.wideformatted):not(.break):not(#slide-bib) {
    background-image: url("background.png") !important;
    background-size: contain;
    background-position: left top;
-  /* border-bottom: 3px solid var(--accent); */
+  /* border-bottom: 1px solid var(--accent);*/
    z-index: 8;
 }
 .metadata .title {
    font-size: 130%;
+}
+.metadata:not(.modified):not(.wideformatted) .title {
+   color: var(--accent-swap);
 }
 .metadata .authors {
    margin-top: 2.5em;
@@ -42,7 +45,7 @@
    opacity: 1;
 }
 .sidebar > .outline {
-   margin-top: 126px;
+   margin-top: 141px;
    margin-bottom: 171px;
 }
 .sidebar {
@@ -50,7 +53,7 @@
 }
 .remark-slide-content:not(.metadata) .sidebar.narrow + .right-column {
   /* width: calc(100% - var(--sidebar) - var(--sidebar-margin) + 11px);*/
-   width: calc(100% - var(--sidebar-margin) - 21px);
+   width: calc(100% - var(--sidebar-margin) - 31px);
    margin-top: -0.3em;
 }
 .speaker {
@@ -98,14 +101,19 @@
    border: 1px solid red;
    visibility: hidden;
 }
-#slide-bib:not(.mainbar) > .footnote, #slide-fn:not(.mainbar) > .footnote {
+/*
+#slide-bib:not(.mainbar) > .bibliography,
+#slide-bib:not(.mainbar) > .footnote,
+#slide-fn:not(.mainbar) > .footnote {
    margin-left: var(--sidebar);
+   width: calc(100% - var(--sidebar));
 }
 .backtoshow {
    top: unset;
    bottom: 3px;
 }
-.mainbar.broad .header > p > .me {
+*/
+.mainbar.broad .header > p > .generation {
    border-bottom: solid 5px var(--header-accent);
    color: var(--dark);
    text-transform: uppercase;
@@ -146,7 +154,7 @@
    height: 155px;
    bottom: 9px;
    left: 41px;
-   background-image: url(tamura-0060B0-right.png);
+   background-image: url(tamura-0060B0-swap.png);
    background-size: contain;
    background-repeat: no-repeat;
 }
@@ -154,7 +162,7 @@
    width: 155px;
    height: 155px;
    left: 41px;
-   bottom: 120px;
+   bottom: 151px;
 }
 .remark-slide-content.inverse .tamura {
    filter: invert();
@@ -168,7 +176,7 @@
    color: white;
    background-color: rgb(255,210,6);
    font-size: 14pt;
-   padding: 0.3em;
+   padding: 0.6em;
    opacity: 1;
    width: 1em;
    text-align: center;
@@ -189,9 +197,12 @@
 }
 .mainbar + .remark-slide-number {
    right: unset;
-   bottom: 137px;
+  /* bottom: 137px;*/
+   bottom: unset;
    left: 4px;
-  /* top: 4px;*/
-   color: var(--accent);
-   border-color: var(--accent);
+   top: 4px;
+}
+.remark-slide-content:not(.inverse):not(.modified):not(.wideformatted) .mainbar + .remark-slide-number {
+   color: var(--accent-maresedu);
+   border-color: var(--accent-maresedu);
 }
