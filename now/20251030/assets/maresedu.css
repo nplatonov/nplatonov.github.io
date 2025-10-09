@@ -29,7 +29,7 @@
 .metadata .title {
    font-size: 130%;
 }
-.metadata:not(.modified):not(.wideformatted) .title {
+.metadata:not(.modified):not(.wideformatted):not(.inverse) .title {
    color: var(--accent-swap);
 }
 .metadata .authors {
@@ -165,7 +165,7 @@
    bottom: 151px;
 }
 .remark-slide-content.inverse .tamura {
-   filter: invert();
+   filter: grayscale() invert() contrast(2);
 }
 
 .remark-slide-content.modified .remark-slide-number,
@@ -185,7 +185,7 @@
 .mainbar.broad .header.broad, .mainbar.broad .header.show {
    margin-bottom: 0.1em;
 }
-.when .updated {
+.remark-slide-content:not(.inverse) .when .updated {
   text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
                1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
 }
