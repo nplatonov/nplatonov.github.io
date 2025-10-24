@@ -11,7 +11,7 @@
    --sidebar-select: var(--accent-swap);
    --sidebar-color: var(--accent-swap);
    --footer-pointsize: 14px;
-   --logosize: 450px;
+   --logosize: 46px;
 }
 .remark-slide-content.customtitle:not(.inverse):not(.modified):not(.wideformatted), .remark-slide-content.title-slide:not(.inverse) {
    background-image: url("background-title.png") !important;
@@ -66,33 +66,42 @@
 .remark-slide-content.customtitle.inverse .sevinlogo::before {
    filter: grayscale() brightness(0.8) contrast(99) brightness(0.85);
 }
-.sevinlogo::after {
+.remark-slide-content#slide-home .sevinlogo::after,
+.remark-slide-content#slide-beforefinalizing .sevinlogo::after {
    content: '';
    position: fixed;
   /* border: 0px solid red;*/
    width: 76px; /* 31px */ /* 4.5 */
    height: 76px; /* 32px */
-   bottom: 2px;
-   right:  2px;
+   top: 86px;
+   right:  48px; /* 48px 6px 98px */
    left:  unset;
-  /* background-image: url(https://sev-in.ru/sites/default/files/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_1.ico);*/
    background-image: url(sevin-800000.png);
    background-size: contain;
    background-repeat: no-repeat;
-   filter: invert() hue-rotate(30deg) brightness(1.6) contrast(0.8);
+   filter: grayscale() contrast(0.95);
+  /* filter: invert() hue-rotate(30deg) brightness(1.6) contrast(0.8);*/
 }
-.remark-slide-content .sevinlogo::after {
-   left:  13px;
+.remark-slide-content#slide-home .sevinlogo::after {
+   width: 48px; /* 31px */ /* 4.5 */
+   height: 48px; /* 32px */
+   top: 227px;
+   left:  214px;
 }
-.remark-slide-content.customtitle .sevinlogo::after {
+.remark-slide-content:not([#slide-home]) .sevinlogo::after,
+.remark-slide-content:not([#slide-beforefilanizing]) .sevinlogo::after {
+   display: none;
+}
+.remark-slide-content.metadata .sevinlogo::after {
    opacity: 1;
-   bottom: 117px;
-   left: 38px;
+   top: 228px;
+   left: 214px;
    right: unset;
    width: var(--logosize); /* 31px */ /* 4.5 */
    height: var(--logosize); /* 32px */
   /* filter: hue-rotate(200deg) brightness(1.8);*/
-   filter: hue-rotate(200deg) brightness(2.4);
+  /* filter: hue-rotate(200deg) brightness(2.4);*/
+  /* filter: none !important;*/
 }
 .remark-slide-content.customtitle.inverse .sevinlogo::after {
    filter: invert() hue-rotate(200deg) brightness(2.8) contrast(0.8);
@@ -133,17 +142,23 @@
 .remark-slide-content.wideformatted .tamura {
    display: none;
 }
+.remark-slide-content#slide-home .rosneft,
+.remark-slide-content#slide-beforefinalizing .rosneft,
 .remark-slide-content.modified .rosneft,
 .remark-slide-content.wideformatted .rosneft {
    position: fixed;
    width: 176px; /* 31px */ /* 4.5 */
-   height: 176px; /* 32px */
+   height: 72px; /* 32px */
    top: 2px;
    right:  2px;
    left:  unset;
    background-image: url(rosneft.jpg);
    background-size: contain;
    background-repeat: no-repeat;
+}
+.remark-slide-content#slide-home:not(.modified):not(.wideformatted) .rosneft {
+   top: 43px;
+   right: 16px;
 }
 .remark-slide-content.modified.wideformatted .rosneft {
    display: none;
@@ -205,11 +220,14 @@
 .remark-slide-content:not(.inverse):not(.modified):not(.wideformatted) .mainbar + .remark-slide-number {
    color: var(--accent-maresedu);
    border-color: var(--accent-maresedu);
-   background-color: var(--light);
+   background-color: transparent;
 }
 .caption .bbox {
    border: 3px dashed red;
 }
 .outline *[id*=span-class-small] .small {
    font-size: 96%;
+}
+.outline a[href*=maxent] {
+   letter-spacing: -1.5px;
 }
