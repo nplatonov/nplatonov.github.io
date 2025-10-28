@@ -204,7 +204,7 @@ function adjustImageSize() {
         // scroller.classList.add('imageresized')
      //    return;
      // }
-      const imageList = scroller.querySelectorAll(':not(.inline) img, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
+      const imageList = scroller.querySelectorAll(':not(.untouchable) img, :not(.inline) img, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
       multi = Object.keys(imageList).length > 1
      // console.log(Object.keys(imageList).length)
       const columns = scroller.querySelector('.pulling, .double');
@@ -326,7 +326,7 @@ function adjustImageSize() {
                  // console.log(k,imageHeight,image.offsetHeight);
                })
             }
-           // console.log('k=' + k + ', ' + 'height=' + imageHeight);
+            console.log('k=' + k + ', ' + 'height=' + imageHeight);
             if (k>200) {
                Array.from(imageList).forEach((restoreImage, restoreIndex) => {
                   restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
@@ -334,10 +334,23 @@ function adjustImageSize() {
             }
             else {
                if (k >= 0.5) {
+                  console.log(hasVerticalScrollbar(scroller));
                   scroller.classList.remove(removableClass)
+                  console.log(hasVerticalScrollbar(scroller));
+                  k=1;
+                  while (hasVerticalScrollbar(scroller)) {
+                     k++;
+                     if (k>14)
+                        break;
+                     imageList.forEach(image => {
+                        imageHeight = Math.floor(image.offsetHeight-1);
+                        image.style.height = `${imageHeight}px`;
+                     })
+                  }
                   imageList.forEach(image => {
                      image.style.objectFit = `contain`;
                   });
+                  console.log(hasVerticalScrollbar(scroller));
                }
             }
            // console.log("resultingHeights:",Array.from(imageList).map(image => image.offsetHeight));
@@ -345,7 +358,7 @@ function adjustImageSize() {
          }
          return;
       }
-      const image = scroller.querySelector('img, iframe:not(.ursa-widgetize), .framed:has(> iframe), .html-widget');
+      const image = scroller.querySelector(':not(.untouchable) img, iframe:not(.ursa-widgetize), .framed:has(> iframe), .html-widget');
       if (!image)
          return;
       counter++;

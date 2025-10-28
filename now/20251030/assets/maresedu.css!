@@ -13,8 +13,7 @@
    --footer-pointsize: 14px;
    --logosize: 46px;
 }
-.remark-slide-content.customtitle.wideformatted:not(.inverse):not(.modified),
-.remark-slide-content.customtitle:not(.inverse).modified:has(.mainbar.broad) {
+.remark-slide-content.customtitle.wideformatted:not(.inverse):not(.modified) {
    background-image: url("rosneft-title.jpg") !important;
    background-size: contain;
    background-position: left top;
@@ -27,14 +26,13 @@
    background-position: left top;
 }
 */
-.customtitle.wideformatted .sidebar.narrow,
-.customtitle.modified .sidebar.narrow {
+.customtitle.wideformatted .sidebar.narrow {
    background-color: transparent !important;
 }
-.broad.mainbar {
+.wideformatted .broad.mainbar {
    font-family: arial;
 }
-.customtitle .broad.mainbar .title {
+.customtitle.wideformatted .broad.mainbar .title {
    margin: 0 auto 0 auto;
    width: 600px;
    position: relative;
@@ -43,11 +41,11 @@
    font-size: 116%;
    font-weight: bold;
 }
-.customtitle .broad.mainbar .title p {
+.customtitle.wideformatted .broad.mainbar .title p {
    margin-top: 0.8em;
 }
 
-.customtitle .broad.mainbar .authors {
+.customtitle.wideformatted .broad.mainbar .authors {
    position: relative;
    top: 240px;
    margin: 0 auto 0 auto;
@@ -56,12 +54,12 @@
    font-size: 77%;
    font-weight: bold;
 }
-.customtitle .mainbar.broad .authors .institute {
+.customtitle.wideformatted .mainbar.broad .authors .institute {
    font-weight: normal;
    margin-left: unset;
    font-style: italic;
 }
-.customtitle .sidebar.narrow + .right-column {
+.customtitle.wideformatted .sidebar.narrow + .right-column {
    width: 100%;
 }
 .remark-slide-content.customtitle:not(.inverse):not(.modified):not(.wideformatted), .remark-slide-content.title-slide:not(.inverse) {
@@ -78,8 +76,7 @@
    z-index: 8;
 }
 .metadata .title {
-   font-size: 135%;
-   margin-right: 160px;
+   font-size: 130%;
 }
 .metadata:not(.modified):not(.wideformatted):not(.inverse) .title {
    color: var(--accent-swap);
@@ -137,7 +134,7 @@
 .remark-slide-content#slide-home .sevinlogo::after {
    width: 48px; /* 31px */ /* 4.5 */
    height: 48px; /* 32px */
-   top: 218px;
+   top: 227px;
    left:  214px;
 }
 .remark-slide-content:not([#slide-home]) .sevinlogo::after,
@@ -183,12 +180,12 @@
    font-size: 70%;
    letter-spacing: 0px;
 }
-.mainbar.broad .header > p > .generation {
+.wideformatted .mainbar.broad .header > p > .generation {
    font-family: arial;
    font-weight: bold;
    border-bottom: none;
 }
-.mainbar.broad .header > p {
+.wideformatted .mainbar.broad .header > p {
    margin-bottom: 0.1em;
 }
 .mainbar.broad .header > p > .parent {
@@ -197,17 +194,16 @@
 .mainbar.broad .header > p > .parent:hover {
    opacity: 1;
 }
-.remark-slide-content:not(.modified):not(.customtitle) .toc.banner .sevinlogo,
+.remark-slide-content.modified .sevinlogo,
 /*.remark-slide-content.wideformatted .sevinlogo,*/
-.remark-slide-content.modified:has(.narrow.banner) .rosneft,
 .remark-slide-content.modified .tamura,
 .remark-slide-content.wideformatted .tamura {
    display: none;
 }
 .remark-slide-content:not(.wideformatted)#slide-home .rosneft,
 .remark-slide-content#slide-beforefinalizing .rosneft,
-/*.remark-slide-content.modified .rosneft,*/
-.remark-slide-content.wideformatted:not(#slide-home) .rosneft {
+.remark-slide-content.wideformatted:not(#slide-home) .rosneft,
+.remark-slide-content.modified .rosneft {
    position: fixed;
    width: 146px; /* 176px! 31px */ /* 4.5 */
    height: 48px; /* 72px! 32px */
@@ -245,7 +241,8 @@
    filter: grayscale() invert() contrast(2);
 }
 
-.remark-slide-content:has(.mainbar.broad) .remark-slide-number {
+.remark-slide-content.modified .remark-slide-number,
+.remark-slide-content.wideformatted .remark-slide-number {
    top: unset;
    bottom: 0px;
    left: 0px;
@@ -263,7 +260,7 @@
 .mainbar.broad .header.broad, .mainbar.broad .header.show {
    margin-bottom: 0.1em;
 }
-.mainbar.broad .header.broad {
+.wideformatted .mainbar.broad .header.broad {
    border-bottom: 5px solid rgb(255,210,6);
    overflow-x: visible;
    width: 190px;
@@ -299,7 +296,7 @@
 .outline a[href*=maxent] {
    letter-spacing: -1.5px;
 }
-.broad.mainbar .figure>.caption {
+.wideformatted .broad.mainbar .figure>.caption {
    display: inline;
    position: absolute;
    margin-top: 200px;
@@ -309,7 +306,7 @@
    opacity: 1;
    font-size: 90%;
 }
-.broad.mainbar .caption.centered { /* tables */
+.wideformatted .broad.mainbar .caption.centered { /* tables */
    display: inline;
    position: absolute;
    margin-top: 200px;
@@ -319,19 +316,19 @@
    opacity: 1;
    font-size: 100% !important;
 }
-.broad.mainbar img[width="1330"] {
+.wideformatted .broad.mainbar img[width="1330"] {
    max-width: 900px !important;
 }
-.broad.mainbar .ecology {
+.wideformatted .broad.mainbar .ecology {
    font-size: 120%;
    color: rgb(60,83,61);
    margin-left: 100px;
 }
-.broad.mainbar .ecology img {
+.wideformatted .broad.mainbar .ecology img {
    border: 1px solid red;
    height: 100px !important;
 }
-.remark-slide-content:has(.mainbar.broad) .tamura-multi {
+.wideformatted .tamura-multi {
    content: '';
    position: fixed;
    bottom: 70px;
@@ -342,18 +339,18 @@
    width: 60px;
    height: 60px;
 }
-.remark-slide-content:has(.mainbar.broad)#slide-tamura .tamura-multi {
+.wideformatted#slide-tamura .tamura-multi {
    left: 65px;
    bottom: unset;
-   top: 89px;
+   top: 95px;
    width: 100px;
    height: 100px;
 }                	
-.remark-slide-content:has(.mainbar.broad)#slide-home .tamura-multi,
-.remark-slide-content:has(.mainbar.broad)#slide-home .sevinlogo {
+.wideformatted#slide-home .tamura-multi,
+.wideformatted#slide-home .sevinlogo {
    display: none;
 }
-.remark-slide-content:has(.mainbar.broad) .sevinlogo:before {
+.wideformatted .sevinlogo:before {
    content: '';
    position: fixed;
    bottom: 7px;
@@ -364,42 +361,40 @@
    width: 60px;
    height: 60px;
 }
-.remark-slide-content:has(.mainbar.broad) .mainbar.broad h2,
-.remark-slide-content:has(.mainbar.broad) .mainbar.broad h3,
-.remark-slide-content:has(.mainbar.broad) .mainbar.broad h4 {
+.wideformatted .mainbar.broad h2,
+.wideformatted .mainbar.broad h3,
+.wideformatted .mainbar.broad h4 {
    font-family: arial !important;
    font-weight: bold;
    font-size: 120%;
 }
-.mainbar.broad ul {
+.wideformatted .mainbar.broad ul {
    list-style: none;
    margin-left: 0;
    padding-left: 0;
 }
-.mainbar.broad ul li {
+.wideformatted .mainbar.broad ul li {
    padding-left: 1em;
    text-indent: -1em;
 }
-.mainbar.broad ul li p {
+.wideformatted .mainbar.broad ul li p {
    display: inline;
 }
-.mainbar.broad ul li:before {
+.wideformatted .mainbar.broad ul li:before {
    content: '🠶';
    padding-right: 5px;
    color: rgb(255,210,6);
 }
-.mainbar.broad .collars {
-   margin-bottom: 2.4em;
-}
 .collars {
+   margin-bottom: 2.4em;
    display: flex;
 }
 .collars .figure {
    margin-left: 0.4em;
    margin-right: 0.4em;
 }
-.remark-slide-content#slide-tamura .broad.mainbar .figure > .caption,
-.broad.mainbar .collars .figure > .caption {
+.wideformatted#slide-tamura .broad.mainbar .figure > .caption,
+.wideformatted .broad.mainbar .collars .figure > .caption {
    position: unset;
 }
 .atlas {
@@ -413,20 +408,20 @@ img[aspect], img[expand] {
 .alltogether img {
    height: 593px !important;
 }
-.remark-slide-content:has(.broad.mainbar)#slide-atlas .rosneft,
-.remark-slide-content:has(.broad.mainbar)#slide-atlas .tamura-multi,
-.remark-slide-content:has(.broad.mainbar)#slide-atlas .sevinlogo {
+.wideformatted#slide-atlas .rosneft,
+.wideformatted#slide-atlas .tamura-multi,
+.wideformatted#slide-atlas .sevinlogo {
    display: none;
 }
-.remark-slide-content:has(.broad.mainbar)#slide-endofslideshow {
+.wideformatted#slide-endofslideshow {
    background-image: url("rosneft-thankyou.jpg") !important;
    background-size: contain;
    background-position: left top;
 }
-.remark-slide-content:has(.broad.mainbar)#slide-endofslideshow .endofslideshow {
+.wideformatted#slide-endofslideshow .endofslideshow {
    opacity: 0;
 }
-.broad.mainbar table {
+.wideformatted .broad.mainbar table {
    font-family: arial;
 }
 .broad.mainbar table th {
