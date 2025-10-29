@@ -326,7 +326,7 @@ function adjustImageSize() {
                  // console.log(k,imageHeight,image.offsetHeight);
                })
             }
-            console.log('k=' + k + ', ' + 'height=' + imageHeight);
+           // console.log('k=' + k + ', ' + 'height=' + imageHeight);
             if (k>200) {
                Array.from(imageList).forEach((restoreImage, restoreIndex) => {
                   restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
@@ -334,9 +334,9 @@ function adjustImageSize() {
             }
             else {
                if (k >= 0.5) {
-                  console.log(hasVerticalScrollbar(scroller));
+                 // console.log(hasVerticalScrollbar(scroller));
                   scroller.classList.remove(removableClass)
-                  console.log(hasVerticalScrollbar(scroller));
+                 // console.log(hasVerticalScrollbar(scroller));
                   k=1;
                   while (hasVerticalScrollbar(scroller)) {
                      k++;
@@ -350,7 +350,7 @@ function adjustImageSize() {
                   imageList.forEach(image => {
                      image.style.objectFit = `contain`;
                   });
-                  console.log(hasVerticalScrollbar(scroller));
+                 // console.log(hasVerticalScrollbar(scroller));
                }
             }
            // console.log("resultingHeights:",Array.from(imageList).map(image => image.offsetHeight));

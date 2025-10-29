@@ -307,7 +307,7 @@
    font-family: arial;
    font-style: italic;
    opacity: 1;
-   font-size: 90%;
+   font-size: calc(0.9 * var(--pointsize)) !important;
 }
 .broad.mainbar .caption.centered { /* tables */
    display: inline;
@@ -317,7 +317,7 @@
    font-family: arial;
    font-style: italic;
    opacity: 1;
-   font-size: 100% !important;
+   font-size: calc(0.9 * var(--pointsize)) !important;
 }
 .broad.mainbar img[width="1330"] {
    max-width: 900px !important;
@@ -418,12 +418,14 @@ img[aspect], img[expand] {
 .remark-slide-content:has(.broad.mainbar)#slide-atlas .sevinlogo {
    display: none;
 }
-.remark-slide-content:has(.broad.mainbar)#slide-endofslideshow {
+.remark-slide-content.wideformatted:not(.modified)#slide-endofslideshow,
+.remark-slide-content.modified:not(.wideformatted)#slide-endofslideshow {
    background-image: url("rosneft-thankyou.jpg") !important;
    background-size: contain;
    background-position: left top;
 }
-.remark-slide-content:has(.broad.mainbar)#slide-endofslideshow .endofslideshow {
+.remark-slide-content.wideformatted:not(.modified)#slide-endofslideshow .endofslideshow,
+.remark-slide-content:not(.wideformatted).modified#slide-endofslideshow .endofslideshow {
    opacity: 0;
 }
 .broad.mainbar table {
@@ -450,4 +452,12 @@ img[aspect], img[expand] {
    font-size: 32.5%;
    margin-left: 58px;
    width: 91%;
+}
+.remark-slide-content:has(.broad.mainbar) table {
+   border-top: none;
+   border-bottom: none;
+}
+.remark-slide-content:not(.modified).wideformatted.inverse,
+.remark-slide-content.modified:not(.wideformatted).inverse {
+   opacity: 0.1;
 }
