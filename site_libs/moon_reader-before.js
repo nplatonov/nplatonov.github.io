@@ -326,10 +326,11 @@ function adjustImageSize() {
                  // console.log(k,imageHeight,image.offsetHeight);
                })
             }
-           // console.log('k=' + k + ', ' + 'height=' + imageHeight);
+            console.log('k=' + k + ', ' + 'height=' + imageHeight);
             if (k>200) {
                Array.from(imageList).forEach((restoreImage, restoreIndex) => {
-                  restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
+                 // restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
+                  restoreImage.style.height = 'unset';
                });
             }
             else {
