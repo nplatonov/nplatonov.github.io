@@ -179,20 +179,34 @@ function getCssVariable(variableName) {
 function scrollableOffset() {
    return getCssVariable('--scrollable-offset');
 }
-function adjustImageSize() {
+function adjustImageSize(beforeFont = true) {
+   const afterFont = !beforeFont;
    const removableClass = "scrollable";
+   console.log('before font = ',beforeFont,'afterFont = ',afterFont);
    const startTime = performance.now();
    // Функция для проверки наличия вертикальной прокрутки
    const slideList = document.querySelectorAll('.remark-slide-scaler');
    let counter=0;
    var multi;
+   const minScale=0.3;
    slideList.forEach((slide, index) => {
       if (!slide)
          return;
       // const slide = document.querySelector('.remark-slide-scaler');
-      const scroller = slide.querySelector('.scrollable');
+      let scroller;
+      if (beforeFont)
+         scroller = slide.querySelector('.scrollable');
+      else {
+         scroller = slide.querySelector('.smallimages');
+      }
       if (!scroller)
          return;
+      if (afterFont) {
+         scroller.classList.remove("smallimages");
+         scroller.classList.add(removableClass);
+         console.log('back to scrollable');
+      }
+      console.log('in: index =',index);
       if (!scroller.clientHeight)
          return;
      // console.log("Image size: ind =", index);
@@ -212,7 +226,8 @@ function adjustImageSize() {
      //    console.log("columns:",Object.keys(columns).length);
      // console.log("multi:",Object.keys(imageList).length);
       if ((multi) || (columns)) {
-        // console.log("Multiple images or multiple columns");
+         let fontStyle = "";
+         console.log("Multiple images or multiple columns");
          const predefinedHeights = Array.from(imageList).map(image => image.offsetHeight);
          imageList.forEach((image) => {
             if (true & multi) // `| multi`
@@ -221,6 +236,19 @@ function adjustImageSize() {
                image.style.height = '';
             return;
          });
+         const container = scroller.querySelector('.fixprecode');
+         if (afterFont) {
+            if (!container) {
+              // console.log('no container');
+              // return;
+            }
+            else {
+               if (hasVerticalScrollbar(scroller)) {
+                  fontStyle = container.style.fontSize;
+                  container.style.fontSize = "10%";
+               }
+            }
+         }
          if (!hasVerticalScrollbar(scroller)) {
             scroller.classList.remove(removableClass);
             return;
@@ -234,7 +262,7 @@ function adjustImageSize() {
          if (false) {
             while (hasVerticalScrollbar(scroller)) {
                k = k * 0.99;
-               if (k < 0.2)
+               if (k < minScale)
                   break;
               // console.log(k);
                imageList.forEach(image => {
@@ -253,13 +281,14 @@ function adjustImageSize() {
             if (k >= 0.5) {
                scroller.classList.remove(removableClass)
                imageList.forEach(image => {
-                  image.style.objectFit = `contain`
+                  image.style.objectFit = `contain`;
                });
             }
             return;
          }
          let originalHeights = Array.from(imageList).map(image => image.offsetHeight);
          let heights = [...originalHeights]; // Start with the original heights
+         let kset=Array.from(imageList).map(image => 0);
          imageList.forEach((image, index) => {
             const originalHeight = image.offsetHeight;
             image.style.height = `${originalHeight * 0.99}px`;
@@ -271,7 +300,7 @@ function adjustImageSize() {
             k = 1;
             while (hasVerticalScrollbar(scroller)) {
                k = k * 0.995;
-               if (k < 0.2)
+               if (k < minScale)
                   break;
               // imageHeight = Math.floor(image.offsetHeight * 0.995);
                imageHeight = Math.floor(originalHeights[index] * k);
@@ -279,6 +308,7 @@ function adjustImageSize() {
               // console.log([k, imageHeight, originalHeights[index]]);
             }
             heights[index] = image.offsetHeight;
+            kset[index] = k;
             Array.from(imageList).forEach((restoreImage, restoreIndex) => {
                restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
             });
@@ -286,6 +316,14 @@ function adjustImageSize() {
          imageList.forEach((image, index) => {
             image.style.height = `${heights[index]}px`;
          });
+         console.log(kset);
+         if (beforeFont) {
+            if (kset.some(x => x<minScale)) {
+               console.log('images so small');
+               scroller.classList.add("smallimages");
+               return;
+            }
+         }
          const success = heights.some((height, index) => height < 0.5 * originalHeights[index])
          if (success && !hasVerticalScrollbar(scroller)) {
             scroller.classList.remove(removableClass)
@@ -354,9 +392,14 @@ function adjustImageSize() {
                  // console.log(hasVerticalScrollbar(scroller));
                }
             }
+            if (afterFont) {
+               if (container)
+                  container.style.fontSize = fontStyle;
+            }
            // console.log("resultingHeights:",Array.from(imageList).map(image => image.offsetHeight));
             return;
          }
+         console.log('ready');
          return;
       }
       const image = scroller.querySelector(':not(.untouchable) img, iframe:not(.ursa-widgetize), .framed:has(> iframe), .html-widget');
@@ -809,8 +852,9 @@ adjustBundle=function() {
          slide.appendChild(banner);
       })
    }
-   adjustImageSize();
+   adjustImageSize(beforeFont=true);
    adjustFontSize();
+   adjustImageSize(beforeFont=false);
    if (true && offset) {
       const bannerList = document.querySelectorAll('.scrollable-offset');
       bannerList.forEach(banner => {

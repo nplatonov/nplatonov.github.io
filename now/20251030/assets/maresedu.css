@@ -70,7 +70,7 @@
    background-position: left top;
   /* border-bottom: 3px solid var(--accent); */
 }
-.remark-slide-content:not(.customtitle):not(.title-slide):not(.inverse):not(#slide-endofslideshow):not(.modified):not(.wideformatted):not(.break):not(#slide-bib) {
+.remark-slide-content:not(.customtitle):not(.title-slide):not(.inverse):not(#slide-endofslideshow):not(:has(.broad.mainbar)):not(.wideformatted):not(.break):not(#slide-bib) {
    background-image: url("background.png") !important;
    background-size: contain;
    background-position: left top;
@@ -407,11 +407,16 @@
    margin-top: 0.8em;
 }
 img[aspect], img[expand] {
-   border: 1px solid transparent;
+  /* border: 1px solid transparent;*/
   /* height: 200px !important;*/
 }
 .alltogether img {
    height: 593px !important;
+}
+.qr img {
+  /* height: 200px !important;*/
+   width: 100% !important;
+   height: unset !important;
 }
 .remark-slide-content:has(.broad.mainbar)#slide-atlas .rosneft,
 .remark-slide-content:has(.broad.mainbar)#slide-atlas .tamura-multi,
@@ -445,11 +450,13 @@ img[aspect], img[expand] {
    background-color: rgb(225,225,225) !important;
 }
 #slide-atlas .footer {
+   opacity: 0.3;
+   letter-spacing: 1.5px;
    font-size: 27.9%;
    bottom: 0px;
 }
 #slide-atlas .broad.mainbar .footer {
-   font-size: 32.5%;
+   font-size: 35.5%;
    margin-left: 58px;
    width: 91%;
 }
@@ -461,3 +468,11 @@ img[aspect], img[expand] {
 .remark-slide-content.modified:not(.wideformatted).inverse {
    opacity: 0.1;
 }
+#slide-methods:has(.broad.mainbar) img {
+   max-height: 270px !important;
+}
+/*
+#slide-methods img {
+   max-height: 260px !important;
+}
+&/
