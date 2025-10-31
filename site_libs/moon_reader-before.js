@@ -188,7 +188,7 @@ function adjustImageSize(beforeFont = true) {
    const slideList = document.querySelectorAll('.remark-slide-scaler');
    let counter=0;
    var multi;
-   const minScale=0.3;
+   const minScale=0.1;
    slideList.forEach((slide, index) => {
       if (!slide)
          return;
