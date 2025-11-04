@@ -2197,6 +2197,9 @@ html[data-darkreader-scheme="dark"] body img:hover,
 html[data-darkreader-scheme="dark"] body .html-widget:hover {
    filter: invert() brightness(150%) contrast(100%);
 }
+.inverse .notinvertable img {
+   filter: none !important;
+}
 .footer code {
    text-transform: none;
    font-size: 110%;
@@ -2877,4 +2880,10 @@ blockquote p:last-of-type {
 }
 img::after {
    left: 300px;
+}
+.row:has(img) {
+   display: flex;
+}
+.row .figure:not(:first-of-type) {
+   margin-left: 0.6em;
 }
