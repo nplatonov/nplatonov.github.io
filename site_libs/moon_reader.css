@@ -2473,7 +2473,7 @@ a[href="#fn"] .hovertext:before {
    position: relative;
    opacity: 0.3;
 }
-.scale:not(.broad) > .header:not(:only-child),
+.scale:not(.broad) > .header:not(:only-child):not(.show),
 .mainbar:not(.scale):not(.broad) > .header.broad {
    font-size: calc(var(--pointsize) * 0.4);
    right: 2px;
@@ -2492,7 +2492,7 @@ a[href="#fn"] .hovertext:before {
 .mainbar.broad > .header.show {
   /* display: none; */
 }
-.scale:not(.broad) > .header:not(:only-child) p,
+.scale:not(.broad) > .header:not(:only-child):not(.show) p,
 .mainbar:not(.scale):not(.broad) > .header:not(.show) p {
    border-bottom-width: 1px;
 }
@@ -2592,7 +2592,7 @@ blockquote p:last-of-type {
 .bibliography a[href="#bib"] {
    text-decoration-line: none;
 }
-.mainbar.broad .parent {
+.mainbar.broad .generation .parent {
    font-size: calc(var(--pointsize) * 1);
    position: relative;
 }
@@ -2618,6 +2618,9 @@ blockquote p:last-of-type {
 .zmainbar p:last-of-type {
    border: 1px solid red;
    margin-bottom: 0;
+}
+.mainbar.broad .generation.outline + .parent:not(:hover) {
+   opacity: 0;
 }
 .splash {
    margin: auto;
