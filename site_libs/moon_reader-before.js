@@ -182,7 +182,7 @@ function scrollableOffset() {
 function adjustImageSize(beforeFont = true) {
    const afterFont = !beforeFont;
    const removableClass = "scrollable";
-   console.log('before font = ',beforeFont,'afterFont = ',afterFont);
+  // console.log('before font = ',beforeFont,'after font = ',afterFont);
    const startTime = performance.now();
    // Функция для проверки наличия вертикальной прокрутки
    const slideList = document.querySelectorAll('.remark-slide-scaler');
@@ -206,7 +206,7 @@ function adjustImageSize(beforeFont = true) {
          scroller.classList.add(removableClass);
          console.log('back to scrollable');
       }
-      console.log('in: index =',index);
+     // console.log('in: index =',index);
       if (!scroller.clientHeight)
          return;
      // console.log("Image size: ind =", index);
@@ -218,7 +218,7 @@ function adjustImageSize(beforeFont = true) {
         // scroller.classList.add('imageresized')
      //    return;
      // }
-      const imageList = scroller.querySelectorAll(':not(.untouchable) img, :not(.inline) img, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
+      const imageList = scroller.querySelectorAll('img:not([untouchable]), :not(.inline) img, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
       multi = Object.keys(imageList).length > 1
      // console.log(Object.keys(imageList).length)
       const columns = scroller.querySelector('.pulling, .double');
@@ -402,7 +402,7 @@ function adjustImageSize(beforeFont = true) {
          console.log('ready');
          return;
       }
-      const image = scroller.querySelector(':not(.untouchable) img, iframe:not(.ursa-widgetize), .framed:has(> iframe), .html-widget');
+      const image = scroller.querySelector('img:not([untouchable]), iframe:not(.ursa-widgetize), .framed:has(> iframe), .html-widget');
       if (!image)
          return;
       counter++;
@@ -448,6 +448,16 @@ function adjustImageSize(beforeFont = true) {
       let newWidth = availableHeight * aspectRatio * 1;
       let newHeight = availableHeight;
       let changableHeight = availableHeight;
+      if (true) {
+         let keepHeight = image.offsetHeight;
+         image.style.height = 'unset';
+         if (!hasVerticalScrollbar(scroller)) {
+            if (!hasHorizontalScrollbar(scroller))
+               scroller.style.overflowX = 'unset';
+            return;
+         }
+         image.style.height = `${keepHeight}px`;
+      }
       if (isAlert)
          alert('changableHeight: ' + changableHeight);
 
@@ -879,5 +889,8 @@ document.addEventListener('DOMContentLoaded', function() {
       remarkDiv.removeChild(splashDiv);
    }
    // Call the function to show splash and then call adjust
-   showSplashAndCallAdjust();
+   if (false) // immediatly
+      showSplashAndCallAdjust();
+   else // waiting mathjax, ms
+      setTimeout(showSplashAndCallAdjust, 2500);
 });
