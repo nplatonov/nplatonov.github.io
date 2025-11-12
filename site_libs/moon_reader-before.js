@@ -878,19 +878,27 @@ adjustBundle=function() {
 // window.addEventListener('load', adjustImageSize);
 // window.addEventListener('load', adjustFontSize);
 document.addEventListener('DOMContentLoaded', function() {
-   const remarkDiv = document.querySelector('.remark-slides-area');
-   function showSplashAndCallAdjust() {
-      const splashDiv = document.createElement('div');
-      splashDiv.className = 'splash';
-      splashDiv.textContent = 'Check JS console ';
-      remarkDiv.appendChild(splashDiv);
+   function callAdjust() {
       adjustBundle();
       adjustOutline();
-      remarkDiv.removeChild(splashDiv);
    }
-   // Call the function to show splash and then call adjust
-   if (false) // immediatly
-      showSplashAndCallAdjust();
-   else // waiting mathjax, ms
-      setTimeout(showSplashAndCallAdjust, 2500);
+   function showSplashAndCallAdjust() {
+      const hideSplash = window.matchMedia("print").matches;
+      if (hideSplash) {
+         callAdjust();
+      }
+      else {
+         const remarkDiv = document.querySelector('.remark-slides-area');
+         const splashDiv = document.createElement('div');
+         splashDiv.className = 'splash';
+        // splashDiv.textContent = 'Starting...';
+         remarkDiv.appendChild(splashDiv);
+         setTimeout(() => {
+            callAdjust();
+            remarkDiv.removeChild(splashDiv);
+         }, 500);
+      }
+   }
+  // setTimeout(showSplashAndCallAdjust, 500);
+   showSplashAndCallAdjust();
 });
