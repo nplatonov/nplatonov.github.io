@@ -1,0 +1,94 @@
+.mainbar.broad .header.show p {
+   white-space: nowrap !important;
+}
+.mainbar.broad .header:not(:hover) .parent {
+   opacity: 0;
+}
+.mainbar:not(.broad) .header.show {
+  /* display: none;*/
+}
+.author .speaker-alt {
+   text-decoration-line: underline;
+}
+.author .speaker::after {
+   content: ' 🔊'
+}
+.untouchable img {
+   height: auto !important;
+}
+.broad .untouchable img {
+   max-width: 290px !important;
+}
+p .bbox {
+   padding-left: 0.3em;
+   padding-right: 0.3em;
+   border: 3px dashed red;
+}
+.caption:has(.inline) {
+   display: block;
+   position: relative;
+   top: -350px;
+}
+.naidenko > .caption {
+   position: relative;
+   display: inline;
+   top: -250px;
+}
+#slide-zzzbib p:has(a) {
+   font-size: calc(var(--pointsize) * 0.9);
+}
+.desc-200 {min-width: 200px;}
+.desc-250 {min-width: 250px;}
+.desc-300 {min-width: 300px;}
+.desc-350 {min-width: 350px;}
+.desc-400 {min-width: 400px;}
+.desc-450 {min-width: 450px;}
+
+.desc, .shared {
+   min-width: calc(var(--pointsize) * 9);
+}
+.broad img[tagging] {
+   height: 517px !important;
+}
+.broad img[tracking] {
+   height: 517px !important;
+}
+.mainbar:not(.broad) .shared {
+   display: none;
+}
+img[invertable]:hover {
+   filter: invert() brightness(100%) contrast(100%);
+}
+img:not([invertable]):hover {
+   filter: grayscale();
+}
+.sevinlogo {
+   position: fixed;
+   width: 126px;
+   height: 126px;
+   bottom: 35px;
+   left:  10px;
+   background-image: url(sevinlogo.png);
+   background-size: contain;
+   background-repeat: no-repeat;
+   opacity: 0.6;
+}
+.metadata .shorttitle:not(:hover) {
+   opacity: 0.05;
+}
+.remark-slide-content:not(.metadata) .sevinlogo {
+   opacity: 0.2;
+}
+.remark-slide-content:not(.metadata) .sevinlogo {
+   opacity: 0.2;
+}
+.banner.narrow > .sevinlogo,
+.banner.narrow > .shorttitle {
+   visibility: hidden;
+}
+.inverse .sevinlogo {
+   filter: invert();
+}
+.shorttitle {
+   font-variant: small-caps;
+}

@@ -206,7 +206,7 @@ function adjustImageSize(beforeFont = true) {
          scroller.classList.add(removableClass);
          console.log('back to scrollable');
       }
-     // console.log('in: index =',index);
+      console.log('in: index =',index);
       if (!scroller.clientHeight)
          return;
      // console.log("Image size: ind =", index);
@@ -221,10 +221,10 @@ function adjustImageSize(beforeFont = true) {
       const imageList = scroller.querySelectorAll('img:not([untouchable]), :not(.inline) img, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
       multi = Object.keys(imageList).length > 1
      // console.log(Object.keys(imageList).length)
-      const columns = scroller.querySelector('.pulling, .double');
+      const columns = scroller.querySelector('.pulling, .double, .grid');
      // if (columns)
      //    console.log("columns:",Object.keys(columns).length);
-     // console.log("multi:",Object.keys(imageList).length);
+     // console.log("multi:",Object.keys(imageList).length,"raw:", multi);
       if ((multi) || (columns)) {
          let fontStyle = "";
          console.log("Multiple images or multiple columns");
@@ -844,7 +844,7 @@ function adjustOutline() {
    return;
 }
 adjustBundle=function() {
-   const loader = document.querySelector("#loader");
+   const loader = false & document.querySelector("#loader");
    if (loader)
       loader.style.visibility = "visible";
    const offset = scrollableOffset();
@@ -888,14 +888,25 @@ document.addEventListener('DOMContentLoaded', function() {
          callAdjust();
       }
       else {
+         const loader = document.querySelector("#loader");
+         if (loader) {
+            loader.style.visibility = "visible";
+         }
          const remarkDiv = document.querySelector('.remark-slides-area');
          const splashDiv = document.createElement('div');
-         splashDiv.className = 'splash';
-        // splashDiv.textContent = 'Starting...';
-         remarkDiv.appendChild(splashDiv);
+         const splash = false;
+         if (splash) {
+            splashDiv.className = 'splash';
+           // splashDiv.textContent = 'Starting...';
+            remarkDiv.appendChild(splashDiv);
+         }
          setTimeout(() => {
             callAdjust();
-            remarkDiv.removeChild(splashDiv);
+            if (splash)
+               remarkDiv.removeChild(splashDiv);
+            if (loader) {
+               loader.style.visibility = "hidden";
+            }
          }, 500);
       }
    }

@@ -2665,6 +2665,7 @@ blockquote p:last-of-type {
    width: 70px;
    height: 70px;
    animation: spin 1s linear infinite;
+   z-index: 3;
 }
 .loader {
    position: absolute;
@@ -2695,6 +2696,11 @@ blockquote p:last-of-type {
 }
 .inverse a {
    text-decoration-color: color(srgb 1 1 1 / 0.3) !important;
+}
+.grid {
+   display: grid;
+   grid-template-columns: auto 1fr;
+   gap: var(--gap);
 }
 /* filling background  -- begin */
 @media only screen {
