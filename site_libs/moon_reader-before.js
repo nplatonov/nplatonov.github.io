@@ -206,7 +206,7 @@ function adjustImageSize(beforeFont = true) {
          scroller.classList.add(removableClass);
          console.log('back to scrollable');
       }
-      console.log('in: index =',index);
+     // console.log('in: index =',index);
       if (!scroller.clientHeight)
          return;
      // console.log("Image size: ind =", index);
@@ -227,7 +227,7 @@ function adjustImageSize(beforeFont = true) {
      // console.log("multi:",Object.keys(imageList).length,"raw:", multi);
       if ((multi) || (columns)) {
          let fontStyle = "";
-         console.log("Multiple images or multiple columns");
+        // console.log("Multiple images or multiple columns");
          const predefinedHeights = Array.from(imageList).map(image => image.offsetHeight);
          imageList.forEach((image) => {
             if (true & multi) // `| multi`
@@ -316,7 +316,7 @@ function adjustImageSize(beforeFont = true) {
          imageList.forEach((image, index) => {
             image.style.height = `${heights[index]}px`;
          });
-         console.log(kset);
+        // console.log(kset);
          if (beforeFont) {
             if (kset.some(x => x<minScale)) {
                console.log('images so small');
@@ -364,7 +364,7 @@ function adjustImageSize(beforeFont = true) {
                  // console.log(k,imageHeight,image.offsetHeight);
                })
             }
-            console.log('k=' + k + ', ' + 'height=' + imageHeight);
+           // console.log('k=' + k + ', ' + 'height=' + imageHeight);
             if (k>200) {
                Array.from(imageList).forEach((restoreImage, restoreIndex) => {
                  // restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
