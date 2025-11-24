@@ -237,19 +237,19 @@ html[data-darkreader-mode="dynamic"] .remark-slide-content {
 .remark-slide-content .mainbar h5 {font-size: var(--h5-size);}
 */
 .remark-slide-content .sidebar h1 {
-   font-size: 116%; /* 190% 190% */
+   font-size: 116%; /* 116% 190% 190% */
 }
 .remark-slide-content .sidebar h2 {
-   font-size: 102%; /* 168% 160% */
+   font-size: 102%; /* 102% 168% 160% */
 }
 .remark-slide-content .sidebar h3 {
-   font-size: 91%; /* 150% 135% */
+   font-size: 91%;  /* 91% 150% 135% */
 }
 .remark-slide-content .sidebar h4 {
-   font-size: 82%; /* 135% 115% */
+   font-size: 82%;  /* 82% 135% 115% */
 }
 .remark-slide-content .sidebar h5 {
-   font-size: 73%; /* 120% 110% */
+   font-size: 73%;  /* 73% 120% 110% */
 }
 .notable:not(.inverse):not(#slide-bib),
 .notable:not(.inverse) .title-slide.notable {
@@ -317,6 +317,7 @@ body:not(:fullscreen) .title-slide iframe {
 #slide-bib .remark-slide-number,
 #slide-fn .remark-slide-number,
 .break .remark-slide-number,
+.ignoreprinting .remark-slide-number,
 .notable .remark-slide-number,
 .picsum .remark-slide-number,
 .title-slide .remark-slide-number {
@@ -473,6 +474,12 @@ pre code * {
    width: 4.6em;
    text-align: right;
    border-color: transparent !important;
+}
+.mainbar:not(.broad) + .remark-slide-number:hover {
+   bottom: 0px;
+}
+.mainbar.broad + .remark-slide-number:hover {
+   top: 0px;
 }
 .countdown {
    opacity: 0.4;
@@ -1154,7 +1161,7 @@ ul {
    font-family: var(--font-condensed);
    padding-top: 0em;
 }
-.mainbar.broad .footer {
+:is(.mainbar.broad, .notable) .footer {
    left: calc(21px + var(--sidebar-narrow));
    width: calc(100% - 26px - var(--sidebar-narrow));
 }
@@ -1202,7 +1209,7 @@ ul {
    margin-right: -8px;
    margin-left: -3px;
   /* font-variant: small-caps;*/
-   letter-spacing: -0.06em;
+   letter-spacing: -0.05em;
 }
 /*
 .sidebar > .outline {
@@ -1289,10 +1296,9 @@ html[data-darkreader-mode="filter"] .sidebar {
    padding-top: 0.07em !important;
    padding-bottom: 0.17em !important;
 }
-.sidebar h1 a:hover, .sidebar h2 a:hover, .sidebar h3 a:hover,
-.sidebar h4 a:hover, .sidebar h5 a:hover {
+.sidebar :is(h1, h2, h3, h4, h5) a:hover {
   /* color: #444;*/
-   opacity: 1;
+   opacity: 0.6;
 }
 .inverse .sidebar h1, .inverse .sidebar h2, .inverse .sidebar h3, .inverse .sidebar h4, .inverse .sidebar h5,
 .inverse .sidebar h1 a, .inverse .sidebar h2 a, .inverse .sidebar h3 a, .inverse .sidebar h4 a, .inverse .sidebar h5 a {
@@ -1385,12 +1391,12 @@ html[data-darkreader-mode="filter"] .sidebar {
 .sidebar.left-column h2 {padding-left: 6%;} /* 4% 7% */
 .sidebar.left-column h3 {padding-left: 9%;} /* 6.5% 10% */
 .sidebar.left-column h4 {padding-left: 12%;} /* 8.5 13% */
-.sidebar.left-column h5 {padding-left: 14%;} /* 9.5 15% */
+.sidebar.left-column h5 {padding-left: 15%;} /* 9.5 15% */
 
-.left-column h2:last-of-type, .left-column h3:last-child,
-.sidebar h1 a, .sidebar h2 a, .sidebar h3 a, .sidebar h4 a, .sidebar h5 a,
-.sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
-   opacity: 0.5;
+.left-column-hide h2:last-of-type a, .left-column-hide h3:last-child a,
+/*.sidebar :is(h1, h2, h3, h4, h5),*/
+.sidebar :is(h1, h2, h3, h4, h5) a {
+   opacity: 0.25;
    color: var(--sidebar-color); /* indigo */
 }
 html[data-darkreader-scheme="dark"] .sidebar h1 a,
@@ -1472,14 +1478,10 @@ html[data-darkreader-scheme="dark"] .sidebar h5 {
 .sidebar h1[id*=bg] a, .sidebar h2[id*=bg] a, .sidebar h3[id*=bg] a, .sidebar h4[id*=bg] a, .sidebar h5[id*=bg] a {
    opacity: 1.0;
 }
-.sidebar h1[id*=bg]:not([id*=fg]),
-.sidebar h2[id*=bg]:not([id*=fg]),
-.sidebar h3[id*=bg]:not([id*=fg]),
-.sidebar h4[id*=bg]:not([id*=fg]),
-.sidebar h5[id*=bg]:not([id*=fg]) {
+.sidebar :is(h1,h2,h3,h4,h5)[id*=bg]:not([id*=fg]) a {
   /* background-color: #fffc;*/ /* white #FFFCE1;*/
-   background-image: linear-gradient(to right, #0ffd, #0ffa, #f0f0); /* white #FFFCE1;*/
-   opacity: 1.0;
+  /* background-image: linear-gradient(to right, #0ffd, #0ffa, #f0f0);*/ /* white #FFFCE1;*/
+   opacity: 0.25;
 }
 .inverse .sidebar h1[id*=bg], .inverse .sidebar h2[id*=bg], .inverse .sidebar h3[id*=bg], .inverse .sidebar h4[id*=bg], .inverse .sidebar h5[id*=bg] {
   /* background-color: var(--inverse-bg); */ /* white #FFFCE1;*/
@@ -2859,9 +2861,15 @@ blockquote p:last-of-type {
    }
 }
 @media print {
- .remark-container.remark-presenter-mode .remark-slide-notes {
-    margin-top:700px;
- }
+   .has-continuation {
+     display: block !important;
+   }   
+   .remark-slide-container:has(.remark-slide-content.ignoreprinting) {
+      display: none;
+   }
+   .remark-container.remark-presenter-mode .remark-slide-notes {
+      margin-top:700px;
+   }
 }
 @media screen and ((max-width: 1000px)) {
    .sidebar {

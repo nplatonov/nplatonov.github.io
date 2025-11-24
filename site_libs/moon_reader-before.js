@@ -369,6 +369,7 @@ function adjustImageSize(beforeFont = true) {
                Array.from(imageList).forEach((restoreImage, restoreIndex) => {
                  // restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
                   restoreImage.style.height = 'unset';
+                 // console.log('unset');
                });
             }
             else {
@@ -402,7 +403,9 @@ function adjustImageSize(beforeFont = true) {
          console.log('ready');
          return;
       }
-      const image = scroller.querySelector('img:not([untouchable]), iframe:not(.ursa-widgetize), .framed:has(> iframe), .html-widget');
+      let req = 'iframe:not(.ursa-widgetize), .framed:has(> iframe), .html-widget';
+      const frame = scroller.querySelector(req);
+      const image = scroller.querySelector('img:not([untouchable]), ' + req);
       if (!image)
          return;
       counter++;
@@ -448,9 +451,15 @@ function adjustImageSize(beforeFont = true) {
       let newWidth = availableHeight * aspectRatio * 1;
       let newHeight = availableHeight;
       let changableHeight = availableHeight;
-      if (true) {
+      if (!false) {
          let keepHeight = image.offsetHeight;
-         image.style.height = 'unset';
+         console.log(keepHeight);
+         console.log(availableHeight);
+         console.log(image.naturalHeight);
+         if (!frame) {
+            image.style.height = 'unset';
+            image.style.width = '100%';
+         }
          if (!hasVerticalScrollbar(scroller)) {
             if (!hasHorizontalScrollbar(scroller))
                scroller.style.overflowX = 'unset';
@@ -533,6 +542,7 @@ function adjustImageSize(beforeFont = true) {
          newHeight = Math.floor(newHeight);
          image.style.height = `${newHeight}px`;
       }
+      console.log(newHeight);
       if (isAlert)
          alert('changableHeight: ' + changableHeight);
       // alert(availableHeight);

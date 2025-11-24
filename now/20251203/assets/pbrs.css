@@ -1,3 +1,16 @@
+:root {
+   --sidebar-pointsize: 100%;
+   --sidebar-accent: var(--light);
+   --accent: #abf;
+   --sidebar-background: var(--accent);
+   --sidebar-background-right: var(--light);
+   --sidebar-border: transparent;
+   --sidebar-left-color: var(--accent);
+   --header-accent: var(--accent);
+}
+.sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
+   font-size: 100% !important;
+}
 .mainbar.broad .header.show p {
    white-space: nowrap !important;
 }
@@ -64,14 +77,18 @@ img:not([invertable]):hover {
 }
 .sevinlogo {
    position: fixed;
-   width: 126px;
-   height: 126px;
+   width: 121px;
+   height: 121px;
    bottom: 35px;
    left:  10px;
-   background-image: url(sevinlogo.png);
+   background-image: url(sevinlogo.ico);
    background-size: contain;
    background-repeat: no-repeat;
    opacity: 0.6;
+}
+.inverse .sevinlogo {
+   background-image: url(sevinlogo.png);
+   filter: invert();
 }
 .metadata .shorttitle:not(:hover) {
    opacity: 0.05;
@@ -86,9 +103,6 @@ img:not([invertable]):hover {
 .banner.narrow > .shorttitle {
    visibility: hidden;
 }
-.inverse .sevinlogo {
-   filter: invert();
-}
 .shorttitle {
    font-variant: small-caps;
 }
@@ -97,6 +111,9 @@ img:not([invertable]):hover {
 }
 .inset.chersky::before {
    background-image: url(activity-chersky.png);
+}
+.inset.nsidc::before {
+   background-image: url(https://nsidc.org/data/seaice_index/images/daily_images/N_iqr_timeseries.png);
 }
 .inset::before {
    content: '';
@@ -131,6 +148,10 @@ img:not([invertable]):hover {
    bottom: 20px;
    left: 133px;
 }
-.mainbar.broad .backtoshow {
+.mainbar.broad .backtoshow,
+.mainbar.broad .forshow {
    display: none;
+}
+.inverse .mainbar:not(.broad) .header.show p {
+   border-bottom-color: color-mix(in srgb, var(--light) 50%, transparent);
 }
