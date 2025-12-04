@@ -537,7 +537,16 @@ pre code * {
 }
 .remark-slide-content p {
    margin-top: 0.1em;    /* 0em */
-   margin-bottom: 0.3em; /* 0.4em */
+   margin-bottom: 0.6em; /* 0.4em */
+}
+.fixprecode p:has(> img) {
+  /* background-color: #FAA8;*/
+   margin-bottom: 0.3em;
+}
+.mainbar > .header > p,
+.fixprecode > p:last-of-type {
+  /* background-color: #FFA8;*/
+   margin-bottom: 0.3em;
 }
 .remark-slide-content p:has(> img) {
    margin-top: 2px;
@@ -2861,9 +2870,11 @@ blockquote p:last-of-type {
    }
 }
 @media print {
+  /* 
    .has-continuation {
      display: block !important;
-   }   
+   }
+  */    
    .remark-slide-container:has(.remark-slide-content.ignoreprinting) {
       display: none;
    }
