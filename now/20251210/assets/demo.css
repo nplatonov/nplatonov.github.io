@@ -1,0 +1,85 @@
+:root {
+   --zoom-argos: 1.06;
+   --zoom-argos-preview: 0.7;
+   --zoom-program: 0.96;
+   --zoom-tracking: 1.3;
+   --zoom-tracking-preview: 0.55;
+}
+iframe[tracking] {
+   zoom: var(--zoom-tracking); 
+   -moz-transform: scale(var(--zoom-tracking)); 
+   -moz-transform-origin: 0 0;
+   max-width: calc(100% / var(--zoom-tracking));
+   height: max(666px, calc(666px / var(--zoom-tracking)));
+}
+iframe[tracking-preview] {
+   zoom: var(--zoom-tracking-preview); 
+   -moz-transform: scale(var(--zoom-tracking-preview)); 
+   -moz-transform-origin: 0 0;
+   max-width: 1890px;
+   height: 1600px;
+}
+iframe[argos] {
+   zoom: var(--zoom-argos); 
+   -moz-transform: scale(var(--zoom-argos)); 
+   -moz-transform-origin: 0 0;
+   max-width: calc(100% / var(--zoom-argos));
+   height: calc(666px / var(--zoom-argos));
+}
+iframe[argos-preview] {
+   zoom: var(--zoom-argos-preview); 
+   -moz-transform: scale(var(--zoom-argos-preview)); 
+   -moz-transform-origin: 0 0;
+   max-width: 900px;
+   height: 1960px;
+}
+iframe[program] {
+   zoom: var(--zoom-program); 
+   -moz-transform: scale(var(--zoom-program)); 
+   -moz-transform-origin: 0 0;
+   max-width: min(100%, calc(100% / var(--zoom-program)));
+   height: 666px;
+}
+a > svg:has( > title) {
+   font-size: 30% !important;
+   vertical-align: 1.1em !important;
+}
+.inset.icydays::before {
+   background-image: url(icydays-natice-CT81.png);
+}
+.inset.maxent::before {
+   background-image: url(forecast-maxent.png);
+}
+.inset.gebco::before {
+   background-image: url(daily-between-gebco.png);
+} 
+.inset::before {
+   content: '';
+   background-color: #0008;
+   background-size: auto 500px;
+   background-repeat: no-repeat;
+   position: absolute;
+   top: 40px;
+   left: calc(var(--sidebar) + var(--gap));
+   visibility: hidden;
+   width: calc(100% - var(--sidebar) - var(--gap) - 60px);
+   height: 500px;
+   border: 30px solid transparent;
+   flex: 0 0 auto;
+   object-fit: scale-down;
+}
+.mainbar:not(.broad) .inset:hover::before {
+   visibility: visible;
+}
+.mainbar:has(> .inset:hover::before) {
+   opacity: 0.2;
+}
+.untouchable img {
+   height: auto !important;
+}
+.untouchable img {
+   max-width: 260px !important;
+}
+.preview .mainbar {
+   overflow-x: unset;
+}
