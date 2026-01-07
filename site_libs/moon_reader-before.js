@@ -458,7 +458,7 @@ function adjustImageSize(beforeFont = true) {
          console.log(image.naturalHeight);
          if (!frame) {
             image.style.height = 'unset';
-            image.style.width = 'unset'; // '100%' aligns to the center
+            image.style.width = 'unset'; // 20260106 '100%' aligns to the center
          }
          if (!hasVerticalScrollbar(scroller)) {
             if (!hasHorizontalScrollbar(scroller))
