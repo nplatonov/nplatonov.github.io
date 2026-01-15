@@ -1,0 +1,157 @@
+:root {
+   --sidebar-pointsize: 100%;
+   --sidebar-accent: var(--light);
+   --accent: #abf;
+   --sidebar-background: var(--accent);
+   --sidebar-background-right: var(--light);
+   --sidebar-border: transparent;
+   --sidebar-left-color: var(--accent);
+   --header-accent: var(--accent);
+}
+.sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5 {
+   font-size: 100% !important;
+}
+.mainbar.broad .header.show p {
+   white-space: nowrap !important;
+}
+.mainbar.broad .header:not(:hover) .parent {
+   opacity: 0;
+}
+.mainbar:not(.broad) .header.show {
+  /* display: none;*/
+}
+.author .speaker-alt {
+   text-decoration-line: underline;
+}
+.mainbar:not(.broad) .author .speaker::after {
+   content: ' 🔊'
+}
+.untouchable img {
+   height: auto !important;
+}
+.broad .untouchable img {
+   max-width: 290px !important;
+}
+p .bbox {
+   padding-left: 0.3em;
+   padding-right: 0.3em;
+   border: 3px dashed red;
+}
+.caption:has(.inline) {
+   display: block;
+   position: relative;
+   top: -350px;
+}
+.naidenko > .caption {
+   position: relative;
+   display: inline;
+   top: -250px;
+}
+#slide-zzzbib p:has(a) {
+   font-size: calc(var(--pointsize) * 0.9);
+}
+.desc-200 {min-width: 200px;}
+.desc-250 {min-width: 250px;}
+.desc-300 {min-width: 300px;}
+.desc-350 {min-width: 350px;}
+.desc-400 {min-width: 400px;}
+.desc-450 {min-width: 450px;}
+
+.desc, .shared {
+   min-width: calc(var(--pointsize) * 9);
+}
+.broad img[tagging] {
+   height: 517px !important;
+}
+.broad img[tracking] {
+   height: 517px !important;
+}
+.mainbar:not(.broad) .shared {
+   display: none;
+}
+img[invertable]:hover {
+   filter: invert() brightness(100%) contrast(100%);
+}
+img:not([invertable]):hover {
+   filter: grayscale();
+}
+.sevinlogo {
+   position: fixed;
+   width: 121px;
+   height: 121px;
+   bottom: 35px;
+   left:  10px;
+   background-image: url(sevinlogo.ico);
+   background-size: contain;
+   background-repeat: no-repeat;
+   opacity: 0.6;
+}
+.inverse .sevinlogo {
+   background-image: url(sevinlogo.png);
+   filter: invert();
+}
+.metadata .shorttitle:not(:hover) {
+   opacity: 0.05;
+}
+.remark-slide-content:not(.metadata) .sevinlogo {
+   opacity: 0.2;
+}
+.remark-slide-content:not(.metadata) .sevinlogo {
+   opacity: 0.2;
+}
+.banner.narrow > .sevinlogo,
+.banner.narrow > .shorttitle {
+   visibility: hidden;
+}
+.shorttitle {
+   font-variant: small-caps;
+}
+.inset.kara::before {
+   background-image: url(activity-kara.png);
+}
+.inset.chersky::before {
+   background-image: url(activity-chersky.png);
+}
+.inset.nsidc::before {
+   background-image: url(https://nsidc.org/data/seaice_index/images/daily_images/N_iqr_timeseries.png);
+}
+.inset::before {
+   content: '';
+   background-color: #0008;
+   background-size: auto 500px;
+   background-repeat: no-repeat;
+   position: absolute;
+   top: 40px;
+   left: calc(var(--sidebar) + var(--gap));
+   visibility: hidden;
+   width: calc(100% - var(--sidebar) - var(--gap) - 60px);
+   height: 500px;
+   border: 30px solid transparent;
+   flex: 0 0 auto;
+   object-fit: scale-down;
+}
+.mainbar:not(.broad) .inset:hover::before {
+   visibility: visible;
+}
+.mainbar:has(> .inset:hover::before) {
+   opacity: 0.2;
+}
+.metadata .sidebar.narrow + .right-column {
+   width: calc(100% - var(--sidebar-margin) + 11px);
+  /* width: calc(100% - var(--sidebar) + 5px);*/
+}
+.metadata > .sidebar.narrow {
+   width: calc(var(--sidebar-narrow) - var(--sidebar-margin));
+}
+.mainbar:not(.broad) .backtoshow {
+   top: unset;
+   bottom: 20px;
+   left: 133px;
+}
+.mainbar.broad .backtoshow,
+.mainbar.broad .forshow {
+   display: none;
+}
+.inverse .mainbar:not(.broad) .header.show p {
+   border-bottom-color: color-mix(in srgb, var(--light) 50%, transparent);
+}
