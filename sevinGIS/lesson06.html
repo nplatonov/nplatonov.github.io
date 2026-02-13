@@ -14,7 +14,7 @@
 
 <title>ГИС 06</title>
 
-<script src="https://nplatonov.github.io/site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.30/header-attrs.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -175,7 +175,7 @@ div.csl-indent {
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Занятие 06</span> <span class="when"> <span class="updated">Обновлено: 2025-04-03 07:57</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Тема 06</span> <span class="when"> <span class="updated">Обновлено: 2026-02-13 09:48</span></span></h4>
 
 
 <div id="TOC">
@@ -253,13 +253,13 @@ div.csl-indent {
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>fname <span class="ot">&lt;-</span> list1[<span class="fu">grep</span>(<span class="st">&quot;kernelUD&quot;</span>,<span class="fu">basename</span>(list1))]</span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">file.remove</span>(list1)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>fname</span></code></pre></div>
-<pre><code>[1] &quot;C:\\TEMP\\RtmpCMnfWq/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
+<pre><code>[1] &quot;C:\\TEMP\\Rtmp8IvDcz/polarBear_satelliteTelemetry_kernelUD_beaufortChukchi_Durner_1985_2016.csv&quot;</code></pre>
 <div id="подготовка-данных" class="section level3">
 <h3><span class="small">Подготовка данных</span></h3>
 <div class="oversize">
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">require</span>(sf)</span></code></pre></div>
 <pre><code>Loading required package: sf</code></pre>
-<pre><code>Linking to GEOS 3.13.0, GDAL 3.10.1, PROJ 9.5.1; sf_use_s2() is TRUE</code></pre>
+<pre><code>Linking to GEOS 3.13.1, GDAL 3.11.4, PROJ 9.7.0; sf_use_s2() is TRUE</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span></code></pre></div>
 <pre><code>Loading required package: ggplot2</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">require</span>(adehabitatHR)</span></code></pre></div>
@@ -272,12 +272,9 @@ div.csl-indent {
   print.SpatialPixelsDataFrame sp  
   print.SpatialPixels          sp  </code></pre>
 <pre><code>Loading required package: adehabitatLT</code></pre>
-<pre><code>Loading required package: CircStats</code></pre>
-<pre><code>Loading required package: MASS</code></pre>
-<pre><code>Loading required package: boot</code></pre>
 </div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>src <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(fname)</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">tail</span>(src)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>src <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(fname)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">tail</span>(src)</span></code></pre></div>
 <div class="kable-table">
 <table>
 <colgroup>
@@ -358,9 +355,9 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>src<span class="sc">$</span>period <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;%04d&quot;</span>,src<span class="sc">$</span>period)</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>src<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">paste0</span>(src<span class="sc">$</span>season,<span class="st">&quot;:&quot;</span>,src<span class="sc">$</span>period)</span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="fu">tail</span>(src)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>src<span class="sc">$</span>period <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;%04d&quot;</span>,src<span class="sc">$</span>period)</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>src<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">paste0</span>(src<span class="sc">$</span>season,<span class="st">&quot;:&quot;</span>,src<span class="sc">$</span>period)</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="fu">tail</span>(src)</span></code></pre></div>
 <div class="kable-table">
 <table>
 <colgroup>
@@ -449,7 +446,7 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">print</span>(loc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(src,<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;longitude_ud&quot;</span>,<span class="st">&quot;latitude_ud&quot;</span>),<span class="at">crs=</span><span class="dv">4326</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">print</span>(loc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(src,<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;longitude_ud&quot;</span>,<span class="st">&quot;latitude_ud&quot;</span>),<span class="at">crs=</span><span class="dv">4326</span>))</span></code></pre></div>
 <pre><code>Simple feature collection with 21618 features and 5 fields
 Geometry type: POINT
 Dimension:     XY
@@ -467,37 +464,37 @@ First 10 features:
 8        182   6/2/1986 0:19    mlt   8595 mlt:8595 POINT (-139.165 69.839)
 9        182  6/7/1986 19:53    mlt   8595 mlt:8595 POINT (-138.242 69.717)
 10       182  6/23/1986 0:38    mlt   8595 mlt:8595  POINT (-141.019 69.72)</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(loc)<span class="sc">$</span>epsg</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(loc)<span class="sc">$</span>epsg</span></code></pre></div>
 <pre><code>[1] 4326</code></pre>
 <p>Cохранение всех данных в формате ГИС</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>))</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>   <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>dst <span class="ot">&lt;-</span> <span class="st">&quot;data/locations_for_kernelUD.geojson&quot;</span></span>
-<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(loc,<span class="at">dsn=</span>dst,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(dst),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(dst))</span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> loc[loc<span class="sc">$</span>group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;max:0716&quot;</span>),]</span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>ta <span class="ot">&lt;-</span> <span class="fu">table</span>(loc<span class="sc">$</span>BearID_ud)</span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>ta <span class="ot">&lt;-</span> ta[ta<span class="sc">&gt;</span><span class="dv">150</span>] <span class="do">## 120</span></span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>ta</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>   <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>dst <span class="ot">&lt;-</span> <span class="st">&quot;data/locations_for_kernelUD.geojson&quot;</span></span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(loc,<span class="at">dsn=</span>dst,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(dst),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(dst))</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> loc[loc<span class="sc">$</span>group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;max:0716&quot;</span>),]</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>ta <span class="ot">&lt;-</span> <span class="fu">table</span>(loc<span class="sc">$</span>BearID_ud)</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>ta <span class="ot">&lt;-</span> ta[ta<span class="sc">&gt;</span><span class="dv">150</span>] <span class="do">## 120</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>ta</span></code></pre></div>
 <pre><code>
 145 168 
 155 183 </code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> loc[loc<span class="sc">$</span>BearID_ud <span class="sc">%in%</span> <span class="fu">names</span>(ta),]</span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">table</span>(loc<span class="sc">$</span>BearID_ud)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> loc[loc<span class="sc">$</span>BearID_ud <span class="sc">%in%</span> <span class="fu">names</span>(ta),]</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">table</span>(loc<span class="sc">$</span>BearID_ud)</span></code></pre></div>
 <pre><code>
 145 168 
 155 183 </code></pre>
 <p>Сохранение части данных</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>))</span>
-<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>   <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
-<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>dst <span class="ot">&lt;-</span> <span class="st">&quot;data/locations_for_ltraj.geojson&quot;</span></span>
-<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(loc,<span class="at">dsn=</span>dst,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(dst),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(dst))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>))</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>   <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>dst <span class="ot">&lt;-</span> <span class="st">&quot;data/locations_for_ltraj.geojson&quot;</span></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(loc,<span class="at">dsn=</span>dst,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(dst),<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(dst))</span></code></pre></div>
 </div>
 <div id="участки-обитания" class="section level3">
 <h3>Участки обитания</h3>
 <div id="формирование-сетки" class="section level4">
 <h4>Формирование сетки</h4>
 <div class="font90">
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="fu">print</span>(loc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(loc,<span class="dv">3572</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">print</span>(loc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(loc,<span class="dv">3572</span>))</span></code></pre></div>
 <pre><code>Simple feature collection with 338 features and 5 fields
 Geometry type: POINT
 Dimension:     XY
@@ -516,25 +513,25 @@ First 10 features:
 17470       145 6/11/2008 21:29    max   0716 max:0716 POINT (104305.1 -2028877)
 17471       145 6/17/2008 19:01    max   0716 max:0716 POINT (146107.4 -1997239)</code></pre>
 </div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(loc)<span class="sc">$</span>epsg</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(loc)<span class="sc">$</span>epsg</span></code></pre></div>
 <pre><code>[1] 3572</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(loc)<span class="sc">$</span>proj4string</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(loc)<span class="sc">$</span>proj4string</span></code></pre></div>
 <pre><code>[1] &quot;+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_bbox</span>(loc)</span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>bbox</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_bbox</span>(loc)</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>bbox</span></code></pre></div>
 <pre><code>       xmin        ymin        xmax        ymax 
   -88920.86 -2211300.60   733452.40 -1455790.58 </code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sfc</span>(bbox) <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a>   sf<span class="sc">::</span><span class="fu">st_buffer</span>(<span class="dv">500</span><span class="sc">*</span><span class="fl">1e3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>   sf<span class="sc">::</span><span class="fu">st_bbox</span>()</span>
-<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a>bbox</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sfc</span>(bbox) <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>   sf<span class="sc">::</span><span class="fu">st_buffer</span>(<span class="dv">500</span><span class="sc">*</span><span class="fl">1e3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>   sf<span class="sc">::</span><span class="fu">st_bbox</span>()</span>
+<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a>bbox</span></code></pre></div>
 <pre><code>      xmin       ymin       xmax       ymax 
  -588920.9 -2711300.6  1233452.4  -955790.6 </code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a>gr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_make_grid</span>(bbox,<span class="at">cellsize=</span><span class="dv">12000</span>,<span class="at">what=</span><span class="st">&quot;centers&quot;</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="fu">str</span>(gr)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>gr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_make_grid</span>(bbox,<span class="at">cellsize=</span><span class="dv">12000</span>,<span class="at">what=</span><span class="st">&quot;centers&quot;</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a><span class="fu">str</span>(gr)</span></code></pre></div>
 <pre><code>sfc_POINT of length 22344; first list element:  &#39;XY&#39; num [1:2] -582921 -2705301</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a>gr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">as_Spatial</span>(gr)</span></code></pre></div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">str</span>(gr)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>gr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">as_Spatial</span>(gr)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">str</span>(gr)</span></code></pre></div>
 <pre><code>Formal class &#39;SpatialPoints&#39; [package &quot;sp&quot;] with 3 slots
   ..@ coords     : num [1:22344, 1:2] -582921 -570921 -558921 -546921 -534921 ...
   .. ..- attr(*, &quot;dimnames&quot;)=List of 2
@@ -547,29 +544,29 @@ First 10 features:
   ..@ proj4string:Formal class &#39;CRS&#39; [package &quot;sp&quot;] with 1 slot
   .. .. ..@ projargs: chr &quot;+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;
   .. .. ..$ comment: chr &quot;| __truncated__&quot;</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">gridded</span>(gr) <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a>sp<span class="sc">::</span><span class="fu">gridded</span>(gr) <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
 </div>
 <div id="построение-кёрнел" class="section level4">
 <h4>Построение кёрнел</h4>
 <p>Пример построения кёрнел с параметром <code>h="LSCV"</code></p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a>ud <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernelUD</span>(sf<span class="sc">::</span><span class="fu">as_Spatial</span>(loc[<span class="st">&quot;BearID_ud&quot;</span>])</span>
-<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a>                            ,<span class="at">grid=</span>gr</span>
-<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a>                            ,<span class="at">h=</span><span class="fu">list</span>(<span class="st">&quot;href&quot;</span>,<span class="st">&quot;LSCV&quot;</span>,<span class="dv">30000</span>)[[<span class="dv">2</span>]]</span>
-<span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a>                            )</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>ud <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernelUD</span>(sf<span class="sc">::</span><span class="fu">as_Spatial</span>(loc[<span class="st">&quot;BearID_ud&quot;</span>])</span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>                            ,<span class="at">grid=</span>gr</span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a>                            ,<span class="at">h=</span><span class="fu">list</span>(<span class="st">&quot;href&quot;</span>,<span class="st">&quot;LSCV&quot;</span>,<span class="dv">30000</span>)[[<span class="dv">2</span>]]</span>
+<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a>                            )</span></code></pre></div>
 <div class="pull-left">
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a>adehabitatHR<span class="sc">::</span><span class="fu">plotLSCV</span>(ud[[<span class="dv">1</span>]])</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson06/plot-kernel1-1.svg" width="646.08" height="325" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a>adehabitatHR<span class="sc">::</span><span class="fu">plotLSCV</span>(ud[[<span class="dv">1</span>]])</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/plot-kernel1-1.svg" alt="" width="646.08" height="325" /></p>
 </div>
 <div class="pull-right">
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a>adehabitatHR<span class="sc">::</span><span class="fu">plotLSCV</span>(ud[[<span class="dv">2</span>]])</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson06/plot-kernel2-1.svg" width="646.08" height="325" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>adehabitatHR<span class="sc">::</span><span class="fu">plotLSCV</span>(ud[[<span class="dv">2</span>]])</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/plot-kernel2-1.svg" alt="" width="646.08" height="325" /></p>
 </div>
 <div class="oversize">
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a>ud <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernelUD</span>(sf<span class="sc">::</span><span class="fu">as_Spatial</span>(loc[<span class="st">&quot;BearID_ud&quot;</span>])</span>
-<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a>                            ,<span class="at">grid=</span>gr</span>
-<span id="cb50-3"><a href="#cb50-3" tabindex="-1"></a>                            ,<span class="at">h=</span><span class="fu">list</span>(<span class="st">&quot;href&quot;</span>,<span class="st">&quot;LSCV&quot;</span>,<span class="dv">30000</span>)[[<span class="dv">3</span>]]</span>
-<span id="cb50-4"><a href="#cb50-4" tabindex="-1"></a>                            )</span></code></pre></div>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="fu">str</span>(ud)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a>ud <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernelUD</span>(sf<span class="sc">::</span><span class="fu">as_Spatial</span>(loc[<span class="st">&quot;BearID_ud&quot;</span>])</span>
+<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a>                            ,<span class="at">grid=</span>gr</span>
+<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a>                            ,<span class="at">h=</span><span class="fu">list</span>(<span class="st">&quot;href&quot;</span>,<span class="st">&quot;LSCV&quot;</span>,<span class="dv">30000</span>)[[<span class="dv">3</span>]]</span>
+<span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a>                            )</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="fu">str</span>(ud)</span></code></pre></div>
 <pre><code>List of 2
  $ 145:Formal class &#39;estUD&#39; [package &quot;adehabitatHR&quot;] with 9 slots
   .. ..@ h          :List of 2
@@ -631,9 +628,9 @@ First 10 features:
 <div id="площади-по-уровням" class="section level4">
 <h4>Площади по уровням</h4>
 <div class="dummy">
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a>ka <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernel.area</span>(ud,<span class="at">unin=</span><span class="st">&quot;m&quot;</span>,<span class="at">unout=</span><span class="st">&quot;km2&quot;</span>)</span>
-<span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a><span class="fu">colnames</span>(ka) <span class="ot">&lt;-</span> <span class="fu">names</span>(ud)</span>
-<span id="cb53-3"><a href="#cb53-3" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">rbind</span>(<span class="fu">head</span>(ka,<span class="dv">4</span>),<span class="fu">tail</span>(ka,<span class="dv">4</span>)),<span class="at">row.names=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a>ka <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">kernel.area</span>(ud,<span class="at">unin=</span><span class="st">&quot;m&quot;</span>,<span class="at">unout=</span><span class="st">&quot;km2&quot;</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a><span class="fu">colnames</span>(ka) <span class="ot">&lt;-</span> <span class="fu">names</span>(ud)</span>
+<span id="cb50-3"><a href="#cb50-3" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">rbind</span>(<span class="fu">head</span>(ka,<span class="dv">4</span>),<span class="fu">tail</span>(ka,<span class="dv">4</span>)),<span class="at">row.names=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -686,16 +683,16 @@ First 10 features:
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a>ta <span class="ot">&lt;-</span> <span class="fu">reshape</span>(ka,<span class="at">direction=</span><span class="st">&quot;long&quot;</span></span>
-<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>             ,<span class="at">varying=</span><span class="fu">list</span>(<span class="fu">grep</span>(<span class="st">&quot;^</span><span class="sc">\\</span><span class="st">d+&quot;</span>,<span class="fu">colnames</span>(ka),<span class="at">value=</span><span class="cn">TRUE</span>))</span>
-<span id="cb54-3"><a href="#cb54-3" tabindex="-1"></a>             ,<span class="at">times=</span><span class="fu">grep</span>(<span class="st">&quot;^</span><span class="sc">\\</span><span class="st">d+&quot;</span>,<span class="fu">colnames</span>(ka),<span class="at">value=</span><span class="cn">TRUE</span>)</span>
-<span id="cb54-4"><a href="#cb54-4" tabindex="-1"></a>             ,<span class="at">v.names=</span><span class="st">&quot;area&quot;</span></span>
-<span id="cb54-5"><a href="#cb54-5" tabindex="-1"></a>             ,<span class="at">timevar=</span><span class="st">&quot;bear&quot;</span></span>
-<span id="cb54-6"><a href="#cb54-6" tabindex="-1"></a>             ,<span class="at">ids=</span><span class="fu">row.names</span>(ka)</span>
-<span id="cb54-7"><a href="#cb54-7" tabindex="-1"></a>             ,<span class="at">idvar=</span><span class="st">&quot;level&quot;</span></span>
-<span id="cb54-8"><a href="#cb54-8" tabindex="-1"></a>             )</span>
-<span id="cb54-9"><a href="#cb54-9" tabindex="-1"></a>ta<span class="sc">$</span>level <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(ta<span class="sc">$</span>level)</span>
-<span id="cb54-10"><a href="#cb54-10" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">rbind</span>(<span class="fu">head</span>(ta,<span class="dv">4</span>),<span class="fu">tail</span>(ta,<span class="dv">4</span>)),<span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a>ta <span class="ot">&lt;-</span> <span class="fu">reshape</span>(ka,<span class="at">direction=</span><span class="st">&quot;long&quot;</span></span>
+<span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a>             ,<span class="at">varying=</span><span class="fu">list</span>(<span class="fu">grep</span>(<span class="st">&quot;^</span><span class="sc">\\</span><span class="st">d+&quot;</span>,<span class="fu">colnames</span>(ka),<span class="at">value=</span><span class="cn">TRUE</span>))</span>
+<span id="cb51-3"><a href="#cb51-3" tabindex="-1"></a>             ,<span class="at">times=</span><span class="fu">grep</span>(<span class="st">&quot;^</span><span class="sc">\\</span><span class="st">d+&quot;</span>,<span class="fu">colnames</span>(ka),<span class="at">value=</span><span class="cn">TRUE</span>)</span>
+<span id="cb51-4"><a href="#cb51-4" tabindex="-1"></a>             ,<span class="at">v.names=</span><span class="st">&quot;area&quot;</span></span>
+<span id="cb51-5"><a href="#cb51-5" tabindex="-1"></a>             ,<span class="at">timevar=</span><span class="st">&quot;bear&quot;</span></span>
+<span id="cb51-6"><a href="#cb51-6" tabindex="-1"></a>             ,<span class="at">ids=</span><span class="fu">row.names</span>(ka)</span>
+<span id="cb51-7"><a href="#cb51-7" tabindex="-1"></a>             ,<span class="at">idvar=</span><span class="st">&quot;level&quot;</span></span>
+<span id="cb51-8"><a href="#cb51-8" tabindex="-1"></a>             )</span>
+<span id="cb51-9"><a href="#cb51-9" tabindex="-1"></a>ta<span class="sc">$</span>level <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(ta<span class="sc">$</span>level)</span>
+<span id="cb51-10"><a href="#cb51-10" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">rbind</span>(<span class="fu">head</span>(ta,<span class="dv">4</span>),<span class="fu">tail</span>(ta,<span class="dv">4</span>)),<span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -747,34 +744,34 @@ First 10 features:
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a>(p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ta,<span class="fu">aes</span>(level,area,<span class="at">colour=</span>bear))<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">geom_point</span>())</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson06/ggplot-1.svg" width="646.08" height="565" /></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>(p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ta,<span class="fu">aes</span>(level,area,<span class="at">colour=</span>bear))<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">geom_point</span>())</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/ggplot-1.svg" alt="" width="646.08" height="565" /></p>
 </div>
 <div id="извлечение-уровней" class="section level4">
 <h4>Извлечение уровней</h4>
 <div class="font95">
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a>levHR <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">50</span>)</span>
-<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">lapply</span>(ud,<span class="cf">function</span>(U) {</span>
-<span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a>   hr2 <span class="ot">&lt;-</span> <span class="fu">lapply</span>(levHR,<span class="cf">function</span>(L) {</span>
-<span id="cb56-4"><a href="#cb56-4" tabindex="-1"></a>      hr3 <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">getverticeshr</span>(U,<span class="at">percent=</span>L,<span class="at">unin=</span><span class="st">&quot;m&quot;</span>,<span class="at">unout=</span><span class="st">&quot;km2&quot;</span>)</span>
-<span id="cb56-5"><a href="#cb56-5" tabindex="-1"></a>      hr3<span class="sc">$</span>level <span class="ot">&lt;-</span> L</span>
-<span id="cb56-6"><a href="#cb56-6" tabindex="-1"></a>      sf<span class="sc">::</span><span class="fu">st_as_sf</span>(hr3)</span>
-<span id="cb56-7"><a href="#cb56-7" tabindex="-1"></a>   })</span>
-<span id="cb56-8"><a href="#cb56-8" tabindex="-1"></a>   <span class="fu">do.call</span>(rbind,hr2)</span>
-<span id="cb56-9"><a href="#cb56-9" tabindex="-1"></a>})</span>
-<span id="cb56-10"><a href="#cb56-10" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">names</span>(hr),<span class="cf">function</span>(x) {hr[[x]]<span class="sc">$</span>id <span class="ot">&lt;-</span> x;hr[[x]]})</span>
-<span id="cb56-11"><a href="#cb56-11" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,hr)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a>levHR <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">95</span>,<span class="dv">50</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">lapply</span>(ud,<span class="cf">function</span>(U) {</span>
+<span id="cb53-3"><a href="#cb53-3" tabindex="-1"></a>   hr2 <span class="ot">&lt;-</span> <span class="fu">lapply</span>(levHR,<span class="cf">function</span>(L) {</span>
+<span id="cb53-4"><a href="#cb53-4" tabindex="-1"></a>      hr3 <span class="ot">&lt;-</span> adehabitatHR<span class="sc">::</span><span class="fu">getverticeshr</span>(U,<span class="at">percent=</span>L,<span class="at">unin=</span><span class="st">&quot;m&quot;</span>,<span class="at">unout=</span><span class="st">&quot;km2&quot;</span>)</span>
+<span id="cb53-5"><a href="#cb53-5" tabindex="-1"></a>      hr3<span class="sc">$</span>level <span class="ot">&lt;-</span> L</span>
+<span id="cb53-6"><a href="#cb53-6" tabindex="-1"></a>      sf<span class="sc">::</span><span class="fu">st_as_sf</span>(hr3)</span>
+<span id="cb53-7"><a href="#cb53-7" tabindex="-1"></a>   })</span>
+<span id="cb53-8"><a href="#cb53-8" tabindex="-1"></a>   <span class="fu">do.call</span>(rbind,hr2)</span>
+<span id="cb53-9"><a href="#cb53-9" tabindex="-1"></a>})</span>
+<span id="cb53-10"><a href="#cb53-10" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">names</span>(hr),<span class="cf">function</span>(x) {hr[[x]]<span class="sc">$</span>id <span class="ot">&lt;-</span> x;hr[[x]]})</span>
+<span id="cb53-11"><a href="#cb53-11" tabindex="-1"></a>hr <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,hr)</span></code></pre></div>
 <p>Экспорт</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>))</span>
-<span id="cb57-2"><a href="#cb57-2" tabindex="-1"></a>   <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
-<span id="cb57-3"><a href="#cb57-3" tabindex="-1"></a>dst <span class="ot">&lt;-</span> <span class="st">&quot;data/hr.geojson&quot;</span></span>
-<span id="cb57-4"><a href="#cb57-4" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(sf<span class="sc">::</span><span class="fu">st_transform</span>(hr,<span class="dv">4326</span>)</span>
-<span id="cb57-5"><a href="#cb57-5" tabindex="-1"></a>            ,<span class="at">dsn=</span>dst</span>
-<span id="cb57-6"><a href="#cb57-6" tabindex="-1"></a>            ,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(dst)</span>
-<span id="cb57-7"><a href="#cb57-7" tabindex="-1"></a>            ,<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(dst)</span>
-<span id="cb57-8"><a href="#cb57-8" tabindex="-1"></a>            )</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data&quot;</span>))</span>
+<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>   <span class="fu">dir.create</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb54-3"><a href="#cb54-3" tabindex="-1"></a>dst <span class="ot">&lt;-</span> <span class="st">&quot;data/hr.geojson&quot;</span></span>
+<span id="cb54-4"><a href="#cb54-4" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(sf<span class="sc">::</span><span class="fu">st_transform</span>(hr,<span class="dv">4326</span>)</span>
+<span id="cb54-5"><a href="#cb54-5" tabindex="-1"></a>            ,<span class="at">dsn=</span>dst</span>
+<span id="cb54-6"><a href="#cb54-6" tabindex="-1"></a>            ,<span class="at">delete_layer=</span><span class="fu">file.exists</span>(dst)</span>
+<span id="cb54-7"><a href="#cb54-7" tabindex="-1"></a>            ,<span class="at">delete_dsn=</span><span class="fu">file.exists</span>(dst)</span>
+<span id="cb54-8"><a href="#cb54-8" tabindex="-1"></a>            )</span></code></pre></div>
 </div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a>hr</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a>hr</span></code></pre></div>
 <div class="kable-table">
 <table>
 <thead>
@@ -821,10 +818,10 @@ First 10 features:
 </div>
 <div id="визуализация" class="section level4">
 <h4>Визуализация</h4>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a><span class="fu">plot</span>(hr)</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson06/plothr1-1.svg" width="646.08" /></p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a><span class="fu">plot</span>(hr[<span class="fu">order</span>(hr<span class="sc">$</span>level),])</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson06/plothr2-1.svg" width="646.08" /></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="fu">plot</span>(hr)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/plothr1-1.svg" alt="" width="646.08" /></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a><span class="fu">plot</span>(hr[<span class="fu">order</span>(hr<span class="sc">$</span>level),])</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/plothr2-1.svg" alt="" width="646.08" /></p>
 </div>
 </div>
 <div id="анализ-траекторий" class="section level3">
@@ -839,14 +836,14 @@ First 10 features:
 </li>
 <li>Визуализация (интерактивная): пакет <strong><code>mapview</code></strong></li>
 </ul>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">TZ=</span><span class="st">&quot;UTC&quot;</span>)</span>
-<span id="cb61-2"><a href="#cb61-2" tabindex="-1"></a><span class="fu">require</span>(mapview)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">TZ=</span><span class="st">&quot;UTC&quot;</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a><span class="fu">require</span>(mapview)</span></code></pre></div>
 <pre><code>Loading required package: mapview</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
-<span id="cb63-2"><a href="#cb63-2" tabindex="-1"></a><span class="fu">require</span>(adehabitatLT)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
+<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a><span class="fu">require</span>(adehabitatLT)</span></code></pre></div>
 </div>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;data/locations_for_ltraj.geojson&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb64-2"><a href="#cb64-2" tabindex="-1"></a>   <span class="fu">st_transform</span>(<span class="dv">3572</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;data/locations_for_ltraj.geojson&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb61-2"><a href="#cb61-2" tabindex="-1"></a>   <span class="fu">st_transform</span>(<span class="dv">3572</span>)</span></code></pre></div>
 <pre><code>Reading layer `locations_for_ltraj&#39; from data source 
   `data\locations_for_ltraj.geojson&#39; using driver `GeoJSON&#39;
 Simple feature collection with 338 features and 5 fields
@@ -855,10 +852,10 @@ Dimension:     XY
 Bounding box:  xmin: -152.516 ymin: 69.8789 xmax: -128.911 ymax: 75.993
 Geodetic CRS:  WGS 84</code></pre>
 <div class="oversize">
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a>loc<span class="sc">$</span>DateTimeUTC_ud <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(loc<span class="sc">$</span>DateTimeUTC_ud</span>
-<span id="cb66-2"><a href="#cb66-2" tabindex="-1"></a>                                ,<span class="at">format=</span><span class="st">&quot;%m/%d/%Y %H:%M&quot;</span></span>
-<span id="cb66-3"><a href="#cb66-3" tabindex="-1"></a>                                ,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))</span>
-<span id="cb66-4"><a href="#cb66-4" tabindex="-1"></a><span class="fu">print</span>(loc)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a>loc<span class="sc">$</span>DateTimeUTC_ud <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(loc<span class="sc">$</span>DateTimeUTC_ud</span>
+<span id="cb63-2"><a href="#cb63-2" tabindex="-1"></a>                                ,<span class="at">format=</span><span class="st">&quot;%m/%d/%Y %H:%M&quot;</span></span>
+<span id="cb63-3"><a href="#cb63-3" tabindex="-1"></a>                                ,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))</span>
+<span id="cb63-4"><a href="#cb63-4" tabindex="-1"></a><span class="fu">print</span>(loc)</span></code></pre></div>
 <pre><code>Simple feature collection with 338 features and 5 fields
 Geometry type: POINT
 Dimension:     XY
@@ -877,13 +874,13 @@ First 10 features:
 9        145 2008-06-11 21:29:00    max   0716 max:0716 POINT (104305.1 -2028877)
 10       145 2008-06-17 19:01:00    max   0716 max:0716 POINT (146107.4 -1997239)</code></pre>
 </div>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a>lt1 <span class="ot">&lt;-</span> <span class="fu">as.ltraj</span>(<span class="fu">st_coordinates</span>(loc)</span>
-<span id="cb68-2"><a href="#cb68-2" tabindex="-1"></a>               ,<span class="at">date=</span>loc<span class="sc">$</span>DateTimeUTC_ud</span>
-<span id="cb68-3"><a href="#cb68-3" tabindex="-1"></a>               ,<span class="at">id=</span>loc<span class="sc">$</span>BearID_ud</span>
-<span id="cb68-4"><a href="#cb68-4" tabindex="-1"></a>               ,<span class="at">proj4string=</span>sp<span class="sc">::</span><span class="fu">CRS</span>(<span class="fu">st_crs</span>(loc)<span class="sc">$</span>proj4string)</span>
-<span id="cb68-5"><a href="#cb68-5" tabindex="-1"></a>               )</span>
-<span id="cb68-6"><a href="#cb68-6" tabindex="-1"></a><span class="fu">names</span>(lt1) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lt1,<span class="cf">function</span>(x) <span class="fu">attr</span>(x,<span class="st">&quot;id&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a>lt1</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a>lt1 <span class="ot">&lt;-</span> <span class="fu">as.ltraj</span>(<span class="fu">st_coordinates</span>(loc)</span>
+<span id="cb65-2"><a href="#cb65-2" tabindex="-1"></a>               ,<span class="at">date=</span>loc<span class="sc">$</span>DateTimeUTC_ud</span>
+<span id="cb65-3"><a href="#cb65-3" tabindex="-1"></a>               ,<span class="at">id=</span>loc<span class="sc">$</span>BearID_ud</span>
+<span id="cb65-4"><a href="#cb65-4" tabindex="-1"></a>               ,<span class="at">proj4string=</span>sp<span class="sc">::</span><span class="fu">CRS</span>(<span class="fu">st_crs</span>(loc)<span class="sc">$</span>proj4string)</span>
+<span id="cb65-5"><a href="#cb65-5" tabindex="-1"></a>               )</span>
+<span id="cb65-6"><a href="#cb65-6" tabindex="-1"></a><span class="fu">names</span>(lt1) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lt1,<span class="cf">function</span>(x) <span class="fu">attr</span>(x,<span class="st">&quot;id&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a>lt1</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -904,8 +901,8 @@ Characteristics of the bursts:
 <h4>Преобразования</h4>
 <div id="в-data-frame" class="section level5">
 <h5>в <code>data frame</code></h5>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">ld</span>(lt1)</span>
-<span id="cb71-2"><a href="#cb71-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(df1),<span class="at">digits=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">ld</span>(lt1)</span>
+<span id="cb68-2"><a href="#cb68-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(df1),<span class="at">digits=</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>           x        y                date     dx    dy  dist     dt      R2n abs.angle rel.angle  id
 145.1 208385 -2172907 2008-05-14 03:54:00  10919 67633 68509 404400 0.00e+00      1.41        NA 145
 145.2 219304 -2105274 2008-05-18 20:14:00 -19550 25031 31761 263880 4.69e+09      2.23    0.8231 145
@@ -923,8 +920,8 @@ Characteristics of the bursts:
 </div>
 <div id="в-ltraj" class="section level5">
 <h5>в <code>ltraj</code></h5>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a>lt1 <span class="ot">&lt;-</span> <span class="fu">dl</span>(df1)</span>
-<span id="cb73-2"><a href="#cb73-2" tabindex="-1"></a><span class="fu">head</span>(lt1)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a>lt1 <span class="ot">&lt;-</span> <span class="fu">dl</span>(df1)</span>
+<span id="cb70-2"><a href="#cb70-2" tabindex="-1"></a><span class="fu">head</span>(lt1)</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -940,7 +937,7 @@ Characteristics of the bursts:
 
  infolocs provided. The following variables are available:
 [1] &quot;pkey&quot;</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a>(da <span class="ot">&lt;-</span> adehabitatLT<span class="sc">::</span><span class="fu">summary.ltraj</span>(lt1))</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a>(da <span class="ot">&lt;-</span> adehabitatLT<span class="sc">::</span><span class="fu">summary.ltraj</span>(lt1))</span></code></pre></div>
 <div class="kable-table">
 <table>
 <thead>
@@ -978,11 +975,11 @@ Characteristics of the bursts:
 <div id="подтраектории" class="section level4">
 <h4>Подтраектории</h4>
 <p>Разбиение на отдельные сегменты по условию, если есть пропуск более 100 дней.</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" tabindex="-1"></a>cond <span class="ot">&lt;-</span> <span class="st">&quot;dt&gt;c(days=100)*c(hour=24)*c(min=60)*c(sec=60)&quot;</span></span>
-<span id="cb76-2"><a href="#cb76-2" tabindex="-1"></a>lt2 <span class="ot">&lt;-</span> <span class="fu">cutltraj</span>(lt1,cond,<span class="at">nextr=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a>cond <span class="ot">&lt;-</span> <span class="st">&quot;dt&gt;c(days=100)*c(hour=24)*c(min=60)*c(sec=60)&quot;</span></span>
+<span id="cb73-2"><a href="#cb73-2" tabindex="-1"></a>lt2 <span class="ot">&lt;-</span> <span class="fu">cutltraj</span>(lt1,cond,<span class="at">nextr=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>Warning in cutltraj(lt1, cond, nextr = TRUE): At least 3 relocations are needed for a burst
  1 relocations have been deleted</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" tabindex="-1"></a>lt2</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a>lt2</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -1009,19 +1006,19 @@ Characteristics of the bursts:
 <div id="регулярность" class="section level4">
 <h4>Регулярность</h4>
 <p>Проверка на регулярность</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" tabindex="-1"></a><span class="fu">is.regular</span>(lt2)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a><span class="fu">is.regular</span>(lt2)</span></code></pre></div>
 <pre><code>[1] FALSE</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">ld</span>(lt1)<span class="sc">$</span>dt<span class="sc">/</span><span class="dv">3600</span><span class="sc">/</span><span class="dv">24</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">ld</span>(lt1)<span class="sc">$</span>dt<span class="sc">/</span><span class="dv">3600</span><span class="sc">/</span><span class="dv">24</span>)</span></code></pre></div>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
   3.000   3.000   3.012   7.753   3.090 289.299       2 </code></pre>
 <p>Обратим внимание на медианное значение частоты локации: каждые три дня.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" tabindex="-1"></a><span class="co"># plotltr(lt1,&quot;dt/3600/24&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" tabindex="-1"></a><span class="co"># plotltr(lt1,&quot;dt/3600/24&quot;)</span></span></code></pre></div>
 <p>Установим точку отсчета</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" tabindex="-1"></a>(refda <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">strptime</span>(<span class="st">&quot;12:00&quot;</span>,<span class="st">&quot;%H:%M&quot;</span>,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))))</span></code></pre></div>
-<pre><code>[1] &quot;2025-04-03 12:00:00 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" tabindex="-1"></a>(refda <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="fu">strptime</span>(<span class="st">&quot;12:00&quot;</span>,<span class="st">&quot;%H:%M&quot;</span>,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))))</span></code></pre></div>
+<pre><code>[1] &quot;2026-02-13 12:00:00 UTC&quot;</code></pre>
 <p>Заполним пропуски значениями <code>NA</code></p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" tabindex="-1"></a>lt3 <span class="ot">&lt;-</span> <span class="fu">setNA</span>(lt2,refda,<span class="dv">3</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span>)</span>
-<span id="cb87-2"><a href="#cb87-2" tabindex="-1"></a>lt3</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" tabindex="-1"></a>lt3 <span class="ot">&lt;-</span> <span class="fu">setNA</span>(lt2,refda,<span class="dv">3</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span>)</span>
+<span id="cb84-2"><a href="#cb84-2" tabindex="-1"></a>lt3</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -1036,10 +1033,10 @@ Characteristics of the bursts:
 3 145 145.4       80  17 2009-11-03 18:26:00 2010-06-28 18:58:00
 4 145 145.5       71  24 2010-12-01 20:34:00 2011-06-29 16:51:00
 5 145 145.6       17  12 2012-03-28 20:20:00 2012-05-15 18:27:00
-6 168 168.1       28   5 2012-04-12 21:45:00 2012-06-30 10:00:00
-7 168 168.2       81   2 2012-11-02 00:00:00 2013-06-28 14:17:00
+6 168 168.1       27   3 2012-04-12 21:45:00 2012-06-30 10:00:00
+7 168 168.2       80   1 2012-11-02 00:00:00 2013-06-28 14:17:00
 8 168 168.3       27   0 2014-04-13 21:27:00 2014-06-30 22:00:00
-9 168 168.4       60   9 2014-12-03 00:00:00 2015-05-30 04:00:00
+9 168 168.4       61  13 2014-12-03 00:00:00 2015-05-30 04:00:00
 
 
  infolocs provided. The following variables are available:
@@ -1047,10 +1044,10 @@ Characteristics of the bursts:
 <div id="data-lt4" class="hiddenanchor">
  
 </div>
-<div class="font96">
+<div class="maybefont96">
 <p>Приведение к единому шагу по времени. См. <a href="#map-lt4">визуализацию</a>.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" tabindex="-1"></a>lt4 <span class="ot">&lt;-</span> <span class="fu">sett0</span>(lt3,refda,<span class="dv">3</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span>)</span>
-<span id="cb89-2"><a href="#cb89-2" tabindex="-1"></a>lt4</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" tabindex="-1"></a>lt4 <span class="ot">&lt;-</span> <span class="fu">sett0</span>(lt3,refda,<span class="dv">3</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span>)</span>
+<span id="cb86-2"><a href="#cb86-2" tabindex="-1"></a>lt4</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -1060,30 +1057,30 @@ Regular traject. Time lag between two locs: 259200 seconds
 
 Characteristics of the bursts:
    id burst nb.reloc NAs          date.begin            date.end
-1 145 145.1       15   3 2008-05-14 12:00:00 2008-06-25 12:00:00
-2 145 145.3       36   9 2009-03-16 12:00:00 2009-06-29 12:00:00
-3 145 145.4       80  17 2009-11-02 12:00:00 2010-06-27 12:00:00
-4 145 145.5       71  24 2010-11-30 12:00:00 2011-06-28 12:00:00
-5 145 145.6       17  12 2012-03-27 12:00:00 2012-05-14 12:00:00
-6 168 168.1       28   5 2012-04-11 12:00:00 2012-07-01 12:00:00
-7 168 168.2       81   2 2012-11-01 12:00:00 2013-06-29 12:00:00
-8 168 168.3       27   0 2014-04-13 12:00:00 2014-06-30 12:00:00
-9 168 168.4       60   9 2014-12-03 12:00:00 2015-05-29 12:00:00
+1 145 145.1       15   3 2008-05-15 12:00:00 2008-06-26 12:00:00
+2 145 145.3       36   9 2009-03-17 12:00:00 2009-06-30 12:00:00
+3 145 145.4       80  17 2009-11-03 12:00:00 2010-06-28 12:00:00
+4 145 145.5       71  24 2010-12-01 12:00:00 2011-06-29 12:00:00
+5 145 145.6       17  12 2012-03-28 12:00:00 2012-05-15 12:00:00
+6 168 168.1       27   3 2012-04-12 12:00:00 2012-06-29 12:00:00
+7 168 168.2       80   1 2012-11-02 12:00:00 2013-06-27 12:00:00
+8 168 168.3       27   0 2014-04-14 12:00:00 2014-07-01 12:00:00
+9 168 168.4       61  13 2014-12-01 12:00:00 2015-05-30 12:00:00
 
 
  infolocs provided. The following variables are available:
 [1] &quot;pkey&quot;</code></pre>
 <p>Проверка на регулярность по времени.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" tabindex="-1"></a><span class="fu">is.sd</span>(lt4)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" tabindex="-1"></a><span class="fu">is.sd</span>(lt4)</span></code></pre></div>
 <pre><code>[1] FALSE</code></pre>
 </div>
 <div id="today2024" class="section level5">
 <h5>Одинаковый период</h5>
 <p>Получение траекторий разных объектов в один временной период.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" tabindex="-1"></a>lt5 <span class="ot">&lt;-</span> <span class="fu">set.limits</span>(lt4[<span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)]</span>
-<span id="cb93-2"><a href="#cb93-2" tabindex="-1"></a>                 ,<span class="at">begin=</span><span class="st">&quot;2012-04-11 12:00&quot;</span>,<span class="at">dur=</span><span class="dv">33</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span></span>
-<span id="cb93-3"><a href="#cb93-3" tabindex="-1"></a>                 ,<span class="at">pattern=</span><span class="st">&quot;%Y-%m-%d %H:%M&quot;</span>,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))</span>
-<span id="cb93-4"><a href="#cb93-4" tabindex="-1"></a>lt5</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" tabindex="-1"></a>lt5 <span class="ot">&lt;-</span> <span class="fu">set.limits</span>(lt4[<span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)]</span>
+<span id="cb90-2"><a href="#cb90-2" tabindex="-1"></a>                 ,<span class="at">begin=</span><span class="st">&quot;2012-04-11 12:00&quot;</span>,<span class="at">dur=</span><span class="dv">33</span>,<span class="at">units=</span><span class="st">&quot;day&quot;</span></span>
+<span id="cb90-3"><a href="#cb90-3" tabindex="-1"></a>                 ,<span class="at">pattern=</span><span class="st">&quot;%Y-%m-%d %H:%M&quot;</span>,<span class="at">tz=</span><span class="fu">Sys.getenv</span>(<span class="st">&quot;TZ&quot;</span>))</span>
+<span id="cb90-4"><a href="#cb90-4" tabindex="-1"></a>lt5</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -1094,12 +1091,12 @@ Regular traject. Time lag between two locs: 259200 seconds
 Characteristics of the bursts:
    id burst nb.reloc NAs          date.begin            date.end
 1 145 145.6       12   8 2012-04-11 12:00:00 2012-05-14 12:00:00
-2 168 168.1       12   4 2012-04-11 12:00:00 2012-05-14 12:00:00
+2 168 168.1       12   0 2012-04-11 12:00:00 2012-05-14 12:00:00
 
 
  infolocs provided. The following variables are available:
 [1] &quot;pkey&quot;</code></pre>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" tabindex="-1"></a><span class="fu">is.sd</span>(lt5)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" tabindex="-1"></a><span class="fu">is.sd</span>(lt5)</span></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
@@ -1108,8 +1105,8 @@ Characteristics of the bursts:
 <div id="data-lt6" class="section level5">
 <h5>… по расстоянию</h5>
 <p>Локации каждые 50 км. См. <a href="#map-lt6">визуализацию</a>.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" tabindex="-1"></a>lt6 <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4,<span class="dv">50000</span>,<span class="at">type=</span><span class="st">&quot;space&quot;</span>) <span class="do">## 50000</span></span>
-<span id="cb97-2"><a href="#cb97-2" tabindex="-1"></a>lt6</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" tabindex="-1"></a>lt6 <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4,<span class="dv">50000</span>,<span class="at">type=</span><span class="st">&quot;space&quot;</span>) <span class="do">## 50000</span></span>
+<span id="cb94-2"><a href="#cb94-2" tabindex="-1"></a>lt6</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -1119,15 +1116,15 @@ Irregular traject. Variable time lag between two locs
 
 Characteristics of the bursts:
    id        burst nb.reloc NAs          date.begin            date.end
-1 145 145.1.R50000        6   0 2008-05-14 12:00:00 2008-06-25 05:12:02
-2 145 145.3.R50000       19   0 2009-03-16 12:00:00 2009-06-29 08:29:14
-3 145 145.4.R50000       32   0 2009-11-02 12:00:00 2010-06-26 09:31:12
-4 145 145.5.R50000       21   0 2010-11-30 12:00:00 2011-06-26 04:20:19
-5 145 145.6.R50000        4   0 2012-03-27 12:00:00 2012-05-09 23:37:20
-6 168 168.1.R50000        8   0 2012-04-11 12:00:00 2012-06-29 16:25:40
-7 168 168.2.R50000       44   0 2012-11-01 12:00:00 2013-06-29 02:52:05
-8 168 168.3.R50000        3   0 2014-04-13 12:00:00 2014-06-30 06:11:42
-9 168 168.4.R50000       16   0 2014-12-03 12:00:00 2015-05-17 11:29:34
+1 145 145.1.R50000        6   0 2008-05-15 12:00:00 2008-06-26 05:12:02
+2 145 145.3.R50000       19   0 2009-03-17 12:00:00 2009-06-30 08:29:14
+3 145 145.4.R50000       32   0 2009-11-03 12:00:00 2010-06-27 09:31:12
+4 145 145.5.R50000       21   0 2010-12-01 12:00:00 2011-06-27 04:20:19
+5 145 145.6.R50000        4   0 2012-03-28 12:00:00 2012-05-10 23:37:20
+6 168 168.1.R50000        9   0 2012-04-12 12:00:00 2012-06-28 07:51:23
+7 168 168.2.R50000       44   0 2012-11-02 12:00:00 2013-06-27 07:26:02
+8 168 168.3.R50000        3   0 2014-04-14 12:00:00 2014-07-01 06:11:42
+9 168 168.4.R50000       16   0 2014-12-01 12:00:00 2015-05-18 11:18:11
 
 
  infolocs provided. The following variables are available:
@@ -1136,8 +1133,8 @@ Characteristics of the bursts:
 <div id="data-lt7" class="section level5">
 <h5>… по времени</h5>
 <p>Локации каждые шесть суток. См. <a href="#map-lt7">визуализацию</a>.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" tabindex="-1"></a>lt7 <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4,<span class="dv">6</span><span class="sc">*</span><span class="dv">86400</span>,<span class="at">type=</span><span class="st">&quot;time&quot;</span>,<span class="at">nnew=</span><span class="dv">30</span>)</span>
-<span id="cb99-2"><a href="#cb99-2" tabindex="-1"></a>lt7</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" tabindex="-1"></a>lt7 <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4,<span class="dv">6</span><span class="sc">*</span><span class="dv">86400</span>,<span class="at">type=</span><span class="st">&quot;time&quot;</span>,<span class="at">nnew=</span><span class="dv">30</span>)</span>
+<span id="cb96-2"><a href="#cb96-2" tabindex="-1"></a>lt7</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -1147,21 +1144,21 @@ Regular traject. Time lag between two locs: 518400 seconds
 
 Characteristics of the bursts:
    id burst nb.reloc NAs          date.begin            date.end
-1 145 145.1        7   3 2008-05-14 12:00:00 2008-06-19 12:00:00
-2 145 145.3       18   8 2009-03-16 12:00:00 2009-06-26 12:00:00
-3 145 145.4       40  17 2009-11-02 12:00:00 2010-06-24 12:00:00
-4 145 145.5       35  19 2010-11-30 12:00:00 2011-06-22 12:00:00
-5 145 145.6        8   7 2012-03-27 12:00:00 2012-05-08 12:00:00
-6 168 168.1       14   4 2012-04-11 12:00:00 2012-06-28 12:00:00
-7 168 168.2       40   2 2012-11-01 12:00:00 2013-06-23 12:00:00
-8 168 168.3       13   0 2014-04-13 12:00:00 2014-06-24 12:00:00
-9 168 168.4       30   8 2014-12-03 12:00:00 2015-05-26 12:00:00
+1 145 145.1        7   3 2008-05-15 12:00:00 2008-06-20 12:00:00
+2 145 145.3       18   8 2009-03-17 12:00:00 2009-06-27 12:00:00
+3 145 145.4       40  17 2009-11-03 12:00:00 2010-06-25 12:00:00
+4 145 145.5       35  19 2010-12-01 12:00:00 2011-06-23 12:00:00
+5 145 145.6        8   7 2012-03-28 12:00:00 2012-05-09 12:00:00
+6 168 168.1       13   3 2012-04-12 12:00:00 2012-06-23 12:00:00
+7 168 168.2       40   1 2012-11-02 12:00:00 2013-06-24 12:00:00
+8 168 168.3       13   0 2014-04-14 12:00:00 2014-06-25 12:00:00
+9 168 168.4       30   9 2014-12-01 12:00:00 2015-05-24 12:00:00
 
 
  infolocs provided. The following variables are available:
 [1] &quot;pkey&quot;</code></pre>
 <p>Извлечение характеристик регулярных траекторий.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" tabindex="-1"></a>(di <span class="ot">&lt;-</span> <span class="fu">sd2df</span>(lt5,<span class="st">&quot;date&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" tabindex="-1"></a>(di <span class="ot">&lt;-</span> <span class="fu">sd2df</span>(lt5,<span class="st">&quot;date&quot;</span>))</span></code></pre></div>
 <div class="kable-table">
 <table>
 <thead>
@@ -1227,42 +1224,42 @@ Characteristics of the bursts:
 <div id="визуализация-1" class="section level4">
 <h4>Визуализация</h4>
 <p>Тест на нормальное распределение пропусков</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" tabindex="-1"></a><span class="fu">runsNAltraj</span>(lt4)</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson06/dd11-1.svg" width="646.08" /></p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" tabindex="-1"></a><span class="fu">runsNAltraj</span>(lt4)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/dd11-1.svg" alt="" width="646.08" /></p>
 <p>Просмотр траекторий</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" tabindex="-1"></a><span class="fu">plot</span>(lt4)</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson06/dd13-1.svg" width="576" /></p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" tabindex="-1"></a><span class="fu">plot</span>(lt4)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/dd13-1.svg" alt="" width="576" /></p>
 <p>Просмотр отдельно взятой траектории</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" tabindex="-1"></a><span class="fu">plot</span>(lt4[<span class="dv">8</span>])</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson06/dd14-1.svg" width="576" /></p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" tabindex="-1"></a><span class="fu">plot</span>(lt4[<span class="dv">8</span>])</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/dd14-1.svg" alt="" width="576" /></p>
 <p>Вспомогательная функция</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" tabindex="-1"></a><span class="st">&#39;plottraj&#39;</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(lt,<span class="at">desc=</span><span class="fu">c</span>(<span class="st">&quot;burst&quot;</span>,<span class="st">&quot;id&quot;</span>)) {</span>
-<span id="cb105-2"><a href="#cb105-2" tabindex="-1"></a>   desc <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(desc)</span>
-<span id="cb105-3"><a href="#cb105-3" tabindex="-1"></a>   lt <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(lt)</span>
-<span id="cb105-4"><a href="#cb105-4" tabindex="-1"></a>   id <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lt,attr,desc)</span>
-<span id="cb105-5"><a href="#cb105-5" tabindex="-1"></a>   bt_loc <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(<span class="fu">ld</span>(lt),<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>),<span class="at">crs=</span><span class="fu">st_crs</span>(loc)</span>
-<span id="cb105-6"><a href="#cb105-6" tabindex="-1"></a>                         )[<span class="fu">c</span>(desc,<span class="st">&quot;date&quot;</span>)]</span>
-<span id="cb105-7"><a href="#cb105-7" tabindex="-1"></a>   bt_ext <span class="ot">&lt;-</span> <span class="fu">by</span>(<span class="fu">st_geometry</span>(bt_loc),bt_loc[[desc]],<span class="cf">function</span>(x) {</span>
-<span id="cb105-8"><a href="#cb105-8" tabindex="-1"></a>      <span class="fu">st_sf</span>(<span class="at">onset=</span><span class="fu">c</span>(<span class="st">&quot;begin&quot;</span>,<span class="st">&quot;end&quot;</span>)</span>
-<span id="cb105-9"><a href="#cb105-9" tabindex="-1"></a>           ,<span class="at">geometry=</span><span class="fu">rbind</span>(<span class="fu">head</span>(x,<span class="dv">1</span>),<span class="fu">tail</span>(x,<span class="dv">1</span>)))</span>
-<span id="cb105-10"><a href="#cb105-10" tabindex="-1"></a>   })</span>
-<span id="cb105-11"><a href="#cb105-11" tabindex="-1"></a>   bt_ext <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,bt_ext)</span>
-<span id="cb105-12"><a href="#cb105-12" tabindex="-1"></a>   <span class="fu">st_crs</span>(bt_ext) <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(bt_loc)</span>
-<span id="cb105-13"><a href="#cb105-13" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt,<span class="cf">function</span>(obj) {</span>
-<span id="cb105-14"><a href="#cb105-14" tabindex="-1"></a>      <span class="fu">as.matrix</span>(obj[,<span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>)]) <span class="sc">|&gt;</span> <span class="fu">st_linestring</span>()</span>
-<span id="cb105-15"><a href="#cb105-15" tabindex="-1"></a>   })</span>
-<span id="cb105-16"><a href="#cb105-16" tabindex="-1"></a>   bt_track <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">dummy=</span>id,<span class="at">geometry=</span><span class="fu">st_sfc</span>(xy,<span class="at">crs=</span><span class="fu">st_crs</span>(loc)))</span>
-<span id="cb105-17"><a href="#cb105-17" tabindex="-1"></a>   <span class="fu">colnames</span>(bt_track)[<span class="fu">grep</span>(<span class="st">&quot;dummy&quot;</span>,<span class="fu">colnames</span>(bt_track))] <span class="ot">&lt;-</span> desc</span>
-<span id="cb105-18"><a href="#cb105-18" tabindex="-1"></a>   <span class="fu">with</span>(<span class="fu">list</span>(<span class="at">loc=</span>bt_loc,<span class="at">track=</span>bt_track,<span class="at">ext=</span>bt_ext)</span>
-<span id="cb105-19"><a href="#cb105-19" tabindex="-1"></a>       ,<span class="fu">mapview</span>(ext,<span class="at">zcol=</span><span class="st">&quot;onset&quot;</span>,<span class="at">cex=</span><span class="dv">6</span>,<span class="at">layer=</span><span class="st">&quot;Period&quot;</span></span>
-<span id="cb105-20"><a href="#cb105-20" tabindex="-1"></a>               ,<span class="at">col.regions=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>),<span class="at">legend=</span>F,<span class="at">home=</span>F)<span class="sc">+</span></span>
-<span id="cb105-21"><a href="#cb105-21" tabindex="-1"></a>        <span class="fu">mapview</span>(track,<span class="at">layer=</span><span class="st">&quot;Track&quot;</span>,<span class="at">zcol=</span>desc,<span class="at">home=</span>F,<span class="at">legend=</span>F)<span class="sc">+</span></span>
-<span id="cb105-22"><a href="#cb105-22" tabindex="-1"></a>        <span class="fu">mapview</span>(loc,<span class="at">zcol=</span>desc,<span class="at">layer=</span><span class="st">&quot;Locations&quot;</span>,<span class="at">cex=</span><span class="dv">3</span>,<span class="at">home=</span>T,<span class="at">label=</span><span class="st">&quot;date&quot;</span>)</span>
-<span id="cb105-23"><a href="#cb105-23" tabindex="-1"></a>        )</span>
-<span id="cb105-24"><a href="#cb105-24" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" tabindex="-1"></a><span class="st">&#39;plottraj&#39;</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(lt,<span class="at">desc=</span><span class="fu">c</span>(<span class="st">&quot;burst&quot;</span>,<span class="st">&quot;id&quot;</span>)) {</span>
+<span id="cb102-2"><a href="#cb102-2" tabindex="-1"></a>   desc <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(desc)</span>
+<span id="cb102-3"><a href="#cb102-3" tabindex="-1"></a>   lt <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(lt)</span>
+<span id="cb102-4"><a href="#cb102-4" tabindex="-1"></a>   id <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lt,attr,desc)</span>
+<span id="cb102-5"><a href="#cb102-5" tabindex="-1"></a>   bt_loc <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(<span class="fu">ld</span>(lt),<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>),<span class="at">crs=</span><span class="fu">st_crs</span>(loc)</span>
+<span id="cb102-6"><a href="#cb102-6" tabindex="-1"></a>                         )[<span class="fu">c</span>(desc,<span class="st">&quot;date&quot;</span>)]</span>
+<span id="cb102-7"><a href="#cb102-7" tabindex="-1"></a>   bt_ext <span class="ot">&lt;-</span> <span class="fu">by</span>(<span class="fu">st_geometry</span>(bt_loc),bt_loc[[desc]],<span class="cf">function</span>(x) {</span>
+<span id="cb102-8"><a href="#cb102-8" tabindex="-1"></a>      <span class="fu">st_sf</span>(<span class="at">onset=</span><span class="fu">c</span>(<span class="st">&quot;begin&quot;</span>,<span class="st">&quot;end&quot;</span>)</span>
+<span id="cb102-9"><a href="#cb102-9" tabindex="-1"></a>           ,<span class="at">geometry=</span><span class="fu">rbind</span>(<span class="fu">head</span>(x,<span class="dv">1</span>),<span class="fu">tail</span>(x,<span class="dv">1</span>)))</span>
+<span id="cb102-10"><a href="#cb102-10" tabindex="-1"></a>   })</span>
+<span id="cb102-11"><a href="#cb102-11" tabindex="-1"></a>   bt_ext <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,bt_ext)</span>
+<span id="cb102-12"><a href="#cb102-12" tabindex="-1"></a>   <span class="fu">st_crs</span>(bt_ext) <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(bt_loc)</span>
+<span id="cb102-13"><a href="#cb102-13" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt,<span class="cf">function</span>(obj) {</span>
+<span id="cb102-14"><a href="#cb102-14" tabindex="-1"></a>      <span class="fu">as.matrix</span>(obj[,<span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>)]) <span class="sc">|&gt;</span> <span class="fu">st_linestring</span>()</span>
+<span id="cb102-15"><a href="#cb102-15" tabindex="-1"></a>   })</span>
+<span id="cb102-16"><a href="#cb102-16" tabindex="-1"></a>   bt_track <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">dummy=</span>id,<span class="at">geometry=</span><span class="fu">st_sfc</span>(xy,<span class="at">crs=</span><span class="fu">st_crs</span>(loc)))</span>
+<span id="cb102-17"><a href="#cb102-17" tabindex="-1"></a>   <span class="fu">colnames</span>(bt_track)[<span class="fu">grep</span>(<span class="st">&quot;dummy&quot;</span>,<span class="fu">colnames</span>(bt_track))] <span class="ot">&lt;-</span> desc</span>
+<span id="cb102-18"><a href="#cb102-18" tabindex="-1"></a>   <span class="fu">with</span>(<span class="fu">list</span>(<span class="at">loc=</span>bt_loc,<span class="at">track=</span>bt_track,<span class="at">ext=</span>bt_ext)</span>
+<span id="cb102-19"><a href="#cb102-19" tabindex="-1"></a>       ,<span class="fu">mapview</span>(ext,<span class="at">zcol=</span><span class="st">&quot;onset&quot;</span>,<span class="at">cex=</span><span class="dv">6</span>,<span class="at">layer=</span><span class="st">&quot;Period&quot;</span></span>
+<span id="cb102-20"><a href="#cb102-20" tabindex="-1"></a>               ,<span class="at">col.regions=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>),<span class="at">legend=</span>F,<span class="at">home=</span>F)<span class="sc">+</span></span>
+<span id="cb102-21"><a href="#cb102-21" tabindex="-1"></a>        <span class="fu">mapview</span>(track,<span class="at">layer=</span><span class="st">&quot;Track&quot;</span>,<span class="at">zcol=</span>desc,<span class="at">home=</span>F,<span class="at">legend=</span>F)<span class="sc">+</span></span>
+<span id="cb102-22"><a href="#cb102-22" tabindex="-1"></a>        <span class="fu">mapview</span>(loc,<span class="at">zcol=</span>desc,<span class="at">layer=</span><span class="st">&quot;Locations&quot;</span>,<span class="at">cex=</span><span class="dv">3</span>,<span class="at">home=</span>T,<span class="at">label=</span><span class="st">&quot;date&quot;</span>)</span>
+<span id="cb102-23"><a href="#cb102-23" tabindex="-1"></a>        )</span>
+<span id="cb102-24"><a href="#cb102-24" tabindex="-1"></a>}</span></code></pre></div>
 <div id="map-lt4" class="section level5">
 <h5>шаг 3 суток, с пропусками</h5>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" tabindex="-1"></a>(m1 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt4[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" tabindex="-1"></a>(m1 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt4[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
 <iframe src="assets/lesson06/widget_dd17.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
@@ -1271,7 +1268,7 @@ Characteristics of the bursts:
 </div>
 <div id="map-lt6" class="section level5">
 <h5>шаг 50 км, без пропусков</h5>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" tabindex="-1"></a>(m2 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt6[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" tabindex="-1"></a>(m2 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt6[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
 <iframe src="assets/lesson06/widget_dd19.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
@@ -1280,7 +1277,7 @@ Characteristics of the bursts:
 </div>
 <div id="map-lt7" class="section level5">
 <h5>шаг 6 суток, без пропусков</h5>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" tabindex="-1"></a>(m3 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt7[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" tabindex="-1"></a>(m3 <span class="ot">&lt;-</span> <span class="fu">plottraj</span>(lt7[<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>],<span class="st">&quot;burst&quot;</span>))</span></code></pre></div>
 <div class="framed">
 <iframe src="assets/lesson06/widget_dd21.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
@@ -1293,8 +1290,8 @@ Characteristics of the bursts:
 <p>Рассмотрим метод поиска структурных изменений
 <span class="citation">(<a href="#ref-Lavielle1999">Lavielle, 1999</a>)</span>,
 <span class="citation">(<a href="#ref-Lavielle2005">Lavielle, 2005</a>)</span>.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" tabindex="-1"></a>lt6b <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4[<span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">8</span>)],<span class="dv">15000</span>,<span class="at">type=</span><span class="st">&quot;space&quot;</span>)</span>
-<span id="cb109-2"><a href="#cb109-2" tabindex="-1"></a>lt6b</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" tabindex="-1"></a>lt6b <span class="ot">&lt;-</span> <span class="fu">redisltraj</span>(lt4[<span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">8</span>)],<span class="dv">15000</span>,<span class="at">type=</span><span class="st">&quot;space&quot;</span>)</span>
+<span id="cb106-2"><a href="#cb106-2" tabindex="-1"></a>lt6b</span></code></pre></div>
 <pre><code>
 *********** List of class ltraj ***********
 
@@ -1304,52 +1301,52 @@ Irregular traject. Variable time lag between two locs
 
 Characteristics of the bursts:
    id        burst nb.reloc NAs          date.begin            date.end
-1 168 168.2.R15000      165   0 2012-11-01 12:00:00 2013-06-28 09:45:29
-2 168 168.3.R15000       22   0 2014-04-13 12:00:00 2014-06-29 18:06:23
+1 168 168.2.R15000      165   0 2012-11-02 12:00:00 2013-06-26 22:52:44
+2 168 168.3.R15000       22   0 2014-04-14 12:00:00 2014-06-30 18:06:23
 
 
  infolocs provided. The following variables are available:
 [1] &quot;pkey&quot;</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" tabindex="-1"></a>lv <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt6b,<span class="cf">function</span>(lt) {</span>
-<span id="cb111-2"><a href="#cb111-2" tabindex="-1"></a>   y <span class="ot">&lt;-</span> <span class="fu">head</span>(lt<span class="sc">$</span>dt,<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb111-3"><a href="#cb111-3" tabindex="-1"></a>   <span class="fu">lavielle</span>(y, <span class="at">Lmin=</span><span class="dv">5</span>, <span class="at">Kmax=</span><span class="dv">4</span>, <span class="at">type=</span><span class="st">&quot;mean&quot;</span>)</span>
-<span id="cb111-4"><a href="#cb111-4" tabindex="-1"></a>})</span></code></pre></div>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" tabindex="-1"></a>opP <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="fu">length</span>(lv)))</span>
-<span id="cb112-2"><a href="#cb112-2" tabindex="-1"></a>nseg <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lv,chooseseg,<span class="at">draw=</span><span class="cn">TRUE</span>,<span class="at">output=</span><span class="st">&quot;opt&quot;</span>)</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson06/dd24-1.svg" width="646.08" height="480" /></p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" tabindex="-1"></a><span class="fu">par</span>(opP)</span>
-<span id="cb113-2"><a href="#cb113-2" tabindex="-1"></a>nseg</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" tabindex="-1"></a>lv <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt6b,<span class="cf">function</span>(lt) {</span>
+<span id="cb108-2"><a href="#cb108-2" tabindex="-1"></a>   y <span class="ot">&lt;-</span> <span class="fu">head</span>(lt<span class="sc">$</span>dt,<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb108-3"><a href="#cb108-3" tabindex="-1"></a>   <span class="fu">lavielle</span>(y, <span class="at">Lmin=</span><span class="dv">5</span>, <span class="at">Kmax=</span><span class="dv">4</span>, <span class="at">type=</span><span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb108-4"><a href="#cb108-4" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" tabindex="-1"></a>opP <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="fu">length</span>(lv)))</span>
+<span id="cb109-2"><a href="#cb109-2" tabindex="-1"></a>nseg <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lv,chooseseg,<span class="at">draw=</span><span class="cn">TRUE</span>,<span class="at">output=</span><span class="st">&quot;opt&quot;</span>)</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/dd24-1.svg" alt="" width="646.08" height="480" /></p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" tabindex="-1"></a><span class="fu">par</span>(opP)</span>
+<span id="cb110-2"><a href="#cb110-2" tabindex="-1"></a>nseg</span></code></pre></div>
 <pre><code>[1] 3 2</code></pre>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a>opP <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="fu">length</span>(lv),<span class="dv">1</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb115-2"><a href="#cb115-2" tabindex="-1"></a>fp <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lv,<span class="cf">function</span>(lv2) {</span>
-<span id="cb115-3"><a href="#cb115-3" tabindex="-1"></a>   nseg <span class="ot">&lt;-</span> <span class="fu">chooseseg</span>(lv2,<span class="at">output=</span><span class="st">&quot;opt&quot;</span>,<span class="at">draw=</span><span class="cn">FALSE</span>)</span>
-<span id="cb115-4"><a href="#cb115-4" tabindex="-1"></a>   <span class="fu">findpath</span>(lv2,<span class="at">K=</span>nseg,<span class="at">plotit=</span><span class="cn">TRUE</span>)</span>
-<span id="cb115-5"><a href="#cb115-5" tabindex="-1"></a>})</span></code></pre></div>
-<p class="centered-image"><img src="assets/lesson06/dd25-1.svg" width="646.08" height="470" /></p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" tabindex="-1"></a><span class="fu">par</span>(opP)</span></code></pre></div>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(lt6b))</span>
-<span id="cb117-2"><a href="#cb117-2" tabindex="-1"></a>   <span class="fu">attr</span>(lt6b[[i]],<span class="st">&quot;segments&quot;</span>) <span class="ot">&lt;-</span> fp[[i]]</span>
-<span id="cb117-3"><a href="#cb117-3" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt6b,<span class="cf">function</span>(lt) {</span>
-<span id="cb117-4"><a href="#cb117-4" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">attr</span>(lt,<span class="st">&quot;segments&quot;</span>),<span class="cf">function</span>(seg) {</span>
-<span id="cb117-5"><a href="#cb117-5" tabindex="-1"></a>      lt2 <span class="ot">&lt;-</span> lt[<span class="fu">seq</span>(seg[<span class="dv">1</span>],seg[<span class="dv">2</span>]<span class="sc">+</span><span class="fu">ifelse</span>(seg[<span class="dv">2</span>]<span class="sc">+</span><span class="dv">1</span><span class="sc">==</span><span class="fu">nrow</span>(lt),<span class="dv">0</span><span class="dt">L</span>,<span class="dv">1</span><span class="dt">L</span>)),]</span>
-<span id="cb117-6"><a href="#cb117-6" tabindex="-1"></a>      xy2 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(lt2[,<span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>)]) <span class="sc">|&gt;</span> <span class="fu">st_linestring</span>()</span>
-<span id="cb117-7"><a href="#cb117-7" tabindex="-1"></a>      <span class="fu">st_sf</span>(<span class="at">segment=</span><span class="fu">attr</span>(lt2,<span class="st">&quot;burst&quot;</span>)</span>
-<span id="cb117-8"><a href="#cb117-8" tabindex="-1"></a>           ,<span class="at">begin=</span><span class="fu">min</span>(lt2<span class="sc">$</span>date),<span class="at">end=</span><span class="fu">max</span>(lt2<span class="sc">$</span>date)</span>
-<span id="cb117-9"><a href="#cb117-9" tabindex="-1"></a>           ,<span class="at">dt_mean=</span><span class="fu">round</span>(<span class="fu">mean</span>(lt2<span class="sc">$</span>dt)<span class="sc">/</span><span class="dv">86400</span>,<span class="dv">1</span>)</span>
-<span id="cb117-10"><a href="#cb117-10" tabindex="-1"></a>           ,<span class="at">dt_median=</span><span class="fu">round</span>(<span class="fu">median</span>(lt2<span class="sc">$</span>dt)<span class="sc">/</span><span class="dv">86400</span>,<span class="dv">1</span>)</span>
-<span id="cb117-11"><a href="#cb117-11" tabindex="-1"></a>           ,<span class="at">geometry=</span><span class="fu">st_sfc</span>(<span class="fu">list</span>(xy2),<span class="at">crs=</span><span class="fu">st_crs</span>(loc)))</span>
-<span id="cb117-12"><a href="#cb117-12" tabindex="-1"></a>   })</span>
-<span id="cb117-13"><a href="#cb117-13" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,xy)</span>
-<span id="cb117-14"><a href="#cb117-14" tabindex="-1"></a>   xy<span class="sc">$</span>segment <span class="ot">&lt;-</span> <span class="fu">paste</span>(xy<span class="sc">$</span>segment,<span class="fu">seq_along</span>(xy<span class="sc">$</span>segment),<span class="at">sep=</span><span class="st">&quot;:&quot;</span>)</span>
-<span id="cb117-15"><a href="#cb117-15" tabindex="-1"></a>   xy</span>
-<span id="cb117-16"><a href="#cb117-16" tabindex="-1"></a>})</span>
-<span id="cb117-17"><a href="#cb117-17" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,res)</span>
-<span id="cb117-18"><a href="#cb117-18" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">by</span>(res,res<span class="sc">$</span>segment,<span class="cf">function</span>(x) x))</span>
-<span id="cb117-19"><a href="#cb117-19" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">322</span>)</span>
-<span id="cb117-20"><a href="#cb117-20" tabindex="-1"></a>color <span class="ot">&lt;-</span> <span class="fu">sample</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">8</span>,<span class="st">&quot;Dark2&quot;</span>),<span class="fu">length</span>(res)) <span class="sc">|&gt;</span></span>
-<span id="cb117-21"><a href="#cb117-21" tabindex="-1"></a>   <span class="fu">lapply</span>(<span class="cf">function</span>(x) x)</span>
-<span id="cb117-22"><a href="#cb117-22" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_along</span>(res),<span class="cf">function</span>(x) <span class="st">&quot;dt_mean&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" tabindex="-1"></a>(m4 <span class="ot">&lt;-</span> <span class="fu">mapview</span>(res,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">color=</span>color,<span class="at">label=</span>label))</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" tabindex="-1"></a>opP <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="fu">length</span>(lv),<span class="dv">1</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb112-2"><a href="#cb112-2" tabindex="-1"></a>fp <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lv,<span class="cf">function</span>(lv2) {</span>
+<span id="cb112-3"><a href="#cb112-3" tabindex="-1"></a>   nseg <span class="ot">&lt;-</span> <span class="fu">chooseseg</span>(lv2,<span class="at">output=</span><span class="st">&quot;opt&quot;</span>,<span class="at">draw=</span><span class="cn">FALSE</span>)</span>
+<span id="cb112-4"><a href="#cb112-4" tabindex="-1"></a>   <span class="fu">findpath</span>(lv2,<span class="at">K=</span>nseg,<span class="at">plotit=</span><span class="cn">TRUE</span>)</span>
+<span id="cb112-5"><a href="#cb112-5" tabindex="-1"></a>})</span></code></pre></div>
+<p class="centered-image"><img src="assets/lesson06/dd25-1.svg" alt="" width="646.08" height="470" /></p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" tabindex="-1"></a><span class="fu">par</span>(opP)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(lt6b))</span>
+<span id="cb114-2"><a href="#cb114-2" tabindex="-1"></a>   <span class="fu">attr</span>(lt6b[[i]],<span class="st">&quot;segments&quot;</span>) <span class="ot">&lt;-</span> fp[[i]]</span>
+<span id="cb114-3"><a href="#cb114-3" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">lapply</span>(lt6b,<span class="cf">function</span>(lt) {</span>
+<span id="cb114-4"><a href="#cb114-4" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">attr</span>(lt,<span class="st">&quot;segments&quot;</span>),<span class="cf">function</span>(seg) {</span>
+<span id="cb114-5"><a href="#cb114-5" tabindex="-1"></a>      lt2 <span class="ot">&lt;-</span> lt[<span class="fu">seq</span>(seg[<span class="dv">1</span>],seg[<span class="dv">2</span>]<span class="sc">+</span><span class="fu">ifelse</span>(seg[<span class="dv">2</span>]<span class="sc">+</span><span class="dv">1</span><span class="sc">==</span><span class="fu">nrow</span>(lt),<span class="dv">0</span><span class="dt">L</span>,<span class="dv">1</span><span class="dt">L</span>)),]</span>
+<span id="cb114-6"><a href="#cb114-6" tabindex="-1"></a>      xy2 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(lt2[,<span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>)]) <span class="sc">|&gt;</span> <span class="fu">st_linestring</span>()</span>
+<span id="cb114-7"><a href="#cb114-7" tabindex="-1"></a>      <span class="fu">st_sf</span>(<span class="at">segment=</span><span class="fu">attr</span>(lt2,<span class="st">&quot;burst&quot;</span>)</span>
+<span id="cb114-8"><a href="#cb114-8" tabindex="-1"></a>           ,<span class="at">begin=</span><span class="fu">min</span>(lt2<span class="sc">$</span>date),<span class="at">end=</span><span class="fu">max</span>(lt2<span class="sc">$</span>date)</span>
+<span id="cb114-9"><a href="#cb114-9" tabindex="-1"></a>           ,<span class="at">dt_mean=</span><span class="fu">round</span>(<span class="fu">mean</span>(lt2<span class="sc">$</span>dt)<span class="sc">/</span><span class="dv">86400</span>,<span class="dv">1</span>)</span>
+<span id="cb114-10"><a href="#cb114-10" tabindex="-1"></a>           ,<span class="at">dt_median=</span><span class="fu">round</span>(<span class="fu">median</span>(lt2<span class="sc">$</span>dt)<span class="sc">/</span><span class="dv">86400</span>,<span class="dv">1</span>)</span>
+<span id="cb114-11"><a href="#cb114-11" tabindex="-1"></a>           ,<span class="at">geometry=</span><span class="fu">st_sfc</span>(<span class="fu">list</span>(xy2),<span class="at">crs=</span><span class="fu">st_crs</span>(loc)))</span>
+<span id="cb114-12"><a href="#cb114-12" tabindex="-1"></a>   })</span>
+<span id="cb114-13"><a href="#cb114-13" tabindex="-1"></a>   xy <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,xy)</span>
+<span id="cb114-14"><a href="#cb114-14" tabindex="-1"></a>   xy<span class="sc">$</span>segment <span class="ot">&lt;-</span> <span class="fu">paste</span>(xy<span class="sc">$</span>segment,<span class="fu">seq_along</span>(xy<span class="sc">$</span>segment),<span class="at">sep=</span><span class="st">&quot;:&quot;</span>)</span>
+<span id="cb114-15"><a href="#cb114-15" tabindex="-1"></a>   xy</span>
+<span id="cb114-16"><a href="#cb114-16" tabindex="-1"></a>})</span>
+<span id="cb114-17"><a href="#cb114-17" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,res)</span>
+<span id="cb114-18"><a href="#cb114-18" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">by</span>(res,res<span class="sc">$</span>segment,<span class="cf">function</span>(x) x))</span>
+<span id="cb114-19"><a href="#cb114-19" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">322</span>)</span>
+<span id="cb114-20"><a href="#cb114-20" tabindex="-1"></a>color <span class="ot">&lt;-</span> <span class="fu">sample</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">8</span>,<span class="st">&quot;Dark2&quot;</span>),<span class="fu">length</span>(res)) <span class="sc">|&gt;</span></span>
+<span id="cb114-21"><a href="#cb114-21" tabindex="-1"></a>   <span class="fu">lapply</span>(<span class="cf">function</span>(x) x)</span>
+<span id="cb114-22"><a href="#cb114-22" tabindex="-1"></a>label <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_along</span>(res),<span class="cf">function</span>(x) <span class="st">&quot;dt_mean&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a>(m4 <span class="ot">&lt;-</span> <span class="fu">mapview</span>(res,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">color=</span>color,<span class="at">label=</span>label))</span></code></pre></div>
 <div class="framed">
 <iframe src="assets/lesson06/widget_dd28.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
@@ -1368,35 +1365,32 @@ Characteristics of the bursts:
 <div id="plt" class="section level5">
 <h5>PLT</h5>
 <p>OziExprorer</p>
-<p class="centered-image"><img src="assets/lesson06/PLT-open.png" width="1092" /></p>
+<p class="centered-image"><img src="assets/lesson06/PLT-open.png" alt="" width="1092" /></p>
 <p>Формат *.PLT, используется драйвер GPSBabel.</p>
-<p class="centered-image"><img src="assets/lesson06/PLT-show.png" width="1096" /></p>
+<p class="centered-image"><img src="assets/lesson06/PLT-show.png" alt="" width="1096" /></p>
 </div>
 <div id="gpx" class="section level5">
 <h5>GPX</h5>
 <p>Garmin через Mapsource</p>
-<p class="centered-image"><img src="assets/lesson06/GPX-open.png" width="1092" /></p>
+<p class="centered-image"><img src="assets/lesson06/GPX-open.png" alt="" width="1092" /></p>
 <div id="QGIS-layer" class="hiddenanchor">
  
 </div>
-<p class="centered-image"><img src="assets/lesson06/GPX-group.png" width="1085" /></p>
+<p class="centered-image"><img src="assets/lesson06/GPX-group.png" alt="" width="1085" /></p>
 <p>См. метаданные по слоям в <a href="#R-layer">R</a></p>
-<p class="centered-image"><img src="assets/lesson06/GPX-show.png" width="1096" /></p>
+<p class="centered-image"><img src="assets/lesson06/GPX-show.png" alt="" width="1096" /></p>
 </div>
 </div>
 </div>
 <div id="r" class="section level3">
 <h3>R</h3>
 <p>Обработка пространственных данных - пакет <code>sf</code></p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" tabindex="-1"></a><span class="fu">require</span>(sf)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" tabindex="-1"></a><span class="fu">require</span>(sf)</span></code></pre></div>
 <p>Визуализация - пакет <code>plotly</code>. См. <a href="https://plotly.com/r">примеры с документацией</a>.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" tabindex="-1"></a><span class="fu">require</span>(plotly)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" tabindex="-1"></a><span class="fu">require</span>(plotly)</span></code></pre></div>
 <pre><code>Loading required package: plotly</code></pre>
 <pre><code>
 Attaching package: &#39;plotly&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:MASS&#39;:
-
-    select</code></pre>
 <pre><code>The following object is masked from &#39;package:ggplot2&#39;:
 
     last_plot</code></pre>
@@ -1413,7 +1407,7 @@ Attaching package: &#39;plotly&#39;</code></pre>
 <h5 class="toc-ignore unnumbered unlisted">
 OziExplorer
 </h5>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" tabindex="-1"></a><span class="fu">print</span>(car <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_layers</span>(<span class="st">&quot;Ozi/20090201_car.plt&quot;</span>)) <span class="do">## don&#39;t copy&amp;paste</span></span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" tabindex="-1"></a><span class="fu">print</span>(car <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_layers</span>(<span class="st">&quot;Ozi/20090201_car.plt&quot;</span>)) <span class="do">## don&#39;t copy&amp;paste</span></span></code></pre></div>
 <pre><code>Driver: GPSBabel 
 Available layers:
     layer_name     geometry_type features fields crs_name
@@ -1425,7 +1419,7 @@ Available layers:
 <pre><code>set PATH=%PATH%;%OSGEO4W%/apps/Qt5/bin
 where Qt5Core.dll
 Rscript -e &quot;sf::st_layers(&#39;Ozi/20090201_car.plt&#39;)&quot;</code></pre>
-<p class="centered-image"><img src="assets/lesson06/PLT-GPSbabel.png" width="539" height="430" /></p>
+<p class="centered-image"><img src="assets/lesson06/PLT-GPSbabel.png" alt="" width="539" height="430" /></p>
 </div>
 </div>
 <div id="gpx-1" class="section level5">
@@ -1433,8 +1427,8 @@ Rscript -e &quot;sf::st_layers(&#39;Ozi/20090201_car.plt&#39;)&quot;</code></pre
 <h5 class="toc-ignore unnumbered unlisted">
 Windows MapSource, Android OsmAnd
 </h5>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" tabindex="-1"></a>dsn <span class="ot">&lt;-</span> <span class="st">&quot;data/2022-01-09_14-00_Sun.gpx&quot;</span></span>
-<span id="cb130-2"><a href="#cb130-2" tabindex="-1"></a>ski <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" tabindex="-1"></a>dsn <span class="ot">&lt;-</span> <span class="st">&quot;data/2022-01-09_14-00_Sun.gpx&quot;</span></span>
+<span id="cb126-2"><a href="#cb126-2" tabindex="-1"></a>ski <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn)</span></code></pre></div>
 <pre><code>Multiple layers are present in data source data\2022-01-09_14-00_Sun.gpx, reading layer `waypoints&#39;.
 Use `st_layers&#39; to list all layer names and their type in a data source.
 Set the `layer&#39; argument in `st_read&#39; to read a particular layer.</code></pre>
@@ -1447,7 +1441,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <div id="R-layer" class="hiddenanchor">
  
 </div>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" tabindex="-1"></a><span class="fu">print</span>(bundle <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_layers</span>(dsn))</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" tabindex="-1"></a><span class="fu">print</span>(bundle <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_layers</span>(dsn))</span></code></pre></div>
 <pre><code>Driver: GPX 
 Available layers:
     layer_name     geometry_type features fields crs_name
@@ -1457,14 +1451,14 @@ Available layers:
 4 route_points             Point        0     25   WGS 84
 5 track_points             Point      835     26   WGS 84</code></pre>
 <p>См. метаданные по слоям в <a href="#QGIS-layer">QGIS</a></p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn,<span class="at">layer=</span><span class="st">&quot;track_points&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" tabindex="-1"></a>loc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn,<span class="at">layer=</span><span class="st">&quot;track_points&quot;</span>)</span></code></pre></div>
 <pre><code>Reading layer `track_points&#39; from data source `data\2022-01-09_14-00_Sun.gpx&#39; using driver `GPX&#39;
 Simple feature collection with 835 features and 26 fields
 Geometry type: POINT
 Dimension:     XY
 Bounding box:  xmin: 37.178 ymin: 56.73616 xmax: 37.18673 ymax: 56.7426
 Geodetic CRS:  WGS 84</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" tabindex="-1"></a>tr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn,<span class="at">layer=</span><span class="st">&quot;tracks&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" tabindex="-1"></a>tr <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(dsn,<span class="at">layer=</span><span class="st">&quot;tracks&quot;</span>)</span></code></pre></div>
 <pre><code>Reading layer `tracks&#39; from data source `data\2022-01-09_14-00_Sun.gpx&#39; using driver `GPX&#39;
 Simple feature collection with 1 feature and 12 fields
 Geometry type: MULTILINESTRING
@@ -1478,7 +1472,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <p>Как с пространственными данными</p>
 <div class="note remarkonly">
 <h2 class="toc-ignore unnumbered unlisted">
-Домашнее задание на <a href="index.html#deadline3">27 марта 2025 г.</a>
+Домашнее задание на <a href="index.html#deadline3">20 марта 2026 г.</a>
 </h2>
 <ul>
 <li><p>Исходные данные: “<code>data/2022-01-09_14-00_Sun.gpx</code>” (“Лыжная прогулка”)</p></li>
@@ -1490,44 +1484,44 @@ Geodetic CRS:  WGS 84</code></pre>
 </div>
 <div id="визуализация-2" class="section level4">
 <h4>Визуализация</h4>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" tabindex="-1"></a>da <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sf<span class="sc">::</span><span class="fu">st_coordinates</span>(loc))</span>
-<span id="cb140-2"><a href="#cb140-2" tabindex="-1"></a>da<span class="sc">$</span>time <span class="ot">&lt;-</span> loc<span class="sc">$</span>time</span>
-<span id="cb140-3"><a href="#cb140-3" tabindex="-1"></a>da<span class="sc">$</span>z <span class="ot">&lt;-</span> loc<span class="sc">$</span>ele</span>
-<span id="cb140-4"><a href="#cb140-4" tabindex="-1"></a>da<span class="sc">$</span>color <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">as.factor</span>(loc<span class="sc">$</span>time))</span>
-<span id="cb140-5"><a href="#cb140-5" tabindex="-1"></a>da<span class="sc">$</span>color <span class="ot">&lt;-</span> da<span class="sc">$</span>color<span class="sc">/</span><span class="fu">max</span>(da<span class="sc">$</span>color)</span>
-<span id="cb140-6"><a href="#cb140-6" tabindex="-1"></a>da<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">as.character</span>(da<span class="sc">$</span>time)</span>
-<span id="cb140-7"><a href="#cb140-7" tabindex="-1"></a>s3d <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">plot_ly</span>(da,<span class="at">x=</span><span class="sc">~</span>X,<span class="at">y=</span><span class="sc">~</span>Y,<span class="at">z=</span><span class="sc">~</span>z,<span class="at">type=</span><span class="st">&#39;scatter3d&#39;</span>,<span class="at">mode=</span><span class="st">&#39;lines&#39;</span></span>
-<span id="cb140-8"><a href="#cb140-8" tabindex="-1"></a>              ,<span class="at">opacity=</span><span class="dv">1</span></span>
-<span id="cb140-9"><a href="#cb140-9" tabindex="-1"></a>              ,<span class="at">hoverinfo=</span><span class="sc">~</span>text</span>
-<span id="cb140-10"><a href="#cb140-10" tabindex="-1"></a>              ,<span class="at">line=</span><span class="fu">list</span>(<span class="at">width=</span><span class="dv">6</span></span>
-<span id="cb140-11"><a href="#cb140-11" tabindex="-1"></a>                        ,<span class="at">color=</span><span class="sc">~</span>color</span>
-<span id="cb140-12"><a href="#cb140-12" tabindex="-1"></a>                        ,<span class="at">colorscale=</span><span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="st">&#39;#BA52ED&#39;</span>),<span class="fu">c</span>(<span class="dv">1</span>,<span class="st">&#39;#FCB040&#39;</span>))</span>
-<span id="cb140-13"><a href="#cb140-13" tabindex="-1"></a>                        ,<span class="at">reverscale=</span><span class="cn">FALSE</span></span>
-<span id="cb140-14"><a href="#cb140-14" tabindex="-1"></a>                        )</span>
-<span id="cb140-15"><a href="#cb140-15" tabindex="-1"></a>              )</span></code></pre></div>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" tabindex="-1"></a>s3d</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" tabindex="-1"></a>da <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sf<span class="sc">::</span><span class="fu">st_coordinates</span>(loc))</span>
+<span id="cb136-2"><a href="#cb136-2" tabindex="-1"></a>da<span class="sc">$</span>time <span class="ot">&lt;-</span> loc<span class="sc">$</span>time</span>
+<span id="cb136-3"><a href="#cb136-3" tabindex="-1"></a>da<span class="sc">$</span>z <span class="ot">&lt;-</span> loc<span class="sc">$</span>ele</span>
+<span id="cb136-4"><a href="#cb136-4" tabindex="-1"></a>da<span class="sc">$</span>color <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">as.factor</span>(loc<span class="sc">$</span>time))</span>
+<span id="cb136-5"><a href="#cb136-5" tabindex="-1"></a>da<span class="sc">$</span>color <span class="ot">&lt;-</span> da<span class="sc">$</span>color<span class="sc">/</span><span class="fu">max</span>(da<span class="sc">$</span>color)</span>
+<span id="cb136-6"><a href="#cb136-6" tabindex="-1"></a>da<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">as.character</span>(da<span class="sc">$</span>time)</span>
+<span id="cb136-7"><a href="#cb136-7" tabindex="-1"></a>s3d <span class="ot">&lt;-</span> plotly<span class="sc">::</span><span class="fu">plot_ly</span>(da,<span class="at">x=</span><span class="sc">~</span>X,<span class="at">y=</span><span class="sc">~</span>Y,<span class="at">z=</span><span class="sc">~</span>z,<span class="at">type=</span><span class="st">&#39;scatter3d&#39;</span>,<span class="at">mode=</span><span class="st">&#39;lines&#39;</span></span>
+<span id="cb136-8"><a href="#cb136-8" tabindex="-1"></a>              ,<span class="at">opacity=</span><span class="dv">1</span></span>
+<span id="cb136-9"><a href="#cb136-9" tabindex="-1"></a>              ,<span class="at">hoverinfo=</span><span class="sc">~</span>text</span>
+<span id="cb136-10"><a href="#cb136-10" tabindex="-1"></a>              ,<span class="at">line=</span><span class="fu">list</span>(<span class="at">width=</span><span class="dv">6</span></span>
+<span id="cb136-11"><a href="#cb136-11" tabindex="-1"></a>                        ,<span class="at">color=</span><span class="sc">~</span>color</span>
+<span id="cb136-12"><a href="#cb136-12" tabindex="-1"></a>                        ,<span class="at">colorscale=</span><span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="st">&#39;#BA52ED&#39;</span>),<span class="fu">c</span>(<span class="dv">1</span>,<span class="st">&#39;#FCB040&#39;</span>))</span>
+<span id="cb136-13"><a href="#cb136-13" tabindex="-1"></a>                        ,<span class="at">reverscale=</span><span class="cn">FALSE</span></span>
+<span id="cb136-14"><a href="#cb136-14" tabindex="-1"></a>                        )</span>
+<span id="cb136-15"><a href="#cb136-15" tabindex="-1"></a>              )</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" tabindex="-1"></a>s3d</span></code></pre></div>
 <div class="framed">
 <iframe src="assets/lesson06/widget_s3d-show.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
 </div>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(tr) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
-<span id="cb142-2"><a href="#cb142-2" tabindex="-1"></a>center <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_coordinates</span>(sf<span class="sc">::</span><span class="fu">st_centroid</span>(tr))[<span class="dv">1</span>,]</span>
-<span id="cb142-3"><a href="#cb142-3" tabindex="-1"></a>dm <span class="ot">&lt;-</span> da <span class="sc">|&gt;</span></span>
-<span id="cb142-4"><a href="#cb142-4" tabindex="-1"></a>   <span class="fu">plot_ly</span>(<span class="at">type=</span><span class="st">&quot;densitymapbox&quot;</span></span>
-<span id="cb142-5"><a href="#cb142-5" tabindex="-1"></a>          ,<span class="at">lat=</span><span class="sc">~</span>Y</span>
-<span id="cb142-6"><a href="#cb142-6" tabindex="-1"></a>          ,<span class="at">lon=</span><span class="sc">~</span>X</span>
-<span id="cb142-7"><a href="#cb142-7" tabindex="-1"></a>          ,<span class="at">coloraxis=</span><span class="st">&quot;coloraxis&quot;</span></span>
-<span id="cb142-8"><a href="#cb142-8" tabindex="-1"></a>          ,<span class="at">radius=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb142-9"><a href="#cb142-9" tabindex="-1"></a>   <span class="fu">layout</span>(<span class="at">coloraxis=</span><span class="fu">list</span>(<span class="at">colorscale=</span><span class="st">&quot;Viridis&quot;</span>)</span>
-<span id="cb142-10"><a href="#cb142-10" tabindex="-1"></a>      ,<span class="at">mapbox=</span><span class="fu">list</span>(<span class="at">center=</span><span class="fu">list</span>(<span class="at">lon=</span>center[<span class="st">&quot;X&quot;</span>],<span class="at">lat=</span>center[<span class="st">&quot;Y&quot;</span>])</span>
-<span id="cb142-11"><a href="#cb142-11" tabindex="-1"></a>                  ,<span class="at">zoom=</span><span class="dv">14</span></span>
-<span id="cb142-12"><a href="#cb142-12" tabindex="-1"></a>        <span class="co"># ,style=&quot;stamen-watercolor&quot; #&lt;&lt;</span></span>
-<span id="cb142-13"><a href="#cb142-13" tabindex="-1"></a>         ,<span class="at">style=</span><span class="st">&quot;white-bg&quot;</span> <span class="co">#&lt;&lt;</span></span>
-<span id="cb142-14"><a href="#cb142-14" tabindex="-1"></a>         ,<span class="at">layers=</span><span class="fu">list</span>(<span class="fu">list</span>(<span class="at">below=</span><span class="st">&#39;traces&#39;</span>,<span class="at">sourcetype=</span><span class="st">&quot;raster&quot;</span> <span class="co">#&lt;&lt;</span></span>
-<span id="cb142-15"><a href="#cb142-15" tabindex="-1"></a>             ,<span class="at">source=</span><span class="fu">list</span>(<span class="st">&quot;https://c.tile.opentopomap.org/{z}/{x}/{y}.png&quot;</span>))) <span class="co">#&lt;&lt;</span></span>
-<span id="cb142-16"><a href="#cb142-16" tabindex="-1"></a>      )</span>
-<span id="cb142-17"><a href="#cb142-17" tabindex="-1"></a>   )</span></code></pre></div>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" tabindex="-1"></a>dm</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_agr</span>(tr) <span class="ot">&lt;-</span> <span class="st">&quot;constant&quot;</span></span>
+<span id="cb138-2"><a href="#cb138-2" tabindex="-1"></a>center <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_coordinates</span>(sf<span class="sc">::</span><span class="fu">st_centroid</span>(tr))[<span class="dv">1</span>,]</span>
+<span id="cb138-3"><a href="#cb138-3" tabindex="-1"></a>dm <span class="ot">&lt;-</span> da <span class="sc">|&gt;</span></span>
+<span id="cb138-4"><a href="#cb138-4" tabindex="-1"></a>   <span class="fu">plot_ly</span>(<span class="at">type=</span><span class="st">&quot;densitymapbox&quot;</span></span>
+<span id="cb138-5"><a href="#cb138-5" tabindex="-1"></a>          ,<span class="at">lat=</span><span class="sc">~</span>Y</span>
+<span id="cb138-6"><a href="#cb138-6" tabindex="-1"></a>          ,<span class="at">lon=</span><span class="sc">~</span>X</span>
+<span id="cb138-7"><a href="#cb138-7" tabindex="-1"></a>          ,<span class="at">coloraxis=</span><span class="st">&quot;coloraxis&quot;</span></span>
+<span id="cb138-8"><a href="#cb138-8" tabindex="-1"></a>          ,<span class="at">radius=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb138-9"><a href="#cb138-9" tabindex="-1"></a>   <span class="fu">layout</span>(<span class="at">coloraxis=</span><span class="fu">list</span>(<span class="at">colorscale=</span><span class="st">&quot;Viridis&quot;</span>)</span>
+<span id="cb138-10"><a href="#cb138-10" tabindex="-1"></a>      ,<span class="at">mapbox=</span><span class="fu">list</span>(<span class="at">center=</span><span class="fu">list</span>(<span class="at">lon=</span>center[<span class="st">&quot;X&quot;</span>],<span class="at">lat=</span>center[<span class="st">&quot;Y&quot;</span>])</span>
+<span id="cb138-11"><a href="#cb138-11" tabindex="-1"></a>                  ,<span class="at">zoom=</span><span class="dv">14</span></span>
+<span id="cb138-12"><a href="#cb138-12" tabindex="-1"></a>        <span class="co"># ,style=&quot;stamen-watercolor&quot; #&lt;&lt;</span></span>
+<span id="cb138-13"><a href="#cb138-13" tabindex="-1"></a>         ,<span class="at">style=</span><span class="st">&quot;white-bg&quot;</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb138-14"><a href="#cb138-14" tabindex="-1"></a>         ,<span class="at">layers=</span><span class="fu">list</span>(<span class="fu">list</span>(<span class="at">below=</span><span class="st">&#39;traces&#39;</span>,<span class="at">sourcetype=</span><span class="st">&quot;raster&quot;</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb138-15"><a href="#cb138-15" tabindex="-1"></a>             ,<span class="at">source=</span><span class="fu">list</span>(<span class="st">&quot;https://c.tile.opentopomap.org/{z}/{x}/{y}.png&quot;</span>))) <span class="co">#&lt;&lt;</span></span>
+<span id="cb138-16"><a href="#cb138-16" tabindex="-1"></a>      )</span>
+<span id="cb138-17"><a href="#cb138-17" tabindex="-1"></a>   )</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" tabindex="-1"></a>dm</span></code></pre></div>
 <div class="framed">
 <iframe src="assets/lesson06/widget_dm-plot.html" width="646.08" height="400px" data-external="1" class="ursa-widgetize">
 </iframe>
@@ -1537,7 +1531,7 @@ Geodetic CRS:  WGS 84</code></pre>
 :root {
    --sidebar: 27.4%;
    --pointsize: 21pt;
-   --sidebar-pointsize: 85%;
+   --sidebar-pointsize: 123%;
 }
 </style>
 </div>
