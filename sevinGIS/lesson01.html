@@ -1,2288 +1,730 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
-  <head>
-    <title>ГИС 01</title>
-    <meta charset="utf-8" />
-    <script src="https://nplatonov.github.io/site_libs/header-attrs-2.30/header-attrs.js"></script>
-    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
-    <link href="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
-    <script src="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.js"></script>
-    <script src="https://nplatonov.github.io/site_libs/js-cookie-3.0.0/js.cookie.js"></script>
-    <script src="https://nplatonov.github.io/site_libs/peerjs-1.3.1/peerjs.min.js"></script>
-    <script src="https://nplatonov.github.io/site_libs/tiny.toast-1.0.0/toast.min.js"></script>
-    <link href="https://nplatonov.github.io/site_libs/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
-    <script src="https://nplatonov.github.io/site_libs/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
-    <script src="https://nplatonov.github.io/site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
-    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader.css" type="text/css" />
-    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader-fonts.css" type="text/css" />
-    <link rel="stylesheet" href="assets/general/general.css" type="text/css" />
-  </head>
-  <body>
 
-<div id="loader" class="loader"></div>
+<html>
 
-<style>
-.remark-backdrop:after{
-   content: 'Никита Платонов \A \A ГИС аспирантура';
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>ГИС 01</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.30/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
 }
 </style>
 
-    <textarea id="source">
-
-layout: true
-
-
-
-
-
-
-
-
-.toc.banner[
-
-.shorttitle[
-[ГИС аспирантура](break.html#home)
-]
-
-]
-
----
-name: home
-class: metadata customtitle middle left giphy
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-
-
-
-
-.authors[
-
-
-.author[Никита&nbsp;Платонов]
-
-
-.institute[с.н.с. ИПЭЭ РАН]
-
-
-
-]
-
-
-.title[
-Общие вопросы, введение
-]
-
-
-.subtitle[
-ГИС технологии в биологических исследованиях
-]
-
-
-.what[
-Тема 01
-]
-
-
-.where[
-
-]
-
-
-.when[
- .updated[Обновлено: 2026-02-13 11:13]
-]
-
-
-
-]
----
-
-
-
-
-
-
-
- # Организационные вопросы
-
---
-
-+ Домашние задания выдаются раз в две недели на шесть дней со сдачей до 12:00 Мск (UTC+3) в четверг. При уважительной причине допускается сдача на неделю позже. Проверяются во второй половине среды и/или в четверг утром. Выносятся на обсуждение на занятии в четверг.
-
---
-
-+ Домашние задания можно высылать как по почте, так и, если РКН не снизит скорости до нуля, в Telegram
-
---
-
-+ В четверг вечером перекличка, кто собирается приходить в аудиторию в пятницу. Если никого не будет очно, то преподаватель оставляет за собой решение, откуда провести заниятие дистанционно. Если преподаватель предупреждает, если не сможет провести занятие в классе; в этом случае в класс приходить не надо.
-
---
-
-+ Форма аттестации – зачет. Для зачета нужно сделать все домашние задания. Преподаватель может выдать индивидуальные задания, которые также будут учитываться для получения зачёта.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-name: dataset
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset).fg[]
-### [Для освоения](#dataset).fg[].bg[]
-### [Об этих данных](#datasource).bg[]
-## [Программы](#soft)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Для освоения
-]
-
-.fixprecode[
-
-
-Экспедиция Арктического плавучего университета рейса 2023-2 <a name=cite-winterschool2025></a>([Платонов, 2025](#bib)).
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+<link rel="stylesheet" href="assets/general/general.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Введение</h1>
+<h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
+<h4 class="author">Никита Платонов</h4>
+<address class="author_afil">
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Тема 01</span> <span class="when"> <span class="updated">Обновлено: 2026-02-14 10:45</span></span></h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#data" id="toc-data">Данные</a>
+<ul>
+<li><a href="#dataset" id="toc-dataset">Для освоения</a></li>
+<li><a href="#datasource" id="toc-datasource">Об этих данных</a>
+<ul>
+<li><a href="#natural-earth" id="toc-natural-earth">Natural Earth</a></li>
+<li><a href="#osmdata" id="toc-osmdata">OSM береговая линия</a></li>
+<li><a href="#download-gebco" id="toc-download-gebco">GEBCO батиметрия</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#soft" id="toc-soft">Программы</a>
+<ul>
+<li><a href="#qgis" id="toc-qgis">QGIS</a>
+<ul>
+<li><a href="#%D1%8F%D0%B4%D1%80%D0%BE" id="toc-ядро">Ядро</a></li>
+<li><a href="#soft-qgis-plugins" id="toc-soft-qgis-plugins">Расширения</a>
+<ul>
+<li><a href="#quickmapservices" id="toc-quickmapservices">QuickMapServices</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#r" id="toc-r">R</a>
+<ul>
+<li><a href="#%D1%8F%D0%B4%D1%80%D0%BE-1" id="toc-ядро-1">Ядро</a></li>
+<li><a href="#%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B" id="toc-пакеты">Пакеты</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#before" id="toc-before">Попробовать</a>
+<ul>
+<li><a href="#qgis-1" id="toc-qgis-1">QGIS</a>
+<ul>
+<li><a href="#%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82" id="toc-открыть-проект">Открыть проект</a></li>
+<li><a href="#%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B8%D1%82%D1%8C-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5" id="toc-выполнить-задание">Выполнить задание</a></li>
+<li><a href="#steps" id="toc-steps">По шагам</a>
+<ul>
+<li><a href="#%D1%81%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0" id="toc-свойства-проекта">Свойства проекта</a></li>
+<li><a href="#c%D0%B2%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0-%D1%81%D0%BB%D0%BE%D1%8F" id="toc-cвойства-слоя">Cвойства слоя</a></li>
+<li><a href="#%D1%80%D0%B0%D1%81%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0-%D1%81%D0%BB%D0%BE%D1%8F" id="toc-раскраска-слоя">Раскраска слоя</a></li>
+<li><a href="#%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0-%D0%B0%D1%82%D1%80%D0%B8%D0%B1%D1%83%D1%82%D0%BE%D0%B2" id="toc-таблица-атрибутов">Таблица атрибутов</a></li>
+<li><a href="#%D0%B8%D0%B7%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9" id="toc-извление-названий">Извление названий</a></li>
+<li><a href="#%D0%BB%D0%B8%D1%88%D0%BD%D0%B8%D0%B5-%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F" id="toc-лишние-названия">Лишние названия</a></li>
+<li><a href="#%D1%83%D0%BA%D1%80%D0%B0%D1%88%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%B0" id="toc-украшательства">Украшательства</a></li>
+<li><a href="#%D0%BF%D1%80%D0%BE%D1%80%D0%B5%D0%B6%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B4%D0%BE%D0%BB%D0%B3%D0%BE%D1%82" id="toc-прореживание-долгот">Прореживание долгот</a></li>
+<li><a href="#%D0%BC%D0%B0%D1%81%D1%88%D1%82%D0%B0%D0%B1%D0%BD%D0%B0%D1%8F-%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BA%D0%B0" id="toc-масштабная-линейка">Масштабная линейка</a></li>
+<li><a href="#%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82" id="toc-результат">Результат</a></li>
+</ul></li>
+<li><a href="#c%D0%B2%D0%BE%D0%B8-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5" id="toc-cвои-данные">Cвои данные</a>
+<ul>
+<li><a href="#%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80" id="toc-открыть-вектор">Открыть вектор</a></li>
+<li><a href="#%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C-%D1%80%D0%B0%D1%81%D1%82%D1%80" id="toc-открыть-растр">Открыть растр</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#r-1" id="toc-r-1">R</a>
+<ul>
+<li><a href="#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C-%D0%BD%D0%B5%D0%BE%D0%B1%D1%85%D0%BE%D0%B4%D0%B8%D0%BC%D1%8B%D0%B5-%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%8B" id="toc-установить-необходимые-пакеты">Установить необходимые пакеты</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+
+<!--
+# К 20 февраля {#offline}
+-->
+<div id="data" class="section level2">
+<h2>Данные</h2>
+<div id="dataset" class="section level3">
+<h3>Для освоения</h3>
+<p>Экспедиция Арктического плавучего университета рейса 2023-2 <span class="citation">(<a href="#ref-winterschool2025">Платонов, 2025</a>)</span>.
 Перейти по DOI (Zenodo) и распаковать.
-Папка `input` должна быть в рабочей директории.
-
-
-]
-]
-
-
----
-
-name: datasource
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset).fg[]
-### [Для освоения](#dataset)
-### [Об этих данных](#datasource).fg[]
-#### [Natural Earth](#datasource) <span class="bullet bullet-active">[&#8226;](#datasource)</span><span class="bullet mslide8m">[&#8226;](#Hd2c37)</span>.fg[].bg[]
-#### [OSM береговая линия](#osmdata).bg[]
-#### [GEBCO батиметрия](#download-gebco).bg[]
-## [Программы](#soft)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Natural Earth
-]
-
-.fixprecode[
-
-
-Для создания картографической подложки.
-
-<iframe src="https://www.naturalearthdata.com/downloads/" width="1330" height="700px" data-external="1"></iframe>
-
-
-]
-]
----
-
-name: Hd2c37
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset).fg[]
-### [Для освоения](#dataset)
-### [Об этих данных](#datasource).fg[]
-#### [Natural Earth](#datasource) <span class="bullet bullet">[&#8226;](#datasource)</span><span class="bullet bullet-active">[&#8226;](#Hd2c37)</span>.fg[].bg[]
-#### [OSM береговая линия](#osmdata).bg[]
-#### [GEBCO батиметрия](#download-gebco).bg[]
-## [Программы](#soft)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Natural Earth
-]
-
-.fixprecode[
-
-
-.font97[
-
-+ [Natural Earth World GIS Data](https://www.naturalearthdata.com/)
-
-   + [Downloads](https://www.naturalearthdata.com/downloads)
-
-      + [Download all vector themes as SHP](https://naciscdn.org/naturalearth/packages/natural_earth_vector.zip) - прямая ссылка на скачивание.
-
-
-В наборе ([Платонов, 2025](#bib)) используется векторные данные, приведенные ниже. Их скачивать не обязательно.
-
-   + [10m_physical/ne_10m_graticules_all/ne_10m_graticules_5.shp](https://naciscdn.org/naturalearth/10m/physical/ne_10m_graticules_5.zip) - линии долгот-широт через 5 градусов, для помощи в ориентации на север
-
-   + [10m_physical/ne_10m_ocean.shp](https://naciscdn.org/naturalearth/10m/physical/ne_10m_ocean.zip) - полигоны с морями и океанами, разделить сушу и море
-
-   + [10m_physical/ne_10m_geography_regions_polys.shp](https://naciscdn.org/naturalearth/10m/physical/ne_10m_geography_regions_polys.zip) - полигоны для подписей сухопутных названий
-
-   + [10m_physical/ne_10m_geography_marine_polys.shp](https://naciscdn.org/naturalearth/10m/physical/ne_10m_geography_marine_polys.zip) - полигоны для подписей морей
-   
-   + [10m_cultural/ne_10m_populated_places.shp](https://naciscdn.org/naturalearth/10m/cultural/ne_10m_populated_places.zip) - точки населенных пунктов
-
-
-
-
-
-]
-
-
-]
-]
----
-name: osmdata
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset).fg[]
-### [Для освоения](#dataset)
-### [Об этих данных](#datasource).fg[]
-#### [Natural Earth](#datasource).bg[]
-#### [OSM береговая линия](#osmdata).fg[].bg[]
-#### [GEBCO батиметрия](#download-gebco).bg[]
-## [Программы](#soft)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-OSM береговая линия
-]
-
-.fixprecode[
-
-
-Эти данные для более детального отображения береговой линии по сравнению с Natural Earth.
-
-
-
-
-+ [Data Derived from OpenStreetMap for Download](https://osmdata.openstreetmap.de/)
-
-   + [Land Polygons](https://osmdata.openstreetmap.de/data/land-polygons.html)
-   
-      + [Download large simplified polygons](https://osmdata.openstreetmap.de/download/simplified-land-polygons-complete-3857.zip).
-
-<iframe src="https://osmdata.openstreetmap.de/" width="1330" height="700px" data-external="1"></iframe>
-
-
-
-
-
-]
-]
----
-name: download-gebco
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset).fg[]
-### [Для освоения](#dataset)
-### [Об этих данных](#datasource).fg[]
-#### [Natural Earth](#datasource).bg[]
-#### [OSM береговая линия](#osmdata).bg[]
-#### [GEBCO батиметрия](#download-gebco).fg[].bg[]
-## [Программы](#soft)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-GEBCO батиметрия
-]
-
-.fixprecode[
-
-
-
-+ https://www.gebco.net/
-
-   + [Gridded Bathymetry Data](https://www.gebco.net/data_and_products/gridded_bathymetry_data/)
-   
-      + [Download data for user-defined areas](https://www.gebco.net/data_and_products/gridded_bathymetry_data/#area)
-      
-         + [Application](https://download.gebco.net/). Откройте в новой вкладке по размеру экрана браузера. Полученные с этого источника данные включены в набор ([Платонов, 2025](#bib)) с уменьшенным масштабом.
-
-<iframe src="https://download.gebco.net/" width="1330" height="700px" data-external="1"></iframe>
-
-
-
-
-
-
-
-]
-]
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-name: soft
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft).fg[]
-### [QGIS](#soft).fg[]
-#### [Ядро](#soft) <span class="bullet bullet-active">[&#8226;](#soft)</span><span class="bullet mslide14m">[&#8226;](#Hceeeb)</span>.fg[].bg[]
-#### [Расширения](#soft-qgis-plugins).bg[]
-### [R](#Hda8c0)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Ядро
-]
-
-.fixprecode[
-
-
-
-
+Папка <code>input</code> должна быть в рабочей директории.</p>
+</div>
+<div id="datasource" class="section level3">
+<h3>Об этих данных</h3>
+<div id="natural-earth" class="section level4">
+<h4>Natural Earth</h4>
+<p>Для создания картографической подложки.</p>
+<div class="font97">
+<ul>
+<li><p><a href="https://www.naturalearthdata.com/">Natural Earth World GIS Data</a></p>
+<ul>
+<li><p><a href="https://www.naturalearthdata.com/downloads">Downloads</a></p>
+<ul>
+<li><a href="https://naciscdn.org/naturalearth/packages/natural_earth_vector.zip">Download all vector themes as SHP</a> - прямая ссылка на скачивание.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>В наборе <span class="citation">(<a href="#ref-winterschool2025">Платонов, 2025</a>)</span> используется векторные данные, приведенные ниже. Их скачивать не обязательно.</p>
+<ul>
+<li><p><a href="https://naciscdn.org/naturalearth/10m/physical/ne_10m_graticules_5.zip">10m_physical/ne_10m_graticules_all/ne_10m_graticules_5.shp</a> - линии долгот-широт через 5 градусов, для помощи в ориентации на север</p></li>
+<li><p><a href="https://naciscdn.org/naturalearth/10m/physical/ne_10m_ocean.zip">10m_physical/ne_10m_ocean.shp</a> - полигоны с морями и океанами, разделить сушу и море</p></li>
+<li><p><a href="https://naciscdn.org/naturalearth/10m/physical/ne_10m_geography_regions_polys.zip">10m_physical/ne_10m_geography_regions_polys.shp</a> - полигоны для подписей сухопутных названий</p></li>
+<li><p><a href="https://naciscdn.org/naturalearth/10m/physical/ne_10m_geography_marine_polys.zip">10m_physical/ne_10m_geography_marine_polys.shp</a> - полигоны для подписей морей</p></li>
+<li><p><a href="https://naciscdn.org/naturalearth/10m/cultural/ne_10m_populated_places.zip">10m_cultural/ne_10m_populated_places.shp</a> - точки населенных пунктов</p></li>
+</ul>
+<!--
++ Есть поддержка русскоязычных названий (см. поля "name_ru", "NAME_RU")
+-->
+</div>
+</div>
+<div id="osmdata" class="section level4">
+<h4>OSM береговая линия</h4>
+<p>Эти данные для более детального отображения береговой линии по сравнению с Natural Earth.
+<!--
+При воспроизводимости R-кода они будут получены, поэтому если они не нужны в Вашей работе, их можно не скачивать.
+--></p>
+<ul>
+<li><p><a href="https://osmdata.openstreetmap.de/">Data Derived from OpenStreetMap for Download</a></p>
+<ul>
+<li><p><a href="https://osmdata.openstreetmap.de/data/land-polygons.html">Land Polygons</a></p>
+<ul>
+<li><a href="https://osmdata.openstreetmap.de/download/simplified-land-polygons-complete-3857.zip">Download large simplified polygons</a>.</li>
+</ul></li>
+</ul></li>
+</ul>
+<!--
+См. [пример использования](#dist2coast).
+-->
+</div>
+<div id="download-gebco" class="section level4">
+<h4>GEBCO батиметрия</h4>
+<ul>
+<li><p><a href="https://www.gebco.net/" class="uri">https://www.gebco.net/</a></p>
+<ul>
+<li><p><a href="https://www.gebco.net/data_and_products/gridded_bathymetry_data/">Gridded Bathymetry Data</a></p>
+<ul>
+<li><p><a href="https://www.gebco.net/data_and_products/gridded_bathymetry_data/#area">Download data for user-defined areas</a></p>
+<ul>
+<li><a href="https://download.gebco.net/">Application</a>. Откройте в новой вкладке по размеру экрана браузера. Полученные с этого источника данные включены в набор <span class="citation">(<a href="#ref-winterschool2025">Платонов, 2025</a>)</span> с уменьшенным масштабом.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<!--
+См. [пример обработки](#analysis-gebco).
+-->
+</div>
+</div>
+</div>
+<div id="soft" class="section level2">
+<h2>Программы</h2>
+<div id="qgis" class="section level3">
+<h3>QGIS</h3>
+<div id="ядро" class="section level4">
+<h4>Ядро</h4>
 <!-- [QGIS Web](https://qgis.org/en/site/) -->
-Сайт https://qgis.org/. 
-Находим "Download"
-
-<iframe src="https://qgis.org/" width="1330" height="700px" data-external="1"></iframe>
-
-
-
-]
-]
----
-https://qgis.org/en/site/forusers/download.html
-name: Hceeeb
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft).fg[]
-### [QGIS](#soft).fg[]
-#### [Ядро](#soft) <span class="bullet bullet">[&#8226;](#soft)</span><span class="bullet bullet-active">[&#8226;](#Hceeeb)</span>.fg[].bg[]
-#### [Расширения](#soft-qgis-plugins).bg[]
-### [R](#Hda8c0)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Ядро
-]
-
-.fixprecode[
-
-
-
-
-
-<iframe src="https://qgis.org/en/site/forusers/download.html" width="1330" height="700px" data-external="1"></iframe>
-
-Прямые ссылки для скачивания установочного файла
-[QGIS 3.40 LTR](https://download.qgis.org//downloads/QGIS-OSGeo4W-3.40.15-1.msi) и
-[QGIS 3.44 Latest](https://download.qgis.org//downloads/QGIS-OSGeo4W-3.44.7-1.msi) под Windows
-(актуальны на 12 февраля 2026 г.).
-
-
-
-
-
-
-]
-]
----
-name: soft-qgis-plugins
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft).fg[]
-### [QGIS](#soft).fg[]
-#### [Ядро](#soft).bg[]
-#### [Расширения](#soft-qgis-plugins).fg[].bg[]
-##### [QuickMapServices](#H82ce5)
-### [R](#Hda8c0)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Расширения
-]
-
-.fixprecode[
-
-
-https://plugins.qgis.org/
-
-<iframe src="https://plugins.qgis.org/plugins/?sort=-downloads" width="1330" height="700px" data-external="1"></iframe>
-
-
-]
-]
----
-
-name: H82ce5
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft).fg[]
-### [QGIS](#soft).fg[]
-#### [Ядро](#soft)
-#### [Расширения](#soft-qgis-plugins).fg[]
-##### [QuickMapServices](#H82ce5) <span class="bullet bullet-active">[&#8226;](#H82ce5)</span><span class="bullet mslide17m">[&#8226;](#H57e7e)</span><span class="bullet mslide18m">[&#8226;](#Hc758f)</span><span class="bullet mslide19m">[&#8226;](#Hb05fc)</span><span class="bullet mslide20m">[&#8226;](#He2ae2)</span><span class="bullet mslide21m">[&#8226;](#H95a91)</span>.fg[].bg[]
-### [R](#Hda8c0)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-QuickMapServices
-]
-
-.fixprecode[
-
-
-[Страница проекта](https://plugins.qgis.org/plugins/quick_map_services/)
-
-<iframe src="https://plugins.qgis.org/plugins/quick_map_services/" width="1330" height="700px" data-external="1"></iframe>
-
-Установить в QGIS
-
-
-]
-]
----
-
-name: H57e7e
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft).fg[]
-### [QGIS](#soft).fg[]
-#### [Ядро](#soft)
-#### [Расширения](#soft-qgis-plugins).fg[]
-##### [QuickMapServices](#H82ce5) <span class="bullet bullet">[&#8226;](#H82ce5)</span><span class="bullet bullet-active">[&#8226;](#H57e7e)</span><span class="bullet mslide18m">[&#8226;](#Hc758f)</span><span class="bullet mslide19m">[&#8226;](#Hb05fc)</span><span class="bullet mslide20m">[&#8226;](#He2ae2)</span><span class="bullet mslide21m">[&#8226;](#H95a91)</span>.fg[].bg[]
-### [R](#Hda8c0)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-QuickMapServices
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson01/PluginsMenu.jpg" alt="" width="1330" height="670" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: Hc758f
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft).fg[]
-### [QGIS](#soft).fg[]
-#### [Ядро](#soft)
-#### [Расширения](#soft-qgis-plugins).fg[]
-##### [QuickMapServices](#H82ce5) <span class="bullet bullet">[&#8226;](#H82ce5)</span><span class="bullet bullet">[&#8226;](#H57e7e)</span><span class="bullet bullet-active">[&#8226;](#Hc758f)</span><span class="bullet mslide19m">[&#8226;](#Hb05fc)</span><span class="bullet mslide20m">[&#8226;](#He2ae2)</span><span class="bullet mslide21m">[&#8226;](#H95a91)</span>.fg[].bg[]
-### [R](#Hda8c0)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-QuickMapServices
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson01/PluginsList.jpg" alt="" width="1330" height="670" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: Hb05fc
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft).fg[]
-### [QGIS](#soft).fg[]
-#### [Ядро](#soft)
-#### [Расширения](#soft-qgis-plugins).fg[]
-##### [QuickMapServices](#H82ce5) <span class="bullet bullet">[&#8226;](#H82ce5)</span><span class="bullet bullet">[&#8226;](#H57e7e)</span><span class="bullet bullet">[&#8226;](#Hc758f)</span><span class="bullet bullet-active">[&#8226;](#Hb05fc)</span><span class="bullet mslide20m">[&#8226;](#He2ae2)</span><span class="bullet mslide21m">[&#8226;](#H95a91)</span>.fg[].bg[]
-### [R](#Hda8c0)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-QuickMapServices
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson01/PluginsInstall.jpg" alt="" width="1330" height="670" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: He2ae2
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft).fg[]
-### [QGIS](#soft).fg[]
-#### [Ядро](#soft)
-#### [Расширения](#soft-qgis-plugins).fg[]
-##### [QuickMapServices](#H82ce5) <span class="bullet bullet">[&#8226;](#H82ce5)</span><span class="bullet bullet">[&#8226;](#H57e7e)</span><span class="bullet bullet">[&#8226;](#Hc758f)</span><span class="bullet bullet">[&#8226;](#Hb05fc)</span><span class="bullet bullet-active">[&#8226;](#He2ae2)</span><span class="bullet mslide21m">[&#8226;](#H95a91)</span>.fg[].bg[]
-### [R](#Hda8c0)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-QuickMapServices
-]
-
-.fixprecode[
-
-
-Получить набор готовых сервисов
-
-<img src="assets/lesson01/PluginsSettings.jpg" alt="" width="1330" height="625" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: H95a91
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft).fg[]
-### [QGIS](#soft).fg[]
-#### [Ядро](#soft)
-#### [Расширения](#soft-qgis-plugins).fg[]
-##### [QuickMapServices](#H82ce5) <span class="bullet bullet">[&#8226;](#H82ce5)</span><span class="bullet bullet">[&#8226;](#H57e7e)</span><span class="bullet bullet">[&#8226;](#Hc758f)</span><span class="bullet bullet">[&#8226;](#Hb05fc)</span><span class="bullet bullet">[&#8226;](#He2ae2)</span><span class="bullet bullet-active">[&#8226;](#H95a91)</span>.fg[].bg[]
-### [R](#Hda8c0)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-QuickMapServices
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson01/PluginsUsage.jpg" alt="" width="1330" height="670" contain style="display: block; margin: auto auto auto 0;" />
-
-
-
-]
-]
----
-
-name: Hda8c0
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft).fg[]
-### [QGIS](#soft).bg[]
-### [R](#Hda8c0).fg[].bg[]
-#### [Ядро](#Hce457)
-#### [Пакеты](#H927ce)
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-R
-]
-
-.fixprecode[
-
-
-
-
-https://www.r-project.org/.
-
-Выбираем работающее [зеркало](https://mirror.truenetwork.ru/CRAN//mirrors.html) (mirror) – сервер для скачивания.
+<p>Сайт <a href="https://qgis.org/" class="uri">https://qgis.org/</a>.
+Находим “Download”</p>
+<iframe src="https://qgis.org/" width="646.08" height="400px" data-external="1">
+</iframe>
+<p><a href="https://qgis.org/en/site/forusers/download.html" class="uri">https://qgis.org/en/site/forusers/download.html</a></p>
+<iframe src="https://qgis.org/en/site/forusers/download.html" width="646.08" height="400px" data-external="1">
+</iframe>
+<p>Прямые ссылки для скачивания установочного файла
+<a href="https://download.qgis.org//downloads/QGIS-OSGeo4W-3.40.15-1.msi">QGIS 3.40 LTR</a> и
+<a href="https://download.qgis.org//downloads/QGIS-OSGeo4W-3.44.7-1.msi">QGIS 3.44 Latest</a> под Windows
+(актуальны на 12 февраля 2026 г.).</p>
+<!--
+Если не получается открыть, можно забрать отсюда: [QGIS 3.34 LTR](https://www.dropbox.com/scl/fi/cuccvi24xgmi33qu5zwia/QGIS-OSGeo4W-3.34.14-1.msi?rlkey=wckvkxprvtsz1bnz3g38g6nkr&st=959qlat8&dl=1) или [QGIS 3.40 Latest](https://www.dropbox.com/scl/fi/q5f1qimfcrukrvivnyp3n/QGIS-OSGeo4W-3.40.2-1.msi?rlkey=zci6w4sehiakfeyrtkjyic8c1&st=wnu0xaql&dl=1) до 15 февраля 2025 г.
+-->
+</div>
+<div id="soft-qgis-plugins" class="section level4">
+<h4>Расширения</h4>
+<p><a href="https://plugins.qgis.org/" class="uri">https://plugins.qgis.org/</a></p>
+<iframe src="https://plugins.qgis.org/plugins/?sort=-downloads" width="646.08" height="400px" data-external="1">
+</iframe>
+<div id="quickmapservices" class="section level5">
+<h5>QuickMapServices</h5>
+<p><a href="https://plugins.qgis.org/plugins/quick_map_services/">Страница проекта</a></p>
+<iframe src="https://plugins.qgis.org/plugins/quick_map_services/" width="646.08" height="400px" data-external="1">
+</iframe>
+<p>Установить в QGIS</p>
+<p class="centered-image"><img src="assets/lesson01/PluginsMenu.jpg" alt="" width="883" height="670" contain /></p>
+<p class="centered-image"><img src="assets/lesson01/PluginsList.jpg" alt="" width="792" height="670" contain /></p>
+<p class="centered-image"><img src="assets/lesson01/PluginsInstall.jpg" alt="" width="836" height="670" contain /></p>
+<p>Получить набор готовых сервисов</p>
+<p class="centered-image"><img src="assets/lesson01/PluginsSettings.jpg" alt="" width="430" height="625" contain /></p>
+<p class="centered-image"><img src="assets/lesson01/PluginsUsage.jpg" alt="" width="1013" height="670" contain /></p>
+</div>
+</div>
+</div>
+<div id="r" class="section level3">
+<h3>R</h3>
+<p><a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>.</p>
+<p>Выбираем работающее <a href="https://mirror.truenetwork.ru/CRAN//mirrors.html">зеркало</a> (mirror) – сервер для скачивания.
 Возможно, повезёт найти работающее с приемлемой скоростью загрузки данных.
-На 13 февраля 2026 г., возможно, это https://mirror.truenetwork.ru/CRAN/.
-
-<iframe src="https://mirror.truenetwork.ru/CRAN/" width="1330" height="700px" data-external="1"></iframe>
-
-
-]
-]
----
-
-name: Hce457
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft).fg[]
-### [QGIS](#soft)
-### [R](#Hda8c0).fg[]
-#### [Ядро](#Hce457).fg[].bg[]
-#### [Пакеты](#H927ce).bg[]
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Ядро
-]
-
-.fixprecode[
-
-
-Скомпилированное ядро – это [R Binary](https://mirror.truenetwork.ru/CRAN//banner.shtml)
-
-<iframe src="https://mirror.truenetwork.ru/CRAN//banner.shtml" width="1330" height="700px" data-external="1"></iframe>
-
-
-]
-]
----
-
-name: H927ce
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft).fg[]
-### [QGIS](#soft)
-### [R](#Hda8c0).fg[]
-#### [Ядро](#Hce457).bg[]
-#### [Пакеты](#H927ce) <span class="bullet bullet-active">[&#8226;](#H927ce)</span><span class="bullet mslide25m">[&#8226;](#H92c4d)</span>.fg[].bg[]
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Пакеты
-]
-
-.fixprecode[
-
-
-Пакеты, загружаемые для работы как библиотеки – [Packages](https://mirror.truenetwork.ru/CRAN//web/packages)
-
-<iframe src="https://mirror.truenetwork.ru/CRAN//web/packages" width="1330" height="700px" data-external="1"></iframe>
-
-
-]
-]
----
-
-name: H92c4d
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft).fg[]
-### [QGIS](#soft)
-### [R](#Hda8c0).fg[]
-#### [Ядро](#Hce457).bg[]
-#### [Пакеты](#H927ce) <span class="bullet bullet">[&#8226;](#H927ce)</span><span class="bullet bullet-active">[&#8226;](#H92c4d)</span>.fg[].bg[]
-## [Попробовать](#before)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Пакеты
-]
-
-.fixprecode[
-
-
-[Отображение всех пакетов](https://mirror.truenetwork.ru/CRAN//web/packages/available_packages_by_name.html)
-
-<iframe src="https://mirror.truenetwork.ru/CRAN//web/packages/available_packages_by_name.html" width="1330" height="700px" data-external="1"></iframe>
-
-
-]
-]
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-name: before
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before) <span class="bullet bullet-active">[&#8226;](#before)</span><span class="bullet mslide29m">[&#8226;](#H9b729)</span>.fg[].bg[]
-#### [Выполнить задание](#H56af5).bg[]
-#### [По шагам](#steps).bg[]
-#### [Cвои данные](#H886c8).bg[]
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Открыть проект
-]
-
-.fixprecode[
-
-
-
-
-<img src="assets/lesson01/Before00-OpenProject.jpg" alt="" width="1330" height="700" contain style="display: block; margin: auto auto auto 0;" />
-
-Указать путь к проекту `template.qgz` из набора ([Платонов, 2025](#bib)).
-
-
-]
-]
----
-
-name: H9b729
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before) <span class="bullet bullet">[&#8226;](#before)</span><span class="bullet bullet-active">[&#8226;](#H9b729)</span>.fg[].bg[]
-#### [Выполнить задание](#H56af5).bg[]
-#### [По шагам](#steps).bg[]
-#### [Cвои данные](#H886c8).bg[]
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Открыть проект
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson01/Before01-OrangeProject.jpg" alt="" width="1330" height="592" contain style="display: block; margin: auto auto auto 0;" />
-
-Возможное оранжевое предупреждение проигнорировать и закрыть.
-
-
-]
-]
----
-
-name: H56af5
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before).bg[]
-#### [Выполнить задание](#H56af5) <span class="bullet bullet-active">[&#8226;](#H56af5)</span><span class="bullet mslide31m">[&#8226;](#H8cb22)</span>.fg[].bg[]
-#### [По шагам](#steps).bg[]
-#### [Cвои данные](#H886c8).bg[]
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Выполнить задание
-]
-
-.fixprecode[
-
-
-Отредактировать отображение с красного на голубой
-
-
-<img src="assets/lesson01/Before18-BlueProject.jpg" alt="" width="1330" height="600" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: H8cb22
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before).bg[]
-#### [Выполнить задание](#H56af5) <span class="bullet bullet">[&#8226;](#H56af5)</span><span class="bullet bullet-active">[&#8226;](#H8cb22)</span>.fg[].bg[]
-#### [По шагам](#steps).bg[]
-#### [Cвои данные](#H886c8).bg[]
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Выполнить задание
-]
-
-.fixprecode[
-
-
-+ Изменить проекцию проекта на азимутальную равноплощадную Ламберта (EPSG:3576)
-
-+ Скорректировать вращением направление на север
-
-+ Моря сделать голубыми, сушу не раскрашивать
-
-+ Названия населенных пунктов сделать русскоязычными
-
-+ Убрать встречающиеся названия морей и регионов из южного полушария
-
-+ Добавить масштабную линейку
-
-
-
-]
-]
-
-
----
-
-name: steps
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps) <span class="bullet bullet-active">[&#8226;](#steps)</span><span class="bullet mslide34m">[&#8226;](#Hfcd8d)</span><span class="bullet mslide35m">[&#8226;](#H8bdfe)</span><span class="bullet mslide36m">[&#8226;](#H12d6b)</span>.fg[].bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Свойства проекта
-]
-
-.fixprecode[
-
-
-
-<img src="assets/lesson01/Before02-ProjectProperties.jpg" alt="" width="1330" height="672" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: Hfcd8d
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps) <span class="bullet bullet">[&#8226;](#steps)</span><span class="bullet bullet-active">[&#8226;](#Hfcd8d)</span><span class="bullet mslide35m">[&#8226;](#H8bdfe)</span><span class="bullet mslide36m">[&#8226;](#H12d6b)</span>.fg[].bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Свойства проекта
-]
-
-.fixprecode[
-
-
-Заменить цвет фона на белый, чтобы убрать красноту отображения.
-
-<img src="assets/lesson01/Before03-ProperiesGeneral.jpg" alt="" width="1330" height="1594" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: H8bdfe
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps) <span class="bullet bullet">[&#8226;](#steps)</span><span class="bullet bullet">[&#8226;](#Hfcd8d)</span><span class="bullet bullet-active">[&#8226;](#H8bdfe)</span><span class="bullet mslide36m">[&#8226;](#H12d6b)</span>.fg[].bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Свойства проекта
-]
-
-.fixprecode[
-
-
-Изменить проекцию проекта на равноплощадную азимутальную проекцию Ламберта (EPSG:3576)
-
-
-<img src="assets/lesson01/Before04-ProjectCRS.jpg" alt="" width="1330" height="1594" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: H12d6b
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps) <span class="bullet bullet">[&#8226;](#steps)</span><span class="bullet bullet">[&#8226;](#Hfcd8d)</span><span class="bullet bullet">[&#8226;](#H8bdfe)</span><span class="bullet bullet-active">[&#8226;](#H12d6b)</span>.fg[].bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Свойства проекта
-]
-
-.fixprecode[
-
-
-В строке состояния указать, на сколько градусов повернуть, чтобы меридиан в центре отображения был направлен вертикально
-
-
-<img src="assets/lesson01/Before05-StatusBar.jpg" alt="" width="1330" height="672" aspect style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: H51a88
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).fg[].bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Cвойства слоя
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson01/Before06-LayerProperties.jpg" alt="" width="1330" height="672" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: H1747f
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).fg[].bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Раскраска слоя
-]
-
-.fixprecode[
-
-
-Изменить красный цвет океана на голубой. Можно изменить значение прозрачности слоя.
-
-<img src="assets/lesson01/Before07-LayerColor.jpg" alt="" width="1330" height="1594" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: Hf6957
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957) <span class="bullet bullet-active">[&#8226;](#Hf6957)</span><span class="bullet mslide40m">[&#8226;](#Hb4f48)</span>.fg[].bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Таблица атрибутов
-]
-
-.fixprecode[
-
-
-
-<img src="assets/lesson01/BeforeX1-AttributeTable.jpg" alt="" width="1330" height="1594" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: Hb4f48
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957) <span class="bullet bullet">[&#8226;](#Hf6957)</span><span class="bullet bullet-active">[&#8226;](#Hb4f48)</span>.fg[].bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Таблица атрибутов
-]
-
-.fixprecode[
-
-
-Это обычная таблица, как в Excel, каждая строка связана с геометрией пространственного объекта.
-
-<img src="assets/lesson01/BeforeX2-AttributeTable.jpg" alt="" width="1330" height="1594" contain style="display: block; margin: auto auto auto 0;" />
-
-
-
-]
-]
----
-
-name: Hcb24d
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).fg[].bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Извление названий
-]
-
-.fixprecode[
-
-
-Изменить англоязычные названия населённых пунктов на русскоязычные.
-
-<img src="assets/lesson01/Before08-LayerLabels.jpg" alt="" width="1330" height="1594" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: H18f49
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49) <span class="bullet bullet-active">[&#8226;](#H18f49)</span><span class="bullet mslide43m">[&#8226;](#H2dfdd)</span><span class="bullet mslide44m">[&#8226;](#Hb3994)</span><span class="bullet mslide45m">[&#8226;](#Hc49e7)</span>.fg[].bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Лишние названия
-]
-
-.fixprecode[
-
-
-Убрать появляющиеся подписи из южного полушария фильтрацией исключением.
-
-<img src="assets/lesson01/Before09-LayerFilter.jpg" alt="" width="1330" height="1594" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: H2dfdd
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49) <span class="bullet bullet">[&#8226;](#H18f49)</span><span class="bullet bullet-active">[&#8226;](#H2dfdd)</span><span class="bullet mslide44m">[&#8226;](#Hb3994)</span><span class="bullet mslide45m">[&#8226;](#Hc49e7)</span>.fg[].bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Лишние названия
-]
-
-.fixprecode[
-
-
-Для морей в таблице атрибутов нет столбца по региону, поэтому фильтрация напрямую.
-
-<img src="assets/lesson01/Before10-QueryAqua.jpg" alt="" width="1330" height="1594" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: Hb3994
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49) <span class="bullet bullet">[&#8226;](#H18f49)</span><span class="bullet bullet">[&#8226;](#H2dfdd)</span><span class="bullet bullet-active">[&#8226;](#Hb3994)</span><span class="bullet mslide45m">[&#8226;](#Hc49e7)</span>.fg[].bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Лишние названия
-]
-
-.fixprecode[
-
-
-Для суши можно сделать фильтрацию по региону, который есть в таблице атрибутов.
-
-<img src="assets/lesson01/Before11-QueryTerra.jpg" alt="" width="1330" height="1594" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: Hc49e7
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49) <span class="bullet bullet">[&#8226;](#H18f49)</span><span class="bullet bullet">[&#8226;](#H2dfdd)</span><span class="bullet bullet">[&#8226;](#Hb3994)</span><span class="bullet bullet-active">[&#8226;](#Hc49e7)</span>.fg[].bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Лишние названия
-]
-
-.fixprecode[
-
-
-Чтобы отображались лишь названия, без точек-линий-полигонов, слой полностью прозрачный
-
-<img src="assets/lesson01/Before12-LayerOpacity.jpg" alt="" width="1330" height="1594" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: H87dd6
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6) <span class="bullet bullet-active">[&#8226;](#H87dd6)</span><span class="bullet mslide47m">[&#8226;](#H2a901)</span>.fg[].bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Украшательства
-]
-
-.fixprecode[
-
-
-Применены разные стили отображения для океанов и морей.
-
-<img src="assets/lesson01/Before13-MarineLabels.jpg" alt="" width="1330" height="1594" contain style="display: block; margin: auto auto auto 0;" />
-
-
-
-]
-]
----
-
-name: H2a901
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6) <span class="bullet bullet">[&#8226;](#H87dd6)</span><span class="bullet bullet-active">[&#8226;](#H2a901)</span>.fg[].bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Украшательства
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson01/Before14-GraticuleStyle.jpg" alt="" width="1330" height="672" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: He10c0
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).fg[].bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Прореживание долгот
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson01/Before15-GraticuleSampling.jpg" alt="" width="1330" height="672" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: H5ceba
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba) <span class="bullet bullet-active">[&#8226;](#H5ceba)</span><span class="bullet mslide50m">[&#8226;](#Hadefb)</span>.fg[].bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Масштабная линейка
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson01/Before16-Decoration.jpg" alt="" width="1330" height="672" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: Hadefb
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba) <span class="bullet bullet">[&#8226;](#H5ceba)</span><span class="bullet bullet-active">[&#8226;](#Hadefb)</span>.fg[].bg[]
-##### [Результат](#Hd5bfd).bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Масштабная линейка
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson01/Before17-Scalebar.jpg" alt="" width="1330" height="672" contain style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: Hd5bfd
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps).fg[]
-##### [Свойства проекта](#steps).bg[]
-##### [Cвойства слоя](#H51a88).bg[]
-##### [Раскраска слоя](#H1747f).bg[]
-##### [Таблица атрибутов](#Hf6957).bg[]
-##### [Извление названий](#Hcb24d).bg[]
-##### [Лишние названия](#H18f49).bg[]
-##### [Украшательства](#H87dd6).bg[]
-##### [Прореживание долгот](#He10c0).bg[]
-##### [Масштабная линейка](#H5ceba).bg[]
-##### [Результат](#Hd5bfd).fg[].bg[]
-#### [Cвои данные](#H886c8)
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Результат
-]
-
-.fixprecode[
-
-
-
-<img src="assets/lesson01/Before18-BlueProject.jpg" alt="" width="1330" height="560" contain style="display: block; margin: auto auto auto 0;" />
-
-Сохраните с новым названием. Если совсем ничего не получилось, используйтся файл проекта `desired.qgz` из набора ([Платонов, 2025](#bib)).
-
-
-]
-]
-
-
-
-
----
-
-name: H886c8
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps)
-#### [Cвои данные](#H886c8).fg[]
-##### [Открыть вектор](#H886c8) <span class="bullet bullet-active">[&#8226;](#H886c8)</span><span class="bullet mslide54m">[&#8226;](#Haa827)</span>.fg[].bg[]
-##### [Открыть растр](#Hb0c76).bg[]
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Открыть вектор
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson12/AddVector.jpg" alt="" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: Haa827
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps)
-#### [Cвои данные](#H886c8).fg[]
-##### [Открыть вектор](#H886c8) <span class="bullet bullet">[&#8226;](#H886c8)</span><span class="bullet bullet-active">[&#8226;](#Haa827)</span>.fg[].bg[]
-##### [Открыть растр](#Hb0c76).bg[]
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Открыть вектор
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson12/SelectVector.jpg" alt="" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: Hb0c76
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps)
-#### [Cвои данные](#H886c8).fg[]
-##### [Открыть вектор](#H886c8).bg[]
-##### [Открыть растр](#Hb0c76) <span class="bullet bullet-active">[&#8226;](#Hb0c76)</span><span class="bullet mslide56m">[&#8226;](#H448c1)</span><span class="bullet mslide57m">[&#8226;](#H338b2)</span><span class="bullet mslide58m">[&#8226;](#Ha3343)</span><span class="bullet mslide59m">[&#8226;](#Hd4330)</span>.fg[].bg[]
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Открыть растр
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson12/AddRaster.jpg" alt="" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: H448c1
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps)
-#### [Cвои данные](#H886c8).fg[]
-##### [Открыть вектор](#H886c8).bg[]
-##### [Открыть растр](#Hb0c76) <span class="bullet bullet">[&#8226;](#Hb0c76)</span><span class="bullet bullet-active">[&#8226;](#H448c1)</span><span class="bullet mslide57m">[&#8226;](#H338b2)</span><span class="bullet mslide58m">[&#8226;](#Ha3343)</span><span class="bullet mslide59m">[&#8226;](#Hd4330)</span>.fg[].bg[]
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Открыть растр
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson12/SelectRaster2.jpg" alt="" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: H338b2
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps)
-#### [Cвои данные](#H886c8).fg[]
-##### [Открыть вектор](#H886c8).bg[]
-##### [Открыть растр](#Hb0c76) <span class="bullet bullet">[&#8226;](#Hb0c76)</span><span class="bullet bullet">[&#8226;](#H448c1)</span><span class="bullet bullet-active">[&#8226;](#H338b2)</span><span class="bullet mslide58m">[&#8226;](#Ha3343)</span><span class="bullet mslide59m">[&#8226;](#Hd4330)</span>.fg[].bg[]
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Открыть растр
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson12/RasterProperties2.jpg" alt="" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: Ha3343
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps)
-#### [Cвои данные](#H886c8).fg[]
-##### [Открыть вектор](#H886c8).bg[]
-##### [Открыть растр](#Hb0c76) <span class="bullet bullet">[&#8226;](#Hb0c76)</span><span class="bullet bullet">[&#8226;](#H448c1)</span><span class="bullet bullet">[&#8226;](#H338b2)</span><span class="bullet bullet-active">[&#8226;](#Ha3343)</span><span class="bullet mslide59m">[&#8226;](#Hd4330)</span>.fg[].bg[]
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Открыть растр
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson12/RasterColorization.jpg" alt="" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
-
-
-]
-]
----
-
-name: Hd4330
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).fg[]
-#### [Открыть проект](#before)
-#### [Выполнить задание](#H56af5)
-#### [По шагам](#steps)
-#### [Cвои данные](#H886c8).fg[]
-##### [Открыть вектор](#H886c8).bg[]
-##### [Открыть растр](#Hb0c76) <span class="bullet bullet">[&#8226;](#Hb0c76)</span><span class="bullet bullet">[&#8226;](#H448c1)</span><span class="bullet bullet">[&#8226;](#H338b2)</span><span class="bullet bullet">[&#8226;](#Ha3343)</span><span class="bullet bullet-active">[&#8226;](#Hd4330)</span>.fg[].bg[]
-### [R](#H630b8)
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-Открыть растр
-]
-
-.fixprecode[
-
-
-<img src="assets/lesson12/RasterOutput.jpg" alt="" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
-
- 
-
-
-
-
-
-]
-]
----
-
-name: H630b8
-
-.toc.sidebar.left-column[
-.outline[
-## [Данные](#dataset)
-## [Программы](#soft)
-## [Попробовать](#before).fg[]
-### [QGIS](#before).bg[]
-### [R](#H630b8).fg[].bg[]
-]
-]
-.toc.mainbar.right-column.scrollable[
-
-
-.header.broad[
-R
-]
-
-.fixprecode[
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-``` r
-if (!exists("CRAN"))
-   CRAN <- "https://mirror.truenetwork.ru/CRAN"
-CRAN
-```
-
-```
-[1] "https://mirror.truenetwork.ru/CRAN/"
-```
-
-``` r
-pkgList <- c("png","mapview","tmap","sf","terra","adehabitatLT","readxl"
-            ,"tidyr","lwgeom","geosphere","ggstatsplot","ursa")
-repos <- CRAN ## "https://cloud.r-project.org/"
-type <- if (.Platform$OS.type=="windows") "binary" else getOption("pkgType")
-```
-
-
-``` r
-available <- sapply(pkgList,function(pkg) {
-   if (requireNamespace(pkg))
-      return(TRUE)
-   install.packages(pkg,repos=repos,type=type)
-   requireNamespace(pkg)
-})
-```
-
-
-
-
-
-
-
-
-
-
-``` r
-available
-```
-
-```
-         png      mapview         tmap           sf        terra adehabitatLT 
-        TRUE         TRUE         TRUE         TRUE         TRUE         TRUE 
-      readxl        tidyr       lwgeom    geosphere  ggstatsplot         ursa 
-        TRUE         TRUE         TRUE         TRUE         TRUE         TRUE 
-```
-
-``` r
-c('Everything is ok?'=all(available))
-```
-
-```
-Everything is ok? 
-             TRUE 
-```
-
-
-
-
-
-<!-- <a name=cite-Durner2009></a>([Durner Douglas et al., 2009](#bib)) -->
-
-
-
-]
-]
----
-name: bib
-class: notable
-
-
-
-
-
-.notfootnote.small.scrollable.bibliography[
-.fixprecode[
-<div class="backtoshow"><a href="javascript:window.history.back();">↩</a></div>
-
-<a name=bib-Durner2009></a><a href="javascript:window.history.back();">Durner, G. M., D. C. Douglas, R. M. Nielson, S. C. Amstrup, T. L. McDonald, I. Stirling, M. Mauritzen, E. W. Born, Ø. Wiig, E. DeWeaver, M. C. Serreze, S. E. Belikov, M. M. Holland, J. Maslanik, J. Aars, D. A. Bailey, and A. E. Derocher</a> (2009). "Predicting 21st-century polar bear habitat distribution from global climate models". In: _Ecological Monographs_ 79.1, pp. 25-58. ISSN: 1557-7015. DOI: [10.1890/07-2089.1](https://doi.org/10.1890%2F07-2089.1). 
-
- <a name=bib-winterschool2025></a><a href="javascript:window.history.back();">Платонов, Н.</a> (2025). _Набор данных для практикума по применению геоинформационных систем для обработки данных судовых учётов морских млекопитающих_. DOI: [10.5281/zenodo.14743126](https://doi.org/10.5281%2Fzenodo.14743126).
-
-]
-]
-
-    </textarea>
-<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
-<script src="https://nplatonov.github.io/site_libs/remark.js/remark-latest.min.js"></script>
-<script src="https://nplatonov.github.io/site_libs/moon_reader-before.js"></script>
-<script>var slideshow = remark.create({
-  "countIncrementalSlides": false,
-  "slideNumberFormat": "<div class=\"custom-slide-number\" data-total=\"%total%\" data-current=\"%current%\"></div>",
-  "ratio": "32:18",
-  "navigation": {
-    "scroll": true,
-    "click": false,
-    "touch": true
-  },
-  "highlightLines": true
-});
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
-  window.dispatchEvent(new Event('resize'));
-});
-(function(d) {
-  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
-  if (!r) return;
-  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
-  d.head.appendChild(s);
-})(document);
-
-(function(d) {
-  var el = d.getElementsByClassName("remark-slides-area");
-  if (!el) return;
-  var slide, slides = slideshow.getSlides(), els = el[0].children;
-  for (var i = 1; i < slides.length; i++) {
-    slide = slides[i];
-    if (slide.properties.continued === "true" || slide.properties.count === "false") {
-      els[i - 1].className += ' has-continuation';
-    }
-  }
-  var s = d.createElement("style");
-  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
-  d.head.appendChild(s);
-})(document);
-// delete the temporary CSS (for displaying all slides initially) when the user
-// starts to view slides
-(function() {
-  var deleted = false;
-  slideshow.on('beforeShowSlide', function(slide) {
-    if (deleted) return;
-    var sheets = document.styleSheets, node;
-    for (var i = 0; i < sheets.length; i++) {
-      node = sheets[i].ownerNode;
-      if (node.dataset["target"] !== "print-only") continue;
-      node.parentNode.removeChild(node);
-    }
-    deleted = true;
-  });
-})();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
-(function() {
-  "use strict"
-  // Replace <script> tags in slides area to make them executable
-  var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container script'
-  );
-  if (!scripts.length) return;
-  for (var i = 0; i < scripts.length; i++) {
-    var s = document.createElement('script');
-    var code = document.createTextNode(scripts[i].textContent);
-    s.appendChild(code);
-    var scriptAttrs = scripts[i].attributes;
-    for (var j = 0; j < scriptAttrs.length; j++) {
-      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
-    }
-    scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-})();
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
-
-<script src="https://nplatonov.github.io/site_libs/moon_reader-after.js"></script>
-
-  </body>
+На 14 февраля 2026 г., возможно, это <a href="https://mirror.truenetwork.ru/CRAN/" class="uri">https://mirror.truenetwork.ru/CRAN/</a>.</p>
+<iframe src="https://mirror.truenetwork.ru/CRAN/" width="646.08" height="400px" data-external="1">
+</iframe>
+<div id="ядро-1" class="section level4">
+<h4>Ядро</h4>
+<p>Скомпилированное ядро – это <a href="https://mirror.truenetwork.ru/CRAN//banner.shtml">R Binary</a></p>
+<iframe src="https://mirror.truenetwork.ru/CRAN//banner.shtml" width="646.08" height="400px" data-external="1">
+</iframe>
+</div>
+<div id="пакеты" class="section level4">
+<h4>Пакеты</h4>
+<p>Пакеты, загружаемые для работы как библиотеки – <a href="https://mirror.truenetwork.ru/CRAN//web/packages">Packages</a></p>
+<p><a href="https://mirror.truenetwork.ru/CRAN//web/packages/available_packages_by_name.html">Отображение всех пакетов</a></p>
+</div>
+</div>
+</div>
+<div id="before" class="section level2">
+<h2>Попробовать</h2>
+<div id="qgis-1" class="section level3">
+<h3>QGIS</h3>
+<div id="открыть-проект" class="section level4">
+<h4>Открыть проект</h4>
+<p class="centered-image"><img src="assets/lesson01/Before00-OpenProject.jpg" alt="" width="848" height="700" contain /></p>
+<p>Указать путь к проекту <code>template.qgz</code> из набора <span class="citation">(<a href="#ref-winterschool2025">Платонов, 2025</a>)</span>.</p>
+<p class="centered-image"><img src="assets/lesson01/Before01-OrangeProject.jpg" alt="" width="984" height="592" contain /></p>
+<p>Возможное оранжевое предупреждение проигнорировать и закрыть.</p>
+</div>
+<div id="выполнить-задание" class="section level4">
+<h4>Выполнить задание</h4>
+<p>Отредактировать отображение с красного на голубой</p>
+<p class="centered-image"><img src="assets/lesson01/Before18-BlueProject.jpg" alt="" width="901" height="600" contain /></p>
+<ul>
+<li><p>Изменить проекцию проекта на азимутальную равноплощадную Ламберта (EPSG:3576)</p></li>
+<li><p>Скорректировать вращением направление на север</p></li>
+<li><p>Моря сделать голубыми, сушу не раскрашивать</p></li>
+<li><p>Названия населенных пунктов сделать русскоязычными</p></li>
+<li><p>Убрать встречающиеся названия морей и регионов из южного полушария</p></li>
+<li><p>Добавить масштабную линейку</p></li>
+</ul>
+</div>
+<div id="steps" class="section level4">
+<h4>По шагам</h4>
+<div id="свойства-проекта" class="section level5">
+<h5>Свойства проекта</h5>
+<p class="centered-image"><img src="assets/lesson01/Before02-ProjectProperties.jpg" alt="" width="969" height="672" contain /></p>
+<p>Заменить цвет фона на белый, чтобы убрать красноту отображения.</p>
+<p class="centered-image"><img src="assets/lesson01/Before03-ProperiesGeneral.jpg" alt="" width="843" height="1594" contain /></p>
+<p>Изменить проекцию проекта на равноплощадную азимутальную проекцию Ламберта (EPSG:3576)</p>
+<p class="centered-image"><img src="assets/lesson01/Before04-ProjectCRS.jpg" alt="" width="843" height="1594" contain /></p>
+<p>В строке состояния указать, на сколько градусов повернуть, чтобы меридиан в центре отображения был направлен вертикально</p>
+<p class="centered-image"><img src="assets/lesson01/Before05-StatusBar.jpg" alt="" width="794" height="672" aspect /></p>
+</div>
+<div id="cвойства-слоя" class="section level5">
+<h5>Cвойства слоя</h5>
+<p class="centered-image"><img src="assets/lesson01/Before06-LayerProperties.jpg" alt="" width="968" height="672" contain /></p>
+</div>
+<div id="раскраска-слоя" class="section level5">
+<h5>Раскраска слоя</h5>
+<p>Изменить красный цвет океана на голубой. Можно изменить значение прозрачности слоя.</p>
+<p class="centered-image"><img src="assets/lesson01/Before07-LayerColor.jpg" alt="" width="964" height="1594" contain /></p>
+</div>
+<div id="таблица-атрибутов" class="section level5">
+<h5>Таблица атрибутов</h5>
+<p class="centered-image"><img src="assets/lesson01/BeforeX1-AttributeTable.jpg" alt="" width="982" height="1594" contain /></p>
+<p>Это обычная таблица, как в Excel, каждая строка связана с геометрией пространственного объекта.</p>
+<p class="centered-image"><img src="assets/lesson01/BeforeX2-AttributeTable.jpg" alt="" width="703" height="1594" contain /></p>
+</div>
+<div id="извление-названий" class="section level5">
+<h5>Извление названий</h5>
+<p>Изменить англоязычные названия населённых пунктов на русскоязычные.</p>
+<p class="centered-image"><img src="assets/lesson01/Before08-LayerLabels.jpg" alt="" width="794" height="1594" contain /></p>
+</div>
+<div id="лишние-названия" class="section level5">
+<h5>Лишние названия</h5>
+<p>Убрать появляющиеся подписи из южного полушария фильтрацией исключением.</p>
+<p class="centered-image"><img src="assets/lesson01/Before09-LayerFilter.jpg" alt="" width="968" height="1594" contain /></p>
+<p>Для морей в таблице атрибутов нет столбца по региону, поэтому фильтрация напрямую.</p>
+<p class="centered-image"><img src="assets/lesson01/Before10-QueryAqua.jpg" alt="" width="684" height="1594" contain /></p>
+<p>Для суши можно сделать фильтрацию по региону, который есть в таблице атрибутов.</p>
+<p class="centered-image"><img src="assets/lesson01/Before11-QueryTerra.jpg" alt="" width="684" height="1594" contain /></p>
+<p>Чтобы отображались лишь названия, без точек-линий-полигонов, слой полностью прозрачный</p>
+<p class="centered-image"><img src="assets/lesson01/Before12-LayerOpacity.jpg" alt="" width="794" height="1594" contain /></p>
+</div>
+<div id="украшательства" class="section level5">
+<h5>Украшательства</h5>
+<p>Применены разные стили отображения для океанов и морей.</p>
+<p class="centered-image"><img src="assets/lesson01/Before13-MarineLabels.jpg" alt="" width="792" height="1594" contain /></p>
+<p class="centered-image"><img src="assets/lesson01/Before14-GraticuleStyle.jpg" alt="" width="794" height="672" contain /></p>
+</div>
+<div id="прореживание-долгот" class="section level5">
+<h5>Прореживание долгот</h5>
+<p class="centered-image"><img src="assets/lesson01/Before15-GraticuleSampling.jpg" alt="" width="684" height="672" contain /></p>
+</div>
+<div id="масштабная-линейка" class="section level5">
+<h5>Масштабная линейка</h5>
+<p class="centered-image"><img src="assets/lesson01/Before16-Decoration.jpg" alt="" width="968" height="672" contain /></p>
+<p class="centered-image"><img src="assets/lesson01/Before17-Scalebar.jpg" alt="" width="589" height="672" contain /></p>
+</div>
+<div id="результат" class="section level5">
+<h5>Результат</h5>
+<p class="centered-image"><img src="assets/lesson01/Before18-BlueProject.jpg" alt="" width="901" height="560" contain /></p>
+<p>Сохраните с новым названием. Если совсем ничего не получилось, используйтся файл проекта <code>desired.qgz</code> из набора <span class="citation">(<a href="#ref-winterschool2025">Платонов, 2025</a>)</span>.</p>
+</div>
+</div>
+<div id="cвои-данные" class="section level4">
+<h4>Cвои данные</h4>
+<div id="открыть-вектор" class="section level5">
+<h5>Открыть вектор</h5>
+<p class="centered-image"><img src="assets/lesson12/AddVector.jpg" alt="" width="877" /></p>
+<hr />
+<p class="centered-image"><img src="assets/lesson12/SelectVector.jpg" alt="" width="557" /></p>
+</div>
+<div id="открыть-растр" class="section level5">
+<h5>Открыть растр</h5>
+<p class="centered-image"><img src="assets/lesson12/AddRaster.jpg" alt="" width="974" /></p>
+<hr />
+<p class="centered-image"><img src="assets/lesson12/SelectRaster2.jpg" alt="" width="458" /></p>
+<hr />
+<p class="centered-image"><img src="assets/lesson12/RasterProperties2.jpg" alt="" width="766" /></p>
+<hr />
+<p class="centered-image"><img src="assets/lesson12/RasterColorization.jpg" alt="" width="829" /></p>
+<hr />
+<p class="centered-image"><img src="assets/lesson12/RasterOutput.jpg" alt="" width="962" /></p>
+<!--
+
+-->
+</div>
+</div>
+</div>
+<div id="r-1" class="section level3">
+<h3>R</h3>
+<div id="установить-необходимые-пакеты" class="section level4 notremark">
+<h4>Установить необходимые пакеты</h4>
+<p>Ниже приведен скрипт, который проверяет, установлены ли требуемые пакеты и при необходимости их устанавливает.</p>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">&quot;CRAN&quot;</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>   CRAN <span class="ot">&lt;-</span> <span class="st">&quot;https://mirror.truenetwork.ru/CRAN&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>CRAN</span></code></pre></div>
+<pre><code>[1] &quot;https://mirror.truenetwork.ru/CRAN/&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>pkgList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;png&quot;</span>,<span class="st">&quot;mapview&quot;</span>,<span class="st">&quot;tmap&quot;</span>,<span class="st">&quot;sf&quot;</span>,<span class="st">&quot;terra&quot;</span>,<span class="st">&quot;adehabitatLT&quot;</span>,<span class="st">&quot;readxl&quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>            ,<span class="st">&quot;tidyr&quot;</span>,<span class="st">&quot;lwgeom&quot;</span>,<span class="st">&quot;geosphere&quot;</span>,<span class="st">&quot;ggstatsplot&quot;</span>,<span class="st">&quot;ursa&quot;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>repos <span class="ot">&lt;-</span> CRAN <span class="do">## &quot;https://cloud.r-project.org/&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>type <span class="ot">&lt;-</span> <span class="cf">if</span> (.Platform<span class="sc">$</span>OS.type<span class="sc">==</span><span class="st">&quot;windows&quot;</span>) <span class="st">&quot;binary&quot;</span> <span class="cf">else</span> <span class="fu">getOption</span>(<span class="st">&quot;pkgType&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>available <span class="ot">&lt;-</span> <span class="fu">sapply</span>(pkgList,<span class="cf">function</span>(pkg) {</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">requireNamespace</span>(pkg))</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">TRUE</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>   <span class="fu">install.packages</span>(pkg,<span class="at">repos=</span>repos,<span class="at">type=</span>type)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>   <span class="fu">requireNamespace</span>(pkg)</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>})</span></code></pre></div>
+<pre><code>package &#39;png&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;fs&#39; successfully unpacked and MD5 sums checked
+package &#39;rappdirs&#39; successfully unpacked and MD5 sums checked
+package &#39;cachem&#39; successfully unpacked and MD5 sums checked
+package &#39;memoise&#39; successfully unpacked and MD5 sums checked
+package &#39;sass&#39; successfully unpacked and MD5 sums checked
+package &#39;stringi&#39; successfully unpacked and MD5 sums checked
+package &#39;otel&#39; successfully unpacked and MD5 sums checked
+package &#39;proxy&#39; successfully unpacked and MD5 sums checked
+package &#39;evaluate&#39; successfully unpacked and MD5 sums checked
+package &#39;highr&#39; successfully unpacked and MD5 sums checked
+package &#39;bslib&#39; successfully unpacked and MD5 sums checked
+package &#39;fontawesome&#39; successfully unpacked and MD5 sums checked
+package &#39;tinytex&#39; successfully unpacked and MD5 sums checked
+package &#39;geometries&#39; successfully unpacked and MD5 sums checked
+package &#39;jsonify&#39; successfully unpacked and MD5 sums checked
+package &#39;rapidjsonr&#39; successfully unpacked and MD5 sums checked
+package &#39;sfheaders&#39; successfully unpacked and MD5 sums checked
+package &#39;lazyeval&#39; successfully unpacked and MD5 sums checked
+package &#39;systemfonts&#39; successfully unpacked and MD5 sums checked
+package &#39;textshaping&#39; successfully unpacked and MD5 sums checked
+package &#39;cpp11&#39; successfully unpacked and MD5 sums checked
+package &#39;later&#39; successfully unpacked and MD5 sums checked
+package &#39;promises&#39; successfully unpacked and MD5 sums checked
+package &#39;e1071&#39; successfully unpacked and MD5 sums checked
+package &#39;wk&#39; successfully unpacked and MD5 sums checked
+package &#39;digest&#39; successfully unpacked and MD5 sums checked
+package &#39;fastmap&#39; successfully unpacked and MD5 sums checked
+package &#39;rlang&#39; successfully unpacked and MD5 sums checked
+package &#39;jsonlite&#39; successfully unpacked and MD5 sums checked
+package &#39;knitr&#39; successfully unpacked and MD5 sums checked
+package &#39;rmarkdown&#39; successfully unpacked and MD5 sums checked
+package &#39;yaml&#39; successfully unpacked and MD5 sums checked
+package &#39;geojsonsf&#39; successfully unpacked and MD5 sums checked
+package &#39;crosstalk&#39; successfully unpacked and MD5 sums checked
+package &#39;jquerylib&#39; successfully unpacked and MD5 sums checked
+package &#39;leaflet.providers&#39; successfully unpacked and MD5 sums checked
+package &#39;magrittr&#39; successfully unpacked and MD5 sums checked
+package &#39;RColorBrewer&#39; successfully unpacked and MD5 sums checked
+package &#39;viridisLite&#39; successfully unpacked and MD5 sums checked
+package &#39;xfun&#39; successfully unpacked and MD5 sums checked
+package &#39;brew&#39; successfully unpacked and MD5 sums checked
+package &#39;svglite&#39; successfully unpacked and MD5 sums checked
+package &#39;uuid&#39; successfully unpacked and MD5 sums checked
+package &#39;Rcpp&#39; successfully unpacked and MD5 sums checked
+package &#39;terra&#39; successfully unpacked and MD5 sums checked
+package &#39;plyr&#39; successfully unpacked and MD5 sums checked
+package &#39;cli&#39; successfully unpacked and MD5 sums checked
+package &#39;farver&#39; successfully unpacked and MD5 sums checked
+package &#39;glue&#39; successfully unpacked and MD5 sums checked
+package &#39;labeling&#39; successfully unpacked and MD5 sums checked
+package &#39;lifecycle&#39; successfully unpacked and MD5 sums checked
+package &#39;R6&#39; successfully unpacked and MD5 sums checked
+package &#39;mime&#39; successfully unpacked and MD5 sums checked
+package &#39;httpuv&#39; successfully unpacked and MD5 sums checked
+package &#39;classInt&#39; successfully unpacked and MD5 sums checked
+package &#39;DBI&#39; successfully unpacked and MD5 sums checked
+package &#39;s2&#39; successfully unpacked and MD5 sums checked
+package &#39;units&#39; successfully unpacked and MD5 sums checked
+package &#39;base64enc&#39; successfully unpacked and MD5 sums checked
+package &#39;htmltools&#39; successfully unpacked and MD5 sums checked
+package &#39;htmlwidgets&#39; successfully unpacked and MD5 sums checked
+package &#39;leafem&#39; successfully unpacked and MD5 sums checked
+package &#39;leaflet&#39; successfully unpacked and MD5 sums checked
+package &#39;leafpop&#39; successfully unpacked and MD5 sums checked
+package &#39;raster&#39; successfully unpacked and MD5 sums checked
+package &#39;satellite&#39; successfully unpacked and MD5 sums checked
+package &#39;scales&#39; successfully unpacked and MD5 sums checked
+package &#39;servr&#39; successfully unpacked and MD5 sums checked
+package &#39;sf&#39; successfully unpacked and MD5 sums checked
+package &#39;sp&#39; successfully unpacked and MD5 sums checked
+package &#39;mapview&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;logger&#39; successfully unpacked and MD5 sums checked
+package &#39;abind&#39; successfully unpacked and MD5 sums checked
+package &#39;stringdist&#39; successfully unpacked and MD5 sums checked
+package &#39;colorspace&#39; successfully unpacked and MD5 sums checked
+package &#39;spacesXYZ&#39; successfully unpacked and MD5 sums checked
+package &#39;curl&#39; successfully unpacked and MD5 sums checked
+package &#39;lwgeom&#39; successfully unpacked and MD5 sums checked
+package &#39;XML&#39; successfully unpacked and MD5 sums checked
+package &#39;cols4all&#39; successfully unpacked and MD5 sums checked
+package &#39;data.table&#39; successfully unpacked and MD5 sums checked
+package &#39;leafgl&#39; successfully unpacked and MD5 sums checked
+package &#39;leaflegend&#39; successfully unpacked and MD5 sums checked
+package &#39;leafsync&#39; successfully unpacked and MD5 sums checked
+package &#39;maptiles&#39; successfully unpacked and MD5 sums checked
+package &#39;stars&#39; successfully unpacked and MD5 sums checked
+package &#39;tmaptools&#39; successfully unpacked and MD5 sums checked
+package &#39;tmap&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;pixmap&#39; successfully unpacked and MD5 sums checked
+package &#39;RcppArmadillo&#39; successfully unpacked and MD5 sums checked
+package &#39;ade4&#39; successfully unpacked and MD5 sums checked
+package &#39;adehabitatMA&#39; successfully unpacked and MD5 sums checked
+package &#39;adehabitatLT&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;utf8&#39; successfully unpacked and MD5 sums checked
+package &#39;generics&#39; successfully unpacked and MD5 sums checked
+package &#39;pillar&#39; successfully unpacked and MD5 sums checked
+package &#39;pkgconfig&#39; successfully unpacked and MD5 sums checked
+package &#39;withr&#39; successfully unpacked and MD5 sums checked
+package &#39;dplyr&#39; successfully unpacked and MD5 sums checked
+package &#39;purrr&#39; successfully unpacked and MD5 sums checked
+package &#39;stringr&#39; successfully unpacked and MD5 sums checked
+package &#39;tibble&#39; successfully unpacked and MD5 sums checked
+package &#39;tidyselect&#39; successfully unpacked and MD5 sums checked
+package &#39;vctrs&#39; successfully unpacked and MD5 sums checked
+package &#39;tidyr&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;geosphere&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;xts&#39; successfully unpacked and MD5 sums checked
+package &#39;TTR&#39; successfully unpacked and MD5 sums checked
+package &#39;quadprog&#39; successfully unpacked and MD5 sums checked
+package &#39;quantmod&#39; successfully unpacked and MD5 sums checked
+package &#39;fracdiff&#39; successfully unpacked and MD5 sums checked
+package &#39;lmtest&#39; successfully unpacked and MD5 sums checked
+package &#39;timeDate&#39; successfully unpacked and MD5 sums checked
+package &#39;tseries&#39; successfully unpacked and MD5 sums checked
+package &#39;urca&#39; successfully unpacked and MD5 sums checked
+package &#39;zoo&#39; successfully unpacked and MD5 sums checked
+package &#39;rbibutils&#39; successfully unpacked and MD5 sums checked
+package &#39;backports&#39; successfully unpacked and MD5 sums checked
+package &#39;cowplot&#39; successfully unpacked and MD5 sums checked
+package &#39;Deriv&#39; successfully unpacked and MD5 sums checked
+package &#39;forecast&#39; successfully unpacked and MD5 sums checked
+package &#39;modelr&#39; successfully unpacked and MD5 sums checked
+package &#39;microbenchmark&#39; successfully unpacked and MD5 sums checked
+package &#39;SparseM&#39; successfully unpacked and MD5 sums checked
+package &#39;minqa&#39; successfully unpacked and MD5 sums checked
+package &#39;nloptr&#39; successfully unpacked and MD5 sums checked
+package &#39;Rdpack&#39; successfully unpacked and MD5 sums checked
+package &#39;broom&#39; successfully unpacked and MD5 sums checked
+package &#39;numDeriv&#39; successfully unpacked and MD5 sums checked
+package &#39;doBy&#39; successfully unpacked and MD5 sums checked
+package &#39;carData&#39; successfully unpacked and MD5 sums checked
+package &#39;Formula&#39; successfully unpacked and MD5 sums checked
+package &#39;quantreg&#39; successfully unpacked and MD5 sums checked
+package &#39;elliptic&#39; successfully unpacked and MD5 sums checked
+package &#39;contfrac&#39; successfully unpacked and MD5 sums checked
+package &#39;deSolve&#39; successfully unpacked and MD5 sums checked
+package &#39;lme4&#39; successfully unpacked and MD5 sums checked
+package &#39;pbkrtest&#39; successfully unpacked and MD5 sums checked
+package &#39;lmerTest&#39; successfully unpacked and MD5 sums checked
+package &#39;car&#39; successfully unpacked and MD5 sums checked
+package &#39;reformulas&#39; successfully unpacked and MD5 sums checked
+package &#39;coda&#39; successfully unpacked and MD5 sums checked
+package &#39;pbapply&#39; successfully unpacked and MD5 sums checked
+package &#39;mvtnorm&#39; successfully unpacked and MD5 sums checked
+package &#39;MatrixModels&#39; successfully unpacked and MD5 sums checked
+package &#39;hypergeo&#39; successfully unpacked and MD5 sums checked
+package &#39;RcppEigen&#39; successfully unpacked and MD5 sums checked
+package &#39;multcompView&#39; successfully unpacked and MD5 sums checked
+package &#39;gmp&#39; successfully unpacked and MD5 sums checked
+package &#39;Rmpfr&#39; successfully unpacked and MD5 sums checked
+package &#39;SuppDists&#39; successfully unpacked and MD5 sums checked
+package &#39;kSamples&#39; successfully unpacked and MD5 sums checked
+package &#39;BWStest&#39; successfully unpacked and MD5 sums checked
+package &#39;desc&#39; successfully unpacked and MD5 sums checked
+package &#39;RcppParallel&#39; successfully unpacked and MD5 sums checked
+package &#39;reshape&#39; successfully unpacked and MD5 sums checked
+package &#39;bayestestR&#39; successfully unpacked and MD5 sums checked
+package &#39;reshape2&#39; successfully unpacked and MD5 sums checked
+package &#39;gtable&#39; successfully unpacked and MD5 sums checked
+package &#39;isoband&#39; successfully unpacked and MD5 sums checked
+package &#39;S7&#39; successfully unpacked and MD5 sums checked
+package &#39;prismatic&#39; successfully unpacked and MD5 sums checked
+package &#39;rematch2&#39; successfully unpacked and MD5 sums checked
+package &#39;rstudioapi&#39; successfully unpacked and MD5 sums checked
+package &#39;afex&#39; successfully unpacked and MD5 sums checked
+package &#39;BayesFactor&#39; successfully unpacked and MD5 sums checked
+package &#39;effectsize&#39; successfully unpacked and MD5 sums checked
+package &#39;PMCMRplus&#39; successfully unpacked and MD5 sums checked
+package &#39;rstantools&#39; successfully unpacked and MD5 sums checked
+package &#39;WRS2&#39; successfully unpacked and MD5 sums checked
+package &#39;zeallot&#39; successfully unpacked and MD5 sums checked
+package &#39;correlation&#39; successfully unpacked and MD5 sums checked
+package &#39;datawizard&#39; successfully unpacked and MD5 sums checked
+package &#39;ggcorrplot&#39; successfully unpacked and MD5 sums checked
+package &#39;ggplot2&#39; successfully unpacked and MD5 sums checked
+package &#39;ggrepel&#39; successfully unpacked and MD5 sums checked
+package &#39;ggside&#39; successfully unpacked and MD5 sums checked
+package &#39;ggsignif&#39; successfully unpacked and MD5 sums checked
+package &#39;insight&#39; successfully unpacked and MD5 sums checked
+package &#39;paletteer&#39; successfully unpacked and MD5 sums checked
+package &#39;parameters&#39; successfully unpacked and MD5 sums checked
+package &#39;patchwork&#39; successfully unpacked and MD5 sums checked
+package &#39;performance&#39; successfully unpacked and MD5 sums checked
+package &#39;statsExpressions&#39; successfully unpacked and MD5 sums checked
+package &#39;ggstatsplot&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>package &#39;ursa&#39; successfully unpacked and MD5 sums checked</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>available</span></code></pre></div>
+<pre><code>         png      mapview         tmap           sf        terra adehabitatLT       readxl        tidyr 
+        TRUE         TRUE         TRUE         TRUE         TRUE         TRUE         TRUE         TRUE 
+      lwgeom    geosphere  ggstatsplot         ursa 
+        TRUE         TRUE         TRUE         TRUE </code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">c</span>(<span class="st">&#39;Everything is ok?&#39;</span><span class="ot">=</span><span class="fu">all</span>(available))</span></code></pre></div>
+<pre><code>Everything is ok? 
+             TRUE </code></pre>
+<!-- [@Durner2009] -->
+</div>
+</div>
+<div id="refs" class="section level1 unnumbered toc-ignore unlisted">
+<h1 class="unnumbered toc-ignore unlisted"></h1>
+<div id="refs" class="references csl-bib-body" entry-spacing="1">
+<div id="ref-winterschool2025" data-number="1" class="csl-entry">
+Платонов Н. 2025 (26 January). Набор данных для практикума по применению геоинформационных систем для обработки данных судовых учётов морских млекопитающих. Zenodo. <a href="https://doi.org/10.5281/zenodo.14743126">10.5281/zenodo.14743126</a>.
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
 </html>
