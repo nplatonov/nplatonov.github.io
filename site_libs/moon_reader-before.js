@@ -218,9 +218,9 @@ function adjustImageSize(beforeFont = true) {
         // scroller.classList.add('imageresized')
      //    return;
      // }
-      const imageList = scroller.querySelectorAll('img:not([untouchable]), :not(.inline) img, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
+      const imageList = scroller.querySelectorAll('img:not([untouchable]), :not(.inline) zimg, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
       multi = Object.keys(imageList).length > 1
-     // console.log(Object.keys(imageList).length)
+      console.log(Object.keys(imageList).length)
       const columns = scroller.querySelector('.pulling, .double, .grid');
      // if (columns)
      //    console.log("columns:",Object.keys(columns).length);
