@@ -1,0 +1,487 @@
+:root {
+   --accent-swap: #B06000;
+   --accent-maresedu: #0060B0;
+   --accent-alt: #056608;
+   --header-accent: #FFD204;
+   --sidebar: 15.9%;
+   --sidebar-pointsize: 99%;
+  /* --sidebar-margin: 15px;*/
+  /* --header-accent: #18569830;*/
+  /* --sidebar-left: 0em;*/
+   --sidebar-select: var(--accent-swap);
+   --sidebar-color: var(--accent-swap);
+   --footer-pointsize: 14px;
+   --logosize: 46px;
+}
+.remark-slide-content.customtitle.wideformatted:not(.inverse):not(.modified),
+.remark-slide-content.customtitle:not(.inverse).modified:has(.mainbar.broad) {
+   background-image: url("rosneft-title.jpg") !important;
+   background-size: contain;
+   background-position: left top;
+  /* border-bottom: 3px solid var(--accent); */
+}
+/*
+.remark-slide-content.wideformatted:not(.customtitle):not(.inverse):not(.modified) {
+   background-image: url("rosneft-every.jpg") !important;
+   background-size: contain;
+   background-position: left top;
+}
+*/
+.customtitle.wideformatted .sidebar.narrow,
+.customtitle.modified .sidebar.narrow {
+   background-color: transparent !important;
+}
+.broad.mainbar {
+   font-family: arial;
+}
+.customtitle .broad.mainbar .title {
+   margin: 0 auto 0 auto;
+   width: 600px;
+   position: relative;
+   top: -176px;
+   text-align: center;
+   font-size: 116%;
+   font-weight: bold;
+}
+.customtitle .broad.mainbar .title p {
+   margin-top: 0.8em;
+}
+
+.customtitle .broad.mainbar .authors {
+   position: relative;
+   top: 240px;
+   margin: 0 auto 0 auto;
+   width: 600px;
+   text-align: center;
+   font-size: 77%;
+   font-weight: bold;
+}
+.customtitle .mainbar.broad .authors .institute {
+   font-weight: normal;
+   margin-left: unset;
+   font-style: italic;
+}
+.customtitle .sidebar.narrow + .right-column {
+   width: 100%;
+}
+.remark-slide-content.customtitle:not(.inverse):not(.modified):not(.wideformatted), .remark-slide-content.title-slide:not(.inverse),
+.remark-slide-content.customtitle:not(.inverse).modified.wideformatted {
+   background-image: url("background-title.png") !important;
+   background-size: contain;
+   background-position: left top;
+  /* border-bottom: 3px solid var(--accent); */
+}
+.remark-slide-content:not(.customtitle):not(.title-slide):not(.inverse):not(#slide-endofslideshow):not(:has(.broad.mainbar)):not(.wideformatted):not(.break):not(#slide-bib),
+.remark-slide-content:not(.customtitle):not(.inverse).modified.wideformatted:not(#slide-endofslideshow):not(.break):not(#slide-bib) {
+   background-image: url("background.png") !important;
+   background-size: contain;
+   background-position: left top;
+  /* border-bottom: 1px solid var(--accent);*/
+   z-index: 8;
+}
+.metadata .title {
+   font-size: 135%;
+   margin-right: 160px;
+}
+.metadata:not(.modified):not(.wideformatted):not(.inverse) .title {
+   color: var(--accent-swap);
+}
+.metadata .authors {
+   margin-top: 2.5em;
+}
+.metadata .author {
+   font-size: 110%;
+}
+.customtitle:not(.inverse) .sidebar {
+   opacity: 0.4;
+}
+.customtitle:not(.inverse) .sidebar:hover {
+   opacity: 1;
+}
+.sidebar > .outline {
+   margin-top: 132px;
+   margin-bottom: 166px;
+}
+.sidebar {
+   background-image: none !important;
+}
+.remark-slide-content:not(.metadata) .sidebar.narrow + .right-column {
+  /* width: calc(100% - var(--sidebar) - var(--sidebar-margin) + 11px);*/
+   width: calc(100% - var(--sidebar-margin) - 38px);
+   margin-top: 0.3em;
+}
+.speaker {
+   text-decoration-line: underline;
+}
+.sidebar h1 a, .sidebar h2 a, .sidebar h3 a, .sidebar h4 a, .sidebar h5 a {
+  /* opacity: 1;*/
+  /* color: rgb(248,151,40);*/
+}
+.remark-slide-content.customtitle.inverse .sevinlogo::before {
+   filter: grayscale() brightness(0.8) contrast(99) brightness(0.85);
+}
+.remark-slide-content#slide-home .sevinlogo::after,
+.remark-slide-content#slide-beforefinalizing .sevinlogo::after {
+   content: '';
+   position: fixed;
+  /* border: 0px solid red;*/
+   width: 76px; /* 31px */ /* 4.5 */
+   height: 76px; /* 32px */
+   top: 86px;
+   right:  48px; /* 48px 6px 98px */
+   left:  unset;
+   background-image: url(sevin-800000.png);
+   background-size: contain;
+   background-repeat: no-repeat;
+   filter: grayscale() contrast(0.95);
+  /* filter: invert() hue-rotate(30deg) brightness(1.6) contrast(0.8);*/
+}
+.remark-slide-content#slide-home .sevinlogo::after {
+   width: 48px; /* 31px */ /* 4.5 */
+   height: 48px; /* 32px */
+   top: 218px;
+   left:  214px;
+}
+.remark-slide-content:not([#slide-home]) .sevinlogo::after,
+.remark-slide-content:not([#slide-beforefilanizing]) .sevinlogo::after {
+   display: none;
+}
+.remark-slide-content.metadata .sevinlogo::after {
+   opacity: 1;
+   top: 228px;
+   left: 214px;
+   right: unset;
+   width: var(--logosize); /* 31px */ /* 4.5 */
+   height: var(--logosize); /* 32px */
+  /* filter: hue-rotate(200deg) brightness(1.8);*/
+  /* filter: hue-rotate(200deg) brightness(2.4);*/
+  /* filter: none !important;*/
+}
+.remark-slide-content.customtitle.inverse .sevinlogo::after {
+   filter: invert() hue-rotate(200deg) brightness(2.8) contrast(0.8);
+}
+.inverse:not(.customtitle) .sevinlogo {
+   border: 1px solid red;
+   visibility: hidden;
+}
+/*
+#slide-bib:not(.mainbar) > .bibliography,
+#slide-bib:not(.mainbar) > .footnote,
+#slide-fn:not(.mainbar) > .footnote {
+   margin-left: var(--sidebar);
+   width: calc(100% - var(--sidebar));
+}
+.backtoshow {
+   top: unset;
+   bottom: 3px;
+}
+*/
+.mainbar.broad .header > p > .generation {
+   border-bottom: solid 5px var(--header-accent);
+   color: var(--dark);
+   text-transform: uppercase;
+  /* font-weight: bold;*/
+  /* font-family: var(--font-normal);*/
+   font-size: 70%;
+   letter-spacing: 0px;
+}
+.mainbar.broad .header > p > .generation {
+   font-family: arial;
+   font-weight: bold;
+   border-bottom: none;
+}
+.mainbar.broad .header > p {
+   margin-bottom: 0.1em;
+}
+.mainbar.broad .header > p > .parent {
+   opacity: 0;
+}
+.mainbar.broad .header > p > .parent:hover {
+   opacity: 1;
+}
+.remark-slide-content:not(.modified):not(.customtitle) .toc.banner .sevinlogo,
+/*.remark-slide-content.wideformatted .sevinlogo,*/
+/*.remark-slide-content.modified:has(.narrow.banner) .rosneft,*/
+.remark-slide-content.inverse .rosneft,
+.remark-slide-content.modified#slide-home:not(.wideformatted) .rosneft,
+.remark-slide-content.modified:not(.wideformatted) .tamura,
+.remark-slide-content.wideformatted:not(.modified) .tamura {
+   display: none;
+}
+.remark-slide-content:not(.wideformatted)#slide-home .rosneft,
+.remark-slide-content#slide-beforefinalizing .rosneft,
+.remark-slide-content.modified .rosneft,
+.remark-slide-content.wideformatted:not(#slide-home) .rosneft {
+   position: fixed;
+   width: 146px; /* 176px! 31px */ /* 4.5 */
+   height: 48px; /* 72px! 32px */
+   top: 29px;
+   right:  2px;
+   left:  unset;
+   background-image: url(rosneft-logo.jpg);
+   background-size: contain;
+   background-repeat: no-repeat;
+}
+.remark-slide-content#slide-home:not(.modified):not(.wideformatted) .rosneft {
+   top: 43px;
+   right: 16px;
+}
+.remark-slide-content.modified.wideformatted .rosneft {
+   display: none;
+}
+.tamura {
+   position: fixed;
+   width: 155px;
+   height: 155px;
+   bottom: 9px;
+   left: 41px;
+   background-image: url(tamura-0060B0-swap.png);
+   background-size: contain;
+   background-repeat: no-repeat;
+}
+.remark-slide-content.customtitle .tamura {
+   width: 155px;
+   height: 155px;
+   left: 41px;
+   bottom: 151px;
+}
+.remark-slide-content.inverse .tamura {
+   filter: grayscale() invert() contrast(2);
+}
+
+.remark-slide-content:has(.mainbar.broad) .remark-slide-number {
+   top: unset;
+   bottom: 0px;
+   left: 0px;
+   color: white;
+   background-color: rgb(255,210,6);
+   font-size: 12pt;
+   padding: 1.2em;
+   opacity: 1;
+   width: 0.98em;
+   text-align: center;
+   border: unset;
+   border-radius: unset;
+   font-family: arial;
+}
+.mainbar.broad .header.broad, .mainbar.broad .header.show {
+   margin-bottom: 0.1em;
+}
+.mainbar.broad .header.broad {
+   border-bottom: 5px solid rgb(255,210,6);
+   overflow-x: visible;
+   width: 190px;
+}
+.remark-slide-content:not(.inverse) .when .updated {
+  text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+               1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+}
+#slide-welch table tr td .collar {
+  font-weight: 700;
+}
+#slide-welch table td {
+   padding: 0.15em 0.95em;
+}
+.mainbar + .remark-slide-number {
+   right: unset;
+  /* bottom: 137px;*/
+   bottom: unset;
+   left: 4px;
+   top: 4px;
+}
+.remark-slide-content:not(.inverse):not(.modified):not(.wideformatted) .mainbar + .remark-slide-number {
+   color: var(--accent-maresedu);
+   border-color: var(--accent-maresedu);
+   background-color: transparent;
+}
+.caption .bbox {
+   border: 3px dashed red;
+}
+.outline *[id*=span-class-small] .small {
+   font-size: 96%;
+}
+.outline a[href*=maxent] {
+   letter-spacing: -1.5px;
+}
+.broad.mainbar .figure>.caption {
+   display: inline;
+   position: absolute;
+   margin-top: 200px;
+   margin-left: 0.1em;
+   font-family: arial;
+   font-style: italic;
+   opacity: 1;
+   font-size: calc(0.9 * var(--pointsize)) !important;
+}
+.broad.mainbar .caption.centered { /* tables */
+   display: inline;
+   position: absolute;
+   margin-top: 200px;
+   margin-left: calc(900px + 0.1em);
+   font-family: arial;
+   font-style: italic;
+   opacity: 1;
+   font-size: calc(0.9 * var(--pointsize)) !important;
+}
+.broad.mainbar img[width="1330"] {
+   max-width: 900px !important;
+}
+.broad.mainbar .ecology {
+   font-size: 120%;
+   color: rgb(60,83,61);
+   margin-left: 100px;
+}
+.broad.mainbar .ecology img {
+   border: 1px solid red;
+   height: 100px !important;
+}
+.remark-slide-content:has(.mainbar.broad) .tamura-multi {
+   content: '';
+   position: fixed;
+   bottom: 70px;
+   left: 2px;
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-image: url(tamura-multi.png);
+   width: 60px;
+   height: 60px;
+}
+.remark-slide-content:has(.mainbar.broad)#slide-tamura .tamura-multi {
+   left: 65px;
+   bottom: unset;
+   top: 89px;
+   width: 100px;
+   height: 100px;
+}                	
+.remark-slide-content:has(.mainbar.broad)#slide-home .tamura-multi,
+.remark-slide-content:has(.mainbar.broad)#slide-home .sevinlogo {
+   display: none;
+}
+.remark-slide-content:has(.mainbar.broad) .sevinlogo:before {
+   content: '';
+   position: fixed;
+   bottom: 7px;
+   right: 23px;
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-image: url(sevin.png);
+   width: 60px;
+   height: 60px;
+}
+.remark-slide-content:has(.mainbar.broad) .mainbar.broad h2,
+.remark-slide-content:has(.mainbar.broad) .mainbar.broad h3,
+.remark-slide-content:has(.mainbar.broad) .mainbar.broad h4 {
+   font-family: arial !important;
+   font-weight: bold;
+   font-size: 120%;
+}
+.mainbar.broad ul {
+   list-style: none;
+   margin-left: 0;
+   padding-left: 0;
+}
+.mainbar.broad ul li {
+   padding-left: 1em;
+   text-indent: -1em;
+}
+.mainbar.broad ul li p {
+   display: inline;
+}
+.mainbar.broad ul li:before {
+   content: '🠶';
+   padding-right: 5px;
+   color: rgb(255,210,6);
+}
+.mainbar.broad .collars {
+   margin-bottom: 2.4em;
+}
+.collars {
+   display: flex;
+}
+.collars .figure {
+   margin-left: 0.4em;
+   margin-right: 0.4em;
+}
+.remark-slide-content#slide-tamura .broad.mainbar .figure > .caption,
+.broad.mainbar .collars .figure > .caption {
+   position: unset;
+}
+.atlas {
+   margin-top: 0.4em;
+   display: flex;
+   height: 120px;
+}
+.mainbar.broad .atlas {
+   margin-top: 0.8em;
+   height: unset;
+}
+img[aspect], img[expand] {
+  /* border: 1px solid transparent;*/
+  /* height: 200px !important;*/
+}
+.alltogether img {
+   height: 593px !important;
+}
+.qr img {
+  /* height: 200px !important;*/
+   width: 100% !important;
+   height: unset !important;
+}
+.remark-slide-content:has(.broad.mainbar)#slide-atlas .rosneft,
+.remark-slide-content:has(.broad.mainbar)#slide-atlas .tamura-multi,
+.remark-slide-content:has(.broad.mainbar)#slide-atlas .sevinlogo {
+   display: none;
+}
+.remark-slide-content.wideformatted:not(.modified)#slide-endofslideshow,
+.remark-slide-content.modified:not(.wideformatted)#slide-endofslideshow {
+   background-image: url("rosneft-thankyou.jpg") !important;
+   background-size: contain;
+   background-position: left top;
+}
+.remark-slide-content.wideformatted:not(.modified)#slide-endofslideshow .endofslideshow,
+.remark-slide-content:not(.wideformatted).modified#slide-endofslideshow .endofslideshow {
+   opacity: 0;
+}
+.broad.mainbar table {
+   font-family: arial;
+}
+.broad.mainbar table th {
+   background-color: rgb(255,210,6);
+}
+.broad.mainbar table tr td:has(.collar) {
+   background-color: rgb(165,165,165);
+   color: white;
+}
+.broad.mainbar tr:nth-child(odd) {
+   background-color: rgb(240,240,240) !important;
+}
+.broad.mainbar tr:nth-child(even) {
+   background-color: rgb(225,225,225) !important;
+}
+#slide-atlas .footer {
+   opacity: 0.3;
+   letter-spacing: 1.5px;
+   font-size: 38%;
+   bottom: 0px;
+}
+#slide-atlas .broad.mainbar .footer {
+   font-size: 35.5%;
+   margin-left: 58px;
+   width: 91%;
+}
+.remark-slide-content:has(.broad.mainbar) table {
+   border-top: none;
+   border-bottom: none;
+}
+.remark-slide-content:not(.modified).wideformatted.inverse,
+.remark-slide-content.modified:not(.wideformatted).inverse {
+   opacity: 0.1;
+}
+#slide-methods:has(.broad.mainbar) img {
+   max-height: 270px !important;
+}
+/*
+#slide-methods img {
+   max-height: 260px !important;
+}
+*/

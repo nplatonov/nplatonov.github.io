@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ВБМ (17:25)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Никита Платонов" />
+    <script src="https://nplatonov.github.io/site_libs/header-attrs-2.30/header-attrs.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link href="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/tile-view-0.2.6/tile-view.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/fabric-4.3.1/fabric.min.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="https://nplatonov.github.io/site_libs/js-cookie-3.0.0/js.cookie.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/peerjs-1.3.1/peerjs.min.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/tiny.toast-1.0.0/toast.min.js"></script>
+    <link href="https://nplatonov.github.io/site_libs/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
+    <script src="https://nplatonov.github.io/site_libs/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
+    <script src="https://nplatonov.github.io/site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader.css" type="text/css" />
+    <link rel="stylesheet" href="https://nplatonov.github.io/site_libs/moon_reader-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/sevin.css" type="text/css" />
+  </head>
+  <body>
+
+<div id="loader" class="loader"></div>
+
+<style>
+.remark-backdrop:after{
+   content: 'Никита Платонов \A \A Биотелеметрия белых медведей Карского моря';
+}
+</style>
+
+    <textarea id="source">
+
+layout: true
+
+
+
+
+
+
+
+
+.toc.banner[
+
+
+.sevinlogo[
+]
+
+
+
+.dontprint[
+<img class="gif nothovered" src="assets/alltogether.gif"/>
+]
+
+
+
+
+
+.shorttitle[
+
+]
+
+]
+
+---
+name: home
+class: metadata customtitle middle left giphy
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data)
+# [Результаты](#results)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+
+
+.authors[
+
+
+.author[.speaker[Платонов&nbsp;Н.&nbsp;Г.], Мордвинцев&nbsp;И.&nbsp;Н., Иванов&nbsp;Е.&nbsp;А., Артемьева&nbsp;С.&nbsp;М., Найденко&nbsp;С.&nbsp;В.]
+
+
+.institute[ИПЭЭ РАН]
+
+
+
+]
+
+
+.title[
+Анализ данных спутниковой биотелеметрии белых медведей Карского моря
+]
+
+
+.subtitle[
+
+]
+
+
+.what[
+IX научно-практическая конференция «Вселенная белого медведя»
+]
+
+
+.where[
+
+]
+
+
+.when[
+28 февраля 2026 г. .updated[Обновлено: 2026-02-21 17:25]
+]
+
+
+
+]
+---
+name: intro
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro).fg[].bg[]
+# [Данные](#data).bg[]
+# [Результаты](#results).bg[]
+# [.pass[Обсуждение] ](#H19294).bg[]
+# [Выводы ](#Hc07f1).bg[]
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.header.h1.broad[
+<span class="generation">Актуальность</span>
+]
+
+.fixprecode[
+
+
+
+
+.pulling[
+.pull-left-50[
+
++ Выявление закономерностей распределения и поведения белых медведей в безледовый и ледовый периоды
+
++ Выявление абиотических факторов, формирующих предпочитаемые местообитания
+
++ Выявление влияния абиотических факторов на поведение
+
++ Определение мест залегания в родовые берлоги
+
++ Получение данных для осуществления моделирования ареалов
+
+]
+.pull-right-50[
+
+
+
+<img src="https://data.seaice.uni-bremen.de/amsr2/today/extent_n_running_mean_amsr2_previous.png" alt="" width="1330" height="700" zuntouchable hovered style="display: block; margin: auto auto auto 0;" />
+
+<img src="https://nsidc.org/data/seaice_index/images/daily_images/N_iqr_timeseries.png" alt="" width="1330" height="700" zuntouchable hovered style="display: block; margin: auto auto auto 0;" />
+
+
+]
+]
+
+
+
+]
+]
+---
+name: data
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro).bg[]
+# [Данные](#data).fg[].bg[]
+## [Передатчики](#collars)
+## [.pass[Отловы] ](#field2024)
+## [Локации](#traj)
+# [Результаты](#results)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h1.broad[
+<span class="generation">Данные</span>
+]
+
+.fixprecode[
+
+
+
+.pulling[
+
+.pull-left-65[
+
+ ## Отловы
+ 
+Обездвиживание с вертолёта:
+
++ 2024 г., безлёдный период, август-сентябрь.
+
++ 2025 г., ледовый период, апрель-май.
+
+
+ ## Глубины и высоты
+ 
+Глобальная модель рельефа <span class="cite hovertext" data-hover="The GEBCO_2025 Grid - a continuous terrain model for oceans and land at 15 arc-second intervals"><a name=cite-GEBCO_2025></a>([GEBCO Bathymetric Compilation Group, 2025](#bib))</span>.
+
+
+
+
+
+
+
+ ## Береговая линия
+
+Упрощенные полигоны суши <span class="cite hovertext" data-hover="Data Derived from OpenStreetMap for Download"><a name=cite-OpenStreetMapData></a>([Topf and Hormann, 2025](#bib))</span>.
+
+
+
+
+
++ Расстояние до берега
+
+
+
+ ## Морской лёд
+
+
+
+
+
+Ледовые карты маргинальных зон (лёд умеренной сплоченности CT18, сплоченный лёд CT81) <span class="cite hovertext" data-hover="Daily Arctic Marginal Ice Zone (MIZ) and Overlay Shapefile"><a name=cite-USNIC_MIZ></a>([US NIC, 2022](#bib))</span>.
+
+
+
+
+
+
+
+]
+
+.pull-right-35[
+
+<img src="assets/helicopter.jpg" alt="" width="1330" height="unset" untouchable style="display: block; margin: auto auto auto 0;" />
+
+<img src="assets/capture-wide.jpg" alt="" width="1330" height="unset" untouchable style="display: block; margin: auto auto auto 0;" />
+
+<img src="assets/ontheground.jpg" alt="" width="1330" height="unset" untouchable style="display: block; margin: auto auto auto 0;" />
+
+]
+
+]
+
+
+]
+]
+---
+name: collars
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data).fg[]
+## [Передатчики](#collars).fg[].bg[]
+## [.pass[Отловы] ](#field2024).bg[]
+## [Локации](#traj).bg[]
+# [Результаты](#results)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+<span class="generation">Передатчики</span> .parent[.grand[Данные]]
+]
+
+.fixprecode[
+
+
+
+.row[
+ 
+<div class="figure" style="text-align: left">
+<img src="assets/Polar Bear Collar.jpg" alt="Спутниковый ошейник" width="1330" height="700" />
+<p class="caption">Спутниковый ошейник</p>
+</div>
+
+<div class="figure" style="text-align: left">
+<img src="assets/Ушная метка №1.jpg" alt="Ушная метка 2024 г." width="1330" height="700" />
+<p class="caption">Ушная метка 2024 г.</p>
+</div>
+
+<div class="figure" style="text-align: left">
+<img src="assets/Ушная метка №2.jpg" alt="Ушная метка 2025 г." width="1330" height="700" />
+<p class="caption">Ушная метка 2025 г.</p>
+</div>
+]
+
+
+]
+]
+
+
+
+---
+name: field2024
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data).fg[]
+## [Передатчики](#collars)
+## [.pass[Отловы] ](#field2024).fg[]
+### [2024 г.](#field2024).fg[].bg[]
+### [2025 г.](#field2025).bg[]
+## [Локации](#traj)
+# [Результаты](#results)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+<span class='outline generation'>Отловы 2024 г.</span> .parent[.grand[.pass[Отловы] .grand[Данные]]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/collar-2024.png" alt="" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+
+]
+]
+---
+name: field2025
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data).fg[]
+## [Передатчики](#collars)
+## [.pass[Отловы] ](#field2024).fg[]
+### [2024 г.](#field2024).bg[]
+### [2025 г.](#field2025) <span class="bullet bullet-active">[&#8226;](#field2025)</span><span class="bullet mslide10m">[&#8226;](#field2025s1)</span><span class="bullet mslide11m">[&#8226;](#field2025m)</span>.fg[].bg[]
+## [Локации](#traj)
+# [Результаты](#results)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+<span class='outline generation'>Отловы 2025 г.</span> .parent[.grand[.pass[Отловы] .grand[Данные]]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/collar-2025.png" alt="" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+
+]
+]
+---
+name: field2025s1
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data).fg[]
+## [Передатчики](#collars)
+## [.pass[Отловы] ](#field2024).fg[]
+### [2024 г.](#field2024).bg[]
+### [2025 г.](#field2025) <span class="bullet bullet">[&#8226;](#field2025)</span><span class="bullet bullet-active">[&#8226;](#field2025s1)</span><span class="bullet mslide11m">[&#8226;](#field2025m)</span>.fg[].bg[]
+## [Локации](#traj)
+# [Результаты](#results)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+<span class='outline generation'>Отловы 2025 г.</span> .parent[.grand[.pass[Отловы] .grand[Данные]]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/collar-2025-s1.png" alt="" width="1330" height="700" notinvertable style="display: block; margin: auto auto auto 0;" />
+
+
+]
+]
+---
+name: field2025m
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data).fg[]
+## [Передатчики](#collars)
+## [.pass[Отловы] ](#field2024).fg[]
+### [2024 г.](#field2024).bg[]
+### [2025 г.](#field2025) <span class="bullet bullet">[&#8226;](#field2025)</span><span class="bullet bullet">[&#8226;](#field2025s1)</span><span class="bullet bullet-active">[&#8226;](#field2025m)</span>.fg[].bg[]
+## [Локации](#traj)
+# [Результаты](#results)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+<span class='outline generation'>Отловы 2025 г.</span> .parent[.grand[.pass[Отловы] .grand[Данные]]]
+]
+
+.fixprecode[
+
+
+
+<img src="assets/collar-2025-m.png" alt="" width="1330" height="700" notinvertable style="display: block; margin: auto auto auto 0;" />
+
+
+]
+]
+---
+name: traj
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data).fg[]
+## [Передатчики](#collars).bg[]
+## [.pass[Отловы] ](#field2024).bg[]
+## [Локации](#traj).fg[].bg[]
+# [Результаты](#results)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+<span class="generation">Локации</span> .parent[.grand[Данные]]
+]
+
+.fixprecode[
+
+
+
+
+
+
+
+
+.pulling[
+.pull-left-70[
+
+ #### Построение траектории
+
+   + Фильтрация локаций по порогу скорости смещения <span class="cite hovertext" data-hover="A simple new algorithm to filter marine mammal Argos locations"><a name=cite-Argos-filter></a>([Freitas et al., 2008](#bib))</span>.
+
+   + Исключение локаций вручную и повторение фильтрации
+
+      + На 21 февраля 2026 г. для одной особи одна локация в море Лаптевых
+
+   + Модель простого случайного блуждания <span class="cite hovertext" data-hover="Movement responses to environment: fast inference of variation among southern elephant seals with a mixed effects model"><a name=cite-Jonsen2019></a>([Jonsen et al., 2019](#bib))</span>, <span class="cite hovertext" data-hover="A continuous-time state-space model for rapid quality-control of Argos locations from animal-borne tags"><a name=cite-Jonsen2020></a>([Jonsen et al., 2020](#bib))</span> для построения ежесуточных локаций на 12:00 <abbr title="единое скоординированное время, единое время">UTC</abbr>
+
+
+ #### Оценка длины шага суточного смещения
+
+   + Фильтрация локаций по площади эллипса ошибки, прямолинейности перемещения и величине смещения.
+
+]
+.pull-right-30[
+
+<img src="assets/locfilter.png" alt="" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+]
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]
+]
+---
+name: results
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro).bg[]
+# [Данные](#data).bg[]
+# [Результаты](#results).fg[].bg[]
+## [Суточный ход ](#H8c4a3)
+## [.pass[Морской лёд] ](#Hd073f)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h1.broad[
+<span class="generation">Результаты</span>
+]
+
+.fixprecode[
+
+
+
+.dontprint[
+
+<img src="assets/alltogether.gif" alt="" width="1330" height="650" center style="display: block; margin: auto auto auto 0;" />
+
+]
+
+
+
+
+
+
+.font70.tableimg[
+
+<table>
+<tbody>
+<tr>
+<td>
+<img untouchable class="nothovered" src="assets/track-222243.png">
+<span class="inset map222243">243🙎</span>
+</td>
+<td>
+<img untouchable class="nothovered" src="assets/track-222245.png">
+<span class="inset map222245">245🙎</span>
+</td>
+<td>
+<img untouchable class="nothovered" src="assets/track-222246.png">
+<span class="inset map222246">246🙎</span>
+</td>
+<td>
+<img untouchable class="nothovered" src="assets/track-250493.png">
+<span class="inset map250493">493👩‍👦</span>
+</td>
+</tr>
+<tr>
+<td>
+<img untouchable class="nothovered" src="assets/track-250494.png">
+<span class="inset map250494">494👩‍👦</span>
+</td>
+<td>
+<img untouchable class="nothovered" src="assets/track-250495.png">
+<span class="inset map250495">495🙎</span>
+</td>
+<td>
+<img untouchable class="nothovered" src="assets/track-268959.png">
+<span class="inset map268959">959🙍‍♂️</span>
+</td>
+<td>
+<img untouchable class="nothovered" src="assets/track-268960.png">
+<span class="inset map268960">960🙍‍♂️</span>
+</td>
+</tr>
+<tr>
+<td>
+<img untouchable class="nothovered" src="assets/track-286194.png">
+<span class="inset map286194">194🙍‍♂️</span>
+</td>
+<td>
+<img untouchable class="nothovered" src="assets/track-286195.png">
+<span class="inset map286195">195🙍‍♂️</span>
+</td>
+<td>
+<img untouchable class="nothovered" src="assets/track-286196.png">
+<span class="inset map286196">196🙍‍♂️</span>
+</td>
+<td>
+<img untouchable class="nothovered" src="assets/track-286197.png">
+<span class="inset map286197">197🙍‍♂️</span>
+</td>
+</tr>
+<tr>
+<td>
+<img untouchable class="nothovered" src="assets/track-630627.png">
+<span class="inset map630627">627👩‍👧‍👦</span>
+</td>
+<td>
+<img untouchable class="nothovered" src="assets/track-630693.png">
+<span class="inset map630693">693🙎</span>
+</td>
+<td>
+<img untouchable class="nothovered" src="assets/track-630744.png">
+<span class="inset map630744">744👩‍👦</span>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+]
+
+
+
+
+
+
+]
+]
+---
+
+name: H8c4a3
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data)
+# [Результаты](#results).fg[]
+## [Суточный ход ](#H8c4a3) <span class="bullet bullet-active">[&#8226;](#H8c4a3)</span><span class="bullet mslide15m">[&#8226;](#Hb9e98)</span>.fg[].bg[]
+### [До берега](#Hc7d0b)
+### [Глубины и высоты ](#Hbd329)
+## [.pass[Морской лёд] ](#Hd073f)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+<span class="generation">Суточный ход</span> .parent[.grand[Результаты]]
+]
+
+.fixprecode[
+
+
+
+
+
+<div class="figure" style="text-align: left">
+<img src="assets/dailyshift-hr.png" alt="Суточное смещение в безлёдный период меньше" width="1330" height="700" />
+<p class="caption">Суточное смещение в безлёдный период меньше</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]
+]
+---
+
+name: Hb9e98
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data)
+# [Результаты](#results).fg[]
+## [Суточный ход ](#H8c4a3) <span class="bullet bullet">[&#8226;](#H8c4a3)</span><span class="bullet bullet-active">[&#8226;](#Hb9e98)</span>.fg[].bg[]
+### [До берега](#Hc7d0b)
+### [Глубины и высоты ](#Hbd329)
+## [.pass[Морской лёд] ](#Hd073f)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+<span class="generation">Суточный ход</span> .parent[.grand[Результаты]]
+]
+
+.fixprecode[
+
+
+
+<p class="caption centered">t-Критерий Уэлча суточного смещения</p>
+
+|                   |493👩‍👦                                             |494👩‍👦                                             |495🙎                                               |627👩‍👧‍👦                                           |
+|:------------------|:---------------------------------------------------|:---------------------------------------------------|:---------------------------------------------------|:---------------------------------------------------|
+|.collar[493👩‍👦]   |**13.8** км/сут.<br>09/12-11/08<br>421/423 сут.     |09/13-10/04<br>379 сут.</br>14.9⚔15.2<br>p=0.78     |09/12-08/24<br>345 сут.</br>15.8⚔18.7<br>p**=0.01** |09/17-11/08<br>347 сут.</br>15.1⚔16.0<br>p=0.37     |
+|.collar[494👩‍👦]   |09/13-10/04<br>379 сут.</br>15.2⚔14.9<br>p=0.78     |**15.2** км/сут.<br>09/13-10/04<br>381/387 сут.     |09/13-08/24<br>346 сут.</br>16.5⚔18.7<br>p**=0.03** |09/17-10/04<br>310 сут.</br>16.3⚔15.8<br>p=0.65     |
+|.collar[495🙎]     |09/12-08/24<br>345 сут.</br>18.7⚔15.8<br>p**=0.01** |09/13-08/24<br>346 сут.</br>18.7⚔16.5<br>p**=0.03** |**17.6** км/сут.<br>08/20-08/24<br>370/370 сут.     |09/06-08/23<br>294 сут.</br>18.1⚔16.0<br>p**=0.05** |
+|.collar[627👩‍👧‍👦] |09/17-11/08<br>347 сут.</br>16.0⚔15.1<br>p=0.37     |09/17-10/04<br>310 сут.</br>15.8⚔16.3<br>p=0.65     |09/06-08/23<br>294 сут.</br>16.0⚔18.1<br>p**=0.05** |**15.7** км/сут.<br>09/06-11/08<br>355/429 сут.     |
+
+<span class="dontprint"> <span class="inset map250493">493👩‍👦</span>&nbsp;&nbsp;&nbsp;<span class="inset map250494">494👩‍👦</span>&nbsp;&nbsp;&nbsp;<span class="inset map250495">495🙎</span>&nbsp;&nbsp;&nbsp;<span class="inset map630627">627👩‍👧‍👦</span> </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]
+]
+---
+
+name: Hc7d0b
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data)
+# [Результаты](#results).fg[]
+## [Суточный ход ](#H8c4a3).fg[]
+### [До берега](#Hc7d0b).fg[].bg[]
+### [Глубины и высоты ](#Hbd329).bg[]
+## [.pass[Морской лёд] ](#Hd073f)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+<span class='outline generation'>Расстояние до берега</span> .parent[.grand[Суточный ход .grand[Результаты]]]
+]
+
+.fixprecode[
+
+
+
+<div class="figure" style="text-align: left">
+<img src="assets/daily-between-dist2land.png" alt="Отсечки: 1 км вглубь суши, береговая линия, 5 км акватории" width="1330" height="700" />
+<p class="caption">Отсечки: 1 км вглубь суши, береговая линия, 5 км акватории</p>
+</div>
+
+
+
+
+
+
+
+
+.formula[
+Pearson's product-moment correlation <br> `\(\rho(log(\text{daily}), log(|\text{dist2land}|))=0.43\)`, `\(p<0.001\)`.
+
+]
+
+
+
+]
+]
+---
+
+name: Hbd329
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data)
+# [Результаты](#results).fg[]
+## [Суточный ход ](#H8c4a3).fg[]
+### [До берега](#Hc7d0b).bg[]
+### [Глубины и высоты ](#Hbd329).fg[].bg[]
+## [.pass[Морской лёд] ](#Hd073f)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+<span class="generation">Глубины и высоты</span> .parent[.grand[Суточный ход .grand[Результаты]]]
+]
+
+.fixprecode[
+
+
+
+<div class="figure" style="text-align: left">
+<img src="assets/daily-between-gebco.png" alt="Отсечки: глубина 15 м, уровень моря, высота 10 м" width="1330" height="700" />
+<p class="caption">Отсечки: глубина 15 м, уровень моря, высота 10 м</p>
+</div>
+
+
+
+
+.formula[
+Pearson's product-moment correlation <br> `\(\rho(log(\text{daily}), \text{gebco})=-0.34\)`, `\(p<0.001\)`.
+]
+
+
+
+]
+]
+
+
+
+---
+
+name: Hd073f
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data)
+# [Результаты](#results).fg[]
+## [Суточный ход ](#H8c4a3)
+## [.pass[Морской лёд] ](#Hd073f).fg[]
+### [Ландшафты ](#Hd073f).fg[].bg[]
+### [Ландш.градиент](#Hbde20).bg[]
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h3.broad[
+<span class="generation">Ландшафты</span> .parent[.grand[.pass[Морской лёд] .grand[Результаты]]]
+]
+
+.fixprecode[
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="figure" style="text-align: left">
+<img src="assets/daily-icecategory-2024.png" alt="Предпочитаемые категории льда и суши" width="1330" height="700" />
+<p class="caption">Предпочитаемые категории льда и суши</p>
+</div>
+
+<span class="dontprint"> <span class="inset map250495">495🙎</span>&nbsp;&nbsp;&nbsp;<span class="inset map630627">627👩‍👧‍👦</span>&nbsp;&nbsp;&nbsp;<span class="inset map250493">493👩‍👦</span>&nbsp;&nbsp;&nbsp;<span class="inset map250494">494👩‍👦</span> </span>
+
+
+
+]
+]
+---
+
+name: Hbde20
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data)
+# [Результаты](#results).fg[]
+## [Суточный ход ](#H8c4a3)
+## [.pass[Морской лёд] ](#Hd073f).fg[]
+### [Ландшафты ](#Hd073f).bg[]
+### [Ландш.градиент](#Hbde20).fg[].bg[]
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+
+.header.h3.broad[
+<span class='outline generation'>Ландшафтный градиент</span> .parent[.grand[.pass[Морской лёд] .grand[Результаты]]]
+]
+
+.fixprecode[
+
+
+
+
+
+
+
+
+
+
+
+
+<img src="assets/icetype-between-CT81-edge01.png" alt="" width="1330" height="700" style="display: block; margin: auto auto auto 0;" />
+
+
+]
+]
+
+
+
+---
+
+name: H19294
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data)
+# [Результаты](#results)
+# [.pass[Обсуждение] ](#H19294).fg[]
+## [Ледовый сезон ](#H19294).fg[].bg[]
+## [Фенология ](#H9a26f).bg[]
+## [Моделирование](#maxent).bg[]
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+<span class="generation">Ледовый сезон</span> .parent[.grand[.pass[Обсуждение]]]
+]
+
+.fixprecode[
+
+
+
+
+
+
+
+<div class="figure" style="text-align: left">
+<img src="assets/icydays-natice-CT81.png" alt="foo bar" width="1330" height="700" />
+<p class="caption">Около 11 % .bbox[акватории] меньше полугода покрыто cплоченным льдом</p>
+</div>
+
+
+
+]
+]
+???
+
+
+Выражена зона припайного льда.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+name: H9a26f
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data)
+# [Результаты](#results)
+# [.pass[Обсуждение] ](#H19294).fg[]
+## [Ледовый сезон ](#H19294).bg[]
+## [Фенология ](#H9a26f).fg[].bg[]
+## [Моделирование](#maxent).bg[]
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+<span class="generation">Фенология</span> .parent[.grand[.pass[Обсуждение]]]
+]
+
+.fixprecode[
+
+
+
+<div class="figure" style="text-align: left">
+<img src="assets/hutuda1.png" alt="Перемещение самки белого медведя  в 2012 г., наложенное на фенологическую карту вскрытия ледового покрова <a name=cite-Rozhnov2017_hutuda_ru></a>([Рожнов и др., 2017](#bib)). Цветовая легенда единая для участков траектории и для фенокарты." width="1330" height="700" />
+<p class="caption">Перемещение самки белого медведя  в 2012 г., наложенное на фенологическую карту вскрытия ледового покрова <a name=cite-Rozhnov2017_hutuda_ru></a>(<a href='#bib'>Рожнов и др., 2017</a>). Цветовая легенда единая для участков траектории и для фенокарты.</p>
+</div>
+
+.pulling[
+.pull-left-70[
+]
+.pull-right-30[
+
+]
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]
+]
+---
+name: maxent
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data)
+# [Результаты](#results)
+# [.pass[Обсуждение] ](#H19294).fg[]
+## [Ледовый сезон ](#H19294).bg[]
+## [Фенология ](#H9a26f).bg[]
+## [Моделирование](#maxent).fg[].bg[]
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h2.broad[
+<span class="generation">Моделирование</span> .parent[.grand[.pass[Обсуждение]]]
+]
+
+.fixprecode[
+
+
+
+
+
+<div class="figure" style="text-align: left">
+<img src="assets/forecast-20250422-maxent.png" alt="Построение региональных моделей пригодности местообитаний белого медведя c использованием данных биотелеметрии" width="1330" height="490" />
+<p class="caption">Построение региональных моделей пригодности местообитаний белого медведя c использованием данных биотелеметрии</p>
+</div>
+
+Ковариаты на основе норвежских ледовых карт <span class="cite hovertext" data-hover="Ice Service charts"><a name=cite-cryometno></a>([Norwegian Ice Service, 2023](#bib))</span>.
+
+
+]
+]
+---
+
+name: Hc07f1
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro).bg[]
+# [Данные](#data).bg[]
+# [Результаты](#results).bg[]
+# [.pass[Обсуждение] ](#H19294).bg[]
+# [Выводы ](#Hc07f1).fg[].bg[]
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+.header.h1.broad[
+<span class="generation">Выводы</span>
+]
+
+.fixprecode[
+
+
+
++ Суточное смещение меньше в безлёдный период.
+
+
++ Наименьшее суточное смещение в километровой полосе береговой линии. Суточное смещение увеличивается при удалении 5 км и больше от берега
+
++ Наименьшее суточное смещение в береговой зоне с высотами до 10 м. На высотах до 250 м суточное смещение увеличивается. На глубинах более 15 метров значение суточного смещения высокое.
+
++ За период более 11 месяцев суточное смещение одиночной самки выше суточного смещения самок с детенышами. Достоверность такого отличия может быть принята по уровню 0.05.
+
+
+
+
+
+
+
+
+
+
+
+
++ Не отмечается приверженности кромки льда, как для белых медведей Баренцева моря
+
++ Не отмечается заходов белых медведей на лёд глубоководного бассейна
+
++ Продолжительность ледового сезона создает благоприятные условия для благополучия беломедвежьей субпопуляции Карсого моря
+
+
+
+
+]
+]
+---
+name: bib
+class: notable
+
+
+
+
+
+.notfootnote.small.scrollable.bibliography[
+.fixprecode[
+<div class="backtoshow"><a href="javascript:window.history.back();">↩</a></div>
+
+<a name=bib-Argos-filter></a>[Freitas, C., C. Lydersen, M. A. Fedak, and K. M. Kovacs](#bib) (2008). "A simple new algorithm to filter marine mammal Argos locations". In: _Marine Mammal Science_ 24.3, pp. 315-325. DOI: [10.1111/j.1748-7692.2007.00180.x](https://doi.org/10.1111%2Fj.1748-7692.2007.00180.x). 
+
+ <a name=bib-GEBCO_2025></a>[GEBCO Bathymetric Compilation Group](#bib) (2025). _The GEBCO_2025 Grid - a continuous terrain model for oceans and land at 15 arc-second intervals_. En. DOI: [10.5285/37C52E96-24EA-67CE-E063-7086ABC05F29](https://doi.org/10.5285%2F37C52E96-24EA-67CE-E063-7086ABC05F29). URL: [https://www.gebco.net/data-products-gridded-bathymetry-data/gebco2025-grid](https://www.gebco.net/data-products-gridded-bathymetry-data/gebco2025-grid) (visited on Oct. 06, 2025). 
+
+ <a name=bib-Jonsen2019></a>[Jonsen, I. D., C. R. McMahon, T. A. Patterson, M. Auger-Méthé, R. G. Harcourt, M. A. Hindell, and S. Bestley](#bib) (2019). "Movement responses to environment: fast inference of variation among southern elephant seals with a mixed effects model". In: _Ecology_ 100, p. e02566. DOI: [10.1002/ecy.2566](https://doi.org/10.1002%2Fecy.2566). 
+
+ <a name=bib-Jonsen2020></a>[Jonsen, I. D., T. A. Patterson, D. P. Costa, P. D. Doherty, B. J. Godley, W. J. Grecian, C. Guinet, X. Hoenner, S. S. Kienle, P. W. Robinson, S. C. Votier, S. Whiting, M. J. Witt, M. A. Hindell, R. G. Harcourt, and C. R. McMahon](#bib) (2020). "A continuous-time state-space model for rapid quality-control of Argos locations from animal-borne tags". In: _Movement Ecology_ 8, p. 31. DOI: [10.1186/s40462-020-00217-7](https://doi.org/10.1186%2Fs40462-020-00217-7). 
+
+ <a name=bib-cryometno></a>[Norwegian Ice Service](#bib) (2023). _Ice Service charts_. URL: [https://cryo.met.no/en/latest-ice-charts](https://cryo.met.no/en/latest-ice-charts) (visited on May. 10, 2023). 
+
+ <a name=bib-OpenStreetMapData></a>[Topf, J. and C. Hormann](#bib) (2025). _Data Derived from OpenStreetMap for Download_. Under the Open Database License "ODbL" by the OpenStreetMap Foundation. Large simplified polygons not split. Updated 2025-02-14T11:51. URL: [https://osmdata.openstreetmap.de/data/land-polygons.html](https://osmdata.openstreetmap.de/data/land-polygons.html) (visited on Feb. 14, 2025). 
+
+ <a name=bib-USNIC_MIZ></a>[US NIC](#bib) (2022). _Daily Arctic Marginal Ice Zone (MIZ) and Overlay Shapefile_. URL: [https://usicecenter.gov/Products/ArcticData](https://usicecenter.gov/Products/ArcticData) (visited on Apr. 05, 2022). 
+
+ <a name=bib-Rozhnov2017_hutuda_ru></a>[Рожнов, В., Н. Платонов, С. Найденко, И. Мордвинцев, and Е. Иванов](#bib) (2017). "Перемещение самки белого медведя в Карском море в период летнего таяния льда". In: _Доклады Академии наук_, pp. 359-363. DOI: [10.7868/S0869565217030276](https://doi.org/10.7868%2FS0869565217030276). 
+
+ <a name=bib-Sorokin2023></a>[Сорокин, П., Е. Звычайная, Е. Иванов, И. Мизин, И. Мордвинцев, Н. Платонов, А. Исаченко, Р. Лазарева, and В. Рожнов](#bib) (2023). "Генетическая структура популяции белого медведя (_Ursus maritimus_) в морях российской Арктики". In: _Генетика_ 59.12, p. 1393–1406. DOI: [10.31857/S0016675823120123](https://doi.org/10.31857%2FS0016675823120123).
+
+]
+]
+
+
+---
+name: beforefinalizing
+name: atlas
+
+.toc.sidebar.left-column[
+.outline[
+# [Актуальность](#intro)
+# [Данные](#data)
+# [Результаты](#results)
+# [.pass[Обсуждение] ](#H19294)
+# [Выводы ](#Hc07f1)
+]
+]
+.toc.mainbar.right-column.scrollable[
+
+
+
+
+
+
+.pulling[
+.pull-left-65[
+
+ ### Благодарности
+
++ **ПАО «НК «Роснефть»**
+
++ **ООО «РН-Ванкор»**
+
++ Экипажи вертолётов UTair
+
++ Компания «Эс-Пас»
+
++ Заповедник «Большой Арктический»
+
++ Администрация п.г.т. Дикcон
+
+
+]
+.pull-right-35[
+
+.alltogether[
+<img src="assets/rosneft-alltogether.png" alt="" width="1330" height="700" notinvertable style="display: block; margin: auto auto auto 0;" />
+]
+
+]
+]
+
+.footer[
+Разрешения Росприроднадзора на добывание объектов животного мира, занесенных в Красную книгу РФ: № 013 от 06.03.2024 и № 002 от 04.03.2024, № Р027-00113-77/01894740 от 20.02.2025 и № Р074-00113-77/01894667 от 20.02.2025.
+Этические стандарты в соответствии с протоколами № 37 от 25 мая 2020 г. и № 37а от 19 марта 2024 г. Комитета по этике ИПЭЭ РАН.
+Обеспечение данных в п.г.т. Диксон: Анна Быкова, Борис Соловьёв, Дарья Кузнецова, Полина Ильина, Иван Котлов, Хосе Антонио Фернандес-Бланко.
+Утилита для получения данных Argos: Дмитрий Сальман.
+Фотографии по проекту «Тамура»: Денис Зыбин
+]
+
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://nplatonov.github.io/site_libs/remark.js/remark-latest.min.js"></script>
+<script src="https://nplatonov.github.io/site_libs/moon_reader-before.js"></script>
+<script>var slideshow = remark.create({
+  "countIncrementalSlides": false,
+  "slideNumberFormat": "<div class=\"custom-slide-number\" data-total=\"%total%\" data-current=\"%current%\"></div>",
+  "ratio": "16:9",
+  "navigation": {
+    "scroll": true,
+    "click": false,
+    "touch": true
+  },
+  "highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<link href="https://nplatonov.github.io/site_libs/countdown-0.6.0/countdown.css" rel="stylesheet" />
+<script src="https://nplatonov.github.io/site_libs/countdown-0.6.0/countdown.js"></script>
+<countdown-timer blink-colon="true" class="countdown" id="timer_d2e5337e" minutes="10" seconds="00" style="right:0;bottom:0;--countdown-margin:0.2em 0.2em;--countdown-padding:0.2em;--countdown-font-size:2.25vh;--countdown-border-width:1px;--countdown-border-radius:5px;--countdown-color-border:#dddddd20;--countdown-color-background:#E5E5FF90;--countdown-color-text:#0004;--countdown-color-running-background:#E5E5E590;--countdown-color-finished-background:#F0412490;--countdown-color-warning-background:#F6E2A990;--countdown-color-running-text:#363636FF;--countdown-color-finished-text:#4A0900FF;--countdown-color-warning-text:#403502FF; z-index:100" tabindex="0" update-every="15" warn-when="120"></countdown-timer>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://nplatonov.github.io/site_libs/mathjax-local/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+<script src="https://nplatonov.github.io/site_libs/moon_reader-after.js"></script>
+
+  </body>
+</html>
