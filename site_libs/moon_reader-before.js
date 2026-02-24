@@ -221,7 +221,8 @@ function adjustImageSize(beforeFont = true) {
       const imageList = scroller.querySelectorAll('img:not([untouchable]), :not(.inline) zimg, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
       multi = Object.keys(imageList).length > 1
       console.log(Object.keys(imageList).length)
-      const columns = scroller.querySelector('.pulling, .double, .grid');
+      const columns = scroller.querySelector('.pulling, .double, .grid, .adjust-width, .row');
+      const adjustWidths = Boolean(scroller.querySelector('.adjust-width'));
      // if (columns)
      //    console.log("columns:",Object.keys(columns).length);
      // console.log("multi:",Object.keys(imageList).length,"raw:", multi);
@@ -229,13 +230,25 @@ function adjustImageSize(beforeFont = true) {
          let fontStyle = "";
         // console.log("Multiple images or multiple columns");
          const predefinedHeights = Array.from(imageList).map(image => image.offsetHeight);
-         imageList.forEach((image) => {
-            if (true & multi) // `| multi`
-               image.style.height = '700px';
-            else
-               image.style.height = '';
-            return;
-         });
+         const predefinedWidths = Array.from(imageList).map(image => image.offsetWidth);
+         if (!adjustWidths) {
+            imageList.forEach((image) => {
+               if (true & multi) // `| multi`
+                  image.style.height = '700px';
+               else
+                  image.style.height = '';
+               return;
+            });
+         }
+         else {
+            imageList.forEach((image) => {
+               if (true & multi) // `| multi`
+                  image.style.width = '1300px';
+               else
+                  image.style.width = '';
+               return;
+            });
+         }
          const container = scroller.querySelector('.fixprecode');
          if (afterFont) {
             if (!container) {
@@ -245,7 +258,7 @@ function adjustImageSize(beforeFont = true) {
             else {
                if (hasVerticalScrollbar(scroller)) {
                   fontStyle = container.style.fontSize;
-                  container.style.fontSize = "10%";
+                 // container.style.fontSize = "10%";
                }
             }
          }
@@ -259,6 +272,8 @@ function adjustImageSize(beforeFont = true) {
          var k;
          var imageHeight;
          var imageWidth;
+        // if (afterFont)
+        //    return;
          if (false) {
             while (hasVerticalScrollbar(scroller)) {
                k = k * 0.99;
@@ -287,35 +302,76 @@ function adjustImageSize(beforeFont = true) {
             return;
          }
          let originalHeights = Array.from(imageList).map(image => image.offsetHeight);
+         let originalWidths = Array.from(imageList).map(image => image.offsetWidth);
          let heights = [...originalHeights]; // Start with the original heights
+         let widths = [...originalWidths]; // Start with the original widths
          let kset=Array.from(imageList).map(image => 0);
+         if (adjustWidths) {
+            imageList.forEach(image => {
+               image.style.height = `unset`;
+            });
+         }
          imageList.forEach((image, index) => {
             const originalHeight = image.offsetHeight;
-            image.style.height = `${originalHeight * 0.99}px`;
-            Array.from(imageList).forEach((otherImage, otherIndex) => {
-               if (otherIndex !== index) {
-                  otherImage.style.height = '20px';
-               }
-            });
+            const originalWidth = image.offsetWidth;
+            if (!adjustWidths) {
+               image.style.height = `${originalHeight * 0.99}px`;
+               Array.from(imageList).forEach((otherImage, otherIndex) => {
+                  if (otherIndex !== index) {
+                        otherImage.style.height = '20px';
+                  }
+               });
+            }
+            else {
+               image.style.width = `${originalWidth * 0.99}px`;
+               Array.from(imageList).forEach((otherImage, otherIndex) => {
+                  if (otherIndex !== index) {
+                        otherImage.style.width = '20px';
+                  }
+               });
+            }
             k = 1;
             while (hasVerticalScrollbar(scroller)) {
                k = k * 0.995;
                if (k < minScale)
                   break;
               // imageHeight = Math.floor(image.offsetHeight * 0.995);
-               imageHeight = Math.floor(originalHeights[index] * k);
-               image.style.height = `${imageHeight}px`;
+               if (!adjustWidths) {
+                  imageHeight = Math.floor(originalHeights[index] * k);
+                  image.style.height = `${imageHeight}px`;
+               }
+               else {
+                  imageWidth = Math.floor(originalWidths[index] * k);
+                  image.style.width = `${imageWidth}px`;
+               }
               // console.log([k, imageHeight, originalHeights[index]]);
             }
-            heights[index] = image.offsetHeight;
+            if (!adjustWidths)
+               heights[index] = image.offsetHeight;
+            else
+               widths[index] = image.offsetWidth;
             kset[index] = k;
-            Array.from(imageList).forEach((restoreImage, restoreIndex) => {
-               restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
+            if (!adjustWidths) {
+               Array.from(imageList).forEach((restoreImage, restoreIndex) => {
+                  restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
+               });
+            }
+            else {
+               Array.from(imageList).forEach((restoreImage, restoreIndex) => {
+                  restoreImage.style.width = `${originalWidths[restoreIndex]}px`;
+               });
+            }
+         });
+         if (!adjustWidths) {
+            imageList.forEach((image, index) => {
+               image.style.height = `${heights[index]}px`;
             });
-         });
-         imageList.forEach((image, index) => {
-            image.style.height = `${heights[index]}px`;
-         });
+         }
+         else {
+            imageList.forEach((image, index) => {
+               image.style.width = `${widths[index]}px`;
+            });
+         }
         // console.log(kset);
          if (beforeFont) {
             if (kset.some(x => x<minScale)) {
@@ -324,7 +380,11 @@ function adjustImageSize(beforeFont = true) {
                return;
             }
          }
-         const success = heights.some((height, index) => height < 0.5 * originalHeights[index])
+         let success;
+         if (!adjustWidths)
+            success = heights.some((height, index) => height < 0.5 * originalHeights[index])
+         else
+            success = widths.some((width, index) => width < 0.5 * originalWidths[index])
          if (success && !hasVerticalScrollbar(scroller)) {
             scroller.classList.remove(removableClass)
             imageList.forEach(image => {
@@ -336,9 +396,16 @@ function adjustImageSize(beforeFont = true) {
            // console.log("predefinedHeights:",predefinedHeights);
            // console.log("resettedHeights:",originalHeights);
            // console.log("modifiedHeights:",heights);
-            Array.from(imageList).forEach((restoreImage, restoreIndex) => {
-               restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
-            });
+            if (!adjustWidths) {
+               Array.from(imageList).forEach((restoreImage, restoreIndex) => {
+                  restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
+               });
+            }
+            else {
+               Array.from(imageList).forEach((restoreImage, restoreIndex) => {
+                  restoreImage.style.width = `${originalWidths[restoreIndex]}px`;
+               });
+            }
             k = 1;
             while (hasVerticalScrollbar(scroller)) {
                if (false) {
@@ -351,20 +418,41 @@ function adjustImageSize(beforeFont = true) {
                   if (k>200)
                      break;
                }
-               imageList.forEach(image => {
-                 // aspectRatio = image.naturalWidth / image.naturalHeight;
-                 // newWidth = availableHeight * aspectRatio * 1;
-                 // newHeight = availableHeight;
-                 // imageHeight = Math.floor(image.naturalHeight * k);
-                  imageHeight = Math.floor(image.offsetHeight * 0.99);
-                 // console.log(imageHeight);
-                 // newWidth = image.naturalWidth * k;
-                 // const aspectRatio = image.naturalWidth / image.naturalHeight;
-                  image.style.height = `${imageHeight}px`;
-                 // console.log(k,imageHeight,image.offsetHeight);
-               })
+               if (afterFont)
+                  container.style.fontSize = "60%";
+               if (!adjustWidths) {
+                  imageList.forEach(image => {
+                    // aspectRatio = image.naturalWidth / image.naturalHeight;
+                    // newWidth = availableHeight * aspectRatio * 1;
+                    // newHeight = availableHeight;
+                    // imageHeight = Math.floor(image.naturalHeight * k);
+                     imageHeight = Math.floor(image.offsetHeight * 0.99);
+                    // console.log(imageHeight);
+                    // newWidth = image.naturalWidth * k;
+                    // const aspectRatio = image.naturalWidth / image.naturalHeight;
+                     image.style.height = `${imageHeight}px`;
+                    // console.log(k,imageHeight,image.offsetHeight);
+                  })
+               }
+               else {
+                  imageList.forEach(image => {
+                     imageWidth = Math.floor(image.offsetWidth * 0.99);
+                     image.style.width = `${imageWidth}px`;
+                  })
+               }
+               if (afterFont) {
+                  container.style.fontSize = fontStyle;
+                 // scroller.classList.remove(removableClass);
+                 // scroller.classList.add(removableClass);
+               }
             }
-           // console.log('k=' + k + ', ' + 'height=' + imageHeight);
+            console.log('k=' + k + ', height=' + imageHeight + ', width=' + imageWidth);
+            if (afterFont) {
+               console.log(fontStyle)
+              // scroller.classList.remove(removableClass);
+              // scroller.classList.add(removableClass);
+               return;
+            }
             if (k>200) {
                Array.from(imageList).forEach((restoreImage, restoreIndex) => {
                  // restoreImage.style.height = `${originalHeights[restoreIndex]}px`;
@@ -707,7 +795,7 @@ function adjustFontSize() {
      // container.setAttribute('style', `font-size: ${(fontSize).toFixed(2)}%;`);
      // container.style.fontSize = `150%`;
       container.style.fontSize = `${(fontSize).toFixed(2)}%`;
-      if (fontSize == 100)
+      if (fontSize >= 100)
          container.style.fontSize = '';
      // console.log(count + ': ' + fontSize);
       return;

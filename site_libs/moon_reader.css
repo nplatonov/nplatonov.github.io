@@ -1170,6 +1170,14 @@ ul {
    font-family: var(--font-condensed);
    padding-top: 0em;
 }
+.metadata .footer {
+   position: revert;
+   margin-top: 2em;
+   width: revert;
+}
+.metadata .footer p {
+   line-height: 1.2 !important;
+}
 :is(.mainbar.broad, .notable) .footer {
    left: calc(21px + var(--sidebar-narrow));
    width: calc(100% - 26px - var(--sidebar-narrow));
@@ -2496,7 +2504,7 @@ a[href="#fn"] .hovertext:before {
 .mainbar:not(.scale):not(.broad) > .header.broad {
    font-size: calc(var(--pointsize) * 0.4);
    right: 2px;
-   top: -1.3em;	
+   top: -1.35em;	
    text-align: right;
    display: block ruby;
    position: relative;
@@ -2919,11 +2927,12 @@ blockquote p:last-of-type {
 }
 .outline::after, .fixprecode::after, img::after { /* :hover::after */
    content: attr(style);
-   opacity: 0.3 !important;
-   font-size: 12px;
+   opacity: 0.2 !important;
+   font-size: 10px;
    display: block;
    position: fixed;
-   top: -22px;
+   bottom: -10px;
+   right: 0px !important;
 }
 .outline::after {
    left: 3px;
