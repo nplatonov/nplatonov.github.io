@@ -152,9 +152,12 @@ function hasVerticalScrollbar(element, verbose = false) {
    const footer = element.querySelector('.footer');
    if (!footer)
       return (element.scrollHeight > element.clientHeight);
+   const footerWidth = footer.offsetWidth;
    footer.style.position = "static";
+   footer.style.width = "100%";
    const ret = element.scrollHeight > element.clientHeight;
-   footer.style.position = "fixed";
+   footer.style.position = ``;
+   footer.style.width = ``;
    return ret;
 }
 function hasHorizontalScrollbar(element, verbose = false) {
@@ -265,6 +268,15 @@ function adjustImageSize(beforeFont = true) {
          if (!hasVerticalScrollbar(scroller)) {
             scroller.classList.remove(removableClass);
             return;
+         }
+         if (afterFont) {
+            const footer = scroller.querySelector('.footer');
+            if (footer) {
+               const footerWidth = footer.offsetWidth;
+               console.log('footer ' + footerWidth);
+               footer.style.position = "static";
+               footer.style.width = "100%";
+            }
          }
         // alert('scroller scrollHeight=' + scroller.scrollHeight +' clientHeight='+scroller.clientHeight);
         // alert('slide scrollHeight=' + slide.scrollHeight +' clientHeight='+slide.clientHeight);
@@ -488,7 +500,6 @@ function adjustImageSize(beforeFont = true) {
            // console.log("resultingHeights:",Array.from(imageList).map(image => image.offsetHeight));
             return;
          }
-         console.log('ready');
          return;
       }
       let req = 'iframe:not(.ursa-widgetize), .framed:has(> iframe), .html-widget';
