@@ -789,8 +789,12 @@ a:hover {
   /* color: var(--dark);*/
   /* text-decoration: underline dotted color-mix(in srgb, var(--dark), transparent 60%);*/
   /* text-decoration: underline 1px dotted var(--dark);*/
-   text-decoration: none;
-   border-bottom: 2px dotted color-mix(in srgb, var(--light), transparent 60%);
+  /* text-decoration: revert !important;*/
+   text-decoration: underline 0.08em dotted color-mix(in srgb, var(--dark), transparent 70%);
+  /* border-bottom: 2px dotted color-mix(in srgb, var(--light), transparent 60%);*/
+}
+.break:not(.inverse) a {
+   text-decoration: underline 0.09em dotted color-mix(in srgb, var(--light), transparent 40%);
 }
 a:hover {
   /* opacity: 0.6;*/
@@ -1115,7 +1119,7 @@ ul {
 .scroll,
 .scrollable,
 .mainbar > .oversize { /* .mainbar:not[.break] */
-   height: 680px; /* 682/671 675 671 656px; */
+   height: 673px; /* 680/682/671 675 671 656px; */
    width: calc(100% + 7px);
    overflow-y: auto; 
    overflow-x: auto;
@@ -2736,6 +2740,7 @@ blockquote p:last-of-type {
 }
 .inverse a {
    text-decoration-color: color(srgb 1 1 1 / 0.3) !important;
+  /* text-decoration-color: color-mix(in srgb, red, transparent 85%);*/
 }
 .grid {
    display: grid;
