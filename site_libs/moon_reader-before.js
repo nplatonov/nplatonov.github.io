@@ -222,8 +222,8 @@ function adjustImageSize(beforeFont = true) {
      //    return;
      // }
       const imageList = scroller.querySelectorAll('img:not([untouchable]), :not(.inline) zimg, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
-      multi = Object.keys(imageList).length > 1
-      console.log(Object.keys(imageList).length)
+      const imageCount = Object.keys(imageList).length;
+      multi = imageCount > 1
       const columns = scroller.querySelector('.pulling, .double, .grid, .adjust-width, .row');
       const adjustWidths = Boolean(scroller.querySelector('.adjust-width'));
      // if (columns)
@@ -266,7 +266,8 @@ function adjustImageSize(beforeFont = true) {
             }
          }
          if (!hasVerticalScrollbar(scroller)) {
-            scroller.classList.remove(removableClass);
+            if ((beforeFont)&&(imageCount>0))
+               scroller.classList.remove(removableClass);
             return;
          }
          if (afterFont) {
@@ -430,8 +431,10 @@ function adjustImageSize(beforeFont = true) {
                   if (k>200)
                      break;
                }
-               if (afterFont)
-                  container.style.fontSize = "60%";
+               if (afterFont) {
+                  if (container)
+                     container.style.fontSize = "60%";
+               }
                if (!adjustWidths) {
                   imageList.forEach(image => {
                     // aspectRatio = image.naturalWidth / image.naturalHeight;
@@ -453,7 +456,8 @@ function adjustImageSize(beforeFont = true) {
                   })
                }
                if (afterFont) {
-                  container.style.fontSize = fontStyle;
+                  if (container)
+                     container.style.fontSize = fontStyle;
                  // scroller.classList.remove(removableClass);
                  // scroller.classList.add(removableClass);
                }
@@ -552,9 +556,9 @@ function adjustImageSize(beforeFont = true) {
       let changableHeight = availableHeight;
       if (!false) {
          let keepHeight = image.offsetHeight;
-         console.log(keepHeight);
-         console.log(availableHeight);
-         console.log(image.naturalHeight);
+        // console.log(keepHeight);
+        // console.log(availableHeight);
+        // console.log(image.naturalHeight);
          if (!frame) {
             image.style.height = 'unset';
             image.style.width = 'unset'; // 20260106 '100%' aligns to the center
@@ -641,7 +645,7 @@ function adjustImageSize(beforeFont = true) {
          newHeight = Math.floor(newHeight);
          image.style.height = `${newHeight}px`;
       }
-      console.log(newHeight);
+     // console.log(newHeight);
       if (isAlert)
          alert('changableHeight: ' + changableHeight);
       // alert(availableHeight);
@@ -690,6 +694,7 @@ function adjustFontSize() {
       if (!scroller) {
          return;
       }
+     // console.log(scroller);
       const container = slide.querySelector('.fixprecode');
       if (!container) {
          scroller.classList.remove(removableClass);
@@ -703,7 +708,7 @@ function adjustFontSize() {
       }
      // const within = scroller.querySelector('.within');
       const within = container.querySelectorAll('.within').length > 0
-     // console.log(scroller.parentNode);
+      const withincontent = container.querySelectorAll('.within');
      // container.setAttribute('style', `font-size: 100%;`);
       if (!hasScrollbar(scroller,within)) {
          scroller.classList.remove(removableClass);
