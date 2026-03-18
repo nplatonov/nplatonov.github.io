@@ -37,8 +37,9 @@
   }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -49,7 +50,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -175,7 +176,7 @@ div.csl-indent {
 <h3 class="subtitle">ГИС технологии в биологических исследованиях</h3>
 <h4 class="author">Никита Платонов</h4>
 <address class="author_afil">
-с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Тема 01</span> <span class="when"> <span class="updated">Обновлено: 2026-02-14 10:45</span></span></h4>
+с.н.с. ИПЭЭ РАН</address><br><h4 class="date"><span class="what">Тема 01</span> <span class="when"> <span class="updated">Обновлено: 2026-03-18 15:05</span></span></h4>
 
 
 <div id="TOC">
@@ -240,7 +241,7 @@ div.csl-indent {
 </div>
 
 <!--
-# К 20 февраля {#offline}
+# К  {#offline}
 -->
 <div id="data" class="section level2">
 <h2>Данные</h2>
@@ -342,7 +343,7 @@ div.csl-indent {
 <div id="soft-qgis-plugins" class="section level4">
 <h4>Расширения</h4>
 <p><a href="https://plugins.qgis.org/" class="uri">https://plugins.qgis.org/</a></p>
-<iframe src="https://plugins.qgis.org/plugins/?sort=-downloads" width="646.08" height="400px" data-external="1">
+<iframe src="https://plugins.qgis.org/plugins/?sort=downloads&order=desc" width="646.08" height="400px" data-external="1">
 </iframe>
 <div id="quickmapservices" class="section level5">
 <h5>QuickMapServices</h5>
@@ -364,7 +365,7 @@ div.csl-indent {
 <p><a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>.</p>
 <p>Выбираем работающее <a href="https://mirror.truenetwork.ru/CRAN//mirrors.html">зеркало</a> (mirror) – сервер для скачивания.
 Возможно, повезёт найти работающее с приемлемой скоростью загрузки данных.
-На 14 февраля 2026 г., возможно, это <a href="https://mirror.truenetwork.ru/CRAN/" class="uri">https://mirror.truenetwork.ru/CRAN/</a>.</p>
+На 18 марта 2026 г., возможно, это <a href="https://mirror.truenetwork.ru/CRAN/" class="uri">https://mirror.truenetwork.ru/CRAN/</a>.</p>
 <iframe src="https://mirror.truenetwork.ru/CRAN/" width="646.08" height="400px" data-external="1">
 </iframe>
 <div id="ядро-1" class="section level4">
@@ -500,14 +501,14 @@ div.csl-indent {
 <p>Ниже приведен скрипт, который проверяет, установлены ли требуемые пакеты и при необходимости их устанавливает.</p>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">exists</span>(<span class="st">&quot;CRAN&quot;</span>))</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>   CRAN <span class="ot">&lt;-</span> <span class="st">&quot;https://mirror.truenetwork.ru/CRAN&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>   CRAN <span class="ot"><-</span> <span class="st">&quot;https://mirror.truenetwork.ru/CRAN&quot;</span></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>CRAN</span></code></pre></div>
 <pre><code>[1] &quot;https://mirror.truenetwork.ru/CRAN/&quot;</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>pkgList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;png&quot;</span>,<span class="st">&quot;mapview&quot;</span>,<span class="st">&quot;tmap&quot;</span>,<span class="st">&quot;sf&quot;</span>,<span class="st">&quot;terra&quot;</span>,<span class="st">&quot;adehabitatLT&quot;</span>,<span class="st">&quot;readxl&quot;</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>pkgList <span class="ot"><-</span> <span class="fu">c</span>(<span class="st">&quot;png&quot;</span>,<span class="st">&quot;mapview&quot;</span>,<span class="st">&quot;tmap&quot;</span>,<span class="st">&quot;sf&quot;</span>,<span class="st">&quot;terra&quot;</span>,<span class="st">&quot;adehabitatLT&quot;</span>,<span class="st">&quot;readxl&quot;</span></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>            ,<span class="st">&quot;tidyr&quot;</span>,<span class="st">&quot;lwgeom&quot;</span>,<span class="st">&quot;geosphere&quot;</span>,<span class="st">&quot;ggstatsplot&quot;</span>,<span class="st">&quot;ursa&quot;</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>repos <span class="ot">&lt;-</span> CRAN <span class="do">## &quot;https://cloud.r-project.org/&quot;</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>type <span class="ot">&lt;-</span> <span class="cf">if</span> (.Platform<span class="sc">$</span>OS.type<span class="sc">==</span><span class="st">&quot;windows&quot;</span>) <span class="st">&quot;binary&quot;</span> <span class="cf">else</span> <span class="fu">getOption</span>(<span class="st">&quot;pkgType&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>available <span class="ot">&lt;-</span> <span class="fu">sapply</span>(pkgList,<span class="cf">function</span>(pkg) {</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>repos <span class="ot"><-</span> CRAN <span class="do">## &quot;https://cloud.r-project.org/&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>type <span class="ot"><-</span> <span class="cf">if</span> (.Platform<span class="sc">$</span>OS.type<span class="sc">==</span><span class="st">&quot;windows&quot;</span>) <span class="st">&quot;binary&quot;</span> <span class="cf">else</span> <span class="fu">getOption</span>(<span class="st">&quot;pkgType&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>available <span class="ot"><-</span> <span class="fu">sapply</span>(pkgList,<span class="cf">function</span>(pkg) {</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>   <span class="cf">if</span> (<span class="fu">requireNamespace</span>(pkg))</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">TRUE</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>   <span class="fu">install.packages</span>(pkg,<span class="at">repos=</span>repos,<span class="at">type=</span>type)</span>
@@ -620,14 +621,9 @@ package &#39;tidyselect&#39; successfully unpacked and MD5 sums checked
 package &#39;vctrs&#39; successfully unpacked and MD5 sums checked
 package &#39;tidyr&#39; successfully unpacked and MD5 sums checked</code></pre>
 <pre><code>package &#39;geosphere&#39; successfully unpacked and MD5 sums checked</code></pre>
-<pre><code>package &#39;xts&#39; successfully unpacked and MD5 sums checked
-package &#39;TTR&#39; successfully unpacked and MD5 sums checked
-package &#39;quadprog&#39; successfully unpacked and MD5 sums checked
-package &#39;quantmod&#39; successfully unpacked and MD5 sums checked
-package &#39;fracdiff&#39; successfully unpacked and MD5 sums checked
+<pre><code>package &#39;fracdiff&#39; successfully unpacked and MD5 sums checked
 package &#39;lmtest&#39; successfully unpacked and MD5 sums checked
 package &#39;timeDate&#39; successfully unpacked and MD5 sums checked
-package &#39;tseries&#39; successfully unpacked and MD5 sums checked
 package &#39;urca&#39; successfully unpacked and MD5 sums checked
 package &#39;zoo&#39; successfully unpacked and MD5 sums checked
 package &#39;rbibutils&#39; successfully unpacked and MD5 sums checked
@@ -638,9 +634,9 @@ package &#39;forecast&#39; successfully unpacked and MD5 sums checked
 package &#39;modelr&#39; successfully unpacked and MD5 sums checked
 package &#39;microbenchmark&#39; successfully unpacked and MD5 sums checked
 package &#39;SparseM&#39; successfully unpacked and MD5 sums checked
+package &#39;Rdpack&#39; successfully unpacked and MD5 sums checked
 package &#39;minqa&#39; successfully unpacked and MD5 sums checked
 package &#39;nloptr&#39; successfully unpacked and MD5 sums checked
-package &#39;Rdpack&#39; successfully unpacked and MD5 sums checked
 package &#39;broom&#39; successfully unpacked and MD5 sums checked
 package &#39;numDeriv&#39; successfully unpacked and MD5 sums checked
 package &#39;doBy&#39; successfully unpacked and MD5 sums checked
