@@ -794,8 +794,14 @@ a:hover {
    text-decoration: underline 0.08em dotted color-mix(in srgb, var(--dark), transparent 70%);
   /* border-bottom: 2px dotted color-mix(in srgb, var(--light), transparent 60%);*/
 }
-.break:not(.inverse) a {
-   text-decoration: underline 0.09em dotted color-mix(in srgb, var(--light), transparent 40%);
+.break:not(.inverse) a,
+.break.inverse a,
+.notable.blackout a {
+   text-decoration: underline 0.08em dotted color-mix(in srgb, var(--light), transparent 40%);
+}
+.break.inverse a:hover,
+.notable.blackout a:hover {
+   text-decoration: none;
 }
 a:hover {
   /* opacity: 0.6;*/
@@ -2099,8 +2105,11 @@ table tr th:empty {
 .h640 {height: 640px !important;}
 .h635 {height: 635px !important;}
 .h630 {height: 630px !important;}
-.vingettonly, .notremark, .exclude {
+.vingettonly, .notremark, .zzzexclude {
    display: none;
+}
+.remark-slide-container:has( > .remark-slide-scaler > .remark-slide > .remark-slide-content.exclude) {
+   display: none !important;
 }
 @media only screen and (min-width: 162vh) {
    .remark-slide {
