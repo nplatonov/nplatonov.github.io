@@ -188,7 +188,7 @@ function adjustImageSize(beforeFont = true) {
   // console.log('before font = ',beforeFont,'after font = ',afterFont);
    const startTime = performance.now();
    // Функция для проверки наличия вертикальной прокрутки
-   const slideList = document.querySelectorAll('.remark-slide-scaler');
+   const slideList = document.querySelectorAll('.remark-slides-area > .remark-slide-container > .remark-slide-scaler');
    let counter=0;
    var multi;
    const minScale=0.1;
@@ -221,6 +221,9 @@ function adjustImageSize(beforeFont = true) {
         // scroller.classList.add('imageresized')
      //    return;
      // }
+      const panelset = scroller.querySelector('.panelset');
+      if (panelset)
+         return;
       const imageList = scroller.querySelectorAll('img:not([untouchable]), :not(.inline) zimg, iframe:not(.ursa-widgetize), .framed:has(> iframe)');
       const imageCount = Object.keys(imageList).length;
       multi = imageCount > 1
@@ -233,6 +236,9 @@ function adjustImageSize(beforeFont = true) {
          let fontStyle = "";
         // console.log("Multiple images or multiple columns");
          const predefinedHeights = Array.from(imageList).map(image => image.offsetHeight);
+        // const firstHeight = predefinedHeights[0];
+        // predefinedHeights = predefinedHeights.map(h => h === 0 ? firstHeight : h);
+        // console.log(predefinedHeights);
          const predefinedWidths = Array.from(imageList).map(image => image.offsetWidth);
          if (!adjustWidths) {
             imageList.forEach((image) => {
@@ -314,7 +320,10 @@ function adjustImageSize(beforeFont = true) {
             }
             return;
          }
-         let originalHeights = Array.from(imageList).map(image => image.offsetHeight);
+         const originalHeights = Array.from(imageList).map(image => image.offsetHeight);
+        // const height0 = originalHeights[0];
+        // originalHeights = originalHeights.map(h => h === 0 ? height0 : h);
+        // console.log(originalHeights);
          let originalWidths = Array.from(imageList).map(image => image.offsetWidth);
          let heights = [...originalHeights]; // Start with the original heights
          let widths = [...originalWidths]; // Start with the original widths
@@ -395,9 +404,12 @@ function adjustImageSize(beforeFont = true) {
          }
          let success;
          if (!adjustWidths)
-            success = heights.some((height, index) => height < 0.5 * originalHeights[index])
+            success = !heights.some((height, index) => height < 0.5 * originalHeights[index])
          else
-            success = widths.some((width, index) => width < 0.5 * originalWidths[index])
+            success = !widths.some((width, index) => width < 0.5 * originalWidths[index])
+        // console.log(originalHeights);
+        // console.log(heights);
+        // console.log(success);
          if (success && !hasVerticalScrollbar(scroller)) {
             scroller.classList.remove(removableClass)
             imageList.forEach(image => {
@@ -407,7 +419,7 @@ function adjustImageSize(beforeFont = true) {
          else { // trying proportional decreasing
            // console.log(index,"proportional");
            // console.log("predefinedHeights:",predefinedHeights);
-           // console.log("resettedHeights:",originalHeights);
+            console.log("resettedHeights:",originalHeights);
            // console.log("modifiedHeights:",heights);
             if (!adjustWidths) {
                Array.from(imageList).forEach((restoreImage, restoreIndex) => {
@@ -436,7 +448,8 @@ function adjustImageSize(beforeFont = true) {
                      container.style.fontSize = "60%";
                }
                if (!adjustWidths) {
-                  imageList.forEach(image => {
+                 // console.log(adjustWidths,k);
+                  imageList.forEach((image,i) => {
                     // aspectRatio = image.naturalWidth / image.naturalHeight;
                     // newWidth = availableHeight * aspectRatio * 1;
                     // newHeight = availableHeight;
@@ -446,7 +459,7 @@ function adjustImageSize(beforeFont = true) {
                     // newWidth = image.naturalWidth * k;
                     // const aspectRatio = image.naturalWidth / image.naturalHeight;
                      image.style.height = `${imageHeight}px`;
-                    // console.log(k,imageHeight,image.offsetHeight);
+                    // console.log(k,i,imageHeight,image.offsetHeight);
                   })
                }
                else {
@@ -541,7 +554,6 @@ function adjustImageSize(beforeFont = true) {
                alert('node.offsetHeight: ' + node.offsetHeight);
             totalTextHeight += node.offsetHeight;
          });
-
          // Определяем доступную высоту для изображения
          availableHeight = clientHeight - totalTextHeight;
          // Если доступная высота меньше или равна нулю, уменьшаем высоту контейнера до минимальной возможной
@@ -554,14 +566,19 @@ function adjustImageSize(beforeFont = true) {
       let newWidth = availableHeight * aspectRatio * 1;
       let newHeight = availableHeight;
       let changableHeight = availableHeight;
-      if (!false) {
+      if (false) { // -- 20260320
          let keepHeight = image.offsetHeight;
-        // console.log(keepHeight);
-        // console.log(availableHeight);
-        // console.log(image.naturalHeight);
+         console.log(keepHeight);
+         console.log(availableHeight);
+         console.log(image.naturalHeight);
          if (!frame) {
             image.style.height = 'unset';
             image.style.width = 'unset'; // 20260106 '100%' aligns to the center
+            if (!hasVerticalScrollbar(scroller)) {
+               image.style.height = `${changableHeight}px`;
+               if (hasVerticalScrollbar(scroller))
+                  image.style.height = 'unset';
+            }
          }
          if (!hasVerticalScrollbar(scroller)) {
             if (!hasHorizontalScrollbar(scroller))
@@ -569,6 +586,7 @@ function adjustImageSize(beforeFont = true) {
             return;
          }
          image.style.height = `${keepHeight}px`;
+         return;
       }
       if (isAlert)
          alert('changableHeight: ' + changableHeight);
@@ -684,22 +702,37 @@ function adjustFontSize() {
             //~ splashDiv.textContent = 'Please wait';
             //~ remarkDiv.appendChild(splashDiv);
    // Функция для проверки наличия вертикальной прокрутки
-   const slideList = document.querySelectorAll('.remark-slide-scaler');
+   const slideList = document.querySelectorAll('.remark-slides-area > .remark-slide-container > .remark-slide-scaler');
   // const offset = scrollableOffset();
    let count=0;
    slideList.forEach((slide, index) => {
      // console.log("Font size:", index);
       count++;
-      const scroller = slide.querySelector('.scrollable');
+      let scroller = slide.querySelector('.scrollable');
       if (!scroller) {
          return;
       }
-     // console.log(scroller);
-      const container = slide.querySelector('.fixprecode');
+      let container = slide.querySelector('.fixprecode');
       if (!container) {
          scroller.classList.remove(removableClass);
          return;
       }
+      const title = slide.querySelectorAll('.customtitle').length>0;
+      if (title) {
+         const ctitle = slide.querySelector('.customtitle');
+         scroller.style.overflow = 'auto';
+         ctitle.classList.remove("middle");
+        // console.log('scroll *** slide:',hasScrollbar(slide),'scroller:',hasScrollbar(scroller));
+         if (!hasScrollbar(scroller)) {
+            ctitle.classList.add("middle");
+            scroller.style.overflow = '';
+            scroller.classList.remove(removableClass);
+            return;
+         }
+         scroller.style.overflow = '';
+      }
+     // console.log(index+1," in deal");
+     // console.log(container);
       if (false) {
          const footer = container.querySelector('.footer');
          if (false && footer) {
@@ -709,15 +742,19 @@ function adjustFontSize() {
      // const within = scroller.querySelector('.within');
       const within = container.querySelectorAll('.within').length > 0
       const withincontent = container.querySelectorAll('.within');
+     // console.log('within ',within);
      // container.setAttribute('style', `font-size: 100%;`);
       if (!hasScrollbar(scroller,within)) {
+        // console.log("no scroll for slide",index+1);
+        // console.log(scroller);
+         if (title)
+            console.log('title no scroller?');
          scroller.classList.remove(removableClass);
          return;
       }
-     // console.log(count);
      // alert(count + ' D');
       container.setAttribute('style', `font-size: 100%;`);
-      // Проверяем наличие img и iframe внутри контейнера
+     // Проверяем наличие img и iframe внутри контейнера
       const hasImagesOrIframes = container.querySelectorAll('img, .framed, iframe').length > 0;
       
       if (hasImagesOrIframes) {
@@ -1003,10 +1040,11 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       else {
          const loader = document.querySelector("#loader");
-         if (loader) {
-            loader.style.visibility = "visible";
-         }
          const remarkDiv = document.querySelector('.remark-slides-area');
+         if (loader) {
+           // remarkDiv.style.opacity=0.3;
+           // loader.style.visibility = "visible";
+         }
          const splashDiv = document.createElement('div');
          const splash = false;
          if (splash) {
@@ -1020,6 +1058,7 @@ document.addEventListener('DOMContentLoaded', function() {
                remarkDiv.removeChild(splashDiv);
             if (loader) {
                loader.style.visibility = "hidden";
+               remarkDiv.style.filter = "revert";
             }
          }, 500);
       }

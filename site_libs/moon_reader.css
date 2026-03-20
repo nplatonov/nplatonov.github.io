@@ -1145,11 +1145,14 @@ ul {
    overflow-y: auto; 
    height: 656px;
 }
-.customtitle .scrollable, .middle .scrollable, .bottom .scrollable {
+.middle .scrollable, .bottom .scrollable {
    height: unset;
 }
-.customtitle .scrollable {
-   padding-top: 3px;
+.customtitle:not(.middle):has(.mainbar.scrollable) {
+   opacity: 0.1;
+  /* height: unset;*/
+  /* padding-top: 3px;*/
+  /* height: 681px;*/
 }
 .scrollable:has(.scrollable) {
    overflow-y: hidden;
@@ -1183,8 +1186,10 @@ ul {
 }
 .metadata .footer {
    position: revert;
-   margin-top: 2em;
    width: revert;
+}
+.metadata .footer:has(> p) {
+   margin-top: 2em;
 }
 .metadata .footer p {
    line-height: 1.2 !important;
@@ -2728,6 +2733,9 @@ blockquote p:last-of-type {
    left: 0;
    right: 0;
    margin: auto;
+}
+.remark-slides-area {
+   filter: contrast(0.5);
 }
 @keyframes spin {
    100% {
