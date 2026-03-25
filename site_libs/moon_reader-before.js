@@ -568,9 +568,10 @@ function adjustImageSize(beforeFont = true) {
       let changableHeight = availableHeight;
       if (false) { // -- 20260320
          let keepHeight = image.offsetHeight;
-         console.log(keepHeight);
-         console.log(availableHeight);
-         console.log(image.naturalHeight);
+        // console.log(index, hasVerticalScrollbar(scroller));
+        // console.log(index, keepHeight);
+        // console.log(index, availableHeight);
+        // console.log(index, image.naturalHeight);
          if (!frame) {
             image.style.height = 'unset';
             image.style.width = 'unset'; // 20260106 '100%' aligns to the center
@@ -602,7 +603,6 @@ function adjustImageSize(beforeFont = true) {
          alert('newHeight (itit): ' + newHeight);
       image.style.height = `${newHeight}px`;
      // image.style.height = `700px`;
-     // return;
       if (hasVerticalScrollbar(image)) {
          image.style.height = ``;
          if (!hasVerticalScrollbar(scroller))
@@ -637,7 +637,8 @@ function adjustImageSize(beforeFont = true) {
          if (changableHeight <= 0) break;
          */
       }
-      if (true) {
+     // return;
+      if (false) { /* -- 20260322 */
          const minHeight = newHeight;
          while (!hasVerticalScrollbar(scroller)) {
             newHeight *= (1+0.01);
@@ -995,7 +996,7 @@ function adjustOutline() {
    return;
 }
 adjustBundle=function() {
-   const loader = false & document.querySelector("#loader");
+   const loader = false; // document.querySelector("#loader");
    if (loader)
       loader.style.visibility = "visible";
    const offset = scrollableOffset();
@@ -1013,9 +1014,13 @@ adjustBundle=function() {
          slide.appendChild(banner);
       })
    }
+   console.log('=== images before ===',Temporal.Now.instant().toString());
    adjustImageSize(beforeFont=true);
+   console.log('=== fonts         ===',Temporal.Now.instant().toString());
    adjustFontSize();
+   console.log('=== images after  ===', Temporal.Now.instant().toString());
    adjustImageSize(beforeFont=false);
+   console.log('=== complete      ===',Temporal.Now.instant().toString());
    if (true && offset) {
       const bannerList = document.querySelectorAll('.scrollable-offset');
       bannerList.forEach(banner => {

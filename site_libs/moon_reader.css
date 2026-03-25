@@ -796,8 +796,18 @@ a:hover {
 }
 .break:not(.inverse) a,
 .break.inverse a,
+.notable.blackout h1 a:hover,
+.notable.blackout h2 a:hover,
+.notable.blackout h3 a:hover,
+.notable.blackout h4 a:hover,
 .notable.blackout a {
    text-decoration: underline 0.08em dotted color-mix(in srgb, var(--light), transparent 40%);
+}
+.notable.blackout h1 a,
+.notable.blackout h2 a,
+.notable.blackout h3 a,
+.notable.blackout h4 a {
+   text-decoration: none;
 }
 .break.inverse a:hover,
 .notable.blackout a:hover {
@@ -2293,24 +2303,26 @@ html[data-darkreader-scheme="dark"] body .html-widget:hover {
    background-color: var(--dark) !important;
    font-size: calc(var(--pointsize) * 0.9) !important;
    color: var(--light) !important;
+   margin-top: var(--pointsize);
+   height: calc(100% - 2 * var(--pointsize));
    top: 0px;
 }
 .remark-slide-notes p:hover {
   /* font-size: 22em !important;*/
   /* margin: 0.4em;*/
 }
-.remark-slide-notes:before {
+.remark-slide-notes:has(> p):before {
    color: var(--dark) !important;
-   opacity: 0.2 !important;
+   opacity: 0.5 !important;
    content: '🛈';
    display: block !important;
    position: fixed;
-   top: 1px;
-   right: 0.4em;
+   bottom: 1px;
+   right: 1px;
 }
-.remark-slide-notes:hover:before {
+.remark-slide-notes:has(> p):hover:before {
   /* display: none !important;*/
-   visibility: hidden;
+   visibility: visible;
 }
 .sidebar:not(.left-column) {
    display: block;
@@ -2955,7 +2967,7 @@ blockquote p:last-of-type {
    display: block;
    position: fixed;
    bottom: -10px;
-   right: 0px !important;
+   right: 13px !important;
 }
 .outline::after {
    left: 3px;
