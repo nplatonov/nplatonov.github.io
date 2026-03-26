@@ -1,7 +1,9 @@
 :root {
-   --sidebar-color: indigo;
+   --sidebar-background: indigo; /*palegoldenrod*/
+  /* --sidebar-background-right: transparent;*/
+   --sidebar-color: var(--light); 
    --sidebar-border: transparent;
-   --sidebar-accent: palegoldenrod;
+   --sidebar-accent: var(--light);
    --sidebar-select: var(--dark);
    --zzzheader-color: var(--sidebar-accent);
 }
@@ -15,9 +17,9 @@
 }
 .remark-slide-content:not(.inverse) .outline *[id*="bg"] {
   /* border-left: 1px solid transparent !important;*/
-   border-radius: 12px !important;
+  /* border-radius: 12px !important;*/
 }
-p::after img[width="1330"] {
+p img[width="1330"]::after {
    content: 'attr(style)';
    position: fixed;
    display: block;
@@ -28,4 +30,11 @@ p::after img[width="1330"] {
    background-color: #032040 !important;
    background-image: url(qgis-demo.jpg) !important;
    background-size: cover;
+}
+td .control {
+   visibility: hidden;
+   opacity: 0.3;
+}
+td:hover .control {
+   visibility: visible;
 }

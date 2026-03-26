@@ -435,7 +435,8 @@ pre code * {
   /* margin-right: calc(100% - 4px - var(--gap));*/
    font-size: 80%;
    opacity: 0.4;
-   border: 1px solid var(--dark);
+   color: var(--sidebar-color);
+   border: 1px solid var(--sidebar-color);
    padding: 0em 0.18em 0em 0.18em;
   /* width: 1.3em;*/
    text-align: center;
@@ -448,6 +449,7 @@ pre code * {
 .blackout .mainbar + .remark-slide-number,
 .inverse:not(.revert) .mainbar + .remark-slide-number {
    border-color: var(--light);
+   color: var(--sidebar-color-inverse);
 }
 .mainbar.broad + .remark-slide-number {
   /* margin-right: calc(100% - var(--sidebar-narrow) - var(--gap) - 11px);*/
@@ -729,6 +731,9 @@ h5 span.header {
 .sidebar + .right-column {
    width: calc(100% - var(--sidebar) - var(--sidebar-margin) + 11px);
   /* width: calc(100% - var(--sidebar) + 5px);*/
+}
+.metadata > .sidebar + .right-column {
+   width: calc(100% - var(--sidebar) - var(--sidebar-margin) - 11px);
 }
 .metadata .zzzsidebar.narrow + .right-column {
    width: calc(101% - var(--sidebar-narrow) - var(--sidebar) - var(--sidebar-margin) - 5.6px - 0.6em);
@@ -1345,7 +1350,7 @@ html[data-darkreader-mode="filter"] .sidebar {
 }
 .sidebar :is(h1, h2, h3, h4, h5) a:hover {
   /* color: #444;*/
-   opacity: 0.6;
+   opacity: 0.6 !important;
 }
 .inverse .sidebar h1, .inverse .sidebar h2, .inverse .sidebar h3, .inverse .sidebar h4, .inverse .sidebar h5,
 .inverse .sidebar h1 a, .inverse .sidebar h2 a, .inverse .sidebar h3 a, .inverse .sidebar h4 a, .inverse .sidebar h5 a {
@@ -1916,6 +1921,7 @@ code.remark-code:not(.hljs) {
    display: none;
 }
 .shorttitle {
+  color: var(--sidebar-color);
   font-family: var(--font-condensed);
   line-height: 1;
   font-size: 100%;
