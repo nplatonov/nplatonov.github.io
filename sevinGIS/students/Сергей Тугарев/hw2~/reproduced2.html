@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>reproduced2.R</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.30/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+<pre><code>Linking to GEOS 3.13.1, GDAL 3.11.4, PROJ 9.7.0; sf_use_s2() is TRUE</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># ПОДГОТОВКА ДАННЫХ -</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>path <span class="ot"><-</span> <span class="st">&quot;D:/users/platt/shapefile/auxiliary/naturalearth/5.1.2&quot;</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>states_all <span class="ot"><-</span> ursa<span class="sc">::</span><span class="fu">spatial_read</span>(<span class="fu">file.path</span>(path, <span class="st">&quot;10m_cultural&quot;</span>, <span class="st">&quot;ne_10m_admin_1_states_provinces.shp&quot;</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>rivers_all <span class="ot"><-</span> ursa<span class="sc">::</span><span class="fu">spatial_read</span>(<span class="fu">file.path</span>(path, <span class="st">&quot;10m_physical&quot;</span>, <span class="st">&quot;ne_10m_rivers_lake_centerlines.shp&quot;</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>lakes_all  <span class="ot"><-</span> ursa<span class="sc">::</span><span class="fu">spatial_read</span>(<span class="fu">file.path</span>(path, <span class="st">&quot;10m_physical&quot;</span>, <span class="st">&quot;ne_10m_lakes.shp&quot;</span>))</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>Spherical geometry (s2) switched off</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>ru_names_map <span class="ot"><-</span> <span class="fu">c</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="st">&quot;New South Wales&quot;</span> <span class="ot">=</span> <span class="st">&quot;НОВЫЙ ЮЖНЫЙ</span><span class="sc">\n</span><span class="st">УЭЛЬС&quot;</span>, <span class="st">&quot;Victoria&quot;</span> <span class="ot">=</span> <span class="st">&quot;ВИКТОРИЯ&quot;</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="st">&quot;Queensland&quot;</span> <span class="ot">=</span> <span class="st">&quot;КВИНСЛЕНД&quot;</span>, <span class="st">&quot;South Australia&quot;</span> <span class="ot">=</span> <span class="st">&quot;ЮЖНАЯ</span><span class="sc">\n</span><span class="st">АВСТРАЛИЯ&quot;</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="st">&quot;Western Australia&quot;</span> <span class="ot">=</span> <span class="st">&quot;ЗАПАДНАЯ</span><span class="sc">\n</span><span class="st">АВСТРАЛИЯ&quot;</span>, <span class="st">&quot;Tasmania&quot;</span> <span class="ot">=</span> <span class="st">&quot;ТАСМАНИЯ&quot;</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="st">&quot;Northern Territory&quot;</span> <span class="ot">=</span> <span class="st">&quot;СЕВЕРНАЯ</span><span class="sc">\n</span><span class="st">ТЕРРИТОРИЯ&quot;</span>, <span class="st">&quot;Australian Capital Territory&quot;</span> <span class="ot">=</span> <span class="st">&quot;СТОЛИЧНАЯ</span><span class="sc">\n</span><span class="st">ТЕРРИТОРИЯ&quot;</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>)</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co"># Проекция Австралии (EPSG:3112)</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>aus_states <span class="ot"><-</span> <span class="fu">st_transform</span>(states_all[states_all<span class="sc">$</span>admin <span class="sc">==</span> <span class="st">&quot;Australia&quot;</span> <span class="sc">&</span> states_all<span class="sc">$</span>name <span class="sc">%in%</span> <span class="fu">names</span>(ru_names_map), ], <span class="dv">3112</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>aus_boundary <span class="ot"><-</span> <span class="fu">st_union</span>(aus_states)</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>aus_rivers <span class="ot"><-</span> <span class="fu">st_intersection</span>(<span class="fu">st_transform</span>(rivers_all, <span class="dv">3112</span>), aus_boundary)</span></code></pre></div>
+<pre><code>Warning: attribute variables are assumed to be spatially constant throughout all geometries</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>aus_lakes  <span class="ot"><-</span> <span class="fu">st_intersection</span>(<span class="fu">st_transform</span>(lakes_all, <span class="dv">3112</span>), aus_boundary)</span></code></pre></div>
+<pre><code>Warning: attribute variables are assumed to be spatially constant throughout all geometries</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>state_labels <span class="ot"><-</span> <span class="fu">st_centroid</span>(aus_states)</span></code></pre></div>
+<pre><code>Warning: st_centroid assumes attributes are constant over geometries</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>state_labels<span class="sc">$</span>name_ru <span class="ot"><-</span> ru_names_map[state_labels<span class="sc">$</span>name]</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>cities <span class="ot"><-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Дарвин&quot;</span>, <span class="st">&quot;Перт&quot;</span>, <span class="st">&quot;Аделаида&quot;</span>, <span class="st">&quot;Мельбурн&quot;</span>, <span class="st">&quot;Канберра&quot;</span>, <span class="st">&quot;Сидней&quot;</span>, <span class="st">&quot;Брисбен&quot;</span>, <span class="st">&quot;Хобарт&quot;</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  <span class="at">lat =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">12.46</span>, <span class="sc">-</span><span class="fl">31.95</span>, <span class="sc">-</span><span class="fl">34.93</span>, <span class="sc">-</span><span class="fl">37.81</span>, <span class="sc">-</span><span class="fl">35.28</span>, <span class="sc">-</span><span class="fl">33.87</span>, <span class="sc">-</span><span class="fl">27.47</span>, <span class="sc">-</span><span class="fl">42.88</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>  <span class="at">lon =</span> <span class="fu">c</span>(<span class="fl">130.84</span>, <span class="fl">115.86</span>, <span class="fl">138.60</span>, <span class="fl">144.96</span>, <span class="fl">149.13</span>, <span class="fl">151.21</span>, <span class="fl">153.03</span>, <span class="fl">147.32</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>)</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>cities_sf <span class="ot"><-</span> <span class="fu">st_transform</span>(<span class="fu">st_as_sf</span>(cities, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;lon&quot;</span>, <span class="st">&quot;lat&quot;</span>), <span class="at">crs =</span> <span class="dv">4326</span>), <span class="dv">3112</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co"># Линейка</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>scale_x <span class="ot"><-</span> <span class="sc">-</span><span class="dv">2700000</span> </span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>scale_y <span class="ot"><-</span> <span class="sc">-</span><span class="dv">4950000</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>h <span class="ot"><-</span> <span class="dv">20000</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co"># Рисуем</span></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a>final_plot <span class="ot"><-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a>  <span class="co"># Слои геометрии (рисуются первыми, окажутся под сеткой)</span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> aus_states, <span class="fu">aes</span>(<span class="at">fill =</span> name), <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> aus_lakes, <span class="at">fill =</span> <span class="st">&quot;#add8e6&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#5dade2&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> aus_rivers, <span class="at">color =</span> <span class="st">&quot;#5dade2&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a>  </span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a>  <span class="co"># Названия штатов и морей</span></span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a>  <span class="fu">geom_sf_text</span>(<span class="at">data =</span> state_labels, <span class="fu">aes</span>(<span class="at">label =</span> name_ru), <span class="at">color =</span> <span class="st">&quot;#666666&quot;</span>, <span class="at">size =</span> <span class="fl">2.0</span>, <span class="at">fontface =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="sc">-</span><span class="dv">1700000</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">1000000</span>, <span class="at">label =</span> <span class="st">&quot;ТИМОРСКОЕ МОРЕ&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="fl">2.8</span>) <span class="sc">+</span></span>
+<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">500000</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">800000</span>, <span class="at">label =</span> <span class="st">&quot;МОРЕ АРАФУРА&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="fl">2.8</span>) <span class="sc">+</span></span>
+<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">2100000</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">1800000</span>, <span class="at">label =</span> <span class="st">&quot;КОРАЛЛОВОЕ МОРЕ&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="fl">2.8</span>) <span class="sc">+</span></span>
+<span id="cb11-27"><a href="#cb11-27" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">2200000</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">4500000</span>, <span class="at">label =</span> <span class="st">&quot;ТАСМАНОВО МОРЕ&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="fl">2.8</span>) <span class="sc">+</span></span>
+<span id="cb11-28"><a href="#cb11-28" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="sc">-</span><span class="dv">600000</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">4400000</span>, <span class="at">label =</span> <span class="st">&quot;БОЛЬШОЙ АВСТРАЛИЙСКИЙ ЗАЛИВ&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">size =</span> <span class="fl">2.8</span>) <span class="sc">+</span></span>
+<span id="cb11-29"><a href="#cb11-29" tabindex="-1"></a>  </span>
+<span id="cb11-30"><a href="#cb11-30" tabindex="-1"></a>  <span class="co"># Города</span></span>
+<span id="cb11-31"><a href="#cb11-31" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> cities_sf, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb11-32"><a href="#cb11-32" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> <span class="fu">as.data.frame</span>(<span class="fu">st_coordinates</span>(cities_sf)), <span class="fu">aes</span>(<span class="at">x =</span> X, <span class="at">y =</span> Y, <span class="at">label =</span> cities<span class="sc">$</span>name),</span>
+<span id="cb11-33"><a href="#cb11-33" tabindex="-1"></a>                  <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="fl">3.2</span>, <span class="at">box.padding =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb11-34"><a href="#cb11-34" tabindex="-1"></a>  </span>
+<span id="cb11-35"><a href="#cb11-35" tabindex="-1"></a>  <span class="co"># и тут линейка</span></span>
+<span id="cb11-36"><a href="#cb11-36" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="at">xmin=</span>scale_x, <span class="at">xmax=</span>scale_x<span class="sc">+</span><span class="dv">300000</span>, <span class="at">ymin=</span>scale_y<span class="sc">-</span>h, <span class="at">ymax=</span>scale_y, <span class="at">fill=</span><span class="st">&quot;black&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb11-37"><a href="#cb11-37" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="at">xmin=</span>scale_x<span class="sc">+</span><span class="dv">300000</span>, <span class="at">xmax=</span>scale_x<span class="sc">+</span><span class="dv">600000</span>, <span class="at">ymin=</span>scale_y<span class="sc">-</span>h, <span class="at">ymax=</span>scale_y, <span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb11-38"><a href="#cb11-38" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="at">xmin=</span>scale_x<span class="sc">+</span><span class="dv">600000</span>, <span class="at">xmax=</span>scale_x<span class="sc">+</span><span class="dv">900000</span>, <span class="at">ymin=</span>scale_y<span class="sc">-</span>h, <span class="at">ymax=</span>scale_y, <span class="at">fill=</span><span class="st">&quot;black&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb11-39"><a href="#cb11-39" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="at">xmin=</span>scale_x, <span class="at">xmax=</span>scale_x<span class="sc">+</span><span class="dv">300000</span>, <span class="at">ymin=</span>scale_y, <span class="at">ymax=</span>scale_y<span class="sc">+</span>h, <span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb11-40"><a href="#cb11-40" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="at">xmin=</span>scale_x<span class="sc">+</span><span class="dv">300000</span>, <span class="at">xmax=</span>scale_x<span class="sc">+</span><span class="dv">600000</span>, <span class="at">ymin=</span>scale_y, <span class="at">ymax=</span>scale_y<span class="sc">+</span>h, <span class="at">fill=</span><span class="st">&quot;black&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb11-41"><a href="#cb11-41" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="at">xmin=</span>scale_x<span class="sc">+</span><span class="dv">600000</span>, <span class="at">xmax=</span>scale_x<span class="sc">+</span><span class="dv">900000</span>, <span class="at">ymin=</span>scale_y, <span class="at">ymax=</span>scale_y<span class="sc">+</span>h, <span class="at">fill=</span><span class="st">&quot;white&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb11-42"><a href="#cb11-42" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fu">seq</span>(scale_x, scale_x <span class="sc">+</span> <span class="dv">900000</span>, <span class="at">by =</span> <span class="dv">300000</span>), <span class="at">y =</span> scale_y <span class="sc">+</span> h <span class="sc">+</span> <span class="dv">80000</span>, </span>
+<span id="cb11-43"><a href="#cb11-43" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">c</span>(<span class="st">&quot;300&quot;</span>, <span class="st">&quot;0&quot;</span>, <span class="st">&quot;300&quot;</span>, <span class="st">&quot;600&quot;</span>), <span class="at">size =</span> <span class="fl">2.4</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-44"><a href="#cb11-44" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> scale_x <span class="sc">+</span> <span class="dv">1030000</span>, <span class="at">y =</span> scale_y <span class="sc">+</span> h <span class="sc">+</span> <span class="dv">80000</span>, <span class="at">label =</span> <span class="st">&quot;km&quot;</span>, <span class="at">size =</span> <span class="fl">2.4</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-45"><a href="#cb11-45" tabindex="-1"></a>  </span>
+<span id="cb11-46"><a href="#cb11-46" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set3&quot;</span>, <span class="at">guide =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-47"><a href="#cb11-47" tabindex="-1"></a>  </span>
+<span id="cb11-48"><a href="#cb11-48" tabindex="-1"></a>  <span class="co"># настройка сетки</span></span>
+<span id="cb11-49"><a href="#cb11-49" tabindex="-1"></a>  <span class="fu">coord_sf</span>(</span>
+<span id="cb11-50"><a href="#cb11-50" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3000000</span>, <span class="dv">3000000</span>), </span>
+<span id="cb11-51"><a href="#cb11-51" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5200000</span>, <span class="sc">-</span><span class="dv">500000</span>), </span>
+<span id="cb11-52"><a href="#cb11-52" tabindex="-1"></a>    <span class="at">datum =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>), <span class="co"># Принудительно используем градусы WGS84 для сетки</span></span>
+<span id="cb11-53"><a href="#cb11-53" tabindex="-1"></a>    <span class="at">expand =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb11-54"><a href="#cb11-54" tabindex="-1"></a>    <span class="at">clip =</span> <span class="st">&quot;off&quot;</span></span>
+<span id="cb11-55"><a href="#cb11-55" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-56"><a href="#cb11-56" tabindex="-1"></a>  </span>
+<span id="cb11-57"><a href="#cb11-57" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-58"><a href="#cb11-58" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb11-59"><a href="#cb11-59" tabindex="-1"></a>    <span class="co"># Голубой фон моря на всю картинку</span></span>
+<span id="cb11-60"><a href="#cb11-60" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#add8e6&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb11-61"><a href="#cb11-61" tabindex="-1"></a>    </span>
+<span id="cb11-62"><a href="#cb11-62" tabindex="-1"></a>    <span class="co"># Рамка карты</span></span>
+<span id="cb11-63"><a href="#cb11-63" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>),</span>
+<span id="cb11-64"><a href="#cb11-64" tabindex="-1"></a>    </span>
+<span id="cb11-65"><a href="#cb11-65" tabindex="-1"></a>    <span class="co"># тут перенос сетки на передний план</span></span>
+<span id="cb11-66"><a href="#cb11-66" tabindex="-1"></a>    <span class="at">panel.ontop =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb11-67"><a href="#cb11-67" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.25</span>),</span>
+<span id="cb11-68"><a href="#cb11-68" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-69"><a href="#cb11-69" tabindex="-1"></a>    </span>
+<span id="cb11-70"><a href="#cb11-70" tabindex="-1"></a>    <span class="co"># Настройка подписей осей</span></span>
+<span id="cb11-71"><a href="#cb11-71" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&quot;#444444&quot;</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb11-72"><a href="#cb11-72" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">15</span>)), <span class="co"># Отступ снизу</span></span>
+<span id="cb11-73"><a href="#cb11-73" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">15</span>)), <span class="co"># Отступ слева</span></span>
+<span id="cb11-74"><a href="#cb11-74" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-75"><a href="#cb11-75" tabindex="-1"></a>    </span>
+<span id="cb11-76"><a href="#cb11-76" tabindex="-1"></a>    <span class="co"># Поля вокруг всего изображения, чтобы вынесенный текст не обрезался</span></span>
+<span id="cb11-77"><a href="#cb11-77" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">40</span>)</span>
+<span id="cb11-78"><a href="#cb11-78" tabindex="-1"></a>  )</span></code></pre></div>
+<p class="centered-image"><img src="assets/map2-1.svg" alt="" width="787.2" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># сохранение</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(<span class="fu">dev.list</span>())) <span class="fu">dev.off</span>()</span></code></pre></div>
+<pre><code>null device 
+          1 </code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;australia_perfect_final_reproduced.png&quot;</span>, <span class="at">plot =</span> final_plot, <span class="at">width =</span> <span class="dv">11</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">dpi =</span> <span class="dv">100</span>)</span></code></pre></div>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
