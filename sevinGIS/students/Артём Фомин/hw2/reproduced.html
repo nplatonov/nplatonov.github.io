@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>reproduced.R</title>
+
+<script src="https://nplatonov.github.io/site_libs/header-attrs-2.30/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/common.css" type="text/css" />
+<link rel="stylesheet" href="https://nplatonov.github.io/site_libs/html_vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+<pre><code>Linking to GEOS 3.13.1, GDAL 3.11.4, PROJ 9.7.0; sf_use_s2() is TRUE</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># 1. Загрузка и подготовка</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>full_data <span class="ot"><-</span> ursa<span class="sc">::</span><span class="fu">spatial_read</span>(<span class="st">&quot;ne_10m_land&quot;</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>admin <span class="ot"><-</span> ursa<span class="sc">::</span><span class="fu">spatial_read</span>(<span class="st">&quot;Australia_adm02&quot;</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>bbox_geo <span class="ot"><-</span> <span class="fu">c</span>(<span class="at">xmin =</span> <span class="dv">112</span>, <span class="at">xmax =</span> <span class="dv">154</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="dv">44</span>, <span class="at">ymax =</span> <span class="sc">-</span><span class="dv">9</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>main_crop <span class="ot"><-</span> <span class="fu">st_crop</span>(full_data, bbox_geo)</span></code></pre></div>
+<pre><code>Warning: attribute variables are assumed to be spatially constant throughout all geometries</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>admin_crop <span class="ot"><-</span> <span class="fu">st_crop</span>(admin, bbox_geo)</span></code></pre></div>
+<pre><code>Warning: attribute variables are assumed to be spatially constant throughout all geometries</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>target_crs <span class="ot"><-</span> <span class="dv">3577</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>main_proj <span class="ot"><-</span> <span class="fu">st_transform</span>(main_crop, <span class="at">crs =</span> target_crs)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>admin_proj <span class="ot"><-</span> <span class="fu">st_transform</span>(admin_crop, <span class="at">crs =</span> target_crs)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co"># 2. Координатная сетка</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>graticule <span class="ot"><-</span> <span class="fu">st_graticule</span>(<span class="at">lat =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">45</span>, <span class="sc">-</span><span class="dv">5</span>, <span class="at">by =</span> <span class="dv">5</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>                          <span class="at">lon =</span> <span class="fu">seq</span>(<span class="dv">110</span>, <span class="dv">160</span>, <span class="at">by =</span> <span class="dv">5</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>graticule_proj <span class="ot"><-</span> <span class="fu">st_transform</span>(graticule, <span class="at">crs =</span> target_crs)</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co"># 3. Обрезка по экстенту административных границ</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>bbox_proj <span class="ot"><-</span> <span class="fu">st_bbox</span>(admin_proj)</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>main_proj_clip <span class="ot"><-</span> <span class="fu">st_crop</span>(main_proj, bbox_proj)</span></code></pre></div>
+<pre><code>Warning: attribute variables are assumed to be spatially constant throughout all geometries</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>admin_proj_clip <span class="ot"><-</span> <span class="fu">st_crop</span>(admin_proj, bbox_proj)</span></code></pre></div>
+<pre><code>Warning: attribute variables are assumed to be spatially constant throughout all geometries</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># 4. Точки для подписей</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>points_inside <span class="ot"><-</span> <span class="fu">st_point_on_surface</span>(admin_proj_clip)</span></code></pre></div>
+<pre><code>Warning: st_point_on_surface assumes attributes are constant over geometries</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>points_inside<span class="sc">$</span>label <span class="ot"><-</span> admin_proj_clip<span class="sc">$</span>name</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="co"># 5. Ручная масштабная линейка</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>xmin <span class="ot"><-</span> bbox_proj[<span class="st">&quot;xmin&quot;</span>]</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>xmax <span class="ot"><-</span> bbox_proj[<span class="st">&quot;xmax&quot;</span>]</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>ymin <span class="ot"><-</span> bbox_proj[<span class="st">&quot;ymin&quot;</span>]</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>ymax <span class="ot"><-</span> bbox_proj[<span class="st">&quot;ymax&quot;</span>]</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="co"># Длина линейки: 20% от ширины карты, округлённая до целых километров</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>scale_km <span class="ot"><-</span> <span class="fu">round</span>((xmax <span class="sc">-</span> xmin) <span class="sc">/</span> <span class="dv">1000</span> <span class="sc">*</span> <span class="fl">0.2</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>scale_km <span class="ot"><-</span> <span class="fu">max</span>(<span class="dv">50</span>, <span class="fu">min</span>(<span class="dv">500</span>, scale_km))  <span class="co"># ограничиваем от 50 до 500 км</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>scale_m <span class="ot"><-</span> scale_km <span class="sc">*</span> <span class="dv">1000</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="co"># Отступы от краёв: 5%</span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a>left_margin <span class="ot"><-</span> (xmax <span class="sc">-</span> xmin) <span class="sc">*</span> <span class="fl">0.05</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a>bottom_margin <span class="ot"><-</span> (ymax <span class="sc">-</span> ymin) <span class="sc">*</span> <span class="fl">0.05</span></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="co"># Координаты начала и конца линейки</span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a>x_start <span class="ot"><-</span> xmin <span class="sc">+</span> left_margin</span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a>x_end <span class="ot"><-</span> x_start <span class="sc">+</span> scale_m</span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a>y_line <span class="ot"><-</span> ymin <span class="sc">+</span> bottom_margin</span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a><span class="co"># 6. Построение карты</span></span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a>p <span class="ot"><-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> main_proj_clip, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">&quot;gray50&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> admin_proj_clip, <span class="fu">aes</span>(<span class="at">fill =</span> name), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">name =</span> <span class="st">&quot;Регион&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> graticule_proj, <span class="at">color =</span> <span class="st">&quot;gray70&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> admin_proj_clip, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb13-30"><a href="#cb13-30" tabindex="-1"></a>  <span class="fu">geom_sf_text</span>(<span class="at">data =</span> points_inside, <span class="fu">aes</span>(<span class="at">label =</span> label),</span>
+<span id="cb13-31"><a href="#cb13-31" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb13-32"><a href="#cb13-32" tabindex="-1"></a>               <span class="at">check_overlap =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb13-33"><a href="#cb13-33" tabindex="-1"></a>  <span class="co"># Масштабная линейка</span></span>
+<span id="cb13-34"><a href="#cb13-34" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> x_start, <span class="at">y =</span> y_line, <span class="at">xend =</span> x_end, <span class="at">yend =</span> y_line),</span>
+<span id="cb13-35"><a href="#cb13-35" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb13-36"><a href="#cb13-36" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> x_start, <span class="at">y =</span> y_line <span class="sc">-</span> (ymax<span class="sc">-</span>ymin)<span class="sc">*</span><span class="fl">0.002</span>,</span>
+<span id="cb13-37"><a href="#cb13-37" tabindex="-1"></a>                   <span class="at">xend =</span> x_start, <span class="at">yend =</span> y_line <span class="sc">+</span> (ymax<span class="sc">-</span>ymin)<span class="sc">*</span><span class="fl">0.002</span>),</span>
+<span id="cb13-38"><a href="#cb13-38" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb13-39"><a href="#cb13-39" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> x_end, <span class="at">y =</span> y_line <span class="sc">-</span> (ymax<span class="sc">-</span>ymin)<span class="sc">*</span><span class="fl">0.002</span>,</span>
+<span id="cb13-40"><a href="#cb13-40" tabindex="-1"></a>                   <span class="at">xend =</span> x_end, <span class="at">yend =</span> y_line <span class="sc">+</span> (ymax<span class="sc">-</span>ymin)<span class="sc">*</span><span class="fl">0.002</span>),</span>
+<span id="cb13-41"><a href="#cb13-41" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb13-42"><a href="#cb13-42" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> (x_start <span class="sc">+</span> x_end)<span class="sc">/</span><span class="dv">2</span>, <span class="at">y =</span> y_line <span class="sc">-</span> (ymax<span class="sc">-</span>ymin)<span class="sc">*</span><span class="fl">0.015</span>,</span>
+<span id="cb13-43"><a href="#cb13-43" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(scale_km, <span class="st">&quot; км&quot;</span>), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb13-44"><a href="#cb13-44" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(xmin, xmax), <span class="at">ylim =</span> <span class="fu">c</span>(ymin, ymax), <span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb13-45"><a href="#cb13-45" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Австралия&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-46"><a href="#cb13-46" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-47"><a href="#cb13-47" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb13-48"><a href="#cb13-48" tabindex="-1"></a></span>
+<span id="cb13-49"><a href="#cb13-49" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<p class="centered-image"><img src="assets/unnamed-chunk-1-1.svg" alt="" width="787.2" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># 7. Сохранение в PNG</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;./02 Карта_Австралии_reproduced.png&quot;</span>, <span class="at">plot =</span> p, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">dpi =</span> <span class="dv">100</span>)</span></code></pre></div>
+
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
