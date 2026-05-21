@@ -1,0 +1,180 @@
+---
+echo: true
+title: "Лыжник"
+output1:
+  html_document:
+    df_print: paged
+date: "2026-06-05"
+---
+
+```{r setup, include=FALSE}
+# plutil::pluglibrary("gpx")
+library(sf)
+# library(gpx)
+library(adehabitatLT)
+library(mapview)
+library(dplyr)
+library(tibble)
+
+knitr::opts_chunk$set(
+  fig.width = 10,
+  fig.height = 8,
+  dev.args = list(pointsize = 12)
+)
+```
+
+Подготовка данных и расчеты
+
+```{r, results='markdown'}
+loc <- st_read("../../../data/2022-01-09_14-00_Sun.gpx", layer = "track_points") |>
+  st_transform(32637)
+
+loc$time <- as.POSIXct(loc$time, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")
+
+coords <- st_coordinates(loc)
+x_coords <- coords[, "X"] 
+y_coords <- coords[, "Y"]
+
+lt1 <- as.ltraj(
+  xy = cbind(x_coords, y_coords),  
+  date = loc$time,          
+  id = loc$track_seg_id,
+  typeII = TRUE,           
+  proj4string = sp::CRS(st_crs(loc)$proj4string)
+)
+df <- ld(lt1)
+df$speed_kmh <-  round(df$dist / df$dt * 3.6, 2)
+df$cum_dist  <- round(cumsum(df$dist), 1)
+```
+
+База данных, полученная из .gpx (сокращенная версия)
+
+```{r, echo=FALSE}
+knitr::kable(df[1:5, c(1:3,14:15)])
+```
+
+Расчеты для 1-го круга
+
+```{r, results='asis'}
+dist_1 <- df[["dist"]][94:395]
+t1 <- df[94:395,]
+dlt1 <- dl(t1)
+df_t1 <- ld(dlt1)
+time_1 <- df_t1 |>
+  summarise(finish1 = max(date, na.rm = TRUE),
+            start1 = min(date, na.rm = TRUE))
+speed_1 <-  sapply(df_t1[14], mean, na.rm = TRUE)
+```
+
+Расчеты для 2-го круга
+
+```{r}
+dist_2 <- df[["dist"]][395:690]
+t2 <- df[395:690,]
+dlt2 <- dl(t2)
+df_t2 <- ld(dlt2)
+time_2 <- df_t2 |>
+  summarise(finish2 = max(date, na.rm = TRUE),
+            start2 = min(date, na.rm = TRUE))
+speed_2 <-  sapply(df_t2[14], mean, na.rm = TRUE)
+```
+
+Расчет расстояния от базы до начала круга
+
+```{r}
+b_start <- df[["dist"]][1:94]
+```
+
+... и наоборот
+
+```{r}
+start_b <- df[["dist"]][690:834]
+```
+
+Получилось `r round(sum(b_start), 2)` м туда и `r round(sum(start_b), 2)` м обратно 
+
+(верно скорее всего `r round(sum(b_start), 2)` м, потому что на обратном пути появляется крюк)
+
+Расчет самой отдаленной точки от базы
+
+```{r}
+base_point <- df[1,] 
+points_sf <- st_as_sf(df, coords = c("x", "y"), crs = st_crs(base_point))
+base_point <- st_as_sf(base_point, coords = c("x", "y"), crs = st_crs(points_sf))
+distances <- st_distance(points_sf, base_point)
+max_dist_idx <- which.max(distances)
+max_point <- points_sf[max_dist_idx, ]
+max_distance <- distances[max_dist_idx]
+
+max_distance
+```
+
+Иллюстрация трека
+
+```{r, echo=FALSE}
+all_dist <- df[["dist"]][1:834]
+track_dist <- df[["dist"]][94:690]
+df_sf <- st_as_sf(df, coords = c("x", "y"), crs = 32637)
+plot(df_t1$x, df_t1$y, type = "l", col = "red", lwd = 2,
+     xlim = c(388500, 389100),
+     ylim = c(6289500, 6290250),
+     xlab = "X",
+     ylab = "Y")
+lines(df_t2$x, df_t2$y, col = "blue", lwd = 2)
+b_start_df <- df[1:94,]
+start_b_df <- df[690:834,]
+lines(b_start_df$x, b_start_df$y, col = "green", lwd = 2)
+lines(start_b_df$x, start_b_df$y, col = "green", lwd = 2)
+legend ("bottomright",
+  legend = c("Путь от/до базы", "1-ый круг","2-ой круг"),
+  col = c("green", "red", "blue"),
+  lty = c(1, 1, 1),
+  lwd = c(2, 2, 2))
+```
+
+Итоги
+
+1 круг начинается с ускорения 8.87 км/ч
+
+Дистанция 1-го круга составила __`r round(sum(dist_1), 1)`__ метров
+
+Средняя скорость в 1-ом круге составила __`r round(speed_1, 2)`__ км/ч
+
+2 круг заканчивается скоростью 8.86 км/ч
+
+Дистанция 2-го круга составила __`r round(sum(dist_2), 1)`__ метров
+
+Средняя скорость во 2-ом круге составила __`r round(speed_2, 2)`__ км/ч
+
+
+Расстояние от базы до начала маршрута составило __`r round(sum(b_start), 2)`__ метров
+
+Расстояние от конца маршрута до базы составило __`r round(sum(start_b), 2)`__ метров
+
+Пройденная дистанция на лыжах __`r round(sum(track_dist), 2)`__ метров
+
+Полный маршрут составил __`r round(sum(all_dist), 2)`__ метров
+
+Итоговая таблица
+
+```{r, echo=!FALSE}
+stats_1 <- tibble(
+  Круг = "1",
+  `Трасса, м` = round(sum(dist_1), 1),
+  `Средняя скорость, км/ч` = round(speed_1, 2),
+  Старт = df[94,3],
+  Финиш = df[395,3]
+)
+stats_2 <- tibble(
+  Круг = "2",
+  `Трасса, м` = round(sum(dist_2), 1),
+  `Средняя скорость, км/ч` = round(speed_2, 2),
+  Старт = df[395,3],
+  Финиш = df[690,3]
+)
+stats <- rbind(stats_1, stats_2)
+```
+
+```{r, , echo=!FALSE}
+knitr::kable(stats)
+```
